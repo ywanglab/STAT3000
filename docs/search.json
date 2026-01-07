@@ -1,19 +1,12 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "STAT 3000 Lecture Notes",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2",
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "STAT 3000",
+    "section": "Course Information",
+    "text": "Course Information\n\nTextbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
     "crumbs": [
-      "Home"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>STAT 3000 Lecture Notes</span>"
     ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
   }
 ]

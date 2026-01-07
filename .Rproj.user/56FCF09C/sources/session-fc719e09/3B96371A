@@ -3,7 +3,7 @@
     "path": "E:/OneDrive - Auburn University Montgomery/teaching/AUM/STAT 3000/lectureNotes/.gitignore",
     "project_path": ".gitignore",
     "type": "gitignore",
-    "hash": "3804125286",
+    "hash": "2596903819",
     "contents": "",
     "dirty": false,
     "created": 1767807133103.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "2,1",
+        "cursorPosition": "3,5",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1767807166,
+    "lastKnownWriteTime": 1767811441,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1767807166242,
+    "last_content_update": 1767811441218,
     "read_only": false,
     "read_only_alternatives": []
 }

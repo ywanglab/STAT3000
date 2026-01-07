@@ -1,14 +1,20 @@
 project:
-  type: website
+  type: book
   output-dir: docs
 
-website:
-  title: "STAT 3000 Lecture Notes"
-  site-url: ""
-  repo-url: "https://github.com/ywanglab/STAT3000"
+book:
+  title: "STAT 3000"
+  subtitle: Statistics with R Programming
+  reader-mode: true
+  
+  #cover-image: cover.png
+  favicon: images/logo.png
+  site-url: https://ywanglab.github.io/STAT3000/
+  #repo-url: https://github.com/ywanglab/STAT3000
   repo-branch: main
-  repo-actions: [source]
+  repo-actions: [source, issue]
   sidebar:
+    collapse-level: 1
     background: success
     logo: "images/logo.png"
     pinned: true
@@ -18,20 +24,57 @@ website:
         href: "https://github.com/ywanglab/STAT3000"
         text: GitHub
     style: docked
-    contents:
-    - href: index.qmd
-      text: Home
-    - href: slides.qmd
-      text: Slides
-    - href: psets.qmd
-      text: Assignments
+  
+  chapters:
+    - index.qmd
+
+    #- intro.qmd
     
+    
+  
+
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    
+  pdf: 
+    documentclass: krantz
+    classoption: [krantz2,10pt,twoside,onecolumn,final,openright]
+    include-in-header: preamble.tex
+    header-includes: |
+     \usepackage{amssymb}
+     \usepackage{amsmath}
+     \usepackage{graphicx}
+     \usepackage{subfigure}
+     \usepackage{makeidx}
+     \usepackage{multicol}
+    keep-tex: true
+    
+
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: TRUE
+    cache: TRUE
+    width: 72
+    tidy.opts: list(width.cutoff=72, tidy=TRUE)
+    out.width: 70%
+    fig.align: 'center'
+    fig.width: 6
+    fig.height: 3.708  # width * 1 / phi
+    fig.show: hold
+    R.options:
+      digits: 3
+      width: 72
+      formatR.indent: 2
+      dplyr.summarise.inform: FALSE
+      dplyr.print_min: 5 
+      dplyr.print_max: 5
+      ggrepel.max.overlaps: 100
+  
 
 editor: visual
 

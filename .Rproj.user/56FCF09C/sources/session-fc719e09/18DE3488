@@ -3,7 +3,7 @@
     "path": "E:/OneDrive - Auburn University Montgomery/teaching/AUM/STAT 3000/lectureNotes/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "3832211985",
+    "hash": "1123656489",
     "contents": "",
     "dirty": false,
     "created": 1767804560763.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "27,4",
-        "scrollLine": "10"
+        "cursorPosition": "12,3",
+        "scrollLine": "5"
     },
     "folds": "",
-    "lastKnownWriteTime": 1767807807,
+    "lastKnownWriteTime": 1767811216,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1767807807046,
+    "last_content_update": 1767811216537,
     "read_only": false,
     "read_only_alternatives": []
 }
