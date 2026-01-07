@@ -1,13 +1,31 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "lectureNotes"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  title: "STAT 3000 Lecture Notes"
+  site-url: ""
+  repo-url: "https://github.com/ywanglab/STAT3000"
+  repo-branch: main
+  repo-actions: [source]
+  sidebar:
+    background: success
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: "https://github.com/ywanglab/STAT3000"
+        text: GitHub
+    style: docked
+    contents:
+    - href: index.qmd
+      text: Home
+    - href: slides.qmd
+      text: Slides
+    - href: psets.qmd
+      text: Assignments
+    
 
 format:
   html:
