@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ywanglab.github.io/STAT3000/index.html</loc>
-    <lastmod>2026-01-07T18:43:00.546Z</lastmod>
+    <loc>https://ywanglab.github.io/STAT3000/slides/1-intro.html</loc>
+    <lastmod>2026-01-07T20:10:01.118Z</lastmod>
   </url>
   <url>
-    <loc>https://ywanglab.github.io/STAT3000/STAT-3000.pdf</loc>
-    <lastmod>2026-01-07T19:11:06.359Z</lastmod>
+    <loc>https://ywanglab.github.io/STAT3000/about.html</loc>
+    <lastmod>2026-01-07T16:49:15.890Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/index.html</loc>
+    <lastmod>2026-01-07T19:31:20.957Z</lastmod>
   </url>
 </urlset>

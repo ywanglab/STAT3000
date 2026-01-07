@@ -1,12 +1,79 @@
 [
   {
+    "objectID": "slides/1-intro.html#general-information",
+    "href": "slides/1-intro.html#general-information",
+    "title": "Lecture 1: Introduction",
+    "section": "General Information",
+    "text": "General Information\n\nSTAT 3000: Statistics with R Programming\nTentative Plan: Mondays: lectures; Wednesday: labs.",
+    "crumbs": [
+      "Lecture 1"
+    ]
+  },
+  {
+    "objectID": "slides/1-intro.html#course-description",
+    "href": "slides/1-intro.html#course-description",
+    "title": "Lecture 1: Introduction",
+    "section": "Course Description",
+    "text": "Course Description\nLecture notes: https://ywanglab.github.io/STAT3000/\nLecture Repo: https://github.com/ywanglab/STAT3000/ Please read the syllabus!",
+    "crumbs": [
+      "Lecture 1"
+    ]
+  },
+  {
+    "objectID": "slides/1-intro.html#to-be-successful-in-this-course-you-will",
+    "href": "slides/1-intro.html#to-be-successful-in-this-course-you-will",
+    "title": "Lecture 1: Introduction",
+    "section": "To be successful in this course, you will",
+    "text": "To be successful in this course, you will\n\nPre-read each chapter before coming to each lecture\nAttend each lecture\nReview lecture notes after the lecture\nComplete each ungraded lab solidly\nComplete homework Assignments",
+    "crumbs": [
+      "Lecture 1"
+    ]
+  },
+  {
+    "objectID": "slides/1-intro.html#whats-coming",
+    "href": "slides/1-intro.html#whats-coming",
+    "title": "Lecture 1: Introduction",
+    "section": "What’s coming",
+    "text": "What’s coming\n\nUNIX/Linux shell\nReproducible document preparation\nR programming\nData wrangling with dplyr and data.table\nData visualization with ggplot2\nProbability theory, inference and modeling\nRegression Analysis with R\nIntro to Machine Learning",
+    "crumbs": [
+      "Lecture 1"
+    ]
+  },
+  {
+    "objectID": "slides/1-intro.html#lets-get-started",
+    "href": "slides/1-intro.html#lets-get-started",
+    "title": "Lecture 1: Introduction",
+    "section": "Let’s get started",
+    "text": "Let’s get started\n\nInstall R.\nInstall RStudio.",
+    "crumbs": [
+      "Lecture 1"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STAT 3000",
+    "section": "",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
     "objectID": "index.html#course-information",
     "href": "index.html#course-information",
     "title": "STAT 3000",
-    "section": "Course Information",
-    "text": "Course Information\n\nTextbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
+    "section": "",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>STAT 3000 Lecture Notes</span>"
+      "Home"
     ]
   }
 ]
