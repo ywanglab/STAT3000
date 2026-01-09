@@ -11,7 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <title>STAT 3000 - Lecture 1: Introduction</title>
+  <meta name="keywords" content="Productivity Tools">
+  <title>STAT 3000 - Unix/Linux</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -244,6 +310,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -326,52 +393,166 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Lecture 1: Introduction</h1>
+  <h1 class="title">Unix/Linux</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="general-information" class="slide level2">
-<h2>General Information</h2>
+<section id="file-naming-conventions" class="slide level2">
+<h2>File Naming conventions</h2>
+<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html</a></span></p>
 <ul>
-<li><p>STAT 3000: Statistics with R Programming</p></li>
-<li><p>Tentative Plan: Mondays: lectures; Wednesday: labs.</p></li>
+<li><p>Name your files in a way that is related to their contents and specifies how they relate to other files.</p></li>
+<li><p>The <a href="https://library.si.edu/sites/default/files/tutorial/pdf/filenamingorganizing20180227.pdf">Smithsonian Data Management Best Practices</a> has “Five precepts of file naming and organization”</p></li>
 </ul>
 </section>
-<section id="course-description" class="slide level2">
-<h2>Course Description</h2>
-<p>Lecture notes: <a href="https://ywanglab.github.io/STAT3000/" class="uri">https://ywanglab.github.io/STAT3000/</a></p>
-<p>Lecture Repo: <a href="https://github.com/ywanglab/STAT3000/" class="uri">https://github.com/ywanglab/STAT3000/</a> Please read the syllabus!</p>
-</section>
-<section id="to-be-successful-in-this-course-you-will" class="slide level2">
-<h2>To be successful in this course, you will</h2>
-<ol type="1">
-<li>Pre-read each chapter before coming to each lecture</li>
-<li>Attend each lecture</li>
-<li>Review lecture notes after the lecture</li>
-<li>Complete each ungraded lab solidly</li>
-<li>Complete homework Assignments</li>
-</ol>
-</section>
-<section id="whats-coming" class="slide level2">
-<h2>What’s coming</h2>
+<section id="five-concepts-of-file-naming-and-organization" class="slide level2 smaller">
+<h2>Five Concepts of file naming and organization</h2>
 <ul>
-<li>UNIX/Linux shell</li>
-<li>Reproducible document preparation</li>
-<li>R programming</li>
-<li>Data wrangling with dplyr and <code>data.table</code></li>
-<li>Data visualization with <code>ggplot2</code></li>
-<li>Probability theory, inference and modeling</li>
-<li>Regression Analysis with R</li>
-<li>Intro to Machine Learning</li>
+<li>Have a distinctive, human-readable name that describes the content.</li>
+<li>Follow a consistent pattern that is machine-friendly.</li>
+<li>Organize files into directories (when necessary) that follow a consistent pattern.</li>
+<li>Avoid repetition of semantic elements among file and directory names.</li>
+<li>Have a file extension that matches the file format (no changing extensions!)</li>
+</ul>
+<p><a href="https://style.tidyverse.org/">Tidyverse Style Guide</a></p>
+</section>
+<section id="the-terminal" class="slide level2">
+<h2>The terminal</h2>
+<ul>
+<li>The terminal is integrated into Mac and Linux systems, but Windows users will have to install an emulator (we will use Git Bash). You may experience it also in Colab.</li>
 </ul>
 </section>
-<section id="lets-get-started" class="slide level2">
-<h2>Let’s get started</h2>
+<section id="file-system" class="slide level2 smaller">
+<h2>File System</h2>
 <ul>
-<li>Install R.</li>
-<li>Install RStudio.</li>
+<li><p>The file system is hierarchical, you create directories (folders) in other folders</p></li>
+<li><p>When you log in to a Unix/Linux computer you are in your <strong>home</strong> directory</p></li>
+<li><p>The command line has a <em>prompt</em> that is configurable and let you know that the terminal is ready for input</p></li>
+<li><p><strong>Environment variables</strong>, e.g., $HOME, $PATH, control your computing environment and many are customizable by users</p></li>
+</ul>
+</section>
+<section id="the-filesystem" class="slide level2">
+<h2>The filesystem</h2>
+
+<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img//unix/filesystem.png" class="r-stretch"></section>
+
+
+
+<section id="files-and-permissions" class="slide level2">
+<h2>Files and permissions</h2>
+<ul>
+<li><p>within each directory you can create files and other directories</p></li>
+<li><p>files whose names start with a period <code>.</code> are <em>hidden</em> by default; use <code>ls -a</code> to view them</p></li>
+<li><p>files have permissions: use <code>ls -lh</code> to view details</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>drwxr<span class="sc">-</span>xr<span class="sc">-</span>x    <span class="dv">4</span> robert  staff   <span class="dv">128</span>B Aug  <span class="dv">8</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">03</span> bin</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>rw<span class="sc">-</span>r<span class="sc">--</span>r<span class="sc">--</span><span class="er">@</span>   <span class="dv">1</span> robert  staff    <span class="dv">20</span>M Jun <span class="dv">24</span> <span class="dv">09</span><span class="sc">:</span><span class="dv">11</span> boots.png</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>rw<span class="sc">-</span>r<span class="sc">--</span>r<span class="sc">--</span><span class="er">@</span>   <span class="dv">1</span> robert  staff    <span class="dv">26</span>M Jun <span class="dv">23</span> <span class="dv">15</span><span class="sc">:</span><span class="dv">23</span> boots1.pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>you can <strong>r</strong>ead, <strong>w</strong>rite, or e<strong>x</strong>ecute files and control who (Owner, Group, Other) can see or use them by changing permissions</li>
+</ul>
+</section>
+<section id="working-directory" class="slide level2">
+<h2>Working directory</h2>
+<ul>
+<li><p>The directory you are currently <em>in</em>.</p></li>
+<li><p>Commands will generally take effect in this directory</p></li>
+<li><p>see your working directory using <code>pwd</code></p></li>
+<li><p>list the contents of the directory (files and other directories) using <code>ls</code></p></li>
+<li><p>find out about how <code>ls</code> works by issuing the command: <code>man ls</code> (long) or <code>ls --help</code>(medium) (shorter version: <code>tldr</code>, <code>whatis</code>, <code>apropos</code>(show me commands relevant to this))</p></li>
+</ul>
+</section>
+<section id="paths" class="slide level2">
+<h2>Paths</h2>
+<ul>
+<li><p>The string returned by <code>pwd</code> command is the <em>full path</em> to the working directory.</p></li>
+<li><p>The full path to your home directory is stored in an <em>environment</em> variable.</p></li>
+<li><p>You can see it like this <code>echo $HOME</code></p></li>
+</ul>
+</section>
+<section id="paths-1" class="slide level2 smaller">
+<h2>Paths</h2>
+<ul>
+<li><p>the shorthand <code>~</code> as a nickname for your home directory</p>
+<ul>
+<li>Example: the full path for <em>docs</em> (image in prev. slides) can be written like this <code>~/docs</code>.</li>
+</ul></li>
+<li><p>The environment variable called <code>PATH</code> which you can display using <code>echo</code></p>
+<ul>
+<li><p>that variable is a set of individual paths, separated by <code>:</code> (colon) and it tells your Unix shell where to look for commands</p></li>
+<li><p>you can add other paths to <code>PATH</code>, so that Unix can look for commands in those paths (eg make your own <code>bin</code> directory)</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="common-unix-commands" class="slide level2">
+<h2>Common Unix commands</h2>
+<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html</a></span></p>
+<ul>
+<li><p><code>ls</code>: Listing directory content</p></li>
+<li><p><code>mkdir</code> and <code>rmdir</code>: make and remove a directory</p></li>
+<li><p><code>cd</code>: navigating the filesystem by changing directories</p></li>
+<li><p><code>pwd</code>: see your workding directory</p></li>
+<li><p><code>mv</code>: moving files</p></li>
+<li><p><code>cp</code>: copying files</p></li>
+<li><p><code>rm</code>: removing files</p></li>
+<li><p><code>more</code> and <code>less</code>: display the contents of a file</p></li>
+</ul>
+</section>
+<section id="autocomplete" class="slide level2">
+<h2>Autocomplete</h2>
+<ul>
+<li><p>In Unix/Windows you can auto-complete by hitting tab.</p></li>
+<li><p>Example, if we type <code>cd d</code> then hit <code>tab</code>.</p></li>
+<li><p>Unix will either auto-complete if <code>docs</code> is the only directory/file starting with <code>d</code> or show you all directories begining with <code>d</code>.</p></li>
+</ul>
+</section>
+<section id="text-editors" class="slide level2">
+<h2>Text editors</h2>
+<p>text editors are essential tools, in a terminal environment. Here are some of the most popular command-line text editors:</p>
+<ul>
+<li>Nano</li>
+<li>Pico</li>
+<li>Vi or Vim</li>
+<li>Emacs</li>
+</ul>
+</section>
+<section id="other-useful-commands" class="slide level2">
+<h2>Other useful commands</h2>
+<ul>
+<li><p><code>curl</code> - download data from the internet.</p></li>
+<li><p><code>tar</code> - archive files and directories into one file.</p></li>
+<li><p><code>gzip</code> - and other compression tools - make big files small</p></li>
+<li><p><code>ssh</code> - connect to another computer.</p></li>
+<li><p><code>find</code> - search for files by filename in your system.</p></li>
+<li><p><code>grep</code> - search for patterns in a file.</p></li>
+<li><p><code>awk/sed</code> - powerful commands to find specific strings in files and change them.</p>
+<ul>
+<li><code>awk</code>: field-based processing (columns, math, conditions)</li>
+<li><code>sed</code>: stream editor (find/replace, delete, rearrange lines)</li>
+</ul></li>
+</ul>
+</section>
+<section id="a-deeper-dive" class="slide level2">
+<h2>A deeper dive</h2>
+<ul>
+<li><p>The shell is a program to organize and facilitate your interactions with the operating system</p></li>
+<li><p><code>echo $SHELL</code> will display the shell you are using</p></li>
+<li><p>hidden files and directories to provide customization e.g.&nbsp;<code>.gitconfig</code> or <code>.ssh</code></p></li>
+<li><p>most shells have two files that are commonly used to provide user level customization <code>.zsh</code>, and <code>.zprofile</code></p></li>
+</ul>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<p>To get started.</p>
+<ul>
+<li><p><a href="https://ubuntu.com/tutorials/command-line-for-beginners" class="uri">https://ubuntu.com/tutorials/command-line-for-beginners</a></p></li>
+<li><p><a href="https://www.codecademy.com/learn/learn-the-command-line" class="uri">https://www.codecademy.com/learn/learn-the-command-line</a></p></li>
+<li><p><a href="https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1" class="uri">https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1</a></p></li>
+<li><p><a href="https://www.coursera.org/learn/unix" class="uri">https://www.coursera.org/learn/unix</a></p></li>
 </ul>
 
 <div class="footer footer-default">
@@ -588,6 +769,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
