@@ -411,25 +411,25 @@
 <p><br></p>
 <ul>
 <li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
-<li><p>You will see it used throughout the <a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
+<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
 </ul>
 </section>
-<section id="text-formating" class="slide level2">
-<h2>Text formating</h2>
+<section id="quick-markdown-text-formating" class="slide level2">
+<h2>Quick Markdown Text formating</h2>
 <p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
 <p><code>**bold**</code> = <strong>bold</strong></p>
 <p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
 <p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
 <p><code>`code`</code> = <code>code</code></p>
 </section>
-<section id="text-formating-1" class="slide level2">
-<h2>Text formating</h2>
+<section id="code-chunk" class="slide level2">
+<h2>Code chunk</h2>
 <p>This:</p>
 <pre><code>```
 line 1
 line 2
 ```</code></pre>
-<p>shows code chunks:</p>
+<p>shows a code chunk:</p>
 <pre><code>line 1
 line 2</code></pre>
 </section>
@@ -444,7 +444,7 @@ line 2</code></pre>
 <section id="links" class="slide level2">
 <h2>Links</h2>
 <ul>
-<li><p>Show the link and add link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
+<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
 <li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
 </ul>
 <p>Looks like this:</p>
@@ -453,13 +453,15 @@ line 2</code></pre>
 </section>
 <section id="images" class="slide level2">
 <h2>Images</h2>
-<p><code>![My caption](https://datasciencedojo.com/wp-content/uploads/11-1.jpg)</code></p>
+<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
 <p>Shows the plot and caption:</p>
 
-<img data-src="https://datasciencedojo.com/wp-content/uploads/11-1.jpg" class="r-stretch quarto-figure-center"><p class="caption">My caption</p><p>The image can also be a local file.</p>
+<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">My caption</p><ul>
+<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
+</ul>
 </section>
-<section id="lists" class="slide level2">
-<h2>Lists</h2>
+<section id="unordered-lists" class="slide level2">
+<h2>Unordered Lists</h2>
 <p>Bullets:</p>
 <pre><code>-   bullet 1
     -   sub-bullet 1
@@ -475,8 +477,8 @@ line 2</code></pre>
 <li>bullet 2</li>
 </ul>
 </section>
-<section id="lists-1" class="slide level2">
-<h2>Lists</h2>
+<section id="ordered-lists" class="slide level2">
+<h2>Ordered Lists</h2>
 <p>Ordered list:</p>
 <pre><code>1.  Item 1
 2.  Item 2</code></pre>
@@ -498,16 +500,14 @@ line 2</code></pre>
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>If you are going to write technical report, you definitely want to learn LaTeX.</p>
-<p>Once you learn LaTeX you will never want to use an equation editor again.</p>
+<p>Technical report often uses LaTeX for typesetting.</p>
 <p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
-<p>ChatGPT is great at LaTeX</p>
 </div>
 </div>
 </div>
 </section>
-<section id="equations-1" class="slide level2">
-<h2>Equations</h2>
+<section id="equations-using-latex." class="slide level2">
+<h2>Equations using LaTeX.</h2>
 <p>Examples:</p>
 <ul>
 <li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
@@ -521,13 +521,13 @@ $$</code></pre>
 \mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
 \]</span></p>
 </section>
-<section id="computations" class="slide level2">
-<h2>Computations</h2>
-<ul>
-<li><p>The main reason we use Quarto is because we can include and execute the code when compiling the document.</p></li>
-<li><p>In R we refer to the code as R chunks.</p></li>
-<li><p>This applies to plots as well; the plot will be placed in the position of the code.</p></li>
-</ul>
+<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
+<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
+<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="in"># R code here, e.g.</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="in">2+3</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -537,52 +537,49 @@ $$</code></pre>
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>To add your own R chunks, you can type the characters above quickly with the key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
+<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="computations-1" class="slide level2">
-<h2>Computations</h2>
+<section id="r-code-chuns" class="slide level2">
+<h2>R Code Chuns</h2>
 <p>We can write something like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="in">x + y</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="computations-2" class="slide level2">
-<h2>Computations</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="in">x + y</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
 <p>Note that it was evaluated and the result is shown.</p>
 </section>
-<section id="computations-3" class="slide level2">
+<section id="computations" class="slide level2">
 <h2>Computations</h2>
 <ul>
-<li><p>By default, the code and result will show up as well.</p></li>
+<li><p>By default, the code and result will show up.</p></li>
 <li><p>You can send arguments to control the behavior with <code>#|</code></p></li>
-<li><p>For example, to avoid showing code in the final document, you can use the argument <code>echo: FALSE</code>.</p></li>
+<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="in">#| echo: false</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="in">x + y</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="computations-4" class="slide level2">
+<section id="computations-1" class="slide level2">
 <h2>Computations</h2>
 <ul>
 <li><p>There are many options (auto-complete shows them).</p></li>
-<li><p>For example, to avoid the the code running you can use <code>eval: FALSE</code>.</p></li>
+<li><p>For example, to avoid executing the code use <code>eval: FALSE</code>.</p></li>
 <li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
 </ul>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -594,49 +591,47 @@ $$</code></pre>
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>If you want to apply an option globally, these can be set globally in the header.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to apply an option globally, these can be set globally in the header.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="computations-5" class="slide level2">
+<section id="computations-2" class="slide level2">
 <h2>Computations</h2>
 <ul>
 <li>We recommend getting into the habit of labeling code chunks:</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="in">#| label: one-plus-two</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="in">x + y</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>Helps with debugging</p></li>
-<li><p>Gives meaningful names to generated images.</p></li>
+<li>Helps with debugging</li>
+<li>Helps reading the code</li>
 </ul>
 </section>
 <section id="more-on-markdown" class="slide level2">
 <h2>More on markdown</h2>
-<p>There is a lot more you can do with R markdown. We highly recommend you continue learning as you gain more experience writing reports in R. There are many free resources on the internet including:</p>
 <ul>
 <li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
 <li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
 <li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
 <li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
+<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
 </ul>
 </section>
 <section id="quarto-render" class="slide level2">
-<h2>quarto render</h2>
+<h2>Quarto render</h2>
 <ul>
-<li><p>RStudio provides the <strong>Render</strong> button that makes it easier to compile the document.</p></li>
-<li><p>You can also type <code>quarto render filename.qmd</code> on the command line. This offers many options.</p></li>
+<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
+<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
+<li><p><code>quarto render</code> renders all qmd files.</p></li>
 <li><p>You can produce html, pdf, or word documents.</p></li>
-<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code></p>
-<ul>
-<li>(gfm stands for GitHub flavored markdown, a convenient way to share your reports).</li>
-</ul></li>
+<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
 </ul>
 
 <div class="footer footer-default">
