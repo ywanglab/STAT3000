@@ -544,7 +544,7 @@
     "href": "slides/04-git.html#what-is-github-1",
     "title": "Git and GitHub",
     "section": "What is GitHub?",
-    "text": "What is GitHub?\nThere many other features such as\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nAutomation tools",
+    "text": "What is GitHub?\n\nThe main tool behind GitHub is Git.\nSimilar to how the main tool behind RStudio is R.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -594,7 +594,7 @@
     "href": "slides/04-git.html#connect-git-and-github",
     "title": "Git and GitHub",
     "section": "Connect Git and GitHub",
-    "text": "Connect Git and GitHub\n\nWhen accessing (modifying) GitHub (repo) you need credentials to verify your identity.\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nWe recommend using HTTPS, which uses a Personal Access Token (PAT).\nNote that your GitHub website password isn’t your access token.",
+    "text": "Connect Git and GitHub\n\nThis will change the Git configuration in way that anytime you use Git, it will know this information.\nNote that you need to use the email account that you used to open your GitHub account.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -604,7 +604,7 @@
     "href": "slides/04-git.html#connect-git-and-github-1",
     "title": "Git and GitHub",
     "section": "Connect Git and GitHub",
-    "text": "Connect Git and GitHub\n\nDetailed instructions are here.\nCarefully follow the instructions provided by GitHub.\nWhen setting permissions for the token, choose non-expiring and select the repo option in the scopes section.\nOnce you complete these steps, GitHub will display your token—a lengthy string of characters.\nImmediately copy this token to your clipboard. This is the only time GitHub will show it to you.",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -624,7 +624,7 @@
     "href": "slides/04-git.html#connect-git-and-github-2",
     "title": "Git and GitHub",
     "section": "Connect Git and GitHub",
-    "text": "Connect Git and GitHub\n\nThe next step is to let Git know who we are on Github.\nTo to this type the following two commands in our terminal window:\n\n\ngit config --global user.name \"Your Name\"\ngit config --global user.mail \"your@email.com\"",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -634,7 +634,7 @@
     "href": "slides/04-git.html#connect-git-and-github-3",
     "title": "Git and GitHub",
     "section": "Connect Git and GitHub",
-    "text": "Connect Git and GitHub\n\nThis will change the Git configuration in way that anytime you use Git, it will know this information.\nNote that you need to use the email account that you used to open your GitHub account.",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -834,7 +834,7 @@
     "href": "slides/04-git.html#github-repositories-repo",
     "title": "Git and GitHub",
     "section": "GitHub Repositories (repo)",
-    "text": "GitHub Repositories (repo)\n\nYou will have at least two copies of your code: one on your computer and one on GitHub.\nIf you add collaborators to this repo, then each will have a copy on their computer.\nThe GitHub copy is considered the main (previously called master) copy (branch) that everybody syncs to.\nThe main branch is the code-base (ground truth).",
+    "text": "GitHub Repositories (repo)\n\nYou will have at least two copies of your code: one on your computer and one on GitHub.\nThe GitHub copy is considered the main (previously called master) copy (branch) that everybody syncs to.\nThe main branch is the code-base (ground truth).\nUpdates/revisions are inserted into main through pull request (CI).",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -885,6 +885,56 @@
     "title": "Git and GitHub",
     "section": "What Git Does?",
     "text": "What Git Does?",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-github-does",
+    "href": "slides/04-git.html#what-github-does",
+    "title": "Git and GitHub",
+    "section": "What GitHub does?",
+    "text": "What GitHub does?\nMany other features such as\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nAutomation tools",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-github-repo",
+    "href": "slides/04-git.html#create-a-github-repo",
+    "title": "Git and GitHub",
+    "section": "Create a GitHub Repo",
+    "text": "Create a GitHub Repo\n\nClick the + icon and follow the instructions. The repo site should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git\n\nWe shall use git init to link a local project repo to the remote repo you just created.\nIn a parent directory,use Rstudio to create a new project in it, this will be the local repo, and connect it to the Github repository.\n\nInstruction: https://ywanglab.github.io/stat1010/git.html",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-local-repo-and-remote-repo",
+    "href": "slides/04-git.html#connect-local-repo-and-remote-repo",
+    "title": "Git and GitHub",
+    "section": "Connect Local repo and remote repo",
+    "text": "Connect Local repo and remote repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nWe recommend using HTTPS, which uses a Personal Access Token (PAT). More: Happy Git and GitHub for the use.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction.\n\nNote that your GitHub website password isn’t your access token.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-to-remote-repo",
+    "href": "slides/04-git.html#connect-to-remote-repo",
+    "title": "Git and GitHub",
+    "section": "Connect to Remote Repo",
+    "text": "Connect to Remote Repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nHTTPS uses a Personal Access Token (PAT). More.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction.\n\nNote that your GitHub website password isn’t your access token.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#privacy-privacy-privacy",
+    "href": "slides/04-git.html#privacy-privacy-privacy",
+    "title": "Git and GitHub",
+    "section": "Privacy Privacy Privacy",
+    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who we are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" #get your private email from GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]

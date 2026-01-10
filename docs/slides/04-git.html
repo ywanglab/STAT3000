@@ -310,6 +310,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -439,7 +440,7 @@
 </section>
 
 
-<section id="why-use-git-and-github" class="slide level2">
+<section id="why-use-git-and-github" class="slide level2 scrollable">
 <h2>Why use Git and GitHub?</h2>
 <ol type="1">
 <li><p>Sharing.</p></li>
@@ -460,20 +461,20 @@
 </section>
 <section id="what-is-github-1" class="slide level2">
 <h2>What is GitHub?</h2>
-<p>There many other features such as</p>
+<ul>
+<li><p>The main tool behind GitHub is Git.</p></li>
+<li><p>Similar to how the main tool behind RStudio is R.</p></li>
+</ul>
+</section>
+<section id="what-github-does" class="slide level2">
+<h2>What GitHub does?</h2>
+<p>Many other features such as</p>
 <ul>
 <li>Recognition system: reward, badges and stars.</li>
 <li>You can host web pages, like the class notes for example.</li>
 <li>Permits contributions via <em>forks</em> and <em>pull requests</em>.</li>
 <li>Issue tracking</li>
 <li>Automation tools</li>
-</ul>
-</section>
-<section id="what-is-github-2" class="slide level2">
-<h2>What is GitHub?</h2>
-<ul>
-<li><p>The main tool behind GitHub is Git.</p></li>
-<li><p>Similar to how the main tool behind RStudio is R.</p></li>
 </ul>
 </section>
 <section id="github-accounts" class="slide level2">
@@ -489,67 +490,55 @@
 <h2>GitHub Repositories (repo)</h2>
 <ul>
 <li><p>You will have at least two copies of your code: one on your computer and one on GitHub.</p></li>
-<li><p>If you add collaborators to this repo, then each will have a copy on their computer.</p></li>
 <li><p>The GitHub copy is considered the <code>main</code> (previously called <code>master</code>) copy (<code>branch</code>) that everybody syncs to.</p></li>
 <li><p>The <code>main</code> branch is the code-base (ground truth).</p></li>
+<li><p>Updates/revisions are inserted into <code>main</code> through <code>pull request</code> (CI).</p></li>
 </ul>
 </section>
-<section id="repositories" class="slide level2">
-<h2>Repositories</h2>
+<section id="create-a-github-repo" class="slide level2">
+<h2>Create a GitHub Repo</h2>
 <ul>
-<li><p>Let’s first go make one on GitHub…</p></li>
-<li><p>Then create a directory on your computer, this will be the local repo, and connect it to the Github repository.</p></li>
-<li><p>First copy and paste the location of your git repository. It should look something like this:</p></li>
+<li>Click the <code>+</code> icon and follow the instructions. The repo site should look something like this:</li>
 </ul>
 <pre><code>https://github.com/your-username/your-repo-name.git</code></pre>
-</section>
-<section id="connect-git-and-github" class="slide level2">
-<h2>Connect Git and GitHub</h2>
 <ul>
-<li><p>When accessing (modifying) GitHub (repo) you need credentials to verify your identity.</p></li>
+<li>We shall use <code>git init</code> to link a local project repo to the remote repo you just created.</li>
+<li>In a <strong>parent</strong> directory,use Rstudio to create a new project in it, this will be the local repo, and connect it to the Github repository.</li>
+</ul>
+<p>Instruction: <a href="https://ywanglab.github.io/stat1010/git.html" class="uri">https://ywanglab.github.io/stat1010/git.html</a></p>
+</section>
+<section id="connect-to-remote-repo" class="slide level2">
+<h2>Connect to Remote Repo</h2>
+<ul>
 <li><p>There are two ways to connect: HTTPS or SSH, each requiring different credentials.</p></li>
-<li><p>We recommend using HTTPS, which uses a Personal Access Token (PAT).</p></li>
-<li><p>Note that <strong>your GitHub website password isn’t your access token</strong>.</p></li>
+<li><p>HTTPS uses a Personal Access Token (PAT). <a href="https://happygitwithr.com/https-pat">More</a>.</p></li>
+</ul>
+<p>Account-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)</p>
+<p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">Instruction</a>.</p>
+<ul>
+<li>Note that <strong>your GitHub website password isn’t your access token</strong>.</li>
 </ul>
 </section>
-<section id="connect-git-and-github-1" class="slide level2">
-<h2>Connect Git and GitHub</h2>
+<section id="privacy-privacy-privacy" class="slide level2">
+<h2>Privacy Privacy Privacy</h2>
 <ul>
-<li><p>Detailed instructions are <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">here</a>.</p></li>
-<li><p>Carefully follow the instructions provided by GitHub.</p></li>
-<li><p>When setting permissions for the token, choose <em>non-expiring and select the repo option</em> in the scopes section.</p></li>
-<li><p>Once you complete these steps, GitHub will display your token—a lengthy string of characters.</p></li>
-<li><p><strong>Immediately copy this token to your clipboard</strong>. This is the only time GitHub will show it to you.</p></li>
+<li>The next step is to let Git know who we are on Github.</li>
 </ul>
-</section>
-<section id="generate-a-token" class="slide level2">
-<h2>Generate a token:</h2>
-<ul>
-<li><p>For security, save this token in a password manager. This ensures you can access it if needed later on.</p></li>
-<li><p>When git prompts you to enter your password, paste the token you’ve copied. After this, password prompts should no longer appear.</p></li>
-<li><p>If you ever need the token again, retrieve it from your password manager.</p></li>
-</ul>
-<p>More details available from <a href="https://happygitwithr.com/https-pat">Happy Git and GitHub for the use</a>.</p>
-</section>
-<section id="connect-git-and-github-2" class="slide level2">
-<h2>Connect Git and GitHub</h2>
-<ul>
-<li><p>The next step is to let Git know who we are on Github.</p></li>
-<li><p>To to this type the following two commands in our terminal window:</p></li>
-</ul>
+<p>*Type the following two commands in our terminal window:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">"Your Name"</span></span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.mail <span class="st">"your@email.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">"Your_chosen_nickname"</span> <span class="co">#(do not use real name for privacy)</span></span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.mail <span class="st">"12345678+your_github_name@users.noreply.github.com"</span> <span class="co">#get your private email from GitHub-&gt;Settings-&gt;Emails-&gt;"Keep my email private"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="connect-git-and-github-3" class="slide level2">
+<section id="connect-git-and-github" class="slide level2">
 <h2>Connect Git and GitHub</h2>
 <ul>
 <li><p>This will change the Git configuration in way that anytime you use Git, it will know this information.</p></li>
 <li><p>Note that you need to use the email account that you used to open your GitHub account.</p></li>
 </ul>
 </section>
-<section id="connect-git-and-github-4" class="slide level2">
+<section id="connect-git-and-github-1" class="slide level2 scrollable">
 <h2>Connect Git and GitHub</h2>
 <p>To connect working directory to the GitHub repo</p>
 <ol type="1">
@@ -579,7 +568,7 @@
 </div>
 </div>
 </section>
-<section id="overview-of-git" class="slide level2">
+<section id="overview-of-git" class="slide level2 scrollable">
 <h2>Overview of Git</h2>
 <p>The main actions in Git are to:</p>
 <ol type="1">
