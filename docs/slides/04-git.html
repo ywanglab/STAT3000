@@ -409,7 +409,11 @@
 <li>push something to the repository</li>
 <li>connect RStudio to GitHub</li>
 </ul>
-</section>
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div></section>
 
 <section id="install-git" class="slide level2">
 <h2>Install Git</h2>
@@ -528,24 +532,20 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">"Your_chosen_nickname"</span> <span class="co">#(do not use real name for privacy)</span></span>
-<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.mail <span class="st">"12345678+your_github_name@users.noreply.github.com"</span> <span class="co">#get your private email from GitHub-&gt;Settings-&gt;Emails-&gt;"Keep my email private"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.mail <span class="st">"12345678+your_github_name@users.noreply.github.com"</span> </span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="co"># get your private email from </span></span>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub-&gt;Settings-&gt;Emails-&gt;"Keep my email private"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="connect-git-and-github" class="slide level2">
-<h2>Connect Git and GitHub</h2>
-<ul>
-<li><p>This will change the Git configuration in way that anytime you use Git, it will know this information.</p></li>
-<li><p>Note that you need to use the email account that you used to open your GitHub account.</p></li>
-</ul>
-</section>
-<section id="connect-git-and-github-1" class="slide level2 scrollable">
+<section id="connect-git-and-github" class="slide level2 scrollable">
 <h2>Connect Git and GitHub</h2>
 <p>To connect working directory to the GitHub repo</p>
 <ol type="1">
 <li>initialize the directory:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>git init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>git init</span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>git branch <span class="sc">-</span>M main <span class="co">#rename the branch name to main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Let Git know what is the <em>remote</em> repository.</li>
@@ -563,50 +563,50 @@
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p><code>origin</code> is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.</p>
+<p><code>origin</code> is a nickname for the remote. It can be a different name, but this is the convention.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="overview-of-git" class="slide level2 scrollable">
-<h2>Overview of Git</h2>
-<p>The main actions in Git are to:</p>
+<section id="main-actins-of-git" class="slide level2 scrollable">
+<h2>Main actins of Git</h2>
 <ol type="1">
-<li><strong>pull</strong> changes from the remote repo.</li>
+<li><strong>pull</strong> (= fetch + merge) changes from the remote repo (alwasy do this before <code>git push</code>)</li>
 <li><strong>add</strong> files, or as we say in the Git lingo <em>stage</em> files.</li>
-<li><strong>commit</strong> changes to the local repo.</li>
+<li><strong>commit</strong> (save) changes to the local repo.</li>
 <li><strong>push</strong> changes to the <em>remote</em> repo.</li>
 </ol>
 </section>
-<section class="slide level2">
 
-
-<img data-src="https://miro.medium.com/v2/resize:fit:880/format:webp/0*cesFJY5JFpI0Rl4v.jpg" class="r-stretch quarto-figure-center"><p class="caption">From Meme Git Compilation by Lulu Ilmaknun Qurotaini</p></section>
 <section id="the-four-areas-of-git" class="slide level2">
 <h2>The four areas of Git</h2>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-layout.png" class="r-stretch"></section>
-<section id="status" class="slide level2">
-<h2>Status</h2>
+<section id="git-status" class="slide level2">
+<h2>git status</h2>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-status.png" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>git status filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>git status [filename]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="add" class="slide level2">
-<h2>Add</h2>
+<section id="stage-a-file-git-add" class="slide level2">
+<h2>Stage a file: <code>git add</code></h2>
 <p>Use <code>git add</code> to put file to staging area.</p>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-add.png" class="r-stretch"><div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>git add <span class="sc">&lt;</span>filename<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We say that this file has been <em>staged</em>. Check to see what happened:</p>
+<p>We say that this file has been <em>staged</em>.</p>
+<ul>
+<li><code>git add .</code>: new + modifiled files, does not stage deletions: <strong>Scope</strong>: Current dir only</li>
+<li><code>git add -A</code>: new + modified + deletions. <strong>Scope</strong>: Entire repo.</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>git status <span class="sc">&lt;</span>filename<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="commit" class="slide level2">
-<h2>Commit</h2>
+<section id="commit-save-a-version-or-versioning" class="slide level2">
+<h2>Commit (Save a Version or Versioning)</h2>
 <ul>
 <li>To move all the staged files to the local repository we use <code>git commit</code>.</li>
 </ul>
@@ -619,7 +619,7 @@
 <li><p>This is like adding <code>V1</code> to your filename.</p></li>
 </ul>
 </section>
-<section id="commit-1" class="slide level2">
+<section id="commit" class="slide level2">
 <h2>Commit</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -637,6 +637,10 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m <span class="st">"must add comment"</span> <span class="sc">&lt;</span>filename<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>or automatically stage “modified + deleted” (but not new files)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>a <span class="sc">-</span>m <span class="st">"must add comment"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="push" class="slide level2">
 <h2>Push</h2>
@@ -645,32 +649,24 @@
 </ul>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-push.png" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>git push <span class="sc">-</span>u origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><p>The <code>-u</code> flag sets the upstream repo.</p></li>
-<li><p>By using this flag, going forward you can simply use <code>git push</code> to push changes.</p></li>
+<li><p>The <code>-u</code> flag sets the upstream repo (only need once)</p></li>
 <li><p>So going forward we can just type:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>git push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>git push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="push-1" class="slide level2">
-<h2>Push</h2>
-<ul>
-<li><p>When using <code>git push</code> we need to be careful as if collaborating this will affect the work of others.</p></li>
-<li><p>It might also create a <code>conflict</code>.</p></li>
-</ul>
 
-<img data-src="https://andortang.wordpress.com/wp-content/uploads/2017/05/winter-is-coming-brace-yourself-merge-conflicts-are-coming.jpg" class="r-stretch quarto-figure-center"><p class="caption">Posted by andortang on Nothing is Impossible!</p></section>
 <section id="fetch" class="slide level2">
 <h2>Fetch</h2>
 <ul>
 <li>To update our local repository to the remote one we use</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>git fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>git fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-fetch.png" class="r-stretch"></section>
@@ -680,58 +676,48 @@
 <li>Once we are sure this is good, we can merge with our local files:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>git merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>git merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-merge.png" class="r-stretch"></section>
-<section id="pull" class="slide level2">
-<h2>Pull</h2>
-<div class="{::callout-note}">
-<p>I rarely use <code>fetch</code> and <code>merge</code> and instead use <code>pull</code> which does both of these in one step</p>
-</div>
+<section id="pull-fetch-merge" class="slide level2">
+<h2>Pull (=Fetch + Merge)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>git pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>git pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img/git/git-pull.png" class="r-stretch"></section>
-<section id="checkout" class="slide level2">
-<h2>Checkout</h2>
-<ul>
-<li>If you want to pull down a specific file you from the remote repo you can use:</li>
-</ul>
+<section id="restore-a-file-from-the-latest-commit" class="slide level2">
+<h2>Restore a file from the latest commit</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>git checkout filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>git restore filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>I use this when I make changes but decide I want to go back to original version on remote repo.</li>
-</ul>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Discard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but not committed yet.</p>
+<p>Old way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>git checkout filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Warning</strong></p>
-</div>
-<div class="callout-content">
-<p>If you have a newer version in your local repository this will create a <strong><em>conflict</em></strong>. It won’t let you do it. If you are sure you want to get rid of your local copy you can remove it and then use <code>checkout</code>.</p>
-</div>
-</div>
+<p>Related commands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>git restore <span class="sc">--</span>staged  filename <span class="co"># Ustage only</span></span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>git reset file <span class="co"># Unstage, keep edits</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="checkout-1" class="slide level2">
-<h2>Checkout</h2>
-<ul>
-<li>You can also use <code>checkout</code> to obtain older version:</li>
-</ul>
+<section id="restore-from-an-older-commit-version" class="slide level2">
+<h2>Restore from an older commit (version)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>git checkout <span class="sc">&lt;</span>commit<span class="sc">-</span>id<span class="sc">&gt;</span> <span class="er">&lt;</span>filename<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>git restore <span class="sc">--</span>source<span class="ot">=</span><span class="er">&lt;</span> <span class="dv">7</span><span class="sc">-</span>digit<span class="sc">-</span>commit<span class="sc">-</span>id<span class="sc">&gt;</span> <span class="er">&lt;</span> filename<span class="sc">&gt;</span></span>
+<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>git restore <span class="sc">--</span>source<span class="ot">=</span>HEAD<span class="sc">~</span><span class="dv">2</span> index.qmd <span class="co"># two commits before the current HEAD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Older way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>git checkout <span class="sc">&lt;</span><span class="dv">7</span><span class="sc">-</span>digit<span class="sc">-</span>commit<span class="sc">-</span>id<span class="sc">&gt;</span> <span class="er">&lt;</span>filename<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>You can get the <code>commit-id</code> either on the GitHub webpage or using</li>
+<li>You can get the <code>commit-id</code> using</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>git log filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>git log filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="reset" class="slide level2">
@@ -740,40 +726,42 @@
 <li>What if I commit and realize it was a mistake?</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>git reset HEAD<span class="sc">~</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>git reset HEAD<span class="sc">~</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>undos the commit and unstages the files, but <strong>keeps your local copies</strong>. I use this command very often.</p>
-<ul>
-<li><p>There are many wasy of using <code>get reset</code> and it covers most scenarios.</p></li>
-<li><p>ChatGPT and stackoverflow are great resources to learn more.</p></li>
-</ul>
 </section>
 <section id="branches" class="slide level2">
 <h2>Branches</h2>
 <ul>
-<li><p>We are just scratching the surface of Git.</p></li>
-<li><p>One advanced feature to be aware of is that you can have several <em>branches</em>, useful for working in parallel or testing stuff out that might not make the main repo.</p></li>
+<li>Each repo can have several branches useful for working in parallel or testing stuff out</li>
 </ul>
 
 <img data-src="https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/efae32ce-863f-4773-852c-4335e3ce4709_rw_3840.png?h=c54a2e5af240ec6e1332e2dcacbd7f33" class="r-stretch quarto-figure-center"><p class="caption">Art by: Allison Horst</p></section>
-<section id="branches-1" class="slide level2">
-<h2>Branches</h2>
-<ul>
-<li>We wont go over this, but we might need to use these two related commands:</li>
-</ul>
+<section id="show-branches" class="slide level2">
+<h2>Show branches</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>git remote <span class="sc">-</span>v</span>
-<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>git branch </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>git remote <span class="sc">-</span>v. <span class="co">#verbose: with details</span></span>
+<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>git branch <span class="co"># show branches</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="clone" class="slide level2">
-<h2>Clone</h2>
-<ul>
-<li><p>Another common command is <code>git clone</code>.</p></li>
-<li><p>It let’s download an entire repo, including version history.</p></li>
-</ul>
+<section id="create-branches" class="slide level2">
+<h2>Create branches</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>git clone <span class="sc">&lt;</span>repo<span class="sc">-</span>url<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>git branch new<span class="sc">-</span>branch<span class="sc">-</span>name <span class="co"># create a new branch</span></span>
+<span id="cb26-2"><a aria-hidden="true" tabindex="-1"></a>git <span class="cf">switch</span> <span class="sc">-</span>c new<span class="sc">-</span>branch<span class="sc">-</span>name <span class="co"># create and switch</span></span>
+<span id="cb26-3"><a aria-hidden="true" tabindex="-1"></a>git checkout <span class="sc">-</span>b new<span class="sc">-</span>branch<span class="sc">-</span>name <span class="co"># create and switch (old way)</span></span>
+<span id="cb26-4"><a aria-hidden="true" tabindex="-1"></a>git <span class="cf">switch</span> <span class="sc">-</span>c feature<span class="sc">-</span>x main <span class="co"># create from a specific branch</span></span>
+<span id="cb26-5"><a aria-hidden="true" tabindex="-1"></a>git branch feature<span class="sc">-</span>x HEAD<span class="sc">~</span><span class="dv">2</span> <span class="co"># create from a specific commit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clone-a-remote-repo" class="slide level2">
+<h2>Clone a Remote repo</h2>
+<ul>
+<li>It let’s download an entire repo, including version history.</li>
+</ul>
+<p><a href="https://ywanglab.github.io/stat1010/git.html" class="uri">https://ywanglab.github.io/stat1010/git.html</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>git clone <span class="sc">&lt;</span>repo<span class="sc">-</span>url<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-git-in-rstudio" class="slide level2">
@@ -783,17 +771,7 @@
 <li><p>Then notice the <code>Git</code> tab in the preferences.</p></li>
 </ul>
 </section>
-<section class="slide level2">
 
-
-<img data-src="https://miro.medium.com/v2/resize:fit:820/format:webp/0*Gb3B1-Xk5qHaxU7v.jpg" class="r-stretch quarto-figure-center"><p class="caption">From Meme Git Compilation by Lulu Ilmaknun Qurotaini</p><p>For more memes see <a href="https://medium.com/@lulu.ilmaknun.q/kompilasi-meme-git-e2fe49c6e33e">Meme Git Compilation by Lulu Ilmaknun</a></p>
-
-<div class="quarto-auto-generated-content">
-<div class="footer footer-default">
-
-</div>
-</div>
-</section>
     </div>
   </div>
 

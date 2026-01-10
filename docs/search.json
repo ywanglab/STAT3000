@@ -594,7 +594,7 @@
     "href": "slides/04-git.html#connect-git-and-github",
     "title": "Git and GitHub",
     "section": "Connect Git and GitHub",
-    "text": "Connect Git and GitHub\n\nThis will change the Git configuration in way that anytime you use Git, it will know this information.\nNote that you need to use the email account that you used to open your GitHub account.",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -694,7 +694,7 @@
     "href": "slides/04-git.html#commit",
     "title": "Git and GitHub",
     "section": "Commit",
-    "text": "Commit\n\nTo move all the staged files to the local repository we use git commit.\n\n\n\ngit commit -m \"must add comment\"\n\n\nOnce committed the files are tracked and a copy of this version is kept going forward.\nThis is like adding V1 to your filename.",
+    "text": "Commit\n\n\n\n\n\n\nNote\n\n\nYou can commit files directly without using add by explicitly writing the files at the end of the commit:\n\n\n\n\ngit commit -m \"must add comment\" &lt;filename&gt;\n\nor automatically stage “modified + deleted” (but not new files)\n\ngit commit -a -m \"must add comment\"",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -714,7 +714,7 @@
     "href": "slides/04-git.html#push",
     "title": "Git and GitHub",
     "section": "Push",
-    "text": "Push\n\nTo move to upstream repo we use git push\n\n\n\ngit push -u origin main\n\n\nThe -u flag sets the upstream repo.\nBy using this flag, going forward you can simply use git push to push changes.\nSo going forward we can just type:\n\n\ngit push",
+    "text": "Push\n\nTo move to upstream repo we use git push\n\n\n\ngit push -u origin main\n\n\nThe -u flag sets the upstream repo (only need once)\nSo going forward we can just type:\n\n\ngit push",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -764,7 +764,7 @@
     "href": "slides/04-git.html#checkout",
     "title": "Git and GitHub",
     "section": "Checkout",
-    "text": "Checkout\n\nIf you want to pull down a specific file you from the remote repo you can use:\n\n\ngit checkout filename\n\n\nI use this when I make changes but decide I want to go back to original version on remote repo.\n\n\n\n\n\n\n\nWarning\n\n\nIf you have a newer version in your local repository this will create a conflict. It won’t let you do it. If you are sure you want to get rid of your local copy you can remove it and then use checkout.",
+    "text": "Checkout\n\nYou can also use checkout to obtain older version:\n\n\ngit checkout &lt;commit-id&gt; &lt;filename&gt;\n\n\nYou can get the commit-id either on the GitHub webpage or using\n\n\ngit log filename",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -784,7 +784,7 @@
     "href": "slides/04-git.html#reset",
     "title": "Git and GitHub",
     "section": "Reset",
-    "text": "Reset\n\nWhat if I commit and realize it was a mistake?\n\n\ngit reset HEAD~1\n\nundos the commit and unstages the files, but keeps your local copies. I use this command very often.\n\nThere are many wasy of using get reset and it covers most scenarios.\nChatGPT and stackoverflow are great resources to learn more.",
+    "text": "Reset\n\nWhat if I commit and realize it was a mistake?\n\n\ngit reset HEAD~1\n\nundos the commit and unstages the files, but keeps your local copies. I use this command very often.",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -794,7 +794,7 @@
     "href": "slides/04-git.html#branches",
     "title": "Git and GitHub",
     "section": "Branches",
-    "text": "Branches\n\nWe are just scratching the surface of Git.\nOne advanced feature to be aware of is that you can have several branches, useful for working in parallel or testing stuff out that might not make the main repo.\n\n\nArt by: Allison Horst",
+    "text": "Branches\n\nEach repo can have several branches useful for working in parallel or testing stuff out\n\n\nArt by: Allison Horst",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -804,7 +804,7 @@
     "href": "slides/04-git.html#branches-1",
     "title": "Git and GitHub",
     "section": "Branches",
-    "text": "Branches\n\nWe wont go over this, but we might need to use these two related commands:\n\n\ngit remote -v\ngit branch",
+    "text": "Branches\n\ngit remote -v. #verbose: with details\ngit branch # show branches",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
@@ -934,7 +934,137 @@
     "href": "slides/04-git.html#privacy-privacy-privacy",
     "title": "Git and GitHub",
     "section": "Privacy Privacy Privacy",
-    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who we are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" #get your private email from GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
+    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who we are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#main-actins-of-git",
+    "href": "slides/04-git.html#main-actins-of-git",
+    "title": "Git and GitHub",
+    "section": "Main actins of Git",
+    "text": "Main actins of Git\n\npull (= fetch + merge) changes from the remote repo (alwasy do this before git push)\nadd files, or as we say in the Git lingo stage files.\ncommit (save) changes to the local repo.\npush changes to the remote repo.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#hypothesis",
+    "href": "slides/04-git.html#hypothesis",
+    "title": "Git and GitHub",
+    "section": "Hypothesis",
+    "text": "Hypothesis",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#git-status",
+    "href": "slides/04-git.html#git-status",
+    "title": "Git and GitHub",
+    "section": "git status",
+    "text": "git status\n\n\ngit status [filename]",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#git-add",
+    "href": "slides/04-git.html#git-add",
+    "title": "Git and GitHub",
+    "section": "git add",
+    "text": "git add\nUse git add to put file to staging area.\n\n\ngit add &lt;filename&gt;\n\nWe say that this file has been staged. * git add .: new + modifiled files, does not stage deletions: Scope: Current dir only * git add -A: new + modified + deletions. Scope: Entire repo.\n\ngit status &lt;filename&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#commit-save-a-version-or-versioning",
+    "href": "slides/04-git.html#commit-save-a-version-or-versioning",
+    "title": "Git and GitHub",
+    "section": "Commit (Save a Version or Versioning)",
+    "text": "Commit (Save a Version or Versioning)\n\nTo move all the staged files to the local repository we use git commit.\n\n\n\ngit commit -m \"must add comment\"\n\n\nOnce committed the files are tracked and a copy of this version is kept going forward.\nThis is like adding V1 to your filename.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#stage-a-file-git-add",
+    "href": "slides/04-git.html#stage-a-file-git-add",
+    "title": "Git and GitHub",
+    "section": "Stage a file: git add",
+    "text": "Stage a file: git add\nUse git add to put file to staging area.\n\n\ngit add &lt;filename&gt;\n\nWe say that this file has been staged.\n\ngit add .: new + modifiled files, does not stage deletions: Scope: Current dir only\ngit add -A: new + modified + deletions. Scope: Entire repo.\n\n\ngit status &lt;filename&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#pull-fetch-merge",
+    "href": "slides/04-git.html#pull-fetch-merge",
+    "title": "Git and GitHub",
+    "section": "Pull (=Fetch + Merge)",
+    "text": "Pull (=Fetch + Merge)\n\ngit pull",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-a-file",
+    "href": "slides/04-git.html#restore-a-file",
+    "title": "Git and GitHub",
+    "section": "Restore a file",
+    "text": "Restore a file\n\ngit restore filename\n\nDiscard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but not committed yet.\nOld way:\n\ngit checkout filename\n\nRelated commands:\n\ngit restore --staged  filename # Ustage only\ngit reset file # Unstage, keep edits",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-a-file-from-the-latest-commit",
+    "href": "slides/04-git.html#restore-a-file-from-the-latest-commit",
+    "title": "Git and GitHub",
+    "section": "Restore a file from the latest commit",
+    "text": "Restore a file from the latest commit\n\ngit restore filename\n\nDiscard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but not committed yet.\nOld way:\n\ngit checkout filename\n\nRelated commands:\n\ngit restore --staged  filename # Ustage only\ngit reset file # Unstage, keep edits",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-from-an-older-commit-version",
+    "href": "slides/04-git.html#restore-from-an-older-commit-version",
+    "title": "Git and GitHub",
+    "section": "Restore from an older commit (version)",
+    "text": "Restore from an older commit (version)\n\ngit restore --source=&lt; 7-digit-commit-id&gt; &lt; filename&gt;\ngit restore --source=HEAD~2 index.qmd # two commits before the current HEAD\n\nOlder way:\n\ngit checkout &lt;7-digit-commit-id&gt; &lt;filename&gt;\n\n\nYou can get the commit-id using\n\n\ngit log filename",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-branches",
+    "href": "slides/04-git.html#create-branches",
+    "title": "Git and GitHub",
+    "section": "Create branches",
+    "text": "Create branches\n\ngit branch new-branch-name # create a new branch\ngit switch -c new-branch-name # create and switch\ngit checkout -b new-branch-name # create and switch (old way)\ngit switch -c feature-x main # create from a specific branch\ngit branch feature-x HEAD~2 # create from a specific commit",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#show-branches",
+    "href": "slides/04-git.html#show-branches",
+    "title": "Git and GitHub",
+    "section": "Show branches",
+    "text": "Show branches\n\ngit remote -v. #verbose: with details\ngit branch # show branches",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#clone-a-remote-repo",
+    "href": "slides/04-git.html#clone-a-remote-repo",
+    "title": "Git and GitHub",
+    "section": "Clone a Remote repo",
+    "text": "Clone a Remote repo\n\nIt let’s download an entire repo, including version history.\n\nhttps://ywanglab.github.io/stat1010/git.html\n\ngit clone &lt;repo-url&gt;",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
