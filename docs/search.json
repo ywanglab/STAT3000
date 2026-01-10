@@ -154,7 +154,7 @@
     "href": "slides/02-rstudio.html#integrated-development-environment-ide",
     "title": "RStudio IDE",
     "section": "Integrated Development Environment (IDE)",
-    "text": "Integrated Development Environment (IDE)\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html &lt;&gt;\n\nPosit provides a free IDE for R with RStudio\nPositron (newer and adapted to LLMs)",
+    "text": "Integrated Development Environment (IDE)\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html \n\nPosit provides a free IDE for R with RStudio\nPositron (newer and adapted to LLMs)",
     "crumbs": [
       "Lecture 2-RStudio"
     ]
@@ -865,6 +865,26 @@
     "title": "Git and GitHub",
     "section": "Goals",
     "text": "Goals\n https://datasciencelabs.github.io/2025/extra/git_tutorial.html \n https://ywanglab.github.io/stat1010/git.html\n\nCreate an account\nCreate a repository\npush something to the repository\nconnect RStudio to GitHub",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#install-git",
+    "href": "slides/04-git.html#install-git",
+    "title": "Git and GitHub",
+    "section": "Install Git",
+    "text": "Install Git\n\nMake sure you have Git installed.\nOpen a terminal and type:\n\n\ngit --version\n\nIf not installed\n\non a Mac, follow the instructions after typing the above.\non Windows follow these instructions",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-git-does",
+    "href": "slides/04-git.html#what-git-does",
+    "title": "Git and GitHub",
+    "section": "What Git Does?",
+    "text": "What Git Does?",
     "crumbs": [
       "Lecture 4-Git & GitHub"
     ]
