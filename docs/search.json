@@ -1291,7 +1291,7 @@
     "href": "slides/05-r-basics.html#setting-levels",
     "title": "R Basics",
     "section": "Setting Levels",
-    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Female Female Female Female Female Female Female Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Female Female Female Female Female Female Female Female\nLevels: Female Male"
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Female Female Female Male   Male   Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Female Female Female Male   Male   Male   Male   Male  \nLevels: Female Male"
   },
   {
     "objectID": "slides/05-r-basics.html#categories-based-on-strata",
@@ -1375,7 +1375,7 @@
     "href": "slides/05-r-basics.html#nans-and-inf",
     "title": "R Basics",
     "section": "NaNs and Inf",
-    "text": "NaNs and Inf\n\nA related constant is NaN which stands for Not a Number\nNaN is a double, coercing it to integer yields an NA\nInf and -Inf represent values of infinity and minus infinity (RStudio makes using these really annoying)\n\n\n0/0\n\n[1] NaN\n\nclass(0/0)\n\n[1] \"numeric\"\n\nsqrt(-1)\n\n[1] NaN\n\nlog(-1)\n\n[1] NaN\n\n1/Inf\n\n[1] 0\n\nInf-Inf\n\n[1] NaN"
+    "text": "NaNs and Inf\n\nNaN: Not a Number\nNaN is a double, coercing it to integer yields an NA\nInf and -Inf represent values of infinity and minus infinity\n\n\n0/0\n\n[1] NaN\n\nclass(0/0)\n\n[1] \"numeric\"\n\nsqrt(-1)\n\n[1] NaN\n\nlog(-1)\n\n[1] NaN\n\n1/Inf\n\n[1] 0\n\nInf-Inf\n\n[1] NaN"
   },
   {
     "objectID": "slides/05-r-basics.html#lists",
@@ -1403,35 +1403,35 @@
     "href": "slides/05-r-basics.html#functions",
     "title": "R Basics",
     "section": "Functions",
-    "text": "Functions\n\nYou can define your own function. The form is like this:\n\n\nf &lt;- function(x, y, z = 0){\n  ### do calculations with x, y, z to compute object\n  return(object)\n}\n\n\nthe values you pass to the function are called the arguments and they can have default values (e.g above z is 0 unless provided)\narguments are matched by either name (which takes precedence) or position\nthe value returned by a function is either the value specified in a call to return or the value of the last statement evaluated"
+    "text": "Functions\n\nany symbol found in the body of the function that does not match an argument has to be matched to a value by a process called scoping\n\n\nx &lt;-10\ns &lt;- function(n){\n  print(x)\n   return(sum(1:n))\n}\ns(2)\n\n[1] 10\n\n\n[1] 3"
   },
   {
     "objectID": "slides/05-r-basics.html#functions-1",
     "href": "slides/05-r-basics.html#functions-1",
     "title": "R Basics",
     "section": "Functions",
-    "text": "Functions\n\nHere is an example of a function that sums \\(1,2,\\dots,n\\)\nwithin the body of a function the arguments are referred to by their symbols and they take the value supplied at the time of invocation\nany symbol found in the body of the function that does not match an argument has to be matched to a value by a process called scoping\n\n\ns &lt;- function(n){\n   return(sum(1:n))\n}"
+    "text": "Functions\n\nin R functions are first class objects - this means they can be passed as arguments, assigned to symbols, stored in other data structures\nin particular they can be passed as arguments to a function and returned as values\nin some languages (e.g. C or Java) functions are not first class objects and they cannot be passed as arguments\nPython uses a fairly similar strategy for functions to the one used in R (as do many other languages)"
   },
   {
     "objectID": "slides/05-r-basics.html#flow-control-and-operators",
     "href": "slides/05-r-basics.html#flow-control-and-operators",
     "title": "R Basics",
     "section": "Flow-control and operators",
-    "text": "Flow-control and operators\n\nR has all the standard flow control constructs that most computer langagues do\nif/else; while; repeat; for; break; next\nyou can read the manual pages by calling help or using ? (but for the latter you must quote the argument)\n\n\n help(\"for\")\n ?\"break\"\n ?\"&\"\n ?\"/\""
+    "text": "Flow-control and operators\n\nif/else; while; repeat; for; break; next\nyou can read the manual pages by calling help or using ? (sometimes you must quote the argument)\n\n\n help(\"for\")\n ?\"break\"\n ?\"&\"\n ?\"/\""
   },
   {
     "objectID": "slides/05-r-basics.html#logical-operators",
     "href": "slides/05-r-basics.html#logical-operators",
     "title": "R Basics",
     "section": "Logical Operators",
-    "text": "Logical Operators\n\nthe short forms & and | perform element-wise comparisons (vectorized)\nthe long forms && and || evaluate the first element only, move left to right and return when the result is determined\nerrors often occur when a programmer/analyst uses one form, when they want the other (R tries to warn you when it thinks there is a mistake)"
+    "text": "Logical Operators\n\n& and | perform element-wise comparison; use for vector oprations, filtering, subsetting\n\n\nx &lt;- c(TRUE, FALSE, TRUE)\ny &lt;- c(TRUE, TRUE, FALSE)\n\nx & y\n\n[1]  TRUE FALSE FALSE\n\nx | y\n\n[1] TRUE TRUE TRUE\n\n\n\nTypical use: Subsetting\n\n\nx[x &gt; 0 & x &lt; 10]\n\n\n&& and || evaluate the first element only (short-circuit), move left to right and return when the result is determined. Use for if, while, and guards\n\n\nx &lt;- c(TRUE, FALSE)\ny &lt;- c(FALSE, TRUE)\n\nx && y  # wrong\n\nx || y #wrong\n\n\nif (x &gt; 0 & x &lt; 10) { ... } # wrong\nif (x &gt; 0 && x &lt; 10) { ... } # correct"
   },
   {
     "objectID": "slides/05-r-basics.html#arithmetic-operators",
     "href": "slides/05-r-basics.html#arithmetic-operators",
     "title": "R Basics",
     "section": "Arithmetic Operators",
-    "text": "Arithmetic Operators\n\nthese are operators like ^ or +\n?Syntax will get you the manual page for operator precedence\nwhen in doubt always use parentheses - it is much clearer to the reader\n\n\n2^1+1\n\n[1] 3\n\n2^(1+1)\n\n[1] 4\n\nTRUE || TRUE && FALSE   # is the same as\n\n[1] TRUE\n\nTRUE || (TRUE && FALSE) # and different from\n\n[1] TRUE\n\n(TRUE || TRUE) && FALSE\n\n[1] FALSE"
+    "text": "Arithmetic Operators\n\noperators like ^ or +\n?Syntax will get you the manual page\nwhen in doubt always use parentheses\n\n\n2^1+1\n\n[1] 3\n\n2^(1+1)\n\n[1] 4\n\nTRUE || TRUE && FALSE   # is the same as\n\n[1] TRUE\n\nTRUE || (TRUE && FALSE) # and different from\n\n[1] TRUE\n\n(TRUE || TRUE) && FALSE\n\n[1] FALSE"
   },
   {
     "objectID": "slides/05-r-basics.html#functions-2",
@@ -1445,28 +1445,28 @@
     "href": "slides/05-r-basics.html#scope",
     "title": "R Basics",
     "section": "Scope",
-    "text": "Scope\n\nmost of what computer languages do is map symbols (syntax) to values (semantics) and then create an executable program\nwhen a computer comes upon an expression it parses it and that identifies the symbols that will need to be looked up\n\n\nexpr &lt;- parse(text = \"a + b * c\")\nexpr[[1]][1]\n\n`+`()\n\nexpr[[1]][2]\n\na()\n\nexpr[[1]][3]\n\n(b * c)()\n\n\n\nthe third part itself is a compound expression that can be decomposed into its parts, *, b and c\nin order to evaluate this the evaluator must find bindings for each of the symbols\nhere we expect it wants numbers for a, b and c and functions for + and *\n\n##Scope\n\nall computer languages have a set of rules that are used to match these symbols to values\none commonly used rule is to use lexical scope, but there are lots of different ways this is done\n\n\nfun1 = function(x)  x + y\nfun1(4)\n\n\nin fun1(4) we probably all agree that the value that should be used for x is 4, we probably expect that + is a system function\nbut what about y - where should it’s value come from?"
+    "text": "Scope\n\nall computer languages have a set of rules that are used to match these symbols to values\none commonly used rule is to use lexical scope, but there are lots of different ways this is done\n\n\nfun1 = function(x)  x + y\nfun1(4)\n\n\nin fun1(4) we probably all agree that the value that should be used for x is 4, we probably expect that + is a system function\nbut what about y - where should it’s value come from?"
   },
   {
     "objectID": "slides/05-r-basics.html#scope-1",
     "href": "slides/05-r-basics.html#scope-1",
     "title": "R Basics",
     "section": "Scope",
-    "text": "Scope\n\nRead the function below and try to understand what happens when it is evaluated:\n\n\nf &lt;- function(x){\n  cat(\"y is\", y,\"\\n\")\n  y &lt;- x\n  cat(\"y is\", y,\"\\n\")\n  return(y)\n}\ny &lt;- 2\nf(3)\n\ny is 2 \ny is 3 \n\n\n[1] 3"
+    "text": "Scope\n\nf &lt;- function(x){\n  cat(\"y is\", y,\"\\n\")\n  y &lt;- x\n  cat(\"y is\", y,\"\\n\")\n  return(y)\n}\ny &lt;- 2\nf(3)\n\ny is 2 \ny is 3 \n\n\n[1] 3"
   },
   {
     "objectID": "slides/05-r-basics.html#lexical-scope",
     "href": "slides/05-r-basics.html#lexical-scope",
     "title": "R Basics",
     "section": "Lexical Scope",
-    "text": "Lexical Scope\n\nlexical scope says that for any function with unbound values you should use the environment at the time the function was created to first look for bindings, in R (and Python) after that you look in the global environment (your workspace) and then in attached packages and system functions.\nwhy is this useful?"
+    "text": "Lexical Scope\n\nlexical scope says that for any function with unbound values you should use the environment at the time the function was created to first look for bindings, in R (and Python) after that you look in the global environment (your workspace) and then in attached packages and system functions.\n\n\nsearch()\nfilter #stats::filter()-&gt;time-series filtering\nlibrary(dplyr)\nsearch()\nfilter\n\n\nby calling library(dplyr) the package dplyr has been put near the top of the search list. You can call search() before and after the call to library to check this.\nusers could inadvertently alter computations - and we will want to protect against that"
   },
   {
     "objectID": "slides/05-r-basics.html#lexical-scope-1",
     "href": "slides/05-r-basics.html#lexical-scope-1",
     "title": "R Basics",
     "section": "Lexical Scope",
-    "text": "Lexical Scope\n\nwe can write some interesting functions - like a function that evaluates the log likelihood for any given set of data\nhere we use rexp to generate values from an Exponential distribution\nnotice that a function is returned and that R notes that it is a closure\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x1645713c8&gt;"
+    "text": "Lexical Scope\n\nwe can write some interesting functions - like a function that evaluates the log likelihood for any given set of data\nhere we use rexp to generate values from an Exponential distribution\nnotice that a function is returned and that R notes that it is a closure\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x13418a510&gt;"
   },
   {
     "objectID": "slides/05-r-basics.html#lexical-scope-example",
@@ -1494,28 +1494,28 @@
     "href": "slides/05-r-basics.html#namespaces",
     "title": "R Basics",
     "section": "Namespaces",
-    "text": "Namespaces\n\nwhen authoring a package you will want to use Namespaces - the details will not be discussed here\nIf a package uses a Namespace then you can explicitly say which filter you want using :::\n\n\nstats::filter\ndplyr::filter"
+    "text": "Namespaces\n\nTo avoid binding conflict, using :::\n\n\nstats::filter\ndplyr::filter"
   },
   {
     "objectID": "slides/05-r-basics.html#examples",
     "href": "slides/05-r-basics.html#examples",
     "title": "R Basics",
     "section": "Examples",
-    "text": "Examples\n\nRestart your R Console and study this example:\n\n\nlibrary(dslabs)\nexists(\"murders\")\n\n[1] TRUE\n\nmurders &lt;- murders\nmurders2 &lt;- murders\nrm(murders)\nexists(\"murders\")\n\n[1] TRUE\n\ndetach(\"package:dslabs\")\nexists(\"murders\")\n\n[1] FALSE\n\nexists(\"murders2\")\n\n[1] TRUE"
+    "text": "Examples\n\nRestart your R Console and study this example:\n\n\nlibrary(dslabs) #attach dsplabs to the search path\nexists(\"murders\")  # `murders` exists in `dslabs`\n\n[1] TRUE\n\nmurders &lt;- murders # create a copy `murders` in .GlobalEnv\nmurders2 &lt;- murders # 2nd copy\nrm(murders) # removes `murders` from .GlobalEnv\nexists(\"murders\") #R finds it in `dslabs`\n\n[1] TRUE\n\ndetach(\"package:dslabs\") #remove from the search path\nexists(\"murders\") # does not exist on the search path\n\n[1] FALSE\n\nexists(\"murders2\")\n\n[1] TRUE"
   },
   {
     "objectID": "slides/05-r-basics.html#object-oriented-programming",
     "href": "slides/05-r-basics.html#object-oriented-programming",
     "title": "R Basics",
     "section": "Object Oriented Programming",
-    "text": "Object Oriented Programming\n\nR uses object oriented programming (OOP).\nBase R uses two approaches referred to as S3 and S4, respectively.\nS3, the original approach, is more common, but has some severe limitations\nThe S4 approach is more similar to the conventions used by the Lisp family of languages.\nIn S4 there are classes that are used to describe data structures and generic functions, that have methods associated with them"
+    "text": "Object Oriented Programming\n\nR uses object oriented programming (OOP).\nBase R uses two approaches referred to as S3 and S4\nS3, the original approach, is more common, but has some limitations\nThe S4 approach is more similar to the conventions used by the Lisp family of languages.\nIn S4 there are classes that have attributes describing data structures and methods that are functions"
   },
   {
     "objectID": "slides/05-r-basics.html#object-oriented-programming-1",
     "href": "slides/05-r-basics.html#object-oriented-programming-1",
     "title": "R Basics",
     "section": "Object Oriented Programming",
-    "text": "Object Oriented Programming\n\nTime seriesNumeric\n\n\n\nplot(co2)\n\n\n\n\n\n\n\n\n\n\n\nplot(as.numeric(co2))"
+    "text": "Object Oriented Programming\n\nTime seriesNumeric\n\n\n\nclass(co2) # ts object\n\n[1] \"ts\"\n\nplot(co2) # R calls plot.ts(co2)-&gt;x-axis: year\n\n\n\n\n\n\n\n\n\n\n\nplot(as.numeric(co2)) # strip away the time-index. R calls plot.default(). x-axix: index (1,2,3,...)"
   },
   {
     "objectID": "slides/05-r-basics.html#object-oriented-programming-2",
@@ -1536,14 +1536,14 @@
     "href": "slides/05-r-basics.html#plots",
     "title": "R Basics",
     "section": "Plots",
-    "text": "Plots\n\nSoon we will learn how to use the ggplot2 package to make plots.\nR base does have functions for plotting though\nSome you should know about are:\n\nplot - mainly for making scatterplots.\nlines - add lines/curves to an existing plot.\nhist - to make a histogram.\nboxplot - makes boxplots.\nimage - uses color to represent entries in a matrix."
+    "text": "Plots\n\nSoon we will learn how to use the ggplot2 package to make plots.\nR base does have functions:\n\nplot - mainly for making scatterplots.\nlines - add lines/curves to an existing plot.\nhist - to make a histogram.\nboxplot - makes boxplots.\nimage - uses color to represent entries in a matrix."
   },
   {
     "objectID": "slides/05-r-basics.html#plots-1",
     "href": "slides/05-r-basics.html#plots-1",
     "title": "R Basics",
     "section": "Plots",
-    "text": "Plots\n\nAlthough, in general, we recommend using ggplot2, R base plots are often better for quick exploratory plots.\nFor example, to make a histogram of values in x simply type:\n\n\nhist(x)\n\n\nTo make a scatter plot of y versus x and then interpolate we type:\n\n\nplot(x,y)\nlines(x,y)"
+    "text": "Plots\n\nin general, we recommend using ggplot2, R base plots are often better for quick exploratory plots.\nFor example, to make a histogram of values in x simply type:\n\n\nhist(x)\n\n\nTo make a scatter plot of y versus x and then add connected line:\n\n\nplot(x,y) # open a new figure (canvas)\nlines(x,y) #adds connected line to an existing plot. It does not create a new figure(canvas)"
   },
   {
     "objectID": "slides/05-r-basics.html#variables",
@@ -1704,7 +1704,7 @@
     "href": "slides/05-r-basics.html#the-previous-example-continued",
     "title": "R Basics",
     "section": "The previous example continued",
-    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Male   Female Male   Female Female Female Male   Female Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Male   Female Male   Female Female Female Male   Female Male  \nLevels: Female Male\n\ny1==y2\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2)\n\n[1] FALSE"
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Male   Female Male   Male   Male   Male   Female Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Male   Female Male   Male   Male   Male   Female Female\nLevels: Female Male\n\ny1==y2\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2)\n\n[1] FALSE"
   },
   {
     "objectID": "slides/05-r-basics.html#assigning-labels",
@@ -1739,7 +1739,7 @@
     "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
     "title": "R Basics",
     "section": "Factors (integers) use less memory",
-    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3333901  0.3332849  0.3333250 \n\n# table counts the frequency of each unique value"
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3336214  0.3331551  0.3332235 \n\n# table counts the frequency of each unique value"
   },
   {
     "objectID": "slides/05-r-basics.html#drop-extra-levels-with-droplevels",
@@ -1747,5 +1747,198 @@
     "title": "R Basics",
     "section": "Drop extra levels with droplevels",
     "text": "Drop extra levels with droplevels\n\nz &lt;- x[1]\nz &lt;- droplevels(z)\nz\n\n[1] 3\nLevels: 3\n\n\n\nBut note what happens if we change to another level:\n\n\nz[1] &lt;- \"1\" # Factors only allow values that exist in levels(z)\nz\n\n[1] &lt;NA&gt;\nLevels: 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-and-nulls",
+    "href": "slides/05-r-basics.html#nas-and-nulls",
+    "title": "R Basics",
+    "section": "NAs and NULLs",
+    "text": "NAs and NULLs\n\nNA stands for not available and represents missing data.\nIn R there is a different kind of NA for each of the basic vector data types.\nNULL, represents a zero length list and is often returned by functions or expressions that do not have a specified return value"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#checking-nas-by-is.na",
+    "href": "slides/05-r-basics.html#checking-nas-by-is.na",
+    "title": "R Basics",
+    "section": "Checking NAs by is.na",
+    "text": "Checking NAs by is.na\n\ndslabs includes an example dataset with NAs\n\n\nlibrary(dslabs)\nna_example[1:20]\n\n [1]  2  1  3  2  1  3  1  4  3  2  2 NA  2  2  1  4 NA  1  1  2\n\n\n\nThe is.na function is key for dealing with NAs\n\n\nis.na(na_example[1])\n\n[1] FALSE\n\nis.na(na_example[17])\n\n[1] TRUE\n\nis.na(NA)\n\n[1] TRUE\n\nis.na(\"NA\")\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-and-logical-operators",
+    "href": "slides/05-r-basics.html#nas-and-logical-operators",
+    "title": "R Basics",
+    "section": "NAs and logical operators",
+    "text": "NAs and logical operators\n\nlogical operators like and (&) and or (|) coerce their arguments when needed and possible\nthe logical operators do “lazy” evaluation, from left to right\n\n\nTRUE & NA\n\n[1] NA\n\nTRUE & 0\n\n[1] FALSE\n\nTRUE | NA\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#access-compoenents-of-a-list",
+    "href": "slides/05-r-basics.html#access-compoenents-of-a-list",
+    "title": "R Basics",
+    "section": "Access compoenents of a list",
+    "text": "Access compoenents of a list\n\nYou can access components in different ways:\n\n\nx$name\n\n[1] \"John\"\n\nx[[1]]\n\n[1] \"John\"\n\nx[[\"name\"]]\n\n[1] \"John\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#subsetsublist-and-extraction",
+    "href": "slides/05-r-basics.html#subsetsublist-and-extraction",
+    "title": "R Basics",
+    "section": "subset(sublist)[] and extraction [[]]",
+    "text": "subset(sublist)[] and extraction [[]]\n\nx$name == x[[1]]\n\n[1] TRUE\n\nclass(x[[1]])\n\n[1] \"character\"\n\nx[1]\n\n$name\n[1] \"John\"\n\nclass(x[1])\n\n[1] \"list\"\n\nx[[1]] == x[1]\n\nname \nTRUE \n\nidentical(x[1],x[[1]])\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#matrices-faster-computation",
+    "href": "slides/05-r-basics.html#matrices-faster-computation",
+    "title": "R Basics",
+    "section": "Matrices: Faster computation",
+    "text": "Matrices: Faster computation\n\nsimilar to data frames except all entries need to be of the same type.\n\n\nmat &lt;- matrix(1:12, 4, 3)\nmat\n\n     [,1] [,2] [,3]\n[1,]    1    5    9\n[2,]    2    6   10\n[3,]    3    7   11\n[4,]    4    8   12\n\nmat[2, 3]  # 10\n\n[1] 10\n\nmat[2,]\n\n[1]  2  6 10\n\nmat[,3]\n\n[1]  9 10 11 12\n\nmat[,2:3]\n\n     [,1] [,2]\n[1,]    5    9\n[2,]    6   10\n[3,]    7   11\n[4,]    8   12\n\nmat[1:2,2:3]\n\n     [,1] [,2]\n[1,]    5    9\n[2,]    6   10\n\nas.data.frame(mat)\n\n  V1 V2 V3\n1  1  5  9\n2  2  6 10\n3  3  7 11\n4  4  8 12"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#customized-functions",
+    "href": "slides/05-r-basics.html#customized-functions",
+    "title": "R Basics",
+    "section": "Customized functions",
+    "text": "Customized functions\n\nf &lt;- function(x, y, z = 0){\n  ### do calculations with x, y, z to compute object\n  return(object)\n}\n\n\npositional arguments, keyword arguments\narguments are matched by either name (which takes precedence) or position\nreturned value: the value specified in a call to return or the value of the last statement evaluated"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#define-a-customized-functions",
+    "href": "slides/05-r-basics.html#define-a-customized-functions",
+    "title": "R Basics",
+    "section": "Define a customized functions",
+    "text": "Define a customized functions\n\nf &lt;- function(x, y, z = 0){\n  ### do calculations with x, y, z to compute object\n  return(object)\n}\n\n\npositional arguments, keyword arguments\narguments are matched by either exact name (which takes precedence) or position\nreturned value: the value specified in a call to return or the value of the last statement evaluated"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#how-r-matches-funciton-arguments",
+    "href": "slides/05-r-basics.html#how-r-matches-funciton-arguments",
+    "title": "R Basics",
+    "section": "How R matches funciton arguments",
+    "text": "How R matches funciton arguments\n\nR matches named arguments first, positional arguments last.\n\n\nf &lt;- function(a, b, c) {\n  c(a, b, c)\n}\n\nf(1, c = 3, 2)\n\n[1] 1 2 3\n\n\n\nmean(na.rm = TRUE, c(1, NA, 3))\n\n[1] 2\n\n\n\nf &lt;- function(a, b, c) a + b + c\nf(1, 2, c = 3, b = 4)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#r-matches-named-arguments-first-positional-arguments-last",
+    "href": "slides/05-r-basics.html#r-matches-named-arguments-first-positional-arguments-last",
+    "title": "R Basics",
+    "section": "R matches named arguments first, positional arguments last",
+    "text": "R matches named arguments first, positional arguments last\n\nf &lt;- function(a, b, c) {\n  c(a, b, c)\n}\n\nf(1, c = 3, 2)\n\n[1] 1 2 3\n\n\n\nmean(na.rm = TRUE, c(1, NA, 3))\n\n[1] 2\n\n\n\nf &lt;- function(a, b, c) a + b + c\nf(1, 2, c = 3, b = 4)\n# Error in f(1, 2, c = 3, b = 4) : unused argument (2)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#for-loop",
+    "href": "slides/05-r-basics.html#for-loop",
+    "title": "R Basics",
+    "section": "For loop",
+    "text": "For loop\n\nfor (i in 1:3) {\n  print(i)\n}\n\n[1] 1\n[1] 2\n[1] 3\n\ncompute_s_n &lt;- function(n) { \n  sum(1:n)\n}\nm &lt;- 5\ns_n &lt;- vector(length = m) # create an empty vector\nfor (n in 1:m) {\n  s_n[n] &lt;- compute_s_n(n)\n}\nn &lt;- 1:m\nplot(n, s_n)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#if-else",
+    "href": "slides/05-r-basics.html#if-else",
+    "title": "R Basics",
+    "section": "if-else",
+    "text": "if-else\n\na &lt;- 0\n\nif (a != 0) {\n  print(1/a)\n} else{\n  print(\"No reciprocal for 0.\")\n}\n\n[1] \"No reciprocal for 0.\"\n\na &lt;- 0\nifelse(a &gt; 0, 1/a, NA)\n\n[1] NA\n\n#&gt; [1] NA"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators-and",
+    "href": "slides/05-r-basics.html#logical-operators-and",
+    "title": "R Basics",
+    "section": "Logical Operators & and |",
+    "text": "Logical Operators & and |\n\n& and | perform element-wise comparison; use for vector oprations, filtering, subsetting\n\n\nx &lt;- c(TRUE, FALSE, TRUE)\ny &lt;- c(TRUE, TRUE, FALSE)\n\nx & y\n\n[1]  TRUE FALSE FALSE\n\nx | y\n\n[1] TRUE TRUE TRUE\n\n\n\nTypical use: Subsetting\n\n\nx[x &gt; 0 & x &lt; 10]"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators-and-1",
+    "href": "slides/05-r-basics.html#logical-operators-and-1",
+    "title": "R Basics",
+    "section": "Logical operators && and ||",
+    "text": "Logical operators && and ||\n\n&& and || lazy eval (short-circuit), move left to right and return when the result is determined. Use for if, while, and guards\n\n\nx &lt;- c(TRUE, FALSE)\ny &lt;- c(FALSE, TRUE)\n\nx && y  # wrong. Each side must return a single TRUE/FALSE\n\nx || y #wrong\n\n\nif (x &gt; 0 & x &lt; 10) { ... } # wrong\nif (x &gt; 0 && x &lt; 10) { ... } # wrong if x is a vector of length &gt;1"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-as-an-argument",
+    "href": "slides/05-r-basics.html#function-as-an-argument",
+    "title": "R Basics",
+    "section": "Function as an argument",
+    "text": "Function as an argument\n\nin R functions are first class objects - this means they can be passed as arguments, assigned to symbols, stored in other data structures\nin particular they can be passed as arguments to a function and returned as values\nin some languages (e.g. C or Java) functions are not first class objects and they cannot be passed as arguments\nPython uses a fairly similar strategy as in R"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
+    "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
+    "title": "R Basics",
+    "section": "Exampe: function as a returned value",
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x1266ff250&gt;"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-call-as-an-argument",
+    "href": "slides/05-r-basics.html#function-call-as-an-argument",
+    "title": "R Basics",
+    "section": "Function call as an argument",
+    "text": "Function call as an argument\n\n##possible values for mu\ny = seq(3,5,by = 0.1)\n\nplot(y, myLL(y), type=\"l\", xlab=\"mu\", ylab=\"log likelihood\") \n# \"l\"-line; \"p\"-points(default), \"b\"-both; \"h\"-vertical lines\nabline(v = y[which.max(myLL(y))], col = \"red\")\n\n\n\nMLE occurs at mu=3.7"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-call-as-an-argument-1",
+    "href": "slides/05-r-basics.html#function-call-as-an-argument-1",
+    "title": "R Basics",
+    "section": "Function call as an argument",
+    "text": "Function call as an argument\n\nwhat happens when authors of two different packages choose the same name for their functions?\nLook at how this function associated with the symbol filter changes in the following code segment:\n\n\nfilter\nlibrary(dplyr)\nfilter\n\n\nby calling library(dplyr) a new package has been put on the search list. You can call search() before and after the call to library\none implication of this observation is that users could inadvertently alter computations - and we will want to protect against that"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#order-of-binding",
+    "href": "slides/05-r-basics.html#order-of-binding",
+    "title": "R Basics",
+    "section": "Order of binding",
+    "text": "Order of binding\n\nsearch()\nfilter     #stats::filter()-&gt;time-series filtering\nlibrary(dplyr)\nsearch()\nfilter # dplyr::filter(): -&gt;row filtering\n\n\nby calling library(dplyr) the package dplyr has been put near the top of the search list. You can call search() before and after the call to library to check this.\nusers could inadvertently alter computations - and we will want to protect against that"
+  },
+  {
+    "objectID": "slides/00-intro.html#general-information",
+    "href": "slides/00-intro.html#general-information",
+    "title": "Introduction",
+    "section": "General Information",
+    "text": "General Information\n\nSTAT 3000: Statistics with R Programming\nTentative Plan: lectures mixed with labs.",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#course-description",
+    "href": "slides/00-intro.html#course-description",
+    "title": "Introduction",
+    "section": "Course Description",
+    "text": "Course Description\nLecture notes: https://ywanglab.github.io/STAT3000/\nLecture Repo: https://github.com/ywanglab/STAT3000/\nStatistics with R Notes: https://ywanglab.github.io/statistics_r/",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#to-be-successful-in-this-course-you-will",
+    "href": "slides/00-intro.html#to-be-successful-in-this-course-you-will",
+    "title": "Introduction",
+    "section": "To be successful in this course, you will",
+    "text": "To be successful in this course, you will\n\nPre-read each chapter before coming to each lecture\nAttend each lecture\nReview lecture notes after the lecture\nComplete each ungraded lab solidly\nComplete homework Assignments",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#whats-coming",
+    "href": "slides/00-intro.html#whats-coming",
+    "title": "Introduction",
+    "section": "What’s coming",
+    "text": "What’s coming\n\nUNIX/Linux shell\nReproducible document preparation\nR programming\nData wrangling with dplyr\nData visualization with ggplot2\nProbability theory, inference and modeling\nRegression Analysis with R\nIntro to Machine Learning",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#llm-as-a-tutor-very-useful",
+    "href": "slides/00-intro.html#llm-as-a-tutor-very-useful",
+    "title": "Introduction",
+    "section": "LLM as a Tutor-very Useful",
+    "text": "LLM as a Tutor-very Useful",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#lets-get-started",
+    "href": "slides/00-intro.html#lets-get-started",
+    "title": "Introduction",
+    "section": "Let’s get started",
+    "text": "Let’s get started\n\nSetting up Computing Environment: (Install R& R_Studio) https://ywanglab.github.io/statistics_r/intro.html\n\nWindows\nMac\nGetting Started\n\nInstall Git: https://ywanglab.github.io/stat1010/git.html",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
   }
 ]
