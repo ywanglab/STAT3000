@@ -403,7 +403,8 @@
 <h2>File Naming conventions</h2>
 <p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html</a></span></p>
 <ul>
-<li><p>Name your files in a way that is related to their contents and specifies how they relate to other files.</p></li>
+<li><p>Name your files in a way that is related to their contents</p></li>
+<li><p>Indicate how they relate to other files.</p></li>
 <li><p>The <a href="https://library.si.edu/sites/default/files/tutorial/pdf/filenamingorganizing20180227.pdf">Smithsonian Data Management Best Practices</a> has “Five precepts of file naming and organization”</p></li>
 </ul>
 </section>
@@ -418,12 +419,18 @@
 </ul>
 <p><a href="https://style.tidyverse.org/">Tidyverse Style Guide</a></p>
 </section>
-<section id="the-terminal" class="slide level2">
-<h2>The terminal</h2>
+<section id="wath-is-a-terminal" class="slide level2">
+<h2>Wath is a terminal</h2>
 <ul>
-<li>The terminal is integrated into Mac and Linux systems, but Windows users will have to install an emulator (we will use Git Bash). You may experience it also in Colab.</li>
+<li><p>The terminal is integrated into Mac and Linux systems,</p></li>
+<li><p>but Windows users will have to install an emulator (we will use Git Bash).</p></li>
+<li><p>You may experience it also in Colab.</p></li>
 </ul>
 </section>
+<section id="the-filesystem" class="slide level2">
+<h2>The filesystem</h2>
+
+<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img//unix/filesystem.png" class="r-stretch"></section>
 <section id="file-system" class="slide level2 smaller">
 <h2>File System</h2>
 <ul>
@@ -433,10 +440,6 @@
 <li><p><strong>Environment variables</strong>, e.g., $HOME, $PATH, control your computing environment and many are customizable by users</p></li>
 </ul>
 </section>
-<section id="the-filesystem" class="slide level2">
-<h2>The filesystem</h2>
-
-<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/img//unix/filesystem.png" class="r-stretch"></section>
 
 
 
@@ -470,8 +473,8 @@
 <h2>Paths</h2>
 <ul>
 <li><p>The string returned by <code>pwd</code> command is the <em>full path</em> to the working directory.</p></li>
-<li><p>The full path to your home directory is stored in an <em>environment</em> variable.</p></li>
-<li><p>You can see it like this <code>echo $HOME</code></p></li>
+<li><p>The full path to your home directory is stored in the <em>environment</em> variable <code>$HOME</code>.</p></li>
+<li><p>You can see it by executing <code>echo $HOME</code></p></li>
 </ul>
 </section>
 <section id="paths-1" class="slide level2 smaller">
@@ -481,10 +484,10 @@
 <ul>
 <li>Example: the full path for <em>docs</em> (image in prev. slides) can be written like this <code>~/docs</code>.</li>
 </ul></li>
-<li><p>The environment variable called <code>PATH</code> which you can display using <code>echo</code></p>
+<li><p>The environment variable called <code>$PATH</code> which you can display using <code>echo</code></p>
 <ul>
 <li><p>that variable is a set of individual paths, separated by <code>:</code> (colon) and it tells your Unix shell where to look for commands</p></li>
-<li><p>you can add other paths to <code>PATH</code>, so that Unix can look for commands in those paths (eg make your own <code>bin</code> directory)</p></li>
+<li><p>you can add other paths to <code>$PATH</code>, so that Unix can look for commands in those paths (eg make your own <code>bin</code> directory)</p></li>
 </ul></li>
 </ul>
 </section>
@@ -536,8 +539,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="a-deeper-dive" class="slide level2">
-<h2>A deeper dive</h2>
+<section id="shell" class="slide level2">
+<h2>Shell</h2>
 <ul>
 <li><p>The shell is a program to organize and facilitate your interactions with the operating system</p></li>
 <li><p><code>echo $SHELL</code> will display the shell you are using</p></li>

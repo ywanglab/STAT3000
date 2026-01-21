@@ -1,0 +1,2441 @@
+[
+  {
+    "objectID": "slides/01-unix.html#file-naming-conventions",
+    "href": "slides/01-unix.html#file-naming-conventions",
+    "title": "Unix/Linux",
+    "section": "File Naming conventions",
+    "text": "File Naming conventions\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html\n\nName your files in a way that is related to their contents and specifies how they relate to other files.\nThe Smithsonian Data Management Best Practices has “Five precepts of file naming and organization”",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#five-concepts-of-file-naming-and-organization",
+    "href": "slides/01-unix.html#five-concepts-of-file-naming-and-organization",
+    "title": "Unix/Linux",
+    "section": "Five Concepts of file naming and organization",
+    "text": "Five Concepts of file naming and organization\n\nHave a distinctive, human-readable name that describes the content.\nFollow a consistent pattern that is machine-friendly.\nOrganize files into directories (when necessary) that follow a consistent pattern.\nAvoid repetition of semantic elements among file and directory names.\nHave a file extension that matches the file format (no changing extensions!)\n\nTidyverse Style Guide",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#the-terminal",
+    "href": "slides/01-unix.html#the-terminal",
+    "title": "Unix/Linux",
+    "section": "The terminal",
+    "text": "The terminal\n\nThe terminal is integrated into Mac and Linux systems, but Windows users will have to install an emulator (we will use Git Bash). You may experience it also in Colab.",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#file-system",
+    "href": "slides/01-unix.html#file-system",
+    "title": "Unix/Linux",
+    "section": "File System",
+    "text": "File System\n\nThe file system is hierarchical, you create directories (folders) in other folders\nWhen you log in to a Unix/Linux computer you are in your home directory\nThe command line has a prompt that is configurable and let you know that the terminal is ready for input\nEnvironment variables, e.g., $HOME, $PATH, control your computing environment and many are customizable by users",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#the-filesystem",
+    "href": "slides/01-unix.html#the-filesystem",
+    "title": "Unix/Linux",
+    "section": "The filesystem",
+    "text": "The filesystem",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#files-and-permissions",
+    "href": "slides/01-unix.html#files-and-permissions",
+    "title": "Unix/Linux",
+    "section": "Files and permissions",
+    "text": "Files and permissions\n\nwithin each directory you can create files and other directories\nfiles whose names start with a period . are hidden by default; use ls -a to view them\nfiles have permissions: use ls -lh to view details\n\n\ndrwxr-xr-x    4 robert  staff   128B Aug  8 10:03 bin\n-rw-r--r--@   1 robert  staff    20M Jun 24 09:11 boots.png\n-rw-r--r--@   1 robert  staff    26M Jun 23 15:23 boots1.pdf\n\n\nyou can read, write, or execute files and control who (Owner, Group, Other) can see or use them by changing permissions",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#working-directory",
+    "href": "slides/01-unix.html#working-directory",
+    "title": "Unix/Linux",
+    "section": "Working directory",
+    "text": "Working directory\n\nThe directory you are currently in.\nCommands will generally take effect in this directory\nsee your working directory using pwd\nlist the contents of the directory (files and other directories) using ls\nfind out about how ls works by issuing the command: man ls (long) or ls --help(medium) (shorter version: tldr, whatis, apropos(show me commands relevant to this))",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#paths",
+    "href": "slides/01-unix.html#paths",
+    "title": "Unix/Linux",
+    "section": "Paths",
+    "text": "Paths\n\nThe string returned by pwd command is the full path to the working directory.\nThe full path to your home directory is stored in an environment variable.\nYou can see it like this echo $HOME",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#paths-1",
+    "href": "slides/01-unix.html#paths-1",
+    "title": "Unix/Linux",
+    "section": "Paths",
+    "text": "Paths\n\nthe shorthand ~ as a nickname for your home directory\n\nExample: the full path for docs (image in prev. slides) can be written like this ~/docs.\n\nThe environment variable called PATH which you can display using echo\n\nthat variable is a set of individual paths, separated by : (colon) and it tells your Unix shell where to look for commands\nyou can add other paths to PATH, so that Unix can look for commands in those paths (eg make your own bin directory)",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#common-unix-commands",
+    "href": "slides/01-unix.html#common-unix-commands",
+    "title": "Unix/Linux",
+    "section": "Common Unix commands",
+    "text": "Common Unix commands\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html\n\nls: Listing directory content\nmkdir and rmdir: make and remove a directory\ncd: navigating the filesystem by changing directories\npwd: see your workding directory\nmv: moving files\ncp: copying files\nrm: removing files\nmore and less: display the contents of a file",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#autocomplete",
+    "href": "slides/01-unix.html#autocomplete",
+    "title": "Unix/Linux",
+    "section": "Autocomplete",
+    "text": "Autocomplete\n\nIn Unix/Windows you can auto-complete by hitting tab.\nExample, if we type cd d then hit tab.\nUnix will either auto-complete if docs is the only directory/file starting with d or show you all directories begining with d.",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#text-editors",
+    "href": "slides/01-unix.html#text-editors",
+    "title": "Unix/Linux",
+    "section": "Text editors",
+    "text": "Text editors\ntext editors are essential tools, in a terminal environment. Here are some of the most popular command-line text editors:\n\nNano\nPico\nVi or Vim\nEmacs",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#other-useful-commands",
+    "href": "slides/01-unix.html#other-useful-commands",
+    "title": "Unix/Linux",
+    "section": "Other useful commands",
+    "text": "Other useful commands\n\ncurl - download data from the internet.\ntar - archive files and directories into one file.\ngzip - and other compression tools - make big files small\nssh - connect to another computer.\nfind - search for files by filename in your system.\ngrep - search for patterns in a file.\nawk/sed - powerful commands to find specific strings in files and change them.\n\nawk: field-based processing (columns, math, conditions)\nsed: stream editor (find/replace, delete, rearrange lines)",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#a-deeper-dive",
+    "href": "slides/01-unix.html#a-deeper-dive",
+    "title": "Unix/Linux",
+    "section": "A deeper dive",
+    "text": "A deeper dive\n\nThe shell is a program to organize and facilitate your interactions with the operating system\necho $SHELL will display the shell you are using\nhidden files and directories to provide customization e.g. .gitconfig or .ssh\nmost shells have two files that are commonly used to provide user level customization .zsh, and .zprofile",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#resources",
+    "href": "slides/01-unix.html#resources",
+    "title": "Unix/Linux",
+    "section": "Resources",
+    "text": "Resources\nTo get started.\n\nhttps://ubuntu.com/tutorials/command-line-for-beginners\nhttps://www.codecademy.com/learn/learn-the-command-line\nhttps://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1\nhttps://www.coursera.org/learn/unix",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#integrated-development-environment-ide",
+    "href": "slides/02-rstudio.html#integrated-development-environment-ide",
+    "title": "RStudio IDE",
+    "section": "Integrated Development Environment (IDE)",
+    "text": "Integrated Development Environment (IDE)\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html \n\nPosit provides a free IDE for R with RStudio\nPositron (newer and adapted to LLMs)",
+    "crumbs": [
+      "Lecture 2-RStudio"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#the-panes",
+    "href": "slides/02-rstudio.html#the-panes",
+    "title": "RStudio IDE",
+    "section": "The panes",
+    "text": "The panes",
+    "crumbs": [
+      "Lecture 2-RStudio"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#the-basics",
+    "href": "slides/02-rstudio.html#the-basics",
+    "title": "RStudio IDE",
+    "section": "The Basics",
+    "text": "The Basics\n\nOpen a new R script file. (example.R)\nLearn tab complete.\nRun commands while editing scripts.\nRun the entire script.\nMake a plot.\nChange options to never save workspace.\nChange IDE appearance.",
+    "crumbs": [
+      "Lecture 2-RStudio"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#projects",
+    "href": "slides/02-rstudio.html#projects",
+    "title": "RStudio IDE",
+    "section": "Projects",
+    "text": "Projects\n\nStart a new project in a new directory.\nStart a new project in an existing directory.\nChange projects.\nUse the File menu to create a new Quarto document",
+    "crumbs": [
+      "Lecture 2-RStudio"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#type-of-editor",
+    "href": "slides/02-rstudio.html#type-of-editor",
+    "title": "RStudio IDE",
+    "section": "Type of editor",
+    "text": "Type of editor\n\nwe will be creating and editing markdown documents - mostly using the Quarto paradigm\nfor Quarto you can use either a source view or a visual view:\n\nSource - See the actual code (WYSIWYG)\nVisual - Partial preview of final document.\n\n\nNote: You can state your preference in the header:\ntitle: RStudio IDE\nkeywords: \"Productivity Tools\"\n\neditor: source",
+    "crumbs": [
+      "Lecture 2-RStudio"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#the-header",
+    "href": "slides/03-quarto.html#the-header",
+    "title": "Quarto",
+    "section": "The header",
+    "text": "The header\n\nStart a new empty document.\nAt the top you see:\n\n\n---\ntitle: \"Untitled\"\n---\n\n\nThe things between the --- are the YAML header.\nQuarto guide.",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#text-formating",
+    "href": "slides/03-quarto.html#text-formating",
+    "title": "Quarto",
+    "section": "Text formating",
+    "text": "Text formating\n*italics* or _italics_ = italics\n**bold** = bold\n***bold italics*** = bold italics\n~~strikethrough~~ = strikethrough\n`code` = code",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#text-formating-1",
+    "href": "slides/03-quarto.html#text-formating-1",
+    "title": "Quarto",
+    "section": "Text formating",
+    "text": "Text formating\nThis:\n```\nline 1\nline 2\n```\nshows code chunks:\nline 1\nline 2",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#links",
+    "href": "slides/03-quarto.html#links",
+    "title": "Quarto",
+    "section": "Links",
+    "text": "Links\n\nShow the link: &lt;https://quarto.org/docs/guide/&gt;\nAdd link to text: [Quarto Guide](https://quarto.org/docs/guide/)\n\nLooks like this:\nhttps://quarto.org/docs/guide/\nQuarto Guide",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#images",
+    "href": "slides/03-quarto.html#images",
+    "title": "Quarto",
+    "section": "Images",
+    "text": "Images\n![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)\nShows the plot and caption:\n\nMy caption\nThe image can also be a local file (replacing the html link with the path to the image.)",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#lists",
+    "href": "slides/03-quarto.html#lists",
+    "title": "Quarto",
+    "section": "Lists",
+    "text": "Lists\nBullets:\n-   bullet 1\n    -   sub-bullet 1\n    -   sub-bullet 2\n-   bullet 2\nLooks like this:\n\nbullet 1\n\nsub-bullet 1\nsub-bullet 2\n\nbullet 2",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#lists-1",
+    "href": "slides/03-quarto.html#lists-1",
+    "title": "Quarto",
+    "section": "Lists",
+    "text": "Lists\nOrdered list:\n1.  Item 1\n2.  Item 2\nLooks like this:\n\nItem 1\nItem 2",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#equations",
+    "href": "slides/03-quarto.html#equations",
+    "title": "Quarto",
+    "section": "Equations",
+    "text": "Equations\n\n\n\n\n\n\n\nNote\n\n\nTechnical report often uses LaTeX for typesetting.\nThere are many online tutorials, like this one.",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#equations-1",
+    "href": "slides/03-quarto.html#equations-1",
+    "title": "Quarto",
+    "section": "Equations",
+    "text": "Equations\nExamples:\n\nInline: $Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i$ looks like this \\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\)\nDisplay math:\n\n$$\n\\mathbf{Y} = \\mathbf{X\\beta} + \\mathbf{\\varepsilon}\n$$\nlooks like this:\n\\[\n\\mathbf{Y} = \\mathbf{X\\beta} + \\mathbf{\\varepsilon}\n\\]",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#computations",
+    "href": "slides/03-quarto.html#computations",
+    "title": "Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nBy default, the code and result will show up.\nYou can send arguments to control the behavior with #|\nFor example, to avoid showing code in the final document, use echo: FALSE.\n\n```{r}\n#| echo: false\nx &lt;- 1\ny &lt;- 2\nx + y\n```",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#computations-1",
+    "href": "slides/03-quarto.html#computations-1",
+    "title": "Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nThere are many options (auto-complete shows them).\nFor example, to avoid executing the code use eval: FALSE.\nTo avoid showing warnings warning: FALSE, to avoid showing messages message: FALSE.\n\n\n\n\n\n\n\nNote\n\n\nto apply an option globally, these can be set globally in the header.\nexecute:\n  echo: false",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#computations-2",
+    "href": "slides/03-quarto.html#computations-2",
+    "title": "Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nWe recommend getting into the habit of labeling code chunks:\n\n```{r}\n#| label: one-plus-two\nx &lt;- 1\ny &lt;- 2\nx + y\n```\n\nHelps with debugging\nHelps reading the code",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#computations-3",
+    "href": "slides/03-quarto.html#computations-3",
+    "title": "Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nThere are many options (auto-complete shows them).\nFor example, to avoid the the code running you can use eval: FALSE.\nTo avoid showing warnings warning: FALSE, to avoid showing messages message: FALSE.\n\n\n\n\n\n\n\nNote\n\n\nIf you want to apply an option globally, these can be set globally in the header.\nexecute:\n  echo: false",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#computations-4",
+    "href": "slides/03-quarto.html#computations-4",
+    "title": "Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nWe recommend getting into the habit of labeling code chunks:\n\n```{r}\n#| label: one-plus-two\nx &lt;- 1\ny &lt;- 2\nx + y\n```\n\nHelps with debugging\nGives meaningful names to generated images.",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#computations-5",
+    "href": "slides/03-quarto.html#computations-5",
+    "title": "Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nWe recommend getting into the habit of labeling code chunks:\n\n```{r}\n#| label: one-plus-two\nx &lt;- 1\ny &lt;- 2\nx + y\n```\n\nHelps with debugging\nGives meaningful names to generated images.",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#more-on-markdown",
+    "href": "slides/03-quarto.html#more-on-markdown",
+    "title": "Quarto",
+    "section": "More on markdown",
+    "text": "More on markdown\n\nRStudio’s tutorial: https://quarto.org/docs/get-started/hello/rstudio.html\nThe knitR book: https://yihui.name/knitr/\nPandoc’s Markdown in-depth documentation\nGuide for academic reports\nRMarkdwon Cheatsheet",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#quarto-render",
+    "href": "slides/03-quarto.html#quarto-render",
+    "title": "Quarto",
+    "section": "Quarto render",
+    "text": "Quarto render\n\nRStudio provided Render button to compile the document.\nquarto render filename.qmd in a terminal renders single qmd file.\nquarto render renders all qmd files.\nYou can produce html, pdf, or word documents.\nYou can specify the default in the YAML header using: format: html, format: pdf,format: docx, or format: gfm (GitHub flavored markdown).",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#quick-markdown-text-formating",
+    "href": "slides/03-quarto.html#quick-markdown-text-formating",
+    "title": "Quarto",
+    "section": "Quick Markdown Text formating",
+    "text": "Quick Markdown Text formating\n*italics* or _italics_ = italics\n**bold** = bold\n***bold italics*** = bold italics\n~~strikethrough~~ = strikethrough\n`code` = code",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#code-chunk",
+    "href": "slides/03-quarto.html#code-chunk",
+    "title": "Quarto",
+    "section": "Code chunk",
+    "text": "Code chunk\nThis:\n```\nline 1\nline 2\n```\nshows a code chunk:\nline 1\nline 2",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#unordered-lists",
+    "href": "slides/03-quarto.html#unordered-lists",
+    "title": "Quarto",
+    "section": "Unordered Lists",
+    "text": "Unordered Lists\nBullets:\n-   bullet 1\n    -   sub-bullet 1\n    -   sub-bullet 2\n-   bullet 2\nLooks like this:\n\nbullet 1\n\nsub-bullet 1\nsub-bullet 2\n\nbullet 2",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#ordered-lists",
+    "href": "slides/03-quarto.html#ordered-lists",
+    "title": "Quarto",
+    "section": "Ordered Lists",
+    "text": "Ordered Lists\nOrdered list:\n1.  Item 1\n2.  Item 2\nLooks like this:\n\nItem 1\nItem 2",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#equations-using-latex.",
+    "href": "slides/03-quarto.html#equations-using-latex.",
+    "title": "Quarto",
+    "section": "Equations using LaTeX.",
+    "text": "Equations using LaTeX.\nExamples:\n\nInline: $Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i$ looks like this \\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\)\nDisplay math:\n\n$$\n\\mathbf{Y} = \\mathbf{X\\beta} + \\mathbf{\\varepsilon}\n$$\nlooks like this:\n\\[\n\\mathbf{Y} = \\mathbf{X\\beta} + \\mathbf{\\varepsilon}\n\\]",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#code-in-quarto-document-.qmd-or-rmarkdown-.rmd",
+    "href": "slides/03-quarto.html#code-in-quarto-document-.qmd-or-rmarkdown-.rmd",
+    "title": "Quarto",
+    "section": "Code in Quarto document .qmd (or RMarkdown .rmd)",
+    "text": "Code in Quarto document .qmd (or RMarkdown .rmd)\nOne can include and execute the code chunks in .qmd document by\n```{r}\n# R code here, e.g.\n2+3\n```\n\n\n\n\n\n\nNote\n\n\nTo add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/03-quarto.html#r-code-chuns",
+    "href": "slides/03-quarto.html#r-code-chuns",
+    "title": "Quarto",
+    "section": "R Code Chuns",
+    "text": "R Code Chuns\nWe can write something like this:\n```{r}\nx &lt;- 1\ny &lt;- 2\nx + y\n```\nIt looks like this:\n\nx &lt;- 1\ny &lt;- 2\nx + y\n\n[1] 3\n\n\nNote that it was evaluated and the result is shown.",
+    "crumbs": [
+      "Lecture 3-Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#goal-for-the-day",
+    "href": "slides/04-git.html#goal-for-the-day",
+    "title": "Git and GitHub",
+    "section": "Goal for the day",
+    "text": "Goal for the day\n https://datasciencelabs.github.io/2025/extra/git_tutorial.html \n\nCreate an account\nCreate a repository\npush something to the repository\nconnect RStudio to GitHub",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#ssh",
+    "href": "slides/04-git.html#ssh",
+    "title": "Git and GitHub",
+    "section": "SSH",
+    "text": "SSH\n\nmake sure you have ssh installed\nthen issue the command ssh-keygen\naccept the suggested location and do not use a passphrase\n\n\ntest@80f55a35ef03:/HostData/Epiconnector$ ssh-keygen \nGenerating public/private ed25519 key pair.\nEnter file in which to save the key (/home/test/.ssh/id_ed25519): \nCreated directory '/home/test/.ssh'.\nEnter passphrase (empty for no passphrase): \nEnter same passphrase again: \nYour identification has been saved in /home/test/.ssh/id_ed25519\nYour public key has been saved in /home/test/.ssh/id_ed25519.pub",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#do-you-have-git",
+    "href": "slides/04-git.html#do-you-have-git",
+    "title": "Git and GitHub",
+    "section": "Do you have git?",
+    "text": "Do you have git?\nBefore we start:\n\nMake sure you have Git installed.\nOpen a terminal and type:\n\n\ngit --version\n\nIf not installed\n\non a Mac, follow the instructions after typing the above.\non Windows follow these instructions",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#motivation",
+    "href": "slides/04-git.html#motivation",
+    "title": "Git and GitHub",
+    "section": "Motivation",
+    "text": "Motivation\nWe want to avoid this:\n\nPosted by rjkb041 on r/ProgrammerHumor",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#motivation-1",
+    "href": "slides/04-git.html#motivation-1",
+    "title": "Git and GitHub",
+    "section": "Motivation",
+    "text": "Motivation\n\nThis is particularly difficult to manage when more than one person is collaborating and editing the file.\nEven more important when there are multiple files.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#motivation-2",
+    "href": "slides/04-git.html#motivation-2",
+    "title": "Git and GitHub",
+    "section": "Motivation",
+    "text": "Motivation\n\nGit is a version control system that provides a systematic approach to keeping versions of files.\n\n\nPosted on devrant.com/ by bhimanshukalra",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#motivation-3",
+    "href": "slides/04-git.html#motivation-3",
+    "title": "Git and GitHub",
+    "section": "Motivation",
+    "text": "Motivation\nBut we have to learn some things.\n\nFrom Meme Git Compilation by Lulu Ilmaknun Qurotaini",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#why-use-git-and-github",
+    "href": "slides/04-git.html#why-use-git-and-github",
+    "title": "Git and GitHub",
+    "section": "Why use Git and GitHub?",
+    "text": "Why use Git and GitHub?\n\nSharing.\nCollaborating.\nVersion control.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-is-git",
+    "href": "slides/04-git.html#what-is-git",
+    "title": "Git and GitHub",
+    "section": "What is Git?",
+    "text": "What is Git?",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-is-github",
+    "href": "slides/04-git.html#what-is-github",
+    "title": "Git and GitHub",
+    "section": "What is GitHub?",
+    "text": "What is GitHub?\n\nA Microsoft service that hosts the remote repository (repo) on the web.\nThis facilitates collaboration and sharing.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-is-github-1",
+    "href": "slides/04-git.html#what-is-github-1",
+    "title": "Git and GitHub",
+    "section": "What is GitHub?",
+    "text": "What is GitHub?\n\nThe main tool behind GitHub is Git.\nSimilar to how the main tool behind RStudio is R.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-is-github-2",
+    "href": "slides/04-git.html#what-is-github-2",
+    "title": "Git and GitHub",
+    "section": "What is GitHub?",
+    "text": "What is GitHub?\n\nThe main tool behind GitHub is Git.\nSimilar to how the main tool behind RStudio is R.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#github-accounts",
+    "href": "slides/04-git.html#github-accounts",
+    "title": "Git and GitHub",
+    "section": "GitHub accounts",
+    "text": "GitHub accounts\n\nPick a professional sounding name.\nConsider adding a profile README.md.\nInstructions are here.\nExample here.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#repositories",
+    "href": "slides/04-git.html#repositories",
+    "title": "Git and GitHub",
+    "section": "Repositories",
+    "text": "Repositories\n\nLet’s first go make one on GitHub…\nThen create a directory on your computer, this will be the local repo, and connect it to the Github repository.\nFirst copy and paste the location of your git repository. It should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#repositories-1",
+    "href": "slides/04-git.html#repositories-1",
+    "title": "Git and GitHub",
+    "section": "Repositories",
+    "text": "Repositories\n\nLet’s go make one on GitHub…\nThen create a directory on your computer, this will be the local repo, and connect it to the Github repository.\nFirst copy and paste the location of your git repository. It should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-git-and-github",
+    "href": "slides/04-git.html#connect-git-and-github",
+    "title": "Git and GitHub",
+    "section": "Connect Git and GitHub",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-git-and-github-1",
+    "href": "slides/04-git.html#connect-git-and-github-1",
+    "title": "Git and GitHub",
+    "section": "Connect Git and GitHub",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#generate-a-token",
+    "href": "slides/04-git.html#generate-a-token",
+    "title": "Git and GitHub",
+    "section": "Generate a token:",
+    "text": "Generate a token:\n\nFor security, save this token in a password manager. This ensures you can access it if needed later on.\nWhen git prompts you to enter your password, paste the token you’ve copied. After this, password prompts should no longer appear.\nIf you ever need the token again, retrieve it from your password manager.\n\nMore details available from Happy Git and GitHub for the use.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-git-and-github-2",
+    "href": "slides/04-git.html#connect-git-and-github-2",
+    "title": "Git and GitHub",
+    "section": "Connect Git and GitHub",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-git-and-github-3",
+    "href": "slides/04-git.html#connect-git-and-github-3",
+    "title": "Git and GitHub",
+    "section": "Connect Git and GitHub",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-git-and-github-4",
+    "href": "slides/04-git.html#connect-git-and-github-4",
+    "title": "Git and GitHub",
+    "section": "Connect Git and GitHub",
+    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname we will use for the remote. We can call it something else, but everybody calls it origin so best to stick with that.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#overview-of-git",
+    "href": "slides/04-git.html#overview-of-git",
+    "title": "Git and GitHub",
+    "section": "Overview of Git",
+    "text": "Overview of Git\nThe main actions in Git are to:\n\npull changes from the remote repo.\nadd files, or as we say in the Git lingo stage files.\ncommit changes to the local repo.\npush changes to the remote repo.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#the-four-areas-of-git",
+    "href": "slides/04-git.html#the-four-areas-of-git",
+    "title": "Git and GitHub",
+    "section": "The four areas of Git",
+    "text": "The four areas of Git",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#status",
+    "href": "slides/04-git.html#status",
+    "title": "Git and GitHub",
+    "section": "Status",
+    "text": "Status\n\n\ngit status filename",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#add",
+    "href": "slides/04-git.html#add",
+    "title": "Git and GitHub",
+    "section": "Add",
+    "text": "Add\nUse git add to put file to staging area.\n\n\ngit add &lt;filename&gt;\n\nWe say that this file has been staged. Check to see what happened:\n\ngit status &lt;filename&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#commit",
+    "href": "slides/04-git.html#commit",
+    "title": "Git and GitHub",
+    "section": "Commit",
+    "text": "Commit\n\n\n\n\n\n\nNote\n\n\nYou can commit files directly without using add by explicitly writing the files at the end of the commit:\n\n\n\n\ngit commit -m \"must add comment\" &lt;filename&gt;\n\nor automatically stage “modified + deleted” (but not new files)\n\ngit commit -a -m \"must add comment\"",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#commit-1",
+    "href": "slides/04-git.html#commit-1",
+    "title": "Git and GitHub",
+    "section": "Commit",
+    "text": "Commit\n\n\n\n\n\n\nNote\n\n\nYou can commit files directly without using add by explicitly writing the files at the end of the commit:\n\n\n\n\ngit commit -m \"must add comment\" &lt;filename&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#push",
+    "href": "slides/04-git.html#push",
+    "title": "Git and GitHub",
+    "section": "Push",
+    "text": "Push\n\nTo move to upstream repo we use git push\n\n\n\ngit push -u origin main\n\n\nThe -u flag sets the upstream repo (only need once)\nSo going forward we can just type:\n\n\ngit push",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#push-1",
+    "href": "slides/04-git.html#push-1",
+    "title": "Git and GitHub",
+    "section": "Push",
+    "text": "Push\n\nWhen using git push we need to be careful as if collaborating this will affect the work of others.\nIt might also create a conflict.\n\n\nPosted by andortang on Nothing is Impossible!",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#fetch",
+    "href": "slides/04-git.html#fetch",
+    "title": "Git and GitHub",
+    "section": "Fetch",
+    "text": "Fetch\n\nTo update our local repository to the remote one we use\n\n\ngit fetch",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#merge",
+    "href": "slides/04-git.html#merge",
+    "title": "Git and GitHub",
+    "section": "Merge",
+    "text": "Merge\n\nOnce we are sure this is good, we can merge with our local files:\n\n\ngit merge",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#pull",
+    "href": "slides/04-git.html#pull",
+    "title": "Git and GitHub",
+    "section": "Pull",
+    "text": "Pull\n\nI rarely use fetch and merge and instead use pull which does both of these in one step\n\n\ngit pull",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#checkout",
+    "href": "slides/04-git.html#checkout",
+    "title": "Git and GitHub",
+    "section": "Checkout",
+    "text": "Checkout\n\nYou can also use checkout to obtain older version:\n\n\ngit checkout &lt;commit-id&gt; &lt;filename&gt;\n\n\nYou can get the commit-id either on the GitHub webpage or using\n\n\ngit log filename",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#checkout-1",
+    "href": "slides/04-git.html#checkout-1",
+    "title": "Git and GitHub",
+    "section": "Checkout",
+    "text": "Checkout\n\nYou can also use checkout to obtain older version:\n\n\ngit checkout &lt;commit-id&gt; &lt;filename&gt;\n\n\nYou can get the commit-id either on the GitHub webpage or using\n\n\ngit log filename",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#reset",
+    "href": "slides/04-git.html#reset",
+    "title": "Git and GitHub",
+    "section": "Reset",
+    "text": "Reset\n\nWhat if I commit and realize it was a mistake?\n\n\ngit reset HEAD~1\n\nundos the commit and unstages the files, but keeps your local copies. I use this command very often.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#branches",
+    "href": "slides/04-git.html#branches",
+    "title": "Git and GitHub",
+    "section": "Branches",
+    "text": "Branches\n\nEach repo can have several branches useful for working in parallel or testing stuff out\n\n\nArt by: Allison Horst",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#branches-1",
+    "href": "slides/04-git.html#branches-1",
+    "title": "Git and GitHub",
+    "section": "Branches",
+    "text": "Branches\n\ngit remote -v. #verbose: with details\ngit branch # show branches",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#clone",
+    "href": "slides/04-git.html#clone",
+    "title": "Git and GitHub",
+    "section": "Clone",
+    "text": "Clone\n\nAnother common command is git clone.\nIt let’s download an entire repo, including version history.\n\n\ngit clone &lt;repo-url&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#using-git-in-rstudio",
+    "href": "slides/04-git.html#using-git-in-rstudio",
+    "title": "Git and GitHub",
+    "section": "Using Git in RStudio",
+    "text": "Using Git in RStudio\n\nGo to file, new project, version control, and follow the instructions.\nThen notice the Git tab in the preferences.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#github-repositories-repo",
+    "href": "slides/04-git.html#github-repositories-repo",
+    "title": "Git and GitHub",
+    "section": "GitHub Repositories (repo)",
+    "text": "GitHub Repositories (repo)\n\nYou will have at least two copies of your code: one on your computer and one on GitHub.\nThe GitHub copy is considered the main (previously called master) copy (branch) that everybody syncs to.\nThe main branch is the code-base (ground truth).\nUpdates/revisions are inserted into main through pull request (CI).",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STAT 3000",
+    "section": "",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "STAT 3000",
+    "section": "",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#goals",
+    "href": "slides/04-git.html#goals",
+    "title": "Git and GitHub",
+    "section": "Goals",
+    "text": "Goals\n https://datasciencelabs.github.io/2025/extra/git_tutorial.html \n https://ywanglab.github.io/stat1010/git.html\n\nCreate an account\nCreate a repository\npush something to the repository\nconnect RStudio to GitHub",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#install-git",
+    "href": "slides/04-git.html#install-git",
+    "title": "Git and GitHub",
+    "section": "Install Git",
+    "text": "Install Git\n\nMake sure you have Git installed.\nOpen a terminal and type:\n\n\ngit --version\n\nIf not installed\n\non a Mac, follow the instructions after typing the above.\non Windows follow these instructions",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-git-does",
+    "href": "slides/04-git.html#what-git-does",
+    "title": "Git and GitHub",
+    "section": "What Git Does?",
+    "text": "What Git Does?",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#what-github-does",
+    "href": "slides/04-git.html#what-github-does",
+    "title": "Git and GitHub",
+    "section": "What GitHub does?",
+    "text": "What GitHub does?\nMany other features such as\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nAutomation tools",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-github-repo",
+    "href": "slides/04-git.html#create-a-github-repo",
+    "title": "Git and GitHub",
+    "section": "Create a GitHub Repo",
+    "text": "Create a GitHub Repo\n\nClick the + icon and follow the instructions. The repo site should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git\n\nWe shall use git init to link a local project repo to the remote repo you just created.\nIn a parent directory,use Rstudio to create a new project in it, this will be the local repo, and connect it to the Github repository.\n\nInstruction: https://ywanglab.github.io/stat1010/git.html",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-local-repo-and-remote-repo",
+    "href": "slides/04-git.html#connect-local-repo-and-remote-repo",
+    "title": "Git and GitHub",
+    "section": "Connect Local repo and remote repo",
+    "text": "Connect Local repo and remote repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nWe recommend using HTTPS, which uses a Personal Access Token (PAT). More: Happy Git and GitHub for the use.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction.\n\nNote that your GitHub website password isn’t your access token.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-to-remote-repo",
+    "href": "slides/04-git.html#connect-to-remote-repo",
+    "title": "Git and GitHub",
+    "section": "Connect to Remote Repo",
+    "text": "Connect to Remote Repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nHTTPS uses a Personal Access Token (PAT). More.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction.\n\nNote that your GitHub website password isn’t your access token.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#privacy-privacy-privacy",
+    "href": "slides/04-git.html#privacy-privacy-privacy",
+    "title": "Git and GitHub",
+    "section": "Privacy Privacy Privacy",
+    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who we are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#main-actins-of-git",
+    "href": "slides/04-git.html#main-actins-of-git",
+    "title": "Git and GitHub",
+    "section": "Main actins of Git",
+    "text": "Main actins of Git\n\npull (= fetch + merge) changes from the remote repo (alwasy do this before git push)\nadd files, or as we say in the Git lingo stage files.\ncommit (save) changes to the local repo.\npush changes to the remote repo.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#hypothesis",
+    "href": "slides/04-git.html#hypothesis",
+    "title": "Git and GitHub",
+    "section": "Hypothesis",
+    "text": "Hypothesis",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#git-status",
+    "href": "slides/04-git.html#git-status",
+    "title": "Git and GitHub",
+    "section": "git status",
+    "text": "git status\n\n\ngit status [filename]",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#git-add",
+    "href": "slides/04-git.html#git-add",
+    "title": "Git and GitHub",
+    "section": "git add",
+    "text": "git add\nUse git add to put file to staging area.\n\n\ngit add &lt;filename&gt;\n\nWe say that this file has been staged. * git add .: new + modifiled files, does not stage deletions: Scope: Current dir only * git add -A: new + modified + deletions. Scope: Entire repo.\n\ngit status &lt;filename&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#commit-save-a-version-or-versioning",
+    "href": "slides/04-git.html#commit-save-a-version-or-versioning",
+    "title": "Git and GitHub",
+    "section": "Commit (Save a Version or Versioning)",
+    "text": "Commit (Save a Version or Versioning)\n\nTo move all the staged files to the local repository we use git commit.\n\n\n\ngit commit -m \"must add comment\"\n\n\nOnce committed the files are tracked and a copy of this version is kept going forward.\nThis is like adding V1 to your filename.",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#stage-a-file-git-add",
+    "href": "slides/04-git.html#stage-a-file-git-add",
+    "title": "Git and GitHub",
+    "section": "Stage a file: git add",
+    "text": "Stage a file: git add\nUse git add to put file to staging area.\n\n\ngit add &lt;filename&gt;\n\nWe say that this file has been staged.\n\ngit add .: new + modifiled files, does not stage deletions: Scope: Current dir only\ngit add -A: new + modified + deletions. Scope: Entire repo.\n\n\ngit status &lt;filename&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#pull-fetch-merge",
+    "href": "slides/04-git.html#pull-fetch-merge",
+    "title": "Git and GitHub",
+    "section": "Pull (=Fetch + Merge)",
+    "text": "Pull (=Fetch + Merge)\n\ngit pull",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-a-file",
+    "href": "slides/04-git.html#restore-a-file",
+    "title": "Git and GitHub",
+    "section": "Restore a file",
+    "text": "Restore a file\n\ngit restore filename\n\nDiscard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but not committed yet.\nOld way:\n\ngit checkout filename\n\nRelated commands:\n\ngit restore --staged  filename # Ustage only\ngit reset file # Unstage, keep edits",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-a-file-from-the-latest-commit",
+    "href": "slides/04-git.html#restore-a-file-from-the-latest-commit",
+    "title": "Git and GitHub",
+    "section": "Restore a file from the latest commit",
+    "text": "Restore a file from the latest commit\n\ngit restore filename\n\nDiscard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but not committed yet.\nOld way:\n\ngit checkout filename\n\nRelated commands:\n\ngit restore --staged  filename # Ustage only\ngit reset file # Unstage, keep edits",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-from-an-older-commit-version",
+    "href": "slides/04-git.html#restore-from-an-older-commit-version",
+    "title": "Git and GitHub",
+    "section": "Restore from an older commit (version)",
+    "text": "Restore from an older commit (version)\n\ngit restore --source=&lt; 7-digit-commit-id&gt; &lt; filename&gt;\ngit restore --source=HEAD~2 index.qmd # two commits before the current HEAD\n\nOlder way:\n\ngit checkout &lt;7-digit-commit-id&gt; &lt;filename&gt;\n\n\nYou can get the commit-id using\n\n\ngit log filename",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-branches",
+    "href": "slides/04-git.html#create-branches",
+    "title": "Git and GitHub",
+    "section": "Create branches",
+    "text": "Create branches\n\ngit branch new-branch-name # create a new branch\ngit switch -c new-branch-name # create and switch\ngit checkout -b new-branch-name # create and switch (old way)\ngit switch -c feature-x main # create from a specific branch\ngit branch feature-x HEAD~2 # create from a specific commit",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#show-branches",
+    "href": "slides/04-git.html#show-branches",
+    "title": "Git and GitHub",
+    "section": "Show branches",
+    "text": "Show branches\n\ngit remote -v. #verbose: with details\ngit branch # show branches",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#clone-a-remote-repo",
+    "href": "slides/04-git.html#clone-a-remote-repo",
+    "title": "Git and GitHub",
+    "section": "Clone a Remote repo",
+    "text": "Clone a Remote repo\n\nIt let’s download an entire repo, including version history.\n\nhttps://ywanglab.github.io/stat1010/git.html\n\ngit clone &lt;repo-url&gt;",
+    "crumbs": [
+      "Lecture 4-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#packages",
+    "href": "slides/05-r-basics.html#packages",
+    "title": "R Basics",
+    "section": "Packages",
+    "text": "Packages\n\nbase comes from the installation of R.\nadd-on packages that can be obtained from CRAN\nUse install.packages to install the dslabs package from CRAN\nTry: sessionInfo, installed.packages"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#prebuilt-functions",
+    "href": "slides/05-r-basics.html#prebuilt-functions",
+    "title": "R Basics",
+    "section": "Prebuilt functions",
+    "text": "Prebuilt functions\n\nR base includes automatically loaded packages: stats, graphics, grDevices, utils, datasets, methods.\nVery popular packages not included in R base: ggplot2, dplyr, tidyr, and data.table, caret, etc."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#base-r-functions",
+    "href": "slides/05-r-basics.html#base-r-functions",
+    "title": "R Basics",
+    "section": "Base R functions",
+    "text": "Base R functions\n\nls, rm, library, search, factor, list, exists, str, typeof, and class.\nYou can see the raw code for a function by typing its name without the parentheses.\n\ntype ls on your console to see an example."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#help-system",
+    "href": "slides/05-r-basics.html#help-system",
+    "title": "R Basics",
+    "section": "Help system",
+    "text": "Help system\n\nYou can learn about function using\n\nhelp(\"ls\")\nor\n?ls\n\nmany packages provide vignettes that are like how-to manuals for different analyses"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-workspace",
+    "href": "slides/05-r-basics.html#the-workspace",
+    "title": "R Basics",
+    "section": "The workspace",
+    "text": "The workspace\n\neach time start R, a new (clean slate) workspace that does not have any variables or libraries is loaded\nwhen exit R you will be asked if you want to save the workspace\n\nprobably always be better off saying NO\n\nif you do save a workspace it will be saved as a hidden file and whenever R is started in a directory with a saved workspace then that workspace will be re-instantiated and used\n\nthis might be helpful if you do not want to recalculate."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-workspace-1",
+    "href": "slides/05-r-basics.html#the-workspace-1",
+    "title": "R Basics",
+    "section": "The workspace",
+    "text": "The workspace\n\neach time you start R you will get a new workspace that does not have any variables or libraries loaded\nwhen you quit R you will be asked if you want to save the workspace\n\nyou will probably always be better off saying NO\n\nif you do save a workspace it will be saved as a hidden file (Unix lecture) and whenever R is started in a directory with a saved workspace then that workspace will be re-instantiated and used\n\nthis might be helpful if you are working on a long complex analysis with large data\n\nmostly it is much easier to just use a markdown document to detail your steps and rerun them on a clean workspace\n\nthis can also help find errors in your analysis"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-workspace-2",
+    "href": "slides/05-r-basics.html#the-workspace-2",
+    "title": "R Basics",
+    "section": "The Workspace",
+    "text": "The Workspace\n\njust like Unix R uses a search path to find functions that you can evaluate\n\n\nsearch()\n\n[1] \".GlobalEnv\"        \"package:stats\"     \"package:graphics\" \n[4] \"package:grDevices\" \"package:utils\"     \"package:datasets\" \n[7] \"package:methods\"   \"Autoloads\"         \"package:base\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#variable-name-convention",
+    "href": "slides/05-r-basics.html#variable-name-convention",
+    "title": "R Basics",
+    "section": "Variable name convention",
+    "text": "Variable name convention\n\nA nice convention to follow is to use meaningful words that describe what is stored, only lower case, and underscores as a substitute for spaces.\nR and RStudio both provide autocomplete capabilities so you don’t need to type the whole name\n\nthis makes it easier to use longer, more descriptive variable names\n\nIt is highly recommended that you not use the period . in variable names, there are situations where R treats it differently and those can cause unintended actions\nFor more we recommend this guide."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types",
+    "href": "slides/05-r-basics.html#data-types",
+    "title": "R Basics",
+    "section": "Data types",
+    "text": "Data types\n\nstr stands for structure, gives us information about an object.\ntypeof gives you the basic data type of the object. It reveals the lower-level data type of an object.\nclass returns the class attribute of an object. The class of an object is essentially type_of at a higher, often user-facing level."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types-1",
+    "href": "slides/05-r-basics.html#data-types-1",
+    "title": "R Basics",
+    "section": "Data types",
+    "text": "Data types\nLet’s see some example:\n\nlibrary(dslabs)\ntypeof(murders)\n\n[1] \"list\"\n\nclass(murders)\n\n[1] \"data.frame\"\n\nstr(murders)\n\n'data.frame':   51 obs. of  5 variables:\n $ state     : chr  \"Alabama\" \"Alaska\" \"Arizona\" \"Arkansas\" ...\n $ abb       : chr  \"AL\" \"AK\" \"AZ\" \"AR\" ...\n $ region    : Factor w/ 4 levels \"Northeast\",\"South\",..: 2 4 4 2 4 4 1 2 2 2 ...\n $ population: num  4779736 710231 6392017 2915918 37253956 ...\n $ total     : num  135 19 232 93 1257 ...\n\ndim(murders)\n\n[1] 51  5"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types-2",
+    "href": "slides/05-r-basics.html#data-types-2",
+    "title": "R Basics",
+    "section": "Data types",
+    "text": "Data types\nLet’s see some example:\n\nlibrary(dslabs)\ntypeof(murders)\n\n[1] \"list\"\n\nclass(murders)\n\n[1] \"data.frame\"\n\nstr(murders)\n\n'data.frame':   51 obs. of  5 variables:\n $ state     : chr  \"Alabama\" \"Alaska\" \"Arizona\" \"Arkansas\" ...\n $ abb       : chr  \"AL\" \"AK\" \"AZ\" \"AR\" ...\n $ region    : Factor w/ 4 levels \"Northeast\",\"South\",..: 2 4 4 2 4 4 1 2 2 2 ...\n $ population: num  4779736 710231 6392017 2915918 37253956 ...\n $ total     : num  135 19 232 93 1257 ...\n\ndim(murders)\n\n[1] 51  5"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames",
+    "href": "slides/05-r-basics.html#data-frames",
+    "title": "R Basics",
+    "section": "Data frames",
+    "text": "Data frames\n\nData frames are the most common class used in data analysis.\nData frames are like a matrix, but where the columns can have different types.\nUsually, rows represents observations and columns variables.\nyou can index them like you would a matrix, x[i, j] refers to the element in row i column j\nYou can see part of the content like this\n\n\nhead(murders)\n\n       state abb region population total\n1    Alabama  AL  South    4779736   135\n2     Alaska  AK   West     710231    19\n3    Arizona  AZ   West    6392017   232\n4   Arkansas  AR  South    2915918    93\n5 California  CA   West   37253956  1257\n6   Colorado  CO   West    5029196    65\n\n\nView a Data frames\n\nView(murders)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames-1",
+    "href": "slides/05-r-basics.html#data-frames-1",
+    "title": "R Basics",
+    "section": "Data frames",
+    "text": "Data frames\n\nA very common operation is adding columns like this:\n\n\nmurders$pop_rank &lt;- rank(murders$population)\nhead(murders)\n\n       state abb region population total pop_rank\n1    Alabama  AL  South    4779736   135       29\n2     Alaska  AK   West     710231    19        5\n3    Arizona  AZ   West    6392017   232       36\n4   Arkansas  AR  South    2915918    93       20\n5 California  CA   West   37253956  1257       51\n6   Colorado  CO   West    5029196    65       30"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames-2",
+    "href": "slides/05-r-basics.html#data-frames-2",
+    "title": "R Basics",
+    "section": "Data frames",
+    "text": "Data frames\n\nNote that we used the $.\nThis is called an accessor because it lets us access columns.\n\n\nmurders$population\n\n [1]  4779736   710231  6392017  2915918 37253956  5029196  3574097   897934\n [9]   601723 19687653  9920000  1360301  1567582 12830632  6483802  3046355\n[17]  2853118  4339367  4533372  1328361  5773552  6547629  9883640  5303925\n[25]  2967297  5988927   989415  1826341  2700551  1316470  8791894  2059179\n[33] 19378102  9535483   672591 11536504  3751351  3831074 12702379  1052567\n[41]  4625364   814180  6346105 25145561  2763885   625741  8001024  6724540\n[49]  1852994  5686986   563626\n\n\n\nMore generally: $ can be used to access named components of a list."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames-3",
+    "href": "slides/05-r-basics.html#data-frames-3",
+    "title": "R Basics",
+    "section": "Data frames",
+    "text": "Data frames\n\nOne way R confuses beginners is by having multiple ways of doing the same thing.\nFor example you can access the 4th column in the following five different ways:\n\n\nmurders$population\nmurders[, \"population\"]\nmurders[, 4]\nmurders[[\"population\"]]\nmurders[[4]]\n\n\nIn general, we recommend using the name rather than the number as adding or removing columns will change index values, but not names."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames-4",
+    "href": "slides/05-r-basics.html#data-frames-4",
+    "title": "R Basics",
+    "section": "Data frames",
+    "text": "Data frames\n\nOne way R confuses beginners is by having multiple ways of doing the same thing.\nFor example you can access the 4th column in the following five different ways:\n\n\nmurders$population\nmurders[, \"population\"]\nmurders[, 4]\nmurders[[\"population\"]]\nmurders[[4]]\n\n\nIn general, we recommend using the name rather than the number as adding or removing columns will change index values, but not names."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#with",
+    "href": "slides/05-r-basics.html#with",
+    "title": "R Basics",
+    "section": "with",
+    "text": "with\n\nNote you can write entire code chunks by enclosing it in curly brackets:\n\n\nwith(murders, {\n   rate &lt;- total/population\n   rate &lt;- round(rate*10^5)\n   print(rate[1:5])\n})\n\n[1] 3 3 4 3 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#with-1",
+    "href": "slides/05-r-basics.html#with-1",
+    "title": "R Basics",
+    "section": "with",
+    "text": "with\n\nNote you can write entire code chunks by enclosing it in curly brackets:\n\n\nwith(murders, {\n   rate &lt;- total/population\n   rate &lt;- round(rate*10^5)\n   print(rate[1:5])\n})\n\n[1] 3 3 4 3 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#vectors",
+    "href": "slides/05-r-basics.html#vectors",
+    "title": "R Basics",
+    "section": "Vectors",
+    "text": "Vectors\n\nThe columns of data frames are an example of one dimensional (atomic) vectors.\nAn atomic vector is a vector where every element must be the same type.\n\n\nlength(murders$population)\n\n[1] 51\n\ntypeof(murders$population)\n\n[1] \"double\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#vectors-1",
+    "href": "slides/05-r-basics.html#vectors-1",
+    "title": "R Basics",
+    "section": "Vectors",
+    "text": "Vectors\n\nOften we have to create vectors.\nThe concatenate function c is the most basic way used to create vectors:\n\n\nx &lt;- c(\"b\", \"s\", \"t\", \" \", \"2\", \"6\", \"0\")\n\n\nWe access the elements using []\n\n\nx[5]\n\n[1] \"2\"\n\ntypeof(x[5])\n\n[1] \"character\"\n\nx[12]\n\n[1] NA\n\n\n\nNOTE R does not do array bounds checking…it silently pads with missing values"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#sequences",
+    "href": "slides/05-r-basics.html#sequences",
+    "title": "R Basics",
+    "section": "Sequences",
+    "text": "Sequences\n\nSequences are vectors with equally spaced elements.\n\n\nseq(1, 10)\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nseq(1, 9, by=3)  # why the output?\n\n[1] 1 4 7\n\n\n\nWhen you want a sequence that increases/decreases by 1 you can use the colon :\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n3.3:7.8\n\n[1] 3.3 4.3 5.3 6.3 7.3\n\n4:-1\n\n[1]  4  3  2  1  0 -1"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#sequences-1",
+    "href": "slides/05-r-basics.html#sequences-1",
+    "title": "R Basics",
+    "section": "Sequences",
+    "text": "Sequences\n\nTo quickly generate a sequence the same length as a vector x is seq_along(x) cf. 1:length(x)\n\n\nx &lt;- c(\"b\", \"s\", \"t\", \" \", \"2\", \"6\", \"0\")\nseq_along(x)\n\n[1] 1 2 3 4 5 6 7\n\n\n\nfor (i in seq_along(x)) {\n  cat(toupper(x[i])) #concatenate and print\n}\n\nBST 260\n\n\n\nBut if the length of x is zero, then using 1:length(x) does not work for the above loop\n\n\nw = x[x==\"W\"]\nprint(w) # w=charactor(0): a char vector of length 0. \n\ncharacter(0)\n\n1:length(w) # a sequence [1 0]\n\n[1] 1 0\n\nseq_along(w) # an integer vector of legnth 0\n\ninteger(0)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#vector-types-and-coercion",
+    "href": "slides/05-r-basics.html#vector-types-and-coercion",
+    "title": "R Basics",
+    "section": "Vector types and coercion",
+    "text": "Vector types and coercion\n\ncoercion is automatically performed when it is possible\ncoercison hierarchy: logical → integer → double → character\nTRUE coerces to 1 and FALSE to 0\nbut any non-zero integer coerces to TRUE, only 0 coerces to FALSE\nas.logical converts 0 and only 0 to FALSE, everything else to TRUE\nthe character string “NA” is not a missing value\n\n\ntypeof(1:10 + 0.1)\n\n[1] \"double\"\n\ntypeof(TRUE+1) # 1 is double by default in R; integer must be `1L`\n\n[1] \"double\"\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(.5)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing",
+    "href": "slides/05-r-basics.html#coercing",
+    "title": "R Basics",
+    "section": "Coercing",
+    "text": "Coercing\n\nWhen you do something inconsistent with data types, R tries to figure out what you mean and change it accordingly.\nWe call this coercing.\nR does not return an error and in some cases does not return a warning either.\nThis can cause confusion and unnoticed errors."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#vector-types-and-coercion-1",
+    "href": "slides/05-r-basics.html#vector-types-and-coercion-1",
+    "title": "R Basics",
+    "section": "Vector types and coercion",
+    "text": "Vector types and coercion\n\ncoercion is automatically performed when it is possible\nTRUE coerces to 1 and FALSE to 0\nbut any non-zero integer coerces to TRUE, only 0 coerces to FALSE\nas.logical converts 0 and only 0 to FALSE, everything else to TRUE\nthe character string “NA” is not a missing value\n\n\ntypeof(1:10 + 0.1)\n\n[1] \"double\"\n\ntypeof(TRUE+1)\n\n[1] \"double\"\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(.5)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing-1",
+    "href": "slides/05-r-basics.html#coercing-1",
+    "title": "R Basics",
+    "section": "Coercing",
+    "text": "Coercing\n\nThe readr package provides some tools for trying to par\n\n\nx &lt;- c(\"12323\", \"12,323\")\nas.numeric(x)\n\n[1] 12323    NA\n\nlibrary(readr)\nparse_guess(x)\n\n[1] 12323 12323"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing-2",
+    "href": "slides/05-r-basics.html#coercing-2",
+    "title": "R Basics",
+    "section": "Coercing",
+    "text": "Coercing\n\nWhen R can’t figure out how to coerce, rather an error it returns an NA:\n\n\nas.numeric(\"a\")\n\n[1] NA\n\n\n\nNote that including NAs in arithmetical operations usually returns an NA.\n\n\n1 + 2 + NA\n\n[1] NA"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing-3",
+    "href": "slides/05-r-basics.html#coercing-3",
+    "title": "R Basics",
+    "section": "Coercing",
+    "text": "Coercing\n\nYou can coerce explicitly\nMost coercion functions start with as.\nHere is an example.\n\n\nx &lt;- factor(c(\"a\",\"b\",\"b\",\"c\"))\nas.character(x)\n\n[1] \"a\" \"b\" \"b\" \"c\"\n\nas.numeric(x)\n\n[1] 1 2 2 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing-4",
+    "href": "slides/05-r-basics.html#coercing-4",
+    "title": "R Basics",
+    "section": "Coercing",
+    "text": "Coercing\n\nThe readr package provides some tools for trying to par\n\n\nx &lt;- c(\"12323\", \"12,323\")\nas.numeric(x)\n\n[1] 12323    NA\n\nlibrary(readr)\nparse_guess(x)\n\n[1] 12323 12323"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors",
+    "href": "slides/05-r-basics.html#factors",
+    "title": "R Basics",
+    "section": "Factors",
+    "text": "Factors\n\nAnother reason we used factors is because they are stored more efficiently:\n\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nAn integer uses less memory than a character string (but it is a bit more complicated)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-1",
+    "href": "slides/05-r-basics.html#factors-1",
+    "title": "R Basics",
+    "section": "Factors",
+    "text": "Factors\n\nA factor is a good representation for a variable, that has a fixed set of non-numeric values\n\nex: Sex has Male and Female\n\nIt is usually not a good representation for variables that have lots of levels (like state names in the murders dataset)\nInternally a factor is stored as the unique set of labels (called levels) and an integer vector with values in 1 to length(levels)\n\nif the ith entry is k then that corresponds to the kth element of the levels\n\nIn statistics we refer to this as categorical data, where all of the individuals are mapped into a relatively small number of categories.\nUsually order does not matter, but if it does you can also have ordered factors.\n\n\nx &lt;- murders$region\nlevels(x)\n\n[1] \"Northeast\"     \"South\"         \"North Central\" \"West\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#setting-levels",
+    "href": "slides/05-r-basics.html#setting-levels",
+    "title": "R Basics",
+    "section": "Setting Levels",
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Male   Male   Female Male   Male   Male   Female Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Male   Male   Female Male   Male   Male   Female Male   Female\nLevels: Female Male"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#categories-based-on-strata",
+    "href": "slides/05-r-basics.html#categories-based-on-strata",
+    "title": "R Basics",
+    "section": "Categories based on strata",
+    "text": "Categories based on strata\n\nThe function cut bins a numeric vector into intervals and returns a factor\n\n\nage &lt;- c(5, 93, 18, 102, 14, 22, 45, 65, 67, 25, 30, 16, 21)\ncut(age, c(0, 11, 27, 43, 59, 78, 96, Inf)) # number of categories =length(age)-1=7\n\n [1] (0,11]   (78,96]  (11,27]  (96,Inf] (11,27]  (11,27]  (43,59]  (59,78] \n [9] (59,78]  (11,27]  (27,43]  (11,27]  (11,27] \nLevels: (0,11] (11,27] (27,43] (43,59] (59,78] (78,96] (96,Inf]\n\n# cut(age,\n#     c(0,11,27,43,59,78,96,Inf),\n#     labels = c(\"Child\",\"Young\",\"Adult\",\"Mid\",\"Senior\",\"Old\",\"Very Old\"))\n\n\ncut(age, breaks, right = FALSE) # -&gt;[a,b)\ncut(age, breaks, include.lowest = TRUE) # include the lowest age 0"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#categories-based-on-strata-1",
+    "href": "slides/05-r-basics.html#categories-based-on-strata-1",
+    "title": "R Basics",
+    "section": "Categories based on strata",
+    "text": "Categories based on strata\n\nWe can assign more meaningful level names:\n\n\nage &lt;- c(5, 93, 18, 102, 14, 22, 45, 65, 67, 25, 30, 16, 21)\ncut(age, c(0, 11, 27, 43, 59, 78, 96, Inf), \n    labels = c(\"Alpha\", \"Zoomer\", \"Millennial\", \"X\", \"Boomer\", \"Silent\", \"Greatest\"))\n\n [1] Alpha      Silent     Zoomer     Greatest   Zoomer     Zoomer    \n [7] X          Boomer     Boomer     Zoomer     Millennial Zoomer    \n[13] Zoomer    \nLevels: Alpha Zoomer Millennial X Boomer Silent Greatest"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#changing-levels",
+    "href": "slides/05-r-basics.html#changing-levels",
+    "title": "R Basics",
+    "section": "Changing levels",
+    "text": "Changing levels\n\nThis is often needed for ordinal data because R defaults to alphabetical order\n\n\ngen &lt;- factor(c(\"Alpha\", \"Zoomer\", \"Millennial\"))\nlevels(gen)\n\n[1] \"Alpha\"      \"Millennial\" \"Zoomer\"    \n\n\n\nYou can change this with the levels argument:\n\n\ngen &lt;- factor(gen, levels = c(\"Alpha\", \"Zoomer\", \"Millennial\", \"X\", \"Boomer\", \"Silent\", \"Greatest\"))\nlevels(gen)\n\n[1] \"Alpha\"      \"Zoomer\"     \"Millennial\" \"X\"          \"Boomer\"    \n[6] \"Silent\"     \"Greatest\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#changing-levels-1",
+    "href": "slides/05-r-basics.html#changing-levels-1",
+    "title": "R Basics",
+    "section": "Changing levels",
+    "text": "Changing levels\n\nA common reason we want to change levels is to assure R is aware which is the reference strata.\nThis is important for linear models because the first level is assumed to be the reference.\n\n\nx &lt;- factor(c(\"no drug\", \"drug 1\", \"drug 2\"))\nlevels(x)\n\n[1] \"drug 1\"  \"drug 2\"  \"no drug\"\n\nx &lt;- relevel(x, ref = \"no drug\")\nlevels(x)          \n\n[1] \"no drug\" \"drug 1\"  \"drug 2\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#changing-levels-2",
+    "href": "slides/05-r-basics.html#changing-levels-2",
+    "title": "R Basics",
+    "section": "Changing levels",
+    "text": "Changing levels\n\nWe often want to order strata based on a summary statistic.\nThis is common in data visualization.\nWe can use reorder for this:\n\n\nx &lt;- reorder(murders$region, murders$population, sum)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-2",
+    "href": "slides/05-r-basics.html#factors-2",
+    "title": "R Basics",
+    "section": "Factors",
+    "text": "Factors\n\nAnother reason we used factors is because they are stored more efficiently:\n\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nAn integer uses less memory than a character string (but it is a bit more complicated)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-can-be-confusing",
+    "href": "slides/05-r-basics.html#factors-can-be-confusing",
+    "title": "R Basics",
+    "section": "Factors can be confusing",
+    "text": "Factors can be confusing\n\nx &lt;- factor(c(\"3\",\"2\",\"1\"), levels = c(\"3\",\"2\",\"1\"))\nas.numeric(x)\n\n[1] 1 2 3\n\nx[1]\n\n[1] 3\nLevels: 3 2 1\n\nlevels(x[1])\n\n[1] \"3\" \"2\" \"1\"\n\ntable(x[1])\n\n\n3 2 1 \n1 0 0"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-can-be-confusing-1",
+    "href": "slides/05-r-basics.html#factors-can-be-confusing-1",
+    "title": "R Basics",
+    "section": "Factors can be confusing",
+    "text": "Factors can be confusing\n\nAvoid keeping extra levels with droplevels:\n\n\nz &lt;- x[1]\nz &lt;- droplevels(z)\n\n\nBut note what happens if we change to another level:\n\n\nz[1] &lt;- \"1\"\nz\n\n[1] &lt;NA&gt;\nLevels: 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas",
+    "href": "slides/05-r-basics.html#nas",
+    "title": "R Basics",
+    "section": "NAs",
+    "text": "NAs\n\nNA stands for not available and represents data that are missing.\nData analysts have to deal with NAs often.\nIn R there is a different kind of NA for each of the basic vector data types.\nThere is also the concept of NULL, which represents a zero length list and is often returned by functions or expressions that do not have a specified return value"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-1",
+    "href": "slides/05-r-basics.html#nas-1",
+    "title": "R Basics",
+    "section": "NAs",
+    "text": "NAs\n\ndslabs includes an example dataset with NAs\n\n\nlibrary(dslabs)\nna_example[1:20]\n\n [1]  2  1  3  2  1  3  1  4  3  2  2 NA  2  2  1  4 NA  1  1  2\n\n\n\nThe is.na function is key for dealing with NAs\n\n\nis.na(na_example[1])\n\n[1] FALSE\n\nis.na(na_example[17])\n\n[1] TRUE\n\nis.na(NA)\n\n[1] TRUE\n\nis.na(\"NA\")\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-2",
+    "href": "slides/05-r-basics.html#nas-2",
+    "title": "R Basics",
+    "section": "NAs",
+    "text": "NAs\n\nCaution logical operators like and (&) and or (|) coerce their arguments when needed and possible\nthe logical operators evaluate arguments in a “lazy” fashion, and left to right\n\n\nTRUE & NA\n\n[1] NA\n\nTRUE & 0\n\n[1] FALSE\n\nTRUE | NA\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nans-and-inf",
+    "href": "slides/05-r-basics.html#nans-and-inf",
+    "title": "R Basics",
+    "section": "NaNs and Inf",
+    "text": "NaNs and Inf\n\nNaN: Not a Number\nNaN is a double, coercing it to integer yields an NA\nInf and -Inf represent values of infinity and minus infinity\n\n\n0/0\n\n[1] NaN\n\nclass(0/0)\n\n[1] \"numeric\"\n\nsqrt(-1)\n\n[1] NaN\n\nlog(-1)\n\n[1] NaN\n\n1/Inf\n\n[1] 0\n\nInf-Inf\n\n[1] NaN"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#lists",
+    "href": "slides/05-r-basics.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\n\nData frames are a type of list.\nLists permit components of different types and, unlike data frames, different lengths:\n\n\nx &lt;- list(name = \"John\", id = 112, grades = c(95, 87, 92))\n\n\nThe JSON format is best represented as list in R."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#lists-1",
+    "href": "slides/05-r-basics.html#lists-1",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\n\nYou can access components in different ways:\n\n\nx$name\n\n[1] \"John\"\n\nx[[1]]\n\n[1] \"John\"\n\nx[[\"name\"]]\n\n[1] \"John\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#matrices",
+    "href": "slides/05-r-basics.html#matrices",
+    "title": "R Basics",
+    "section": "Matrices",
+    "text": "Matrices\n\nMatrices are another widely used data type.\nThey are similar to data frames except all entries need to be of the same type.\nWe will learn more about matrices in the High Dimensional Data Analysis part of the class."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#functions",
+    "href": "slides/05-r-basics.html#functions",
+    "title": "R Basics",
+    "section": "Functions",
+    "text": "Functions\n\nany symbol found in the body of the function that does not match an argument has to be matched to a value by a process called scoping\n\n\nx &lt;-10\ns &lt;- function(n){\n  print(x)\n   return(sum(1:n))\n}\ns(2)\n\n[1] 10\n\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#functions-1",
+    "href": "slides/05-r-basics.html#functions-1",
+    "title": "R Basics",
+    "section": "Functions",
+    "text": "Functions\n\nin R functions are first class objects - this means they can be passed as arguments, assigned to symbols, stored in other data structures\nin particular they can be passed as arguments to a function and returned as values\nin some languages (e.g. C or Java) functions are not first class objects and they cannot be passed as arguments\nPython uses a fairly similar strategy for functions to the one used in R (as do many other languages)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#flow-control-and-operators",
+    "href": "slides/05-r-basics.html#flow-control-and-operators",
+    "title": "R Basics",
+    "section": "Flow-control and operators",
+    "text": "Flow-control and operators\n\nif/else; while; repeat; for; break; next\nyou can read the manual pages by calling help or using ? (sometimes you must quote the argument)\n\n\n help(\"for\")\n ?\"break\"\n ?\"&\"\n ?\"/\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators",
+    "href": "slides/05-r-basics.html#logical-operators",
+    "title": "R Basics",
+    "section": "Logical Operators",
+    "text": "Logical Operators\n\n& and | perform element-wise comparison; use for vector oprations, filtering, subsetting\n\n\nx &lt;- c(TRUE, FALSE, TRUE)\ny &lt;- c(TRUE, TRUE, FALSE)\n\nx & y\n\n[1]  TRUE FALSE FALSE\n\nx | y\n\n[1] TRUE TRUE TRUE\n\n\n\nTypical use: Subsetting\n\n\nx[x &gt; 0 & x &lt; 10]\n\n\n&& and || evaluate the first element only (short-circuit), move left to right and return when the result is determined. Use for if, while, and guards\n\n\nx &lt;- c(TRUE, FALSE)\ny &lt;- c(FALSE, TRUE)\n\nx && y  # wrong\n\nx || y #wrong\n\n\nif (x &gt; 0 & x &lt; 10) { ... } # wrong\nif (x &gt; 0 && x &lt; 10) { ... } # correct"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#arithmetic-operators",
+    "href": "slides/05-r-basics.html#arithmetic-operators",
+    "title": "R Basics",
+    "section": "Arithmetic Operators",
+    "text": "Arithmetic Operators\n\noperators like ^ or +\n?Syntax will get you the manual page\nwhen in doubt always use parentheses\n\n\n2^1+1\n\n[1] 3\n\n2^(1+1)\n\n[1] 4\n\nTRUE || TRUE && FALSE   # is the same as\n\n[1] TRUE\n\nTRUE || (TRUE && FALSE) # and different from\n\n[1] TRUE\n\n(TRUE || TRUE) && FALSE\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#functions-2",
+    "href": "slides/05-r-basics.html#functions-2",
+    "title": "R Basics",
+    "section": "Functions",
+    "text": "Functions\n\nin R functions are first class objects - this means they can be passed as arguments, assigned to symbols, stored in other data structures\nin particular they can be passed as arguments to a function and returned as values\nin some languages (e.g. C or Java) functions are not first class objects and they cannot be passed as arguments\nPython uses a fairly similar strategy for functions to the one used in R (as do many other languages)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#scope",
+    "href": "slides/05-r-basics.html#scope",
+    "title": "R Basics",
+    "section": "Scope",
+    "text": "Scope\n\nall computer languages have a set of rules that are used to match these symbols to values\none commonly used rule is to use lexical scope, but there are lots of different ways this is done\n\n\nfun1 = function(x)  x + y\nfun1(4)\n\n\nin fun1(4) we probably all agree that the value that should be used for x is 4, we probably expect that + is a system function\nbut what about y - where should it’s value come from?"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#scope-1",
+    "href": "slides/05-r-basics.html#scope-1",
+    "title": "R Basics",
+    "section": "Scope",
+    "text": "Scope\n\nf &lt;- function(x){\n  cat(\"y is\", y,\"\\n\")\n  y &lt;- x\n  cat(\"y is\", y,\"\\n\")\n  return(y)\n}\ny &lt;- 2\nf(3)\n\ny is 2 \ny is 3 \n\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#lexical-scope",
+    "href": "slides/05-r-basics.html#lexical-scope",
+    "title": "R Basics",
+    "section": "Lexical Scope",
+    "text": "Lexical Scope\n\nlexical scope says that for any function with unbound values you should use the environment at the time the function was created to first look for bindings, in R (and Python) after that you look in the global environment (your workspace) and then in attached packages and system functions.\n\n\nsearch()\nfilter #stats::filter()-&gt;time-series filtering\nlibrary(dplyr)\nsearch()\nfilter\n\n\nby calling library(dplyr) the package dplyr has been put near the top of the search list. You can call search() before and after the call to library to check this.\nusers could inadvertently alter computations - and we will want to protect against that"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#lexical-scope-1",
+    "href": "slides/05-r-basics.html#lexical-scope-1",
+    "title": "R Basics",
+    "section": "Lexical Scope",
+    "text": "Lexical Scope\n\nwe can write some interesting functions - like a function that evaluates the log likelihood for any given set of data\nhere we use rexp to generate values from an Exponential distribution\nnotice that a function is returned and that R notes that it is a closure\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x13418a510&gt;"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#lexical-scope-example",
+    "href": "slides/05-r-basics.html#lexical-scope-example",
+    "title": "R Basics",
+    "section": "Lexical Scope Example",
+    "text": "Lexical Scope Example\n\nhere we generate different potential values for the rate parameter and plot the log likelihood - the MLE is the maximum of this\n\n\n##possible values for mu\ny = seq(3,5,by = 0.1)\n\nplot(y, myLL(y), type=\"l\", xlab=\"mu\", ylab=\"log likelihood\")"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#name-collisions",
+    "href": "slides/05-r-basics.html#name-collisions",
+    "title": "R Basics",
+    "section": "Name collisions",
+    "text": "Name collisions\n\nwhat happens when authors of two different packages choose the same name for their functions?\nLook at how this function associated with the symbol filter changes in the following code segment:\n\n\nfilter\nlibrary(dplyr)\nfilter\n\n\nby calling library(dplyr) a new package has been put on the search list. You can call search() before and after the call to library\none implication of this observation is that users could inadvertently alter computations - and we will want to protect against that"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#evaluation-and-the-process-used-to-find-bindings",
+    "href": "slides/05-r-basics.html#evaluation-and-the-process-used-to-find-bindings",
+    "title": "R Basics",
+    "section": "Evaluation and the process used to find bindings",
+    "text": "Evaluation and the process used to find bindings\n\nwhen evaluating a function R first establishes an evaluation environment that contains the formal arguments matched to the supplied arguments\nif the function is in a package, then the Namespace directives of the package are used to augment this evaluation environment\nany symbol not found in that evaluation environment will be searched for in the Global Environment (your workspace).\nAnd after that the search path (search()) in order.\nThe evaluator will take the first match it finds and try to use that (sort of - it does know when it is looking for a function)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#namespaces",
+    "href": "slides/05-r-basics.html#namespaces",
+    "title": "R Basics",
+    "section": "Namespaces",
+    "text": "Namespaces\n\nTo avoid binding conflict, using :::\n\n\nstats::filter\ndplyr::filter"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#examples",
+    "href": "slides/05-r-basics.html#examples",
+    "title": "R Basics",
+    "section": "Examples",
+    "text": "Examples\n\nRestart your R Console and study this example:\n\n\nlibrary(dslabs) #attach dsplabs to the search path\nexists(\"murders\")  # `murders` exists in `dslabs`\n\n[1] TRUE\n\nmurders &lt;- murders # create a copy `murders` in .GlobalEnv\nmurders2 &lt;- murders # 2nd copy\nrm(murders) # removes `murders` from .GlobalEnv\nexists(\"murders\") #R finds it in `dslabs`\n\n[1] TRUE\n\ndetach(\"package:dslabs\") #remove from the search path\nexists(\"murders\") # does not exist on the search path\n\n[1] FALSE\n\nexists(\"murders2\")\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#object-oriented-programming",
+    "href": "slides/05-r-basics.html#object-oriented-programming",
+    "title": "R Basics",
+    "section": "Object Oriented Programming",
+    "text": "Object Oriented Programming\n\nR uses object oriented programming (OOP).\nBase R uses two approaches referred to as S3 and S4\nS3, the original approach, is more common, but has some limitations\nThe S4 approach is more similar to the conventions used by the Lisp family of languages.\nIn S4 there are classes that have attributes describing data structures and methods that are functions"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#object-oriented-programming-1",
+    "href": "slides/05-r-basics.html#object-oriented-programming-1",
+    "title": "R Basics",
+    "section": "Object Oriented Programming",
+    "text": "Object Oriented Programming\n\nTime seriesNumeric\n\n\n\nclass(co2) # ts object\n\n[1] \"ts\"\n\nplot(co2) # R calls plot.ts(co2)-&gt;x-axis: year\n\n\n\n\n\n\n\n\n\n\n\nplot(as.numeric(co2)) # strip away the time-index. R calls plot.default(). x-axix: index (1,2,3,...)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#object-oriented-programming-2",
+    "href": "slides/05-r-basics.html#object-oriented-programming-2",
+    "title": "R Basics",
+    "section": "Object Oriented Programming",
+    "text": "Object Oriented Programming\n\nNote co2 is not numeric:\n\n\nclass(co2)\n\n[1] \"ts\"\n\n\n\nThe plots are different because plot behaves differently with different classes."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#object-oriented-programming-3",
+    "href": "slides/05-r-basics.html#object-oriented-programming-3",
+    "title": "R Basics",
+    "section": "Object Oriented Programming",
+    "text": "Object Oriented Programming\n\nThe first plot actually calls the function\n\n\nplot.ts\n\n\nNotice all the plot functions that start with plot by typing plot. and then tab.\nThe function plot will call different functions depending on the class of the arguments."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#plots",
+    "href": "slides/05-r-basics.html#plots",
+    "title": "R Basics",
+    "section": "Plots",
+    "text": "Plots\n\nSoon we will learn how to use the ggplot2 package to make plots.\nR base does have functions:\n\nplot - mainly for making scatterplots.\nlines - add lines/curves to an existing plot.\nhist - to make a histogram.\nboxplot - makes boxplots.\nimage - uses color to represent entries in a matrix."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#plots-1",
+    "href": "slides/05-r-basics.html#plots-1",
+    "title": "R Basics",
+    "section": "Plots",
+    "text": "Plots\n\nin general, we recommend using ggplot2, R base plots are often better for quick exploratory plots.\nFor example, to make a histogram of values in x simply type:\n\n\nhist(x)\n\n\nTo make a scatter plot of y versus x and then add connected line:\n\n\nplot(x,y) # open a new figure (canvas)\nlines(x,y) #adds connected line to an existing plot. It does not create a new figure(canvas)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#variables",
+    "href": "slides/05-r-basics.html#variables",
+    "title": "R Basics",
+    "section": "Variables",
+    "text": "Variables\n\nDefine a variable.\n\n\na &lt;- 2\n\n\nUse ls to see if it’s there. Also take a look at the Environment tab in RStudio.\n\n\nls()\n\n[1] \"a\"\n\n\n\nUse rm to remove the variable you defined.\n\n\nrm(a)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-search-paths",
+    "href": "slides/05-r-basics.html#the-search-paths",
+    "title": "R Basics",
+    "section": "The search paths",
+    "text": "The search paths\n\nsearch() # return the search path that R checks in order\n\n[1] \".GlobalEnv\"        \"package:stats\"     \"package:graphics\" \n[4] \"package:grDevices\" \"package:utils\"     \"package:datasets\" \n[7] \"package:methods\"   \"Autoloads\"         \"package:base\"     \n\n\n\nTwo functions have the same name will be searched in the order defeined in the search path.\nWhen you run\n\n\nlibrary(deplyr)\n\npackage deplyr is added near the top of the search path."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#variable-naming-convention",
+    "href": "slides/05-r-basics.html#variable-naming-convention",
+    "title": "R Basics",
+    "section": "Variable naming convention",
+    "text": "Variable naming convention\n\nuse meaningful words (nouns) that describe what is stored, only lower case, and underscores, no spaces.\nDo not use the period . in variable names. R may treat it differently and those can cause unintended actions\nFor more this guide."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#main-data-types",
+    "href": "slides/05-r-basics.html#main-data-types",
+    "title": "R Basics",
+    "section": "Main data types",
+    "text": "Main data types\n\nOne dimensional vectors: double, integer, logical, complex, characters.\ninteger and double are both numeric\nFactors\nLists: this includes data frames.\nArrays: Matrices are the most widely used.\nDate and time\ntibble (comes from tidyverse, behaves like a dataframe, print friendly, no automatic type change, avoids silent bugs)\nS3 objects (default R system, flexible, but can be fragile) vs. S4 objects (srongly typed classes, avoid silent bugs)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#view-a-data-frames",
+    "href": "slides/05-r-basics.html#view-a-data-frames",
+    "title": "R Basics",
+    "section": "View a Data frames",
+    "text": "View a Data frames\n\nView(murders)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#add-a-column",
+    "href": "slides/05-r-basics.html#add-a-column",
+    "title": "R Basics",
+    "section": "Add a column",
+    "text": "Add a column\n\nmurders$pop_rank &lt;- rank(murders$population)\nhead(murders)\n\n       state abb region population total pop_rank\n1    Alabama  AL  South    4779736   135       29\n2     Alaska  AK   West     710231    19        5\n3    Arizona  AZ   West    6392017   232       36\n4   Arkansas  AR  South    2915918    93       20\n5 California  CA   West   37253956  1257       51\n6   Colorado  CO   West    5029196    65       30"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames-accessor",
+    "href": "slides/05-r-basics.html#data-frames-accessor",
+    "title": "R Basics",
+    "section": "Data frames: Accessor $",
+    "text": "Data frames: Accessor $\n\n$ is called an accessor because it lets us access columns.\n\n\nmurders$population\n\n [1]  4779736   710231  6392017  2915918 37253956  5029196  3574097   897934\n [9]   601723 19687653  9920000  1360301  1567582 12830632  6483802  3046355\n[17]  2853118  4339367  4533372  1328361  5773552  6547629  9883640  5303925\n[25]  2967297  5988927   989415  1826341  2700551  1316470  8791894  2059179\n[33] 19378102  9535483   672591 11536504  3751351  3831074 12702379  1052567\n[41]  4625364   814180  6346105 25145561  2763885   625741  8001024  6724540\n[49]  1852994  5686986   563626\n\n\n\nMore generally: $ can be used to access named components of a list."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#alternative-ways-to-access-columns-confusing",
+    "href": "slides/05-r-basics.html#alternative-ways-to-access-columns-confusing",
+    "title": "R Basics",
+    "section": "Alternative ways to access columns (confusing)",
+    "text": "Alternative ways to access columns (confusing)\n\nmurders$population\nmurders[, \"population\"]\nmurders[, 4] \nmurders[[\"population\"]]\nmurders[[4]]\n\n\nIn general, using the name rather than the number as adding or removing columns will change index values, but not names."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#caution",
+    "href": "slides/05-r-basics.html#caution",
+    "title": "R Basics",
+    "section": "Caution",
+    "text": "Caution\nCompare\n\nmurders$population\nmurders[, \"population\"]\nmurders[[\"population\"]]. # access the column content\nmurders['population'].   # access the column as a data frame\nclass(murders['population'])\nclass(murders[[\"population\"]])."
+  },
+  {
+    "objectID": "slides/05-r-basics.html#gotcha",
+    "href": "slides/05-r-basics.html#gotcha",
+    "title": "R Basics",
+    "section": "Gotcha",
+    "text": "Gotcha\nCompare\n\nmurders$population\nmurders[, \"population\"]\nmurders[[\"population\"]] # access the column content\nmurders['population']   # access the column as a data frame\n\n\nclass(murders['population'])\n\n[1] \"data.frame\"\n\nclass(murders[[\"population\"]])\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#with-clause",
+    "href": "slides/05-r-basics.html#with-clause",
+    "title": "R Basics",
+    "section": "with clause",
+    "text": "with clause\n\nwith let’s us use the column names as symbols to access the data.\n\n\nrate &lt;- with(murders, total/population)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#atomic-vectors",
+    "href": "slides/05-r-basics.html#atomic-vectors",
+    "title": "R Basics",
+    "section": "Atomic vectors",
+    "text": "Atomic vectors\n\nThe columns of data frames are one dimensional (atomic) vectors.\nAn atomic vector is a vector where every element must be the same type.\n\n\nlength(murders$population)\n\n[1] 51\n\ntypeof(murders$population)\n\n[1] \"double\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#create-vectors",
+    "href": "slides/05-r-basics.html#create-vectors",
+    "title": "R Basics",
+    "section": "Create vectors",
+    "text": "Create vectors\n\nUSe the concatenate function c by listing its members.\n\n\nx &lt;- c(\"b\", \"s\", \"t\", \" \", \"2\", \"6\", \"0\")\n\n\nWe access the elements using []\n\n\nx[5]\n\n[1] \"2\"\n\ntypeof(x[5])\n\n[1] \"character\"\n\nx[12]\n\n[1] NA\n\n\n\nNOTE R does not do array bounds checking…it silently pads with missing values"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#a-code-chun-in-with",
+    "href": "slides/05-r-basics.html#a-code-chun-in-with",
+    "title": "R Basics",
+    "section": "A code chun in with",
+    "text": "A code chun in with\n\nNote you can write entire code chunks by enclosing it in curly brackets:\n\n\nwith(murders, {\n   rate &lt;- total/population\n   rate &lt;- round(rate*10^5)\n   print(rate[1:5])\n})\n\n[1] 3 3 4 3 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types-and-coercion",
+    "href": "slides/05-r-basics.html#data-types-and-coercion",
+    "title": "R Basics",
+    "section": "Data types and coercion",
+    "text": "Data types and coercion\n\ndouble, integer, logical, complex, characters and numeric\nEach basic type has its own version of NA (a missing value)\ntesting for types: is.TYPE,\ncoercing : as.TYPE, will result in NA if it is not possible\n\n\nis.numeric(\"a\")\n\n[1] FALSE\n\nis.double(1L)\n\n[1] FALSE\n\nas.double(\"6\")\n\n[1] 6\n\nas.numeric(x) + 3\n\n[1] NA NA NA NA  5  9  3\n\ntypeof(1:10)\n\n[1] \"integer\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#more-coercing-examples",
+    "href": "slides/05-r-basics.html#more-coercing-examples",
+    "title": "R Basics",
+    "section": "More coercing examples",
+    "text": "More coercing examples\n\ntypeof(1L)\n\n[1] \"integer\"\n\ntypeof(1)\n\n[1] \"double\"\n\ntypeof(1 + 1L)\n\n[1] \"double\"\n\nc(\"a\", 1, 2)\n\n[1] \"a\" \"1\" \"2\"\n\nTRUE + FALSE\n\n[1] 1\n\nfactor(\"a\") == \"a\" #`==` compare values\n\n[1] TRUE\n\nidentical(factor(\"a\"), \"a\") #check if they are the same objects\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#when-coercing-fails",
+    "href": "slides/05-r-basics.html#when-coercing-fails",
+    "title": "R Basics",
+    "section": "When coercing fails",
+    "text": "When coercing fails\n\nWhen R can’t figure out how to coerce, rather an error it returns an NA:\n\n\nas.numeric(\"a\")\n\n[1] NA\n\n\n\nNote that including NAs in arithmetical operations usually returns an NA.\n\n\n1 + 2 + NA\n\n[1] NA"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#explicitly-coercing",
+    "href": "slides/05-r-basics.html#explicitly-coercing",
+    "title": "R Basics",
+    "section": "Explicitly coercing",
+    "text": "Explicitly coercing\n\nMost coercion functions start with as.\n\n\nx &lt;- factor(c(\"a\",\"b\",\"b\",\"c\"))\nprint(x)\n\n[1] a b b c\nLevels: a b c\n\nas.character(x)\n\n[1] \"a\" \"b\" \"b\" \"c\"\n\nas.numeric(x)\n\n[1] 1 2 2 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing-and-parsing-by-readr",
+    "href": "slides/05-r-basics.html#coercing-and-parsing-by-readr",
+    "title": "R Basics",
+    "section": "Coercing and parsing by readr",
+    "text": "Coercing and parsing by readr\n\nThe readr package provides some tools for trying to par\n\n\nx &lt;- c(\"12323\", \"12,323\")\nas.numeric(x)\n\n[1] 12323    NA\n\nlibrary(readr)\nparse_guess(x)\n\n[1] 12323 12323"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-and-characters",
+    "href": "slides/05-r-basics.html#factors-and-characters",
+    "title": "R Basics",
+    "section": "Factors and Characters",
+    "text": "Factors and Characters\n\nThe murder dataset has examples of both.\n\n\nclass(murders$state)\n\n[1] \"character\"\n\nclass(murders$region)\n\n[1] \"factor\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#what-is-a-factor",
+    "href": "slides/05-r-basics.html#what-is-a-factor",
+    "title": "R Basics",
+    "section": "What is a factor?",
+    "text": "What is a factor?\n\nA factor is a R representation for a categorical variable, that has a fixed set of non-numeric values\n\nex: Sex has Male and Female\n\nusually not a good representation for variables that have lots of levels (like state names in the murders dataset)\nInternally a factor is stored as the unique set of labels (called levels) and an integer vector with values in 1 to length(levels)\n\nif the ith entry is k then that corresponds to the kth element of the levels\n\nUsually order does not matter, but if it does you can also have ordered factors.\n\n\nx &lt;- murders$region\nlevels(x)\n\n[1] \"Northeast\"     \"South\"         \"North Central\" \"West\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-previous-example-contnued",
+    "href": "slides/05-r-basics.html#the-previous-example-contnued",
+    "title": "R Basics",
+    "section": "The previous example contnued",
+    "text": "The previous example contnued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Female Female Female Female Female Female Male   Female Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Female Female Female Female Female Female Male   Female Male  \nLevels: Female Male\n\ny1==y2\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2)\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-previous-example-continued",
+    "href": "slides/05-r-basics.html#the-previous-example-continued",
+    "title": "R Basics",
+    "section": "The previous example continued",
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Female Female Female Male   Female Male   Female Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Female Female Female Male   Female Male   Female Male  \nLevels: Female Male\n\ny1==y2\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2)\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#assigning-labels",
+    "href": "slides/05-r-basics.html#assigning-labels",
+    "title": "R Basics",
+    "section": "Assigning labels",
+    "text": "Assigning labels\n\nWe can assign more meaningful level names:\n\n\nage &lt;- c(5, 93, 18, 102, 14, 22, 45, 65, 67, 25, 30, 16, 21)\ncut(age, c(0, 11, 27, 43, 59, 78, 96, Inf), \n    labels = c(\"Alpha\", \"Zoomer\", \"Millennial\", \"X\", \"Boomer\", \"Silent\", \"Greatest\"))\n\n [1] Alpha      Silent     Zoomer     Greatest   Zoomer     Zoomer    \n [7] X          Boomer     Boomer     Zoomer     Millennial Zoomer    \n[13] Zoomer    \nLevels: Alpha Zoomer Millennial X Boomer Silent Greatest"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#reference-level",
+    "href": "slides/05-r-basics.html#reference-level",
+    "title": "R Basics",
+    "section": "Reference level",
+    "text": "Reference level\n\nA common reason we want to change levels is to assure R uses correct the reference strata.\nThis is important for linear models (lm) because the first level is assumed to be the reference.\n\n\nx &lt;- factor(c(\"no drug\", \"drug 1\", \"drug 2\"))\nlevels(x)\n\n[1] \"drug 1\"  \"drug 2\"  \"no drug\"\n\nx &lt;- relevel(x, ref = \"no drug\") \n# factor(c(\"no drug\", \"drug 1\", \"drug 2\"), levels = c(\"no drug\", \"drug 1\", \"drug 2\"))\nlevels(x)          \n\n[1] \"no drug\" \"drug 1\"  \"drug 2\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#reorder-a-factor-categorical-variable",
+    "href": "slides/05-r-basics.html#reorder-a-factor-categorical-variable",
+    "title": "R Basics",
+    "section": "Reorder a factor (categorical) variable",
+    "text": "Reorder a factor (categorical) variable\n\nWe often want to order strata (factor) based on a summary statistic.\n\n\nx &lt;- reorder(murders$region, murders$population, sum) #reorder(x,by, FUN)\n#order the regions by their total populations by ascedning (default)\n# reorder(murders$region, murders$population, sum, decreasing = TRUE)\nlibrary(ggplot2)\nggplot(murders, aes(x = reorder(region, population, sum),\n                    y = population)) +\n  geom_bar(stat = \"summary\", fun = \"sum\")"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-use-less-memory",
+    "href": "slides/05-r-basics.html#factors-use-less-memory",
+    "title": "R Basics",
+    "section": "Factors use less memory",
+    "text": "Factors use less memory\n\nAnother reason we used factors is because they are stored more efficiently:\n\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nAn integer uses less memory than a character string (but it is a bit more complicated)\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3335080  0.3333783  0.3331137"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-integers-use-less-memory",
+    "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
+    "title": "R Basics",
+    "section": "Factors (integers) use less memory",
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3333511  0.3333897  0.3332592 \n\n# table counts the frequency of each unique value"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#drop-extra-levels-with-droplevels",
+    "href": "slides/05-r-basics.html#drop-extra-levels-with-droplevels",
+    "title": "R Basics",
+    "section": "Drop extra levels with droplevels",
+    "text": "Drop extra levels with droplevels\n\nz &lt;- x[1]\nz &lt;- droplevels(z)\nz\n\n[1] 3\nLevels: 3\n\n\n\nBut note what happens if we change to another level:\n\n\nz[1] &lt;- \"1\" # Factors only allow values that exist in levels(z)\nz\n\n[1] &lt;NA&gt;\nLevels: 3"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-and-nulls",
+    "href": "slides/05-r-basics.html#nas-and-nulls",
+    "title": "R Basics",
+    "section": "NAs and NULLs",
+    "text": "NAs and NULLs\n\nNA stands for not available and represents missing data.\nIn R there is a different kind of NA for each of the basic vector data types.\nNULL, represents a zero length list and is often returned by functions or expressions that do not have a specified return value"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#checking-nas-by-is.na",
+    "href": "slides/05-r-basics.html#checking-nas-by-is.na",
+    "title": "R Basics",
+    "section": "Checking NAs by is.na",
+    "text": "Checking NAs by is.na\n\ndslabs includes an example dataset with NAs\n\n\nlibrary(dslabs)\nna_example[1:20]\n\n [1]  2  1  3  2  1  3  1  4  3  2  2 NA  2  2  1  4 NA  1  1  2\n\n\n\nThe is.na function is key for dealing with NAs\n\n\nis.na(na_example[1])\n\n[1] FALSE\n\nis.na(na_example[17])\n\n[1] TRUE\n\nis.na(NA)\n\n[1] TRUE\n\nis.na(\"NA\")\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-and-logical-operators",
+    "href": "slides/05-r-basics.html#nas-and-logical-operators",
+    "title": "R Basics",
+    "section": "NAs and logical operators",
+    "text": "NAs and logical operators\n\nlogical operators like and (&) and or (|) coerce their arguments when needed and possible\nthe logical operators do “lazy” evaluation, from left to right\n\n\nTRUE & NA\n\n[1] NA\n\nTRUE & 0\n\n[1] FALSE\n\nTRUE | NA\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#access-compoenents-of-a-list",
+    "href": "slides/05-r-basics.html#access-compoenents-of-a-list",
+    "title": "R Basics",
+    "section": "Access compoenents of a list",
+    "text": "Access compoenents of a list\n\nYou can access components in different ways:\n\n\nx$name\n\n[1] \"John\"\n\nx[[1]]\n\n[1] \"John\"\n\nx[[\"name\"]]\n\n[1] \"John\""
+  },
+  {
+    "objectID": "slides/05-r-basics.html#subsetsublist-and-extraction",
+    "href": "slides/05-r-basics.html#subsetsublist-and-extraction",
+    "title": "R Basics",
+    "section": "subset(sublist)[] and extraction [[]]",
+    "text": "subset(sublist)[] and extraction [[]]\n\nx$name == x[[1]]\n\n[1] TRUE\n\nclass(x[[1]])\n\n[1] \"character\"\n\nx[1]\n\n$name\n[1] \"John\"\n\nclass(x[1])\n\n[1] \"list\"\n\nx[[1]] == x[1]\n\nname \nTRUE \n\nidentical(x[1],x[[1]])\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#matrices-faster-computation",
+    "href": "slides/05-r-basics.html#matrices-faster-computation",
+    "title": "R Basics",
+    "section": "Matrices: Faster computation",
+    "text": "Matrices: Faster computation\n\nsimilar to data frames except all entries need to be of the same type.\n\n\nmat &lt;- matrix(1:12, 4, 3)\nmat\n\n     [,1] [,2] [,3]\n[1,]    1    5    9\n[2,]    2    6   10\n[3,]    3    7   11\n[4,]    4    8   12\n\nmat[2, 3]  # 10\n\n[1] 10\n\nmat[2,]\n\n[1]  2  6 10\n\nmat[,3]\n\n[1]  9 10 11 12\n\nmat[,2:3]\n\n     [,1] [,2]\n[1,]    5    9\n[2,]    6   10\n[3,]    7   11\n[4,]    8   12\n\nmat[1:2,2:3]\n\n     [,1] [,2]\n[1,]    5    9\n[2,]    6   10\n\nas.data.frame(mat)\n\n  V1 V2 V3\n1  1  5  9\n2  2  6 10\n3  3  7 11\n4  4  8 12"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#customized-functions",
+    "href": "slides/05-r-basics.html#customized-functions",
+    "title": "R Basics",
+    "section": "Customized functions",
+    "text": "Customized functions\n\nf &lt;- function(x, y, z = 0){\n  ### do calculations with x, y, z to compute object\n  return(object)\n}\n\n\npositional arguments, keyword arguments\narguments are matched by either name (which takes precedence) or position\nreturned value: the value specified in a call to return or the value of the last statement evaluated"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#define-a-customized-functions",
+    "href": "slides/05-r-basics.html#define-a-customized-functions",
+    "title": "R Basics",
+    "section": "Define a customized functions",
+    "text": "Define a customized functions\n\nf &lt;- function(x, y, z = 0){\n  ### do calculations with x, y, z to compute object\n  return(object)\n}\n\n\npositional arguments, keyword arguments\narguments are matched by either exact name (which takes precedence) or position\nreturned value: the value specified in a call to return or the value of the last statement evaluated"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#how-r-matches-funciton-arguments",
+    "href": "slides/05-r-basics.html#how-r-matches-funciton-arguments",
+    "title": "R Basics",
+    "section": "How R matches funciton arguments",
+    "text": "How R matches funciton arguments\n\nR matches named arguments first, positional arguments last.\n\n\nf &lt;- function(a, b, c) {\n  c(a, b, c)\n}\n\nf(1, c = 3, 2)\n\n[1] 1 2 3\n\n\n\nmean(na.rm = TRUE, c(1, NA, 3))\n\n[1] 2\n\n\n\nf &lt;- function(a, b, c) a + b + c\nf(1, 2, c = 3, b = 4)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#r-matches-named-arguments-first-positional-arguments-last",
+    "href": "slides/05-r-basics.html#r-matches-named-arguments-first-positional-arguments-last",
+    "title": "R Basics",
+    "section": "R matches named arguments first, positional arguments last",
+    "text": "R matches named arguments first, positional arguments last\n\nf &lt;- function(a, b, c) {\n  c(a, b, c)\n}\n\nf(1, c = 3, 2)\n\n[1] 1 2 3\n\n\n\nmean(na.rm = TRUE, c(1, NA, 3))\n\n[1] 2\n\n\n\nf &lt;- function(a, b, c) a + b + c\nf(1, 2, c = 3, b = 4)\n# Error in f(1, 2, c = 3, b = 4) : unused argument (2)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#for-loop",
+    "href": "slides/05-r-basics.html#for-loop",
+    "title": "R Basics",
+    "section": "For loop",
+    "text": "For loop\n\nfor (i in 1:3) {\n  print(i)\n}\n\n[1] 1\n[1] 2\n[1] 3\n\ncompute_s_n &lt;- function(n) { \n  sum(1:n)\n}\nm &lt;- 5\ns_n &lt;- vector(length = m) # create an empty vector\nfor (n in 1:m) {\n  s_n[n] &lt;- compute_s_n(n)\n}\nn &lt;- 1:m\nplot(n, s_n)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#if-else",
+    "href": "slides/05-r-basics.html#if-else",
+    "title": "R Basics",
+    "section": "if-else",
+    "text": "if-else\n\na &lt;- 0\n\nif (a != 0) {\n  print(1/a)\n} else{\n  print(\"No reciprocal for 0.\")\n}\n\n[1] \"No reciprocal for 0.\"\n\na &lt;- 0\nifelse(a &gt; 0, 1/a, NA)\n\n[1] NA\n\n#&gt; [1] NA"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators-and",
+    "href": "slides/05-r-basics.html#logical-operators-and",
+    "title": "R Basics",
+    "section": "Logical Operators & and |",
+    "text": "Logical Operators & and |\n\n& and | perform element-wise comparison; use for vector oprations, filtering, subsetting\n\n\nx &lt;- c(TRUE, FALSE, TRUE)\ny &lt;- c(TRUE, TRUE, FALSE)\n\nx & y\n\n[1]  TRUE FALSE FALSE\n\nx | y\n\n[1] TRUE TRUE TRUE\n\n\n\nTypical use: Subsetting\n\n\nx[x &gt; 0 & x &lt; 10]"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators-and-1",
+    "href": "slides/05-r-basics.html#logical-operators-and-1",
+    "title": "R Basics",
+    "section": "Logical operators && and ||",
+    "text": "Logical operators && and ||\n\n&& and || lazy eval (short-circuit), move left to right and return when the result is determined. Use for if, while, and guards\n\n\nx &lt;- c(TRUE, FALSE)\ny &lt;- c(FALSE, TRUE)\n\nx && y  # wrong. Each side must return a single TRUE/FALSE\n\nx || y #wrong\n\n\nif (x &gt; 0 & x &lt; 10) { ... } # wrong\nif (x &gt; 0 && x &lt; 10) { ... } # wrong if x is a vector of length &gt;1"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-as-an-argument",
+    "href": "slides/05-r-basics.html#function-as-an-argument",
+    "title": "R Basics",
+    "section": "Function as an argument",
+    "text": "Function as an argument\n\nin R functions are first class objects - this means they can be passed as arguments, assigned to symbols, stored in other data structures\nin particular they can be passed as arguments to a function and returned as values\nin some languages (e.g. C or Java) functions are not first class objects and they cannot be passed as arguments\nPython uses a fairly similar strategy as in R"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
+    "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
+    "title": "R Basics",
+    "section": "Exampe: function as a returned value",
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x10d8edf90&gt;"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-call-as-an-argument",
+    "href": "slides/05-r-basics.html#function-call-as-an-argument",
+    "title": "R Basics",
+    "section": "Function call as an argument",
+    "text": "Function call as an argument\n\n##possible values for mu\ny = seq(3,5,by = 0.1)\n\nplot(y, myLL(y), type=\"l\", xlab=\"mu\", ylab=\"log likelihood\") \n# \"l\"-line; \"p\"-points(default), \"b\"-both; \"h\"-vertical lines\nabline(v = y[which.max(myLL(y))], col = \"red\")\n\n\n\nMLE occurs at mu=3.7"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-call-as-an-argument-1",
+    "href": "slides/05-r-basics.html#function-call-as-an-argument-1",
+    "title": "R Basics",
+    "section": "Function call as an argument",
+    "text": "Function call as an argument\n\nwhat happens when authors of two different packages choose the same name for their functions?\nLook at how this function associated with the symbol filter changes in the following code segment:\n\n\nfilter\nlibrary(dplyr)\nfilter\n\n\nby calling library(dplyr) a new package has been put on the search list. You can call search() before and after the call to library\none implication of this observation is that users could inadvertently alter computations - and we will want to protect against that"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#order-of-binding",
+    "href": "slides/05-r-basics.html#order-of-binding",
+    "title": "R Basics",
+    "section": "Order of binding",
+    "text": "Order of binding\n\nsearch()\nfilter     #stats::filter()-&gt;time-series filtering\nlibrary(dplyr)\nsearch()\nfilter # dplyr::filter(): -&gt;row filtering\n\n\nby calling library(dplyr) the package dplyr has been put near the top of the search list. You can call search() before and after the call to library to check this.\nusers could inadvertently alter computations - and we will want to protect against that"
+  },
+  {
+    "objectID": "slides/00-intro.html#general-information",
+    "href": "slides/00-intro.html#general-information",
+    "title": "Introduction",
+    "section": "General Information",
+    "text": "General Information\n\nSTAT 3000: Statistics with R Programming\nTentative Plan: lectures mixed with labs.",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#course-description",
+    "href": "slides/00-intro.html#course-description",
+    "title": "Introduction",
+    "section": "Course Description",
+    "text": "Course Description\nLecture notes: https://ywanglab.github.io/STAT3000/\nLecture Repo: https://github.com/ywanglab/STAT3000/\nStatistics with R Notes: https://ywanglab.github.io/statistics_r/",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#to-be-successful-in-this-course-you-will",
+    "href": "slides/00-intro.html#to-be-successful-in-this-course-you-will",
+    "title": "Introduction",
+    "section": "To be successful in this course, you will",
+    "text": "To be successful in this course, you will\n\nPre-read each chapter before coming to each lecture\nAttend each lecture\nReview lecture notes after the lecture\nComplete each ungraded lab solidly\nComplete homework Assignments",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#whats-coming",
+    "href": "slides/00-intro.html#whats-coming",
+    "title": "Introduction",
+    "section": "What’s coming",
+    "text": "What’s coming\n\nUNIX/Linux shell\nReproducible document preparation\nR programming\nData wrangling with dplyr\nData visualization with ggplot2\nProbability theory, inference and modeling\nRegression Analysis with R\nIntro to Machine Learning",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#llm-as-a-tutor-very-useful",
+    "href": "slides/00-intro.html#llm-as-a-tutor-very-useful",
+    "title": "Introduction",
+    "section": "LLM as a Tutor-very Useful",
+    "text": "LLM as a Tutor-very Useful",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#lets-get-started",
+    "href": "slides/00-intro.html#lets-get-started",
+    "title": "Introduction",
+    "section": "Let’s get started",
+    "text": "Let’s get started\n\nSetting up Computing Environment: (Install R& R_Studio) https://ywanglab.github.io/statistics_r/intro.html\n\nWindows\nMac\nGetting Started\n\nInstall Git: https://ywanglab.github.io/stat1010/git.html",
+    "crumbs": [
+      "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization",
+    "href": "slides/06-vectorization.html#vectorization",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\nReading\n\nWe will be using the murders dataset in the dslabs package.\nIncludes data on 2010 gun murders for the US 50 states and DC.\nWe will answer questions such as “Which state is with the lowest crime rate in the Western part of the US?”"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-1",
+    "href": "slides/06-vectorization.html#vectorization-1",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nFirst, some simple examples of vectorization.\nLet’s convert the following heights in inches to meters:\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\n\n\nRather than loop we use vectorization:\n\n\nheights*2.54/100\n\n [1] 1.7526 1.5748 1.6764 1.7780 1.7780 1.8542 1.7018 1.8542 1.7018 1.7780"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-2",
+    "href": "slides/06-vectorization.html#vectorization-2",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nWe can subtract a constant from each element of a vector.\nThis is convenient for computing residuals or deviations from an average:\n\n\navg &lt;- mean(heights)\nheights - avg \n\n [1]  0.3 -6.7 -2.7  1.3  1.3  4.3 -1.7  4.3 -1.7  1.3"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-3",
+    "href": "slides/06-vectorization.html#vectorization-3",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nThis means we can compute standard units like this:\n\n\ns &lt;- sd(heights)\n(heights - avg)/s\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515\n\n\n\nThere is actually a function, scale, that does this. We describe it soon."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-4",
+    "href": "slides/06-vectorization.html#vectorization-4",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nIf we operate on two vectors, vectorization is componentwise.\nHere is an example:\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 69.02402 62.16355 66.02307 70.04780 69.96488 73.14858 66.93034 73.02845\n [9] 66.96575 69.80660"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#exercise",
+    "href": "slides/06-vectorization.html#exercise",
+    "title": "Vectorization",
+    "section": "Exercise",
+    "text": "Exercise\n\nAdd a column to the murders dataset with the murder rate.\nUse murders per 100,000 persons as the unit."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-that-vectorize",
+    "href": "slides/06-vectorization.html#functions-that-vectorize",
+    "title": "Vectorization",
+    "section": "Functions that vectorize",
+    "text": "Functions that vectorize\n\nMost arithmetic functions work on vectors.\n\n\nx &lt;- 1:10\nsqrt(x)\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278\n\nlog(x)\n\n [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101\n [8] 2.0794415 2.1972246 2.3025851\n\n2^x\n\n [1]    2    4    8   16   32   64  128  256  512 1024"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-that-vectorize-1",
+    "href": "slides/06-vectorization.html#functions-that-vectorize-1",
+    "title": "Vectorization",
+    "section": "Functions that vectorize",
+    "text": "Functions that vectorize\n\nscale(heights)\n\n             [,1]\n [1,]  0.08995503\n [2,] -2.00899575\n [3,] -0.80959530\n [4,]  0.38980515\n [5,]  0.38980515\n [6,]  1.28935548\n [7,] -0.50974519\n [8,]  1.28935548\n [9,] -0.50974519\n[10,]  0.38980515\nattr(,\"scaled:center\")\n[1] 68.7\nattr(,\"scaled:scale\")\n[1] 3.335\n\n\nprovides the same results,\n\n(heights - mean(heights))/sd(heights)\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-that-vectorize-2",
+    "href": "slides/06-vectorization.html#functions-that-vectorize-2",
+    "title": "Vectorization",
+    "section": "Functions that vectorize",
+    "text": "Functions that vectorize\n\nBut scale coerces to a column matrix:\n\n\nclass(scale(heights))\n\n[1] \"matrix\" \"array\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#most-functions-vectorize",
+    "href": "slides/06-vectorization.html#most-functions-vectorize",
+    "title": "Vectorization",
+    "section": "Most functions vectorize",
+    "text": "Most functions vectorize\n\nv &lt;- c(3, 7, 10, -2)\nany(v &lt; 0) # TRUE   (there is a negative)\n\n[1] TRUE\n\nall(v &gt; 0) # FALSE  (not all are positive)\n\n[1] FALSE\n\n\n\nx &lt;- c(1, 3, 5)\nif (all(x %% 2 == 1)) {\n  print(\"All numbers are odd\")\n}\n\n[1] \"All numbers are odd\"\n\nif (!is.null(x) && length(x) &gt; 0 && all(x &gt; 0)) {\n  print(\"x is a non-empty positive vector\")\n}\n\n[1] \"x is a non-empty positive vector\"\n\n\n\na &lt;- c(0, 1, 2, -4, 5)\nifelse(a &gt; 0, 1/a, NA) # ifelse: vectorized function\n\n[1]  NA 1.0 0.5  NA 0.2"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#subsetting",
+    "href": "slides/06-vectorization.html#subsetting",
+    "title": "Vectorization",
+    "section": "Subsetting",
+    "text": "Subsetting\n\nIndexing with a logical vector subsets to the set corresponding to the TRUE values\n\n\nlibrary(dslabs)\nind &lt;- murders$population &lt; 10^6\n\n\nA convenient aspect of this is that you can subset a vector using this logical vector for indexing:\n\n\nmurders$state[ind]\n\n[1] \"Alaska\"               \"Delaware\"             \"District of Columbia\"\n[4] \"Montana\"              \"North Dakota\"         \"South Dakota\"        \n[7] \"Vermont\"              \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#indexing",
+    "href": "slides/06-vectorization.html#indexing",
+    "title": "Vectorization",
+    "section": "Indexing",
+    "text": "Indexing\n\nYou can also use vectorization to apply logical operators:\n\n\nind &lt;- murders$population &lt; 10^6 & murders$region == \"West\"\nmurders$state[ind]\n\n[1] \"Alaska\"  \"Montana\" \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#split",
+    "href": "slides/06-vectorization.html#split",
+    "title": "Vectorization",
+    "section": "split",
+    "text": "split\n\nsplit(ind, f): split ind into groups defined by factor f:\n\n\ninds &lt;- with(murders, split(seq_along(region), region))\nstr(inds) # a list of row indices, one per region\n\nList of 4\n $ Northeast    : int [1:9] 7 20 22 30 31 33 39 40 46\n $ South        : int [1:17] 1 4 8 9 10 11 18 19 21 25 ...\n $ North Central: int [1:12] 14 15 16 17 23 24 26 28 35 36 ...\n $ West         : int [1:13] 2 3 5 6 12 13 27 29 32 38 ...\n\nmurders$state[inds$West] # states where region==\"West\"\n\n [1] \"Alaska\"     \"Arizona\"    \"California\" \"Colorado\"   \"Hawaii\"    \n [6] \"Idaho\"      \"Montana\"    \"Nevada\"     \"New Mexico\" \"Oregon\"    \n[11] \"Utah\"       \"Washington\" \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-for-subsetting",
+    "href": "slides/06-vectorization.html#functions-for-subsetting",
+    "title": "Vectorization",
+    "section": "Functions for subsetting",
+    "text": "Functions for subsetting\n\nThe functions which, match and the operator %in% are useful for sub-setting"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#which",
+    "href": "slides/06-vectorization.html#which",
+    "title": "Vectorization",
+    "section": "which",
+    "text": "which\n\nx &lt;- c(10, 5, 8, 5)\n\nwhich(x == 5) # [1] 2 4 return all indices where the condtion is true\n\n[1] 2 4\n\nx==5 \n\n[1] FALSE  TRUE FALSE  TRUE\n\n\n\nind &lt;- which(murders$state == \"California\")\nind\n\n[1] 5\n\nmurders[ind,]\n\n       state abb region population total\n5 California  CA   West   37253956  1257"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#match",
+    "href": "slides/06-vectorization.html#match",
+    "title": "Vectorization",
+    "section": "match",
+    "text": "match\n\nx &lt;- c(\"b\", \"a\", \"c\")\ny &lt;- c(\"a\", \"b\", \"d\")\n\nmatch(x, y) # [1] 2 1 NA.  returns one index per element of x, gives the first match only. \n\n[1]  2  1 NA\n\n\n\nv &lt;- c(\"a\", \"b\", \"a\", \"c\")\nwhich(v == \"a\") # [1] 1 3\n\n[1] 1 3\n\nmatch(\"a\", v) # [1] 1 first postion only\n\n[1] 1\n\n\n\nind &lt;- match(c(\"New York\", \"Florida\", \"Texas\"), murders$state)\nind\n\n[1] 33 10 44\n\nmurders[ind,]\n\n      state abb    region population total\n33 New York  NY Northeast   19378102   517\n10  Florida  FL     South   19687653   669\n44    Texas  TX     South   25145561   805"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#in",
+    "href": "slides/06-vectorization.html#in",
+    "title": "Vectorization",
+    "section": "%in%",
+    "text": "%in%\n\nind &lt;- which(murders$state %in% c(\"New York\", \"Florida\", \"Texas\"))\nind\n\n[1] 10 33 44\n\nmurders[ind,]\n\n      state abb    region population total\n10  Florida  FL     South   19687653   669\n33 New York  NY Northeast   19378102   517\n44    Texas  TX     South   25145561   805\n\n\n\nNote this is similar to using match.\nBut note the order is different."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#match-versus-in",
+    "href": "slides/06-vectorization.html#match-versus-in",
+    "title": "Vectorization",
+    "section": "match versus %in%",
+    "text": "match versus %in%\n\nc(\"Boston\", \"Dakota\", \"Washington\") %in% murders$state\n\n[1] FALSE FALSE  TRUE\n\n\n\nmatch(c(\"Boston\", \"Dakota\", \"Washington\"), murders$state)\n\n[1] NA NA 48\n\n\n\nmatch(murders$state, c(\"Boston\", \"Dakota\", \"Washington\"))\n\n [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA\n[26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA  3 NA NA\n[51] NA\n\n\n\nthere are also set manipulation functions intersect, union, setdiff, setequal"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#the-apply-functions",
+    "href": "slides/06-vectorization.html#the-apply-functions",
+    "title": "Vectorization",
+    "section": "The apply functions",
+    "text": "The apply functions\n\n\n\n\n\n\n\n\n\nFunction\nApply over…\nTypical input\nOutput shape\n\n\n\n\nlapply(X, FUN)\nlist/vector elements\nlist or atomic vector\nlist\n\n\nsapply(X, FUN)\nsame as lapply\nlist or atomic vector\ntries to simplify (vector/matrix)\n\n\napply(X, MARGIN, FUN)\nrows/cols of an array\nmatrix/array\nvector/matrix/array\n\n\ntapply(X, INDEX, FUN)\ngroups\nvector + factor(s)\narray/table-like\n\n\nmapply(FUN, ...)\nparallel elements\nmultiple vectors/lists\nlike sapply, simplified"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#apply-examples",
+    "href": "slides/06-vectorization.html#apply-examples",
+    "title": "Vectorization",
+    "section": "Apply Examples",
+    "text": "Apply Examples\n\n mm = matrix(1:10, nc=2, byrow=T) # rows are filled first\n mm\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n[4,]    7    8\n[5,]    9   10\n\n apply(mm, 1, sum) # operate on row. rowSums(mm) is faster\n\n[1]  3  7 11 15 19\n\n apply(mm, 2, \\(x) x^2) #&gt; operate on column; `\\(x) x^2: anonymous function\n\n     [,1] [,2]\n[1,]    1    4\n[2,]    9   16\n[3,]   25   36\n[4,]   49   64\n[5,]   81  100\n\n # mm^2  # is faster\n\n\nFor simply operations avoid apply(). apply() is best for non-vectorized functions."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#split-example",
+    "href": "slides/06-vectorization.html#split-example",
+    "title": "Vectorization",
+    "section": "Split Example",
+    "text": "Split Example\n\nsp1 = split(murders$population, murders$region)\nlapply(sp1, sum)\n\n$Northeast\n[1] 55317240\n\n$South\n[1] 115674434\n\n$`North Central`\n[1] 66927001\n\n$West\n[1] 71945553\n\n\n\nalternatively:\n\n\nwith(murders, tapply(population, region, sum))\n\n    Northeast         South North Central          West \n     55317240     115674434      66927001      71945553"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#multiplydivide-by-a-constatn",
+    "href": "slides/06-vectorization.html#multiplydivide-by-a-constatn",
+    "title": "Vectorization",
+    "section": "Multiply/divide by a constatn",
+    "text": "Multiply/divide by a constatn\n\nLet’s convert the following heights in inches to meters:\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\n\n\nRather than loop we use vectorization:\n\n\nheights*2.54/100\n\n [1] 1.7526 1.5748 1.6764 1.7780 1.7780 1.8542 1.7018 1.8542 1.7018 1.7780"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#addsubtract-a-constant",
+    "href": "slides/06-vectorization.html#addsubtract-a-constant",
+    "title": "Vectorization",
+    "section": "Add/subtract a constant",
+    "text": "Add/subtract a constant\n\nWe can subtract a constant from each element of a vector.\nThis is convenient for computing residuals or deviations from an average:\n\n\navg &lt;- mean(heights)\nheights - avg \n\n [1]  0.3 -6.7 -2.7  1.3  1.3  4.3 -1.7  4.3 -1.7  1.3"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#compute-sd",
+    "href": "slides/06-vectorization.html#compute-sd",
+    "title": "Vectorization",
+    "section": "Compute SD",
+    "text": "Compute SD\n\ns &lt;- sd(heights)\n(heights - avg)/s\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515\n\n\n\nThere is actually a function, scale, that does this."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#add-two-vectors",
+    "href": "slides/06-vectorization.html#add-two-vectors",
+    "title": "Vectorization",
+    "section": "Add two vectors",
+    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 68.95332 62.16867 65.98111 69.85241 69.97780 72.97265 67.02931 73.03635\n [9] 66.95870 70.14804"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#most-arithmetic-functions-vectorize",
+    "href": "slides/06-vectorization.html#most-arithmetic-functions-vectorize",
+    "title": "Vectorization",
+    "section": "Most Arithmetic functions vectorize",
+    "text": "Most Arithmetic functions vectorize\n\nMost arithmetic functions work on vectors.\n\n\nx &lt;- 1:10\nsqrt(x)\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278\n\nlog(x)\n\n [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101\n [8] 2.0794415 2.1972246 2.3025851\n\n2^x\n\n [1]    2    4    8   16   32   64  128  256  512 1024"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#compute-standard-units-using-scale",
+    "href": "slides/06-vectorization.html#compute-standard-units-using-scale",
+    "title": "Vectorization",
+    "section": "Compute standard units using scale",
+    "text": "Compute standard units using scale\n\nscale(heights)\n\n             [,1]\n [1,]  0.08995503\n [2,] -2.00899575\n [3,] -0.80959530\n [4,]  0.38980515\n [5,]  0.38980515\n [6,]  1.28935548\n [7,] -0.50974519\n [8,]  1.28935548\n [9,] -0.50974519\n[10,]  0.38980515\nattr(,\"scaled:center\")\n[1] 68.7\nattr(,\"scaled:scale\")\n[1] 3.335\n\n\nprovides the same results,\n\n(heights - mean(heights))/sd(heights)\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#scale-coerces-to-a-column-matrix",
+    "href": "slides/06-vectorization.html#scale-coerces-to-a-column-matrix",
+    "title": "Vectorization",
+    "section": "scale coerces to a column matrix",
+    "text": "scale coerces to a column matrix\n\nclass(scale(heights))\n\n[1] \"matrix\" \"array\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#subsetting-using-alogical-vector",
+    "href": "slides/06-vectorization.html#subsetting-using-alogical-vector",
+    "title": "Vectorization",
+    "section": "Subsetting using alogical vector",
+    "text": "Subsetting using alogical vector\n\nIndexing with a logical vector subsets to the set corresponding to the TRUE values\n\n\nlibrary(dslabs)\nind &lt;- murders$population &lt; 10^6\n\n\nsubset a vector using this logical vector for indexing:\n\n\nmurders$state[ind]\n\n[1] \"Alaska\"               \"Delaware\"             \"District of Columbia\"\n[4] \"Montana\"              \"North Dakota\"         \"South Dakota\"        \n[7] \"Vermont\"              \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#indexing-by-a-logical-vector",
+    "href": "slides/06-vectorization.html#indexing-by-a-logical-vector",
+    "title": "Vectorization",
+    "section": "Indexing by a logical vector",
+    "text": "Indexing by a logical vector\n\nYou can also use vectorization to apply logical operators:\n\n\nind &lt;- murders$population &lt; 10^6 & murders$region == \"West\"\nmurders$state[ind]\n\n[1] \"Alaska\"  \"Montana\" \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#handle-na-with-which-and-match",
+    "href": "slides/06-vectorization.html#handle-na-with-which-and-match",
+    "title": "Vectorization",
+    "section": "Handle NA with which and match",
+    "text": "Handle NA with which and match\n\nx &lt;- c(1, NA, 3)\n\nwhich(is.na(x)) # [1] 2\n\n[1] 2\n\nmatch(NA, x) # [1] 2    \n\n[1] 2"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#scatterplot",
+    "href": "slides/05-r-basics.html#scatterplot",
+    "title": "R Basics",
+    "section": "scatterplot",
+    "text": "scatterplot\n\nlibrary(dslabs)\nwith(murders, plot(population, total))"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#histogram",
+    "href": "slides/05-r-basics.html#histogram",
+    "title": "R Basics",
+    "section": "histogram",
+    "text": "histogram\n\nx &lt;- with(murders, total / population * 100000)\nhist(x)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#boxplot",
+    "href": "slides/05-r-basics.html#boxplot",
+    "title": "R Basics",
+    "section": "boxplot",
+    "text": "boxplot\n\nmurders$rate &lt;- with(murders, total / population * 100000)\nboxplot(rate~region, data = murders) #y:rate x:region"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#sapply",
+    "href": "slides/06-vectorization.html#sapply",
+    "title": "Vectorization",
+    "section": "sapply",
+    "text": "sapply\n\nx &lt;- 1:10\nsapply(x, sqrt) #&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278\n\n\n\nx &lt;- list(a = 1:3, b = 4:5)\nlapply(x, sum)\n\n$a\n[1] 6\n\n$b\n[1] 9\n\nsapply(x, sum)\n\na b \n6 9"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#atomic-vector-and-array",
+    "href": "slides/05-r-basics.html#atomic-vector-and-array",
+    "title": "R Basics",
+    "section": "Atomic vector and array",
+    "text": "Atomic vector and array\n\nAtomic vector is 1-D, contains only one type of data, hasno dimentions (1dim=NULL`).\n\n\nx_num  &lt;- c(1, 2, 3)\nx_chr  &lt;- c(\"a\", \"b\", \"c\")\nx_log  &lt;- c(TRUE, FALSE, TRUE)\n\ntypeof(x_num) # \"double\"\n\n[1] \"double\"\n\nis.atomic(x_num) # TRUE\n\n[1] TRUE\n\ndim(x_num) # NULL\n\nNULL\n\n\n\nArray: \\(\\ge 2 D\\), one atomic type, has dim attribute\n\n\nm &lt;- matrix(1:6, nrow = 2)\ndim(m)\n\n[1] 2 3\n\n# 2 3\n\nis.atomic(m) # TRUE   (important!)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#the-apply-functions-1",
+    "href": "slides/06-vectorization.html#the-apply-functions-1",
+    "title": "Vectorization",
+    "section": "The apply functions",
+    "text": "The apply functions\n\nsapply - apply the function to each element of a vector or a list.\napply - applies function to rows or columns of a matrix.\nlapply - returns a list. Convenient when the function returns something other than a number.\ntapply - can apply to subsets defined by second variable.\nmapply - multivector version of sapply."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#lapplytapply",
+    "href": "slides/06-vectorization.html#lapplytapply",
+    "title": "Vectorization",
+    "section": "lapply/tapply",
+    "text": "lapply/tapply\n\nsp1 = split(murders$population, murders$region) # split(x,f): split vector x into groups by f.\n# sp1 is a list\nlapply(sp1, sum) #apply sum to each list element; obtain a list\n\n$Northeast\n[1] 55317240\n\n$South\n[1] 115674434\n\n$`North Central`\n[1] 66927001\n\n$West\n[1] 71945553\n\n\n\nalternatively:\n\n\nwith(murders, tapply(population, region, sum)) #result is an array\n\n    Northeast         South North Central          West \n     55317240     115674434      66927001      71945553"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#tapply",
+    "href": "slides/06-vectorization.html#tapply",
+    "title": "Vectorization",
+    "section": "tapply",
+    "text": "tapply\n\nGreat for group summaries (base R version of group_by)\n\n\nv &lt;- c(5, 7, 4, 9, 6)\ng &lt;- factor(c(\"A\",\"A\",\"B\",\"B\",\"B\"))\ntapply(v, g, mean)\n\n       A        B \n6.000000 6.333333 \n\n\n\nMultiple group variables\n\n\ng2 &lt;- factor(c(\"M\",\"F\",\"M\",\"F\",\"M\"))\ntapply(v, list(g, g2), mean)\n\n  F M\nA 7 5\nB 9 5"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#mapply",
+    "href": "slides/06-vectorization.html#mapply",
+    "title": "Vectorization",
+    "section": "mapply()",
+    "text": "mapply()\n\nmultivariate/parallel apply (map over several inputs)\n\n\nmapply(rep, 1:3, 1:3) # rep(x,times)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2 2\n\n[[3]]\n[1] 3 3 3\n\n# equivilent to\nlapply(1:3, function(i) rep(i, i))\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2 2\n\n[[3]]\n[1] 3 3 3\n\n\n\nmapply(function(a, b) a + b^2, 1:4, 1:4) # 2 6 12 20\n\n[1]  2  6 12 20\n\n# apply the function to(a,b)= (1,1), (2,2), (3,3),(4,4)"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidyverse",
+    "href": "slides/07-tidyverse.html#tidyverse",
+    "title": "Tidyverse",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nlibrary(tidyverse)\n\n\nThe tidyverse is not a package but a group of packages developed to work with each other.\nThe tidyverse makes data analysis simpler and code easier to read by sacrificing some flexibility.\nOne way code is simplified by ensuring all functions take and return tidy data."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data",
+    "href": "slides/07-tidyverse.html#tidy-data",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nThis is an example of a tidy dataset:\n\n\nlibrary(dslabs)\ntidy_data &lt;- gapminder |&gt; \n  filter(country %in% c(\"South Korea\", \"Germany\") & !is.na(fertility)) |&gt;\n  select(country, year, fertility)\nhead(tidy_data, 6)\n\n      country year fertility\n1     Germany 1960      2.41\n2 South Korea 1960      6.16\n3     Germany 1961      2.44\n4 South Korea 1961      5.99\n5     Germany 1962      2.47\n6 South Korea 1962      5.79"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-1",
+    "href": "slides/07-tidyverse.html#tidy-data-1",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nOriginally, the data was in the following format:\n\n\npath &lt;- system.file(\"extdata\", package = \"dslabs\") #return the full path of the directory \"extdata\" in \"dslabs\"\nfilename &lt;- file.path(path, \"fertility-two-countries-example.csv\") # return the path with the system-specific seprator (Win: \\; Mac/Linux: /)\nwide_data &lt;- read_csv(filename)\nselect(wide_data, country, `1960`:`1970`) |&gt; as.data.frame()\n\n      country 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970\n1     Germany 2.41 2.44 2.47 2.49 2.49 2.48 2.44 2.37 2.28 2.17 2.04\n2 South Korea 6.16 5.99 5.79 5.57 5.36 5.16 4.99 4.85 4.73 4.62 4.53\n\n\n\nThis is not tidy. Each row has multiple measures across multiple columns."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-2",
+    "href": "slides/07-tidyverse.html#tidy-data-2",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nOriginally, the data was in the following format:\n\n\npath &lt;- system.file(\"extdata\", package = \"dslabs\")\nfilename &lt;- file.path(path, \"fertility-two-countries-example.csv\")\nwide_data &lt;- read_csv(filename)\nselect(wide_data, country, `1960`:`1970`) |&gt; as.data.frame()\n\n      country 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970\n1     Germany 2.41 2.44 2.47 2.49 2.49 2.48 2.44 2.37 2.28 2.17 2.04\n2 South Korea 6.16 5.99 5.79 5.57 5.36 5.16 4.99 4.85 4.73 4.62 4.53\n\n\n\nThis is not tidy."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidyverse-packages",
+    "href": "slides/07-tidyverse.html#tidyverse-packages",
+    "title": "Tidyverse",
+    "section": "Tidyverse packages",
+    "text": "Tidyverse packages\n\ntibble - modifies the data frame class.\nreadr - import data.\ndplyr - used to modify data frames.\nggplot2 - simplifies plotting.\ntidyr - helps convert data into tidy format.\nstringr - string processing.\nforcats - utilities for categorical data.\npurrr - tidy version of apply functions."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#dplyr",
+    "href": "slides/07-tidyverse.html#dplyr",
+    "title": "Tidyverse",
+    "section": "dplyr",
+    "text": "dplyr\n\nIn this lecture we focus mainly on dplyr.\nIn particular the following functions:\n\nmutate\nselect\nacross\nfilter\ngroup_by\nsummarize"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#adding-a-column-with-mutate",
+    "href": "slides/07-tidyverse.html#adding-a-column-with-mutate",
+    "title": "Tidyverse",
+    "section": "Adding a column with mutate",
+    "text": "Adding a column with mutate\n\nmurders &lt;- mutate(murders, rate = total/population*100000)\n\n\nNotice that here we used total and population inside the function, which are objects that are not defined in our workspace.\nThis is known as non-standard evaluation where the context is used to know what variable names means.\nTidyverse extensively uses non-standard evaluation.\nThis can create confusion but it certainly simplifies code."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#subsetting-with-filter",
+    "href": "slides/07-tidyverse.html#subsetting-with-filter",
+    "title": "Tidyverse",
+    "section": "Subsetting with filter",
+    "text": "Subsetting with filter\n\nfilter(murders, rate &lt;= 0.71)\n\n          state abb        region population total      rate\n1        Hawaii  HI          West    1360301     7 0.5145920\n2          Iowa  IA North Central    3046355    21 0.6893484\n3 New Hampshire  NH     Northeast    1316470     5 0.3798036\n4  North Dakota  ND North Central     672591     4 0.5947151\n5       Vermont  VT     Northeast     625741     2 0.3196211"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#selecting-columns-with-select",
+    "href": "slides/07-tidyverse.html#selecting-columns-with-select",
+    "title": "Tidyverse",
+    "section": "Selecting columns with select",
+    "text": "Selecting columns with select\n\nnew_table &lt;- select(murders, state, region, rate)\nfilter(new_table, rate &lt;= 0.71)\n\n          state        region      rate\n1        Hawaii          West 0.5145920\n2          Iowa North Central 0.6893484\n3 New Hampshire     Northeast 0.3798036\n4  North Dakota North Central 0.5947151\n5       Vermont     Northeast 0.3196211"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables",
+    "href": "slides/07-tidyverse.html#transforming-variables",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nThe function mutate can also be used to transform variables.\nFor example, the following code takes the log transformation of the population variable:\n\n\nmutate(murders, population = log10(population))"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables-1",
+    "href": "slides/07-tidyverse.html#transforming-variables-1",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nOften, we need to apply the same transformation to several variables.\nThe function across facilitates the operation.\nFor example if want to log transform both population and total murders we can use:\n\n\nmutate(murders, across(c(population, total), log10))"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables-2",
+    "href": "slides/07-tidyverse.html#transforming-variables-2",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nThe helper functions come in handy when using across.\nAn example is if we want to apply the same transformation to all numeric variables:\n\n\nmutate(murders, across(where(is.numeric), log10))\n\n\nor all character variables:\n\n\nmutate(murders, across(where(is.character), tolower))\n\n\nThere are several other useful helper functions."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe",
+    "href": "slides/07-tidyverse.html#the-pipe",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nWe use the pipe to chain a series of operations.\nFor example if we want to select columns and then filter rows we chain like this:\n\n\\[ \\mbox{original data }\n\\rightarrow \\mbox{ select }\n\\rightarrow \\mbox{ filter } \\]"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe-1",
+    "href": "slides/07-tidyverse.html#the-pipe-1",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nThe code looks like this:\n\n\nmurders |&gt; select(state, region, rate) |&gt; filter(rate &lt;= 0.71)\n\n          state        region      rate\n1        Hawaii          West 0.5145920\n2          Iowa North Central 0.6893484\n3 New Hampshire     Northeast 0.3798036\n4  North Dakota North Central 0.5947151\n5       Vermont     Northeast 0.3196211\n\n\n\nThe object on the left of the pipe is used as the first argument for the function on the right.\nThe second argument becomes the first, the third the second, and so on…"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe-2",
+    "href": "slides/07-tidyverse.html#the-pipe-2",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nHere is a simple example:\n\n\n16 |&gt; sqrt() |&gt; log(base = 2)\n\n[1] 2"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data",
+    "href": "slides/07-tidyverse.html#summarizing-data",
+    "title": "Tidyverse",
+    "section": "Summarizing data",
+    "text": "Summarizing data\n\nWe use the dplyr summarize function, not to be confused with summary from R base.\nHere is an example of how it works:\n\n\nmurders |&gt; summarize(avg = mean(rate))\n\n       avg\n1 2.779125\n\n\n\nLet’s compute murder rate for the US. Is the number we just computed an estimate of that rate?"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data-1",
+    "href": "slides/07-tidyverse.html#summarizing-data-1",
+    "title": "Tidyverse",
+    "section": "Summarizing data",
+    "text": "Summarizing data\n\nNo, the rate is NOT the average of rates.\nThe correct calculation is the total number of murders divided by total population:\n\n\nmurders |&gt; summarize(rate = sum(total)/sum(population)*100000)\n\n      rate\n1 3.034555"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries",
+    "href": "slides/07-tidyverse.html#multiple-summaries",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\nSuppose we want the median, minimum and max population size:\n\n\nmurders |&gt; summarize(median = median(population), min = min(population), max = max(population))\n\n   median    min      max\n1 4339367 563626 37253956\n\n\n\nWhy don’t we use quantiles?\n\n\nmurders |&gt; summarize(quantiles = quantile(population, c(0.5, 0, 1)))\n\n  quantiles\n1   4339367\n2    563626\n3  37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-1",
+    "href": "slides/07-tidyverse.html#multiple-summaries-1",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\n\n\n\n\n\nWarning\n\n\nUsing a function that returns more than one number within summarize will soon be deprecated.\n\n\n\n\nFor multiple summaries we use reframe:\n\n\nmurders |&gt; reframe(quantiles = quantile(population, c(0.5, 0, 1)))\n\n  quantiles\n1   4339367\n2    563626\n3  37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-2",
+    "href": "slides/07-tidyverse.html#multiple-summaries-2",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\nHowever, if we want a column per summary, as when we called min, median, and max separately, we have to define a function that returns a data frame like this:\n\n\nmedian_min_max &lt;- function(x){\n  qs &lt;- quantile(x, c(0.5, 0, 1))\n  data.frame(median = qs[1], min = qs[2], max = qs[3])\n}\n\n\nThen we can call summarize:\n\n\nmurders |&gt; summarize(median_min_max(population))\n\n   median    min      max\n1 4339367 563626 37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize",
+    "href": "slides/07-tidyverse.html#group-then-summarize",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nLet’s compute murder rate by region.\n\n\nmurders |&gt; group_by(region) |&gt; head(4)\n\n# A tibble: 4 × 6\n# Groups:   region [2]\n  state    abb   region population total  rate\n  &lt;chr&gt;    &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Alabama  AL    South     4779736   135  2.82\n2 Alaska   AK    West       710231    19  2.68\n3 Arizona  AZ    West      6392017   232  3.63\n4 Arkansas AR    South     2915918    93  3.19\n\n\n\nNote the Groups: region at the top. Note that this is the number of groups in the first 4 rows.\nThis is a special data frame called a grouped data frame."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize-1",
+    "href": "slides/07-tidyverse.html#group-then-summarize-1",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nIn particular summarize, will behave differently when acting on this object.\n\n\nmurders |&gt; \n  group_by(region) |&gt; \n  summarize(rate = sum(total) / sum(population) * 100000)\n\n# A tibble: 4 × 2\n  region         rate\n  &lt;fct&gt;         &lt;dbl&gt;\n1 Northeast      2.66\n2 South          3.63\n3 North Central  2.73\n4 West           2.66\n\n\n\nThe summarize function applies the summarization to each group separately."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize-2",
+    "href": "slides/07-tidyverse.html#group-then-summarize-2",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nFor another example, let’s compute the median, minimum, and maximum population in the four regions of the country using the median_min_max previously defined:\n\n\nmurders |&gt; group_by(region) |&gt; summarize(median_min_max(population))\n\n# A tibble: 4 × 4\n  region          median    min      max\n  &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast     3574097  625741 19378102\n2 South         4625364  601723 25145561\n3 North Central 5495456. 672591 12830632\n4 West          2700551  563626 37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize-3",
+    "href": "slides/07-tidyverse.html#group-then-summarize-3",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nYou can also summarize a variable but not collapse the dataset.\nWe use mutate instead of summarize.\nHere is an example where we add a column with the population in each region and the number of states in the region, shown for each state.\n\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n())"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#ungroup",
+    "href": "slides/07-tidyverse.html#ungroup",
+    "title": "Tidyverse",
+    "section": "ungroup",
+    "text": "ungroup\n\nWhen we do this, we usually want to ungroup before continuing our analysis.\n\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n()) |&gt;\n  ungroup()\n\n\nThis avoids having a grouped data frame that we don’t need."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#pull",
+    "href": "slides/07-tidyverse.html#pull",
+    "title": "Tidyverse",
+    "section": "pull",
+    "text": "pull\n\nTidyverse function always returns a data frame. Even if its just one number.\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  class()\n\n[1] \"data.frame\""
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#pull-1",
+    "href": "slides/07-tidyverse.html#pull-1",
+    "title": "Tidyverse",
+    "section": "pull",
+    "text": "pull\n\nTo get a numeric use pull:\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  pull(rate) \n\n[1] 3.034555"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames",
+    "href": "slides/07-tidyverse.html#sorting-data-frames",
+    "title": "Tidyverse",
+    "section": "Sorting data frames",
+    "text": "Sorting data frames\n\nStates order by rate\n\n\nmurders |&gt; arrange(rate) |&gt; head()\n\n          state abb        region population total      rate\n1       Vermont  VT     Northeast     625741     2 0.3196211\n2 New Hampshire  NH     Northeast    1316470     5 0.3798036\n3        Hawaii  HI          West    1360301     7 0.5145920\n4  North Dakota  ND North Central     672591     4 0.5947151\n5          Iowa  IA North Central    3046355    21 0.6893484\n6         Idaho  ID          West    1567582    12 0.7655102"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames-1",
+    "href": "slides/07-tidyverse.html#sorting-data-frames-1",
+    "title": "Tidyverse",
+    "section": "Sorting data frames",
+    "text": "Sorting data frames\n\nIf we want decreasing we can either use the negative or, for more readability, use desc:\n\n\nmurders |&gt; arrange(desc(rate)) |&gt; head()\n\n                 state abb        region population total      rate\n1 District of Columbia  DC         South     601723    99 16.452753\n2            Louisiana  LA         South    4533372   351  7.742581\n3             Missouri  MO North Central    5988927   321  5.359892\n4             Maryland  MD         South    5773552   293  5.074866\n5       South Carolina  SC         South    4625364   207  4.475323\n6             Delaware  DE         South     897934    38  4.231937"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames-2",
+    "href": "slides/07-tidyverse.html#sorting-data-frames-2",
+    "title": "Tidyverse",
+    "section": "Sorting data frames",
+    "text": "Sorting data frames\n\nWe can use two variables as well:\n\n\nmurders |&gt; arrange(region, desc(rate)) |&gt; head(11)\n\n                  state abb    region population total       rate\n1          Pennsylvania  PA Northeast   12702379   457  3.5977513\n2            New Jersey  NJ Northeast    8791894   246  2.7980319\n3           Connecticut  CT Northeast    3574097    97  2.7139722\n4              New York  NY Northeast   19378102   517  2.6679599\n5         Massachusetts  MA Northeast    6547629   118  1.8021791\n6          Rhode Island  RI Northeast    1052567    16  1.5200933\n7                 Maine  ME Northeast    1328361    11  0.8280881\n8         New Hampshire  NH Northeast    1316470     5  0.3798036\n9               Vermont  VT Northeast     625741     2  0.3196211\n10 District of Columbia  DC     South     601723    99 16.4527532\n11            Louisiana  LA     South    4533372   351  7.7425810"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-long-data",
+    "href": "slides/07-tidyverse.html#tidy-data-long-data",
+    "title": "Tidyverse",
+    "section": "Tidy data (long data)",
+    "text": "Tidy data (long data)\n\nStored in a data frame.\nEach observation is exactly one row.\nVariables are stored in columns.\nNot all data can be represented this way.\nAssuming data is tidy simplifies coding."
+  }
+]

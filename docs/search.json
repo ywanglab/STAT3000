@@ -4,7 +4,7 @@
     "href": "slides/01-unix.html#file-naming-conventions",
     "title": "Unix/Linux",
     "section": "File Naming conventions",
-    "text": "File Naming conventions\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html\n\nName your files in a way that is related to their contents and specifies how they relate to other files.\nThe Smithsonian Data Management Best Practices has “Five precepts of file naming and organization”",
+    "text": "File Naming conventions\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/unix.html\n\nName your files in a way that is related to their contents\nIndicate how they relate to other files.\nThe Smithsonian Data Management Best Practices has “Five precepts of file naming and organization”",
     "crumbs": [
       "Lecture 1-Unix"
     ]
@@ -74,7 +74,7 @@
     "href": "slides/01-unix.html#paths",
     "title": "Unix/Linux",
     "section": "Paths",
-    "text": "Paths\n\nThe string returned by pwd command is the full path to the working directory.\nThe full path to your home directory is stored in an environment variable.\nYou can see it like this echo $HOME",
+    "text": "Paths\n\nThe string returned by pwd command is the full path to the working directory.\nThe full path to your home directory is stored in the environment variable $HOME.\nYou can see it by executing echo $HOME",
     "crumbs": [
       "Lecture 1-Unix"
     ]
@@ -84,7 +84,7 @@
     "href": "slides/01-unix.html#paths-1",
     "title": "Unix/Linux",
     "section": "Paths",
-    "text": "Paths\n\nthe shorthand ~ as a nickname for your home directory\n\nExample: the full path for docs (image in prev. slides) can be written like this ~/docs.\n\nThe environment variable called PATH which you can display using echo\n\nthat variable is a set of individual paths, separated by : (colon) and it tells your Unix shell where to look for commands\nyou can add other paths to PATH, so that Unix can look for commands in those paths (eg make your own bin directory)",
+    "text": "Paths\n\nthe shorthand ~ as a nickname for your home directory\n\nExample: the full path for docs (image in prev. slides) can be written like this ~/docs.\n\nThe environment variable called $PATH which you can display using echo\n\nthat variable is a set of individual paths, separated by : (colon) and it tells your Unix shell where to look for commands\nyou can add other paths to $PATH, so that Unix can look for commands in those paths (eg make your own bin directory)",
     "crumbs": [
       "Lecture 1-Unix"
     ]
@@ -152,51 +152,51 @@
   {
     "objectID": "slides/02-rstudio.html#integrated-development-environment-ide",
     "href": "slides/02-rstudio.html#integrated-development-environment-ide",
-    "title": "RStudio IDE",
+    "title": "RStudio IDE and Quarto",
     "section": "Integrated Development Environment (IDE)",
     "text": "Integrated Development Environment (IDE)\n https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html \n\nPosit provides a free IDE for R with RStudio\nPositron (newer and adapted to LLMs)",
     "crumbs": [
-      "Lecture 2-RStudio"
+      "Lecture 2-RStudio & Quarto"
     ]
   },
   {
     "objectID": "slides/02-rstudio.html#the-panes",
     "href": "slides/02-rstudio.html#the-panes",
-    "title": "RStudio IDE",
+    "title": "RStudio IDE and Quarto",
     "section": "The panes",
     "text": "The panes",
     "crumbs": [
-      "Lecture 2-RStudio"
+      "Lecture 2-RStudio & Quarto"
     ]
   },
   {
     "objectID": "slides/02-rstudio.html#the-basics",
     "href": "slides/02-rstudio.html#the-basics",
-    "title": "RStudio IDE",
+    "title": "RStudio IDE and Quarto",
     "section": "The Basics",
     "text": "The Basics\n\nOpen a new R script file. (example.R)\nLearn tab complete.\nRun commands while editing scripts.\nRun the entire script.\nMake a plot.\nChange options to never save workspace.\nChange IDE appearance.",
     "crumbs": [
-      "Lecture 2-RStudio"
+      "Lecture 2-RStudio & Quarto"
     ]
   },
   {
     "objectID": "slides/02-rstudio.html#projects",
     "href": "slides/02-rstudio.html#projects",
-    "title": "RStudio IDE",
+    "title": "RStudio IDE and Quarto",
     "section": "Projects",
     "text": "Projects\n\nStart a new project in a new directory.\nStart a new project in an existing directory.\nChange projects.\nUse the File menu to create a new Quarto document",
     "crumbs": [
-      "Lecture 2-RStudio"
+      "Lecture 2-RStudio & Quarto"
     ]
   },
   {
     "objectID": "slides/02-rstudio.html#type-of-editor",
     "href": "slides/02-rstudio.html#type-of-editor",
-    "title": "RStudio IDE",
+    "title": "RStudio IDE and Quarto",
     "section": "Type of editor",
     "text": "Type of editor\n\nwe will be creating and editing markdown documents - mostly using the Quarto paradigm\nfor Quarto you can use either a source view or a visual view:\n\nSource - See the actual code (WYSIWYG)\nVisual - Partial preview of final document.\n\n\nNote: You can state your preference in the header:\ntitle: RStudio IDE\nkeywords: \"Productivity Tools\"\n\neditor: source",
     "crumbs": [
-      "Lecture 2-RStudio"
+      "Lecture 2-RStudio & Quarto"
     ]
   },
   {
@@ -1291,7 +1291,7 @@
     "href": "slides/05-r-basics.html#setting-levels",
     "title": "R Basics",
     "section": "Setting Levels",
-    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Female Female Female Male   Male   Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Female Female Female Male   Male   Male   Male   Male  \nLevels: Female Male"
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Female Male   Male   Male   Male   Male   Male   Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Female Male   Male   Male   Male   Male   Male   Male   Female\nLevels: Female Male"
   },
   {
     "objectID": "slides/05-r-basics.html#categories-based-on-strata",
@@ -1704,7 +1704,7 @@
     "href": "slides/05-r-basics.html#the-previous-example-continued",
     "title": "R Basics",
     "section": "The previous example continued",
-    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Male   Female Male   Male   Male   Male   Female Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Male   Female Male   Male   Male   Male   Female Female\nLevels: Female Male\n\ny1==y2\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2)\n\n[1] FALSE"
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Male   Male   Male   Female Male   Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Male   Male   Male   Female Male   Male   Male   Male  \nLevels: Female Male\n\ny1==y2\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2)\n\n[1] FALSE"
   },
   {
     "objectID": "slides/05-r-basics.html#assigning-labels",
@@ -1739,7 +1739,7 @@
     "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
     "title": "R Basics",
     "section": "Factors (integers) use less memory",
-    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3336214  0.3331551  0.3332235 \n\n# table counts the frequency of each unique value"
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3332642  0.3335085  0.3332273 \n\n# table counts the frequency of each unique value"
   },
   {
     "objectID": "slides/05-r-basics.html#drop-extra-levels-with-droplevels",
@@ -1858,7 +1858,7 @@
     "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
     "title": "R Basics",
     "section": "Exampe: function as a returned value",
-    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x1266ff250&gt;"
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) {\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x11a230388&gt;"
   },
   {
     "objectID": "slides/05-r-basics.html#function-call-as-an-argument",
@@ -1939,6 +1939,1670 @@
     "text": "Let’s get started\n\nSetting up Computing Environment: (Install R& R_Studio) https://ywanglab.github.io/statistics_r/intro.html\n\nWindows\nMac\nGetting Started\n\nInstall Git: https://ywanglab.github.io/stat1010/git.html",
     "crumbs": [
       "Lecture 0-Intro"
+    ]
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization",
+    "href": "slides/06-vectorization.html#vectorization",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\nReading\n\nWe will be using the murders dataset in the dslabs package.\nIncludes data on 2010 gun murders for the US 50 states and DC.\nWe will answer questions such as “Which state is with the lowest crime rate in the Western part of the US?”"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-1",
+    "href": "slides/06-vectorization.html#vectorization-1",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nFirst, some simple examples of vectorization.\nLet’s convert the following heights in inches to meters:\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\n\n\nRather than loop we use vectorization:\n\n\nheights*2.54/100\n\n [1] 1.7526 1.5748 1.6764 1.7780 1.7780 1.8542 1.7018 1.8542 1.7018 1.7780"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-2",
+    "href": "slides/06-vectorization.html#vectorization-2",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nWe can subtract a constant from each element of a vector.\nThis is convenient for computing residuals or deviations from an average:\n\n\navg &lt;- mean(heights)\nheights - avg \n\n [1]  0.3 -6.7 -2.7  1.3  1.3  4.3 -1.7  4.3 -1.7  1.3"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-3",
+    "href": "slides/06-vectorization.html#vectorization-3",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nThis means we can compute standard units like this:\n\n\ns &lt;- sd(heights)\n(heights - avg)/s\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515\n\n\n\nThere is actually a function, scale, that does this. We describe it soon."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#vectorization-4",
+    "href": "slides/06-vectorization.html#vectorization-4",
+    "title": "Vectorization",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nIf we operate on two vectors, vectorization is componentwise.\nHere is an example:\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 69.02402 62.16355 66.02307 70.04780 69.96488 73.14858 66.93034 73.02845\n [9] 66.96575 69.80660"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#exercise",
+    "href": "slides/06-vectorization.html#exercise",
+    "title": "Vectorization",
+    "section": "Exercise",
+    "text": "Exercise\n\nAdd a column to the murders dataset with the murder rate.\nUse murders per 100,000 persons as the unit."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-that-vectorize",
+    "href": "slides/06-vectorization.html#functions-that-vectorize",
+    "title": "Vectorization",
+    "section": "Functions that vectorize",
+    "text": "Functions that vectorize\n\nMost arithmetic functions work on vectors.\n\n\nx &lt;- 1:10\nsqrt(x)\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278\n\nlog(x)\n\n [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101\n [8] 2.0794415 2.1972246 2.3025851\n\n2^x\n\n [1]    2    4    8   16   32   64  128  256  512 1024"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-that-vectorize-1",
+    "href": "slides/06-vectorization.html#functions-that-vectorize-1",
+    "title": "Vectorization",
+    "section": "Functions that vectorize",
+    "text": "Functions that vectorize\n\nscale(heights)\n\n             [,1]\n [1,]  0.08995503\n [2,] -2.00899575\n [3,] -0.80959530\n [4,]  0.38980515\n [5,]  0.38980515\n [6,]  1.28935548\n [7,] -0.50974519\n [8,]  1.28935548\n [9,] -0.50974519\n[10,]  0.38980515\nattr(,\"scaled:center\")\n[1] 68.7\nattr(,\"scaled:scale\")\n[1] 3.335\n\n\nprovides the same results,\n\n(heights - mean(heights))/sd(heights)\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-that-vectorize-2",
+    "href": "slides/06-vectorization.html#functions-that-vectorize-2",
+    "title": "Vectorization",
+    "section": "Functions that vectorize",
+    "text": "Functions that vectorize\n\nBut scale coerces to a column matrix:\n\n\nclass(scale(heights))\n\n[1] \"matrix\" \"array\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#most-functions-vectorize",
+    "href": "slides/06-vectorization.html#most-functions-vectorize",
+    "title": "Vectorization",
+    "section": "Most functions vectorize",
+    "text": "Most functions vectorize\n\nv &lt;- c(3, 7, 10, -2)\nany(v &lt; 0) # TRUE   (there is a negative)\n\n[1] TRUE\n\nall(v &gt; 0) # FALSE  (not all are positive)\n\n[1] FALSE\n\n\n\nx &lt;- c(1, 3, 5)\nif (all(x %% 2 == 1)) {\n  print(\"All numbers are odd\")\n}\n\n[1] \"All numbers are odd\"\n\nif (!is.null(x) && length(x) &gt; 0 && all(x &gt; 0)) {\n  print(\"x is a non-empty positive vector\")\n}\n\n[1] \"x is a non-empty positive vector\"\n\n\n\na &lt;- c(0, 1, 2, -4, 5)\nifelse(a &gt; 0, 1/a, NA) # ifelse: vectorized function\n\n[1]  NA 1.0 0.5  NA 0.2"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#subsetting",
+    "href": "slides/06-vectorization.html#subsetting",
+    "title": "Vectorization",
+    "section": "Subsetting",
+    "text": "Subsetting\n\nIndexing with a logical vector subsets to the set corresponding to the TRUE values\n\n\nlibrary(dslabs)\nind &lt;- murders$population &lt; 10^6\n\n\nA convenient aspect of this is that you can subset a vector using this logical vector for indexing:\n\n\nmurders$state[ind]\n\n[1] \"Alaska\"               \"Delaware\"             \"District of Columbia\"\n[4] \"Montana\"              \"North Dakota\"         \"South Dakota\"        \n[7] \"Vermont\"              \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#indexing",
+    "href": "slides/06-vectorization.html#indexing",
+    "title": "Vectorization",
+    "section": "Indexing",
+    "text": "Indexing\n\nYou can also use vectorization to apply logical operators:\n\n\nind &lt;- murders$population &lt; 10^6 & murders$region == \"West\"\nmurders$state[ind]\n\n[1] \"Alaska\"  \"Montana\" \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#split",
+    "href": "slides/06-vectorization.html#split",
+    "title": "Vectorization",
+    "section": "split",
+    "text": "split\n\nsplit(ind, f): split ind into groups defined by factor f:\n\n\ninds &lt;- with(murders, split(seq_along(region), region))\nstr(inds) # a list of row indices, one per region\n\nList of 4\n $ Northeast    : int [1:9] 7 20 22 30 31 33 39 40 46\n $ South        : int [1:17] 1 4 8 9 10 11 18 19 21 25 ...\n $ North Central: int [1:12] 14 15 16 17 23 24 26 28 35 36 ...\n $ West         : int [1:13] 2 3 5 6 12 13 27 29 32 38 ...\n\nmurders$state[inds$West] # states where region==\"West\"\n\n [1] \"Alaska\"     \"Arizona\"    \"California\" \"Colorado\"   \"Hawaii\"    \n [6] \"Idaho\"      \"Montana\"    \"Nevada\"     \"New Mexico\" \"Oregon\"    \n[11] \"Utah\"       \"Washington\" \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#functions-for-subsetting",
+    "href": "slides/06-vectorization.html#functions-for-subsetting",
+    "title": "Vectorization",
+    "section": "Functions for subsetting",
+    "text": "Functions for subsetting\n\nThe functions which, match and the operator %in% are useful for sub-setting"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#which",
+    "href": "slides/06-vectorization.html#which",
+    "title": "Vectorization",
+    "section": "which",
+    "text": "which\n\nx &lt;- c(10, 5, 8, 5)\n\nwhich(x == 5) # [1] 2 4 return all indices where the condtion is true\n\n[1] 2 4\n\nx==5 \n\n[1] FALSE  TRUE FALSE  TRUE\n\n\n\nind &lt;- which(murders$state == \"California\")\nind\n\n[1] 5\n\nmurders[ind,]\n\n       state abb region population total\n5 California  CA   West   37253956  1257"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#match",
+    "href": "slides/06-vectorization.html#match",
+    "title": "Vectorization",
+    "section": "match",
+    "text": "match\n\nx &lt;- c(\"b\", \"a\", \"c\")\ny &lt;- c(\"a\", \"b\", \"d\")\n\nmatch(x, y) # [1] 2 1 NA.  returns one index per element of x, gives the first match only. \n\n[1]  2  1 NA\n\n\n\nv &lt;- c(\"a\", \"b\", \"a\", \"c\")\nwhich(v == \"a\") # [1] 1 3\n\n[1] 1 3\n\nmatch(\"a\", v) # [1] 1 first postion only\n\n[1] 1\n\n\n\nind &lt;- match(c(\"New York\", \"Florida\", \"Texas\"), murders$state)\nind\n\n[1] 33 10 44\n\nmurders[ind,]\n\n      state abb    region population total\n33 New York  NY Northeast   19378102   517\n10  Florida  FL     South   19687653   669\n44    Texas  TX     South   25145561   805"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#in",
+    "href": "slides/06-vectorization.html#in",
+    "title": "Vectorization",
+    "section": "%in%",
+    "text": "%in%\n\nind &lt;- which(murders$state %in% c(\"New York\", \"Florida\", \"Texas\"))\nind\n\n[1] 10 33 44\n\nmurders[ind,]\n\n      state abb    region population total\n10  Florida  FL     South   19687653   669\n33 New York  NY Northeast   19378102   517\n44    Texas  TX     South   25145561   805\n\n\n\nNote this is similar to using match.\nBut note the order is different."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#match-versus-in",
+    "href": "slides/06-vectorization.html#match-versus-in",
+    "title": "Vectorization",
+    "section": "match versus %in%",
+    "text": "match versus %in%\n\nc(\"Boston\", \"Dakota\", \"Washington\") %in% murders$state\n\n[1] FALSE FALSE  TRUE\n\n\n\nmatch(c(\"Boston\", \"Dakota\", \"Washington\"), murders$state)\n\n[1] NA NA 48\n\n\n\nmatch(murders$state, c(\"Boston\", \"Dakota\", \"Washington\"))\n\n [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA\n[26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA  3 NA NA\n[51] NA\n\n\n\nthere are also set manipulation functions intersect, union, setdiff, setequal"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#the-apply-functions",
+    "href": "slides/06-vectorization.html#the-apply-functions",
+    "title": "Vectorization",
+    "section": "The apply functions",
+    "text": "The apply functions\n\nsapply - apply the function to each elemetn of a vector, matrix, data frame or a list.\napply - applies function to rows or columns of a matrix.\nlapply - returns a list. Convenient when the function returns something other than a number.\ntapply - can apply to subsets defined by second variable.\nmapply - multivector version of sapply."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#apply-examples",
+    "href": "slides/06-vectorization.html#apply-examples",
+    "title": "Vectorization",
+    "section": "Apply Examples",
+    "text": "Apply Examples\n\n mm = matrix(1:10, nc=2, byrow=T) # rows are filled first\n mm\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n[4,]    7    8\n[5,]    9   10\n\n apply(mm, 1, sum) # operate on row. rowSums(mm) is faster\n\n[1]  3  7 11 15 19\n\n apply(mm, 2, \\(x) x^2) #&gt; operate on column; `\\(x) x^2: anonymous function\n\n     [,1] [,2]\n[1,]    1    4\n[2,]    9   16\n[3,]   25   36\n[4,]   49   64\n[5,]   81  100\n\n # mm^2  # is faster\n\n{.smaller * For simply operations avoid apply(). apply() is best for non-vectorized functions. }"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#split-example",
+    "href": "slides/06-vectorization.html#split-example",
+    "title": "Vectorization",
+    "section": "Split Example",
+    "text": "Split Example\n\nsp1 = split(murders$population, murders$region)\nlapply(sp1, sum)\n\n$Northeast\n[1] 55317240\n\n$South\n[1] 115674434\n\n$`North Central`\n[1] 66927001\n\n$West\n[1] 71945553\n\n\n\nalternatively:\n\n\nwith(murders, tapply(population, region, sum))\n\n    Northeast         South North Central          West \n     55317240     115674434      66927001      71945553"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#multiplydivide-by-a-constatn",
+    "href": "slides/06-vectorization.html#multiplydivide-by-a-constatn",
+    "title": "Vectorization",
+    "section": "Multiply/divide by a constatn",
+    "text": "Multiply/divide by a constatn\n\nLet’s convert the following heights in inches to meters:\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\n\n\nRather than loop we use vectorization:\n\n\nheights*2.54/100\n\n [1] 1.7526 1.5748 1.6764 1.7780 1.7780 1.8542 1.7018 1.8542 1.7018 1.7780"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#addsubtract-a-constant",
+    "href": "slides/06-vectorization.html#addsubtract-a-constant",
+    "title": "Vectorization",
+    "section": "Add/subtract a constant",
+    "text": "Add/subtract a constant\n\nWe can subtract a constant from each element of a vector.\nThis is convenient for computing residuals or deviations from an average:\n\n\navg &lt;- mean(heights)\nheights - avg \n\n [1]  0.3 -6.7 -2.7  1.3  1.3  4.3 -1.7  4.3 -1.7  1.3"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#compute-sd",
+    "href": "slides/06-vectorization.html#compute-sd",
+    "title": "Vectorization",
+    "section": "Compute SD",
+    "text": "Compute SD\n\ns &lt;- sd(heights)\n(heights - avg)/s\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515\n\n\n\nThere is actually a function, scale, that does this."
+  },
+  {
+    "objectID": "slides/06-vectorization.html#add-two-vectors",
+    "href": "slides/06-vectorization.html#add-two-vectors",
+    "title": "Vectorization",
+    "section": "Add two vectors",
+    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 69.08646 61.90637 66.12694 70.08938 69.84942 72.99502 66.88938 73.00221\n [9] 67.04623 70.01273"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#most-arithmetic-functions-vectorize",
+    "href": "slides/06-vectorization.html#most-arithmetic-functions-vectorize",
+    "title": "Vectorization",
+    "section": "Most Arithmetic functions vectorize",
+    "text": "Most Arithmetic functions vectorize\n\nMost arithmetic functions work on vectors.\n\n\nx &lt;- 1:10\nsqrt(x)\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278\n\nlog(x)\n\n [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101\n [8] 2.0794415 2.1972246 2.3025851\n\n2^x\n\n [1]    2    4    8   16   32   64  128  256  512 1024"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#compute-standard-units-using-scale",
+    "href": "slides/06-vectorization.html#compute-standard-units-using-scale",
+    "title": "Vectorization",
+    "section": "Compute standard units using scale",
+    "text": "Compute standard units using scale\n\nscale(heights)\n\n             [,1]\n [1,]  0.08995503\n [2,] -2.00899575\n [3,] -0.80959530\n [4,]  0.38980515\n [5,]  0.38980515\n [6,]  1.28935548\n [7,] -0.50974519\n [8,]  1.28935548\n [9,] -0.50974519\n[10,]  0.38980515\nattr(,\"scaled:center\")\n[1] 68.7\nattr(,\"scaled:scale\")\n[1] 3.335\n\n\nprovides the same results,\n\n(heights - mean(heights))/sd(heights)\n\n [1]  0.08995503 -2.00899575 -0.80959530  0.38980515  0.38980515  1.28935548\n [7] -0.50974519  1.28935548 -0.50974519  0.38980515"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#scale-coerces-to-a-column-matrix",
+    "href": "slides/06-vectorization.html#scale-coerces-to-a-column-matrix",
+    "title": "Vectorization",
+    "section": "scale coerces to a column matrix",
+    "text": "scale coerces to a column matrix\n\nclass(scale(heights))\n\n[1] \"matrix\" \"array\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#subsetting-using-alogical-vector",
+    "href": "slides/06-vectorization.html#subsetting-using-alogical-vector",
+    "title": "Vectorization",
+    "section": "Subsetting using alogical vector",
+    "text": "Subsetting using alogical vector\n\nIndexing with a logical vector subsets to the set corresponding to the TRUE values\n\n\nlibrary(dslabs)\nind &lt;- murders$population &lt; 10^6\n\n\nsubset a vector using this logical vector for indexing:\n\n\nmurders$state[ind]\n\n[1] \"Alaska\"               \"Delaware\"             \"District of Columbia\"\n[4] \"Montana\"              \"North Dakota\"         \"South Dakota\"        \n[7] \"Vermont\"              \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#indexing-by-a-logical-vector",
+    "href": "slides/06-vectorization.html#indexing-by-a-logical-vector",
+    "title": "Vectorization",
+    "section": "Indexing by a logical vector",
+    "text": "Indexing by a logical vector\n\nYou can also use vectorization to apply logical operators:\n\n\nind &lt;- murders$population &lt; 10^6 & murders$region == \"West\"\nmurders$state[ind]\n\n[1] \"Alaska\"  \"Montana\" \"Wyoming\""
+  },
+  {
+    "objectID": "slides/06-vectorization.html#handle-na-with-which-and-match",
+    "href": "slides/06-vectorization.html#handle-na-with-which-and-match",
+    "title": "Vectorization",
+    "section": "Handle NA with which and match",
+    "text": "Handle NA with which and match\n\nx &lt;- c(1, NA, 3)\n\nwhich(is.na(x)) # [1] 2\n\n[1] 2\n\nmatch(NA, x) # [1] 2    \n\n[1] 2"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#scatterplot",
+    "href": "slides/05-r-basics.html#scatterplot",
+    "title": "R Basics",
+    "section": "scatterplot",
+    "text": "scatterplot\n\nlibrary(dslabs)\nwith(murders, plot(population, total))"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#histogram",
+    "href": "slides/05-r-basics.html#histogram",
+    "title": "R Basics",
+    "section": "histogram",
+    "text": "histogram\n\nx &lt;- with(murders, total / population * 100000)\nhist(x)"
+  },
+  {
+    "objectID": "slides/05-r-basics.html#boxplot",
+    "href": "slides/05-r-basics.html#boxplot",
+    "title": "R Basics",
+    "section": "boxplot",
+    "text": "boxplot\n\nmurders$rate &lt;- with(murders, total / population * 100000)\nboxplot(rate~region, data = murders) #y:rate x:region"
+  },
+  {
+    "objectID": "slides/06-vectorization.html#sapply",
+    "href": "slides/06-vectorization.html#sapply",
+    "title": "Vectorization",
+    "section": "sapply",
+    "text": "sapply\n\nx &lt;- 1:10\nsapply(x, sqrt) #&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16\n\n [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427\n [9] 3.000000 3.162278"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidyverse",
+    "href": "slides/07-tidyverse.html#tidyverse",
+    "title": "Tidyverse",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nlibrary(tidyverse)\n\n\nThe tidyverse is not a package but a group of packages.\nA popular tool for data analysis by sacrificing some flexibility.\nOne way code is simplified by ensuring all functions take and return tidy data."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data",
+    "href": "slides/07-tidyverse.html#tidy-data",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nThis is an example of a tidy dataset:\n\n\nlibrary(dslabs)\ntidy_data &lt;- gapminder |&gt; \n  filter(country %in% c(\"South Korea\", \"Germany\") & !is.na(fertility)) |&gt;\n  select(country, year, fertility)\nhead(tidy_data, 6)\n\n      country year fertility\n1     Germany 1960      2.41\n2 South Korea 1960      6.16\n3     Germany 1961      2.44\n4 South Korea 1961      5.99\n5     Germany 1962      2.47\n6 South Korea 1962      5.79"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-1",
+    "href": "slides/07-tidyverse.html#tidy-data-1",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nOriginally, the data was in the following format:\n\n\npath &lt;- system.file(\"extdata\", package = \"dslabs\") #return the full path of the directory \"extdata\" in \"dslabs\"\nfilename &lt;- file.path(path, \"fertility-two-countries-example.csv\") \n # return the path with the system-specific seprator (Win: \\; Mac/Linux: /)\nwide_data &lt;- read_csv(filename)\nselect(wide_data, country, `1960`:`1970`) |&gt; as.data.frame()\n\n      country 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970\n1     Germany 2.41 2.44 2.47 2.49 2.49 2.48 2.44 2.37 2.28 2.17 2.04\n2 South Korea 6.16 5.99 5.79 5.57 5.36 5.16 4.99 4.85 4.73 4.62 4.53\n\n\n\nThis is not tidy. Each row has multiple measures across multiple columns."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-2",
+    "href": "slides/07-tidyverse.html#tidy-data-2",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nOriginally, the data was in the following format:\n\n\n\n      country 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970\n1     Germany 2.41 2.44 2.47 2.49 2.49 2.48 2.44 2.37 2.28 2.17 2.04\n2 South Korea 6.16 5.99 5.79 5.57 5.36 5.16 4.99 4.85 4.73 4.62 4.53\n\n\n\nThis is not tidy."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidyverse-packages",
+    "href": "slides/07-tidyverse.html#tidyverse-packages",
+    "title": "Tidyverse",
+    "section": "Tidyverse packages",
+    "text": "Tidyverse packages\n\ntibble - modifies the data frame class.\nreadr - import data.\ndplyr - used to modify data frames.\nggplot2 - simplifies plotting.\ntidyr - helps convert data into tidy format.\nstringr - string processing.\nforcats - utilities for categorical data.\npurrr - tidy version of apply functions."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#dplyr",
+    "href": "slides/07-tidyverse.html#dplyr",
+    "title": "Tidyverse",
+    "section": "dplyr",
+    "text": "dplyr\n\nWe focus on the following functions:\n\nmutate\nselect\nacross\nfilter\ngroup_by\nsummarize"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#adding-a-column-with-mutate",
+    "href": "slides/07-tidyverse.html#adding-a-column-with-mutate",
+    "title": "Tidyverse",
+    "section": "Adding a column with mutate",
+    "text": "Adding a column with mutate\n\ncolnames(murders)\n\n[1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n\nmurders &lt;- mutate(murders, rate = total/population*100000)\ncolnames(murders)\n\n[1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n[6] \"rate\"      \n\n\n\nNotice that here we used total and population inside the function, which are objects that are not defined in our workspace.\nThis is known as non-standard evaluation where the context is used to know what variable names means.\nTidyverse extensively uses non-standard evaluation."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#subsetting-with-filter",
+    "href": "slides/07-tidyverse.html#subsetting-with-filter",
+    "title": "Tidyverse",
+    "section": "Subsetting with filter",
+    "text": "Subsetting with filter\n\nfilter(murders, rate &lt;= 0.71)\n\n          state abb        region population total      rate\n1        Hawaii  HI          West    1360301     7 0.5145920\n2          Iowa  IA North Central    3046355    21 0.6893484\n3 New Hampshire  NH     Northeast    1316470     5 0.3798036\n4  North Dakota  ND North Central     672591     4 0.5947151\n5       Vermont  VT     Northeast     625741     2 0.3196211"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#selecting-columns-with-select",
+    "href": "slides/07-tidyverse.html#selecting-columns-with-select",
+    "title": "Tidyverse",
+    "section": "Selecting columns with select",
+    "text": "Selecting columns with select\n\nnew_table &lt;- select(murders, state, region, rate)\nfilter(new_table, rate &lt;= 0.71)\n\n          state        region      rate\n1        Hawaii          West 0.5145920\n2          Iowa North Central 0.6893484\n3 New Hampshire     Northeast 0.3798036\n4  North Dakota North Central 0.5947151\n5       Vermont     Northeast 0.3196211"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables",
+    "href": "slides/07-tidyverse.html#transforming-variables",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nThe function mutate can also be used to transform variables.\nFor example, the following code takes the log transformation of the population variable:\n\n\nmutate(murders, population = log10(population)) |&gt; head()\n\n       state abb region population total     rate\n1    Alabama  AL  South   6.679404   135 2.824424\n2     Alaska  AK   West   5.851400    19 2.675186\n3    Arizona  AZ   West   6.805638   232 3.629527\n4   Arkansas  AR  South   6.464775    93 3.189390\n5 California  CA   West   7.571172  1257 3.374138\n6   Colorado  CO   West   6.701499    65 1.292453"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables-1",
+    "href": "slides/07-tidyverse.html#transforming-variables-1",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nThe helper functions come in handy when using across.\nAn example is if we want to apply the same transformation to all numeric variables:\n\n\nmutate(murders, across(where(is.numeric), log10))\n\n                  state abb        region population    total          rate\n1               Alabama  AL         South   6.679404 2.130334  0.4509298587\n2                Alaska  AK          West   5.851400 1.278754  0.4273539766\n3               Arizona  AZ          West   6.805638 2.365488  0.5598500635\n4              Arkansas  AR         South   6.464775 1.968483  0.5037076418\n5            California  CA          West   7.571172 3.099335  0.5281628804\n6              Colorado  CO          West   6.701499 1.812913  0.1114147952\n7           Connecticut  CT     Northeast   6.553166 1.986772  0.4336053993\n8              Delaware  DE         South   5.953244 1.579784  0.6265391803\n9  District of Columbia  DC         South   5.779397 1.995635  1.2162385825\n10              Florida  FL         South   7.294194 2.825426  0.5312321716\n11              Georgia  GA         South   6.996512 2.575188  0.5786761728\n12               Hawaii  HI          West   6.133635 0.845098 -0.2885369773\n13                Idaho  ID          West   6.195230 1.079181 -0.1160490219\n14             Illinois  IL North Central   7.108248 2.561101  0.4528533347\n15              Indiana  IN North Central   6.811830 2.152288  0.3404586003\n16                 Iowa  IA North Central   6.483781 1.322219 -0.1615612167\n17               Kansas  KS North Central   6.455320 1.799341  0.3440208158\n18             Kentucky  KY         South   6.637426 2.064458  0.4270316073\n19            Louisiana  LA         South   6.656421 2.545307  0.8888857586\n20                Maine  ME     Northeast   6.123316 1.041393 -0.0819234313\n21             Maryland  MD         South   6.761443 2.466868  0.7054245387\n22        Massachusetts  MA     Northeast   6.816084 2.071882  0.2557979437\n23             Michigan  MI North Central   6.994917 2.615950  0.6210331333\n24            Minnesota  MN North Central   6.724597 1.724276 -0.0003215047\n25          Mississippi  MS         South   6.472361 2.079181  0.6068202285\n26             Missouri  MO North Central   6.777349 2.506505  0.7291560130\n27              Montana  MT          West   5.995378 1.079181  0.0838027559\n28             Nebraska  NE North Central   6.261582 1.505150  0.2435681095\n29               Nevada  NV          West   6.431452 1.924279  0.4928269027\n30        New Hampshire  NH     Northeast   6.119411 0.698970 -0.4204409624\n31           New Jersey  NJ     Northeast   6.944082 2.390935  0.4468526638\n32           New Mexico  NM          West   6.313694 1.826075  0.5123807022\n33             New York  NY     Northeast   7.287311 2.713491  0.4261793055\n34       North Carolina  NC         South   6.979343 2.456366  0.4770233369\n35         North Dakota  ND North Central   5.827751 0.602060 -0.2256910604\n36                 Ohio  OH North Central   7.062074 2.491362  0.4292874728\n37             Oklahoma  OK         South   6.574188 2.045323  0.4711352774\n38               Oregon  OR          West   6.583321 1.556303 -0.0270180400\n39         Pennsylvania  PA     Northeast   7.103885 2.659916  0.5560311335\n40         Rhode Island  RI     Northeast   6.022250 1.204120  0.1818702327\n41       South Carolina  SC         South   6.665146 2.315970  0.6508244296\n42         South Dakota  SD North Central   5.910720 0.903090 -0.0076304429\n43            Tennessee  TN         South   6.802507 2.340444  0.5379368614\n44                Texas  TX         South   7.400461 2.905796  0.5053345511\n45                 Utah  UT          West   6.441520 1.342423 -0.0990972881\n46              Vermont  VT     Northeast   5.796395 0.301030 -0.4953646162\n47             Virginia  VA         South   6.903146 2.397940  0.4947944355\n48           Washington  WA          West   6.827663 1.968483  0.1408203673\n49        West Virginia  WV         South   6.267874 1.431364  0.1634897511\n50            Wisconsin  WI North Central   6.754882 1.986772  0.2318895751\n51              Wyoming  WY          West   5.750991 0.698970 -0.0520210145\n\n\n\nor all character variables:\n\n\nmutate(murders, across(where(is.character), tolower))\n\n\nThere are several other useful helper functions."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables-2",
+    "href": "slides/07-tidyverse.html#transforming-variables-2",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nThe helper functions come in handy when using across.\nAn example is if we want to apply the same transformation to all numeric variables:\n\n\nmutate(murders, across(where(is.numeric), log10))\n\n\nor all character variables:\n\n\nmutate(murders, across(where(is.character), tolower))\n\n\nThere are several other useful helper functions."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe",
+    "href": "slides/07-tidyverse.html#the-pipe",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nWe use the pipe to chain a series of operations.\nFor example if we want to select columns and then filter rows: \\[ \\mbox{original data }\n\\rightarrow \\mbox{ select }\n\\rightarrow \\mbox{ filter } \\]\n\n\nmurders |&gt; select(state, region, rate) |&gt; filter(rate &lt;= 0.71)\n\n          state        region      rate\n1        Hawaii          West 0.5145920\n2          Iowa North Central 0.6893484\n3 New Hampshire     Northeast 0.3798036\n4  North Dakota North Central 0.5947151\n5       Vermont     Northeast 0.3196211\n\n\n\nThe output of the left side of a pipe is used as the input (as first argument) for the function on the right.\nHere is a simple example:\n\n\n16 |&gt; sqrt() |&gt; log(base = 2)\n\n[1] 2"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe-1",
+    "href": "slides/07-tidyverse.html#the-pipe-1",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nHere is a simple example:\n\n\n16 |&gt; sqrt() |&gt; log(base = 2)\n\n[1] 2"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe-2",
+    "href": "slides/07-tidyverse.html#the-pipe-2",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nHere is a simple example:\n\n\n16 |&gt; sqrt() |&gt; log(base = 2)\n\n[1] 2"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data",
+    "href": "slides/07-tidyverse.html#summarizing-data",
+    "title": "Tidyverse",
+    "section": "Summarizing data",
+    "text": "Summarizing data\n\nWe use the dplyr summarize function, not to be confused with summary from R base.\n\n\nmurders |&gt; summarize(avg = mean(rate))\n\n       avg\n1 2.779125\n\n\n\nIs this calculation correct?"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data-1",
+    "href": "slides/07-tidyverse.html#summarizing-data-1",
+    "title": "Tidyverse",
+    "section": "Summarizing data",
+    "text": "Summarizing data\n\nNo, the rate is NOT the average of rates.\nThe correct calculation is the total number of murders divided by total population:\n\n\nmurders |&gt; summarize(rate = sum(total)/sum(population)*100000)\n\n      rate\n1 3.034555"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries",
+    "href": "slides/07-tidyverse.html#multiple-summaries",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\nSuppose we want the median, minimum and max population size:\n\n\nmurders |&gt; summarize(median = median(population), min = min(population), max = max(population))\n\n   median    min      max\n1 4339367 563626 37253956\n\n\n\nuse quantiles?\n\n\nmurders |&gt; summarize(quantiles = quantile(population, c(0.5, 0, 1)))\n\nWarning: Returning more (or less) than 1 row per `summarise()` group was deprecated in\ndplyr 1.1.0.\nℹ Please use `reframe()` instead.\nℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`\n  always returns an ungrouped data frame and adjust accordingly.\n\n\n  quantiles\n1   4339367\n2    563626\n3  37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-1",
+    "href": "slides/07-tidyverse.html#multiple-summaries-1",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\nTo have a column per summary, as when we called min, median, and max separately, we have to define a function that returns a data frame like this:\n\n\nmedian_min_max &lt;- function(x){\n  qs &lt;- quantile(x, c(0.5, 0, 1))\n  data.frame(median = qs[1], min = qs[2], max = qs[3])\n}\n\n\nThen we can call summarize:\n\n\nmurders |&gt; summarize(median_min_max(population))\n\n   median    min      max\n1 4339367 563626 37253956\n\n\nCompare\n\n median_min_max(murders$population) \n\n     median    min      max\n50% 4339367 563626 37253956\n\n#data.frame will use the first string `median` as the row name, but changed it to `50%`"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-2",
+    "href": "slides/07-tidyverse.html#multiple-summaries-2",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\nHowever, if we want a column per summary, as when we called min, median, and max separately, we have to define a function that returns a data frame like this:\n\n\nmedian_min_max &lt;- function(x){\n  qs &lt;- quantile(x, c(0.5, 0, 1))\n  data.frame(median = qs[1], min = qs[2], max = qs[3])\n}\n\n\nThen we can call summarize:\n\n\nmurders |&gt; summarize(median_min_max(population))\n\n   median    min      max\n1 4339367 563626 37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize",
+    "href": "slides/07-tidyverse.html#group-then-summarize",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nLet’s compute murder rate by region.\n\n\nmurders |&gt; group_by(region) |&gt; head(4)\n\n# A tibble: 4 × 6\n# Groups:   region [2]\n  state    abb   region population total  rate\n  &lt;chr&gt;    &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Alabama  AL    South     4779736   135  2.82\n2 Alaska   AK    West       710231    19  2.68\n3 Arizona  AZ    West      6392017   232  3.63\n4 Arkansas AR    South     2915918    93  3.19\n\n\n\nNote the Groups: region at the top. Note that this is the number of groups in the first 4 rows.\nThis is a special data frame called a grouped data frame."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize-1",
+    "href": "slides/07-tidyverse.html#group-then-summarize-1",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nIn particular summarize, will behave differently when acting on this object.\n\n\nmurders |&gt; \n  group_by(region) |&gt; \n  summarize(rate = sum(total) / sum(population) * 100000)\n\n# A tibble: 4 × 2\n  region         rate\n  &lt;fct&gt;         &lt;dbl&gt;\n1 Northeast      2.66\n2 South          3.63\n3 North Central  2.73\n4 West           2.66\n\n\n\nThe summarize function applies the summarization to each group separately."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize-2",
+    "href": "slides/07-tidyverse.html#group-then-summarize-2",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nFor another example, let’s compute the median, minimum, and maximum population in the four regions of the country using the median_min_max previously defined:\n\n\nmurders |&gt; group_by(region) |&gt; summarize(median_min_max(population))\n\n# A tibble: 4 × 4\n  region          median    min      max\n  &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast     3574097  625741 19378102\n2 South         4625364  601723 25145561\n3 North Central 5495456. 672591 12830632\n4 West          2700551  563626 37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-then-summarize-3",
+    "href": "slides/07-tidyverse.html#group-then-summarize-3",
+    "title": "Tidyverse",
+    "section": "Group then summarize",
+    "text": "Group then summarize\n\nYou can also summarize a variable but not collapse the dataset.\nWe use mutate instead of summarize.\nHere is an example where we add a column with the population in each region and the number of states in the region, shown for each state.\n\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n())"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#ungroup",
+    "href": "slides/07-tidyverse.html#ungroup",
+    "title": "Tidyverse",
+    "section": "ungroup",
+    "text": "ungroup\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n()) |&gt;\n  ungroup() |&gt; head(2)\n\n# A tibble: 2 × 8\n  state   abb   region population total  rate region_pop     n\n  &lt;chr&gt;   &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;\n1 Alabama AL    South     4779736   135  2.82  115674434    17\n2 Alaska  AK    West       710231    19  2.68   71945553    13\n\n\n\nThis avoids having a grouped data frame that we don’t need."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#pull",
+    "href": "slides/07-tidyverse.html#pull",
+    "title": "Tidyverse",
+    "section": "pull",
+    "text": "pull\n\nTo get a numeric use pull:\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  pull(rate) \n\n[1] 3.034555"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#pull-1",
+    "href": "slides/07-tidyverse.html#pull-1",
+    "title": "Tidyverse",
+    "section": "pull",
+    "text": "pull\n\nTo get a numeric use pull:\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  pull(rate) \n\n[1] 3.034555"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames",
+    "href": "slides/07-tidyverse.html#sorting-data-frames",
+    "title": "Tidyverse",
+    "section": "Sorting data frames",
+    "text": "Sorting data frames\n\nStates order by rate\n\n\nmurders |&gt; arrange(rate) |&gt; head()\n\n          state abb        region population total      rate\n1       Vermont  VT     Northeast     625741     2 0.3196211\n2 New Hampshire  NH     Northeast    1316470     5 0.3798036\n3        Hawaii  HI          West    1360301     7 0.5145920\n4  North Dakota  ND North Central     672591     4 0.5947151\n5          Iowa  IA North Central    3046355    21 0.6893484\n6         Idaho  ID          West    1567582    12 0.7655102"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames-1",
+    "href": "slides/07-tidyverse.html#sorting-data-frames-1",
+    "title": "Tidyverse",
+    "section": "Sorting data frames",
+    "text": "Sorting data frames\n\nIf we want decreasing we can either use the negative or, for more readability, use desc:\n\n\nmurders |&gt; arrange(desc(rate)) |&gt; head()\n\n                 state abb        region population total      rate\n1 District of Columbia  DC         South     601723    99 16.452753\n2            Louisiana  LA         South    4533372   351  7.742581\n3             Missouri  MO North Central    5988927   321  5.359892\n4             Maryland  MD         South    5773552   293  5.074866\n5       South Carolina  SC         South    4625364   207  4.475323\n6             Delaware  DE         South     897934    38  4.231937"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames-2",
+    "href": "slides/07-tidyverse.html#sorting-data-frames-2",
+    "title": "Tidyverse",
+    "section": "Sorting data frames",
+    "text": "Sorting data frames\n\nWe can use two variables as well:\n\n\nmurders |&gt; arrange(region, desc(rate)) |&gt; head(11)\n\n                  state abb    region population total       rate\n1          Pennsylvania  PA Northeast   12702379   457  3.5977513\n2            New Jersey  NJ Northeast    8791894   246  2.7980319\n3           Connecticut  CT Northeast    3574097    97  2.7139722\n4              New York  NY Northeast   19378102   517  2.6679599\n5         Massachusetts  MA Northeast    6547629   118  1.8021791\n6          Rhode Island  RI Northeast    1052567    16  1.5200933\n7                 Maine  ME Northeast    1328361    11  0.8280881\n8         New Hampshire  NH Northeast    1316470     5  0.3798036\n9               Vermont  VT Northeast     625741     2  0.3196211\n10 District of Columbia  DC     South     601723    99 16.4527532\n11            Louisiana  LA     South    4533372   351  7.7425810"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-long-data",
+    "href": "slides/07-tidyverse.html#tidy-data-long-data",
+    "title": "Tidyverse",
+    "section": "Tidy data (long data)",
+    "text": "Tidy data (long data)\n\nStored in a data frame.\nEach observation is exactly one row.\nVariables are stored in columns.\nNot all data can be represented this way.\nAssuming data is tidy simplifies coding."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-several-variables",
+    "href": "slides/07-tidyverse.html#transforming-several-variables",
+    "title": "Tidyverse",
+    "section": "Transforming several variables",
+    "text": "Transforming several variables\n\nOften, we need to apply the same transformation to several variables.\nThe function across facilitates the operation.\nFor example if want to log transform both population and total murders we can use:\n\n\nmutate(murders, across(c(population, total), log10)) |&gt; head()\n\n       state abb region population    total     rate\n1    Alabama  AL  South   6.679404 2.130334 2.824424\n2     Alaska  AK   West   5.851400 1.278754 2.675186\n3    Arizona  AZ   West   6.805638 2.365488 3.629527\n4   Arkansas  AR  South   6.464775 1.968483 3.189390\n5 California  CA   West   7.571172 3.099335 3.374138\n6   Colorado  CO   West   6.701499 1.812913 1.292453"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#more-examples-with-across",
+    "href": "slides/07-tidyverse.html#more-examples-with-across",
+    "title": "Tidyverse",
+    "section": "More examples with across",
+    "text": "More examples with across\n\napply the same transformation to all numeric variables:\n\n\nmutate(murders, across(where(is.numeric), log10)) |&gt;head(2)\n\n    state abb region population    total      rate\n1 Alabama  AL  South   6.679404 2.130334 0.4509299\n2  Alaska  AK   West   5.851400 1.278754 0.4273540\n\n\n\nor all character variables:\n\n\nmutate(murders, across(where(is.character), tolower)) |&gt; head(2)\n\n    state abb region population total     rate\n1 alabama  al  South    4779736   135 2.824424\n2  alaska  ak   West     710231    19 2.675186"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data-correct-calculation",
+    "href": "slides/07-tidyverse.html#summarizing-data-correct-calculation",
+    "title": "Tidyverse",
+    "section": "Summarizing data: Correct calculation",
+    "text": "Summarizing data: Correct calculation\n\nNo.\nThe correct calculation is\n\n\nmurders |&gt; summarize(rate = sum(total)/sum(population)*100000)\n\n      rate\n1 3.034555"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-with-reframe",
+    "href": "slides/07-tidyverse.html#multiple-summaries-with-reframe",
+    "title": "Tidyverse",
+    "section": "Multiple summaries with reframe",
+    "text": "Multiple summaries with reframe\n\nmurders |&gt; reframe(quantiles = quantile(population, c(0.5, 0, 1)))\n\n  quantiles\n1   4339367\n2    563626\n3  37253956"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-with-a-dataframe",
+    "href": "slides/07-tidyverse.html#multiple-summaries-with-a-dataframe",
+    "title": "Tidyverse",
+    "section": "Multiple summaries with a dataframe",
+    "text": "Multiple summaries with a dataframe\n\nTo have a column per summary, as when we called min, median, and max separately, we have to define a function that returns a data frame like this:\n\n\nmedian_min_max &lt;- function(x){\n  qs &lt;- quantile(x, c(0.5, 0, 1))\n  data.frame(median = qs[1], min = qs[2], max = qs[3])\n}\n\n\nThen we can call summarize:\n\n\nmurders |&gt; summarize(median_min_max(population))\n\n   median    min      max\n1 4339367 563626 37253956\n\n\nCompare\n\n median_min_max(murders$population) \n\n     median    min      max\n50% 4339367 563626 37253956\n\n#data.frame will use the first string `median` as the row name, but changed it to `50%`"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-using-group_by",
+    "href": "slides/07-tidyverse.html#group-using-group_by",
+    "title": "Tidyverse",
+    "section": "Group using group_by",
+    "text": "Group using group_by\n\nLet’s compute murder rate by region.\n\n\nmurders |&gt; group_by(region) |&gt; head(4)\n\n# A tibble: 4 × 6\n# Groups:   region [2]\n  state    abb   region population total  rate\n  &lt;chr&gt;    &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Alabama  AL    South     4779736   135  2.82\n2 Alaska   AK    West       710231    19  2.68\n3 Arizona  AZ    West      6392017   232  3.63\n4 Arkansas AR    South     2915918    93  3.19\n\n\n\nNote the Groups: region at the top. This is the number of groups in the first 4 rows.\nThis is a special data frame called a grouped data frame."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group_by-then-summarize",
+    "href": "slides/07-tidyverse.html#group_by-then-summarize",
+    "title": "Tidyverse",
+    "section": "Group_by then summarize",
+    "text": "Group_by then summarize\n\nmurders |&gt; \n  group_by(region) |&gt; \n  summarize(rate = sum(total) / sum(population) * 100000)\n\n# A tibble: 4 × 2\n  region         rate\n  &lt;fct&gt;         &lt;dbl&gt;\n1 Northeast      2.66\n2 South          3.63\n3 North Central  2.73\n4 West           2.66\n\n\n\nThe summarize function applies the summarization to each group separately."
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group_by-then-summarize-1",
+    "href": "slides/07-tidyverse.html#group_by-then-summarize-1",
+    "title": "Tidyverse",
+    "section": "Group_by then summarize",
+    "text": "Group_by then summarize\n\ncompute the median, minimum, and maximum population in the four regions\n\n\nmurders |&gt; group_by(region) |&gt; summarize(median_min_max(population))\n\n# A tibble: 4 × 4\n  region          median    min      max\n  &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast     3574097  625741 19378102\n2 South         4625364  601723 25145561\n3 North Central 5495456. 672591 12830632\n4 West          2700551  563626 37253956\n\n\n\nsummarize takes a dataframe or a column, or a list of values, as an input"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group_by-then-mutate",
+    "href": "slides/07-tidyverse.html#group_by-then-mutate",
+    "title": "Tidyverse",
+    "section": "group_by then mutate",
+    "text": "group_by then mutate\n\nTo summarize a variable but not collapse the dataset, use group_by then mutate instead of summarize.\nNext example adds a column with the population in each region and the number of states in the region, shown for each state.\n\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n()) |&gt; head(2)\n\n# A tibble: 2 × 8\n# Groups:   region [2]\n  state   abb   region population total  rate region_pop     n\n  &lt;chr&gt;   &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;\n1 Alabama AL    South     4779736   135  2.82  115674434    17\n2 Alaska  AK    West       710231    19  2.68   71945553    13"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tydeverse-returns-a-df",
+    "href": "slides/07-tidyverse.html#tydeverse-returns-a-df",
+    "title": "Tidyverse",
+    "section": "Tydeverse returns a df",
+    "text": "Tydeverse returns a df\n\nTidyverse function always returns a data frame. Even if its just one number.\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  class()\n\n[1] \"data.frame\""
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames-with-arrange",
+    "href": "slides/07-tidyverse.html#sorting-data-frames-with-arrange",
+    "title": "Tidyverse",
+    "section": "Sorting data frames with arrange",
+    "text": "Sorting data frames with arrange\n\nStates order by rate\n\n\nmurders |&gt; arrange(rate) |&gt; head()\n\n          state abb        region population total      rate\n1       Vermont  VT     Northeast     625741     2 0.3196211\n2 New Hampshire  NH     Northeast    1316470     5 0.3798036\n3        Hawaii  HI          West    1360301     7 0.5145920\n4  North Dakota  ND North Central     672591     4 0.5947151\n5          Iowa  IA North Central    3046355    21 0.6893484\n6         Idaho  ID          West    1567582    12 0.7655102"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-in-descending-order",
+    "href": "slides/07-tidyverse.html#sorting-in-descending-order",
+    "title": "Tidyverse",
+    "section": "Sorting in descending order",
+    "text": "Sorting in descending order\n\nwe can either use the negative or, use desc:\n\n\nmurders |&gt; arrange(desc(rate)) |&gt; head()\n\n                 state abb        region population total      rate\n1 District of Columbia  DC         South     601723    99 16.452753\n2            Louisiana  LA         South    4533372   351  7.742581\n3             Missouri  MO North Central    5988927   321  5.359892\n4             Maryland  MD         South    5773552   293  5.074866\n5       South Carolina  SC         South    4625364   207  4.475323\n6             Delaware  DE         South     897934    38  4.231937"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-by-multiple-variabls",
+    "href": "slides/07-tidyverse.html#sorting-by-multiple-variabls",
+    "title": "Tidyverse",
+    "section": "Sorting by multiple variabls",
+    "text": "Sorting by multiple variabls\n\nmurders |&gt; arrange(region, desc(rate)) |&gt; head(11)\n\n                  state abb    region population total       rate\n1          Pennsylvania  PA Northeast   12702379   457  3.5977513\n2            New Jersey  NJ Northeast    8791894   246  2.7980319\n3           Connecticut  CT Northeast    3574097    97  2.7139722\n4              New York  NY Northeast   19378102   517  2.6679599\n5         Massachusetts  MA Northeast    6547629   118  1.8021791\n6          Rhode Island  RI Northeast    1052567    16  1.5200933\n7                 Maine  ME Northeast    1328361    11  0.8280881\n8         New Hampshire  NH Northeast    1316470     5  0.3798036\n9               Vermont  VT Northeast     625741     2  0.3196211\n10 District of Columbia  DC     South     601723    99 16.4527532\n11            Louisiana  LA     South    4533372   351  7.7425810"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot2",
+    "href": "slides/08-ggplot2.html#ggplot2",
+    "title": "ggplot2",
+    "section": "ggplot2",
+    "text": "ggplot2\nWe fist load three libraries:\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(dslabs)\nlibrary(lattice)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph",
+    "title": "ggplot2",
+    "section": "The components of a graph",
+    "text": "The components of a graph\n\ngg stands for grammar of graphics.\nAnalogy: we learn verbs and nouns to construct sentences.\nThe first step in learning ggplot2 is breaking a graph apart into components."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph-1",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph-1",
+    "title": "ggplot2",
+    "section": "The components of a graph",
+    "text": "The components of a graph\n\nWe also note that:\n\nThe points are labeled with the state abbreviations.\nThe range of the x-axis and y-axis appears to be defined by the range of the data.\nAxes are in the log-scales.\nThere are labels, a title, a legend, and we use the style of The Economist magazine.\n\nWe will now construct the plot, piece by piece."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph-2",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph-2",
+    "title": "ggplot2",
+    "section": "The components of a graph",
+    "text": "The components of a graph\n\nThe main three components to note are:\n\nData: The US murders data table is being summarized. We refer to this as the data component.\n\nGeometry: The plot above is a scatterplot. This is referred to as the geometry component.\nAesthetic mapping: How we map visual cues to information provided by the dataset."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#aesthetic-mapping",
+    "href": "slides/08-ggplot2.html#aesthetic-mapping",
+    "title": "ggplot2",
+    "section": "Aesthetic mapping",
+    "text": "Aesthetic mapping\n\nThe two most important cues in the plot we are recreating are the point positions on the x-axis and y-axis.\nEach point represents a different observation, and we map data about these observations to visual cues like x- and y-scale.\nColor is another visual cue that we map to region.\nHow we define the mapping depends on what geometry we are using."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph-3",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph-3",
+    "title": "ggplot2",
+    "section": "The components of a graph",
+    "text": "The components of a graph\n\nWe also note that:\n\nThe points are labeled with the state abbreviations.\nThe range of the x-axis and y-axis appears to be defined by the range of the data.\nAxes are in the log-scales.\nThere are labels, a title, a legend, and we use the style of The Economist magazine.\n\nWe will now construct the plot, piece by piece."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot-objects",
+    "href": "slides/08-ggplot2.html#ggplot-objects",
+    "title": "ggplot2",
+    "section": "ggplot objects",
+    "text": "ggplot objects\n\nStart by defining the dataset:\n\n\nggplot(data = murders)\n\n\nWe can also use the pipe:\n\n\nmurders |&gt; ggplot()\n\n\nWe assign the output to a variable\n\n\np &lt;- ggplot(data = murders)\nclass(p)\n\n[1] \"gg\"     \"ggplot\""
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot-objects-1",
+    "href": "slides/08-ggplot2.html#ggplot-objects-1",
+    "title": "ggplot2",
+    "section": "ggplot objects",
+    "text": "ggplot objects\nTo see the plot we can print it:\n\nprint(p)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geometries",
+    "href": "slides/08-ggplot2.html#geometries",
+    "title": "ggplot2",
+    "section": "Geometries",
+    "text": "Geometries\n\nIf we want to make a scatterplot, what geometry do we use?\nLet’s look at the cheat sheet: https://rstudio.github.io/cheatsheets/data-visualization.pdf"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geometries-1",
+    "href": "slides/08-ggplot2.html#geometries-1",
+    "title": "ggplot2",
+    "section": "Geometries",
+    "text": "Geometries\n\nSo if we want to make a scatterplot, what geometry do we use?\nLet’s look at the cheat sheet: https://rstudio.github.io/cheatsheets/data-visualization.pdf"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#aesthetic-mappings",
+    "href": "slides/08-ggplot2.html#aesthetic-mappings",
+    "title": "ggplot2",
+    "section": "Aesthetic mappings",
+    "text": "Aesthetic mappings\n\nTo make a scatter plot we use geom_points.\nThe help file tells us this is how we use it:\n\n\nmurders |&gt; ggplot() + geom_point(aes(x = population/10^6, y = total))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#aesthetic-mappings-1",
+    "href": "slides/08-ggplot2.html#aesthetic-mappings-1",
+    "title": "ggplot2",
+    "section": "Aesthetic mappings",
+    "text": "Aesthetic mappings\n\nSince we defined p earlier, we can add a layer like this:\n\n\np + geom_point(aes(population/10^6, total))\n\n\n\nNote we are no longer using x= and y =."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#layers",
+    "href": "slides/08-ggplot2.html#layers",
+    "title": "ggplot2",
+    "section": "Layers",
+    "text": "Layers\n\nTo add text we use geom_text:\n\n\np + geom_point(aes(population/10^6, total)) +\n  geom_text(aes(population/10^6, total, label = abb))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#layers-1",
+    "href": "slides/08-ggplot2.html#layers-1",
+    "title": "ggplot2",
+    "section": "Layers",
+    "text": "Layers\n\nAs an example of the unique behavior of aes note that this call:\n\n\np_test &lt;- p + geom_text(aes(population/10^6, total, label = abb))\n\nis fine, whereas this call:\n\np_test &lt;- p + geom_text(aes(population/10^6, total), label = abb) \n\nwill give you an error since abb is not found because it is outside of the aes function.\n\nThe layer geom_text does not know where to find abb: it’s a column name and not a global variable."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#multipanel-plots---lattice",
+    "href": "slides/08-ggplot2.html#multipanel-plots---lattice",
+    "title": "ggplot2",
+    "section": "Multipanel plots - lattice",
+    "text": "Multipanel plots - lattice\n\npl &lt;- xyplot(total ~ population/10^6 | region, data = murders, #group by region\n      type = c(\"p\", \"g\"), xlab = \"Population/10^6\", ylab = \"Total\", # points +grid\n     strip = strip.custom(strip.names = TRUE, var.name = \"region\"), layout=c(2,2))\n# strip: title bar in each panel. strip.names=TRUE: show the var.name \"region\"\nprint(pl)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#multipanel-plots---ggplot2",
+    "href": "slides/08-ggplot2.html#multipanel-plots---ggplot2",
+    "title": "ggplot2",
+    "section": "Multipanel plots - ggplot2",
+    "text": "Multipanel plots - ggplot2\n\npg &lt;- ggplot(murders, aes(population/10^6, total)) + geom_point(shape = 1) +\n    facet_wrap(~region) + theme(aspect.ratio = 1) #square panels\nprint(pg)\n\n# shape =1: open circles; shape=16: filled circles"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#tinkering-with-arguments",
+    "href": "slides/08-ggplot2.html#tinkering-with-arguments",
+    "title": "ggplot2",
+    "section": "Tinkering with arguments",
+    "text": "Tinkering with arguments\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb))\n\n\n\nsize can be an aesthetic mapping, but here it is not, so all points get bigger."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#tinkering-with-arguments-1",
+    "href": "slides/08-ggplot2.html#tinkering-with-arguments-1",
+    "title": "ggplot2",
+    "section": "Tinkering with arguments",
+    "text": "Tinkering with arguments\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5)\n\n\n\nnudge_x is not an aesthetic mapping."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nAll the layers will assume the global mapping unless we explicitly define another one.\n\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb))\np + geom_point(size = 3) + geom_text(nudge_x = 1.5)\n\n\n\nThe two layers use the global mapping."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings-1",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings-1",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nWe can override the global aes by defining one in the geometry functions:\n\n\np + geom_point(size = 3) +  # global mapping\n  geom_text(aes(x = 10, y = 800, label = \"Hello there!\")) #local mapping"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings-2",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings-2",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nWe can override the global aes by defining one in the geometry functions:\n\n\np + geom_point(size = 3) +  \n  geom_text(aes(x = 10, y = 800, label = \"Hello there!\"))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scales",
+    "href": "slides/08-ggplot2.html#scales",
+    "title": "ggplot2",
+    "section": "Scales",
+    "text": "Scales\n\nLayers can define transformations:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_continuous(trans = \"log10\") +\n  scale_y_continuous(trans = \"log10\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scales-1",
+    "href": "slides/08-ggplot2.html#scales-1",
+    "title": "ggplot2",
+    "section": "Scales",
+    "text": "Scales\n\nThis particular transformation is so common that ggplot2 provides the specialized functions:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles",
+    "href": "slides/08-ggplot2.html#labels-and-titles",
+    "title": "ggplot2",
+    "section": "Labels and titles",
+    "text": "Labels and titles\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  xlab(\"Populations in millions (log scale)\") + \n  ylab(\"Total number of murders (log scale)\") +\n  ggtitle(\"US Gun Murders in 2010\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles-1",
+    "href": "slides/08-ggplot2.html#labels-and-titles-1",
+    "title": "ggplot2",
+    "section": "Labels and titles",
+    "text": "Labels and titles\n\nWe can also use the labs function:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")\n\n\nThis produces the same graph as in the previous slide."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#almost-there",
+    "href": "slides/08-ggplot2.html#almost-there",
+    "title": "ggplot2",
+    "section": "Almost there",
+    "text": "Almost there\n\nTargetCurrent draftCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#adding-color",
+    "href": "slides/08-ggplot2.html#adding-color",
+    "title": "ggplot2",
+    "section": "Adding color",
+    "text": "Adding color\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\") +\n  geom_point(size = 3, color = \"blue\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#a-mapped-color",
+    "href": "slides/08-ggplot2.html#a-mapped-color",
+    "title": "ggplot2",
+    "section": "A mapped color",
+    "text": "A mapped color\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\") +\n  geom_point(aes(col = region), size = 3)\n\n\nA legend is added automatically!"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#change-legend-name",
+    "href": "slides/08-ggplot2.html#change-legend-name",
+    "title": "ggplot2",
+    "section": "Change legend name",
+    "text": "Change legend name\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") + # Lgend name comes from inside labs()\n  geom_point(aes(col = region), size = 3)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-adjustments",
+    "href": "slides/08-ggplot2.html#other-adjustments",
+    "title": "ggplot2",
+    "section": "Other adjustments",
+    "text": "Other adjustments\n\nadd a line with intercept the US rate.\n\n\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt; \n  pull(rate)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-a-line",
+    "href": "slides/08-ggplot2.html#add-a-line",
+    "title": "ggplot2",
+    "section": "Add a line",
+    "text": "Add a line\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\") \n\n#default slope=1; lty=2: dashed line\n\n0= no line, 1=solid, 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#we-are-close",
+    "href": "slides/08-ggplot2.html#we-are-close",
+    "title": "ggplot2",
+    "section": "We are close!",
+    "text": "We are close!"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-adjustments-1",
+    "href": "slides/08-ggplot2.html#other-adjustments-1",
+    "title": "ggplot2",
+    "section": "Other adjustments",
+    "text": "Other adjustments\n\nTo make the final adjustments we will save our current draft in p and add layers.\n\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages",
+    "href": "slides/08-ggplot2.html#add-on-packages",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\n\nThe dslabs package can define the look used in the textbook:\n\n\nds_theme_set()\n\n\nMany other themes are added by the package ggthemes."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-1",
+    "href": "slides/08-ggplot2.html#add-on-packages-1",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nggthemes provides pre-designed themes.\n\nlibrary(ggthemes)\np + theme_economist()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-2",
+    "href": "slides/08-ggplot2.html#add-on-packages-2",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nHere is the FiveThirtyEight theme:\n\np + theme_fivethirtyeight()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-3",
+    "href": "slides/08-ggplot2.html#add-on-packages-3",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nIf you want to ruin the plot use the excel theme:\n\np + theme_excel()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-4",
+    "href": "slides/08-ggplot2.html#add-on-packages-4",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nThemePark provides fun themes:\n\nlibrary(ThemePark)\np + theme_starwars()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-5",
+    "href": "slides/08-ggplot2.html#add-on-packages-5",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nThis is a fan favorite:\n\np + theme_barbie()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-6",
+    "href": "slides/08-ggplot2.html#add-on-packages-6",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\n\nTo avoid the state abbreviations being on top of each other we can use the ggrepel package.\nWe change the layer geom_text(nudge_x = 0.05) to geom_text_repel()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#putting-it-all-together",
+    "href": "slides/08-ggplot2.html#putting-it-all-together",
+    "title": "ggplot2",
+    "section": "Putting it all together",
+    "text": "Putting it all together\n\nCodePlot\n\n\n\nlibrary(ggthemes)\nlibrary(ggrepel)\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt;\n  pull(rate)\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_text_repel() + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#grids-of-plots",
+    "href": "slides/08-ggplot2.html#grids-of-plots",
+    "title": "ggplot2",
+    "section": "Grids of plots",
+    "text": "Grids of plots\n\nWe often want to put plots next to each other.\nThe gridExtra package permits us to do that:\n\n\nCodePlot\n\n\n\nlibrary(gridExtra)\np1 &lt;- murders |&gt; \n  ggplot(aes(log10(population))) + \n  geom_histogram()\np2 &lt;- murders |&gt; \n  ggplot(aes(log10(population), log10(total))) + \n  geom_point()\ngrid.arrange(p1, p2, ncol = 2)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#grids-of-plots-1",
+    "href": "slides/08-ggplot2.html#grids-of-plots-1",
+    "title": "ggplot2",
+    "section": "Grids of plots",
+    "text": "Grids of plots\n\nThere are several additional packages for combining ggplot2 plots into visually appealing layouts:**\ncowplot: A versatile package designed for publication-quality plots, offering seamless integration with ggplot2.\nggpubr: Provides user-friendly functions for combining and annotating ggplot2 plots with minimal effort.\nNew packages frequently emerge. Explore beyond these options and stay curious—there might be new tools that suit your needs even better!"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-graph-we-will-create",
+    "href": "slides/08-ggplot2.html#the-graph-we-will-create",
+    "title": "ggplot2",
+    "section": "The graph we will create",
+    "text": "The graph we will create"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#three-main-components-of-a-graph",
+    "href": "slides/08-ggplot2.html#three-main-components-of-a-graph",
+    "title": "ggplot2",
+    "section": "Three main components of a graph",
+    "text": "Three main components of a graph\n\nData: ususally a data frame, such as murders used to generate the previous plot\nGeometry: plot type, such as the scatterplot above.\nAesthetic mapping: How we map visual cues (\\(x, y,\\) color, labels, etc.) to the data"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph-visibilityhidden",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph-visibilityhidden",
+    "title": "ggplot2",
+    "section": "The components of a graph (visibility=“hidden”)",
+    "text": "The components of a graph (visibility=“hidden”)\n\nWe also note that:\n\nThe points are labeled with the state abbreviations.\nThe range of the x-axis and y-axis appears to be defined by the range of the data.\nAxes are in the log-scales.\nThere are labels, a title, a legend, and we use the style of The Economist magazine.\n\nWe will now construct the plot, piece by piece."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#print-a-ggplot-graph",
+    "href": "slides/08-ggplot2.html#print-a-ggplot-graph",
+    "title": "ggplot2",
+    "section": "Print a ggplot graph",
+    "text": "Print a ggplot graph\nTo see the plot we can print it:\n\nprint(p)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#graph-layers",
+    "href": "slides/08-ggplot2.html#graph-layers",
+    "title": "ggplot2",
+    "section": "Graph layers",
+    "text": "Graph layers\n\nWe create graphs by adding layers.\nLayers define geometries, compute summary statistics, define what scales to use, or even change styles.\nTo add layers, we use the symbol +.\nIn general, a line of code will look like this:\n\n\nDATA |&gt; ggplot() + LAYER 1 + LAYER 2 + ... + LAYER N\n\n\nUsually, the first added layer defines the geometry."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scatter-plot-geom_points",
+    "href": "slides/08-ggplot2.html#scatter-plot-geom_points",
+    "title": "ggplot2",
+    "section": "Scatter plot: geom_points",
+    "text": "Scatter plot: geom_points\n\nmurders |&gt; ggplot() + geom_point(aes(x = population/10^6, y = total))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-a-layer",
+    "href": "slides/08-ggplot2.html#add-a-layer",
+    "title": "ggplot2",
+    "section": "Add a layer",
+    "text": "Add a layer\n\nSince we defined p earlier, we can add a layer like this:\n\n\np + geom_point(aes(population/10^6, total))\n\n\n\nNote x= and y = can be omitted"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-text-with-geom_text",
+    "href": "slides/08-ggplot2.html#add-text-with-geom_text",
+    "title": "ggplot2",
+    "section": "Add text with geom_text",
+    "text": "Add text with geom_text\n\np + geom_point(aes(population/10^6, total)) +\n  geom_text(aes(population/10^6, total, label = abb))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scopes-of-aesthetical-mapping",
+    "href": "slides/08-ggplot2.html#scopes-of-aesthetical-mapping",
+    "title": "ggplot2",
+    "section": "Scopes of aesthetical mapping",
+    "text": "Scopes of aesthetical mapping\n\nThis one is fine\n\n\np_test &lt;- p + geom_text(aes(population/10^6, total, label = abb))\n\nis fine, whereas this call: this one is not\n\np_test &lt;- p + geom_text(aes(population/10^6, total), label = abb) \n\nwill give you an error since abb is not found because it is outside of the aes function.\n\ngeom_text does not know where to find abb: it’s a column name and not a global variable."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#point-size",
+    "href": "slides/08-ggplot2.html#point-size",
+    "title": "ggplot2",
+    "section": "point size",
+    "text": "point size\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb))\n\n\n\nsize can be an aesthetic mapping, but here it is not, so all points get bigger."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
+    "href": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
+    "title": "ggplot2",
+    "section": "Tinkering with argumentsnudege_x`",
+    "text": "Tinkering with argumentsnudege_x`\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5) #shift x right\n\n\n\nnudge_x is not an aesthetic mapping."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-mappings",
+    "href": "slides/08-ggplot2.html#global-mappings",
+    "title": "ggplot2",
+    "section": "Global mappings",
+    "text": "Global mappings\n\nDefined in aes in the ggplot function:\n\n\nargs(ggplot)\n\nfunction (data = NULL, mapping = aes(), ..., environment = parent.frame()) \nNULL"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles-with-labs",
+    "href": "slides/08-ggplot2.html#labels-and-titles-with-labs",
+    "title": "ggplot2",
+    "section": "Labels and titles with labs",
+    "text": "Labels and titles with labs\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")\n\n\nThis produces the same graph as in the previous slide."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#no-line-1solid-2dashed-3dotted-4dotdash-5longdash-6twodash",
+    "href": "slides/08-ggplot2.html#no-line-1solid-2dashed-3dotted-4dotdash-5longdash-6twodash",
+    "title": "ggplot2",
+    "section": "0= no line, 1=solid, 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash",
+    "text": "0= no line, 1=solid, 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#assign-the-graph-to-a-variable",
+    "href": "slides/08-ggplot2.html#assign-the-graph-to-a-variable",
+    "title": "ggplot2",
+    "section": "Assign the graph to a variable",
+    "text": "Assign the graph to a variable\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_fivethirtyeight",
+    "href": "slides/08-ggplot2.html#theme_fivethirtyeight",
+    "title": "ggplot2",
+    "section": "theme_Fivethirtyeight()",
+    "text": "theme_Fivethirtyeight()\nHere is the FiveThirtyEight theme:\n\np + theme_fivethirtyeight()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_cecel",
+    "href": "slides/08-ggplot2.html#theme_cecel",
+    "title": "ggplot2",
+    "section": "theme_cecel()",
+    "text": "theme_cecel()\nmaybe not a good one!\n\np + theme_excel()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_starwars",
+    "href": "slides/08-ggplot2.html#theme_starwars",
+    "title": "ggplot2",
+    "section": "theme_starwars()",
+    "text": "theme_starwars()\nThemePark provides fun themes:\n\nlibrary(ThemePark)\np + theme_starwars()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_barbie",
+    "href": "slides/08-ggplot2.html#theme_barbie",
+    "title": "ggplot2",
+    "section": "theme_barbie()",
+    "text": "theme_barbie()\nThis is a fan favorite:\n\np + theme_barbie()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geom_text_repel",
+    "href": "slides/08-ggplot2.html#geom_text_repel",
+    "title": "ggplot2",
+    "section": "geom_text_repel()",
+    "text": "geom_text_repel()\n\nTo avoid the state abbreviations being on top of each other we can use the ggrepel package.\nWe change the layer geom_text(nudge_x = 0.05) to geom_text_repel()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-packages-for-grids-of-plots",
+    "href": "slides/08-ggplot2.html#other-packages-for-grids-of-plots",
+    "title": "ggplot2",
+    "section": "Other packages for grids of plots",
+    "text": "Other packages for grids of plots\n\ncowplot: A versatile package designed for publication-quality plots, offering seamless integration with ggplot2.\nggpubr: Provides user-friendly functions for combining and annotating ggplot2 plots with minimal effort."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#tidying-data",
+    "href": "slides/09-tidyr.html#tidying-data",
+    "title": "Tidying data",
+    "section": "Tidying data",
+    "text": "Tidying data\n\nWe will a wide format dataset as an example:\n\n\nlibrary(tidyverse) \nlibrary(dslabs)\npath &lt;- system.file(\"extdata\", package = \"dslabs\")\nfilename &lt;- file.path(path, \"fertility-two-countries-example.csv\")\nwide_data &lt;- read_csv(filename)\nselect(wide_data, 1:10)\n\n# A tibble: 2 × 10\n  country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967` `1968`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37   2.28\n2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85   4.73"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer",
+    "href": "slides/09-tidyr.html#pivot_longer",
+    "title": "Tidying data",
+    "section": "pivot_longer",
+    "text": "pivot_longer\n\nOne of the most used functions in tidyr.\nThe first argument is a data frame, the one that will be converted.\nthe second argument, cols, specify the columns that will be pivoted, which containi observed values;\nThe default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns 1960, 1961 up to 2015.\nThe names_to specify a (new, default name) column name we want to assign to the (pivoted) current columns\nThe values_to argument specifies a (new, default value) column name we want to assign to the observations"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer-1",
+    "href": "slides/09-tidyr.html#pivot_longer-1",
+    "title": "Tidying data",
+    "section": "pivot_longer",
+    "text": "pivot_longer\nThe code to pivot the fertility data:\n\nnew_tidy_data &lt;- wide_data |&gt;\n  pivot_longer(`1960`:`2015`, names_to = \"year\", values_to = \"fertility\")\nhead(new_tidy_data)\n\n# A tibble: 6 × 3\n  country year  fertility\n  &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1 Germany 1960       2.41\n2 Germany 1961       2.44\n3 Germany 1962       2.47\n4 Germany 1963       2.49\n5 Germany 1964       2.49\n6 Germany 1965       2.48\n\n\n\nData have been converted to tidy format with columns year and fertility."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer-2",
+    "href": "slides/09-tidyr.html#pivot_longer-2",
+    "title": "Tidying data",
+    "section": "pivot_longer",
+    "text": "pivot_longer\n\nA quicker way to write this code is to specify which column will not include in the pivot:\n\n\nnew_tidy_data &lt;- wide_data |&gt;\n  pivot_longer(-country, names_to = \"year\", values_to = \"fertility\")"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer-3",
+    "href": "slides/09-tidyr.html#pivot_longer-3",
+    "title": "Tidying data",
+    "section": "pivot_longer",
+    "text": "pivot_longer\n\nNow that the data is tidy, we can use it with other tidyverse functions, such ggplot2:\n\n\nnew_tidy_data |&gt; \n  mutate(year = as.numeric(year)) |&gt;\n  ggplot(aes(year, fertility, color = country)) + \n  geom_line()"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer-4",
+    "href": "slides/09-tidyr.html#pivot_longer-4",
+    "title": "Tidying data",
+    "section": "pivot_longer",
+    "text": "pivot_longer\n\nA quicker way to write this code is to specify which column will not include in the pivot:\n\n\nnew_tidy_data &lt;- wide_data |&gt;\n  pivot_longer(-country, names_to = \"year\", values_to = \"fertility\")"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer-5",
+    "href": "slides/09-tidyr.html#pivot_longer-5",
+    "title": "Tidying data",
+    "section": "pivot_longer",
+    "text": "pivot_longer\n\nNow that the data is tidy, we can use it with other tidyverse functions, such ggplot2:\n\n\nnew_tidy_data |&gt; \n  mutate(year = as.numeric(year)) |&gt;\n  ggplot(aes(year, fertility, color = country)) + \n  geom_line()"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_wider",
+    "href": "slides/09-tidyr.html#pivot_wider",
+    "title": "Tidying data",
+    "section": "pivot_wider",
+    "text": "pivot_wider\n\nIt is sometimes useful for data wrangling purposes to convert tidy data into wide data.\nThe pivot_wider function is basically the inverse of pivot_longer."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_wider-1",
+    "href": "slides/09-tidyr.html#pivot_wider-1",
+    "title": "Tidying data",
+    "section": "pivot_wider",
+    "text": "pivot_wider\n\nThe first argument is for the data, but since we are using the pipe, we don’t show it.\nThe names_from argument tells pivot_wider which variable will be used as the (new) column names.\nThe values_from argument specifies which variable to use to fill out the cells."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_wider-2",
+    "href": "slides/09-tidyr.html#pivot_wider-2",
+    "title": "Tidying data",
+    "section": "pivot_wider",
+    "text": "pivot_wider\nHere is some example code\n\nnew_wide_data &lt;- new_tidy_data |&gt; \n  pivot_wider(names_from = year, values_from = fertility)\nselect(new_wide_data, country, `1960`:`1967`)\n\n# A tibble: 2 × 9\n  country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37\n2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85\n\n\nSimilar to pivot_wider, names_from and values_from default to name and value."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example",
+    "href": "slides/09-tidyr.html#example",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\n\nWe start with the pivot_longer function, but we should no longer use the column name year for the new column since it also contains the variable type.\nWe will call it name, the default, for now:\n\n\nraw_dat |&gt; pivot_longer(-country) |&gt; head()\n\n# A tibble: 6 × 3\n  country name                 value\n  &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;\n1 Germany 1960_fertility        2.41\n2 Germany 1960_life_expectancy 69.3 \n3 Germany 1961_fertility        2.44\n4 Germany 1961_life_expectancy 69.8 \n5 Germany 1962_fertility        2.47\n6 Germany 1962_life_expectancy 70.0"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-1",
+    "href": "slides/09-tidyr.html#example-1",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\n\nThe result is not exactly what we refer to as tidy since each observation is associated with two, not one, rows.\nWe want to have the values from the two variables, fertility and life expectancy, in two separate columns.\nThe first challenge to achieve this is to separate the name column into the year and the variable type."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-2",
+    "href": "slides/09-tidyr.html#example-2",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\n\nEncoding multiple variables in a column name is such a common problem that the tidyr package includes function to separate these columns into two or more:\n\n\nraw_dat |&gt; \n  pivot_longer(-country) |&gt; \n  separate_wider_delim(name, delim = \"_\",  names = c(\"year\", \"name\"), \n                       too_many = \"merge\") |&gt;\n  head()\n\n# A tibble: 6 × 4\n  country year  name            value\n  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;\n1 Germany 1960  fertility        2.41\n2 Germany 1960  life_expectancy 69.3 \n3 Germany 1961  fertility        2.44\n4 Germany 1961  life_expectancy 69.8 \n5 Germany 1962  fertility        2.47\n6 Germany 1962  life_expectancy 70.0"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-3",
+    "href": "slides/09-tidyr.html#example-3",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\n\nBut we are not done yet.\nWe need to create a column for each variable and change year to a number.\nAs we learned, the pivot_wider function can do this."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-4",
+    "href": "slides/09-tidyr.html#example-4",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\n\ndat &lt;- raw_dat |&gt; \n  pivot_longer(-country) |&gt; \n  separate_wider_delim(name, delim = \"_\", \n                       names = c(\"year\", \"name\"), \n                       too_many = \"merge\") |&gt;\n  pivot_wider() |&gt;\n  mutate(year = as.integer(year))\nhead(dat)\n\n# A tibble: 6 × 4\n  country  year fertility life_expectancy\n  &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;\n1 Germany  1960      2.41            69.3\n2 Germany  1961      2.44            69.8\n3 Germany  1962      2.47            70.0\n4 Germany  1963      2.49            70.1\n5 Germany  1964      2.49            70.7\n6 Germany  1965      2.48            70.6"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-5",
+    "href": "slides/09-tidyr.html#example-5",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\nThe data is now is now in tidy form and we can use with other packages:\n\np1 &lt;- dat |&gt; ggplot(aes(year, fertility, color = country)) + geom_line(show.legend = FALSE)\np2 &lt;- dat |&gt; ggplot(aes(year, life_expectancy, color = country)) + geom_line()\ngridExtra::grid.arrange(p1, p2, ncol = 2, widths = c(3,4))"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-6",
+    "href": "slides/09-tidyr.html#example-6",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\n\ndat &lt;- raw_dat |&gt; \n  pivot_longer(-country) |&gt; \n  separate_wider_delim(name, delim = \"_\", \n                       names = c(\"year\", \"name\"), \n                       too_many = \"merge\") |&gt;\n  pivot_wider() |&gt;\n  mutate(year = as.integer(year))\nhead(dat)\n\n# A tibble: 6 × 4\n  country  year fertility life_expectancy\n  &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;\n1 Germany  1960      2.41            69.3\n2 Germany  1961      2.44            69.8\n3 Germany  1962      2.47            70.0\n4 Germany  1963      2.49            70.1\n5 Germany  1964      2.49            70.7\n6 Germany  1965      2.48            70.6"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-7",
+    "href": "slides/09-tidyr.html#example-7",
+    "title": "Tidying data",
+    "section": "Example",
+    "text": "Example\nThe data is now is now in tidy form and we can use with other packages:\n\np1 &lt;- dat |&gt; ggplot(aes(year, fertility, color = country)) + geom_line(show.legend = FALSE)\np2 &lt;- dat |&gt; ggplot(aes(year, life_expectancy, color = country)) + geom_line()\ngridExtra::grid.arrange(p1, p2, ncol = 2, widths = c(3,4))"
+  },
+  {
+    "objectID": "slides/01-unix.html#wath-is-a-terminal",
+    "href": "slides/01-unix.html#wath-is-a-terminal",
+    "title": "Unix/Linux",
+    "section": "Wath is a terminal",
+    "text": "Wath is a terminal\n\nThe terminal is integrated into Mac and Linux systems,\nbut Windows users will have to install an emulator (we will use Git Bash).\nYou may experience it also in Colab.",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/01-unix.html#shell",
+    "href": "slides/01-unix.html#shell",
+    "title": "Unix/Linux",
+    "section": "Shell",
+    "text": "Shell\n\nThe shell is a program to organize and facilitate your interactions with the operating system\necho $SHELL will display the shell you are using\nhidden files and directories to provide customization e.g. .gitconfig or .ssh\nmost shells have two files that are commonly used to provide user level customization .zsh, and .zprofile",
+    "crumbs": [
+      "Lecture 1-Unix"
+    ]
+  },
+  {
+    "objectID": "slides/09-tidyr.html#wide-data-set",
+    "href": "slides/09-tidyr.html#wide-data-set",
+    "title": "Tidying data",
+    "section": "Wide data set",
+    "text": "Wide data set\n\na wide format dataset (not tidy):\n\n\nlibrary(tidyverse) \nlibrary(dslabs)\npath &lt;- system.file(\"extdata\", package = \"dslabs\")\nfilename &lt;- file.path(path, \"fertility-two-countries-example.csv\")\nwide_data &lt;- read_csv(filename)\nselect(wide_data, 1:10)\n\n# A tibble: 2 × 10\n  country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967` `1968`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37   2.28\n2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85   4.73"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_longer-exclude-columns",
+    "href": "slides/09-tidyr.html#pivot_longer-exclude-columns",
+    "title": "Tidying data",
+    "section": "pivot_longer: exclude columns",
+    "text": "pivot_longer: exclude columns\n\nA quicker way to write this code is to specify which column will not be included in the pivot:\n\n\nnew_tidy_data &lt;- wide_data |&gt;\n  pivot_longer(-country, names_to = \"year\", values_to = \"fertility\")"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#use-tidy-data-with-tidyverse-functions",
+    "href": "slides/09-tidyr.html#use-tidy-data-with-tidyverse-functions",
+    "title": "Tidying data",
+    "section": "Use tidy data with tidyverse functions",
+    "text": "Use tidy data with tidyverse functions\n\nNow that the data is tidy, we can use it with other tidyverse functions, such ggplot2:\n\n\nnew_tidy_data |&gt; \n  mutate(year = as.numeric(year)) |&gt;\n  ggplot(aes(year, fertility, color = country)) + \n  geom_line()"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#pivot_wider-example",
+    "href": "slides/09-tidyr.html#pivot_wider-example",
+    "title": "Tidying data",
+    "section": "pivot_wider example",
+    "text": "pivot_wider example\n\nnew_wide_data &lt;- new_tidy_data |&gt; \n  pivot_wider(names_from = year, values_from = fertility)\nselect(new_wide_data, country, `1960`:`1967`)\n\n# A tibble: 2 × 9\n  country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37\n2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85\n\n\nSimilar to pivot_wider, names_from and values_from default to name and value."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#a-complex-example",
+    "href": "slides/09-tidyr.html#a-complex-example",
+    "title": "Tidying data",
+    "section": "A complex example",
+    "text": "A complex example\n\npath &lt;- system.file(\"extdata\", package = \"dslabs\")\n\nfilename &lt;- \"life-expectancy-and-fertility-two-countries-example.csv\"\nfilename &lt;-  file.path(path, filename)\n\nraw_dat &lt;- read_csv(filename)\nselect(raw_dat, 1:5)\n\n# A tibble: 2 × 5\n  country     `1960_fertility` `1960_life_expectancy` `1961_fertility`\n  &lt;chr&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;            &lt;dbl&gt;\n1 Germany                 2.41                   69.3             2.44\n2 South Korea             6.16                   53.0             5.99\n# ℹ 1 more variable: `1961_life_expectancy` &lt;dbl&gt;\n\n\n\nThe data is in wide format.\nincludes values for two variables, fertility and life expectancy,\nEncoding information in the column names is not recommended but, unfortunately, it is quite common."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#a-complex-example-data",
+    "href": "slides/09-tidyr.html#a-complex-example-data",
+    "title": "Tidying data",
+    "section": "A complex example-data",
+    "text": "A complex example-data\n\npath &lt;- system.file(\"extdata\", package = \"dslabs\")\n\nfilename &lt;- \"life-expectancy-and-fertility-two-countries-example.csv\"\nfilename &lt;-  file.path(path, filename)\n\nraw_dat &lt;- read_csv(filename)\nselect(raw_dat, 1:5)\n\n# A tibble: 2 × 5\n  country     `1960_fertility` `1960_life_expectancy` `1961_fertility`\n  &lt;chr&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;            &lt;dbl&gt;\n1 Germany                 2.41                   69.3             2.44\n2 South Korea             6.16                   53.0             5.99\n# ℹ 1 more variable: `1961_life_expectancy` &lt;dbl&gt;\n\n\n\nThe data is in wide format.\nincludes values for two variables, fertility and life expectancy, in two years"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-pivot_longer",
+    "href": "slides/09-tidyr.html#example-pivot_longer",
+    "title": "Tidying data",
+    "section": "Example: pivot_longer",
+    "text": "Example: pivot_longer\n\nWe start with the pivot_longer function, but we should no longer use the column name year for the new column since it also contains the variable type.\nWe will use the default name, for now:\n\n\nraw_dat |&gt; pivot_longer(-country) |&gt; head()\n\n# A tibble: 6 × 3\n  country name                 value\n  &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;\n1 Germany 1960_fertility        2.41\n2 Germany 1960_life_expectancy 69.3 \n3 Germany 1961_fertility        2.44\n4 Germany 1961_life_expectancy 69.8 \n5 Germany 1962_fertility        2.47\n6 Germany 1962_life_expectancy 70.0"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-chanllenge",
+    "href": "slides/09-tidyr.html#example-chanllenge",
+    "title": "Tidying data",
+    "section": "Example: chanllenge",
+    "text": "Example: chanllenge\n\nThe result is not exactly tidy since each observation is associated with two, not one, rows.\nWe want to have the values from the two variables, fertility and life expectancy, in two separate columns.\nThe first challenge to achieve this is to separate the name column into the year and the variable type."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-split-a-column-by-delim",
+    "href": "slides/09-tidyr.html#example-split-a-column-by-delim",
+    "title": "Tidying data",
+    "section": "Example: Split a column by delim",
+    "text": "Example: Split a column by delim\n\nEncoding multiple variables in a column name is such a common problem that the tidyr package includes function to separate these columns into two or more:\n\n\nraw_dat |&gt; \n  pivot_longer(-country) |&gt; \n  separate_wider_delim(name, delim = \"_\",  names = c(\"year\", \"name\"), \n                       too_many = \"merge\") |&gt; # merge the rest pieces into \"name\"\n  head()\n\n# A tibble: 6 × 4\n  country year  name            value\n  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;\n1 Germany 1960  fertility        2.41\n2 Germany 1960  life_expectancy 69.3 \n3 Germany 1961  fertility        2.44\n4 Germany 1961  life_expectancy 69.8 \n5 Germany 1962  fertility        2.47\n6 Germany 1962  life_expectancy 70.0"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-more-work-needed",
+    "href": "slides/09-tidyr.html#example-more-work-needed",
+    "title": "Tidying data",
+    "section": "Example: More work needed",
+    "text": "Example: More work needed\n\nBut we are not done yet.\nWe need to create a column for each variable and change year to a number.\nthe pivot_wider function can do this."
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-pivot_wider",
+    "href": "slides/09-tidyr.html#example-pivot_wider",
+    "title": "Tidying data",
+    "section": "Example: pivot_wider",
+    "text": "Example: pivot_wider\n\ndat &lt;- raw_dat |&gt; \n  pivot_longer(-country) |&gt; \n  separate_wider_delim(name, delim = \"_\", \n                       names = c(\"year\", \"name\"), \n                       too_many = \"merge\") |&gt;\n  pivot_wider() |&gt; #used the default `name` and `value`\n  mutate(year = as.integer(year))\nhead(dat)\n\n# A tibble: 6 × 4\n  country  year fertility life_expectancy\n  &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;\n1 Germany  1960      2.41            69.3\n2 Germany  1961      2.44            69.8\n3 Germany  1962      2.47            70.0\n4 Germany  1963      2.49            70.1\n5 Germany  1964      2.49            70.7\n6 Germany  1965      2.48            70.6"
+  },
+  {
+    "objectID": "slides/09-tidyr.html#example-plot-using-the-tidy-data",
+    "href": "slides/09-tidyr.html#example-plot-using-the-tidy-data",
+    "title": "Tidying data",
+    "section": "Example: plot using the tidy data",
+    "text": "Example: plot using the tidy data\nThe data is now is in tidy form\n\np1 &lt;- dat |&gt; ggplot(aes(year, fertility, color = country)) + geom_line(show.legend = FALSE)\np2 &lt;- dat |&gt; ggplot(aes(year, life_expectancy, color = country)) + geom_line()\ngridExtra::grid.arrange(p1, p2, ncol = 2, widths = c(3,4)) # left:right (width)=3:4"
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling\n\nData wrangling is the process of processing data from it’s original state into a form that permits us to focus on analysis.\nTidy data is such an example\nother forms such as matrices."
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling-1",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling-1",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling\nWe will discuss five concepts/tools considered essential for data wrangling:\n\nImporting data from files\nREST (Representational State Transfer) APIs: interact with a web server via HTTP\nJoining tables\nhtml parsing\nworking with dates and times\nlocales"
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling-2",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling-2",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling\nData wrangling can involve several complicated steps such as:\n\nextracting data from a file,\nconverting nested key-value pairs into a data frame,\nintegrating data from different source, and\nconstructing requests for data bases."
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling-3",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling-3",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling\nToday we briefly discuss five concepts/tools considered essential for data wrangling:\n\nImporting data from files\nRESTful APIs\nJoining tables\nhtml parsing\nworking with dates and times\nlocales"
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling-4",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling-4",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling",
+    "text": "Data Wrangling\n\nWe barely scratch the surface on these topics.\nRarely are all these relevant for a single analysis.\nYou will likely face them all at some point.\nLecture goal is to make you aware of challenges, tools to tackle them, and help you learn how to learn more."
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#further-learning",
+    "href": "slides/10-intro-to-wrangling.html#further-learning",
+    "title": "Introduction to Wrangling",
+    "section": "Further learning",
+    "text": "Further learning\n\nSQL widely used in data-intensive industries to manage and manipulate large databases.\nIn R, dplyr functions like filter, select, and the joins mirror SQL operations.\nRecommended SQL Resources: W3Schools, Codecademy, Khan Academy, and SQLZoo"
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#raw-data",
+    "href": "slides/10-intro-to-wrangling.html#raw-data",
+    "title": "Introduction to Wrangling",
+    "section": "Raw data",
+    "text": "Raw data\n\nvery rarely in a data science project a data set is already in tidy format.\nOften data is in a file, a database, or extracted from a document, including web pages, tweets, or PDFs.\nAs a result, data might be unstructured in complex ways."
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling-tasks",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling-tasks",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling Tasks",
+    "text": "Data Wrangling Tasks\nData wrangling can involve several complicated steps such as:\n\nextracting data from a file,\nhandling missing values\ncleaning data to have desired format/data type\nconverting nested key-value pairs into a data frame,\nintegrating data from different source, and\nconstructing requests for data bases."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#importing-data",
+    "href": "slides/11-importing-files.html#importing-data",
+    "title": "Importing files",
+    "section": "Importing data",
+    "text": "Importing data\nTo import data we need to:\n\nIdentify the file’s location.\nKnow what function or parsers to use.\n\nFor the second step it helps to know the file type and encoding."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#importing-data-1",
+    "href": "slides/11-importing-files.html#importing-data-1",
+    "title": "Importing files",
+    "section": "Importing data",
+    "text": "Importing data\nTo import data we need to:\n\nIdentify the file’s location.\nKnow what function or parsers to use.\n\nFor the second step it helps to know the file type and encoding."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#file-types",
+    "href": "slides/11-importing-files.html#file-types",
+    "title": "Importing files",
+    "section": "File types",
+    "text": "File types\n\nFiles can generally be classified into two categories: text and binary."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#text-files",
+    "href": "slides/11-importing-files.html#text-files",
+    "title": "Importing files",
+    "section": "Text files",
+    "text": "Text files\n\ncommon data text file format: .csv\nscript files: .r, .qmd\n\n\ndir &lt;- system.file(package = \"dslabs\") \nfile_path &lt;- file.path(dir, \"extdata/murders.csv\") \nfile.copy(file_path, \"murders.csv\") \n\n[1] TRUE\n\n# file.copy(from, to), returns TRUE/FALSE (success/failure)"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#text-files-1",
+    "href": "slides/11-importing-files.html#text-files-1",
+    "title": "Importing files",
+    "section": "Text files",
+    "text": "Text files\n\nAn advantage of text files is that we can easily “look” at them without having to purchase any kind of special software or follow complicated instructions.\nExercise:\n\ncopy murders.csv into your working directory and examine it with less.\nThen try the Open file RStudio tool."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#text-files-2",
+    "href": "slides/11-importing-files.html#text-files-2",
+    "title": "Importing files",
+    "section": "Text files",
+    "text": "Text files\n\nLine breaks are used to separate rows and a delimiter to separate columns within a row.\nThe most common delimiters are comma (,), semicolon (;), space (), and tab (\\t).\nDifferent parsers are used to read these files, so we need to know what delimiter was used.\nIn some cases, the delimiter can be inferred from file suffix: csv, tsv, for example.\nBut we recommend looking at the file rather than inferring from the suffix."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#text-files-3",
+    "href": "slides/11-importing-files.html#text-files-3",
+    "title": "Importing files",
+    "section": "Text files",
+    "text": "Text files\n\nIn R, you can look at any number of lines from within R using the readLines function:\n\n\nreadLines(\"murders.csv\", n = 3) \n\n[1] \"state,abb,region,population,total\" \"Alabama,AL,South,4779736,135\"     \n[3] \"Alaska,AK,West,710231,19\""
+  },
+  {
+    "objectID": "slides/11-importing-files.html#binary-files",
+    "href": "slides/11-importing-files.html#binary-files",
+    "title": "Importing files",
+    "section": "Binary files",
+    "text": "Binary files\n\nOpening image files such as jpg or png in a text editor or using readLines in R will not show comprehensible content: these are binary files.\nbinary files have many formats specific to their data type, are not human readable\nR’s readBin function can process any binary file"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#r-base-parsers",
+    "href": "slides/11-importing-files.html#r-base-parsers",
+    "title": "Importing files",
+    "section": "R Base Parsers",
+    "text": "R Base Parsers\n\nread.table(\"murders.csv\", sep = \"\\t\") |&gt; head(2) #wrong delimiter\n\n                                 V1\n1 state,abb,region,population,total\n2      Alabama,AL,South,4779736,135\n\nread.csv(\"murders.csv\") |&gt; head(2)\n\n    state abb region population total\n1 Alabama  AL  South    4779736   135\n2  Alaska  AK   West     710231    19\n\n\nCompare the difference."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#readr-parsers",
+    "href": "slides/11-importing-files.html#readr-parsers",
+    "title": "Importing files",
+    "section": "readr Parsers",
+    "text": "readr Parsers\nreadr provides alternatives that produce tibbles:\n\nlibrary(readr)\nread_csv(\"murders.csv\") |&gt; head(2)\n\n# A tibble: 2 × 5\n  state   abb   region population total\n  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;\n1 Alabama AL    South     4779736   135\n2 Alaska  AK    West       710231    19\n\nread_delim(\"murders.csv\", delim = \"\\t\") |&gt; head(2) #incorrect delimiter\n\n# A tibble: 2 × 1\n  `state,abb,region,population,total`\n  &lt;chr&gt;                              \n1 Alabama,AL,South,4779736,135       \n2 Alaska,AK,West,710231,19"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#readr-parsers-1",
+    "href": "slides/11-importing-files.html#readr-parsers-1",
+    "title": "Importing files",
+    "section": "readr Parsers",
+    "text": "readr Parsers\n\n\n\n\n\n\n\n\nFunction\nFormat\nSuffix\n\n\n\n\nread_table\nwhite space separated values\ntxt\n\n\nread_csv\ncomma separated values\ncsv\n\n\nread_csv2\nsemicolon separated values\ncsv\n\n\nread_tsv\ntab separated values\ntsv\n\n\nread_delim\nmust define delimiter\ntxt\n\n\nread_lines\nsimilar to readLines\nany file"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#readxl-parsers",
+    "href": "slides/11-importing-files.html#readxl-parsers",
+    "title": "Importing files",
+    "section": "readxl Parsers",
+    "text": "readxl Parsers\nFor Excel files can use the readxl package.\n\nlibrary(readxl)\nfn &lt;- file.path(dir, \"extdata/2010_bigfive_regents.xls\") \nread_xls(fn) |&gt; head(2)\n\n# A tibble: 2 × 6\n  label     `INTEGRATED ALGEBRA` `GLOBAL HISTORY` `LIVING ENVIRONMENT` ENGLISH\n  &lt;chr&gt;                    &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;   &lt;dbl&gt;\n1 test_year                 2010             2010                 2010    2010\n2 Scores                  131024           113804               104201  103886\n# ℹ 1 more variable: `U.S. HISTORY` &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#readxl-parsers-1",
+    "href": "slides/11-importing-files.html#readxl-parsers-1",
+    "title": "Importing files",
+    "section": "readxl Parsers",
+    "text": "readxl Parsers\nYou can read specific sheets and see them using\n\nexcel_sheets(fn)\n\n[1] \"Sheet1\" \"Sheet2\" \"Sheet3\"\n\n\nNote that read_xls has a sheet argument."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#readxl-parsers-2",
+    "href": "slides/11-importing-files.html#readxl-parsers-2",
+    "title": "Importing files",
+    "section": "readxl Parsers",
+    "text": "readxl Parsers\n\n\n\n\n\n\n\n\nFunction\nFormat\nSuffix\n\n\n\n\nread_excel\nauto detect the format\nxls, xlsx\n\n\nread_xls\noriginal format\nxls\n\n\nread_xlsx\nnew format\nxlsx\n\n\nexcel_sheets\ndetects sheets\nxls, xlsx"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#data.table-parsers",
+    "href": "slides/11-importing-files.html#data.table-parsers",
+    "title": "Importing files",
+    "section": "data.table Parsers",
+    "text": "data.table Parsers\nThe data.table package provide a very fast parser:\n\nlibrary(data.table)\nx &lt;- fread(\"murders.csv\")\nclass(x)\n\n[1] \"data.table\" \"data.frame\"\n\n\nNote: It returns a file in data.table format which we have mentioned but not explained."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#scan",
+    "href": "slides/11-importing-files.html#scan",
+    "title": "Importing files",
+    "section": "scan",
+    "text": "scan\n\nThe scan function is the most general parser.\nIt will read in any text file and return a vector so you are on your own coverting it to a data frame.\nBecause it returns a vector, you need to tell it in advance what data type to expect:\n\n\nscan(\"murders.csv\", what = \"c\", sep = \",\", n = 10)\n\n [1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n [6] \"Alabama\"    \"AL\"         \"South\"      \"4779736\"    \"135\"       \n\n\n\nIt can also be used to read from the console. Try typing scan(). Hit return to stop."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding",
+    "href": "slides/11-importing-files.html#encoding",
+    "title": "Importing files",
+    "section": "Encoding",
+    "text": "Encoding\n\nComputer translates everything into 0s and 1s.\nASCII is an encoding system that assigns specific numbers to characters.\nUsing 7 bits, ASCII can represent \\(2^7 = 128\\) unique symbols, sufficient for all English keyboard characters.\nHowever, many global languages contain characters outside ASCII’s range."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding-1",
+    "href": "slides/11-importing-files.html#encoding-1",
+    "title": "Importing files",
+    "section": "Encoding",
+    "text": "Encoding\n\nFor instance, the é in “México” isn’t in ASCII’s catalog.\nTo address this, broader encodings emerged.\nUnicode offers variations using 8, 16, or 32 bits, known as UTF-8, UTF-16, and UTF-32.\nRStudio typically uses UTF-8 as its default.\nNotably, ASCII is a subset of UTF-8, meaning that if a file is ASCII-encoded, presuming it’s UTF-8 encoded won’t cause issues."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding-2",
+    "href": "slides/11-importing-files.html#encoding-2",
+    "title": "Importing files",
+    "section": "Encoding",
+    "text": "Encoding\n\nHowever, there other encodings, such as ISO-8859-1 (also known as Latin-1) developed for the western European languages, Big5 for Traditional Chinese, and ISO-8859-6 for Arabic.\nTake a look at this file:\n\n\nfn &lt;- \"calificaciones.csv\" \nfile.copy(file.path(system.file(\"extdata\", package = \"dslabs\"), fn), fn) \n\n[1] TRUE\n\nreadLines(fn, n = 1) \n\n[1] \"\\\"nombre\\\",\\\"f.n.\\\",\\\"estampa\\\",\\\"puntuaci\\xf3n\\\"\""
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding-3",
+    "href": "slides/11-importing-files.html#encoding-3",
+    "title": "Importing files",
+    "section": "Encoding",
+    "text": "Encoding\n\nThe readr parsers permit us to specify an encoding.\nIt also includes a function that tries to guess the encoding:\n\n\nguess_encoding(\"murders.csv\") \n\n# A tibble: 1 × 2\n  encoding confidence\n  &lt;chr&gt;         &lt;dbl&gt;\n1 ASCII             1\n\nguess_encoding(\"calificaciones.csv\") \n\n# A tibble: 3 × 2\n  encoding   confidence\n  &lt;chr&gt;           &lt;dbl&gt;\n1 ISO-8859-1       0.92\n2 ISO-8859-2       0.72\n3 ISO-8859-9       0.53"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding-4",
+    "href": "slides/11-importing-files.html#encoding-4",
+    "title": "Importing files",
+    "section": "Encoding",
+    "text": "Encoding\n\nOnce we know the encoding we can specify it through the locale argument:\n\n\ndat &lt;- read_csv(\"calificaciones.csv\", show_col_types = FALSE, \n                locale = locale(encoding = \"ISO-8859-1\")) \n\n\nWe learn about locales in later."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding-5",
+    "href": "slides/11-importing-files.html#encoding-5",
+    "title": "Importing files",
+    "section": "Encoding",
+    "text": "Encoding\n\nWe can now see that the characters in the header were read in correctly:\n\n\ndat\n\n# A tibble: 7 × 4\n  nombre   f.n.                     estampa             puntuación\n  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;\n1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875\n2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990\n3 João     10 de junio de 1931      2023-09-21 22:43:28        989\n4 López    24 de julio de 1969      2023-09-22 01:06:59        887\n5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931\n6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887\n7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#downloading-files",
+    "href": "slides/11-importing-files.html#downloading-files",
+    "title": "Importing files",
+    "section": "Downloading files",
+    "text": "Downloading files\n\nA common place for data to reside is on the internet.\nWe can download these files and then import them.\nWe can also read them directly from the web.\n\n\nurl &lt;- paste0(\"https://raw.githubusercontent.com/\", \n              \"rafalab/dslabs/master/inst/extdata/murders.csv\") \nx &lt;- read.csv(url)"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#downloading-files-1",
+    "href": "slides/11-importing-files.html#downloading-files-1",
+    "title": "Importing files",
+    "section": "Downloading files",
+    "text": "Downloading files\n\nIf you want a local copy, you can use `download.file:\n\n\ndownload.file(url, \"murders.csv\") \n\n\nThis will download the file and save it on your system with the name murders.csv.\nNote You can use any name here, not necessarily murders.csv."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#downloading-files-2",
+    "href": "slides/11-importing-files.html#downloading-files-2",
+    "title": "Importing files",
+    "section": "Downloading files",
+    "text": "Downloading files\n\n\n\n\n\n\nWarning\n\n\nThe function download.file overwrites existing files without warning.\n\n\n\n\nTwo functions that are sometimes useful when downloading data from the internet are tempdir and tempfile.\n\n\ntmp_filename &lt;- tempfile() \ndownload.file(url, tmp_filename) \ndat &lt;- read_csv(tmp_filename) \nfile.remove(tmp_filename)"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#advantages-of-text-files",
+    "href": "slides/11-importing-files.html#advantages-of-text-files",
+    "title": "Importing files",
+    "section": "Advantages of text files",
+    "text": "Advantages of text files\n\nAn advantage of text files is that we can easily view its content.\nExercise:\n\ncopy murders.csv into your working directory and examine it with less.\nThen try the Open file RStudio tool."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#line-breaks-and-delimters",
+    "href": "slides/11-importing-files.html#line-breaks-and-delimters",
+    "title": "Importing files",
+    "section": "Line breaks and delimters",
+    "text": "Line breaks and delimters\n\nLine breaks are used to separate rows\na delimiter to separate columns within a row.\nThe most common delimiters are comma (,), semicolon (;), space (), and tab (\\t).\nwe need to know what delimiter was used to choose a parser to read a file; The same file can be read by multiple parsers.\nIn some cases, the delimiter can be inferred from file extension: csv, tsv"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#readlines",
+    "href": "slides/11-importing-files.html#readlines",
+    "title": "Importing files",
+    "section": "readLines",
+    "text": "readLines\n\nreadLines(\"murders.csv\", n = 3) \n\n[1] \"state,abb,region,population,total\" \"Alabama,AL,South,4779736,135\"     \n[3] \"Alaska,AK,West,710231,19\""
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#data-wrangling-steps",
+    "href": "slides/10-intro-to-wrangling.html#data-wrangling-steps",
+    "title": "Introduction to Wrangling",
+    "section": "Data Wrangling Steps",
+    "text": "Data Wrangling Steps\nData wrangling can involve several complicated steps such as:\n\nextracting data from a file\nhandling missing values\ncleaning data to have desired format/data type\nconverting nested key-value pairs into a data frame\nintegrating data from different source, and\nconstructing requests for data bases."
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#five-concepts-of-data-wrangling",
+    "href": "slides/10-intro-to-wrangling.html#five-concepts-of-data-wrangling",
+    "title": "Introduction to Wrangling",
+    "section": "Five concepts of data wrangling",
+    "text": "Five concepts of data wrangling\n\nImporting data from files\nREST (Representational State Transfer) APIs: interact with a web server via HTTP\nJoining tables\nhtml parsing\nworking with dates and times\nlocales"
+  },
+  {
+    "objectID": "slides/10-intro-to-wrangling.html#sql-and-further-learning",
+    "href": "slides/10-intro-to-wrangling.html#sql-and-further-learning",
+    "title": "Introduction to Wrangling",
+    "section": "SQL and further learning",
+    "text": "SQL and further learning\n\nSQL widely used in data-intensive industries to manage and manipulate large databases.\nIn R, dplyr functions like filter, select, and the joins mirror SQL operations.\nSQL Resources: W3Schools, Codecademy, Khan Academy, and SQLZoo"
+  },
+  {
+    "objectID": "slides/02-rstudio.html#the-header",
+    "href": "slides/02-rstudio.html#the-header",
+    "title": "RStudio IDE and Quarto",
+    "section": "The header",
+    "text": "The header\n\nStart a new empty document.\nAt the top you see:\n\n\n---\ntitle: \"Untitled\"\n---\n\n\nThe things between the --- are the YAML header.\nQuarto guide.",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#quick-markdown-text-formating",
+    "href": "slides/02-rstudio.html#quick-markdown-text-formating",
+    "title": "RStudio IDE and Quarto",
+    "section": "Quick Markdown Text formating",
+    "text": "Quick Markdown Text formating\n*italics* or _italics_ = italics\n**bold** = bold\n***bold italics*** = bold italics\n~~strikethrough~~ = strikethrough\n`code` = code",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#code-chunk",
+    "href": "slides/02-rstudio.html#code-chunk",
+    "title": "RStudio IDE and Quarto",
+    "section": "Code chunk",
+    "text": "Code chunk\nThis:\n```\nline 1\nline 2\n```\nshows a code chunk:\nline 1\nline 2",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#links",
+    "href": "slides/02-rstudio.html#links",
+    "title": "RStudio IDE and Quarto",
+    "section": "Links",
+    "text": "Links\n\nShow the link: &lt;https://quarto.org/docs/guide/&gt;\nAdd link to text: [Quarto Guide](https://quarto.org/docs/guide/)\n\nLooks like this:\nhttps://quarto.org/docs/guide/\nQuarto Guide",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#images",
+    "href": "slides/02-rstudio.html#images",
+    "title": "RStudio IDE and Quarto",
+    "section": "Images",
+    "text": "Images\n![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)\nShows the plot and caption:\n\nMy caption\nThe image can also be a local file (replacing the html link with the path to the image.)",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#unordered-lists",
+    "href": "slides/02-rstudio.html#unordered-lists",
+    "title": "RStudio IDE and Quarto",
+    "section": "Unordered Lists",
+    "text": "Unordered Lists\nBullets:\n-   bullet 1\n    -   sub-bullet 1\n    -   sub-bullet 2\n-   bullet 2\nLooks like this:\n\nbullet 1\n\nsub-bullet 1\nsub-bullet 2\n\nbullet 2",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#ordered-lists",
+    "href": "slides/02-rstudio.html#ordered-lists",
+    "title": "RStudio IDE and Quarto",
+    "section": "Ordered Lists",
+    "text": "Ordered Lists\nOrdered list:\n1.  Item 1\n2.  Item 2\nLooks like this:\n\nItem 1\nItem 2",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#equations",
+    "href": "slides/02-rstudio.html#equations",
+    "title": "RStudio IDE and Quarto",
+    "section": "Equations",
+    "text": "Equations\n\n\n\n\n\n\n\nNote\n\n\nTechnical report often uses LaTeX for typesetting.\nThere are many online tutorials, like this one.",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#equations-using-latex.",
+    "href": "slides/02-rstudio.html#equations-using-latex.",
+    "title": "RStudio IDE and Quarto",
+    "section": "Equations using LaTeX.",
+    "text": "Equations using LaTeX.\nExamples:\n\nInline: $Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i$ looks like this \\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\)\nDisplay math:\n\n$$\n\\mathbf{Y} = \\mathbf{X\\beta} + \\mathbf{\\varepsilon}\n$$\nlooks like this:\n\\[\n\\mathbf{Y} = \\mathbf{X\\beta} + \\mathbf{\\varepsilon}\n\\]",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#code-in-quarto-document-.qmd-or-rmarkdown-.rmd",
+    "href": "slides/02-rstudio.html#code-in-quarto-document-.qmd-or-rmarkdown-.rmd",
+    "title": "RStudio IDE and Quarto",
+    "section": "Code in Quarto document .qmd (or RMarkdown .rmd)",
+    "text": "Code in Quarto document .qmd (or RMarkdown .rmd)\nOne can include and execute the code chunks in .qmd document by\n```{r}\n# R code here, e.g.\n2+3\n```\n\n\n\n\n\n\nNote\n\n\nTo add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#r-code-chuns",
+    "href": "slides/02-rstudio.html#r-code-chuns",
+    "title": "RStudio IDE and Quarto",
+    "section": "R Code Chuns",
+    "text": "R Code Chuns\nWe can write something like this:\n```{r}\nx &lt;- 1\ny &lt;- 2\nx + y\n```\nIt looks like this:\n\n\n[1] 3\n\n\nNote that it was evaluated and the result is shown.",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#computations",
+    "href": "slides/02-rstudio.html#computations",
+    "title": "RStudio IDE and Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nBy default, the code and result will show up.\nYou can send arguments to control the behavior with #|\nFor example, to avoid showing code in the final document, use echo: FALSE.\n\n```{r}\n#| echo: false\nx &lt;- 1\ny &lt;- 2\nx + y\n```",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#computations-1",
+    "href": "slides/02-rstudio.html#computations-1",
+    "title": "RStudio IDE and Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nThere are many options (auto-complete shows them).\nFor example, to avoid executing the code use eval: FALSE.\nTo avoid showing warnings warning: FALSE, to avoid showing messages message: FALSE.\n\n\n\n\n\n\n\nNote\n\n\nto apply an option globally, these can be set globally in the header.\nexecute:\n  echo: false",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#computations-2",
+    "href": "slides/02-rstudio.html#computations-2",
+    "title": "RStudio IDE and Quarto",
+    "section": "Computations",
+    "text": "Computations\n\nWe recommend getting into the habit of labeling code chunks:\n\n```{r}\n#| label: one-plus-two\nx &lt;- 1\ny &lt;- 2\nx + y\n```\n\nHelps with debugging\nHelps reading the code",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#more-on-markdown",
+    "href": "slides/02-rstudio.html#more-on-markdown",
+    "title": "RStudio IDE and Quarto",
+    "section": "More on markdown",
+    "text": "More on markdown\n\nRStudio’s tutorial: https://quarto.org/docs/get-started/hello/rstudio.html\nThe knitR book: https://yihui.name/knitr/\nPandoc’s Markdown in-depth documentation\nGuide for academic reports\nRMarkdwon Cheatsheet",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#quarto-render",
+    "href": "slides/02-rstudio.html#quarto-render",
+    "title": "RStudio IDE and Quarto",
+    "section": "Quarto render",
+    "text": "Quarto render\n\nRStudio provided Render button to compile the document.\nquarto render filename.qmd in a terminal renders single qmd file.\nquarto render renders all qmd files.\nYou can produce html, pdf, or word documents.\nYou can specify the default in the YAML header using: format: html, format: pdf,format: docx, or format: gfm (GitHub flavored markdown).",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
     ]
   }
 ]

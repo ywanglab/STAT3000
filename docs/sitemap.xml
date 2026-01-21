@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/01-unix.html</loc>
-    <lastmod>2026-01-08T16:18:55.835Z</lastmod>
+    <lastmod>2026-01-15T15:01:57.021Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/02-rstudio.html</loc>
-    <lastmod>2026-01-10T13:10:42.710Z</lastmod>
+    <lastmod>2026-01-21T16:02:26.000Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/03-quarto.html</loc>
@@ -18,14 +18,38 @@
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/index.html</loc>
-    <lastmod>2026-01-07T19:31:20.000Z</lastmod>
+    <lastmod>2026-01-07T19:31:20.957Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/05-r-basics.html</loc>
-    <lastmod>2026-01-11T19:04:44.765Z</lastmod>
+    <lastmod>2026-01-11T22:59:36.609Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/00-intro.html</loc>
-    <lastmod>2026-01-11T19:07:43.126Z</lastmod>
+    <lastmod>2026-01-12T03:44:45.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/06-vectorization.html</loc>
+    <lastmod>2026-01-11T23:15:01.950Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/07-tidyverse.html</loc>
+    <lastmod>2026-01-14T16:03:11.910Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/08-ggplot2.html</loc>
+    <lastmod>2026-01-14T21:12:16.176Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/09-tidyr.html</loc>
+    <lastmod>2026-01-15T16:51:04.299Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/10-intro-to-wrangling.html</loc>
+    <lastmod>2026-01-16T22:37:00.712Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/11-importing-files.html</loc>
+    <lastmod>2026-01-16T22:53:41.003Z</lastmod>
   </url>
 </urlset>

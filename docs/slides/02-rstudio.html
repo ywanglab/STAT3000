@@ -9,10 +9,10 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.4.398">
 
   <meta name="keywords" content="Productivity Tools">
-  <title>STAT 3000 – RStudio IDE</title>
+  <title>STAT 3000 - RStudio IDE and Quarto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -393,7 +393,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RStudio IDE</h1>
+  <h1 class="title">RStudio IDE and Quarto</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -443,15 +443,246 @@
 </ul></li>
 </ul>
 <p>Note: You can state your preference in the header:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
-<span id="cb1-2"><a></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-header" class="slide level2">
+<h2>The header</h2>
+<ul>
+<li><p>Start a new empty document.</p></li>
+<li><p>At the top you see:</p></li>
+</ul>
+<p><br></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<ul>
+<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
+<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
+</ul>
+</section>
+<section id="quick-markdown-text-formating" class="slide level2">
+<h2>Quick Markdown Text formating</h2>
+<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
+<p><code>**bold**</code> = <strong>bold</strong></p>
+<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
+<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
+<p><code>`code`</code> = <code>code</code></p>
+</section>
+<section id="code-chunk" class="slide level2">
+<h2>Code chunk</h2>
+<p>This:</p>
+<pre><code>```
+line 1
+line 2
+```</code></pre>
+<p>shows a code chunk:</p>
+<pre><code>line 1
+line 2</code></pre>
+</section>
+<section class="slide level2">
 
-<div class="quarto-auto-generated-content">
+<h3 id="headings">Headings</h3>
+<p>You can start sections and subsections like this:</p>
+<p><code># Header 1</code></p>
+<p><code>## Header 2</code></p>
+<p><code>### Header 3</code></p>
+</section>
+<section id="links" class="slide level2">
+<h2>Links</h2>
+<ul>
+<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
+<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
+</ul>
+<p>Looks like this:</p>
+<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
+<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
+</section>
+<section id="images" class="slide level2">
+<h2>Images</h2>
+<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
+<p>Shows the plot and caption:</p>
+
+<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">My caption</p><ul>
+<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
+</ul>
+</section>
+<section id="unordered-lists" class="slide level2">
+<h2>Unordered Lists</h2>
+<p>Bullets:</p>
+<pre><code>-   bullet 1
+    -   sub-bullet 1
+    -   sub-bullet 2
+-   bullet 2</code></pre>
+<p>Looks like this:</p>
+<ul>
+<li>bullet 1
+<ul>
+<li>sub-bullet 1</li>
+<li>sub-bullet 2</li>
+</ul></li>
+<li>bullet 2</li>
+</ul>
+</section>
+<section id="ordered-lists" class="slide level2">
+<h2>Ordered Lists</h2>
+<p>Ordered list:</p>
+<pre><code>1.  Item 1
+2.  Item 2</code></pre>
+<p>Looks like this:</p>
+<ol type="1">
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+</section>
+<section id="equations" class="slide level2">
+<h2>Equations</h2>
+
+<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Technical report often uses LaTeX for typesetting.</p>
+<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="equations-using-latex." class="slide level2">
+<h2>Equations using LaTeX.</h2>
+<p>Examples:</p>
+<ul>
+<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
+<li><p>Display math:</p></li>
+</ul>
+<pre><code>$$
+\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
+$$</code></pre>
+<p>looks like this:</p>
+<p><span class="math display">\[
+\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
+\]</span></p>
+</section>
+<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
+<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
+<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="r-code-chuns" class="slide level2">
+<h2>R Code Chuns</h2>
+<p>We can write something like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It looks like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>Note that it was evaluated and the result is shown.</p>
+</section>
+<section id="computations" class="slide level2">
+<h2>Computations</h2>
+<ul>
+<li><p>By default, the code and result will show up.</p></li>
+<li><p>You can send arguments to control the behavior with <code>#|</code></p></li>
+<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="computations-1" class="slide level2">
+<h2>Computations</h2>
+<ul>
+<li><p>There are many options (auto-complete shows them).</p></li>
+<li><p>For example, to avoid executing the code use <code>eval: FALSE</code>.</p></li>
+<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>to apply an option globally, these can be set globally in the header.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="computations-2" class="slide level2">
+<h2>Computations</h2>
+<ul>
+<li>We recommend getting into the habit of labeling code chunks:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Helps with debugging</li>
+<li>Helps reading the code</li>
+</ul>
+</section>
+<section id="more-on-markdown" class="slide level2">
+<h2>More on markdown</h2>
+<ul>
+<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
+<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
+<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
+<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
+<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
+</ul>
+</section>
+<section id="quarto-render" class="slide level2">
+<h2>Quarto render</h2>
+<ul>
+<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
+<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
+<li><p><code>quarto render</code> renders all qmd files.</p></li>
+<li><p>You can produce html, pdf, or word documents.</p></li>
+<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
+</ul>
+
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -664,6 +895,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -696,7 +965,18 @@
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -728,47 +1008,7 @@
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/ywanglab\.github\.io\/STAT3000\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -805,11 +1045,7 @@
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {
