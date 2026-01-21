@@ -476,7 +476,7 @@
     "section": "Motivation",
     "text": "Motivation\nWe want to avoid this:\n\nPosted by rjkb041 on r/ProgrammerHumor",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -486,7 +486,7 @@
     "section": "Motivation",
     "text": "Motivation\n\nThis is particularly difficult to manage when more than one person is collaborating and editing the file.\nEven more important when there are multiple files.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -516,7 +516,7 @@
     "section": "Why use Git and GitHub?",
     "text": "Why use Git and GitHub?\n\nSharing.\nCollaborating.\nVersion control.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -536,7 +536,7 @@
     "section": "What is GitHub?",
     "text": "What is GitHub?\n\nA Microsoft service that hosts the remote repository (repo) on the web.\nThis facilitates collaboration and sharing.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -546,7 +546,7 @@
     "section": "What is GitHub?",
     "text": "What is GitHub?\n\nThe main tool behind GitHub is Git.\nSimilar to how the main tool behind RStudio is R.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -566,7 +566,7 @@
     "section": "GitHub accounts",
     "text": "GitHub accounts\n\nPick a professional sounding name.\nConsider adding a profile README.md.\nInstructions are here.\nExample here.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -596,7 +596,7 @@
     "section": "Connect Git and GitHub",
     "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -666,7 +666,7 @@
     "section": "The four areas of Git",
     "text": "The four areas of Git",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -696,7 +696,7 @@
     "section": "Commit",
     "text": "Commit\n\n\n\n\n\n\nNote\n\n\nYou can commit files directly without using add by explicitly writing the files at the end of the commit:\n\n\n\n\ngit commit -m \"must add comment\" &lt;filename&gt;\n\nor automatically stage “modified + deleted” (but not new files)\n\ngit commit -a -m \"must add comment\"",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -716,7 +716,7 @@
     "section": "Push",
     "text": "Push\n\nTo move to upstream repo we use git push\n\n\n\ngit push -u origin main\n\n\nThe -u flag sets the upstream repo (only need once)\nSo going forward we can just type:\n\n\ngit push",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -736,7 +736,7 @@
     "section": "Fetch",
     "text": "Fetch\n\nTo update our local repository to the remote one we use\n\n\ngit fetch",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -746,7 +746,7 @@
     "section": "Merge",
     "text": "Merge\n\nOnce we are sure this is good, we can merge with our local files:\n\n\ngit merge",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -786,7 +786,7 @@
     "section": "Reset",
     "text": "Reset\n\nWhat if I commit and realize it was a mistake?\n\n\ngit reset HEAD~1\n\nundos the commit and unstages the files, but keeps your local copies. I use this command very often.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -796,7 +796,7 @@
     "section": "Branches",
     "text": "Branches\n\nEach repo can have several branches useful for working in parallel or testing stuff out\n\n\nArt by: Allison Horst",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -824,9 +824,9 @@
     "href": "slides/04-git.html#using-git-in-rstudio",
     "title": "Git and GitHub",
     "section": "Using Git in RStudio",
-    "text": "Using Git in RStudio\n\nGo to file, new project, version control, and follow the instructions.\nThen notice the Git tab in the preferences.",
+    "text": "Using Git in RStudio\n\nMake sue you have a GitHub repo exited or create a new one\nGo to file, new project, version control, and follow the instructions.\nThen notice the Git tab added in the Environment window.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -836,7 +836,7 @@
     "section": "GitHub Repositories (repo)",
     "text": "GitHub Repositories (repo)\n\nYou will have at least two copies of your code: one on your computer and one on GitHub.\nThe GitHub copy is considered the main (previously called master) copy (branch) that everybody syncs to.\nThe main branch is the code-base (ground truth).\nUpdates/revisions are inserted into main through pull request (CI).",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -866,7 +866,7 @@
     "section": "Goals",
     "text": "Goals\n https://datasciencelabs.github.io/2025/extra/git_tutorial.html \n https://ywanglab.github.io/stat1010/git.html\n\nCreate an account\nCreate a repository\npush something to the repository\nconnect RStudio to GitHub",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -876,7 +876,7 @@
     "section": "Install Git",
     "text": "Install Git\n\nMake sure you have Git installed.\nOpen a terminal and type:\n\n\ngit --version\n\nIf not installed\n\non a Mac, follow the instructions after typing the above.\non Windows follow these instructions",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -886,7 +886,7 @@
     "section": "What Git Does?",
     "text": "What Git Does?",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -896,7 +896,7 @@
     "section": "What GitHub does?",
     "text": "What GitHub does?\nMany other features such as\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nAutomation tools",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -906,7 +906,7 @@
     "section": "Create a GitHub Repo",
     "text": "Create a GitHub Repo\n\nClick the + icon and follow the instructions. The repo site should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git\n\nWe shall use git init to link a local project repo to the remote repo you just created.\nIn a parent directory,use Rstudio to create a new project in it, this will be the local repo, and connect it to the Github repository.\n\nInstruction: https://ywanglab.github.io/stat1010/git.html",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -926,7 +926,7 @@
     "section": "Connect to Remote Repo",
     "text": "Connect to Remote Repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nHTTPS uses a Personal Access Token (PAT). More.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction.\n\nNote that your GitHub website password isn’t your access token.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -936,7 +936,7 @@
     "section": "Privacy Privacy Privacy",
     "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who we are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -946,7 +946,7 @@
     "section": "Main actins of Git",
     "text": "Main actins of Git\n\npull (= fetch + merge) changes from the remote repo (alwasy do this before git push)\nadd files, or as we say in the Git lingo stage files.\ncommit (save) changes to the local repo.\npush changes to the remote repo.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -966,7 +966,7 @@
     "section": "git status",
     "text": "git status\n\n\ngit status [filename]",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -986,7 +986,7 @@
     "section": "Commit (Save a Version or Versioning)",
     "text": "Commit (Save a Version or Versioning)\n\nTo move all the staged files to the local repository we use git commit.\n\n\n\ngit commit -m \"must add comment\"\n\n\nOnce committed the files are tracked and a copy of this version is kept going forward.\nThis is like adding V1 to your filename.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -996,7 +996,7 @@
     "section": "Stage a file: git add",
     "text": "Stage a file: git add\nUse git add to put file to staging area.\n\n\ngit add &lt;filename&gt;\n\nWe say that this file has been staged.\n\ngit add .: new + modifiled files, does not stage deletions: Scope: Current dir only\ngit add -A: new + modified + deletions. Scope: Entire repo.\n\n\ngit status &lt;filename&gt;",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -1006,7 +1006,7 @@
     "section": "Pull (=Fetch + Merge)",
     "text": "Pull (=Fetch + Merge)\n\ngit pull",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -1026,7 +1026,7 @@
     "section": "Restore a file from the latest commit",
     "text": "Restore a file from the latest commit\n\ngit restore filename\n\nDiscard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but not committed yet.\nOld way:\n\ngit checkout filename\n\nRelated commands:\n\ngit restore --staged  filename # Ustage only\ngit reset file # Unstage, keep edits",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -1036,7 +1036,7 @@
     "section": "Restore from an older commit (version)",
     "text": "Restore from an older commit (version)\n\ngit restore --source=&lt; 7-digit-commit-id&gt; &lt; filename&gt;\ngit restore --source=HEAD~2 index.qmd # two commits before the current HEAD\n\nOlder way:\n\ngit checkout &lt;7-digit-commit-id&gt; &lt;filename&gt;\n\n\nYou can get the commit-id using\n\n\ngit log filename",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -1046,7 +1046,7 @@
     "section": "Create branches",
     "text": "Create branches\n\ngit branch new-branch-name # create a new branch\ngit switch -c new-branch-name # create and switch\ngit checkout -b new-branch-name # create and switch (old way)\ngit switch -c feature-x main # create from a specific branch\ngit branch feature-x HEAD~2 # create from a specific commit",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -1056,7 +1056,7 @@
     "section": "Show branches",
     "text": "Show branches\n\ngit remote -v. #verbose: with details\ngit branch # show branches",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -1066,7 +1066,7 @@
     "section": "Clone a Remote repo",
     "text": "Clone a Remote repo\n\nIt let’s download an entire repo, including version history.\n\nhttps://ywanglab.github.io/stat1010/git.html\n\ngit clone &lt;repo-url&gt;",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
