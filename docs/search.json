@@ -483,8 +483,8 @@
     "objectID": "slides/04-git.html#motivation-1",
     "href": "slides/04-git.html#motivation-1",
     "title": "Git and GitHub",
-    "section": "Motivation",
-    "text": "Motivation\n\nThis is particularly difficult to manage when more than one person is collaborating and editing the file.\nEven more important when there are multiple files.",
+    "section": "Motivation (1)",
+    "text": "Motivation (1)\nWe want to avoid this:\n\nPosted by rjkb041 on r/ProgrammerHumor",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -493,10 +493,10 @@
     "objectID": "slides/04-git.html#motivation-2",
     "href": "slides/04-git.html#motivation-2",
     "title": "Git and GitHub",
-    "section": "Motivation",
-    "text": "Motivation\n\nGit is a version control system that provides a systematic approach to keeping versions of files.\n\n\nPosted on devrant.com/ by bhimanshukalra",
+    "section": "Motivation (2)",
+    "text": "Motivation (2)\n\nThis is particularly difficult to manage when more than one person is collaborating and editing the file.\nEven more important when there are multiple files.",
     "crumbs": [
-      "Lecture 4-Git & GitHub"
+      "Lecture 3-Git & GitHub"
     ]
   },
   {
@@ -534,7 +534,7 @@
     "href": "slides/04-git.html#what-is-github",
     "title": "Git and GitHub",
     "section": "What is GitHub?",
-    "text": "What is GitHub?\n\nA Microsoft service that hosts the remote repository (repo) on the web.\nThis facilitates collaboration and sharing.",
+    "text": "What is GitHub?\n\nA Microsoft service that hosts the remote repository (repo) on the web.\nThis facilitates collaboration and sharing.\nThe main tool behind GitHub is Git.\nSimilar to how the main tool behind RStudio is R.",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -564,7 +564,7 @@
     "href": "slides/04-git.html#github-accounts",
     "title": "Git and GitHub",
     "section": "GitHub accounts",
-    "text": "GitHub accounts\n\nPick a professional sounding name.\nConsider adding a profile README.md.\nInstructions are here.\nExample here.",
+    "text": "GitHub accounts\n\nClick the + icon and follow the instructions. The repo site should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git\n\nPick a professional sounding name.\nConsider adding a profile README.md.\nInstructions are here.\nExample here.",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -594,7 +594,7 @@
     "href": "slides/04-git.html#connect-git-and-github",
     "title": "Git and GitHub",
     "section": "Connect Git and GitHub",
-    "text": "Connect Git and GitHub\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
+    "text": "Connect Git and GitHub\nInstruction: https://ywanglab.github.io/stat1010/git.html\nTo connect working directory to the GitHub repo\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt;\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -694,7 +694,7 @@
     "href": "slides/04-git.html#commit",
     "title": "Git and GitHub",
     "section": "Commit",
-    "text": "Commit\n\n\n\n\n\n\nNote\n\n\nYou can commit files directly without using add by explicitly writing the files at the end of the commit:\n\n\n\n\ngit commit -m \"must add comment\" &lt;filename&gt;\n\nor automatically stage “modified + deleted” (but not new files)\n\ngit commit -a -m \"must add comment\"",
+    "text": "Commit\n\n\n\n\n\n\nNote\n\n\nYou can commit files directly without using add by explicitly writing the files at the end of the commit:\n\n\n\n\ngit commit -m \"must add comment\" &lt;filename&gt;\n\nor automatically stage tracked “modified + deleted” (but not new/untracked files)\n\ngit commit -a -m \"must add comment\" #-a: all tracked files",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -894,7 +894,7 @@
     "href": "slides/04-git.html#what-github-does",
     "title": "Git and GitHub",
     "section": "What GitHub does?",
-    "text": "What GitHub does?\nMany other features such as\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nAutomation tools",
+    "text": "What GitHub does?\nMany other features such as\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nCI & CD Automation tools",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -904,7 +904,7 @@
     "href": "slides/04-git.html#create-a-github-repo",
     "title": "Git and GitHub",
     "section": "Create a GitHub Repo",
-    "text": "Create a GitHub Repo\n\nClick the + icon and follow the instructions. The repo site should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git\n\nWe shall use git init to link a local project repo to the remote repo you just created.\nIn a parent directory,use Rstudio to create a new project in it, this will be the local repo, and connect it to the Github repository.\n\nInstruction: https://ywanglab.github.io/stat1010/git.html",
+    "text": "Create a GitHub Repo\n\nWe shall use git init to link a local project repo to the remote repo you just created.\nIn a parent directory,use Rstudio to create a new project in it, this will be the local repo, and connect it to the Github repository.\n\nInstruction: https://ywanglab.github.io/stat1010/git.html",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -924,7 +924,7 @@
     "href": "slides/04-git.html#connect-to-remote-repo",
     "title": "Git and GitHub",
     "section": "Connect to Remote Repo",
-    "text": "Connect to Remote Repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nHTTPS uses a Personal Access Token (PAT). More.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction.\n\nNote that your GitHub website password isn’t your access token.",
+    "text": "Connect to Remote Repo\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nHTTPS uses a Personal Access Token (PAT). More.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction\n\nNote that your GitHub website password isn’t your access token.",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -934,7 +934,7 @@
     "href": "slides/04-git.html#privacy-privacy-privacy",
     "title": "Git and GitHub",
     "section": "Privacy Privacy Privacy",
-    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who we are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
+    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who you are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -944,7 +944,7 @@
     "href": "slides/04-git.html#main-actins-of-git",
     "title": "Git and GitHub",
     "section": "Main actins of Git",
-    "text": "Main actins of Git\n\npull (= fetch + merge) changes from the remote repo (alwasy do this before git push)\nadd files, or as we say in the Git lingo stage files.\ncommit (save) changes to the local repo.\npush changes to the remote repo.",
+    "text": "Main actins of Git\n\npull (= fetch + merge) changes from the remote repo (alwasy do this before git push will save you a lot of headaches)\nadd files, or as we say in the Git lingo stage files.\ncommit (save) changes to the local repo.\npush changes to the remote repo.",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -984,7 +984,7 @@
     "href": "slides/04-git.html#commit-save-a-version-or-versioning",
     "title": "Git and GitHub",
     "section": "Commit (Save a Version or Versioning)",
-    "text": "Commit (Save a Version or Versioning)\n\nTo move all the staged files to the local repository we use git commit.\n\n\n\ngit commit -m \"must add comment\"\n\n\nOnce committed the files are tracked and a copy of this version is kept going forward.\nThis is like adding V1 to your filename.",
+    "text": "Commit (Save a Version or Versioning)\n\nTo move all the staged files to the local repository we use git commit.\n\n\n\ngit commit -m \"must add comment\"\n\n\nOnce committed the files are tracked and a copy of this version is kept. (committed=tracked)\nThis is like adding V1 to your filename.",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -1054,7 +1054,7 @@
     "href": "slides/04-git.html#show-branches",
     "title": "Git and GitHub",
     "section": "Show branches",
-    "text": "Show branches\n\ngit remote -v. #verbose: with details\ngit branch # show branches",
+    "text": "Show branches\n\ngit remote -v #verbose: with details\ngit branch # show branches",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -4823,6 +4823,86 @@
     "text": "Labeling a code chun is a good practice\n\nWe recommend getting into the habit of labeling code chunks:\n\n```{r}\n#| label: one-plus-two\nx &lt;- 1\ny &lt;- 2\nx + y\n```\n\nHelps with debugging\nHelps reading the code",
     "crumbs": [
       "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#other-features-of-github",
+    "href": "slides/04-git.html#other-features-of-github",
+    "title": "Git and GitHub",
+    "section": "Other features of GitHub",
+    "text": "Other features of GitHub\n\nRecognition system: reward, badges and stars.\nYou can host web pages, like the class notes for example.\nPermits contributions via forks and pull requests.\nIssue tracking\nCI & CD Automation tools",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-github-account",
+    "href": "slides/04-git.html#create-a-github-account",
+    "title": "Git and GitHub",
+    "section": "Create a GitHub account",
+    "text": "Create a GitHub account\n\nClick the + icon and follow the instructions. The repo site should look something like this:\n\nhttps://github.com/your-username/your-repo-name.git\n\nPick a professional sounding name.\nConsider adding a profile README.md.\nInstructions are here.\nExample here.",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-local-repo",
+    "href": "slides/04-git.html#create-a-local-repo",
+    "title": "Git and GitHub",
+    "section": "Create a Local Repo",
+    "text": "Create a Local Repo\n\nIn a parent directory on your local computer, use Rstudio to create a new project in it, this will be the local repo.",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-to-github",
+    "href": "slides/04-git.html#connect-to-github",
+    "title": "Git and GitHub",
+    "section": "Connect to GitHub",
+    "text": "Connect to GitHub\nhttps://ywanglab.github.io/stat1010/git.html\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt; # Follow the auth steps\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-to-remote-repo-auth",
+    "href": "slides/04-git.html#connect-to-remote-repo-auth",
+    "title": "Git and GitHub",
+    "section": "Connect to Remote Repo: Auth",
+    "text": "Connect to Remote Repo: Auth\n\nThere are two ways to connect: HTTPS or SSH, each requiring different credentials.\nHTTPS uses a Personal Access Token (PAT). More.\n\nAccount-&gt;Settings-&gt;Developer Settings-&gt;Personal Access Tokens-&gt;Tokens(Classic)\nInstruction\n\nNote that your GitHub website password isn’t your access token.",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#git-action-in-pic",
+    "href": "slides/04-git.html#git-action-in-pic",
+    "title": "Git and GitHub",
+    "section": "Git action in Pic",
+    "text": "Git action in Pic",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#restore-a-file-content-from-the-latest-commit",
+    "href": "slides/04-git.html#restore-a-file-content-from-the-latest-commit",
+    "title": "Git and GitHub",
+    "section": "Restore a file (content) from the latest commit",
+    "text": "Restore a file (content) from the latest commit\n\ngit restore filename\ngit restore . # Discard ALL working-directory edits\n\nDiscard local changes to a file and restores it to the last committed version (HEAD). The file remains to be tracked, but no new commit yet.\nOld way:\n\ngit checkout filename\n\nRelated commands:\n\ngit restore --staged  filename # Ustage only(restore index)\ngit restore --staged . # unstage everything\ngit reset file # Unstage, keep edits",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#reset-move-headindex",
+    "href": "slides/04-git.html#reset-move-headindex",
+    "title": "Git and GitHub",
+    "section": "Reset: move HEAD/index",
+    "text": "Reset: move HEAD/index\n\ngit reset --soft HEAD~1 # move HEAD only (keep staged + working changes)\ngit reset HEAD~1 # move HEAD + unstage changes (keep working edits)\ngit reset --hard HEAD~1 # move HEAD +reset index +overwrite working tree (dangerous)\ngit reset file # Unstage, keep edits\n\n\nrestore: file-centric (contents in working tree/index)\nreset: history/index-centric (moves HEAD and/or index)",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
     ]
   }
 ]
