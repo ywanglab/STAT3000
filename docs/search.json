@@ -4562,21 +4562,21 @@
     "href": "slides/16-joining-tables.html#joining-tables",
     "title": "Joining Tables",
     "section": "Joining tables",
-    "text": "Joining tables\n\nThe information we need for a given analysis may not be just in one table.\nHere we use a simple examples to illustrate the general challenge of combining tables."
+    "text": "Joining tables\n\nJust combining these two tables together will not work since the order of the states is not the same adn the states may not match.\n\n\nidentical(results_us_election_2016$state, murders$state) \n\n[1] FALSE"
   },
   {
     "objectID": "slides/16-joining-tables.html#joining-tables-1",
     "href": "slides/16-joining-tables.html#joining-tables-1",
     "title": "Joining Tables",
-    "section": "Joining tables",
-    "text": "Joining tables\n\nSuppose we want to explore the relationship between population size for US states and electoral votes.\nWe have the population size in this table:\n\n\nlibrary(tidyverse) \nlibrary(dslabs) \nhead(murders) \n\n       state abb region population total\n1    Alabama  AL  South    4779736   135\n2     Alaska  AK   West     710231    19\n3    Arizona  AZ   West    6392017   232\n4   Arkansas  AR  South    2915918    93\n5 California  CA   West   37253956  1257\n6   Colorado  CO   West    5029196    65"
+    "section": "Joining tables (1)",
+    "text": "Joining tables (1)\n\nSuppose we want to explore the relationship between population size for US states and electoral votes.\nWe have the population size in this table:\n\n\nlibrary(tidyverse) \nlibrary(dslabs) \nhead(murders) \n\n       state abb region population total\n1    Alabama  AL  South    4779736   135\n2     Alaska  AK   West     710231    19\n3    Arizona  AZ   West    6392017   232\n4   Arkansas  AR  South    2915918    93\n5 California  CA   West   37253956  1257\n6   Colorado  CO   West    5029196    65"
   },
   {
     "objectID": "slides/16-joining-tables.html#joining-tables-2",
     "href": "slides/16-joining-tables.html#joining-tables-2",
     "title": "Joining Tables",
-    "section": "Joining tables",
-    "text": "Joining tables\n\nand electoral votes in this one:\n\n\nhead(results_us_election_2016) \n\n         state electoral_votes  clinton    trump  johnson     stein  mcmullin\n1   California              55 61.72640 31.61711 3.374092 1.9649200 0.2792070\n2        Texas              38 43.23526 52.23469 3.160719 0.7978169 0.4723485\n3      Florida              29 47.82332 49.02194 2.197900 0.6836384 0.0000000\n4     New York              29 59.00604 36.51559 2.287108 1.3978457 0.1343400\n5     Illinois              20 55.82537 38.76175 3.785765 1.3872131 0.2105149\n6 Pennsylvania              20 47.46495 48.18334 2.379621 0.8100102 0.1049716\n      others\n1 1.03827531\n2 0.09917244\n3 0.27320481\n4 0.65907285\n5 0.02938720\n6 1.05711187"
+    "section": "Joining tables (2)",
+    "text": "Joining tables (2)\n\nand electoral votes in this one:\n\n\nhead(results_us_election_2016) \n\n         state electoral_votes  clinton    trump  johnson     stein  mcmullin\n1   California              55 61.72640 31.61711 3.374092 1.9649200 0.2792070\n2        Texas              38 43.23526 52.23469 3.160719 0.7978169 0.4723485\n3      Florida              29 47.82332 49.02194 2.197900 0.6836384 0.0000000\n4     New York              29 59.00604 36.51559 2.287108 1.3978457 0.1343400\n5     Illinois              20 55.82537 38.76175 3.785765 1.3872131 0.2105149\n6 Pennsylvania              20 47.46495 48.18334 2.379621 0.8100102 0.1049716\n      others\n1 1.03827531\n2 0.09917244\n3 0.27320481\n4 0.65907285\n5 0.02938720\n6 1.05711187"
   },
   {
     "objectID": "slides/16-joining-tables.html#joining-tables-3",
@@ -4590,28 +4590,28 @@
     "href": "slides/16-joining-tables.html#joins",
     "title": "Joining Tables",
     "section": "Joins",
-    "text": "Joins\n\nThe join functions are designed to handle this challenge.\nThe join functions in the dplyr package make sure that the tables are combined so that matching rows are together.\nThe general idea is that one needs to identify one or more columns that will serve to match the two tables.\nA new table with the combined information is returned."
+    "text": "Joins\n\nThe join functions are designed to handle this challenge.\nThe join functions in the dplyr package make sure that the tables are combined so that matching rows are together.\nThe general idea is that one needs to identify one or more columns that will serve as a key/keys to match the two tables."
   },
   {
     "objectID": "slides/16-joining-tables.html#joins-1",
     "href": "slides/16-joining-tables.html#joins-1",
     "title": "Joining Tables",
     "section": "Joins",
-    "text": "Joins\n\nNotice what happens if we join the two tables above by state using left_join:\n\n\ntab &lt;- left_join(murders, results_us_election_2016, by = \"state\") |&gt; \n  select(-others) |&gt; rename(ev = electoral_votes) \nhead(tab) \n\n       state abb region population total ev  clinton    trump  johnson\n1    Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169\n2     Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128\n3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188\n4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769\n5 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092\n6   Colorado  CO   West    5029196    65  9 48.15651 43.25098 5.183748\n      stein  mcmullin\n1 0.4422682 0.0000000\n2 1.8000176 0.0000000\n3 1.3185997 0.6699155\n4 0.8378174 1.1653206\n5 1.9649200 0.2792070\n6 1.3825031 1.0400874"
+    "text": "Joins\n\nWe see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.\nIn practice, it is not always the case that each row in one table has a matching row in the other.\nFor this reason, we have several versions of join.\nTo illustrate this challenge, we will take subsets of the tables above."
   },
   {
     "objectID": "slides/16-joining-tables.html#joins-2",
     "href": "slides/16-joining-tables.html#joins-2",
     "title": "Joining Tables",
     "section": "Joins",
-    "text": "Joins\n\nThe data has been successfully joined and we can now, for example, make a plot to explore the relationship:"
+    "text": "Joins\n.\nNote: These names are based on SQL."
   },
   {
     "objectID": "slides/16-joining-tables.html#joins-3",
     "href": "slides/16-joining-tables.html#joins-3",
     "title": "Joining Tables",
     "section": "Joins",
-    "text": "Joins\n\nWe see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.\nIn practice, it is not always the case that each row in one table has a matching row in the other.\nFor this reason, we have several versions of join.\nTo illustrate this challenge, we will take subsets of the tables above."
+    "text": "Joins\n\nWe create the tables tab1 and tab2 so that they have some states in common but not all:\n\n\ntab_1 &lt;- slice(murders, 1:6) |&gt; select(state, population) \ntab_2 &lt;- results_us_election_2016 |&gt;  \n  filter(state %in% c(\"Alabama\", \"Alaska\", \"Arizona\",  \n                    \"California\", \"Connecticut\", \"Delaware\")) |&gt;  \n  select(state, electoral_votes) |&gt; rename(ev = electoral_votes) \n\n\nWe will use these two tables as examples in the next sections."
   },
   {
     "objectID": "slides/16-joining-tables.html#joins-4",
@@ -4631,15 +4631,15 @@
     "objectID": "slides/16-joining-tables.html#left-join",
     "href": "slides/16-joining-tables.html#left-join",
     "title": "Joining Tables",
-    "section": "Left join",
-    "text": "Left join\n\nSuppose we want a table like tab_1, but adding electoral votes to whatever states we have available.\nFor this, we use left_join with tab_1 as the first argument.\nWe specify which column to use to match with the by argument.\n\n\nleft_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4   Arkansas    2915918 NA\n5 California   37253956 55\n6   Colorado    5029196 NA\n\n\n\nNote that NAs are added to the two states not appearing in tab_2."
+    "section": "Left-Join",
+    "text": "Left-Join\n\ntab &lt;- left_join(murders, results_us_election_2016, by = \"state\") |&gt; \n  select(-others) |&gt; rename(ev = electoral_votes) \nhead(tab) \n\n       state abb region population total ev  clinton    trump  johnson\n1    Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169\n2     Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128\n3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188\n4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769\n5 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092\n6   Colorado  CO   West    5029196    65  9 48.15651 43.25098 5.183748\n      stein  mcmullin\n1 0.4422682 0.0000000\n2 1.8000176 0.0000000\n3 1.3185997 0.6699155\n4 0.8378174 1.1653206\n5 1.9649200 0.2792070\n6 1.3825031 1.0400874"
   },
   {
     "objectID": "slides/16-joining-tables.html#left-join-1",
     "href": "slides/16-joining-tables.html#left-join-1",
     "title": "Joining Tables",
     "section": "Left join",
-    "text": "Left join\n\nAlso, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:\n\n\ntab_1 |&gt; left_join(tab_2, by = \"state\")"
+    "text": "Left join\n\nSuppose we want a table like tab_1, but adding electoral votes to whatever states we have available.\nFor this, we use left_join with tab_1 as the first argument.\nWe specify which column to use to match with the by argument.\n\n\nleft_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4   Arkansas    2915918 NA\n5 California   37253956 55\n6   Colorado    5029196 NA\n\n\n\nNote that NAs are added to the two states not appearing in tab_2."
   },
   {
     "objectID": "slides/16-joining-tables.html#right-join",
@@ -4904,5 +4904,33 @@
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
+  },
+  {
+    "objectID": "slides/standard_errors.html",
+    "href": "slides/standard_errors.html",
+    "title": "Standard Errors vs. Standard Deviation",
+    "section": "",
+    "text": "For method=\"lm\" the CI ribbon is based on the standard error of the estimated mean \\(\\hat y(x_0)=\\widehat{E[Y\\mid X=x_0]}\\). The SE formula comes directly from the variance of a linear combination of the OLS estimator.\n\nWrite the linear model in matrix form\n\n\\[ y = X\\beta + \\varepsilon,\\qquad \\mathbb E\\varepsilon=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n.\\] 2) OLS estimator and its variance\nOLS gives \\[ \\hat\\beta=(X^\\top X)^{-1}X^\\top y.\\] Because \\(\\hat\\beta\\) is a linear function of \\(y\\), \\[ \\mathrm{Var}(\\hat\\beta) = (X^\\top X)^{-1}X^\\top \\mathrm{Var}(y) X (X^\\top X)^{-1}.\\] But \\(y=X\\beta+\\varepsilon\\) and \\(\\mathrm{Var}(y)=\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\), so \\[ \\mathrm{Var}(\\hat\\beta)=\\sigma^2 (X^\\top X)^{-1}.\\]\n\nFitted mean at a point is a linear combo of \\(\\hat\\beta\\)\n\nAt \\(x_0\\), let the (row) design vector be \\[ x_0^* = (1 \\;\\;x_0)\\] (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is\n\\[ \\hat y(x_0)=x_0^* \\hat\\beta.\\]\n\nVariance of a linear combination\n\nUse the rule: if \\(a\\) is a constant vector and \\(Z\\) is random, \\[ \\mathrm{Var}(a^\\top Z)=a^\\top \\mathrm{Var}(Z)a.\\] Here \\(a = (x_0^*)^\\top\\) and \\(Z=\\hat\\beta\\). Therefore,\n\\[\\mathrm{Var}(\\hat y(x_0)) = \\mathrm{Var}(x_0^* \\hat\\beta) = x_0^*\\mathrm{Var}(\\hat\\beta)(x_0^*)^\\top = x_0^* \\big(\\sigma ^2 (X^\\top X)^{-1}\\big) (x_0^*)^\\top.\\] So the standard error is \\[ SE{\\hat y(x_0)}=\\sqrt{\\sigma^2 x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\nReplace \\(\\sigma ^2\\) by its sample estimate\n\nSince \\(\\sigma\\^2\\) is unknown, we plug in\n\\[ \\hat\\sigma^2=\\frac{\\sum_{i=1}^n \\hat\\varepsilon_i^2}{n-p},\\] giving the practical SE:\n\\[SE{\\hat y(x_0)}=\\sqrt{\\hat\\sigma^2  x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\n\nsame formula in “simple regression” scalar form\n\nFor \\(y=\\beta_0+\\beta_1 x+\\varepsilon\\),\n\\[SE{\\hat y(x_0)}=\\hat\\sigma\\sqrt{\\frac{1}{n}+\\frac{(x_0-\\bar x)^2}{\\sum_{i=1}^n (x_i-\\bar x)^2}}.\\] This is algebraically equivalent to the matrix expression above."
+  },
+  {
+    "objectID": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
+    "href": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
+    "title": "Standard Errors vs. Standard Deviation",
+    "section": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?",
+    "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma\\^2,\\] meaning \\[ \\hat\\sigma\\^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#plot-using-the-joined-table",
+    "href": "slides/16-joining-tables.html#plot-using-the-joined-table",
+    "title": "Joining Tables",
+    "section": "Plot using the joined table",
+    "text": "Plot using the joined table\n\n\ngeom_smooth(se=TRUE, level=0.95) # draw 95% CI (default)\nMore on SE"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#left-join-2",
+    "href": "slides/16-joining-tables.html#left-join-2",
+    "title": "Joining Tables",
+    "section": "Left join",
+    "text": "Left join\n\nAlso, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:\n\n\ntab_1 |&gt; left_join(tab_2, by = \"state\")"
   }
 ]

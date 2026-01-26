@@ -400,15 +400,8 @@
 </div>
 
 </section>
-<section id="joining-tables" class="slide level2">
-<h2>Joining tables</h2>
-<ul>
-<li><p>The information we need for a given analysis may not be just in one table.</p></li>
-<li><p>Here we use a simple examples to illustrate the general challenge of combining tables.</p></li>
-</ul>
-</section>
 <section id="joining-tables-1" class="slide level2">
-<h2>Joining tables</h2>
+<h2>Joining tables (1)</h2>
 <ul>
 <li><p>Suppose we want to explore the relationship between population size for US states and electoral votes.</p></li>
 <li><p>We have the population size in this table:</p></li>
@@ -429,7 +422,7 @@
 </div>
 </section>
 <section id="joining-tables-2" class="slide level2">
-<h2>Joining tables</h2>
+<h2>Joining tables (2)</h2>
 <ul>
 <li>and electoral votes in this one:</li>
 </ul>
@@ -453,10 +446,10 @@
 </div>
 </div>
 </section>
-<section id="joining-tables-3" class="slide level2">
+<section id="joining-tables" class="slide level2">
 <h2>Joining tables</h2>
 <ul>
-<li>Just concatenating these two tables together will not work since the order of the states is not the same.</li>
+<li>Just combining these two tables together will not work since the order of the states is not the same adn the states may not match.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">identical</span>(results_us_election_2016<span class="sc">$</span>state, murders<span class="sc">$</span>state) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -470,15 +463,11 @@
 <ul>
 <li><p>The <em>join</em> functions are designed to handle this challenge.</p></li>
 <li><p>The <em>join</em> functions in the <strong>dplyr</strong> package make sure that the tables are combined so that matching rows are together.</p></li>
-<li><p>The general idea is that one needs to identify one or more columns that will serve to match the two tables.</p></li>
-<li><p>A new table with the combined information is returned.</p></li>
+<li><p>The general idea is that one needs to identify one or more columns that will serve as a key/keys to match the two tables.</p></li>
 </ul>
 </section>
-<section id="joins-1" class="slide level2">
-<h2>Joins</h2>
-<ul>
-<li>Notice what happens if we join the two tables above by state using <code>left_join</code>:</li>
-</ul>
+<section id="left-join" class="slide level2">
+<h2>Left-Join</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">left_join</span>(murders, results_us_election_2016, <span class="at">by =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>others) <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">ev =</span> electoral_votes) </span>
@@ -501,14 +490,15 @@
 </div>
 </div>
 </section>
-<section id="joins-2" class="slide level2">
-<h2>Joins</h2>
-<ul>
-<li>The data has been successfully joined and we can now, for example, make a plot to explore the relationship:</li>
-</ul>
+<section id="plot-using-the-joined-table" class="slide level2">
+<h2>Plot using the joined table</h2>
 
-<img data-src="16-joining-tables_files/figure-revealjs/ev-vs-population-1.png" width="960" class="r-stretch"></section>
-<section id="joins-3" class="slide level2">
+<img data-src="16-joining-tables_files/figure-revealjs/ev-vs-population-1.png" width="960" class="r-stretch"><ul>
+<li>geom_smooth(se=TRUE, level=0.95) # draw 95% CI (default)</li>
+<li><a href="standard_errors.qmd">More on SE</a></li>
+</ul>
+</section>
+<section id="joins-1" class="slide level2">
 <h2>Joins</h2>
 <ul>
 <li><p>We see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.</p></li>
@@ -517,12 +507,12 @@
 <li><p>To illustrate this challenge, we will take subsets of the tables above.</p></li>
 </ul>
 </section>
-<section id="joins-4" class="slide level2">
+<section id="joins-2" class="slide level2">
 <h2>Joins</h2>
 <p><img data-src="https://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/img/joins.png" class="quarto-figure-center" style="width:35.0%">.</p>
 <p>Note: These names are based on SQL.</p>
 </section>
-<section id="joins-5" class="slide level2">
+<section id="joins-3" class="slide level2">
 <h2>Joins</h2>
 <ul>
 <li>We create the tables <code>tab1</code> and <code>tab2</code> so that they have some states in common but not all:</li>
@@ -538,7 +528,7 @@
 <li>We will use these two tables as examples in the next sections.</li>
 </ul>
 </section>
-<section id="left-join" class="slide level2">
+<section id="left-join-1" class="slide level2">
 <h2>Left join</h2>
 <ul>
 <li><p>Suppose we want a table like <code>tab_1</code>, but adding electoral votes to whatever states we have available.</p></li>
@@ -561,7 +551,7 @@
 <li>Note that <code>NA</code>s are added to the two states not appearing in <code>tab_2</code>.</li>
 </ul>
 </section>
-<section id="left-join-1" class="slide level2">
+<section id="left-join-2" class="slide level2">
 <h2>Left join</h2>
 <ul>
 <li>Also, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:</li>
