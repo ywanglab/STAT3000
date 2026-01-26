@@ -2,3 +2,5 @@
 .gitignore
 _quarto.yml
 *.qmd
+/slides/
+.Rproj.user

@@ -11,8 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <meta name="keywords" content="Productivity Tools">
-  <title>STAT 3000 - RStudio IDE and Quarto</title>
+  <meta name="keywords" content="Wrangling">
+  <title>STAT 3000 - Web Scraping</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,292 +393,217 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RStudio IDE and Quarto</h1>
+  <h1 class="title">Web Scraping</h1>
+  <p class="subtitle"><a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/web-scraping.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/web-scraping.html</a></p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="integrated-development-environment-ide" class="slide level2">
-<h2>Integrated Development Environment (IDE)</h2>
-<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html</a> </span></p>
+<section id="html-webpage" class="slide level2">
+<h2>HTML Webpage</h2>
 <ul>
-<li>Posit provides a free IDE for R with RStudio</li>
-<li><a href="https://github.com/posit-dev/positron/releases">Positron</a> (newer and adapted to LLMs)</li>
+<li><p>The data we need is not always in a spreadsheet ready for us to read.</p></li>
+<li><p>For example, the US murders dataset we used in the R Basics chapter originally comes from this Wikipedia page:</p></li>
 </ul>
-</section>
-<section id="the-panes" class="slide level2">
-<h2>The panes</h2>
-
-<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/R/img/rstudio.png" class="r-stretch"></section>
-<section id="the-basics" class="slide level2">
-<h2>The Basics</h2>
-<ul>
-<li>Open a new R script file. (<a href="../codes/example.R">example.R</a>)</li>
-<li>Learn tab complete.</li>
-<li>Run commands while editing scripts.</li>
-<li>Run the entire script.</li>
-<li>Make a plot.</li>
-<li>Change options to never save workspace.</li>
-<li>Change IDE appearance.</li>
-</ul>
-</section>
-<section id="projects" class="slide level2">
-<h2>Projects</h2>
-<ul>
-<li>Start a new project in a new directory.</li>
-<li>Start a new project in an existing directory.</li>
-<li>Change projects.</li>
-<li>Use the <code>File</code> menu to create a new Quarto document</li>
-</ul>
-</section>
-<section id="type-of-editor" class="slide level2 smaller">
-<h2>Type of editor</h2>
-<ul>
-<li><p>we will be creating and editing markdown documents - mostly using the Quarto paradigm</p></li>
-<li><p>for Quarto you can use either a source view or a visual view:</p>
-<ul>
-<li>Source - See the actual code (WYSIWYG)</li>
-<li>Visual - Partial preview of final document.</li>
-</ul></li>
-</ul>
-<p>Note: You can state your preference in the header:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="the-header" class="slide level2">
-<h2>The header</h2>
-<ul>
-<li><p>Start a new empty document.</p></li>
-<li><p>At the top you see:</p></li>
-</ul>
-<p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<ul>
-<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
-<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
-</ul>
-</section>
-<section id="quick-markdown-text-formating" class="slide level2">
-<h2>Quick Markdown Text formating</h2>
-<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
-<p><code>**bold**</code> = <strong>bold</strong></p>
-<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
-<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
-<p><code>`code`</code> = <code>code</code></p>
-</section>
-<section id="code-chunk" class="slide level2">
-<h2>Code chunk</h2>
-<p>This:</p>
-<pre><code>```
-line 1
-line 2
-```</code></pre>
-<p>shows a code chunk:</p>
-<pre><code>line 1
-line 2</code></pre>
-</section>
-<section class="slide level2">
-
-<h3 id="headings">Headings</h3>
-<p>You can start sections and subsections like this:</p>
-<p><code># Header 1</code></p>
-<p><code>## Header 2</code></p>
-<p><code>### Header 3</code></p>
-</section>
-<section id="links" class="slide level2">
-<h2>Links</h2>
-<ul>
-<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
-<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
-</ul>
-<p>Looks like this:</p>
-<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
-<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
-</section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
-<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
-<p>Shows the plot and caption:</p>
-
-<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">Introductory Statistics with R</p><ul>
-<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
-</ul>
-</section>
-<section id="unordered-lists" class="slide level2">
-<h2>Unordered Lists</h2>
-<p>Bullets:</p>
-<pre><code>-   bullet 1
-    -   sub-bullet 1
-    -   sub-bullet 2
--   bullet 2</code></pre>
-<p>Looks like this:</p>
-<ul>
-<li>bullet 1
-<ul>
-<li>sub-bullet 1</li>
-<li>sub-bullet 2</li>
-</ul></li>
-<li>bullet 2</li>
-</ul>
-</section>
-<section id="ordered-lists" class="slide level2">
-<h2>Ordered Lists</h2>
-<p>Ordered list:</p>
-<pre><code>1.  Item 1
-2.  Item 2</code></pre>
-<p>Looks like this:</p>
-<ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
-</ol>
-</section>
-<section id="equations" class="slide level2">
-<h2>Equations</h2>
-
-<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Technical report often uses LaTeX for typesetting.</p>
-<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="equations-using-latex." class="slide level2">
-<h2>Equations using LaTeX.</h2>
-<p>Examples:</p>
-<ul>
-<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
-<li><p>Display math:</p></li>
-</ul>
-<pre><code>$$
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-$$</code></pre>
-<p>looks like this:</p>
-<p><span class="math display">\[
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-\]</span></p>
-</section>
-<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
-<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
-<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="r-code-chuns" class="slide level2">
-<h2>R Code Chuns</h2>
-<p>We can write something like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It looks like this:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://en.wikipedia.org/w/index.php?title="</span>, </span>
+<span id="cb1-2"><a href="#cb1-2"></a>              <span class="st">"Gun_violence_in_the_United_States_by_state"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>              <span class="st">"&amp;direction=prev&amp;oldid=810166167"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>past0()</code>: concatenate with no separators</li>
+</ul>
+</section>
+<section id="scraping-html" class="slide level2">
+<h2>Scraping HTML</h2>
+<ul>
+<li><p>You can see the data table when you visit the webpage <a href="https://en.wikipedia.org/w/index.php?title=Gun_violence_in_the_United_States_by_state&amp;direction=prev&amp;oldid=810166167" class="uri">https://en.wikipedia.org/w/index.php?title=Gun_violence_in_the_United_States_by_state&amp;direction=prev&amp;oldid=810166167</a>:</p></li>
+<li><p><em>Web scraping</em>, or <em>web harvesting</em>, is the term we use to describe the process of extracting data from a website.</p></li>
+</ul>
+</section>
+<section id="html-source" class="slide level2">
+<h2>HTML Source</h2>
+<ul>
+<li><p>The reason we can do this is because the information used by a browser to render webpages is received as a text file from a server.</p></li>
+<li><p>The text is code written in hyper text markup language (HTML).</p></li>
+<li><p>To see the source code, On Chrome, use Control-U on a PC and command+alt+U on a Mac.</p></li>
+</ul>
+</section>
+<section id="html-parsing" class="slide level2">
+<h2>HTML Parsing</h2>
+<ul>
+<li><p>Because this code is accessible, we can download the HTML file, import it into R, and then write programs to extract the information we need from the page.</p></li>
+<li><p>However, once we look at HTML code, this might seem like a daunting task.</p></li>
+<li><p>But we have some convenient tools to facilitate the process.</p></li>
+</ul>
+</section>
+<section id="html-code-example" class="slide level2">
+<h2>HTML code example</h2>
+<ul>
+<li>To get an idea of how it works, here are a few lines of code from the Wikipedia page that provides the US murders data:</li>
+</ul>
+<pre><code>&lt;table class="wikitable sortable"&gt; 
+&lt;tr&gt; 
+&lt;th&gt;State&lt;/th&gt; 
+&lt;th&gt;&lt;a href="/wiki/List_of_U.S._states_and_territories_by_population"  
+title="List of U.S. states and territories by population"&gt;Population&lt;/a&gt;&lt;br /&gt; 
+&lt;small&gt;(total inhabitants)&lt;/small&gt;&lt;br /&gt; 
+&lt;small&gt;(2015)&lt;/small&gt; &lt;sup id="cite_ref-1" class="reference"&gt; 
+&lt;a href="#cite_note-1"&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;/th&gt; 
+&lt;th&gt;Murders and Nonnegligent 
+&lt;p&gt;Manslaughter&lt;br /&gt; 
+&lt;small&gt;(total deaths)&lt;/small&gt;&lt;br /&gt; 
+&lt;small&gt;(2015)&lt;/small&gt; &lt;sup id="cite_ref-2" class="reference"&gt; 
+&lt;a href="#cite_note-2"&gt;[2]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt; 
+&lt;/th&gt; 
+&lt;th&gt;Murder and Nonnegligent 
+&lt;p&gt;Manslaughter Rate&lt;br /&gt; 
+&lt;small&gt;(per 100,000 inhabitants)&lt;/small&gt;&lt;br /&gt; 
+&lt;small&gt;(2015)&lt;/small&gt;&lt;/p&gt; 
+&lt;/th&gt; 
+&lt;/tr&gt; 
+&lt;tr&gt; 
+&lt;td&gt;&lt;a href="/wiki/Alabama" title="Alabama"&gt;Alabama&lt;/a&gt;&lt;/td&gt; 
+&lt;td&gt;4,853,875&lt;/td&gt; 
+&lt;td&gt;348&lt;/td&gt; 
+&lt;td&gt;7.2&lt;/td&gt; 
+&lt;/tr&gt; 
+&lt;tr&gt; 
+&lt;td&gt;&lt;a href="/wiki/Alaska" title="Alaska"&gt;Alaska&lt;/a&gt;&lt;/td&gt; 
+&lt;td&gt;737,709&lt;/td&gt; 
+&lt;td&gt;59&lt;/td&gt; 
+&lt;td&gt;8.0&lt;/td&gt; 
+&lt;/tr&gt; 
+&lt;tr&gt; </code></pre>
+</section>
+<section id="html-structure" class="slide level2">
+<h2>HTML Structure</h2>
+<ul>
+<li><p>You can actually see the data, except data values are surrounded by html code such as <code>&lt;td&gt;</code>.</p></li>
+<li><p>Webpages often use Cascading Style Sheets (CSS), a language widely used to make webpages look “pretty”</p></li>
+<li><p>Resources: <a href="https://www.codecademy.com/learn/learn-html">Codeacademy</a> and <a href="https://www.w3schools.com/">W3schools</a>.</p></li>
+</ul>
+</section>
+<section id="the-rvest-package" class="slide level2">
+<h2>The rvest package</h2>
+<ul>
+<li>The <strong>tidyverse</strong> provides a web harvesting package called <strong>rvest</strong>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(rvest) </span>
+<span id="cb3-3"><a href="#cb3-3"></a>h <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Note that the entire Murders in the US Wikipedia webpage is now contained in <code>h</code>.</li>
+</ul>
+</section>
+<section id="the-rvest-package-1" class="slide level2">
+<h2>The rvest package</h2>
+<ul>
+<li>The class of this object is:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">class</span>(h) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] "xml_document" "xml_node"    </code></pre>
 </div>
 </div>
-<p>Note that it was evaluated and the result is shown.</p>
-</section>
-<section id="local-control" class="slide level2">
-<h2>Local control</h2>
 <ul>
-<li><p>By default, the code and result will show up.</p></li>
-<li><p>control the behavior with <code>#|</code></p></li>
-<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="other-local-controls" class="slide level2">
-<h2>Other local controls</h2>
-<ul>
-<li><p>There are many options</p></li>
-<li><p>to avoid executing the code use <code>eval: FALSE</code>.</p></li>
-<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>to apply an option globally, set them in the header.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="labeling-a-code-chun-is-a-good-practice" class="slide level2">
-<h2>Labeling a code chun is a good practice</h2>
-<ul>
-<li>We recommend getting into the habit of labeling code chunks:</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Helps with debugging</li>
-<li>Helps reading the code</li>
+<li><p>The <strong>rvest</strong> package is more general; it handles XML documents.</p></li>
+<li><p>XML is a general markup language that can be used to represent any kind of data.</p></li>
+<li><p>HTML is a specific type of XML specifically developed for representing webpages.</p></li>
 </ul>
 </section>
-<section id="more-on-markdown" class="slide level2">
-<h2>More on markdown</h2>
+<section id="the-rvest-package-2" class="slide level2">
+<h2>The rvest package</h2>
 <ul>
-<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
-<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
-<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
-<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
-<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
+<li><p>Now, how do we extract the table from the object <code>h</code>? If you were to print <code>h</code>, we would see information about the object that is not very informative.</p></li>
+<li><p>We can see all the code that defines the downloaded webpage using the <code>html_text</code> function:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">html_text</span>(h) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extracting-nodes" class="slide level2">
+<h2>Extracting nodes</h2>
+<ul>
+<li><p>the data we are after are stored in an HTML table: you can see this in this line of the HTML code above <code>&lt;table class="wikitable sortable"&gt;</code>.</p></li>
+<li><p>The different parts of an HTML document, often defined with a message in between <code>&lt;</code> and <code>&gt;</code> are referred to as <em>nodes</em>.</p></li>
+<li><p><code>html_nodes</code> extracts all nodes of different types and <code>html_node</code> extracts the first one.</p></li>
 </ul>
 </section>
-<section id="quarto-render" class="slide level2">
-<h2>Quarto render</h2>
+<section id="extract-the-table" class="slide level2">
+<h2>Extract the table</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tab <span class="ot">&lt;-</span> h <span class="sc">|&gt;</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
-<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
-<li><p><code>quarto render</code> renders all qmd files.</p></li>
-<li><p>You can produce html, pdf, or word documents.</p></li>
-<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
+<li>Now, instead of the entire webpage, we just have the html code for the tables in the page</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>tab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (2)}
+[1] &lt;table class="wikitable sortable"&gt;&lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;State\n&lt;/th&gt;\n&lt;th&gt;\n ...
+[2] &lt;table class="nowraplinks hlist mw-collapsible mw-collapsed navbox-inner" ...</code></pre>
+</div>
+</div>
+<ul>
+<li>The table we are interested is the first one:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>tab[[<span class="dv">1</span>]] <span class="co"># tab[[1]]: content tab[1]: a nodeset of length 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{html_node}
+&lt;table class="wikitable sortable"&gt;
+[1] &lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;State\n&lt;/th&gt;\n&lt;th&gt;\n&lt;a href="/wiki/List_of_U.S._states ...</code></pre>
+</div>
+</div>
+</section>
+<section id="convert-to-df" class="slide level2">
+<h2>Convert to df</h2>
+<ul>
+<li>This is clearly not a tidy dataset, not even a data frame.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>tab <span class="ot">&lt;-</span> tab[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>() </span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">class</span>(tab) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+</div>
+<ul>
+<li>tbl_df: main class for a tibble dataframe; <code>tbl</code>: old tibble tag;</li>
+</ul>
+</section>
+<section id="wrangling-the-table" class="slide level2">
+<h2>Wrangling the table</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>tab <span class="ot">&lt;-</span> tab <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"population"</span>, <span class="st">"total"</span>, <span class="st">"murder_rate"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(population, total), parse_number))</span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">head</span>(tab,<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  state   population total murder_rate
+  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;
+1 Alabama    4853875   348         7.2
+2 Alaska      737709    59         8  
+3 Arizona    6817565   309         4.5</code></pre>
+</div>
+</div>
+<ul>
+<li><code>parse_number()</code>: extract the numeric part from strings and converts to numeric</li>
+<li>apply <code>parse_number</code> to <code>population</code> and <code>total</code></li>
+</ul>
+</section>
+<section id="css-selectors" class="slide level2">
+<h2>CSS selectors</h2>
+<ul>
+<li><p><a href="https://rvest.tidyverse.org/articles/selectorgadget.html" class="uri">https://rvest.tidyverse.org/articles/selectorgadget.html</a>]</p></li>
+<li><p><a href="https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/" class="uri">https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/</a></p></li>
 </ul>
 
 <div class="footer footer-default">

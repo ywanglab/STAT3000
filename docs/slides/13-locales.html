@@ -11,8 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <meta name="keywords" content="Productivity Tools">
-  <title>STAT 3000 - RStudio IDE and Quarto</title>
+  <meta name="keywords" content="Wrangling">
+  <title>STAT 3000 - Locales</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,293 +393,317 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RStudio IDE and Quarto</h1>
+  <h1 class="title">Locales</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="integrated-development-environment-ide" class="slide level2">
-<h2>Integrated Development Environment (IDE)</h2>
-<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html</a> </span></p>
+<section id="locales" class="slide level2">
+<h2>Locales</h2>
 <ul>
-<li>Posit provides a free IDE for R with RStudio</li>
-<li><a href="https://github.com/posit-dev/positron/releases">Positron</a> (newer and adapted to LLMs)</li>
+<li><p>Computer settings change depending on language and location</p></li>
+<li><p>The purpose of <em>locales</em> is to group together common settings that controls how your system (and R) handles things like sorting, character encoding, dates/times, and number formats.</p></li>
 </ul>
 </section>
-<section id="the-panes" class="slide level2">
-<h2>The panes</h2>
-
-<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/R/img/rstudio.png" class="r-stretch"></section>
-<section id="the-basics" class="slide level2">
-<h2>The Basics</h2>
+<section id="locales-in-r" class="slide level2">
+<h2>Locales in R</h2>
 <ul>
-<li>Open a new R script file. (<a href="../codes/example.R">example.R</a>)</li>
-<li>Learn tab complete.</li>
-<li>Run commands while editing scripts.</li>
-<li>Run the entire script.</li>
-<li>Make a plot.</li>
-<li>Change options to never save workspace.</li>
-<li>Change IDE appearance.</li>
+<li>To access the current locale settings in R, use the <code>Sys.getlocale()</code> function:</li>
 </ul>
-</section>
-<section id="projects" class="slide level2">
-<h2>Projects</h2>
-<ul>
-<li>Start a new project in a new directory.</li>
-<li>Start a new project in an existing directory.</li>
-<li>Change projects.</li>
-<li>Use the <code>File</code> menu to create a new Quarto document</li>
-</ul>
-</section>
-<section id="type-of-editor" class="slide level2 smaller">
-<h2>Type of editor</h2>
-<ul>
-<li><p>we will be creating and editing markdown documents - mostly using the Quarto paradigm</p></li>
-<li><p>for Quarto you can use either a source view or a visual view:</p>
-<ul>
-<li>Source - See the actual code (WYSIWYG)</li>
-<li>Visual - Partial preview of final document.</li>
-</ul></li>
-</ul>
-<p>Note: You can state your preference in the header:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="the-header" class="slide level2">
-<h2>The header</h2>
-<ul>
-<li><p>Start a new empty document.</p></li>
-<li><p>At the top you see:</p></li>
-</ul>
-<p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<ul>
-<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
-<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
-</ul>
-</section>
-<section id="quick-markdown-text-formating" class="slide level2">
-<h2>Quick Markdown Text formating</h2>
-<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
-<p><code>**bold**</code> = <strong>bold</strong></p>
-<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
-<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
-<p><code>`code`</code> = <code>code</code></p>
-</section>
-<section id="code-chunk" class="slide level2">
-<h2>Code chunk</h2>
-<p>This:</p>
-<pre><code>```
-line 1
-line 2
-```</code></pre>
-<p>shows a code chunk:</p>
-<pre><code>line 1
-line 2</code></pre>
-</section>
-<section class="slide level2">
-
-<h3 id="headings">Headings</h3>
-<p>You can start sections and subsections like this:</p>
-<p><code># Header 1</code></p>
-<p><code>## Header 2</code></p>
-<p><code>### Header 3</code></p>
-</section>
-<section id="links" class="slide level2">
-<h2>Links</h2>
-<ul>
-<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
-<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
-</ul>
-<p>Looks like this:</p>
-<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
-<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
-</section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
-<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
-<p>Shows the plot and caption:</p>
-
-<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">Introductory Statistics with R</p><ul>
-<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
-</ul>
-</section>
-<section id="unordered-lists" class="slide level2">
-<h2>Unordered Lists</h2>
-<p>Bullets:</p>
-<pre><code>-   bullet 1
-    -   sub-bullet 1
-    -   sub-bullet 2
--   bullet 2</code></pre>
-<p>Looks like this:</p>
-<ul>
-<li>bullet 1
-<ul>
-<li>sub-bullet 1</li>
-<li>sub-bullet 2</li>
-</ul></li>
-<li>bullet 2</li>
-</ul>
-</section>
-<section id="ordered-lists" class="slide level2">
-<h2>Ordered Lists</h2>
-<p>Ordered list:</p>
-<pre><code>1.  Item 1
-2.  Item 2</code></pre>
-<p>Looks like this:</p>
-<ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
-</ol>
-</section>
-<section id="equations" class="slide level2">
-<h2>Equations</h2>
-
-<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Technical report often uses LaTeX for typesetting.</p>
-<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="equations-using-latex." class="slide level2">
-<h2>Equations using LaTeX.</h2>
-<p>Examples:</p>
-<ul>
-<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
-<li><p>Display math:</p></li>
-</ul>
-<pre><code>$$
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-$$</code></pre>
-<p>looks like this:</p>
-<p><span class="math display">\[
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-\]</span></p>
-</section>
-<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
-<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
-<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="r-code-chuns" class="slide level2">
-<h2>R Code Chuns</h2>
-<p>We can write something like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It looks like this:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">Sys.getlocale</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] "LC_COLLATE=English_United States.utf8;LC_CTYPE=English_United States.utf8;LC_MONETARY=English_United States.utf8;LC_NUMERIC=C;LC_TIME=English_United States.utf8"</code></pre>
 </div>
 </div>
-<p>Note that it was evaluated and the result is shown.</p>
-</section>
-<section id="local-control" class="slide level2">
-<h2>Local control</h2>
 <ul>
-<li><p>By default, the code and result will show up.</p></li>
-<li><p>control the behavior with <code>#|</code></p></li>
-<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
+<li>COLLATE: sorting strings; CTYPE: characters; Monetary: currency formatting; NUMERIC=C: use <code>.</code> for decimal point and no locale-specific thousands separators; TIME: data/time</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="other-local-controls" class="slide level2">
-<h2>Other local controls</h2>
+<section id="set-locales-in-r" class="slide level2">
+<h2>Set Locales in R</h2>
 <ul>
-<li><p>There are many options</p></li>
-<li><p>to avoid executing the code use <code>eval: FALSE</code>.</p></li>
-<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
+<li><p>use the <code>Sys.setlocale()</code> function.</p></li>
+<li><p>For example, to set the locale to US English:</p></li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">"LC_ALL"</span>, <span class="st">"en_US.UTF-8"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "LC_COLLATE=en_US.UTF-8;LC_CTYPE=en_US.UTF-8;LC_MONETARY=en_US.UTF-8;LC_NUMERIC=C;LC_TIME=en_US.UTF-8"</code></pre>
+</div>
+</div>
+<ul>
+<li>The exact string to use for setting the locale (like “en_US.UTF-8”) can depend on your operating system and its configuration.</li>
+</ul>
+</section>
+<section id="locales-in-r-1" class="slide level2">
+<h2>Locales in R</h2>
+<ul>
+<li><p><code>LC_ALL</code> refers to all locale categories.</p></li>
+<li><p>R breaks down the locale into categories:</p>
+<ul>
+<li><p><code>LC_COLLATE</code>: for string collation (sorting).</p></li>
+<li><p><code>LC_TIME</code>: date and time formatting.</p></li>
+<li><p><code>LC_MONETARY</code>: currency formatting.</p></li>
+<li><p><code>LC_MESSAGES</code>: system message translations.</p></li>
+<li><p><code>LC_NUMERIC</code>: number formatting.</p></li>
+</ul></li>
+<li><p>You can set the locale for each category individually if you don’t want to use <code>LC_ALL</code>.</p></li>
+</ul>
+</section>
+<section id="warinng-about-locale-settings" class="slide level2">
+<h2>Warinng about Locale Settings</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Note</strong></p>
+<p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>to apply an option globally, set them in the header.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>We have shown tools to control locales.</p></li>
+<li><p>These settings are important because they affect how your data looks and behaves.</p></li>
+<li><p>However, not all of these settings are available on every computer; their availability depends on what kind of computer you have and how it’s set up.</p></li>
+<li><p>Changing these settings, especially <code>LC_NUMERIC</code>, can lead to unexpected problems when you’re working with numbers in R.</p></li>
+<li><p>These locale settings only last as long as one R session.</p></li>
+</ul>
 </div>
 </div>
 </div>
 </section>
-<section id="labeling-a-code-chun-is-a-good-practice" class="slide level2">
-<h2>Labeling a code chun is a good practice</h2>
+<section id="the-locale-function" class="slide level2">
+<h2>The <code>locale</code> function</h2>
 <ul>
-<li>We recommend getting into the habit of labeling code chunks:</li>
+<li>The <strong>readr</strong> package includes a <code>locale()</code> function that can be used to learn or change the current locale from within R:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(readr) </span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">locale</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;locale&gt;
+Numbers:  123,456.78
+Formats:  %AD / %AT
+Timezone: UTC
+Encoding: UTF-8
+&lt;date_names&gt;
+Days:   Sunday (Sun), Monday (Mon), Tuesday (Tue), Wednesday (Wed), Thursday
+        (Thu), Friday (Fri), Saturday (Sat)
+Months: January (Jan), February (Feb), March (Mar), April (Apr), May (May),
+        June (Jun), July (Jul), August (Aug), September (Sep), October
+        (Oct), November (Nov), December (Dec)
+AM/PM:  AM/PM</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># %AD: the locale's default date format; %AT: default time forat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-locale-function-1" class="slide level2">
+<h2>The <code>locale</code> function</h2>
 <ul>
-<li>Helps with debugging</li>
-<li>Helps reading the code</li>
+<li>You can see all the locales available on your system by typing:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">system</span>(<span class="st">"locale -a"</span>) <span class="co"># execute the Linux/OS command `locale -a`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>On windows: 127 is an error code, means “command not found”</li>
 </ul>
 </section>
-<section id="more-on-markdown" class="slide level2">
-<h2>More on markdown</h2>
+<section id="change-locale" class="slide level2">
+<h2>change <code>locale</code></h2>
 <ul>
-<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
-<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
-<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
-<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
-<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
+<li>Here is what you obtain if you change the dates locale to Spanish:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">locale</span>(<span class="at">date_names =</span> <span class="st">"es"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;locale&gt;
+Numbers:  123,456.78
+Formats:  %AD / %AT
+Timezone: UTC
+Encoding: UTF-8
+&lt;date_names&gt;
+Days:   domingo (dom.), lunes (lun.), martes (mar.), miércoles (mié.), jueves
+        (jue.), viernes (vie.), sábado (sáb.)
+Months: enero (ene.), febrero (feb.), marzo (mar.), abril (abr.), mayo (may.),
+        junio (jun.), julio (jul.), agosto (ago.), septiembre (sept.),
+        octubre (oct.), noviembre (nov.), diciembre (dic.)
+AM/PM:  a. m./p. m.</code></pre>
+</div>
+</div>
+</section>
+<section id="example" class="slide level2 smaller">
+<h2>Example</h2>
+<ul>
+<li>Earlier we noted that the file:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="at">package =</span> <span class="st">"dslabs"</span>), <span class="st">"calificaciones.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>had a encoding different than UTF-8, the default.</p></li>
+<li><p>We used <code>guess_encoding</code> to determine the correct one:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">guess_encoding</span>(fn)<span class="sc">$</span>encoding[<span class="dv">1</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ISO-8859-1"</code></pre>
+</div>
+</div>
+<ul>
+<li>and used the <code>locale</code> to change the encoding and read in the file correctly:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fn, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>)) </span>
+<span id="cb14-2"><a href="#cb14-2"></a>dat </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 4
+  nombre   f.n.                     estampa             puntuación
+  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;
+1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875
+2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990
+3 João     10 de junio de 1931      2023-09-21 22:43:28        989
+4 López    24 de julio de 1969      2023-09-22 01:06:59        887
+5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931
+6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887
+7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830</code></pre>
+</div>
+</div>
+</section>
+<section id="if-use-read_lines" class="slide level2">
+<h2>If use read_lines()</h2>
+<ul>
+<li><code>read_lines</code>: read all lines and return them as a char vector (one element per line)</li>
+<li>seven students. Columns represent the name, date of birth, the time they submitted their assignment, and their score:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">read_lines</span>(fn, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "\"nombre\",\"f.n.\",\"estampa\",\"puntuación\""                       
+[2] "\"Beyoncé\",\"04 de septiembre de 1981\",2023-09-22 02:11:02,\"87,5\""
+[3] "\"Blümchen\",\"20 de abril de 1980\",2023-09-22 03:23:05,\"99,0\""    
+[4] "\"João\",\"10 de junio de 1931\",2023-09-21 22:43:28,\"98,9\""        
+[5] "\"López\",\"24 de julio de 1969\",2023-09-22 01:06:59,\"88,7\""       
+[6] "\"Ñengo\",\"15 de diciembre de 1981\",2023-09-21 23:35:37,\"93,1\""   
+[7] "\"Plácido\",\"24 de enero de 1941\",2023-09-21 23:17:21,\"88,7\""     
+[8] "\"Thalía\",\"26 de agosto de 1971\",2023-09-21 23:08:02,\"83,0\""     </code></pre>
+</div>
+</div>
+</section>
+<section id="example-read-data" class="slide level2">
+<h2>Example: read data</h2>
+<ul>
+<li><p>we will to compute the students age and check if they turned in their assignment by the deadline of September 21, 2023, before midnight.</p></li>
+<li><p>We can read in the file with correct encoding:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fn, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>However, notice that the last column, which is supposed to contain exam scores between 0 and 100, shows numbers larger than 800:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>dat<span class="sc">$</span>puntuación </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 875 990 989 887 931 887 830</code></pre>
+</div>
+</div>
+</section>
+<section id="example-change-locale" class="slide level2">
+<h2>Example: change locale</h2>
+<ul>
+<li><p>This happens because the scores in the file use the European decimal point, which confuses <code>read_csv</code>.</p></li>
+<li><p>To address this issue, we can change the encoding to use European decimals:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fn, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">","</span>, </span>
+<span id="cb21-2"><a href="#cb21-2"></a>                                    <span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>)) </span>
+<span id="cb21-3"><a href="#cb21-3"></a>dat<span class="sc">$</span>puntuación </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 87.5 99.0 98.9 88.7 93.1 88.7 83.0</code></pre>
+</div>
+</div>
+</section>
+<section id="example-change-to-date-format" class="slide level2">
+<h2>Example: change to date format</h2>
+<ul>
+<li>Try changing the submission times to date format:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(lubridate) </span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">dmy</span>(dat<span class="sc">$</span>f.n.) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA NA NA NA NA NA NA</code></pre>
+</div>
+</div>
+<p>Mistakes! Because the dates are in Spanish.</p>
+<p>We can change to use Spanish as for dates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">parse_date</span>(dat<span class="sc">$</span>f.n., <span class="at">format =</span> <span class="st">"%d de %B de %Y"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">date_names =</span> <span class="st">"es"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1981-09-04" "1980-04-20" "1931-06-10" "1969-07-24" "1981-12-15"
+[6] "1941-01-24" "1971-08-26"</code></pre>
+</div>
+</div>
+<ul>
+<li><code>%d</code>: day of month (01-31); <code>%B</code>: full month name; <code>%Y</code>: 4-digit year</li>
 </ul>
 </section>
-<section id="quarto-render" class="slide level2">
-<h2>Quarto render</h2>
+<section id="example-read-using-locale" class="slide level2">
+<h2>Example: Read using locale</h2>
+<p>We can also reread the file using the correct locales:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fn, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">date_names =</span> <span class="st">"es"</span>, </span>
+<span id="cb27-2"><a href="#cb27-2"></a>                                    <span class="at">date_format =</span> <span class="st">"%d de %B de %Y"</span>, </span>
+<span id="cb27-3"><a href="#cb27-3"></a>                                    <span class="at">decimal_mark =</span> <span class="st">","</span>, </span>
+<span id="cb27-4"><a href="#cb27-4"></a>                                    <span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-compute-the-age" class="slide level2">
+<h2>Example: compute the age</h2>
+<p>Computing the students’ ages is now straightforward:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">time_length</span>(<span class="fu">today</span>() <span class="sc">-</span> dat<span class="sc">$</span>f.n., <span class="at">unit =</span> <span class="st">"years"</span>) <span class="sc">|&gt;</span> <span class="fu">floor</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44 45 94 56 44 84 54</code></pre>
+</div>
+</div>
+</section>
+<section id="example-which-student-turned-in-late" class="slide level2">
+<h2>Example: which student turned in late</h2>
 <ul>
-<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
-<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
-<li><p><code>quarto render</code> renders all qmd files.</p></li>
-<li><p>You can produce html, pdf, or word documents.</p></li>
-<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
+<li>Let’s check which students turned in their homework past the deadline of September 22:</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>dat<span class="sc">$</span>estampa <span class="sc">&gt;=</span> <span class="fu">make_date</span>(<span class="dv">2023</span>, <span class="dv">9</span>, <span class="dv">22</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<ul>
+<li><p>We see that two students were late.</p></li>
+<li><p>However, with times we have to be particularly careful as some functions default to the UTC timezone:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">tz</span>(dat<span class="sc">$</span>estampa) <span class="co">#default UTC=UTC+0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "UTC"</code></pre>
+</div>
+</div>
+</section>
+<section id="example-change-timezone" class="slide level2">
+<h2>Example: change timezone</h2>
+<ul>
+<li>If we change to Eastern Standard Time (EST), we see no one was late:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">with_tz</span>(dat<span class="sc">$</span>estampa, <span class="at">tz =</span>  <span class="st">"EST"</span>) <span class="sc">&gt;=</span> <span class="fu">make_date</span>(<span class="dv">2023</span>, <span class="dv">9</span>, <span class="dv">22</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
 
 <div class="footer footer-default">
 

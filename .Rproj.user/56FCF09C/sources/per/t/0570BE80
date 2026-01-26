@@ -3,7 +3,7 @@
     "path": "E:/OneDrive - Auburn University Montgomery/teaching/AUM/STAT 3000/lectureNotes/index.qmd",
     "project_path": "index.qmd",
     "type": "quarto_markdown",
-    "hash": "3680946801",
+    "hash": "204151208",
     "contents": "",
     "dirty": false,
     "created": 1767804560329.0,
@@ -17,15 +17,15 @@
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
         "rmdVisualModeLocation": "38:0",
-        "cursorPosition": "12,0",
+        "cursorPosition": "8,0",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1767811380,
+    "lastKnownWriteTime": 1767814280,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1767811380551,
+    "last_content_update": 1767814280,
     "read_only": false,
     "read_only_alternatives": []
 }

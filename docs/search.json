@@ -3345,28 +3345,28 @@
     "href": "slides/11-importing-files.html#encoding",
     "title": "Importing files",
     "section": "Encoding",
-    "text": "Encoding\n\nComputer translates everything into 0s and 1s.\nASCII is an encoding system that assigns specific numbers to characters.\nUsing 7 bits, ASCII can represent \\(2^7 = 128\\) unique symbols, sufficient for all English keyboard characters.\nHowever, many global languages contain characters outside ASCII’s range."
+    "text": "Encoding\n\nWe can now see that the characters in the header were read in correctly:\n\n\ndat\n\n# A tibble: 7 × 4\n  nombre   f.n.                     estampa             puntuación\n  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;\n1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875\n2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990\n3 João     10 de junio de 1931      2023-09-21 22:43:28        989\n4 López    24 de julio de 1969      2023-09-22 01:06:59        887\n5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931\n6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887\n7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830"
   },
   {
     "objectID": "slides/11-importing-files.html#encoding-1",
     "href": "slides/11-importing-files.html#encoding-1",
     "title": "Importing files",
     "section": "Encoding",
-    "text": "Encoding\n\nFor instance, the é in “México” isn’t in ASCII’s catalog.\nTo address this, broader encodings emerged.\nUnicode offers variations using 8, 16, or 32 bits, known as UTF-8, UTF-16, and UTF-32.\nRStudio typically uses UTF-8 as its default.\nNotably, ASCII is a subset of UTF-8, meaning that if a file is ASCII-encoded, presuming it’s UTF-8 encoded won’t cause issues."
+    "text": "Encoding\n\nThe readr parsers permit us to specify an encoding.\nIt also includes a function that tries to guess the encoding:\n\n\nguess_encoding(\"murders.csv\") \n\n# A tibble: 1 × 2\n  encoding confidence\n  &lt;chr&gt;         &lt;dbl&gt;\n1 ASCII             1\n\nguess_encoding(\"calificaciones.csv\") \n\n# A tibble: 3 × 2\n  encoding   confidence\n  &lt;chr&gt;           &lt;dbl&gt;\n1 ISO-8859-1       0.92\n2 ISO-8859-2       0.72\n3 ISO-8859-9       0.53"
   },
   {
     "objectID": "slides/11-importing-files.html#encoding-2",
     "href": "slides/11-importing-files.html#encoding-2",
     "title": "Importing files",
     "section": "Encoding",
-    "text": "Encoding\n\nHowever, there other encodings, such as ISO-8859-1 (also known as Latin-1) developed for the western European languages, Big5 for Traditional Chinese, and ISO-8859-6 for Arabic.\nTake a look at this file:\n\n\nfn &lt;- \"calificaciones.csv\" \nfile.copy(file.path(system.file(\"extdata\", package = \"dslabs\"), fn), fn) \n\n[1] TRUE\n\nreadLines(fn, n = 1) \n\n[1] \"\\\"nombre\\\",\\\"f.n.\\\",\\\"estampa\\\",\\\"puntuaci\\xf3n\\\"\""
+    "text": "Encoding\n\nOnce we know the encoding we can specify it through the locale argument:\n\n\ndat &lt;- read_csv(\"calificaciones.csv\", show_col_types = FALSE, \n                locale = locale(encoding = \"ISO-8859-1\")) \n\n\nWe learn about locales in later."
   },
   {
     "objectID": "slides/11-importing-files.html#encoding-3",
     "href": "slides/11-importing-files.html#encoding-3",
     "title": "Importing files",
     "section": "Encoding",
-    "text": "Encoding\n\nThe readr parsers permit us to specify an encoding.\nIt also includes a function that tries to guess the encoding:\n\n\nguess_encoding(\"murders.csv\") \n\n# A tibble: 1 × 2\n  encoding confidence\n  &lt;chr&gt;         &lt;dbl&gt;\n1 ASCII             1\n\nguess_encoding(\"calificaciones.csv\") \n\n# A tibble: 3 × 2\n  encoding   confidence\n  &lt;chr&gt;           &lt;dbl&gt;\n1 ISO-8859-1       0.92\n2 ISO-8859-2       0.72\n3 ISO-8859-9       0.53"
+    "text": "Encoding\n\nWe can now see that the characters in the header were read in correctly:\n\n\ndat\n\n# A tibble: 7 × 4\n  nombre   f.n.                     estampa             puntuación\n  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;\n1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875\n2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990\n3 João     10 de junio de 1931      2023-09-21 22:43:28        989\n4 López    24 de julio de 1969      2023-09-22 01:06:59        887\n5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931\n6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887\n7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830"
   },
   {
     "objectID": "slides/11-importing-files.html#encoding-4",
@@ -3387,14 +3387,14 @@
     "href": "slides/11-importing-files.html#downloading-files",
     "title": "Importing files",
     "section": "Downloading files",
-    "text": "Downloading files\n\nA common place for data to reside is on the internet.\nWe can download these files and then import them.\nWe can also read them directly from the web.\n\n\nurl &lt;- paste0(\"https://raw.githubusercontent.com/\", \n              \"rafalab/dslabs/master/inst/extdata/murders.csv\") \nx &lt;- read.csv(url)"
+    "text": "Downloading files\n\ndownload.file(url, \"murders.csv\") \n\n\nThis will download the file and save it on your system with the name murders.csv.\nYou can use any name here, not necessarily murders.csv.\n\n\n\n\n\n\n\nWarning\n\n\nThe function download.file overwrites existing files without warning."
   },
   {
     "objectID": "slides/11-importing-files.html#downloading-files-1",
     "href": "slides/11-importing-files.html#downloading-files-1",
     "title": "Importing files",
     "section": "Downloading files",
-    "text": "Downloading files\n\nIf you want a local copy, you can use `download.file:\n\n\ndownload.file(url, \"murders.csv\") \n\n\nThis will download the file and save it on your system with the name murders.csv.\nNote You can use any name here, not necessarily murders.csv."
+    "text": "Downloading files\n\nTwo functions that are sometimes useful when downloading data from the internet are tempdir and tempfile.\n\n\ntmp_filename &lt;- tempfile() \ndownload.file(url, tmp_filename) \ndat &lt;- read_csv(tmp_filename) \nfile.remove(tmp_filename)"
   },
   {
     "objectID": "slides/11-importing-files.html#downloading-files-2",
@@ -3490,7 +3490,7 @@
     "href": "slides/02-rstudio.html#images",
     "title": "RStudio IDE and Quarto",
     "section": "Images",
-    "text": "Images\n![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)\nShows the plot and caption:\n\nMy caption\nThe image can also be a local file (replacing the html link with the path to the image.)",
+    "text": "Images\n![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)\nShows the plot and caption:\n\nIntroductory Statistics with R\nThe image can also be a local file (replacing the html link with the path to the image.)",
     "crumbs": [
       "Lecture 2-RStudio & Quarto"
     ]
@@ -3601,6 +3601,1226 @@
     "title": "RStudio IDE and Quarto",
     "section": "Quarto render",
     "text": "Quarto render\n\nRStudio provided Render button to compile the document.\nquarto render filename.qmd in a terminal renders single qmd file.\nquarto render renders all qmd files.\nYou can produce html, pdf, or word documents.\nYou can specify the default in the YAML header using: format: html, format: pdf,format: docx, or format: gfm (GitHub flavored markdown).",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/11-importing-files.html#data.table-fast-parsers",
+    "href": "slides/11-importing-files.html#data.table-fast-parsers",
+    "title": "Importing files",
+    "section": "data.table fast Parsers",
+    "text": "data.table fast Parsers\n\nlibrary(data.table)\nx &lt;- fread(\"murders.csv\")\nclass(x)\n\n[1] \"data.table\" \"data.frame\"\n\n\n\nAn R object can have multiple classes. data.table is compatible with data.frame. The object x has both data.frame and data.table behavior.\ndata.table core syntax DT[i,j,by]\n\ni: filter rows; j: compute/select columns; by: group\n\n\n\nx[region == \"South\", .(avg_total = mean(total)), by = state] |&gt; head(2)  # `.` alias for list()\n\n      state avg_total\n1:  Alabama       135\n2: Arkansas        93\n\n\n\ndata.table can modify columns inplace (no copyig) using :=\n\n\nx[, pop_millions := population/1e6]"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#scan-lower-level-base-r",
+    "href": "slides/11-importing-files.html#scan-lower-level-base-r",
+    "title": "Importing files",
+    "section": "scan (lower-level base R)",
+    "text": "scan (lower-level base R)\n\nThe scan function is the most general parser.\nIt will read in any text file and return a vector so you are on your own coverting it to a data frame.\nBecause it returns a vector, you need to tell it in advance what data type to expect:\n\n\nscan(\"murders.csv\", what = \"c\", sep = \",\", n = 10) #c: as char. \n\n [1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n [6] \"Alabama\"    \"AL\"         \"South\"      \"4779736\"    \"135\"       \n\n# read the first 10 items"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#encoding-ascii",
+    "href": "slides/11-importing-files.html#encoding-ascii",
+    "title": "Importing files",
+    "section": "Encoding: ASCII",
+    "text": "Encoding: ASCII\nhttps://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/locales.html\n\nComputer translates everything into 0s and 1s.\nASCII is an encoding system that assigns specific numbers to characters.\nUsing 7 bits, ASCII can represent \\(2^7 = 128\\) unique symbols, sufficient for all English keyboard characters.\nHowever, many global languages contain characters outside ASCII’s range."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#unicode-transoformation-format-utf",
+    "href": "slides/11-importing-files.html#unicode-transoformation-format-utf",
+    "title": "Importing files",
+    "section": "Unicode Transoformation Format (UTF)",
+    "text": "Unicode Transoformation Format (UTF)\n\nFor instance, the é in “México” isn’t in ASCII’s catalog.\nTo address this, broader encodings emerged.\nUnicode (all writing systems + symbols) offers variations using 8, 16, or 32 bits, known as UTF-8, UTF-16, and UTF-32.\nRStudio typically uses UTF-8 as its default.\nASCII is a subset of UTF-8, if a file is ASCII-encoded, presuming it’s UTF-8 encoded won’t cause issues."
+  },
+  {
+    "objectID": "slides/11-importing-files.html#other-encodings",
+    "href": "slides/11-importing-files.html#other-encodings",
+    "title": "Importing files",
+    "section": "Other Encodings",
+    "text": "Other Encodings\n\nHowever, there other encodings, such as ISO-8859-1 (also known as Latin-1) developed for the western European languages (Spanish accents like á, é, ñ), Big5 for Traditional Chinese, and ISO-8859-6 for Arabic.\n\n\nfn &lt;- \"calificaciones.csv\" \nfile.copy(file.path(system.file(\"extdata\", package = \"dslabs\"), fn), fn) \n\n[1] TRUE\n\nreadLines(fn, n = 1) #return the first line\n\n[1] \"\\\"nombre\\\",\\\"f.n.\\\",\\\"estampa\\\",\\\"puntuaci\\xf3n\\\"\""
+  },
+  {
+    "objectID": "slides/11-importing-files.html#guess_encoding",
+    "href": "slides/11-importing-files.html#guess_encoding",
+    "title": "Importing files",
+    "section": "guess_encoding",
+    "text": "guess_encoding\n\nThe readr parsers permit us to specify an encoding.\nIt also includes a function that tries to guess the encoding:\n\n\nguess_encoding(\"murders.csv\") \n\n# A tibble: 1 × 2\n  encoding confidence\n  &lt;chr&gt;         &lt;dbl&gt;\n1 ASCII             1\n\nguess_encoding(\"calificaciones.csv\") \n\n# A tibble: 3 × 2\n  encoding   confidence\n  &lt;chr&gt;           &lt;dbl&gt;\n1 ISO-8859-1       0.92\n2 ISO-8859-2       0.72\n3 ISO-8859-9       0.53"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#specify-locale",
+    "href": "slides/11-importing-files.html#specify-locale",
+    "title": "Importing files",
+    "section": "Specify locale",
+    "text": "Specify locale\n\nOnce we know the encoding we can specify it through the locale argument:\n\n\ndat &lt;- read_csv(\"calificaciones.csv\", show_col_types = FALSE, #suppress col info\n                locale = locale(encoding = \"ISO-8859-1\")) \ndat\n\n# A tibble: 7 × 4\n  nombre   f.n.                     estampa             puntuación\n  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;\n1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875\n2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990\n3 João     10 de junio de 1931      2023-09-21 22:43:28        989\n4 López    24 de julio de 1969      2023-09-22 01:06:59        887\n5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931\n6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887\n7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#read-csv-directly-from-web",
+    "href": "slides/11-importing-files.html#read-csv-directly-from-web",
+    "title": "Importing files",
+    "section": "Read csv directly from web",
+    "text": "Read csv directly from web\n\nurl &lt;- paste0(\"https://raw.githubusercontent.com/\", \n              \"rafalab/dslabs/master/inst/extdata/murders.csv\") \nx &lt;- read.csv(url) \nx |&gt; head(3)\n\n    state abb region population total\n1 Alabama  AL  South    4779736   135\n2  Alaska  AK   West     710231    19\n3 Arizona  AZ   West    6392017   232\n\n\n\npaste0(): join strings with no separators"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#tempfile-and-tempdir",
+    "href": "slides/11-importing-files.html#tempfile-and-tempdir",
+    "title": "Importing files",
+    "section": "tempfile and tempdir",
+    "text": "tempfile and tempdir\n\ncreate temp file name or dir name\n\n\ntmp_filename &lt;- tempfile() \ntmp_filename\n\n[1] \"C:\\\\Users\\\\ywang2\\\\AppData\\\\Local\\\\Temp\\\\RtmpM7vSFr\\\\file3d741897f51\"\n\ndownload.file(url, tmp_filename) \ndat &lt;- read_csv(tmp_filename) \nfile.remove(tmp_filename) \n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#parsing-dates-and-times",
+    "href": "slides/12-dates-and-times.html#parsing-dates-and-times",
+    "title": "Dates And Times",
+    "section": "Parsing dates and times",
+    "text": "Parsing dates and times\n\nIf I tell you it’s November 2, 2017, you know what this means immediately.\nIf I tell you it’s day 17204, you will be quite confused.\nSimilar problems arise with times and even more complications can appear due to time zones.\nFor this reason, R defines a data type just for dates and times."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#parsing-dates-and-times-1",
+    "href": "slides/12-dates-and-times.html#parsing-dates-and-times-1",
+    "title": "Dates And Times",
+    "section": "Parsing dates and times",
+    "text": "Parsing dates and times\n\nIf I tell you it’s November 2, 2017, you know what this means immediately.\nIf I tell you it’s day 17204, you will be quite confused.\nSimilar problems arise with times and even more complications can appear due to time zones.\nFor this reason, R defines a data type just for dates and times."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-date-data-type",
+    "href": "slides/12-dates-and-times.html#the-date-data-type",
+    "title": "Dates And Times",
+    "section": "The date data type",
+    "text": "The date data type\n\nlibrary(tidyverse) \nlibrary(dslabs) \npolls_us_election_2016$startdate |&gt; head() \n\n[1] \"2016-11-03\" \"2016-11-01\" \"2016-11-02\" \"2016-11-04\" \"2016-11-03\"\n[6] \"2016-11-03\"\n\n\n\nThe dates look like strings, but they are not:\n\n\nclass(polls_us_election_2016$startdate) \n\n[1] \"Date\"\n\n\n\nwhen we convert them to numbers:\n\n\nas.numeric(polls_us_election_2016$startdate) |&gt; head() \n\n[1] 17108 17106 17107 17109 17108 17108\n\n\n\nIt turns them into days since the epoch."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-date-data-type-1",
+    "href": "slides/12-dates-and-times.html#the-date-data-type-1",
+    "title": "Dates And Times",
+    "section": "The date data type",
+    "text": "The date data type\n\nScatterplots use the numeric representation to assign positions, but include the string in the labels:\n\n\npolls_us_election_2016 |&gt; \n  filter(startdate &gt;= make_date(2016, 6, 1)) |&gt; #2026-06-01\n  filter(pollster == \"Ipsos\" & state == \"U.S.\") |&gt; \n  ggplot(aes(startdate, rawpoll_clinton)) + \n  geom_line()"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-date-data-type-2",
+    "href": "slides/12-dates-and-times.html#the-date-data-type-2",
+    "title": "Dates And Times",
+    "section": "The date data type",
+    "text": "The date data type\n\nCodePlot\n\n\nggplot offers convenient functions to change labels:\n\npolls_us_election_2016 |&gt; \n  filter(startdate &gt;= make_date(2016, 6, 1)) |&gt;\n  filter(pollster == \"Ipsos\" & state == \"U.S.\") |&gt; \n  ggplot(aes(startdate, rawpoll_clinton)) + \n  geom_line() +\n  scale_x_date(date_breaks = \"2 weeks\", date_labels = \"%b %d\") + \n  geom_vline(xintercept = as.Date(\"2016-10-28\"), linetype = \"dashed\")\n\n\nplace tick marks every two weeks on the x-axis (can be “1 month”, “3 day”)\n%b: abbreviated month (Jan, Feb)\nd: day of month (01-31)"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-date-data-type-3",
+    "href": "slides/12-dates-and-times.html#the-date-data-type-3",
+    "title": "Dates And Times",
+    "section": "The date data type",
+    "text": "The date data type\n\nCodePlot\n\n\nggplot offers convenient functions to change labels:\n\npolls_us_election_2016 |&gt; \n  filter(startdate &gt;= make_date(2016, 6, 1)) |&gt;\n  filter(pollster == \"Ipsos\" & state == \"U.S.\") |&gt; \n  ggplot(aes(startdate, rawpoll_clinton)) + \n  geom_line() +\n  scale_x_date(date_breaks = \"2 weeks\", date_labels = \"%b %d\") + \n  geom_vline(xintercept = as.Date(\"2016-10-28\"), linetype = \"dashed\")"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-date-data-type-4",
+    "href": "slides/12-dates-and-times.html#the-date-data-type-4",
+    "title": "Dates And Times",
+    "section": "The date data type",
+    "text": "The date data type\n\nCodePlot\n\n\nggplot offers convenient functions to change labels:\n\npolls_us_election_2016 |&gt; \n  filter(startdate &gt;= make_date(2016, 6, 1)) |&gt;\n  filter(pollster == \"Ipsos\" & state == \"U.S.\") |&gt; \n  ggplot(aes(startdate, rawpoll_clinton)) + \n  geom_line() +\n  scale_x_date(date_breaks = \"2 weeks\", date_labels = \"%b %d\") + \n  geom_vline(xintercept = as.Date(\"2016-10-28\"), linetype = \"dashed\")"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nThe lubridate package provides tools to work with date and times.\n\n\nlibrary(lubridate) \n\n\nset.seed(2002) \ndates &lt;- sample(polls_us_election_2016$startdate, 10) |&gt; sort() \n# default replace = FALSE\ndates \n\n [1] \"2016-05-31\" \"2016-08-08\" \"2016-08-19\" \"2016-09-22\" \"2016-09-27\"\n [6] \"2016-10-12\" \"2016-10-24\" \"2016-10-26\" \"2016-10-29\" \"2016-10-30\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-1",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-1",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nWe can also extract the month labels:\n\n\nmonth(dates, label = TRUE) \n\n [1] May Aug Aug Sep Sep Oct Oct Oct Oct Oct\n12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-2",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-2",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nCodePlot\n\n\n\nExample: group all the polls by week of the year:\n\n\npolls_us_election_2016 |&gt;  \n  mutate(week = round_date(startdate, \"week\")) |&gt; \n  group_by(week) |&gt; \n  summarize(margin = mean(rawpoll_clinton - rawpoll_trump)) |&gt; \n  ggplot(aes(week, margin)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-3",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-3",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nWe can also extract hours, minutes, and seconds:\n\n\nnow() |&gt; hour() \n\n[1] 11\n\nnow() |&gt; minute() \n\n[1] 19\n\nnow() |&gt; second() \n\n[1] 20.46622"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-4",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-4",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nThe package also includes a function to parse strings into times as well as parsers for time objects that include dates:\n\n\nx &lt;- c(\"12:34:56\") \nhms(x) \n\n[1] \"12H 34M 56S\"\n\nx &lt;- \"Nov/2/2012 12:34:56\" \nmdy_hms(x) \n\n[1] \"2012-11-02 12:34:56 UTC\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-5",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-5",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nThe make_date function can be used to quickly create a date object.\nFor example, to create an date object representing, for example, July 6, 2019 we write:\n\n\nmake_date(2019, 7, 6) \n\n[1] \"2019-07-06\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-6",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-6",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nWe can use it to make vectors of dates.\nTo make a vector of January 1 for the 80s we write:\n\n\nmake_date(1980:1989) \n\n [1] \"1980-01-01\" \"1981-01-01\" \"1982-01-01\" \"1983-01-01\" \"1984-01-01\"\n [6] \"1985-01-01\" \"1986-01-01\" \"1987-01-01\" \"1988-01-01\" \"1989-01-01\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-7",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-7",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nAnother very useful function is round_date.\nIt can be used to round dates to nearest year, quarter, month, week, day, hour, minutes, or seconds."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-8",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-8",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nCodePlot\n\n\n\nExample: if we want to group all the polls by week of the year we can do the following:\n\n\npolls_us_election_2016 |&gt;  \n  mutate(week = round_date(startdate, \"week\")) |&gt; \n  group_by(week) |&gt; \n  summarize(margin = mean(rawpoll_clinton - rawpoll_trump)) |&gt; \n  ggplot(aes(week, margin)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-9",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-9",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nCodePlot\n\n\n\nExample: if we want to group all the polls by week of the year we can do the following:\n\n\npolls_us_election_2016 |&gt;  \n  mutate(week = round_date(startdate, \"week\")) |&gt; \n  group_by(week) |&gt; \n  summarize(margin = mean(rawpoll_clinton - rawpoll_trump)) |&gt; \n  ggplot(aes(week, margin)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-10",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-10",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nYou can see all the available time zones with:\n\n\nOlsonNames()\n\n  [1] \"Africa/Abidjan\"                   \"Africa/Accra\"                    \n  [3] \"Africa/Addis_Ababa\"               \"Africa/Algiers\"                  \n  [5] \"Africa/Asmara\"                    \"Africa/Asmera\"                   \n  [7] \"Africa/Bamako\"                    \"Africa/Bangui\"                   \n  [9] \"Africa/Banjul\"                    \"Africa/Bissau\"                   \n [11] \"Africa/Blantyre\"                  \"Africa/Brazzaville\"              \n [13] \"Africa/Bujumbura\"                 \"Africa/Cairo\"                    \n [15] \"Africa/Casablanca\"                \"Africa/Ceuta\"                    \n [17] \"Africa/Conakry\"                   \"Africa/Dakar\"                    \n [19] \"Africa/Dar_es_Salaam\"             \"Africa/Djibouti\"                 \n [21] \"Africa/Douala\"                    \"Africa/El_Aaiun\"                 \n [23] \"Africa/Freetown\"                  \"Africa/Gaborone\"                 \n [25] \"Africa/Harare\"                    \"Africa/Johannesburg\"             \n [27] \"Africa/Juba\"                      \"Africa/Kampala\"                  \n [29] \"Africa/Khartoum\"                  \"Africa/Kigali\"                   \n [31] \"Africa/Kinshasa\"                  \"Africa/Lagos\"                    \n [33] \"Africa/Libreville\"                \"Africa/Lome\"                     \n [35] \"Africa/Luanda\"                    \"Africa/Lubumbashi\"               \n [37] \"Africa/Lusaka\"                    \"Africa/Malabo\"                   \n [39] \"Africa/Maputo\"                    \"Africa/Maseru\"                   \n [41] \"Africa/Mbabane\"                   \"Africa/Mogadishu\"                \n [43] \"Africa/Monrovia\"                  \"Africa/Nairobi\"                  \n [45] \"Africa/Ndjamena\"                  \"Africa/Niamey\"                   \n [47] \"Africa/Nouakchott\"                \"Africa/Ouagadougou\"              \n [49] \"Africa/Porto-Novo\"                \"Africa/Sao_Tome\"                 \n [51] \"Africa/Timbuktu\"                  \"Africa/Tripoli\"                  \n [53] \"Africa/Tunis\"                     \"Africa/Windhoek\"                 \n [55] \"America/Adak\"                     \"America/Anchorage\"               \n [57] \"America/Anguilla\"                 \"America/Antigua\"                 \n [59] \"America/Araguaina\"                \"America/Argentina/Buenos_Aires\"  \n [61] \"America/Argentina/Catamarca\"      \"America/Argentina/ComodRivadavia\"\n [63] \"America/Argentina/Cordoba\"        \"America/Argentina/Jujuy\"         \n [65] \"America/Argentina/La_Rioja\"       \"America/Argentina/Mendoza\"       \n [67] \"America/Argentina/Rio_Gallegos\"   \"America/Argentina/Salta\"         \n [69] \"America/Argentina/San_Juan\"       \"America/Argentina/San_Luis\"      \n [71] \"America/Argentina/Tucuman\"        \"America/Argentina/Ushuaia\"       \n [73] \"America/Aruba\"                    \"America/Asuncion\"                \n [75] \"America/Atikokan\"                 \"America/Atka\"                    \n [77] \"America/Bahia\"                    \"America/Bahia_Banderas\"          \n [79] \"America/Barbados\"                 \"America/Belem\"                   \n [81] \"America/Belize\"                   \"America/Blanc-Sablon\"            \n [83] \"America/Boa_Vista\"                \"America/Bogota\"                  \n [85] \"America/Boise\"                    \"America/Buenos_Aires\"            \n [87] \"America/Cambridge_Bay\"            \"America/Campo_Grande\"            \n [89] \"America/Cancun\"                   \"America/Caracas\"                 \n [91] \"America/Catamarca\"                \"America/Cayenne\"                 \n [93] \"America/Cayman\"                   \"America/Chicago\"                 \n [95] \"America/Chihuahua\"                \"America/Coral_Harbour\"           \n [97] \"America/Cordoba\"                  \"America/Costa_Rica\"              \n [99] \"America/Creston\"                  \"America/Cuiaba\"                  \n[101] \"America/Curacao\"                  \"America/Danmarkshavn\"            \n[103] \"America/Dawson\"                   \"America/Dawson_Creek\"            \n[105] \"America/Denver\"                   \"America/Detroit\"                 \n[107] \"America/Dominica\"                 \"America/Edmonton\"                \n[109] \"America/Eirunepe\"                 \"America/El_Salvador\"             \n[111] \"America/Ensenada\"                 \"America/Fort_Nelson\"             \n[113] \"America/Fort_Wayne\"               \"America/Fortaleza\"               \n[115] \"America/Glace_Bay\"                \"America/Godthab\"                 \n[117] \"America/Goose_Bay\"                \"America/Grand_Turk\"              \n[119] \"America/Grenada\"                  \"America/Guadeloupe\"              \n[121] \"America/Guatemala\"                \"America/Guayaquil\"               \n[123] \"America/Guyana\"                   \"America/Halifax\"                 \n[125] \"America/Havana\"                   \"America/Hermosillo\"              \n[127] \"America/Indiana/Indianapolis\"     \"America/Indiana/Knox\"            \n[129] \"America/Indiana/Marengo\"          \"America/Indiana/Petersburg\"      \n[131] \"America/Indiana/Tell_City\"        \"America/Indiana/Vevay\"           \n[133] \"America/Indiana/Vincennes\"        \"America/Indiana/Winamac\"         \n[135] \"America/Indianapolis\"             \"America/Inuvik\"                  \n[137] \"America/Iqaluit\"                  \"America/Jamaica\"                 \n[139] \"America/Jujuy\"                    \"America/Juneau\"                  \n[141] \"America/Kentucky/Louisville\"      \"America/Kentucky/Monticello\"     \n[143] \"America/Knox_IN\"                  \"America/Kralendijk\"              \n[145] \"America/La_Paz\"                   \"America/Lima\"                    \n[147] \"America/Los_Angeles\"              \"America/Louisville\"              \n[149] \"America/Lower_Princes\"            \"America/Maceio\"                  \n[151] \"America/Managua\"                  \"America/Manaus\"                  \n[153] \"America/Marigot\"                  \"America/Martinique\"              \n[155] \"America/Matamoros\"                \"America/Mazatlan\"                \n[157] \"America/Mendoza\"                  \"America/Menominee\"               \n[159] \"America/Merida\"                   \"America/Metlakatla\"              \n[161] \"America/Mexico_City\"              \"America/Miquelon\"                \n[163] \"America/Moncton\"                  \"America/Monterrey\"               \n[165] \"America/Montevideo\"               \"America/Montreal\"                \n[167] \"America/Montserrat\"               \"America/Nassau\"                  \n[169] \"America/New_York\"                 \"America/Nipigon\"                 \n[171] \"America/Nome\"                     \"America/Noronha\"                 \n[173] \"America/North_Dakota/Beulah\"      \"America/North_Dakota/Center\"     \n[175] \"America/North_Dakota/New_Salem\"   \"America/Nuuk\"                    \n[177] \"America/Ojinaga\"                  \"America/Panama\"                  \n[179] \"America/Pangnirtung\"              \"America/Paramaribo\"              \n[181] \"America/Phoenix\"                  \"America/Port-au-Prince\"          \n[183] \"America/Port_of_Spain\"            \"America/Porto_Acre\"              \n[185] \"America/Porto_Velho\"              \"America/Puerto_Rico\"             \n[187] \"America/Punta_Arenas\"             \"America/Rainy_River\"             \n[189] \"America/Rankin_Inlet\"             \"America/Recife\"                  \n[191] \"America/Regina\"                   \"America/Resolute\"                \n[193] \"America/Rio_Branco\"               \"America/Rosario\"                 \n[195] \"America/Santa_Isabel\"             \"America/Santarem\"                \n[197] \"America/Santiago\"                 \"America/Santo_Domingo\"           \n[199] \"America/Sao_Paulo\"                \"America/Scoresbysund\"            \n[201] \"America/Shiprock\"                 \"America/Sitka\"                   \n[203] \"America/St_Barthelemy\"            \"America/St_Johns\"                \n[205] \"America/St_Kitts\"                 \"America/St_Lucia\"                \n[207] \"America/St_Thomas\"                \"America/St_Vincent\"              \n[209] \"America/Swift_Current\"            \"America/Tegucigalpa\"             \n[211] \"America/Thule\"                    \"America/Thunder_Bay\"             \n[213] \"America/Tijuana\"                  \"America/Toronto\"                 \n[215] \"America/Tortola\"                  \"America/Vancouver\"               \n[217] \"America/Virgin\"                   \"America/Whitehorse\"              \n[219] \"America/Winnipeg\"                 \"America/Yakutat\"                 \n[221] \"America/Yellowknife\"              \"Antarctica/Casey\"                \n[223] \"Antarctica/Davis\"                 \"Antarctica/DumontDUrville\"       \n[225] \"Antarctica/Macquarie\"             \"Antarctica/Mawson\"               \n[227] \"Antarctica/McMurdo\"               \"Antarctica/Palmer\"               \n[229] \"Antarctica/Rothera\"               \"Antarctica/South_Pole\"           \n[231] \"Antarctica/Syowa\"                 \"Antarctica/Troll\"                \n[233] \"Antarctica/Vostok\"                \"Arctic/Longyearbyen\"             \n[235] \"Asia/Aden\"                        \"Asia/Almaty\"                     \n[237] \"Asia/Amman\"                       \"Asia/Anadyr\"                     \n[239] \"Asia/Aqtau\"                       \"Asia/Aqtobe\"                     \n[241] \"Asia/Ashgabat\"                    \"Asia/Ashkhabad\"                  \n[243] \"Asia/Atyrau\"                      \"Asia/Baghdad\"                    \n[245] \"Asia/Bahrain\"                     \"Asia/Baku\"                       \n[247] \"Asia/Bangkok\"                     \"Asia/Barnaul\"                    \n[249] \"Asia/Beirut\"                      \"Asia/Bishkek\"                    \n[251] \"Asia/Brunei\"                      \"Asia/Calcutta\"                   \n[253] \"Asia/Chita\"                       \"Asia/Choibalsan\"                 \n[255] \"Asia/Chongqing\"                   \"Asia/Chungking\"                  \n[257] \"Asia/Colombo\"                     \"Asia/Dacca\"                      \n[259] \"Asia/Damascus\"                    \"Asia/Dhaka\"                      \n[261] \"Asia/Dili\"                        \"Asia/Dubai\"                      \n[263] \"Asia/Dushanbe\"                    \"Asia/Famagusta\"                  \n[265] \"Asia/Gaza\"                        \"Asia/Harbin\"                     \n[267] \"Asia/Hebron\"                      \"Asia/Ho_Chi_Minh\"                \n[269] \"Asia/Hong_Kong\"                   \"Asia/Hovd\"                       \n[271] \"Asia/Irkutsk\"                     \"Asia/Istanbul\"                   \n[273] \"Asia/Jakarta\"                     \"Asia/Jayapura\"                   \n[275] \"Asia/Jerusalem\"                   \"Asia/Kabul\"                      \n[277] \"Asia/Kamchatka\"                   \"Asia/Karachi\"                    \n[279] \"Asia/Kashgar\"                     \"Asia/Kathmandu\"                  \n[281] \"Asia/Katmandu\"                    \"Asia/Khandyga\"                   \n[283] \"Asia/Kolkata\"                     \"Asia/Krasnoyarsk\"                \n[285] \"Asia/Kuala_Lumpur\"                \"Asia/Kuching\"                    \n[287] \"Asia/Kuwait\"                      \"Asia/Macao\"                      \n[289] \"Asia/Macau\"                       \"Asia/Magadan\"                    \n[291] \"Asia/Makassar\"                    \"Asia/Manila\"                     \n[293] \"Asia/Muscat\"                      \"Asia/Nicosia\"                    \n[295] \"Asia/Novokuznetsk\"                \"Asia/Novosibirsk\"                \n[297] \"Asia/Omsk\"                        \"Asia/Oral\"                       \n[299] \"Asia/Phnom_Penh\"                  \"Asia/Pontianak\"                  \n[301] \"Asia/Pyongyang\"                   \"Asia/Qatar\"                      \n[303] \"Asia/Qostanay\"                    \"Asia/Qyzylorda\"                  \n[305] \"Asia/Rangoon\"                     \"Asia/Riyadh\"                     \n[307] \"Asia/Saigon\"                      \"Asia/Sakhalin\"                   \n[309] \"Asia/Samarkand\"                   \"Asia/Seoul\"                      \n[311] \"Asia/Shanghai\"                    \"Asia/Singapore\"                  \n[313] \"Asia/Srednekolymsk\"               \"Asia/Taipei\"                     \n[315] \"Asia/Tashkent\"                    \"Asia/Tbilisi\"                    \n[317] \"Asia/Tehran\"                      \"Asia/Tel_Aviv\"                   \n[319] \"Asia/Thimbu\"                      \"Asia/Thimphu\"                    \n[321] \"Asia/Tokyo\"                       \"Asia/Tomsk\"                      \n[323] \"Asia/Ujung_Pandang\"               \"Asia/Ulaanbaatar\"                \n[325] \"Asia/Ulan_Bator\"                  \"Asia/Urumqi\"                     \n[327] \"Asia/Ust-Nera\"                    \"Asia/Vientiane\"                  \n[329] \"Asia/Vladivostok\"                 \"Asia/Yakutsk\"                    \n[331] \"Asia/Yangon\"                      \"Asia/Yekaterinburg\"              \n[333] \"Asia/Yerevan\"                     \"Atlantic/Azores\"                 \n[335] \"Atlantic/Bermuda\"                 \"Atlantic/Canary\"                 \n[337] \"Atlantic/Cape_Verde\"              \"Atlantic/Faeroe\"                 \n[339] \"Atlantic/Faroe\"                   \"Atlantic/Jan_Mayen\"              \n[341] \"Atlantic/Madeira\"                 \"Atlantic/Reykjavik\"              \n[343] \"Atlantic/South_Georgia\"           \"Atlantic/St_Helena\"              \n[345] \"Atlantic/Stanley\"                 \"Australia/ACT\"                   \n[347] \"Australia/Adelaide\"               \"Australia/Brisbane\"              \n[349] \"Australia/Broken_Hill\"            \"Australia/Canberra\"              \n[351] \"Australia/Currie\"                 \"Australia/Darwin\"                \n[353] \"Australia/Eucla\"                  \"Australia/Hobart\"                \n[355] \"Australia/LHI\"                    \"Australia/Lindeman\"              \n[357] \"Australia/Lord_Howe\"              \"Australia/Melbourne\"             \n[359] \"Australia/North\"                  \"Australia/NSW\"                   \n[361] \"Australia/Perth\"                  \"Australia/Queensland\"            \n[363] \"Australia/South\"                  \"Australia/Sydney\"                \n[365] \"Australia/Tasmania\"               \"Australia/Victoria\"              \n[367] \"Australia/West\"                   \"Australia/Yancowinna\"            \n[369] \"Brazil/Acre\"                      \"Brazil/DeNoronha\"                \n[371] \"Brazil/East\"                      \"Brazil/West\"                     \n[373] \"Canada/Atlantic\"                  \"Canada/Central\"                  \n[375] \"Canada/Eastern\"                   \"Canada/Mountain\"                 \n[377] \"Canada/Newfoundland\"              \"Canada/Pacific\"                  \n[379] \"Canada/Saskatchewan\"              \"Canada/Yukon\"                    \n[381] \"CET\"                              \"Chile/Continental\"               \n[383] \"Chile/EasterIsland\"               \"CST6CDT\"                         \n[385] \"Cuba\"                             \"EET\"                             \n[387] \"Egypt\"                            \"Eire\"                            \n[389] \"EST\"                              \"EST5EDT\"                         \n[391] \"Etc/GMT\"                          \"Etc/GMT-0\"                       \n[393] \"Etc/GMT-1\"                        \"Etc/GMT-10\"                      \n[395] \"Etc/GMT-11\"                       \"Etc/GMT-12\"                      \n[397] \"Etc/GMT-13\"                       \"Etc/GMT-14\"                      \n[399] \"Etc/GMT-2\"                        \"Etc/GMT-3\"                       \n[401] \"Etc/GMT-4\"                        \"Etc/GMT-5\"                       \n[403] \"Etc/GMT-6\"                        \"Etc/GMT-7\"                       \n[405] \"Etc/GMT-8\"                        \"Etc/GMT-9\"                       \n[407] \"Etc/GMT+0\"                        \"Etc/GMT+1\"                       \n[409] \"Etc/GMT+10\"                       \"Etc/GMT+11\"                      \n[411] \"Etc/GMT+12\"                       \"Etc/GMT+2\"                       \n[413] \"Etc/GMT+3\"                        \"Etc/GMT+4\"                       \n[415] \"Etc/GMT+5\"                        \"Etc/GMT+6\"                       \n[417] \"Etc/GMT+7\"                        \"Etc/GMT+8\"                       \n[419] \"Etc/GMT+9\"                        \"Etc/GMT0\"                        \n[421] \"Etc/Greenwich\"                    \"Etc/UCT\"                         \n[423] \"Etc/Universal\"                    \"Etc/UTC\"                         \n[425] \"Etc/Zulu\"                         \"Europe/Amsterdam\"                \n[427] \"Europe/Andorra\"                   \"Europe/Astrakhan\"                \n[429] \"Europe/Athens\"                    \"Europe/Belfast\"                  \n[431] \"Europe/Belgrade\"                  \"Europe/Berlin\"                   \n[433] \"Europe/Bratislava\"                \"Europe/Brussels\"                 \n[435] \"Europe/Bucharest\"                 \"Europe/Budapest\"                 \n[437] \"Europe/Busingen\"                  \"Europe/Chisinau\"                 \n[439] \"Europe/Copenhagen\"                \"Europe/Dublin\"                   \n[441] \"Europe/Gibraltar\"                 \"Europe/Guernsey\"                 \n[443] \"Europe/Helsinki\"                  \"Europe/Isle_of_Man\"              \n[445] \"Europe/Istanbul\"                  \"Europe/Jersey\"                   \n[447] \"Europe/Kaliningrad\"               \"Europe/Kiev\"                     \n[449] \"Europe/Kirov\"                     \"Europe/Kyiv\"                     \n[451] \"Europe/Lisbon\"                    \"Europe/Ljubljana\"                \n[453] \"Europe/London\"                    \"Europe/Luxembourg\"               \n[455] \"Europe/Madrid\"                    \"Europe/Malta\"                    \n[457] \"Europe/Mariehamn\"                 \"Europe/Minsk\"                    \n[459] \"Europe/Monaco\"                    \"Europe/Moscow\"                   \n[461] \"Europe/Nicosia\"                   \"Europe/Oslo\"                     \n[463] \"Europe/Paris\"                     \"Europe/Podgorica\"                \n[465] \"Europe/Prague\"                    \"Europe/Riga\"                     \n[467] \"Europe/Rome\"                      \"Europe/Samara\"                   \n[469] \"Europe/San_Marino\"                \"Europe/Sarajevo\"                 \n[471] \"Europe/Saratov\"                   \"Europe/Simferopol\"               \n[473] \"Europe/Skopje\"                    \"Europe/Sofia\"                    \n[475] \"Europe/Stockholm\"                 \"Europe/Tallinn\"                  \n[477] \"Europe/Tirane\"                    \"Europe/Tiraspol\"                 \n[479] \"Europe/Ulyanovsk\"                 \"Europe/Uzhgorod\"                 \n[481] \"Europe/Vaduz\"                     \"Europe/Vatican\"                  \n[483] \"Europe/Vienna\"                    \"Europe/Vilnius\"                  \n[485] \"Europe/Volgograd\"                 \"Europe/Warsaw\"                   \n[487] \"Europe/Zagreb\"                    \"Europe/Zaporozhye\"               \n[489] \"Europe/Zurich\"                    \"GB\"                              \n[491] \"GB-Eire\"                          \"GMT\"                             \n[493] \"GMT-0\"                            \"GMT+0\"                           \n[495] \"GMT0\"                             \"Greenwich\"                       \n[497] \"Hongkong\"                         \"HST\"                             \n[499] \"Iceland\"                          \"Indian/Antananarivo\"             \n[501] \"Indian/Chagos\"                    \"Indian/Christmas\"                \n[503] \"Indian/Cocos\"                     \"Indian/Comoro\"                   \n[505] \"Indian/Kerguelen\"                 \"Indian/Mahe\"                     \n[507] \"Indian/Maldives\"                  \"Indian/Mauritius\"                \n[509] \"Indian/Mayotte\"                   \"Indian/Reunion\"                  \n[511] \"Iran\"                             \"Israel\"                          \n[513] \"Jamaica\"                          \"Japan\"                           \n[515] \"Kwajalein\"                        \"Libya\"                           \n[517] \"MET\"                              \"Mexico/BajaNorte\"                \n[519] \"Mexico/BajaSur\"                   \"Mexico/General\"                  \n[521] \"MST\"                              \"MST7MDT\"                         \n[523] \"Navajo\"                           \"NZ\"                              \n[525] \"NZ-CHAT\"                          \"Pacific/Apia\"                    \n[527] \"Pacific/Auckland\"                 \"Pacific/Bougainville\"            \n[529] \"Pacific/Chatham\"                  \"Pacific/Chuuk\"                   \n[531] \"Pacific/Easter\"                   \"Pacific/Efate\"                   \n[533] \"Pacific/Enderbury\"                \"Pacific/Fakaofo\"                 \n[535] \"Pacific/Fiji\"                     \"Pacific/Funafuti\"                \n[537] \"Pacific/Galapagos\"                \"Pacific/Gambier\"                 \n[539] \"Pacific/Guadalcanal\"              \"Pacific/Guam\"                    \n[541] \"Pacific/Honolulu\"                 \"Pacific/Johnston\"                \n[543] \"Pacific/Kanton\"                   \"Pacific/Kiritimati\"              \n[545] \"Pacific/Kosrae\"                   \"Pacific/Kwajalein\"               \n[547] \"Pacific/Majuro\"                   \"Pacific/Marquesas\"               \n[549] \"Pacific/Midway\"                   \"Pacific/Nauru\"                   \n[551] \"Pacific/Niue\"                     \"Pacific/Norfolk\"                 \n[553] \"Pacific/Noumea\"                   \"Pacific/Pago_Pago\"               \n[555] \"Pacific/Palau\"                    \"Pacific/Pitcairn\"                \n[557] \"Pacific/Pohnpei\"                  \"Pacific/Ponape\"                  \n[559] \"Pacific/Port_Moresby\"             \"Pacific/Rarotonga\"               \n[561] \"Pacific/Saipan\"                   \"Pacific/Samoa\"                   \n[563] \"Pacific/Tahiti\"                   \"Pacific/Tarawa\"                  \n[565] \"Pacific/Tongatapu\"                \"Pacific/Truk\"                    \n[567] \"Pacific/Wake\"                     \"Pacific/Wallis\"                  \n[569] \"Pacific/Yap\"                      \"Poland\"                          \n[571] \"Portugal\"                         \"PRC\"                             \n[573] \"PST8PDT\"                          \"ROC\"                             \n[575] \"ROK\"                              \"Singapore\"                       \n[577] \"Turkey\"                           \"UCT\"                             \n[579] \"Universal\"                        \"US/Alaska\"                       \n[581] \"US/Aleutian\"                      \"US/Arizona\"                      \n[583] \"US/Central\"                       \"US/East-Indiana\"                 \n[585] \"US/Eastern\"                       \"US/Hawaii\"                       \n[587] \"US/Indiana-Starke\"                \"US/Michigan\"                     \n[589] \"US/Mountain\"                      \"US/Pacific\"                      \n[591] \"US/Samoa\"                         \"UTC\"                             \n[593] \"W-SU\"                             \"WET\"                             \n[595] \"Zulu\"                            \nattr(,\"Version\")\n[1] \"2022e\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-11",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-11",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nWe can also extract hours, minutes, and seconds:\n\n\nnow() |&gt; hour() \n\n[1] 10\n\nnow() |&gt; minute() \n\n[1] 53\n\nnow() |&gt; second() \n\n[1] 48.26063"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-12",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-12",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nThe package also includes a function to parse strings into times as well as parsers for time objects that include dates:\n\n\nx &lt;- c(\"12:34:56\") \nhms(x) \n\n[1] \"12H 34M 56S\"\n\nx &lt;- \"Nov/2/2012 12:34:56\" \nmdy_hms(x) \n\n[1] \"2012-11-02 12:34:56 UTC\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-13",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-13",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nThe make_date function can be used to quickly create a date object.\nFor example, to create an date object representing, for example, July 6, 2019 we write:\n\n\nmake_date(2019, 7, 6) \n\n[1] \"2019-07-06\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-14",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-14",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nWe can use it to make vectors of dates.\nTo make a vector of January 1 for the 80s we write:\n\n\nmake_date(1980:1989) \n\n [1] \"1980-01-01\" \"1981-01-01\" \"1982-01-01\" \"1983-01-01\" \"1984-01-01\"\n [6] \"1985-01-01\" \"1986-01-01\" \"1987-01-01\" \"1988-01-01\" \"1989-01-01\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-15",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-15",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nAnother very useful function is round_date.\nIt can be used to round dates to nearest year, quarter, month, week, day, hour, minutes, or seconds."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#the-lubridate-package-16",
+    "href": "slides/12-dates-and-times.html#the-lubridate-package-16",
+    "title": "Dates And Times",
+    "section": "The lubridate package",
+    "text": "The lubridate package\n\nCodePlot\n\n\n\nExample: if we want to group all the polls by week of the year we can do the following:\n\n\npolls_us_election_2016 |&gt;  \n  mutate(week = round_date(startdate, \"week\")) |&gt; \n  group_by(week) |&gt; \n  summarize(margin = mean(rawpoll_clinton - rawpoll_trump)) |&gt; \n  ggplot(aes(week, margin)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#final-pointers",
+    "href": "slides/12-dates-and-times.html#final-pointers",
+    "title": "Dates And Times",
+    "section": "Final pointers",
+    "text": "Final pointers\n\nYou should be aware the there are useful function for computing operations on time such a difftime, time_length, and interval.\nWe don’t cover it here but be aware that The data.table package includes some of the same functionality as lubridate."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#dates-and-times",
+    "href": "slides/12-dates-and-times.html#dates-and-times",
+    "title": "Dates And Times",
+    "section": "dates and times",
+    "text": "dates and times\n\nWe have described three main types of vectors: numeric, character, and logical.\nwe often encounter variables that are dates.\nAlthough we can represent a date with a string, for example November 2, 2017, once we pick a reference day, referred to as the epoch, they can be converted to numbers by calculating the number of days since the epoch.\nIn R and Unix, epoch = January 1, 1970."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#casting",
+    "href": "slides/12-dates-and-times.html#casting",
+    "title": "Dates And Times",
+    "section": "Casting",
+    "text": "Casting\n\nas.Date converts characters into dates.\nSo to see that the epoch is day 0 we can type\n\n\nas.Date(\"1970-01-01\") |&gt; as.numeric() \n\n[1] 0\n\n\n\nPlotting functions, such as those in ggplot, are aware of the date format."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#change-date-labels",
+    "href": "slides/12-dates-and-times.html#change-date-labels",
+    "title": "Dates And Times",
+    "section": "Change date labels",
+    "text": "Change date labels\n\nCodePlot\n\n\n\npolls_us_election_2016 |&gt; \n  filter(startdate &gt;= make_date(2016, 6, 1)) |&gt;\n  filter(pollster == \"Ipsos\" & state == \"U.S.\") |&gt; \n  ggplot(aes(startdate, rawpoll_clinton)) + \n  geom_line() +\n  scale_x_date(date_breaks = \"2 weeks\", date_labels = \"%b %d\") + \n  geom_vline(xintercept = as.Date(\"2016-10-28\"), linetype = \"dashed\")\n\n\nplace tick marks every two weeks on the x-axis (can be “1 month”, “3 day”)\n%b: abbreviated month (Jan, Feb)\nd: day of month (01-31)"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#extract-year-month-day",
+    "href": "slides/12-dates-and-times.html#extract-year-month-day",
+    "title": "Dates And Times",
+    "section": "Extract year, month, day",
+    "text": "Extract year, month, day\n\nThe functions year, month and day extract those values:\n\n\ntibble(date = dates, month = month(dates), day = day(dates), year = year(dates)) \n\n# A tibble: 10 × 4\n   date       month   day  year\n   &lt;date&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n 1 2016-05-31     5    31  2016\n 2 2016-08-08     8     8  2016\n 3 2016-08-19     8    19  2016\n 4 2016-09-22     9    22  2016\n 5 2016-09-27     9    27  2016\n 6 2016-10-12    10    12  2016\n 7 2016-10-24    10    24  2016\n 8 2016-10-26    10    26  2016\n 9 2016-10-29    10    29  2016\n10 2016-10-30    10    30  2016"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#convert-strings-to-dates-ymd",
+    "href": "slides/12-dates-and-times.html#convert-strings-to-dates-ymd",
+    "title": "Dates And Times",
+    "section": "Convert strings to dates: ymd",
+    "text": "Convert strings to dates: ymd\n\nThe function ymd assumes the dates are in the format YYYY-MM-DD and tries to parse as well as possible.\n\n\nx &lt;- c(20090101, \"2009-01-02\", \"2009 01 03\", \"2009-1-4\", \n       \"2009-1, 5\", \"Created on 2009 1 6\", \"200901 !!! 07\") \nymd(x) \n\n[1] \"2009-01-01\" \"2009-01-02\" \"2009-01-03\" \"2009-01-04\" \"2009-01-05\"\n[6] \"2009-01-06\" \"2009-01-07\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#iso-8601-date-format",
+    "href": "slides/12-dates-and-times.html#iso-8601-date-format",
+    "title": "Dates And Times",
+    "section": "ISO 8601 Date Format",
+    "text": "ISO 8601 Date Format\n\nA further complication comes from the fact that dates often come in different formats in which the order of year, month, and day are different.\nThe preferred format YYYY-MM-DD: the ISO 8601."
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#tackle-confusion",
+    "href": "slides/12-dates-and-times.html#tackle-confusion",
+    "title": "Dates And Times",
+    "section": "Tackle confusion",
+    "text": "Tackle confusion\n\nBut, what if “09/01/02”? This could be September 1, 2002 or January 2, 2009 or January 9, 2002.\nIn these cases, examining the entire vector of dates and determine the format. Then\n\n\nx &lt;- \"09/01/02\" \n\n\nymd(x) \n\n[1] \"2009-01-02\"\n\n\n\nmdy(x) \n\n[1] \"2002-09-01\"\n\n\n\ndmy(x) \n\n[1] \"2002-01-09\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#time",
+    "href": "slides/12-dates-and-times.html#time",
+    "title": "Dates And Times",
+    "section": "time",
+    "text": "time\n\nIn base R, get the current time by Sys.time().\nThe lubridate package, now, that permits you to define the time zone:\n\n\nnow() \n\n[1] \"2026-01-22 12:04:37 CST\"\n\nnow(\"GMT\") #Greenwich Mean Time =UTC+0\n\n[1] \"2026-01-22 18:04:37 GMT\"\n\n\n\nGMT: older term based on the solar time at Greenwich, London (0 deg longitude);\nUTC: Modern term (based on atomic clocks)"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#all-time-zones",
+    "href": "slides/12-dates-and-times.html#all-time-zones",
+    "title": "Dates And Times",
+    "section": "All time zones",
+    "text": "All time zones\n\nYou can see all the available time zones with:\n\n\nOlsonNames() \n\n  [1] \"Africa/Abidjan\"                   \"Africa/Accra\"                    \n  [3] \"Africa/Addis_Ababa\"               \"Africa/Algiers\"                  \n  [5] \"Africa/Asmara\"                    \"Africa/Asmera\"                   \n  [7] \"Africa/Bamako\"                    \"Africa/Bangui\"                   \n  [9] \"Africa/Banjul\"                    \"Africa/Bissau\"                   \n [11] \"Africa/Blantyre\"                  \"Africa/Brazzaville\"              \n [13] \"Africa/Bujumbura\"                 \"Africa/Cairo\"                    \n [15] \"Africa/Casablanca\"                \"Africa/Ceuta\"                    \n [17] \"Africa/Conakry\"                   \"Africa/Dakar\"                    \n [19] \"Africa/Dar_es_Salaam\"             \"Africa/Djibouti\"                 \n [21] \"Africa/Douala\"                    \"Africa/El_Aaiun\"                 \n [23] \"Africa/Freetown\"                  \"Africa/Gaborone\"                 \n [25] \"Africa/Harare\"                    \"Africa/Johannesburg\"             \n [27] \"Africa/Juba\"                      \"Africa/Kampala\"                  \n [29] \"Africa/Khartoum\"                  \"Africa/Kigali\"                   \n [31] \"Africa/Kinshasa\"                  \"Africa/Lagos\"                    \n [33] \"Africa/Libreville\"                \"Africa/Lome\"                     \n [35] \"Africa/Luanda\"                    \"Africa/Lubumbashi\"               \n [37] \"Africa/Lusaka\"                    \"Africa/Malabo\"                   \n [39] \"Africa/Maputo\"                    \"Africa/Maseru\"                   \n [41] \"Africa/Mbabane\"                   \"Africa/Mogadishu\"                \n [43] \"Africa/Monrovia\"                  \"Africa/Nairobi\"                  \n [45] \"Africa/Ndjamena\"                  \"Africa/Niamey\"                   \n [47] \"Africa/Nouakchott\"                \"Africa/Ouagadougou\"              \n [49] \"Africa/Porto-Novo\"                \"Africa/Sao_Tome\"                 \n [51] \"Africa/Timbuktu\"                  \"Africa/Tripoli\"                  \n [53] \"Africa/Tunis\"                     \"Africa/Windhoek\"                 \n [55] \"America/Adak\"                     \"America/Anchorage\"               \n [57] \"America/Anguilla\"                 \"America/Antigua\"                 \n [59] \"America/Araguaina\"                \"America/Argentina/Buenos_Aires\"  \n [61] \"America/Argentina/Catamarca\"      \"America/Argentina/ComodRivadavia\"\n [63] \"America/Argentina/Cordoba\"        \"America/Argentina/Jujuy\"         \n [65] \"America/Argentina/La_Rioja\"       \"America/Argentina/Mendoza\"       \n [67] \"America/Argentina/Rio_Gallegos\"   \"America/Argentina/Salta\"         \n [69] \"America/Argentina/San_Juan\"       \"America/Argentina/San_Luis\"      \n [71] \"America/Argentina/Tucuman\"        \"America/Argentina/Ushuaia\"       \n [73] \"America/Aruba\"                    \"America/Asuncion\"                \n [75] \"America/Atikokan\"                 \"America/Atka\"                    \n [77] \"America/Bahia\"                    \"America/Bahia_Banderas\"          \n [79] \"America/Barbados\"                 \"America/Belem\"                   \n [81] \"America/Belize\"                   \"America/Blanc-Sablon\"            \n [83] \"America/Boa_Vista\"                \"America/Bogota\"                  \n [85] \"America/Boise\"                    \"America/Buenos_Aires\"            \n [87] \"America/Cambridge_Bay\"            \"America/Campo_Grande\"            \n [89] \"America/Cancun\"                   \"America/Caracas\"                 \n [91] \"America/Catamarca\"                \"America/Cayenne\"                 \n [93] \"America/Cayman\"                   \"America/Chicago\"                 \n [95] \"America/Chihuahua\"                \"America/Coral_Harbour\"           \n [97] \"America/Cordoba\"                  \"America/Costa_Rica\"              \n [99] \"America/Creston\"                  \"America/Cuiaba\"                  \n[101] \"America/Curacao\"                  \"America/Danmarkshavn\"            \n[103] \"America/Dawson\"                   \"America/Dawson_Creek\"            \n[105] \"America/Denver\"                   \"America/Detroit\"                 \n[107] \"America/Dominica\"                 \"America/Edmonton\"                \n[109] \"America/Eirunepe\"                 \"America/El_Salvador\"             \n[111] \"America/Ensenada\"                 \"America/Fort_Nelson\"             \n[113] \"America/Fort_Wayne\"               \"America/Fortaleza\"               \n[115] \"America/Glace_Bay\"                \"America/Godthab\"                 \n[117] \"America/Goose_Bay\"                \"America/Grand_Turk\"              \n[119] \"America/Grenada\"                  \"America/Guadeloupe\"              \n[121] \"America/Guatemala\"                \"America/Guayaquil\"               \n[123] \"America/Guyana\"                   \"America/Halifax\"                 \n[125] \"America/Havana\"                   \"America/Hermosillo\"              \n[127] \"America/Indiana/Indianapolis\"     \"America/Indiana/Knox\"            \n[129] \"America/Indiana/Marengo\"          \"America/Indiana/Petersburg\"      \n[131] \"America/Indiana/Tell_City\"        \"America/Indiana/Vevay\"           \n[133] \"America/Indiana/Vincennes\"        \"America/Indiana/Winamac\"         \n[135] \"America/Indianapolis\"             \"America/Inuvik\"                  \n[137] \"America/Iqaluit\"                  \"America/Jamaica\"                 \n[139] \"America/Jujuy\"                    \"America/Juneau\"                  \n[141] \"America/Kentucky/Louisville\"      \"America/Kentucky/Monticello\"     \n[143] \"America/Knox_IN\"                  \"America/Kralendijk\"              \n[145] \"America/La_Paz\"                   \"America/Lima\"                    \n[147] \"America/Los_Angeles\"              \"America/Louisville\"              \n[149] \"America/Lower_Princes\"            \"America/Maceio\"                  \n[151] \"America/Managua\"                  \"America/Manaus\"                  \n[153] \"America/Marigot\"                  \"America/Martinique\"              \n[155] \"America/Matamoros\"                \"America/Mazatlan\"                \n[157] \"America/Mendoza\"                  \"America/Menominee\"               \n[159] \"America/Merida\"                   \"America/Metlakatla\"              \n[161] \"America/Mexico_City\"              \"America/Miquelon\"                \n[163] \"America/Moncton\"                  \"America/Monterrey\"               \n[165] \"America/Montevideo\"               \"America/Montreal\"                \n[167] \"America/Montserrat\"               \"America/Nassau\"                  \n[169] \"America/New_York\"                 \"America/Nipigon\"                 \n[171] \"America/Nome\"                     \"America/Noronha\"                 \n[173] \"America/North_Dakota/Beulah\"      \"America/North_Dakota/Center\"     \n[175] \"America/North_Dakota/New_Salem\"   \"America/Nuuk\"                    \n[177] \"America/Ojinaga\"                  \"America/Panama\"                  \n[179] \"America/Pangnirtung\"              \"America/Paramaribo\"              \n[181] \"America/Phoenix\"                  \"America/Port-au-Prince\"          \n[183] \"America/Port_of_Spain\"            \"America/Porto_Acre\"              \n[185] \"America/Porto_Velho\"              \"America/Puerto_Rico\"             \n[187] \"America/Punta_Arenas\"             \"America/Rainy_River\"             \n[189] \"America/Rankin_Inlet\"             \"America/Recife\"                  \n[191] \"America/Regina\"                   \"America/Resolute\"                \n[193] \"America/Rio_Branco\"               \"America/Rosario\"                 \n[195] \"America/Santa_Isabel\"             \"America/Santarem\"                \n[197] \"America/Santiago\"                 \"America/Santo_Domingo\"           \n[199] \"America/Sao_Paulo\"                \"America/Scoresbysund\"            \n[201] \"America/Shiprock\"                 \"America/Sitka\"                   \n[203] \"America/St_Barthelemy\"            \"America/St_Johns\"                \n[205] \"America/St_Kitts\"                 \"America/St_Lucia\"                \n[207] \"America/St_Thomas\"                \"America/St_Vincent\"              \n[209] \"America/Swift_Current\"            \"America/Tegucigalpa\"             \n[211] \"America/Thule\"                    \"America/Thunder_Bay\"             \n[213] \"America/Tijuana\"                  \"America/Toronto\"                 \n[215] \"America/Tortola\"                  \"America/Vancouver\"               \n[217] \"America/Virgin\"                   \"America/Whitehorse\"              \n[219] \"America/Winnipeg\"                 \"America/Yakutat\"                 \n[221] \"America/Yellowknife\"              \"Antarctica/Casey\"                \n[223] \"Antarctica/Davis\"                 \"Antarctica/DumontDUrville\"       \n[225] \"Antarctica/Macquarie\"             \"Antarctica/Mawson\"               \n[227] \"Antarctica/McMurdo\"               \"Antarctica/Palmer\"               \n[229] \"Antarctica/Rothera\"               \"Antarctica/South_Pole\"           \n[231] \"Antarctica/Syowa\"                 \"Antarctica/Troll\"                \n[233] \"Antarctica/Vostok\"                \"Arctic/Longyearbyen\"             \n[235] \"Asia/Aden\"                        \"Asia/Almaty\"                     \n[237] \"Asia/Amman\"                       \"Asia/Anadyr\"                     \n[239] \"Asia/Aqtau\"                       \"Asia/Aqtobe\"                     \n[241] \"Asia/Ashgabat\"                    \"Asia/Ashkhabad\"                  \n[243] \"Asia/Atyrau\"                      \"Asia/Baghdad\"                    \n[245] \"Asia/Bahrain\"                     \"Asia/Baku\"                       \n[247] \"Asia/Bangkok\"                     \"Asia/Barnaul\"                    \n[249] \"Asia/Beirut\"                      \"Asia/Bishkek\"                    \n[251] \"Asia/Brunei\"                      \"Asia/Calcutta\"                   \n[253] \"Asia/Chita\"                       \"Asia/Choibalsan\"                 \n[255] \"Asia/Chongqing\"                   \"Asia/Chungking\"                  \n[257] \"Asia/Colombo\"                     \"Asia/Dacca\"                      \n[259] \"Asia/Damascus\"                    \"Asia/Dhaka\"                      \n[261] \"Asia/Dili\"                        \"Asia/Dubai\"                      \n[263] \"Asia/Dushanbe\"                    \"Asia/Famagusta\"                  \n[265] \"Asia/Gaza\"                        \"Asia/Harbin\"                     \n[267] \"Asia/Hebron\"                      \"Asia/Ho_Chi_Minh\"                \n[269] \"Asia/Hong_Kong\"                   \"Asia/Hovd\"                       \n[271] \"Asia/Irkutsk\"                     \"Asia/Istanbul\"                   \n[273] \"Asia/Jakarta\"                     \"Asia/Jayapura\"                   \n[275] \"Asia/Jerusalem\"                   \"Asia/Kabul\"                      \n[277] \"Asia/Kamchatka\"                   \"Asia/Karachi\"                    \n[279] \"Asia/Kashgar\"                     \"Asia/Kathmandu\"                  \n[281] \"Asia/Katmandu\"                    \"Asia/Khandyga\"                   \n[283] \"Asia/Kolkata\"                     \"Asia/Krasnoyarsk\"                \n[285] \"Asia/Kuala_Lumpur\"                \"Asia/Kuching\"                    \n[287] \"Asia/Kuwait\"                      \"Asia/Macao\"                      \n[289] \"Asia/Macau\"                       \"Asia/Magadan\"                    \n[291] \"Asia/Makassar\"                    \"Asia/Manila\"                     \n[293] \"Asia/Muscat\"                      \"Asia/Nicosia\"                    \n[295] \"Asia/Novokuznetsk\"                \"Asia/Novosibirsk\"                \n[297] \"Asia/Omsk\"                        \"Asia/Oral\"                       \n[299] \"Asia/Phnom_Penh\"                  \"Asia/Pontianak\"                  \n[301] \"Asia/Pyongyang\"                   \"Asia/Qatar\"                      \n[303] \"Asia/Qostanay\"                    \"Asia/Qyzylorda\"                  \n[305] \"Asia/Rangoon\"                     \"Asia/Riyadh\"                     \n[307] \"Asia/Saigon\"                      \"Asia/Sakhalin\"                   \n[309] \"Asia/Samarkand\"                   \"Asia/Seoul\"                      \n[311] \"Asia/Shanghai\"                    \"Asia/Singapore\"                  \n[313] \"Asia/Srednekolymsk\"               \"Asia/Taipei\"                     \n[315] \"Asia/Tashkent\"                    \"Asia/Tbilisi\"                    \n[317] \"Asia/Tehran\"                      \"Asia/Tel_Aviv\"                   \n[319] \"Asia/Thimbu\"                      \"Asia/Thimphu\"                    \n[321] \"Asia/Tokyo\"                       \"Asia/Tomsk\"                      \n[323] \"Asia/Ujung_Pandang\"               \"Asia/Ulaanbaatar\"                \n[325] \"Asia/Ulan_Bator\"                  \"Asia/Urumqi\"                     \n[327] \"Asia/Ust-Nera\"                    \"Asia/Vientiane\"                  \n[329] \"Asia/Vladivostok\"                 \"Asia/Yakutsk\"                    \n[331] \"Asia/Yangon\"                      \"Asia/Yekaterinburg\"              \n[333] \"Asia/Yerevan\"                     \"Atlantic/Azores\"                 \n[335] \"Atlantic/Bermuda\"                 \"Atlantic/Canary\"                 \n[337] \"Atlantic/Cape_Verde\"              \"Atlantic/Faeroe\"                 \n[339] \"Atlantic/Faroe\"                   \"Atlantic/Jan_Mayen\"              \n[341] \"Atlantic/Madeira\"                 \"Atlantic/Reykjavik\"              \n[343] \"Atlantic/South_Georgia\"           \"Atlantic/St_Helena\"              \n[345] \"Atlantic/Stanley\"                 \"Australia/ACT\"                   \n[347] \"Australia/Adelaide\"               \"Australia/Brisbane\"              \n[349] \"Australia/Broken_Hill\"            \"Australia/Canberra\"              \n[351] \"Australia/Currie\"                 \"Australia/Darwin\"                \n[353] \"Australia/Eucla\"                  \"Australia/Hobart\"                \n[355] \"Australia/LHI\"                    \"Australia/Lindeman\"              \n[357] \"Australia/Lord_Howe\"              \"Australia/Melbourne\"             \n[359] \"Australia/North\"                  \"Australia/NSW\"                   \n[361] \"Australia/Perth\"                  \"Australia/Queensland\"            \n[363] \"Australia/South\"                  \"Australia/Sydney\"                \n[365] \"Australia/Tasmania\"               \"Australia/Victoria\"              \n[367] \"Australia/West\"                   \"Australia/Yancowinna\"            \n[369] \"Brazil/Acre\"                      \"Brazil/DeNoronha\"                \n[371] \"Brazil/East\"                      \"Brazil/West\"                     \n[373] \"Canada/Atlantic\"                  \"Canada/Central\"                  \n[375] \"Canada/Eastern\"                   \"Canada/Mountain\"                 \n[377] \"Canada/Newfoundland\"              \"Canada/Pacific\"                  \n[379] \"Canada/Saskatchewan\"              \"Canada/Yukon\"                    \n[381] \"CET\"                              \"Chile/Continental\"               \n[383] \"Chile/EasterIsland\"               \"CST6CDT\"                         \n[385] \"Cuba\"                             \"EET\"                             \n[387] \"Egypt\"                            \"Eire\"                            \n[389] \"EST\"                              \"EST5EDT\"                         \n[391] \"Etc/GMT\"                          \"Etc/GMT-0\"                       \n[393] \"Etc/GMT-1\"                        \"Etc/GMT-10\"                      \n[395] \"Etc/GMT-11\"                       \"Etc/GMT-12\"                      \n[397] \"Etc/GMT-13\"                       \"Etc/GMT-14\"                      \n[399] \"Etc/GMT-2\"                        \"Etc/GMT-3\"                       \n[401] \"Etc/GMT-4\"                        \"Etc/GMT-5\"                       \n[403] \"Etc/GMT-6\"                        \"Etc/GMT-7\"                       \n[405] \"Etc/GMT-8\"                        \"Etc/GMT-9\"                       \n[407] \"Etc/GMT+0\"                        \"Etc/GMT+1\"                       \n[409] \"Etc/GMT+10\"                       \"Etc/GMT+11\"                      \n[411] \"Etc/GMT+12\"                       \"Etc/GMT+2\"                       \n[413] \"Etc/GMT+3\"                        \"Etc/GMT+4\"                       \n[415] \"Etc/GMT+5\"                        \"Etc/GMT+6\"                       \n[417] \"Etc/GMT+7\"                        \"Etc/GMT+8\"                       \n[419] \"Etc/GMT+9\"                        \"Etc/GMT0\"                        \n[421] \"Etc/Greenwich\"                    \"Etc/UCT\"                         \n[423] \"Etc/Universal\"                    \"Etc/UTC\"                         \n[425] \"Etc/Zulu\"                         \"Europe/Amsterdam\"                \n[427] \"Europe/Andorra\"                   \"Europe/Astrakhan\"                \n[429] \"Europe/Athens\"                    \"Europe/Belfast\"                  \n[431] \"Europe/Belgrade\"                  \"Europe/Berlin\"                   \n[433] \"Europe/Bratislava\"                \"Europe/Brussels\"                 \n[435] \"Europe/Bucharest\"                 \"Europe/Budapest\"                 \n[437] \"Europe/Busingen\"                  \"Europe/Chisinau\"                 \n[439] \"Europe/Copenhagen\"                \"Europe/Dublin\"                   \n[441] \"Europe/Gibraltar\"                 \"Europe/Guernsey\"                 \n[443] \"Europe/Helsinki\"                  \"Europe/Isle_of_Man\"              \n[445] \"Europe/Istanbul\"                  \"Europe/Jersey\"                   \n[447] \"Europe/Kaliningrad\"               \"Europe/Kiev\"                     \n[449] \"Europe/Kirov\"                     \"Europe/Kyiv\"                     \n[451] \"Europe/Lisbon\"                    \"Europe/Ljubljana\"                \n[453] \"Europe/London\"                    \"Europe/Luxembourg\"               \n[455] \"Europe/Madrid\"                    \"Europe/Malta\"                    \n[457] \"Europe/Mariehamn\"                 \"Europe/Minsk\"                    \n[459] \"Europe/Monaco\"                    \"Europe/Moscow\"                   \n[461] \"Europe/Nicosia\"                   \"Europe/Oslo\"                     \n[463] \"Europe/Paris\"                     \"Europe/Podgorica\"                \n[465] \"Europe/Prague\"                    \"Europe/Riga\"                     \n[467] \"Europe/Rome\"                      \"Europe/Samara\"                   \n[469] \"Europe/San_Marino\"                \"Europe/Sarajevo\"                 \n[471] \"Europe/Saratov\"                   \"Europe/Simferopol\"               \n[473] \"Europe/Skopje\"                    \"Europe/Sofia\"                    \n[475] \"Europe/Stockholm\"                 \"Europe/Tallinn\"                  \n[477] \"Europe/Tirane\"                    \"Europe/Tiraspol\"                 \n[479] \"Europe/Ulyanovsk\"                 \"Europe/Uzhgorod\"                 \n[481] \"Europe/Vaduz\"                     \"Europe/Vatican\"                  \n[483] \"Europe/Vienna\"                    \"Europe/Vilnius\"                  \n[485] \"Europe/Volgograd\"                 \"Europe/Warsaw\"                   \n[487] \"Europe/Zagreb\"                    \"Europe/Zaporozhye\"               \n[489] \"Europe/Zurich\"                    \"GB\"                              \n[491] \"GB-Eire\"                          \"GMT\"                             \n[493] \"GMT-0\"                            \"GMT+0\"                           \n[495] \"GMT0\"                             \"Greenwich\"                       \n[497] \"Hongkong\"                         \"HST\"                             \n[499] \"Iceland\"                          \"Indian/Antananarivo\"             \n[501] \"Indian/Chagos\"                    \"Indian/Christmas\"                \n[503] \"Indian/Cocos\"                     \"Indian/Comoro\"                   \n[505] \"Indian/Kerguelen\"                 \"Indian/Mahe\"                     \n[507] \"Indian/Maldives\"                  \"Indian/Mauritius\"                \n[509] \"Indian/Mayotte\"                   \"Indian/Reunion\"                  \n[511] \"Iran\"                             \"Israel\"                          \n[513] \"Jamaica\"                          \"Japan\"                           \n[515] \"Kwajalein\"                        \"Libya\"                           \n[517] \"MET\"                              \"Mexico/BajaNorte\"                \n[519] \"Mexico/BajaSur\"                   \"Mexico/General\"                  \n[521] \"MST\"                              \"MST7MDT\"                         \n[523] \"Navajo\"                           \"NZ\"                              \n[525] \"NZ-CHAT\"                          \"Pacific/Apia\"                    \n[527] \"Pacific/Auckland\"                 \"Pacific/Bougainville\"            \n[529] \"Pacific/Chatham\"                  \"Pacific/Chuuk\"                   \n[531] \"Pacific/Easter\"                   \"Pacific/Efate\"                   \n[533] \"Pacific/Enderbury\"                \"Pacific/Fakaofo\"                 \n[535] \"Pacific/Fiji\"                     \"Pacific/Funafuti\"                \n[537] \"Pacific/Galapagos\"                \"Pacific/Gambier\"                 \n[539] \"Pacific/Guadalcanal\"              \"Pacific/Guam\"                    \n[541] \"Pacific/Honolulu\"                 \"Pacific/Johnston\"                \n[543] \"Pacific/Kanton\"                   \"Pacific/Kiritimati\"              \n[545] \"Pacific/Kosrae\"                   \"Pacific/Kwajalein\"               \n[547] \"Pacific/Majuro\"                   \"Pacific/Marquesas\"               \n[549] \"Pacific/Midway\"                   \"Pacific/Nauru\"                   \n[551] \"Pacific/Niue\"                     \"Pacific/Norfolk\"                 \n[553] \"Pacific/Noumea\"                   \"Pacific/Pago_Pago\"               \n[555] \"Pacific/Palau\"                    \"Pacific/Pitcairn\"                \n[557] \"Pacific/Pohnpei\"                  \"Pacific/Ponape\"                  \n[559] \"Pacific/Port_Moresby\"             \"Pacific/Rarotonga\"               \n[561] \"Pacific/Saipan\"                   \"Pacific/Samoa\"                   \n[563] \"Pacific/Tahiti\"                   \"Pacific/Tarawa\"                  \n[565] \"Pacific/Tongatapu\"                \"Pacific/Truk\"                    \n[567] \"Pacific/Wake\"                     \"Pacific/Wallis\"                  \n[569] \"Pacific/Yap\"                      \"Poland\"                          \n[571] \"Portugal\"                         \"PRC\"                             \n[573] \"PST8PDT\"                          \"ROC\"                             \n[575] \"ROK\"                              \"Singapore\"                       \n[577] \"Turkey\"                           \"UCT\"                             \n[579] \"Universal\"                        \"US/Alaska\"                       \n[581] \"US/Aleutian\"                      \"US/Arizona\"                      \n[583] \"US/Central\"                       \"US/East-Indiana\"                 \n[585] \"US/Eastern\"                       \"US/Hawaii\"                       \n[587] \"US/Indiana-Starke\"                \"US/Michigan\"                     \n[589] \"US/Mountain\"                      \"US/Pacific\"                      \n[591] \"US/Samoa\"                         \"UTC\"                             \n[593] \"W-SU\"                             \"WET\"                             \n[595] \"Zulu\"                            \nattr(,\"Version\")\n[1] \"2022e\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#extract-hours-minutes-and-seconds",
+    "href": "slides/12-dates-and-times.html#extract-hours-minutes-and-seconds",
+    "title": "Dates And Times",
+    "section": "Extract hours, minutes, and seconds",
+    "text": "Extract hours, minutes, and seconds\n\nnow() |&gt; hour() \n\n[1] 12\n\nnow() |&gt; minute() \n\n[1] 4\n\nnow() |&gt; second() \n\n[1] 37.482"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#parse-strongs-to-hms",
+    "href": "slides/12-dates-and-times.html#parse-strongs-to-hms",
+    "title": "Dates And Times",
+    "section": "Parse strongs to hms",
+    "text": "Parse strongs to hms\n\nx &lt;- c(\"12:34:56\") \nhms(x) \n\n[1] \"12H 34M 56S\"\n\nx &lt;- \"Nov/2/2012 12:34:56\" \nmdy_hms(x) \n\n[1] \"2012-11-02 12:34:56 UTC\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#more-on-make-date",
+    "href": "slides/12-dates-and-times.html#more-on-make-date",
+    "title": "Dates And Times",
+    "section": "More on make-date",
+    "text": "More on make-date\n\nmake_date(2019, 7, 6) \n\n[1] \"2019-07-06\"\n\n\n\nTo make a vector of January 1 for the 80s we write:\n\n\nmake_date(1980:1989) \n\n [1] \"1980-01-01\" \"1981-01-01\" \"1982-01-01\" \"1983-01-01\" \"1984-01-01\"\n [6] \"1985-01-01\" \"1986-01-01\" \"1987-01-01\" \"1988-01-01\" \"1989-01-01\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#round-date-or-time",
+    "href": "slides/12-dates-and-times.html#round-date-or-time",
+    "title": "Dates And Times",
+    "section": "Round date or time",
+    "text": "Round date or time\n\nlibrary(lubridate)\n\nx &lt;- ymd_hms(\"2016-06-15 13:20:00\")\n\nround_date(x, \"hour\")   # nearest hour (13:00 or 14:00)\n\n[1] \"2016-06-15 13:00:00 UTC\"\n\nfloor_date(x, \"hour\")   # 13:00\n\n[1] \"2016-06-15 13:00:00 UTC\"\n\nceiling_date(x, \"hour\") # 14:00\n\n[1] \"2016-06-15 14:00:00 UTC\"\n\n\n\nd &lt;- ymd(\"2016-06-20\")\nround_date(d, \"month\")  # likely \"2016-07-01\" (closer to July 1 than June 1)\n\n[1] \"2016-07-01\""
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#other-functions",
+    "href": "slides/12-dates-and-times.html#other-functions",
+    "title": "Dates And Times",
+    "section": "Other functions",
+    "text": "Other functions\n\nt1 &lt;- as.POSIXct(\"2016-06-01 08:00:00\", tz = \"UTC\")\nt2 &lt;- as.POSIXct(\"2016-06-03 14:30:00\", tz = \"UTC\")\ndifftime(t2, t1, units = \"hours\") # Base R: Time difference of 54.5 hours\n\nTime difference of 54.5 hours\n\n\n\nstart &lt;- ymd_hms(\"2016-06-01 08:00:00\", tz = \"UTC\")\nend   &lt;- ymd_hms(\"2016-06-03 14:30:00\", tz = \"UTC\")\nint &lt;- interval(start, end) # [1] 2016-06-01 08:00:00 UTC--2016-06-03 14:30:00 UTC\nint\n\n[1] 2016-06-01 08:00:00 UTC--2016-06-03 14:30:00 UTC\n\n\n\ntime_length(int, \"hours\") # 54.5\n\n[1] 54.5\n\ntime_length(int, \"days\") # 2.270833...\n\n[1] 2.270833\n\ntime_length(int, \"weeks\") # 0.3244...\n\n[1] 0.3244048"
+  },
+  {
+    "objectID": "slides/12-dates-and-times.html#dates-and-times-with-data.table",
+    "href": "slides/12-dates-and-times.html#dates-and-times-with-data.table",
+    "title": "Dates And Times",
+    "section": "Dates and times with data.table",
+    "text": "Dates and times with data.table\n\nlibrary(data.table)\nst &lt;- as.Date(\"2024-03-04\")\nday(st) #&gt; [1] 4  # data.table\n\n[1] 4\n\nmday(st) #&gt; [1] 4  Lubridate function\n\n[1] 4\n\n\n\nOther similar functions in data.table are second, minute, hour, yday, wday, week, isoweek and quarter.\ndata.table IDate and ITime store dates/times more efficiently\n\n\nobject.size(polls_us_election_2016$startdate) #&gt; 33936 bytes\n\n33936 bytes\n\nobject.size(as.IDate(polls_us_election_2016$startdate)) #&gt; 17168 bytes\n\n17168 bytes"
+  },
+  {
+    "objectID": "slides/11-importing-files.html#specify-encoding",
+    "href": "slides/11-importing-files.html#specify-encoding",
+    "title": "Importing files",
+    "section": "Specify encoding",
+    "text": "Specify encoding\n\nOnce we know the encoding we can specify it through the locale argument:\n\n\ndat &lt;- read_csv(\"calificaciones.csv\", show_col_types = FALSE, #suppress col info\n                locale = locale(encoding = \"ISO-8859-1\")) \ndat\n\n# A tibble: 7 × 4\n  nombre   f.n.                     estampa             puntuación\n  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;\n1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875\n2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990\n3 João     10 de junio de 1931      2023-09-21 22:43:28        989\n4 López    24 de julio de 1969      2023-09-22 01:06:59        887\n5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931\n6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887\n7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830"
+  },
+  {
+    "objectID": "slides/13-locales.html#locales",
+    "href": "slides/13-locales.html#locales",
+    "title": "Locales",
+    "section": "Locales",
+    "text": "Locales\n\nComputer settings change depending on language and location\nThe purpose of locales is to group together common settings that controls how your system (and R) handles things like sorting, character encoding, dates/times, and number formats."
+  },
+  {
+    "objectID": "slides/13-locales.html#locales-1",
+    "href": "slides/13-locales.html#locales-1",
+    "title": "Locales",
+    "section": "Locales",
+    "text": "Locales\n\nIn R, a locale refers to a suite of settings that dictate how the system should behave with respect to cultural conventions.\nA locale controls how your system (and R) handles things like sorting, character encoding, dates/times, and number formats."
+  },
+  {
+    "objectID": "slides/13-locales.html#locales-2",
+    "href": "slides/13-locales.html#locales-2",
+    "title": "Locales",
+    "section": "Locales",
+    "text": "Locales\n\nIn R, a locale refers to a suite of settings that dictate how the system should behave with respect to cultural conventions.\nThese affect the way data is formatted and presented, including date formatting, currency symbols, decimal separators, and other related aspects.\nLocales in R affect several areas, including how character vectors are sorted.\nAdditionally, errors, warnings, and other messages might be translated into languages other than English based on the locale."
+  },
+  {
+    "objectID": "slides/13-locales.html#locales-in-r",
+    "href": "slides/13-locales.html#locales-in-r",
+    "title": "Locales",
+    "section": "Locales in R",
+    "text": "Locales in R\n\nTo access the current locale settings in R, use the Sys.getlocale() function:\n\n\nSys.getlocale() \n\n[1] \"LC_COLLATE=English_United States.utf8;LC_CTYPE=English_United States.utf8;LC_MONETARY=English_United States.utf8;LC_NUMERIC=C;LC_TIME=English_United States.utf8\"\n\n\n\nCOLLATE: sorting strings; CTYPE: characters; Monetary: currency formatting; NUMERIC=C: use . for decimal point and no locale-specific thousands separators; TIME: data/time"
+  },
+  {
+    "objectID": "slides/13-locales.html#locales-in-r-1",
+    "href": "slides/13-locales.html#locales-in-r-1",
+    "title": "Locales",
+    "section": "Locales in R",
+    "text": "Locales in R\n\nLC_ALL refers to all locale categories.\nR breaks down the locale into categories:\n\nLC_COLLATE: for string collation (sorting).\nLC_TIME: date and time formatting.\nLC_MONETARY: currency formatting.\nLC_MESSAGES: system message translations.\nLC_NUMERIC: number formatting.\n\nYou can set the locale for each category individually if you don’t want to use LC_ALL."
+  },
+  {
+    "objectID": "slides/13-locales.html#locales-in-r-2",
+    "href": "slides/13-locales.html#locales-in-r-2",
+    "title": "Locales",
+    "section": "Locales in R",
+    "text": "Locales in R\n\n\n\n\n\n\nWarning\n\n\n\nWe have shown tools to control locales.\nThese settings are important because they affect how your data looks and behaves.\nHowever, not all of these settings are available on every computer; their availability depends on what kind of computer you have and how it’s set up.\nChanging these settings, especially LC_NUMERIC, can lead to unexpected problems when you’re working with numbers in R.\nThese locale settings only last as long as one R session."
+  },
+  {
+    "objectID": "slides/13-locales.html#locales-in-r-3",
+    "href": "slides/13-locales.html#locales-in-r-3",
+    "title": "Locales",
+    "section": "Locales in R",
+    "text": "Locales in R\n\n\n\n\n\n\nWarning\n\n\n\nWe have shown tools to control locales.\nThese settings are important because they affect how your data looks and behaves.\nHowever, not all of these settings are available on every computer; their availability depends on what kind of computer you have and how it’s set up.\nChanging these settings, especially LC_NUMERIC, can lead to unexpected problems when you’re working with numbers in R.\nThese locale settings only last as long as one R session."
+  },
+  {
+    "objectID": "slides/13-locales.html#the-locale-function",
+    "href": "slides/13-locales.html#the-locale-function",
+    "title": "Locales",
+    "section": "The locale function",
+    "text": "The locale function\n\nThe readr package includes a locale() function that can be used to learn or change the current locale from within R:\n\n\nlibrary(readr) \nlocale() \n\n&lt;locale&gt;\nNumbers:  123,456.78\nFormats:  %AD / %AT\nTimezone: UTC\nEncoding: UTF-8\n&lt;date_names&gt;\nDays:   Sunday (Sun), Monday (Mon), Tuesday (Tue), Wednesday (Wed), Thursday\n        (Thu), Friday (Fri), Saturday (Sat)\nMonths: January (Jan), February (Feb), March (Mar), April (Apr), May (May),\n        June (Jun), July (Jul), August (Aug), September (Sep), October\n        (Oct), November (Nov), December (Dec)\nAM/PM:  AM/PM\n\n# %AD: the locale's default date format; %AT: default time forat"
+  },
+  {
+    "objectID": "slides/13-locales.html#the-locale-function-1",
+    "href": "slides/13-locales.html#the-locale-function-1",
+    "title": "Locales",
+    "section": "The locale function",
+    "text": "The locale function\n\nYou can see all the locales available on your system by typing:\n\n\nsystem(\"locale -a\") # execute the Linux/OS command `locale -a`\n\n\nOn windows: 127 is an error code, means “command not found”"
+  },
+  {
+    "objectID": "slides/13-locales.html#the-locale-function-2",
+    "href": "slides/13-locales.html#the-locale-function-2",
+    "title": "Locales",
+    "section": "The locale function",
+    "text": "The locale function\n\nHere is what you obtain if you change the dates locale to Spanish:\n\n\nlocale(date_names = \"es\") \n\n&lt;locale&gt;\nNumbers:  123,456.78\nFormats:  %AD / %AT\nTimezone: UTC\nEncoding: UTF-8\n&lt;date_names&gt;\nDays:   domingo (dom.), lunes (lun.), martes (mar.), miércoles (mié.), jueves\n        (jue.), viernes (vie.), sábado (sáb.)\nMonths: enero (ene.), febrero (feb.), marzo (mar.), abril (abr.), mayo (may.),\n        junio (jun.), julio (jul.), agosto (ago.), septiembre (sept.),\n        octubre (oct.), noviembre (nov.), diciembre (dic.)\nAM/PM:  a. m./p. m."
+  },
+  {
+    "objectID": "slides/13-locales.html#example",
+    "href": "slides/13-locales.html#example",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nEarlier we noted that the file:\n\n\nfn &lt;- file.path(system.file(\"extdata\", package = \"dslabs\"), \"calificaciones.csv\") \n\n\nhad a encoding different than UTF-8, the default.\nWe used guess_encoding to determine the correct one:\n\n\nguess_encoding(fn)$encoding[1] \n\n[1] \"ISO-8859-1\"\n\n\n\nand used the locale to change the encoding and read in the file correctly:\n\n\ndat &lt;- read_csv(fn, locale = locale(encoding = \"ISO-8859-1\")) \ndat \n\n# A tibble: 7 × 4\n  nombre   f.n.                     estampa             puntuación\n  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;\n1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875\n2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990\n3 João     10 de junio de 1931      2023-09-21 22:43:28        989\n4 López    24 de julio de 1969      2023-09-22 01:06:59        887\n5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931\n6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887\n7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-1",
+    "href": "slides/13-locales.html#example-1",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\nWe can also reread the file using the correct locales:\n\ndat &lt;- read_csv(fn, locale = locale(date_names = \"es\", \n                                    date_format = \"%d de %B de %Y\", \n                                    decimal_mark = \",\", \n                                    encoding = \"ISO-8859-1\"))"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-2",
+    "href": "slides/13-locales.html#example-2",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\nComputing the students’ ages is now straightforward:\n\ntime_length(today() - dat$f.n., unit = \"years\") |&gt; floor() \n\n[1] 44 45 94 56 44 84 54"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-3",
+    "href": "slides/13-locales.html#example-3",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nLet’s check which students turned in their homework past the deadline of September 22:\n\n\ndat$estampa &gt;= make_date(2023, 9, 22) \n\n[1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE\n\n\n\nWe see that two students where late.\nHowever, with times we have to be particularly careful as some functions default to the UTC timezone:\n\n\ntz(dat$estampa) \n\n[1] \"UTC\""
+  },
+  {
+    "objectID": "slides/13-locales.html#example-4",
+    "href": "slides/13-locales.html#example-4",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nIf we change to the timezone to Eastern Standard Time (EST), we see no one was late:\n\n\nwith_tz(dat$estampa, tz =  \"EST\") &gt;= make_date(2023, 9, 22) \n\n[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-5",
+    "href": "slides/13-locales.html#example-5",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\nComputing the students’ ages is now straightforward:\n\ntime_length(today() - dat$f.n., unit = \"years\") |&gt; floor() \n\n[1] 44 45 94 56 44 84 54"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-6",
+    "href": "slides/13-locales.html#example-6",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nLet’s check which students turned in their homework past the deadline of September 22:\n\n\ndat$estampa &gt;= make_date(2023, 9, 22) \n\n[1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE\n\n\n\nWe see that two students where late.\nHowever, with times we have to be particularly careful as some functions default to the UTC timezone:\n\n\ntz(dat$estampa) \n\n[1] \"UTC\""
+  },
+  {
+    "objectID": "slides/13-locales.html#example-7",
+    "href": "slides/13-locales.html#example-7",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nIf we change to the timezone to Eastern Standard Time (EST), we see no one was late:\n\n\nwith_tz(dat$estampa, tz =  \"EST\") &gt;= make_date(2023, 9, 22) \n\n[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-8",
+    "href": "slides/13-locales.html#example-8",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\nComputing the students’ ages is now straightforward:\n\ntime_length(today() - dat$f.n., unit = \"years\") |&gt; floor() \n\n[1] 44 45 94 56 44 84 54"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-9",
+    "href": "slides/13-locales.html#example-9",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nLet’s check which students turned in their homework past the deadline of September 22:\n\n\ndat$estampa &gt;= make_date(2023, 9, 22) \n\n[1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE\n\n\n\nWe see that two students where late.\nHowever, with times we have to be particularly careful as some functions default to the UTC timezone:\n\n\ntz(dat$estampa) \n\n[1] \"UTC\""
+  },
+  {
+    "objectID": "slides/13-locales.html#example-10",
+    "href": "slides/13-locales.html#example-10",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nIf we change to the timezone to Eastern Standard Time (EST), we see no one was late:\n\n\nwith_tz(dat$estampa, tz =  \"EST\") &gt;= make_date(2023, 9, 22) \n\n[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-11",
+    "href": "slides/13-locales.html#example-11",
+    "title": "Locales",
+    "section": "Example",
+    "text": "Example\n\nIf we change to the timezone to Eastern Standard Time (EST), we see no one was late:\n\n\nwith_tz(dat$estampa, tz =  \"EST\") &gt;= make_date(2023, 9, 22) \n\n[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "slides/13-locales.html#set-locales-in-r",
+    "href": "slides/13-locales.html#set-locales-in-r",
+    "title": "Locales",
+    "section": "Set Locales in R",
+    "text": "Set Locales in R\n\nuse the Sys.setlocale() function.\nFor example, to set the locale to US English:\n\n\nSys.setlocale(\"LC_ALL\", \"en_US.UTF-8\") \n\n[1] \"LC_COLLATE=en_US.UTF-8;LC_CTYPE=en_US.UTF-8;LC_MONETARY=en_US.UTF-8;LC_NUMERIC=C;LC_TIME=en_US.UTF-8\"\n\n\n\nThe exact string to use for setting the locale (like “en_US.UTF-8”) can depend on your operating system and its configuration."
+  },
+  {
+    "objectID": "slides/13-locales.html#warinng-about-locale-settings",
+    "href": "slides/13-locales.html#warinng-about-locale-settings",
+    "title": "Locales",
+    "section": "Warinng about Locale Settings",
+    "text": "Warinng about Locale Settings\n\n\n\n\n\n\nWarning\n\n\n\nWe have shown tools to control locales.\nThese settings are important because they affect how your data looks and behaves.\nHowever, not all of these settings are available on every computer; their availability depends on what kind of computer you have and how it’s set up.\nChanging these settings, especially LC_NUMERIC, can lead to unexpected problems when you’re working with numbers in R.\nThese locale settings only last as long as one R session."
+  },
+  {
+    "objectID": "slides/13-locales.html#change-locale",
+    "href": "slides/13-locales.html#change-locale",
+    "title": "Locales",
+    "section": "change locale",
+    "text": "change locale\n\nHere is what you obtain if you change the dates locale to Spanish:\n\n\nlocale(date_names = \"es\") \n\n&lt;locale&gt;\nNumbers:  123,456.78\nFormats:  %AD / %AT\nTimezone: UTC\nEncoding: UTF-8\n&lt;date_names&gt;\nDays:   domingo (dom.), lunes (lun.), martes (mar.), miércoles (mié.), jueves\n        (jue.), viernes (vie.), sábado (sáb.)\nMonths: enero (ene.), febrero (feb.), marzo (mar.), abril (abr.), mayo (may.),\n        junio (jun.), julio (jul.), agosto (ago.), septiembre (sept.),\n        octubre (oct.), noviembre (nov.), diciembre (dic.)\nAM/PM:  a. m./p. m."
+  },
+  {
+    "objectID": "slides/13-locales.html#if-use-read_lines",
+    "href": "slides/13-locales.html#if-use-read_lines",
+    "title": "Locales",
+    "section": "If use read_lines()",
+    "text": "If use read_lines()\n\nread_lines: read all lines and return them as a char vector (one element per line)\nseven students. Columns represent the name, date of birth, the time they submitted their assignment, and their score:\n\n\nread_lines(fn, locale = locale(encoding = \"ISO-8859-1\")) \n\n[1] \"\\\"nombre\\\",\\\"f.n.\\\",\\\"estampa\\\",\\\"puntuación\\\"\"                       \n[2] \"\\\"Beyoncé\\\",\\\"04 de septiembre de 1981\\\",2023-09-22 02:11:02,\\\"87,5\\\"\"\n[3] \"\\\"Blümchen\\\",\\\"20 de abril de 1980\\\",2023-09-22 03:23:05,\\\"99,0\\\"\"    \n[4] \"\\\"João\\\",\\\"10 de junio de 1931\\\",2023-09-21 22:43:28,\\\"98,9\\\"\"        \n[5] \"\\\"López\\\",\\\"24 de julio de 1969\\\",2023-09-22 01:06:59,\\\"88,7\\\"\"       \n[6] \"\\\"Ñengo\\\",\\\"15 de diciembre de 1981\\\",2023-09-21 23:35:37,\\\"93,1\\\"\"   \n[7] \"\\\"Plácido\\\",\\\"24 de enero de 1941\\\",2023-09-21 23:17:21,\\\"88,7\\\"\"     \n[8] \"\\\"Thalía\\\",\\\"26 de agosto de 1971\\\",2023-09-21 23:08:02,\\\"83,0\\\"\""
+  },
+  {
+    "objectID": "slides/13-locales.html#section",
+    "href": "slides/13-locales.html#section",
+    "title": "Locales",
+    "section": "",
+    "text": "Now, to compute the student ages, let’s try changing the submission times to date format:\n\n\nlibrary(lubridate) \ndmy(dat$f.n.) \n\n[1] NA NA NA NA NA NA NA\n\n\n\nNothing gets converted correctly.\nThis is because the dates are in Spanish."
+  },
+  {
+    "objectID": "slides/13-locales.html#example-read-data",
+    "href": "slides/13-locales.html#example-read-data",
+    "title": "Locales",
+    "section": "Example: read data",
+    "text": "Example: read data\n\nwe will to compute the students age and check if they turned in their assignment by the deadline of September 21, 2023, before midnight.\nWe can read in the file with correct encoding:\n\n\ndat &lt;- read_csv(fn, locale = locale(encoding = \"ISO-8859-1\")) \n\n\nHowever, notice that the last column, which is supposed to contain exam scores between 0 and 100, shows numbers larger than 800:\n\n\ndat$puntuación \n\n[1] 875 990 989 887 931 887 830"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-change-locale",
+    "href": "slides/13-locales.html#example-change-locale",
+    "title": "Locales",
+    "section": "Example: change locale",
+    "text": "Example: change locale\n\nThis happens because the scores in the file use the European decimal point, which confuses read_csv.\nTo address this issue, we can change the encoding to use European decimals:\n\n\ndat &lt;- read_csv(fn, locale = locale(decimal_mark = \",\", \n                                    encoding = \"ISO-8859-1\")) \ndat$puntuación \n\n[1] 87.5 99.0 98.9 88.7 93.1 88.7 83.0"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-change-to-date-format",
+    "href": "slides/13-locales.html#example-change-to-date-format",
+    "title": "Locales",
+    "section": "Example: change to date format",
+    "text": "Example: change to date format\n\nTry changing the submission times to date format:\n\n\nlibrary(lubridate) \ndmy(dat$f.n.) \n\n[1] NA NA NA NA NA NA NA\n\n\nMistakes! Because the dates are in Spanish.\nWe can change to use Spanish as for dates:\n\nparse_date(dat$f.n., format = \"%d de %B de %Y\", locale = locale(date_names = \"es\")) \n\n[1] \"1981-09-04\" \"1980-04-20\" \"1931-06-10\" \"1969-07-24\" \"1981-12-15\"\n[6] \"1941-01-24\" \"1971-08-26\"\n\n\n\n%d: day of month (01-31); %B: full month name; %Y: 4-digit year"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-read-using-locale",
+    "href": "slides/13-locales.html#example-read-using-locale",
+    "title": "Locales",
+    "section": "Example: Read using locale",
+    "text": "Example: Read using locale\nWe can also reread the file using the correct locales:\n\ndat &lt;- read_csv(fn, locale = locale(date_names = \"es\", \n                                    date_format = \"%d de %B de %Y\", \n                                    decimal_mark = \",\", \n                                    encoding = \"ISO-8859-1\"))"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-compute-the-age",
+    "href": "slides/13-locales.html#example-compute-the-age",
+    "title": "Locales",
+    "section": "Example: compute the age",
+    "text": "Example: compute the age\nComputing the students’ ages is now straightforward:\n\ntime_length(today() - dat$f.n., unit = \"years\") |&gt; floor() \n\n[1] 44 45 94 56 44 84 54"
+  },
+  {
+    "objectID": "slides/13-locales.html#example-which-student-turned-in-late",
+    "href": "slides/13-locales.html#example-which-student-turned-in-late",
+    "title": "Locales",
+    "section": "Example: which student turned in late",
+    "text": "Example: which student turned in late\n\nLet’s check which students turned in their homework past the deadline of September 22:\n\n\ndat$estampa &gt;= make_date(2023, 9, 22) \n\n[1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE\n\n\n\nWe see that two students were late.\nHowever, with times we have to be particularly careful as some functions default to the UTC timezone:\n\n\ntz(dat$estampa) #default UTC=UTC+0\n\n[1] \"UTC\""
+  },
+  {
+    "objectID": "slides/13-locales.html#example-change-timezone",
+    "href": "slides/13-locales.html#example-change-timezone",
+    "title": "Locales",
+    "section": "Example: change timezone",
+    "text": "Example: change timezone\n\nIf we change to Eastern Standard Time (EST), we see no one was late:\n\n\nwith_tz(dat$estampa, tz =  \"EST\") &gt;= make_date(2023, 9, 22) \n\n[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#data-apis",
+    "href": "slides/14-data-apis.html#data-apis",
+    "title": "Data APIs",
+    "section": "Data APIs",
+    "text": "Data APIs\n\nAn Application Programming Interface (API) is a set of rules and protocols that allows different software entities to communicate with each other.\nIt defines methods and data formats that software components should use when requesting and exchanging information."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#types-and-concepts",
+    "href": "slides/14-data-apis.html#types-and-concepts",
+    "title": "Data APIs",
+    "section": "Types and concepts",
+    "text": "Types and concepts\nThe main APIs related to retrieving data are:\n\nWeb Services - Often built using protocols like HTTP/HTTPS.\nDatabase APIs - Enable communication between an application and a database, SQL-based calls for example."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#key-concepts",
+    "href": "slides/14-data-apis.html#key-concepts",
+    "title": "Data APIs",
+    "section": "Key concepts",
+    "text": "Key concepts\n\nEndpoints: Usually a URL where API can be accessed.\nMethods: Actions that can be performed, for example HTTP methods like GET, POST, PUT, or DELETE.\nRequest: Asking the API to perform a function.\nResponse: The data it returns.\nRate Limits: Restrictions on calls to API.\nAuthentication and Authorization: Methods include API keys, OAuth, or Jason Web Tokens (JWT).\nData Formats: Many web APIs exchange data in a specific format, often JSON or CSV."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#json",
+    "href": "slides/14-data-apis.html#json",
+    "title": "Data APIs",
+    "section": "JSON",
+    "text": "JSON\n\nSharing data on the internet has become more and more common.\nproviders use different formats\nA format that is widely being adopted is the JavaScript Object Notation or JSON."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#json-1",
+    "href": "slides/14-data-apis.html#json-1",
+    "title": "Data APIs",
+    "section": "JSON",
+    "text": "JSON\n\nJSON file: a list of key value pairs\n\n\n\n[\n  {\n    \"name\": \"Miguel\",\n    \"student_id\": 1,\n    \"exam_1\": 85,\n    \"exam_2\": 86\n  },\n  {\n    \"name\": \"Sofia\",\n    \"student_id\": 2,\n    \"exam_1\": 94,\n    \"exam_2\": 93\n  },\n  {\n    \"name\": \"Aya\",\n    \"student_id\": 3,\n    \"exam_1\": 87,\n    \"exam_2\": 88\n  },\n  {\n    \"name\": \"Cheng\",\n    \"student_id\": 4,\n    \"exam_1\": 90,\n    \"exam_2\": 91\n  }\n]"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#json-2",
+    "href": "slides/14-data-apis.html#json-2",
+    "title": "Data APIs",
+    "section": "JSON",
+    "text": "JSON\n\nThe nobel object is rather complicated (using str to see its structure). The prizes component includes a list of data frames with information about Nobel Laureates:\n\n\nnames(nobel)\n\n[1] \"prizes\"\n\nstr(nobel$prizes, max.level = 1)\n\n'data.frame':   682 obs. of  4 variables:\n $ year             : chr  \"2025\" \"2025\" \"2025\" \"2025\" ...\n $ category         : chr  \"chemistry\" \"economics\" \"literature\" \"peace\" ...\n $ laureates        :List of 682\n $ overallMotivation: chr  NA \"\\\"for having explained innovation-driven economic growth\\\"\" NA NA ...\n\nnobel$prizes |&gt; \n  filter(category == \"literature\" & year == \"1971\") |&gt;  \n  pull(laureates) |&gt; # extract laureates column as a vector/list\n  first() |&gt; # take the first element \n  select(id, firstname, surname) \n\n   id firstname surname\n1 645     Pablo  Neruda"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#json-3",
+    "href": "slides/14-data-apis.html#json-3",
+    "title": "Data APIs",
+    "section": "JSON",
+    "text": "JSON\nThe JSON parsers have arguments that make the list components into vectors and lists into data frames when possible:\n\nsimplifyVector\nsimplifyDataFrame\nsimplifyMatrix\nflatten"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#json-4",
+    "href": "slides/14-data-apis.html#json-4",
+    "title": "Data APIs",
+    "section": "JSON",
+    "text": "JSON\n\nThe object is rather complicated. The prizes component includes a list of data frames with information about Nobel Laureates:\n\n\nnobel$prizes |&gt; \n  filter(category == \"literature\" & year == \"1971\") |&gt;  \n  pull(laureates) |&gt; \n  first() |&gt; \n  select(id, firstname, surname) \n\n   id firstname surname\n1 645     Pablo  Neruda"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package",
+    "href": "slides/14-data-apis.html#the-httr2-package",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nHTTPS is the most widely used protocol for data sharing through the internet.\nThe httr2 package provides functions to work with HTTPS requests.\nOne of the core functions in this package is request, which is used to form request to send to web services.\nThe req_perform function sends the request.\nThis request function forms an HTTP GET request to the specified URL."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-1",
+    "href": "slides/14-data-apis.html#the-httr2-package-1",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nThe CDC also provides data in json format through:\n\n\nurl &lt;- \"https://data.cdc.gov/resource/muzy-jte6.json\" \n\n\nTo extract the data table we use the fromJSON function from the jsonlite package.\n\n\ntab &lt;- request(url) |&gt;  \n   req_perform() |&gt;  \n   resp_body_json(simplifyDataFrame = TRUE) \n\n\nWhen working with APIs, it’s essential to check the API’s documentation for rate limits, required headers, or authentication methods."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-2",
+    "href": "slides/14-data-apis.html#the-httr2-package-2",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nThe httr2 package provides tools to handle these requirements, such as setting headers or authentication parameters."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-3",
+    "href": "slides/14-data-apis.html#the-httr2-package-3",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nWe can see the results of the request by looking at the returned object.\n\n\nresponse\n\n&lt;httr2_response&gt;\nGET https://data.cdc.gov/resource/muzy-jte6.csv\nStatus: 200 OK\nContent-Type: text/csv\nBody: In memory (210922 bytes)"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-4",
+    "href": "slides/14-data-apis.html#the-httr2-package-4",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nTo extract the body, which is where the data are, we can use resp_body_string and send the result, a comma delimited string, to read_csv.\n\n\nlibrary(readr) \ntab &lt;- response |&gt; resp_body_string() |&gt; read_csv() \n\n\nWe note that the returned object is only 1000 entries.\nAPI often limit how much you can download."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-5",
+    "href": "slides/14-data-apis.html#the-httr2-package-5",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nThe documentation for this API explains that we can change this limit through the.\n$limit parameters.\nWe can use the req_url_path_append to add this to our request:\n\n\nresponse &lt;- request(url) |&gt; \n  req_url_query(.multi = \"comma\", `$limit` = \"100000\") |&gt;\n  req_perform()\n\n\nThe CDC service returns data in csv format but a more common format used by web services is JSON."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-6",
+    "href": "slides/14-data-apis.html#the-httr2-package-6",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nThe CDC also provides data in json format through:\n\n\nurl &lt;- \"https://data.cdc.gov/resource/muzy-jte6.json\" \n\n\nTo extract the data table we use the fromJSON function from the jsonlite package.\n\n\ntab &lt;- request(url) |&gt;  \n   req_perform() |&gt;  \n   resp_body_json(simplifyDataFrame = TRUE) \n\n\nWhen working with APIs, it’s essential to check the API’s documentation for rate limits, required headers, or authentication methods."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-httr2-package-7",
+    "href": "slides/14-data-apis.html#the-httr2-package-7",
+    "title": "Data APIs",
+    "section": "The httr2 package",
+    "text": "The httr2 package\n\nThe httr2 package provides tools to handle these requirements, such as setting headers or authentication parameters."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#read-json",
+    "href": "slides/14-data-apis.html#read-json",
+    "title": "Data APIs",
+    "section": "Read JSON",
+    "text": "Read JSON\n\nHere is an example reading information aobut Nobel prize winners:\n\n\nlibrary(jsonlite) \nnobel &lt;- fromJSON(\"http://api.nobelprize.org/v1/prize.json\") \n\n\nThis downloads a JSON file and reads into a list:\n\n\nclass(nobel)\n\n[1] \"list\""
+  },
+  {
+    "objectID": "slides/14-data-apis.html#parse-json",
+    "href": "slides/14-data-apis.html#parse-json",
+    "title": "Data APIs",
+    "section": "Parse JSON",
+    "text": "Parse JSON\nThe JSON parsers have arguments that make the list components into vectors and lists into data frames when possible:\n\nsimplifyVector\nsimplifyDataFrame\nsimplifyMatrix\nflatten"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#json-extract-data",
+    "href": "slides/14-data-apis.html#json-extract-data",
+    "title": "Data APIs",
+    "section": "JSON: Extract data",
+    "text": "JSON: Extract data\n\nThe nobel object is rather complicated\n\n\nnames(nobel)\n\n[1] \"prizes\"\n\nstr(nobel$prizes, max.level = 1)\n\n'data.frame':   682 obs. of  4 variables:\n $ year             : chr  \"2025\" \"2025\" \"2025\" \"2025\" ...\n $ category         : chr  \"chemistry\" \"economics\" \"literature\" \"peace\" ...\n $ laureates        :List of 682\n $ overallMotivation: chr  NA \"\\\"for having explained innovation-driven economic growth\\\"\" NA NA ...\n\nnobel$prizes |&gt; \n  filter(category == \"literature\" & year == \"1971\") |&gt;  \n  pull(laureates) |&gt; # extract laureates column as a vector/list\n  first() |&gt; # take the first element \n  select(id, firstname, surname) \n\n   id firstname surname\n1 645     Pablo  Neruda"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#the-get-method",
+    "href": "slides/14-data-apis.html#the-get-method",
+    "title": "Data APIs",
+    "section": "The GET method",
+    "text": "The GET method\n\nHTTP GET requests are used to retrieve information from a server\nThe function returns an object of class response.\nresonse contains status code, headers, and content.\nWe then use other httr2 functions to extract or interpret information from this response.\nLet’s say we want to retrieve COVID-19 deaths by state from the CDC."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#get-request",
+    "href": "slides/14-data-apis.html#get-request",
+    "title": "Data APIs",
+    "section": "GET request",
+    "text": "GET request\n\nurl &lt;- \"https://data.cdc.gov/resource/muzy-jte6.csv\" \n\n\nlibrary(httr2) \nresponse &lt;- request(url) |&gt;  req_perform() \n\n\n\n\n\n\n\nCaution\n\n\nIf errors, install the newest version of R, and then Tools-&gt;Global Options-&gt;R session: select the newer version of R."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#response",
+    "href": "slides/14-data-apis.html#response",
+    "title": "Data APIs",
+    "section": "Response",
+    "text": "Response\n\nresponse\n\n&lt;httr2_response&gt;\nGET https://data.cdc.gov/resource/muzy-jte6.csv\nStatus: 200 OK\nContent-Type: text/csv\nBody: In memory (210922 bytes)"
+  },
+  {
+    "objectID": "slides/14-data-apis.html#extract-data",
+    "href": "slides/14-data-apis.html#extract-data",
+    "title": "Data APIs",
+    "section": "Extract data",
+    "text": "Extract data\n\nTo extract the body, which is where the data are, we can use resp_body_string and send the result, a comma delimited string, to read_csv.\n\n\nlibrary(readr) \ntab &lt;- response |&gt; resp_body_string() |&gt; read_csv() \n\n\nWe note that the returned object is only 1000 entries.\nAPI often limit how much you can download."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#change-message-limit",
+    "href": "slides/14-data-apis.html#change-message-limit",
+    "title": "Data APIs",
+    "section": "Change message limit",
+    "text": "Change message limit\n\nuse req_url_query to add query parameters:\n\n\nresponse &lt;- request(url) |&gt; \n  req_url_query( `$limit` = \"100000\") |&gt; \n  req_perform()\n\n\nThe CDC service returns data in csv format but a more common format used by web services is JSON."
+  },
+  {
+    "objectID": "slides/14-data-apis.html#request-json-data",
+    "href": "slides/14-data-apis.html#request-json-data",
+    "title": "Data APIs",
+    "section": "Request JSON data",
+    "text": "Request JSON data\n\nThe CDC also provides data in json format:\n\n\nurl &lt;- \"https://data.cdc.gov/resource/muzy-jte6.json\" \n\n\ntab &lt;- request(url) |&gt;  \n   req_perform() |&gt;  \n   resp_body_json(simplifyDataFrame = TRUE) \n\n\nWhen working with APIs, it’s essential to check the API’s documentation for rate limits, required headers, or authentication methods.\nThe httr2 package provides tools to handle these requirements, such as setting headers or authentication parameters."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#scraping-html",
+    "href": "slides/15-web-scraping.html#scraping-html",
+    "title": "Web Scraping",
+    "section": "Scraping HTML",
+    "text": "Scraping HTML\n\nYou can see the data table when you visit the webpage https://en.wikipedia.org/w/index.php?title=Gun_violence_in_the_United_States_by_state&direction=prev&oldid=810166167:\nWeb scraping, or web harvesting, is the term we use to describe the process of extracting data from a website."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#scraping-html-1",
+    "href": "slides/15-web-scraping.html#scraping-html-1",
+    "title": "Web Scraping",
+    "section": "Scraping HTML",
+    "text": "Scraping HTML\n\nYou can see the data table when you visit the webpage https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States:\n\n.\n\nWeb scraping, or web harvesting, is the term we use to describe the process of extracting data from a website."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#scraping-html-2",
+    "href": "slides/15-web-scraping.html#scraping-html-2",
+    "title": "Web Scraping",
+    "section": "Scraping HTML",
+    "text": "Scraping HTML\n\nThe reason we can do this is because the information used by a browser to render webpages is received as a text file from a server.\nThe text is code written in hyper text markup language (HTML).\nEvery browser has a way to show the html source code for a page, each one different.\nOn Chrome, you can use Control-U on a PC and command+alt+U on a Mac."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#scraping-html-3",
+    "href": "slides/15-web-scraping.html#scraping-html-3",
+    "title": "Web Scraping",
+    "section": "Scraping HTML",
+    "text": "Scraping HTML\n."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html",
+    "href": "slides/15-web-scraping.html#html",
+    "title": "Web Scraping",
+    "section": "HTML",
+    "text": "HTML\n\nBecause this code is accessible, we can download the HTML file, import it into R, and then write programs to extract the information we need from the page.\nHowever, once we look at HTML code, this might seem like a daunting task.\nBut we will show you some convenient tools to facilitate the process."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-1",
+    "href": "slides/15-web-scraping.html#html-1",
+    "title": "Web Scraping",
+    "section": "HTML",
+    "text": "HTML\n\nTo get an idea of how it works, here are a few lines of code from the Wikipedia page that provides the US murders data:\n\n&lt;table class=\"wikitable sortable\"&gt; \n&lt;tr&gt; \n&lt;th&gt;State&lt;/th&gt; \n&lt;th&gt;&lt;a href=\"/wiki/List_of_U.S._states_and_territories_by_population\"  \ntitle=\"List of U.S. states and territories by population\"&gt;Population&lt;/a&gt;&lt;br /&gt; \n&lt;small&gt;(total inhabitants)&lt;/small&gt;&lt;br /&gt; \n&lt;small&gt;(2015)&lt;/small&gt; &lt;sup id=\"cite_ref-1\" class=\"reference\"&gt; \n&lt;a href=\"#cite_note-1\"&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;/th&gt; \n&lt;th&gt;Murders and Nonnegligent \n&lt;p&gt;Manslaughter&lt;br /&gt; \n&lt;small&gt;(total deaths)&lt;/small&gt;&lt;br /&gt; \n&lt;small&gt;(2015)&lt;/small&gt; &lt;sup id=\"cite_ref-2\" class=\"reference\"&gt; \n&lt;a href=\"#cite_note-2\"&gt;[2]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt; \n&lt;/th&gt; \n&lt;th&gt;Murder and Nonnegligent \n&lt;p&gt;Manslaughter Rate&lt;br /&gt; \n&lt;small&gt;(per 100,000 inhabitants)&lt;/small&gt;&lt;br /&gt; \n&lt;small&gt;(2015)&lt;/small&gt;&lt;/p&gt; \n&lt;/th&gt; \n&lt;/tr&gt; \n&lt;tr&gt; \n&lt;td&gt;&lt;a href=\"/wiki/Alabama\" title=\"Alabama\"&gt;Alabama&lt;/a&gt;&lt;/td&gt; \n&lt;td&gt;4,853,875&lt;/td&gt; \n&lt;td&gt;348&lt;/td&gt; \n&lt;td&gt;7.2&lt;/td&gt; \n&lt;/tr&gt; \n&lt;tr&gt; \n&lt;td&gt;&lt;a href=\"/wiki/Alaska\" title=\"Alaska\"&gt;Alaska&lt;/a&gt;&lt;/td&gt; \n&lt;td&gt;737,709&lt;/td&gt; \n&lt;td&gt;59&lt;/td&gt; \n&lt;td&gt;8.0&lt;/td&gt; \n&lt;/tr&gt; \n&lt;tr&gt;"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-2",
+    "href": "slides/15-web-scraping.html#html-2",
+    "title": "Web Scraping",
+    "section": "HTML",
+    "text": "HTML\n\nYou can actually see the data, except data values are surrounded by html code such as &lt;td&gt;.\nWe can also see a pattern of how it is stored.\nIf you know HTML, you can write programs that leverage knowledge of these patterns to extract what we want.\nWe also take advantage of a language widely used to make webpages look “pretty” called Cascading Style Sheets (CSS)."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-3",
+    "href": "slides/15-web-scraping.html#html-3",
+    "title": "Web Scraping",
+    "section": "HTML",
+    "text": "HTML\n\nAlthough we provide tools that make it possible to scrape data without knowing HTML, it is useful to learn some HTML and CSS.\nNot only does this improve your scraping skills, but it might come in handy if you are creating a webpage to showcase your work.\nThere are plenty of online courses and tutorials for learning these.\nTwo examples are Codeacademy and W3schools."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package",
+    "href": "slides/15-web-scraping.html#the-rvest-package",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nThe tidyverse provides a web harvesting package called rvest.\n\n\nlibrary(tidyverse) \nlibrary(rvest) \nh &lt;- read_html(url) \n\n\nNote that the entire Murders in the US Wikipedia webpage is now contained in h."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-1",
+    "href": "slides/15-web-scraping.html#the-rvest-package-1",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nThe class of this object is:\n\n\nclass(h) \n\n[1] \"xml_document\" \"xml_node\"    \n\n\n\nThe rvest package is more general; it handles XML documents.\nXML is a general markup language that can be used to represent any kind of data.\nHTML is a specific type of XML specifically developed for representing webpages."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-2",
+    "href": "slides/15-web-scraping.html#the-rvest-package-2",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nNow, how do we extract the table from the object h? If you were to print h, we would see information about the object that is not very informative.\nWe can see all the code that defines the downloaded webpage using the html_text function:\n\n\nhtml_text(h)"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-3",
+    "href": "slides/15-web-scraping.html#the-rvest-package-3",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nWe can now make the data frame:\n\n\ntab &lt;- tab |&gt; \n  setNames(c(\"state\", \"population\", \"total\", \"murder_rate\")) |&gt;\n  mutate(across(c(population, total), parse_number))\nhead(tab,3) \n\n# A tibble: 3 × 4\n  state   population total murder_rate\n  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Alabama    4853875   348         7.2\n2 Alaska      737709    59         8  \n3 Arizona    6817565   309         4.5\n\n\n\nparse_number(): extract the numeric part from strings and converts to numeric\napply parse_number to population and total"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-4",
+    "href": "slides/15-web-scraping.html#the-rvest-package-4",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nWe can now make the data frame:\n\n\ntab &lt;- tab |&gt; \n  setNames(c(\"state\", \"population\", \"total\", \"murder_rate\")) |&gt;\n  mutate(across(c(population, total), parse_number))\nhead(tab) \n\n# A tibble: 6 × 4\n  state      population total murder_rate\n  &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Alabama       4853875   348         7.2\n2 Alaska         737709    59         8  \n3 Arizona       6817565   309         4.5\n4 Arkansas      2977853   181         6.1\n5 California   38993940  1861         4.8\n6 Colorado      5448819   176         3.2"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-5",
+    "href": "slides/15-web-scraping.html#the-rvest-package-5",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nThis is clearly not a tidy dataset, not even a data frame.\nIn the code above, you can definitely see a pattern and writing code to extract just the data is very doable.\nIn fact, rvest includes a function just for converting HTML tables into data frames:\n\n\ntab &lt;- tab[[1]] |&gt; html_table() \nclass(tab) \n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-6",
+    "href": "slides/15-web-scraping.html#the-rvest-package-6",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nWe can now make the data frame:\n\n\ntab &lt;- tab |&gt; \n  setNames(c(\"state\", \"population\", \"total\", \"murder_rate\")) |&gt;\n  mutate(across(c(population, total), parse_number))\nhead(tab) \n\n# A tibble: 6 × 4\n  state      population total murder_rate\n  &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Alabama       4853875   348         7.2\n2 Alaska         737709    59         8  \n3 Arizona       6817565   309         4.5\n4 Arkansas      2977853   181         6.1\n5 California   38993940  1861         4.8\n6 Colorado      5448819   176         3.2"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-7",
+    "href": "slides/15-web-scraping.html#the-rvest-package-7",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nThis is clearly not a tidy dataset, not even a data frame.\nIn the code above, you can definitely see a pattern and writing code to extract just the data is very doable.\nIn fact, rvest includes a function just for converting HTML tables into data frames:\n\n\ntab &lt;- tab[[1]] |&gt; html_table() \nclass(tab) \n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#the-rvest-package-8",
+    "href": "slides/15-web-scraping.html#the-rvest-package-8",
+    "title": "Web Scraping",
+    "section": "The rvest package",
+    "text": "The rvest package\n\nWe can now make the data frame:\n\n\ntab &lt;- tab |&gt; \n  setNames(c(\"state\", \"population\", \"total\", \"murder_rate\")) |&gt;\n  mutate(across(c(population, total), parse_number))\nhead(tab) \n\n# A tibble: 6 × 4\n  state      population total murder_rate\n  &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Alabama       4853875   348         7.2\n2 Alaska         737709    59         8  \n3 Arizona       6817565   309         4.5\n4 Arkansas      2977853   181         6.1\n5 California   38993940  1861         4.8\n6 Colorado      5448819   176         3.2"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#css-selectors",
+    "href": "slides/15-web-scraping.html#css-selectors",
+    "title": "Web Scraping",
+    "section": "CSS selectors",
+    "text": "CSS selectors\n\nhttps://rvest.tidyverse.org/articles/selectorgadget.html]\nhttps://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-webpage",
+    "href": "slides/15-web-scraping.html#html-webpage",
+    "title": "Web Scraping",
+    "section": "HTML Webpage",
+    "text": "HTML Webpage\n\nThe data we need is not always in a spreadsheet ready for us to read.\nFor example, the US murders dataset we used in the R Basics chapter originally comes from this Wikipedia page:\n\n\nurl &lt;- paste0(\"https://en.wikipedia.org/w/index.php?title=\", \n              \"Gun_violence_in_the_United_States_by_state\", \n              \"&direction=prev&oldid=810166167\") \n\n\npast0(): concatenate with no separators"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-source",
+    "href": "slides/15-web-scraping.html#html-source",
+    "title": "Web Scraping",
+    "section": "HTML Source",
+    "text": "HTML Source\n\nThe reason we can do this is because the information used by a browser to render webpages is received as a text file from a server.\nThe text is code written in hyper text markup language (HTML).\nTo see the source code, On Chrome, use Control-U on a PC and command+alt+U on a Mac."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-parsing",
+    "href": "slides/15-web-scraping.html#html-parsing",
+    "title": "Web Scraping",
+    "section": "HTML Parsing",
+    "text": "HTML Parsing\n\nBecause this code is accessible, we can download the HTML file, import it into R, and then write programs to extract the information we need from the page.\nHowever, once we look at HTML code, this might seem like a daunting task.\nBut we have some convenient tools to facilitate the process."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-code-example",
+    "href": "slides/15-web-scraping.html#html-code-example",
+    "title": "Web Scraping",
+    "section": "HTML code example",
+    "text": "HTML code example\n\nTo get an idea of how it works, here are a few lines of code from the Wikipedia page that provides the US murders data:\n\n&lt;table class=\"wikitable sortable\"&gt; \n&lt;tr&gt; \n&lt;th&gt;State&lt;/th&gt; \n&lt;th&gt;&lt;a href=\"/wiki/List_of_U.S._states_and_territories_by_population\"  \ntitle=\"List of U.S. states and territories by population\"&gt;Population&lt;/a&gt;&lt;br /&gt; \n&lt;small&gt;(total inhabitants)&lt;/small&gt;&lt;br /&gt; \n&lt;small&gt;(2015)&lt;/small&gt; &lt;sup id=\"cite_ref-1\" class=\"reference\"&gt; \n&lt;a href=\"#cite_note-1\"&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;/th&gt; \n&lt;th&gt;Murders and Nonnegligent \n&lt;p&gt;Manslaughter&lt;br /&gt; \n&lt;small&gt;(total deaths)&lt;/small&gt;&lt;br /&gt; \n&lt;small&gt;(2015)&lt;/small&gt; &lt;sup id=\"cite_ref-2\" class=\"reference\"&gt; \n&lt;a href=\"#cite_note-2\"&gt;[2]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt; \n&lt;/th&gt; \n&lt;th&gt;Murder and Nonnegligent \n&lt;p&gt;Manslaughter Rate&lt;br /&gt; \n&lt;small&gt;(per 100,000 inhabitants)&lt;/small&gt;&lt;br /&gt; \n&lt;small&gt;(2015)&lt;/small&gt;&lt;/p&gt; \n&lt;/th&gt; \n&lt;/tr&gt; \n&lt;tr&gt; \n&lt;td&gt;&lt;a href=\"/wiki/Alabama\" title=\"Alabama\"&gt;Alabama&lt;/a&gt;&lt;/td&gt; \n&lt;td&gt;4,853,875&lt;/td&gt; \n&lt;td&gt;348&lt;/td&gt; \n&lt;td&gt;7.2&lt;/td&gt; \n&lt;/tr&gt; \n&lt;tr&gt; \n&lt;td&gt;&lt;a href=\"/wiki/Alaska\" title=\"Alaska\"&gt;Alaska&lt;/a&gt;&lt;/td&gt; \n&lt;td&gt;737,709&lt;/td&gt; \n&lt;td&gt;59&lt;/td&gt; \n&lt;td&gt;8.0&lt;/td&gt; \n&lt;/tr&gt; \n&lt;tr&gt;"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#html-structure",
+    "href": "slides/15-web-scraping.html#html-structure",
+    "title": "Web Scraping",
+    "section": "HTML Structure",
+    "text": "HTML Structure\n\nYou can actually see the data, except data values are surrounded by html code such as &lt;td&gt;.\nWebpages often use Cascading Style Sheets (CSS), a language widely used to make webpages look “pretty”\nResources: Codeacademy and W3schools."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#extracting-nodes",
+    "href": "slides/15-web-scraping.html#extracting-nodes",
+    "title": "Web Scraping",
+    "section": "Extracting nodes",
+    "text": "Extracting nodes\n\nthe data we are after are stored in an HTML table: you can see this in this line of the HTML code above &lt;table class=\"wikitable sortable\"&gt;.\nThe different parts of an HTML document, often defined with a message in between &lt; and &gt; are referred to as nodes.\nhtml_nodes extracts all nodes of different types and html_node extracts the first one."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#extract-the-table",
+    "href": "slides/15-web-scraping.html#extract-the-table",
+    "title": "Web Scraping",
+    "section": "Extract the table",
+    "text": "Extract the table\n\ntab &lt;- h |&gt; html_nodes(\"table\") \n\n\nNow, instead of the entire webpage, we just have the html code for the tables in the page\n\n\ntab \n\n{xml_nodeset (2)}\n[1] &lt;table class=\"wikitable sortable\"&gt;&lt;tbody&gt;\\n&lt;tr&gt;\\n&lt;th&gt;State\\n&lt;/th&gt;\\n&lt;th&gt;\\n ...\n[2] &lt;table class=\"nowraplinks hlist mw-collapsible mw-collapsed navbox-inner\" ...\n\n\n\nThe table we are interested is the first one:\n\n\ntab[[1]] # tab[[1]]: content tab[1]: a nodeset of length 1\n\n{html_node}\n&lt;table class=\"wikitable sortable\"&gt;\n[1] &lt;tbody&gt;\\n&lt;tr&gt;\\n&lt;th&gt;State\\n&lt;/th&gt;\\n&lt;th&gt;\\n&lt;a href=\"/wiki/List_of_U.S._states ..."
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#convert-to-df",
+    "href": "slides/15-web-scraping.html#convert-to-df",
+    "title": "Web Scraping",
+    "section": "Convert to df",
+    "text": "Convert to df\n\nThis is clearly not a tidy dataset, not even a data frame.\n\n\ntab &lt;- tab[[1]] |&gt; html_table() \nclass(tab) \n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\n\ntbl_df: main class for a tibble dataframe; tbl: old tibble tag;"
+  },
+  {
+    "objectID": "slides/15-web-scraping.html#wrangling-the-table",
+    "href": "slides/15-web-scraping.html#wrangling-the-table",
+    "title": "Web Scraping",
+    "section": "Wrangling the table",
+    "text": "Wrangling the table\n\ntab &lt;- tab |&gt; \n  setNames(c(\"state\", \"population\", \"total\", \"murder_rate\")) |&gt;\n  mutate(across(c(population, total), parse_number))\nhead(tab,3) \n\n# A tibble: 3 × 4\n  state   population total murder_rate\n  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Alabama    4853875   348         7.2\n2 Alaska      737709    59         8  \n3 Arizona    6817565   309         4.5\n\n\n\nparse_number(): extract the numeric part from strings and converts to numeric\napply parse_number to population and total"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-tables",
+    "href": "slides/16-joining-tables.html#joining-tables",
+    "title": "Joining Tables",
+    "section": "Joining tables",
+    "text": "Joining tables\n\nThe information we need for a given analysis may not be just in one table.\nHere we use a simple examples to illustrate the general challenge of combining tables."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-tables-1",
+    "href": "slides/16-joining-tables.html#joining-tables-1",
+    "title": "Joining Tables",
+    "section": "Joining tables",
+    "text": "Joining tables\n\nSuppose we want to explore the relationship between population size for US states and electoral votes.\nWe have the population size in this table:\n\n\nlibrary(tidyverse) \nlibrary(dslabs) \nhead(murders) \n\n       state abb region population total\n1    Alabama  AL  South    4779736   135\n2     Alaska  AK   West     710231    19\n3    Arizona  AZ   West    6392017   232\n4   Arkansas  AR  South    2915918    93\n5 California  CA   West   37253956  1257\n6   Colorado  CO   West    5029196    65"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-tables-2",
+    "href": "slides/16-joining-tables.html#joining-tables-2",
+    "title": "Joining Tables",
+    "section": "Joining tables",
+    "text": "Joining tables\n\nand electoral votes in this one:\n\n\nhead(results_us_election_2016) \n\n         state electoral_votes  clinton    trump  johnson     stein  mcmullin\n1   California              55 61.72640 31.61711 3.374092 1.9649200 0.2792070\n2        Texas              38 43.23526 52.23469 3.160719 0.7978169 0.4723485\n3      Florida              29 47.82332 49.02194 2.197900 0.6836384 0.0000000\n4     New York              29 59.00604 36.51559 2.287108 1.3978457 0.1343400\n5     Illinois              20 55.82537 38.76175 3.785765 1.3872131 0.2105149\n6 Pennsylvania              20 47.46495 48.18334 2.379621 0.8100102 0.1049716\n      others\n1 1.03827531\n2 0.09917244\n3 0.27320481\n4 0.65907285\n5 0.02938720\n6 1.05711187"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-tables-3",
+    "href": "slides/16-joining-tables.html#joining-tables-3",
+    "title": "Joining Tables",
+    "section": "Joining tables",
+    "text": "Joining tables\n\nJust concatenating these two tables together will not work since the order of the states is not the same.\n\n\nidentical(results_us_election_2016$state, murders$state) \n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joins",
+    "href": "slides/16-joining-tables.html#joins",
+    "title": "Joining Tables",
+    "section": "Joins",
+    "text": "Joins\n\nThe join functions are designed to handle this challenge.\nThe join functions in the dplyr package make sure that the tables are combined so that matching rows are together.\nThe general idea is that one needs to identify one or more columns that will serve to match the two tables.\nA new table with the combined information is returned."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joins-1",
+    "href": "slides/16-joining-tables.html#joins-1",
+    "title": "Joining Tables",
+    "section": "Joins",
+    "text": "Joins\n\nNotice what happens if we join the two tables above by state using left_join:\n\n\ntab &lt;- left_join(murders, results_us_election_2016, by = \"state\") |&gt; \n  select(-others) |&gt; rename(ev = electoral_votes) \nhead(tab) \n\n       state abb region population total ev  clinton    trump  johnson\n1    Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169\n2     Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128\n3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188\n4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769\n5 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092\n6   Colorado  CO   West    5029196    65  9 48.15651 43.25098 5.183748\n      stein  mcmullin\n1 0.4422682 0.0000000\n2 1.8000176 0.0000000\n3 1.3185997 0.6699155\n4 0.8378174 1.1653206\n5 1.9649200 0.2792070\n6 1.3825031 1.0400874"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joins-2",
+    "href": "slides/16-joining-tables.html#joins-2",
+    "title": "Joining Tables",
+    "section": "Joins",
+    "text": "Joins\n\nThe data has been successfully joined and we can now, for example, make a plot to explore the relationship:"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joins-3",
+    "href": "slides/16-joining-tables.html#joins-3",
+    "title": "Joining Tables",
+    "section": "Joins",
+    "text": "Joins\n\nWe see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.\nIn practice, it is not always the case that each row in one table has a matching row in the other.\nFor this reason, we have several versions of join.\nTo illustrate this challenge, we will take subsets of the tables above."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joins-4",
+    "href": "slides/16-joining-tables.html#joins-4",
+    "title": "Joining Tables",
+    "section": "Joins",
+    "text": "Joins\n.\nNote: These names are based on SQL."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joins-5",
+    "href": "slides/16-joining-tables.html#joins-5",
+    "title": "Joining Tables",
+    "section": "Joins",
+    "text": "Joins\n\nWe create the tables tab1 and tab2 so that they have some states in common but not all:\n\n\ntab_1 &lt;- slice(murders, 1:6) |&gt; select(state, population) \ntab_2 &lt;- results_us_election_2016 |&gt;  \n  filter(state %in% c(\"Alabama\", \"Alaska\", \"Arizona\",  \n                    \"California\", \"Connecticut\", \"Delaware\")) |&gt;  \n  select(state, electoral_votes) |&gt; rename(ev = electoral_votes) \n\n\nWe will use these two tables as examples in the next sections."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#left-join",
+    "href": "slides/16-joining-tables.html#left-join",
+    "title": "Joining Tables",
+    "section": "Left join",
+    "text": "Left join\n\nSuppose we want a table like tab_1, but adding electoral votes to whatever states we have available.\nFor this, we use left_join with tab_1 as the first argument.\nWe specify which column to use to match with the by argument.\n\n\nleft_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4   Arkansas    2915918 NA\n5 California   37253956 55\n6   Colorado    5029196 NA\n\n\n\nNote that NAs are added to the two states not appearing in tab_2."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#left-join-1",
+    "href": "slides/16-joining-tables.html#left-join-1",
+    "title": "Joining Tables",
+    "section": "Left join",
+    "text": "Left join\n\nAlso, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:\n\n\ntab_1 |&gt; left_join(tab_2, by = \"state\")"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#right-join",
+    "href": "slides/16-joining-tables.html#right-join",
+    "title": "Joining Tables",
+    "section": "Right join",
+    "text": "Right join\n\nIf instead of a table with the same rows as first table, we want one with the same rows as second table, we can use right_join:\n\n\ntab_1 |&gt; right_join(tab_2, by = \"state\") \n\n        state population ev\n1     Alabama    4779736  9\n2      Alaska     710231  3\n3     Arizona    6392017 11\n4  California   37253956 55\n5 Connecticut         NA  7\n6    Delaware         NA  3\n\n\n\nNow the NAs are in the column coming from tab_1."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#inner-join",
+    "href": "slides/16-joining-tables.html#inner-join",
+    "title": "Joining Tables",
+    "section": "Inner join",
+    "text": "Inner join\n\nIf we want to keep only the rows that have information in both tables, we use inner_join.\nYou can think of this as an intersection:\n\n\ninner_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4 California   37253956 55"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#full-join",
+    "href": "slides/16-joining-tables.html#full-join",
+    "title": "Joining Tables",
+    "section": "Full join",
+    "text": "Full join\n\nIf we want to keep all the rows and fill the missing parts with NAs, we can use full_join.\nYou can think of this as a union:\n\n\nfull_join(tab_1, tab_2, by = \"state\") \n\n        state population ev\n1     Alabama    4779736  9\n2      Alaska     710231  3\n3     Arizona    6392017 11\n4    Arkansas    2915918 NA\n5  California   37253956 55\n6    Colorado    5029196 NA\n7 Connecticut         NA  7\n8    Delaware         NA  3"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#semi-join",
+    "href": "slides/16-joining-tables.html#semi-join",
+    "title": "Joining Tables",
+    "section": "Semi join",
+    "text": "Semi join\n\nThe semi_join function lets us keep the part of first table for which we have information in the second.\nIt does not add the columns of the second:\n\n\nsemi_join(tab_1, tab_2, by = \"state\") \n\n       state population\n1    Alabama    4779736\n2     Alaska     710231\n3    Arizona    6392017\n4 California   37253956"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#anti-join",
+    "href": "slides/16-joining-tables.html#anti-join",
+    "title": "Joining Tables",
+    "section": "Anti join",
+    "text": "Anti join\n\nThe function anti_join is the opposite of semi_join.\nIt keeps the elements of the first table for which there is no information in the second:\n\n\nanti_join(tab_1, tab_2, by = \"state\") \n\n     state population\n1 Arkansas    2915918\n2 Colorado    5029196"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#binding",
+    "href": "slides/16-joining-tables.html#binding",
+    "title": "Joining Tables",
+    "section": "Binding",
+    "text": "Binding\n\nAlthough we have yet to use it in this book, another common way in which datasets are combined is by binding them.\nUnlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets.\nIf the datasets don’t match by the appropriate dimensions, one obtains an error."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#binding-columns",
+    "href": "slides/16-joining-tables.html#binding-columns",
+    "title": "Joining Tables",
+    "section": "Binding columns",
+    "text": "Binding columns\n\nThe dplyr function bind_cols binds two objects by making them columns in a tibble.\n\n\nbind_cols(a = 1:3, b = 4:6) \n\n# A tibble: 3 × 2\n      a     b\n  &lt;int&gt; &lt;int&gt;\n1     1     4\n2     2     5\n3     3     6\n\n\n\nThis function requires that we assign names to the columns. Here we chose a and b.\nNote that there is an R-base function cbind with the exact same functionality."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#binding-columns-1",
+    "href": "slides/16-joining-tables.html#binding-columns-1",
+    "title": "Joining Tables",
+    "section": "Binding columns",
+    "text": "Binding columns\n\nAn important difference is that cbind can create different types of objects, while bind_cols always produces a data frame.\nbind_cols can also bind two different data frames."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#binding-columns-2",
+    "href": "slides/16-joining-tables.html#binding-columns-2",
+    "title": "Joining Tables",
+    "section": "Binding columns",
+    "text": "Binding columns\n\nFor example, here we break up the tab data frame and then bind them back together:\n\n\ntab_1 &lt;- tab[, 1:3] \ntab_2 &lt;- tab[, 4:6] \ntab_3 &lt;- tab[, 7:8] \nnew_tab &lt;- bind_cols(tab_1, tab_2, tab_3) \nhead(new_tab) \n\n       state abb region population total ev  clinton    trump\n1    Alabama  AL  South    4779736   135  9 34.35795 62.08309\n2     Alaska  AK   West     710231    19  3 36.55087 51.28151\n3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314\n4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191\n5 California  CA   West   37253956  1257 55 61.72640 31.61711\n6   Colorado  CO   West    5029196    65  9 48.15651 43.25098"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#binding-by-rows",
+    "href": "slides/16-joining-tables.html#binding-by-rows",
+    "title": "Joining Tables",
+    "section": "Binding by rows",
+    "text": "Binding by rows\n\nThe bind_rows function is similar to bind_cols, but binds rows instead of columns:\n\n\ntab_1 &lt;- tab[1:2,] \ntab_2 &lt;- tab[3:4,] \nbind_rows(tab_1, tab_2) \n\n     state abb region population total ev  clinton    trump  johnson     stein\n1  Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682\n2   Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176\n3  Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188 1.3185997\n4 Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769 0.8378174\n   mcmullin\n1 0.0000000\n2 0.0000000\n3 0.6699155\n4 1.1653206\n\n\n\nThis is based on an R-base function rbind."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#set-operators",
+    "href": "slides/16-joining-tables.html#set-operators",
+    "title": "Joining Tables",
+    "section": "Set operators",
+    "text": "Set operators\n\nAnother set of commands useful for combining datasets are the set operators.\nWhen applied to vectors, these behave as their names suggest.\nExamples are intersect, union, setdiff, and setequal.\nHowever, if the tidyverse, or more specifically dplyr, is loaded, these functions can be used on data frames as opposed to just on vectors."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#intersect",
+    "href": "slides/16-joining-tables.html#intersect",
+    "title": "Joining Tables",
+    "section": "Intersect",
+    "text": "Intersect\n\nYou can take intersections of vectors of any type, such as numeric:\n\n\nintersect(1:10, 6:15) \n\n[1]  6  7  8  9 10\n\n\n\nor characters:\n\n\nintersect(c(\"a\",\"b\",\"c\"), c(\"b\",\"c\",\"d\")) \n\n[1] \"b\" \"c\"\n\n\n\ndplyr includes an intersect function that can be applied to tables with the same column names.\nThis function returns the rows in common between two tables."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#intersect-1",
+    "href": "slides/16-joining-tables.html#intersect-1",
+    "title": "Joining Tables",
+    "section": "Intersect",
+    "text": "Intersect\n\nTo make sure we use the dplyr version of intersect rather than the base R version, we can use dplyr::intersect like this:\n\n\ntab_1 &lt;- tab[1:5,] \ntab_2 &lt;- tab[3:7,] \ndplyr::intersect(tab_1, tab_2) \n\n       state abb region population total ev  clinton    trump  johnson\n1    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188\n2   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769\n3 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092\n      stein  mcmullin\n1 1.3185997 0.6699155\n2 0.8378174 1.1653206\n3 1.9649200 0.2792070"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#union",
+    "href": "slides/16-joining-tables.html#union",
+    "title": "Joining Tables",
+    "section": "Union",
+    "text": "Union\n\nSimilarly union takes the union of vectors.\nFor example:\n\n\nunion(1:10, 6:15) \n\n [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n\nunion(c(\"a\",\"b\",\"c\"), c(\"b\",\"c\",\"d\")) \n\n[1] \"a\" \"b\" \"c\" \"d\""
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#union-1",
+    "href": "slides/16-joining-tables.html#union-1",
+    "title": "Joining Tables",
+    "section": "Union",
+    "text": "Union\n\ndplyr includes a version of union that combines all the rows of two tables with the same column names.\n\n\ntab_1 &lt;- tab[1:5,] \ntab_2 &lt;- tab[3:7,] \ndplyr::union(tab_1, tab_2)  \n\n        state abb    region population total ev  clinton    trump  johnson\n1     Alabama  AL     South    4779736   135  9 34.35795 62.08309 2.094169\n2      Alaska  AK      West     710231    19  3 36.55087 51.28151 5.877128\n3     Arizona  AZ      West    6392017   232 11 44.58042 48.08314 4.082188\n4    Arkansas  AR     South    2915918    93  6 33.65190 60.57191 2.648769\n5  California  CA      West   37253956  1257 55 61.72640 31.61711 3.374092\n6    Colorado  CO      West    5029196    65  9 48.15651 43.25098 5.183748\n7 Connecticut  CT Northeast    3574097    97  7 54.56630 40.92691 2.959171\n      stein  mcmullin\n1 0.4422682 0.0000000\n2 1.8000176 0.0000000\n3 1.3185997 0.6699155\n4 0.8378174 1.1653206\n5 1.9649200 0.2792070\n6 1.3825031 1.0400874\n7 1.3885782 0.1281521"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#setdiff",
+    "href": "slides/16-joining-tables.html#setdiff",
+    "title": "Joining Tables",
+    "section": "setdiff",
+    "text": "setdiff\n\nThe set difference between a first and second argument can be obtained with setdiff.\nUnlike intersect and union, this function is not symmetric:\n\n\nsetdiff(1:10, 6:15) \n\n[1] 1 2 3 4 5\n\nsetdiff(6:15, 1:10) \n\n[1] 11 12 13 14 15"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#setdiff-1",
+    "href": "slides/16-joining-tables.html#setdiff-1",
+    "title": "Joining Tables",
+    "section": "setdiff",
+    "text": "setdiff\n\nAs with the functions shown above, dplyr has a version for data frames:\n\n\ntab_1 &lt;- tab[1:5,] \ntab_2 &lt;- tab[3:7,] \ndplyr::setdiff(tab_1, tab_2) \n\n    state abb region population total ev  clinton    trump  johnson     stein\n1 Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682\n2  Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176\n  mcmullin\n1        0\n2        0"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#setequal",
+    "href": "slides/16-joining-tables.html#setequal",
+    "title": "Joining Tables",
+    "section": "setequal",
+    "text": "setequal\n\nFinally, the function setequal tells us if two sets are the same, regardless of order.\nSo notice that:\n\n\nsetequal(1:5, 1:6) \n\n[1] FALSE\n\n\n\nbut:\n\n\nsetequal(1:5, 5:1) \n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#setequal-1",
+    "href": "slides/16-joining-tables.html#setequal-1",
+    "title": "Joining Tables",
+    "section": "setequal",
+    "text": "setequal\n\nThe dplyr version checks whether data frames are equal, regardless of order of rows or columns:\n\n\ndplyr::setequal(tab_1, tab_2) \n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-with-data.table",
+    "href": "slides/16-joining-tables.html#joining-with-data.table",
+    "title": "Joining Tables",
+    "section": "Joining with data.table",
+    "text": "Joining with data.table\n\nThe data.table package includes merge, a very efficient function for joining tables.\nIn tidyverse we joined two tables with left_join:\n\n\ntab &lt;- left_join(murders, results_us_election_2016, by = \"state\")"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-with-data.table-1",
+    "href": "slides/16-joining-tables.html#joining-with-data.table-1",
+    "title": "Joining Tables",
+    "section": "Joining with data.table",
+    "text": "Joining with data.table\n\nIn data.table the merge functions works similarly:\n\n\nlibrary(data.table) \ntab &lt;- merge(murders, results_us_election_2016, by = \"state\", all.x = TRUE)"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#joining-with-data.table-2",
+    "href": "slides/16-joining-tables.html#joining-with-data.table-2",
+    "title": "Joining Tables",
+    "section": "Joining with data.table",
+    "text": "Joining with data.table\n\nInstead of defining different functions for the different type of joins, merge uses the the logical arguments all (full join), all.x (left join), and all.y (right join)."
+  },
+  {
+    "objectID": "slides/02-rstudio.html#local-control",
+    "href": "slides/02-rstudio.html#local-control",
+    "title": "RStudio IDE and Quarto",
+    "section": "Local control",
+    "text": "Local control\n\nBy default, the code and result will show up.\ncontrol the behavior with #|\nFor example, to avoid showing code in the final document, use echo: FALSE.\n\n```{r}\n#| echo: false\nx &lt;- 1\ny &lt;- 2\nx + y\n```",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#other-local-controls",
+    "href": "slides/02-rstudio.html#other-local-controls",
+    "title": "RStudio IDE and Quarto",
+    "section": "Other local controls",
+    "text": "Other local controls\n\nThere are many options\nto avoid executing the code use eval: FALSE.\nTo avoid showing warnings warning: FALSE, to avoid showing messages message: FALSE.\n\n\n\n\n\n\n\nNote\n\n\nto apply an option globally, set them in the header.\nexecute:\n  echo: false",
+    "crumbs": [
+      "Lecture 2-RStudio & Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/02-rstudio.html#labeling-a-code-chun-is-a-good-practice",
+    "href": "slides/02-rstudio.html#labeling-a-code-chun-is-a-good-practice",
+    "title": "RStudio IDE and Quarto",
+    "section": "Labeling a code chun is a good practice",
+    "text": "Labeling a code chun is a good practice\n\nWe recommend getting into the habit of labeling code chunks:\n\n```{r}\n#| label: one-plus-two\nx &lt;- 1\ny &lt;- 2\nx + y\n```\n\nHelps with debugging\nHelps reading the code",
     "crumbs": [
       "Lecture 2-RStudio & Quarto"
     ]

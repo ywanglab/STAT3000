@@ -1,20 +1,20 @@
 project:
-  type: book
+  type: website
   output-dir: docs
 
-book:
+website:
   title: "STAT 3000"
-  subtitle: Statistics with R Programming
-  reader-mode: true
+  # subtitle: Statistics with R Programming
+  # reader-mode: true
   
   #cover-image: cover.png
   favicon: images/logo.png
   site-url: https://ywanglab.github.io/STAT3000/
-  #repo-url: https://github.com/ywanglab/STAT3000
+  repo-url: https://github.com/ywanglab/STAT3000
   repo-branch: main
-  repo-actions: [source, issue]
+  repo-actions: [source]
   sidebar:
-    collapse-level: 1
+    # collapse-level: 1
     background: success
     logo: "images/logo.png"
     pinned: true
@@ -25,10 +25,22 @@ book:
         text: GitHub
     style: docked
   
-  chapters:
-    - index.qmd
+    contents:
+      - href: index.qmd
+        text: Home
+      # - href: syllabus.qmd
+      #   text: Syllabus
+      - href: slides/00-intro.qmd
+        text: Lecture 0-Intro
+      - href: slides/01-unix.qmd
+        text: Lecture 1-Unix
+      - href: slides/02-rstudio.qmd
+        text: Lecture 2-RStudio & Quarto
+      # - href: slides/03-quarto.qmd
+      #   text: Lecture 3-Quarto
+      - href: slides/04-git.qmd
+        text: Lecture 3-Git & GitHub
 
-    #- intro.qmd
     
     
   
@@ -40,41 +52,41 @@ format:
     css: styles.css
     toc: true
     
-  pdf: 
-    #documentclass: krantz
-    #classoption: [krantz2,10pt,twoside,onecolumn,final,openright]
-    include-in-header: preamble.tex
-    header-includes: |
-     \usepackage{amssymb}
-     \usepackage{amsmath}
-     \usepackage{graphicx}
-     \usepackage{subfigure}
-     \usepackage{makeidx}
-     \usepackage{multicol}
-    keep-tex: true
-    
+#   pdf: 
+#     #documentclass: krantz
+#     #classoption: [krantz2,10pt,twoside,onecolumn,final,openright]
+#     include-in-header: preamble.tex
+#     header-includes: |
+#      \usepackage{amssymb}
+#      \usepackage{amsmath}
+#      \usepackage{graphicx}
+#      \usepackage{subfigure}
+#      \usepackage{makeidx}
+#      \usepackage{multicol}
+#     keep-tex: true
+#     
+# 
+# knitr:
+#   opts_chunk:
+#     comment: "#>"
+#     collapse: TRUE
+#     cache: TRUE
+#     width: 72
+#     tidy.opts: list(width.cutoff=72, tidy=TRUE)
+#     out.width: 70%
+#     fig.align: 'center'
+#     fig.width: 6
+#     fig.height: 3.708  # width * 1 / phi
+#     fig.show: hold
+#     R.options:
+#       digits: 3
+#       width: 72
+#       formatR.indent: 2
+#       dplyr.summarise.inform: FALSE
+#       dplyr.print_min: 5 
+#       dplyr.print_max: 5
+#       ggrepel.max.overlaps: 100
+#   
 
-knitr:
-  opts_chunk:
-    comment: "#>"
-    collapse: TRUE
-    cache: TRUE
-    width: 72
-    tidy.opts: list(width.cutoff=72, tidy=TRUE)
-    out.width: 70%
-    fig.align: 'center'
-    fig.width: 6
-    fig.height: 3.708  # width * 1 / phi
-    fig.show: hold
-    R.options:
-      digits: 3
-      width: 72
-      formatR.indent: 2
-      dplyr.summarise.inform: FALSE
-      dplyr.print_min: 5 
-      dplyr.print_max: 5
-      ggrepel.max.overlaps: 100
-  
-
-editor: visual
+editor: source
 

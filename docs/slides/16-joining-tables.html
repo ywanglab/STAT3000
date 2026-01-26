@@ -11,8 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <meta name="keywords" content="Productivity Tools">
-  <title>STAT 3000 - RStudio IDE and Quarto</title>
+  <meta name="keywords" content="Wrangling">
+  <title>STAT 3000 - Joining Tables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,292 +393,553 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RStudio IDE and Quarto</h1>
+  <h1 class="title">Joining Tables</h1>
+  <p class="subtitle"><a href="http://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/joining-tables.html" class="uri">http://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/joining-tables.html</a></p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="integrated-development-environment-ide" class="slide level2">
-<h2>Integrated Development Environment (IDE)</h2>
-<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html</a> </span></p>
+<section id="joining-tables" class="slide level2">
+<h2>Joining tables</h2>
 <ul>
-<li>Posit provides a free IDE for R with RStudio</li>
-<li><a href="https://github.com/posit-dev/positron/releases">Positron</a> (newer and adapted to LLMs)</li>
+<li><p>The information we need for a given analysis may not be just in one table.</p></li>
+<li><p>Here we use a simple examples to illustrate the general challenge of combining tables.</p></li>
 </ul>
 </section>
-<section id="the-panes" class="slide level2">
-<h2>The panes</h2>
-
-<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/R/img/rstudio.png" class="r-stretch"></section>
-<section id="the-basics" class="slide level2">
-<h2>The Basics</h2>
+<section id="joining-tables-1" class="slide level2">
+<h2>Joining tables</h2>
 <ul>
-<li>Open a new R script file. (<a href="../codes/example.R">example.R</a>)</li>
-<li>Learn tab complete.</li>
-<li>Run commands while editing scripts.</li>
-<li>Run the entire script.</li>
-<li>Make a plot.</li>
-<li>Change options to never save workspace.</li>
-<li>Change IDE appearance.</li>
+<li><p>Suppose we want to explore the relationship between population size for US states and electoral votes.</p></li>
+<li><p>We have the population size in this table:</p></li>
 </ul>
-</section>
-<section id="projects" class="slide level2">
-<h2>Projects</h2>
-<ul>
-<li>Start a new project in a new directory.</li>
-<li>Start a new project in an existing directory.</li>
-<li>Change projects.</li>
-<li>Use the <code>File</code> menu to create a new Quarto document</li>
-</ul>
-</section>
-<section id="type-of-editor" class="slide level2 smaller">
-<h2>Type of editor</h2>
-<ul>
-<li><p>we will be creating and editing markdown documents - mostly using the Quarto paradigm</p></li>
-<li><p>for Quarto you can use either a source view or a visual view:</p>
-<ul>
-<li>Source - See the actual code (WYSIWYG)</li>
-<li>Visual - Partial preview of final document.</li>
-</ul></li>
-</ul>
-<p>Note: You can state your preference in the header:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="the-header" class="slide level2">
-<h2>The header</h2>
-<ul>
-<li><p>Start a new empty document.</p></li>
-<li><p>At the top you see:</p></li>
-</ul>
-<p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<ul>
-<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
-<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
-</ul>
-</section>
-<section id="quick-markdown-text-formating" class="slide level2">
-<h2>Quick Markdown Text formating</h2>
-<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
-<p><code>**bold**</code> = <strong>bold</strong></p>
-<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
-<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
-<p><code>`code`</code> = <code>code</code></p>
-</section>
-<section id="code-chunk" class="slide level2">
-<h2>Code chunk</h2>
-<p>This:</p>
-<pre><code>```
-line 1
-line 2
-```</code></pre>
-<p>shows a code chunk:</p>
-<pre><code>line 1
-line 2</code></pre>
-</section>
-<section class="slide level2">
-
-<h3 id="headings">Headings</h3>
-<p>You can start sections and subsections like this:</p>
-<p><code># Header 1</code></p>
-<p><code>## Header 2</code></p>
-<p><code>### Header 3</code></p>
-</section>
-<section id="links" class="slide level2">
-<h2>Links</h2>
-<ul>
-<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
-<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
-</ul>
-<p>Looks like this:</p>
-<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
-<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
-</section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
-<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
-<p>Shows the plot and caption:</p>
-
-<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">Introductory Statistics with R</p><ul>
-<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
-</ul>
-</section>
-<section id="unordered-lists" class="slide level2">
-<h2>Unordered Lists</h2>
-<p>Bullets:</p>
-<pre><code>-   bullet 1
-    -   sub-bullet 1
-    -   sub-bullet 2
--   bullet 2</code></pre>
-<p>Looks like this:</p>
-<ul>
-<li>bullet 1
-<ul>
-<li>sub-bullet 1</li>
-<li>sub-bullet 2</li>
-</ul></li>
-<li>bullet 2</li>
-</ul>
-</section>
-<section id="ordered-lists" class="slide level2">
-<h2>Ordered Lists</h2>
-<p>Ordered list:</p>
-<pre><code>1.  Item 1
-2.  Item 2</code></pre>
-<p>Looks like this:</p>
-<ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
-</ol>
-</section>
-<section id="equations" class="slide level2">
-<h2>Equations</h2>
-
-<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Technical report often uses LaTeX for typesetting.</p>
-<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="equations-using-latex." class="slide level2">
-<h2>Equations using LaTeX.</h2>
-<p>Examples:</p>
-<ul>
-<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
-<li><p>Display math:</p></li>
-</ul>
-<pre><code>$$
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-$$</code></pre>
-<p>looks like this:</p>
-<p><span class="math display">\[
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-\]</span></p>
-</section>
-<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
-<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
-<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="r-code-chuns" class="slide level2">
-<h2>R Code Chuns</h2>
-<p>We can write something like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It looks like this:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dslabs) </span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(murders) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
-</div>
-</div>
-<p>Note that it was evaluated and the result is shown.</p>
-</section>
-<section id="local-control" class="slide level2">
-<h2>Local control</h2>
-<ul>
-<li><p>By default, the code and result will show up.</p></li>
-<li><p>control the behavior with <code>#|</code></p></li>
-<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="other-local-controls" class="slide level2">
-<h2>Other local controls</h2>
-<ul>
-<li><p>There are many options</p></li>
-<li><p>to avoid executing the code use <code>eval: FALSE</code>.</p></li>
-<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>to apply an option globally, set them in the header.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre><code>       state abb region population total
+1    Alabama  AL  South    4779736   135
+2     Alaska  AK   West     710231    19
+3    Arizona  AZ   West    6392017   232
+4   Arkansas  AR  South    2915918    93
+5 California  CA   West   37253956  1257
+6   Colorado  CO   West    5029196    65</code></pre>
 </div>
 </div>
 </section>
-<section id="labeling-a-code-chun-is-a-good-practice" class="slide level2">
-<h2>Labeling a code chun is a good practice</h2>
+<section id="joining-tables-2" class="slide level2">
+<h2>Joining tables</h2>
 <ul>
-<li>We recommend getting into the habit of labeling code chunks:</li>
+<li>and electoral votes in this one:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">head</span>(results_us_election_2016) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         state electoral_votes  clinton    trump  johnson     stein  mcmullin
+1   California              55 61.72640 31.61711 3.374092 1.9649200 0.2792070
+2        Texas              38 43.23526 52.23469 3.160719 0.7978169 0.4723485
+3      Florida              29 47.82332 49.02194 2.197900 0.6836384 0.0000000
+4     New York              29 59.00604 36.51559 2.287108 1.3978457 0.1343400
+5     Illinois              20 55.82537 38.76175 3.785765 1.3872131 0.2105149
+6 Pennsylvania              20 47.46495 48.18334 2.379621 0.8100102 0.1049716
+      others
+1 1.03827531
+2 0.09917244
+3 0.27320481
+4 0.65907285
+5 0.02938720
+6 1.05711187</code></pre>
+</div>
+</div>
+</section>
+<section id="joining-tables-3" class="slide level2">
+<h2>Joining tables</h2>
 <ul>
-<li>Helps with debugging</li>
-<li>Helps reading the code</li>
+<li>Just concatenating these two tables together will not work since the order of the states is not the same.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">identical</span>(results_us_election_2016<span class="sc">$</span>state, murders<span class="sc">$</span>state) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="joins" class="slide level2">
+<h2>Joins</h2>
+<ul>
+<li><p>The <em>join</em> functions are designed to handle this challenge.</p></li>
+<li><p>The <em>join</em> functions in the <strong>dplyr</strong> package make sure that the tables are combined so that matching rows are together.</p></li>
+<li><p>The general idea is that one needs to identify one or more columns that will serve to match the two tables.</p></li>
+<li><p>A new table with the combined information is returned.</p></li>
 </ul>
 </section>
-<section id="more-on-markdown" class="slide level2">
-<h2>More on markdown</h2>
+<section id="joins-1" class="slide level2">
+<h2>Joins</h2>
 <ul>
-<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
-<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
-<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
-<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
-<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
+<li>Notice what happens if we join the two tables above by state using <code>left_join</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">left_join</span>(murders, results_us_election_2016, <span class="at">by =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>others) <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">ev =</span> electoral_votes) </span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">head</span>(tab) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state abb region population total ev  clinton    trump  johnson
+1    Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169
+2     Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128
+3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188
+4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769
+5 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092
+6   Colorado  CO   West    5029196    65  9 48.15651 43.25098 5.183748
+      stein  mcmullin
+1 0.4422682 0.0000000
+2 1.8000176 0.0000000
+3 1.3185997 0.6699155
+4 0.8378174 1.1653206
+5 1.9649200 0.2792070
+6 1.3825031 1.0400874</code></pre>
+</div>
+</div>
+</section>
+<section id="joins-2" class="slide level2">
+<h2>Joins</h2>
+<ul>
+<li>The data has been successfully joined and we can now, for example, make a plot to explore the relationship:</li>
+</ul>
+
+<img data-src="16-joining-tables_files/figure-revealjs/ev-vs-population-1.png" width="960" class="r-stretch"></section>
+<section id="joins-3" class="slide level2">
+<h2>Joins</h2>
+<ul>
+<li><p>We see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.</p></li>
+<li><p>In practice, it is not always the case that each row in one table has a matching row in the other.</p></li>
+<li><p>For this reason, we have several versions of join.</p></li>
+<li><p>To illustrate this challenge, we will take subsets of the tables above.</p></li>
 </ul>
 </section>
-<section id="quarto-render" class="slide level2">
-<h2>Quarto render</h2>
+<section id="joins-4" class="slide level2">
+<h2>Joins</h2>
+<p><img data-src="https://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/img/joins.png" class="quarto-figure-center" style="width:35.0%">.</p>
+<p>Note: These names are based on SQL.</p>
+</section>
+<section id="joins-5" class="slide level2">
+<h2>Joins</h2>
 <ul>
-<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
-<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
-<li><p><code>quarto render</code> renders all qmd files.</p></li>
-<li><p>You can produce html, pdf, or word documents.</p></li>
-<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
+<li>We create the tables <code>tab1</code> and <code>tab2</code> so that they have some states in common but not all:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tab_1 <span class="ot">&lt;-</span> <span class="fu">slice</span>(murders, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(state, population) </span>
+<span id="cb9-2"><a href="#cb9-2"></a>tab_2 <span class="ot">&lt;-</span> results_us_election_2016 <span class="sc">|&gt;</span>  </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">filter</span>(state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alabama"</span>, <span class="st">"Alaska"</span>, <span class="st">"Arizona"</span>,  </span>
+<span id="cb9-4"><a href="#cb9-4"></a>                    <span class="st">"California"</span>, <span class="st">"Connecticut"</span>, <span class="st">"Delaware"</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">select</span>(state, electoral_votes) <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">ev =</span> electoral_votes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>We will use these two tables as examples in the next sections.</li>
+</ul>
+</section>
+<section id="left-join" class="slide level2">
+<h2>Left join</h2>
+<ul>
+<li><p>Suppose we want a table like <code>tab_1</code>, but adding electoral votes to whatever states we have available.</p></li>
+<li><p>For this, we use <code>left_join</code> with <code>tab_1</code> as the first argument.</p></li>
+<li><p>We specify which column to use to match with the <code>by</code> argument.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">left_join</span>(tab_1, tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state population ev
+1    Alabama    4779736  9
+2     Alaska     710231  3
+3    Arizona    6392017 11
+4   Arkansas    2915918 NA
+5 California   37253956 55
+6   Colorado    5029196 NA</code></pre>
+</div>
+</div>
+<ul>
+<li>Note that <code>NA</code>s are added to the two states not appearing in <code>tab_2</code>.</li>
+</ul>
+</section>
+<section id="left-join-1" class="slide level2">
+<h2>Left join</h2>
+<ul>
+<li>Also, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>tab_1 <span class="sc">|&gt;</span> <span class="fu">left_join</span>(tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="right-join" class="slide level2">
+<h2>Right join</h2>
+<ul>
+<li>If instead of a table with the same rows as first table, we want one with the same rows as second table, we can use <code>right_join</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>tab_1 <span class="sc">|&gt;</span> <span class="fu">right_join</span>(tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        state population ev
+1     Alabama    4779736  9
+2      Alaska     710231  3
+3     Arizona    6392017 11
+4  California   37253956 55
+5 Connecticut         NA  7
+6    Delaware         NA  3</code></pre>
+</div>
+</div>
+<ul>
+<li>Now the NAs are in the column coming from <code>tab_1</code>.</li>
+</ul>
+</section>
+<section id="inner-join" class="slide level2">
+<h2>Inner join</h2>
+<ul>
+<li><p>If we want to keep only the rows that have information in both tables, we use <code>inner_join</code>.</p></li>
+<li><p>You can think of this as an intersection:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">inner_join</span>(tab_1, tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state population ev
+1    Alabama    4779736  9
+2     Alaska     710231  3
+3    Arizona    6392017 11
+4 California   37253956 55</code></pre>
+</div>
+</div>
+</section>
+<section id="full-join" class="slide level2">
+<h2>Full join</h2>
+<ul>
+<li><p>If we want to keep all the rows and fill the missing parts with NAs, we can use <code>full_join</code>.</p></li>
+<li><p>You can think of this as a union:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">full_join</span>(tab_1, tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        state population ev
+1     Alabama    4779736  9
+2      Alaska     710231  3
+3     Arizona    6392017 11
+4    Arkansas    2915918 NA
+5  California   37253956 55
+6    Colorado    5029196 NA
+7 Connecticut         NA  7
+8    Delaware         NA  3</code></pre>
+</div>
+</div>
+</section>
+<section id="semi-join" class="slide level2">
+<h2>Semi join</h2>
+<ul>
+<li><p>The <code>semi_join</code> function lets us keep the part of first table for which we have information in the second.</p></li>
+<li><p>It does not add the columns of the second:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">semi_join</span>(tab_1, tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state population
+1    Alabama    4779736
+2     Alaska     710231
+3    Arizona    6392017
+4 California   37253956</code></pre>
+</div>
+</div>
+</section>
+<section id="anti-join" class="slide level2">
+<h2>Anti join</h2>
+<ul>
+<li><p>The function <code>anti_join</code> is the opposite of <code>semi_join</code>.</p></li>
+<li><p>It keeps the elements of the first table for which there is no information in the second:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">anti_join</span>(tab_1, tab_2, <span class="at">by =</span> <span class="st">"state"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     state population
+1 Arkansas    2915918
+2 Colorado    5029196</code></pre>
+</div>
+</div>
+</section>
+<section id="binding" class="slide level2">
+<h2>Binding</h2>
+<ul>
+<li><p>Although we have yet to use it in this book, another common way in which datasets are combined is by <em>binding</em> them.</p></li>
+<li><p>Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets.</p></li>
+<li><p>If the datasets don’t match by the appropriate dimensions, one obtains an error.</p></li>
+</ul>
+</section>
+<section id="binding-columns" class="slide level2">
+<h2>Binding columns</h2>
+<ul>
+<li>The <strong>dplyr</strong> function <em>bind_cols</em> binds two objects by making them columns in a tibble.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">bind_cols</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+      a     b
+  &lt;int&gt; &lt;int&gt;
+1     1     4
+2     2     5
+3     3     6</code></pre>
+</div>
+</div>
+<ul>
+<li><p>This function requires that we assign names to the columns. Here we chose <code>a</code> and <code>b</code>.</p></li>
+<li><p>Note that there is an R-base function <code>cbind</code> with the exact same functionality.</p></li>
+</ul>
+</section>
+<section id="binding-columns-1" class="slide level2">
+<h2>Binding columns</h2>
+<ul>
+<li><p>An important difference is that <code>cbind</code> can create different types of objects, while <code>bind_cols</code> always produces a data frame.</p></li>
+<li><p><code>bind_cols</code> can also bind two different data frames.</p></li>
+</ul>
+</section>
+<section id="binding-columns-2" class="slide level2">
+<h2>Binding columns</h2>
+<ul>
+<li>For example, here we break up the <code>tab</code> data frame and then bind them back together:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>tab_1 <span class="ot">&lt;-</span> tab[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] </span>
+<span id="cb25-2"><a href="#cb25-2"></a>tab_2 <span class="ot">&lt;-</span> tab[, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>] </span>
+<span id="cb25-3"><a href="#cb25-3"></a>tab_3 <span class="ot">&lt;-</span> tab[, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>] </span>
+<span id="cb25-4"><a href="#cb25-4"></a>new_tab <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(tab_1, tab_2, tab_3) </span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="fu">head</span>(new_tab) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state abb region population total ev  clinton    trump
+1    Alabama  AL  South    4779736   135  9 34.35795 62.08309
+2     Alaska  AK   West     710231    19  3 36.55087 51.28151
+3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314
+4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191
+5 California  CA   West   37253956  1257 55 61.72640 31.61711
+6   Colorado  CO   West    5029196    65  9 48.15651 43.25098</code></pre>
+</div>
+</div>
+</section>
+<section id="binding-by-rows" class="slide level2">
+<h2>Binding by rows</h2>
+<ul>
+<li>The <code>bind_rows</code> function is similar to <code>bind_cols</code>, but binds rows instead of columns:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>tab_1 <span class="ot">&lt;-</span> tab[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,] </span>
+<span id="cb27-2"><a href="#cb27-2"></a>tab_2 <span class="ot">&lt;-</span> tab[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>,] </span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">bind_rows</span>(tab_1, tab_2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     state abb region population total ev  clinton    trump  johnson     stein
+1  Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682
+2   Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176
+3  Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188 1.3185997
+4 Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769 0.8378174
+   mcmullin
+1 0.0000000
+2 0.0000000
+3 0.6699155
+4 1.1653206</code></pre>
+</div>
+</div>
+<ul>
+<li>This is based on an R-base function <code>rbind</code>.</li>
+</ul>
+</section>
+<section id="set-operators" class="slide level2">
+<h2>Set operators</h2>
+<ul>
+<li><p>Another set of commands useful for combining datasets are the set operators.</p></li>
+<li><p>When applied to vectors, these behave as their names suggest.</p></li>
+<li><p>Examples are <code>intersect</code>, <code>union</code>, <code>setdiff</code>, and <code>setequal</code>.</p></li>
+<li><p>However, if the <strong>tidyverse</strong>, or more specifically <strong>dplyr</strong>, is loaded, these functions can be used on data frames as opposed to just on vectors.</p></li>
+</ul>
+</section>
+<section id="intersect" class="slide level2">
+<h2>Intersect</h2>
+<ul>
+<li>You can take intersections of vectors of any type, such as numeric:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">intersect</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">15</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  6  7  8  9 10</code></pre>
+</div>
+</div>
+<ul>
+<li>or characters:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">intersect</span>(<span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>), <span class="fu">c</span>(<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "b" "c"</code></pre>
+</div>
+</div>
+<ul>
+<li><p><strong>dplyr</strong> includes an <code>intersect</code> function that can be applied to tables with the same column names.</p></li>
+<li><p>This function returns the rows in common between two tables.</p></li>
+</ul>
+</section>
+<section id="intersect-1" class="slide level2">
+<h2>Intersect</h2>
+<ul>
+<li>To make sure we use the <strong>dplyr</strong> version of <code>intersect</code> rather than the base R version, we can use <code>dplyr::intersect</code> like this:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>tab_1 <span class="ot">&lt;-</span> tab[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,] </span>
+<span id="cb33-2"><a href="#cb33-2"></a>tab_2 <span class="ot">&lt;-</span> tab[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>,] </span>
+<span id="cb33-3"><a href="#cb33-3"></a>dplyr<span class="sc">::</span><span class="fu">intersect</span>(tab_1, tab_2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state abb region population total ev  clinton    trump  johnson
+1    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188
+2   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769
+3 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092
+      stein  mcmullin
+1 1.3185997 0.6699155
+2 0.8378174 1.1653206
+3 1.9649200 0.2792070</code></pre>
+</div>
+</div>
+</section>
+<section id="union" class="slide level2">
+<h2>Union</h2>
+<ul>
+<li><p>Similarly <em>union</em> takes the union of vectors.</p></li>
+<li><p>For example:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">union</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">15</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">union</span>(<span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>), <span class="fu">c</span>(<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "b" "c" "d"</code></pre>
+</div>
+</div>
+</section>
+<section id="union-1" class="slide level2">
+<h2>Union</h2>
+<ul>
+<li><strong>dplyr</strong> includes a version of <code>union</code> that combines all the rows of two tables with the same column names.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>tab_1 <span class="ot">&lt;-</span> tab[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,] </span>
+<span id="cb39-2"><a href="#cb39-2"></a>tab_2 <span class="ot">&lt;-</span> tab[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>,] </span>
+<span id="cb39-3"><a href="#cb39-3"></a>dplyr<span class="sc">::</span><span class="fu">union</span>(tab_1, tab_2)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        state abb    region population total ev  clinton    trump  johnson
+1     Alabama  AL     South    4779736   135  9 34.35795 62.08309 2.094169
+2      Alaska  AK      West     710231    19  3 36.55087 51.28151 5.877128
+3     Arizona  AZ      West    6392017   232 11 44.58042 48.08314 4.082188
+4    Arkansas  AR     South    2915918    93  6 33.65190 60.57191 2.648769
+5  California  CA      West   37253956  1257 55 61.72640 31.61711 3.374092
+6    Colorado  CO      West    5029196    65  9 48.15651 43.25098 5.183748
+7 Connecticut  CT Northeast    3574097    97  7 54.56630 40.92691 2.959171
+      stein  mcmullin
+1 0.4422682 0.0000000
+2 1.8000176 0.0000000
+3 1.3185997 0.6699155
+4 0.8378174 1.1653206
+5 1.9649200 0.2792070
+6 1.3825031 1.0400874
+7 1.3885782 0.1281521</code></pre>
+</div>
+</div>
+</section>
+<section id="setdiff" class="slide level2">
+<h2><code>setdiff</code></h2>
+<ul>
+<li><p>The set difference between a first and second argument can be obtained with <code>setdiff</code>.</p></li>
+<li><p>Unlike <code>intersect</code> and <code>union</code>, this function is not symmetric:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">15</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">setdiff</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">15</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 12 13 14 15</code></pre>
+</div>
+</div>
+</section>
+<section id="setdiff-1" class="slide level2">
+<h2><code>setdiff</code></h2>
+<ul>
+<li>As with the functions shown above, <strong>dplyr</strong> has a version for data frames:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>tab_1 <span class="ot">&lt;-</span> tab[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,] </span>
+<span id="cb45-2"><a href="#cb45-2"></a>tab_2 <span class="ot">&lt;-</span> tab[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>,] </span>
+<span id="cb45-3"><a href="#cb45-3"></a>dplyr<span class="sc">::</span><span class="fu">setdiff</span>(tab_1, tab_2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    state abb region population total ev  clinton    trump  johnson     stein
+1 Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682
+2  Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176
+  mcmullin
+1        0
+2        0</code></pre>
+</div>
+</div>
+</section>
+<section id="setequal" class="slide level2">
+<h2><code>setequal</code></h2>
+<ul>
+<li><p>Finally, the function <code>setequal</code> tells us if two sets are the same, regardless of order.</p></li>
+<li><p>So notice that:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">setequal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<ul>
+<li>but:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">setequal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="setequal-1" class="slide level2">
+<h2><code>setequal</code></h2>
+<ul>
+<li>The <strong>dplyr</strong> version checks whether data frames are equal, regardless of order of rows <em>or</em> columns:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>dplyr<span class="sc">::</span><span class="fu">setequal</span>(tab_1, tab_2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="joining-with-data.table" class="slide level2">
+<h2>Joining with data.table</h2>
+<ul>
+<li><p>The <strong>data.table</strong> package includes <code>merge</code>, a very efficient function for joining tables.</p></li>
+<li><p>In <strong>tidyverse</strong> we joined two tables with <code>left_join</code>:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">left_join</span>(murders, results_us_election_2016, <span class="at">by =</span> <span class="st">"state"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="joining-with-data.table-1" class="slide level2">
+<h2>Joining with data.table</h2>
+<ul>
+<li>In <strong>data.table</strong> the <code>merge</code> functions works similarly:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">library</span>(data.table) </span>
+<span id="cb54-2"><a href="#cb54-2"></a>tab <span class="ot">&lt;-</span> <span class="fu">merge</span>(murders, results_us_election_2016, <span class="at">by =</span> <span class="st">"state"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="joining-with-data.table-2" class="slide level2">
+<h2>Joining with data.table</h2>
+<ul>
+<li>Instead of defining different functions for the different type of joins, <code>merge</code> uses the the logical arguments <code>all</code> (full join), <code>all.x</code> (left join), and <code>all.y</code> (right join).</li>
 </ul>
 
 <div class="footer footer-default">

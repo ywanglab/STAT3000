@@ -11,8 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <meta name="keywords" content="Productivity Tools">
-  <title>STAT 3000 - RStudio IDE and Quarto</title>
+  <meta name="keywords" content="Wrangling">
+  <title>STAT 3000 - Importing files</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,293 +393,432 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RStudio IDE and Quarto</h1>
+  <h1 class="title">Importing files</h1>
+  <p class="subtitle"><a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/R/importing-data.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/R/importing-data.html</a></p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="integrated-development-environment-ide" class="slide level2">
-<h2>Integrated Development Environment (IDE)</h2>
-<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html</a> </span></p>
+<section id="importing-data" class="slide level2">
+<h2>Importing data</h2>
+<p>To import data we need to:</p>
 <ul>
-<li>Posit provides a free IDE for R with RStudio</li>
-<li><a href="https://github.com/posit-dev/positron/releases">Positron</a> (newer and adapted to LLMs)</li>
+<li><p>Identify the file’s location.</p></li>
+<li><p>Know what function or <em>parsers</em> to use.</p></li>
+</ul>
+<p>For the second step it helps to know the file type and <em>encoding</em>.</p>
+</section>
+<section id="file-types" class="slide level2">
+<h2>File types</h2>
+<ul>
+<li>Files can generally be classified into two categories: <strong>text</strong> and <strong>binary</strong>.</li>
 </ul>
 </section>
-<section id="the-panes" class="slide level2">
-<h2>The panes</h2>
-
-<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/R/img/rstudio.png" class="r-stretch"></section>
-<section id="the-basics" class="slide level2">
-<h2>The Basics</h2>
+<section id="text-files" class="slide level2">
+<h2>Text files</h2>
 <ul>
-<li>Open a new R script file. (<a href="../codes/example.R">example.R</a>)</li>
-<li>Learn tab complete.</li>
-<li>Run commands while editing scripts.</li>
-<li>Run the entire script.</li>
-<li>Make a plot.</li>
-<li>Change options to never save workspace.</li>
-<li>Change IDE appearance.</li>
+<li>common data text file format: .csv</li>
+<li>script files: .r, .qmd</li>
 </ul>
-</section>
-<section id="projects" class="slide level2">
-<h2>Projects</h2>
-<ul>
-<li>Start a new project in a new directory.</li>
-<li>Start a new project in an existing directory.</li>
-<li>Change projects.</li>
-<li>Use the <code>File</code> menu to create a new Quarto document</li>
-</ul>
-</section>
-<section id="type-of-editor" class="slide level2 smaller">
-<h2>Type of editor</h2>
-<ul>
-<li><p>we will be creating and editing markdown documents - mostly using the Quarto paradigm</p></li>
-<li><p>for Quarto you can use either a source view or a visual view:</p>
-<ul>
-<li>Source - See the actual code (WYSIWYG)</li>
-<li>Visual - Partial preview of final document.</li>
-</ul></li>
-</ul>
-<p>Note: You can state your preference in the header:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="the-header" class="slide level2">
-<h2>The header</h2>
-<ul>
-<li><p>Start a new empty document.</p></li>
-<li><p>At the top you see:</p></li>
-</ul>
-<p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<ul>
-<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
-<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
-</ul>
-</section>
-<section id="quick-markdown-text-formating" class="slide level2">
-<h2>Quick Markdown Text formating</h2>
-<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
-<p><code>**bold**</code> = <strong>bold</strong></p>
-<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
-<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
-<p><code>`code`</code> = <code>code</code></p>
-</section>
-<section id="code-chunk" class="slide level2">
-<h2>Code chunk</h2>
-<p>This:</p>
-<pre><code>```
-line 1
-line 2
-```</code></pre>
-<p>shows a code chunk:</p>
-<pre><code>line 1
-line 2</code></pre>
-</section>
-<section class="slide level2">
-
-<h3 id="headings">Headings</h3>
-<p>You can start sections and subsections like this:</p>
-<p><code># Header 1</code></p>
-<p><code>## Header 2</code></p>
-<p><code>### Header 3</code></p>
-</section>
-<section id="links" class="slide level2">
-<h2>Links</h2>
-<ul>
-<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
-<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
-</ul>
-<p>Looks like this:</p>
-<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
-<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
-</section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
-<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
-<p>Shows the plot and caption:</p>
-
-<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">Introductory Statistics with R</p><ul>
-<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
-</ul>
-</section>
-<section id="unordered-lists" class="slide level2">
-<h2>Unordered Lists</h2>
-<p>Bullets:</p>
-<pre><code>-   bullet 1
-    -   sub-bullet 1
-    -   sub-bullet 2
--   bullet 2</code></pre>
-<p>Looks like this:</p>
-<ul>
-<li>bullet 1
-<ul>
-<li>sub-bullet 1</li>
-<li>sub-bullet 2</li>
-</ul></li>
-<li>bullet 2</li>
-</ul>
-</section>
-<section id="ordered-lists" class="slide level2">
-<h2>Ordered Lists</h2>
-<p>Ordered list:</p>
-<pre><code>1.  Item 1
-2.  Item 2</code></pre>
-<p>Looks like this:</p>
-<ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
-</ol>
-</section>
-<section id="equations" class="slide level2">
-<h2>Equations</h2>
-
-<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Technical report often uses LaTeX for typesetting.</p>
-<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="equations-using-latex." class="slide level2">
-<h2>Equations using LaTeX.</h2>
-<p>Examples:</p>
-<ul>
-<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
-<li><p>Display math:</p></li>
-</ul>
-<pre><code>$$
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-$$</code></pre>
-<p>looks like this:</p>
-<p><span class="math display">\[
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-\]</span></p>
-</section>
-<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
-<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
-<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="r-code-chuns" class="slide level2">
-<h2>R Code Chuns</h2>
-<p>We can write something like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It looks like this:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"dslabs"</span>) </span>
+<span id="cb1-2"><a href="#cb1-2"></a>file_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dir, <span class="st">"extdata/murders.csv"</span>) </span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">file.copy</span>(file_path, <span class="st">"murders.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># file.copy(from, to), returns TRUE/FALSE (success/failure)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="advantages-of-text-files" class="slide level2">
+<h2>Advantages of text files</h2>
+<ul>
+<li><p>An advantage of text files is that we can easily view its content.</p></li>
+<li><p>Exercise:</p>
+<ul>
+<li>copy <code>murders.csv</code> into your working directory and examine it with <code>less</code>.</li>
+<li>Then try the <em>Open file</em> RStudio tool.</li>
+</ul></li>
+</ul>
+</section>
+<section id="line-breaks-and-delimters" class="slide level2">
+<h2>Line breaks and delimters</h2>
+<ul>
+<li><p>Line breaks are used to separate rows</p></li>
+<li><p>a <em>delimiter</em> to separate columns within a row.</p></li>
+<li><p>The most common delimiters are comma (<code>,</code>), semicolon (<code>;</code>), space (<code></code>), and tab (<code>\t</code>).</p></li>
+<li><p>we need to know what delimiter was used to choose a parser to read a file; The same file can be read by multiple parsers.</p></li>
+<li><p>In some cases, the delimiter can be inferred from file extension: <code>csv</code>, <code>tsv</code></p></li>
+</ul>
+</section>
+<section id="readlines" class="slide level2">
+<h2>readLines</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">readLines</span>(<span class="st">"murders.csv"</span>, <span class="at">n =</span> <span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "state,abb,region,population,total" "Alabama,AL,South,4779736,135"     
+[3] "Alaska,AK,West,710231,19"         </code></pre>
 </div>
 </div>
-<p>Note that it was evaluated and the result is shown.</p>
 </section>
-<section id="local-control" class="slide level2">
-<h2>Local control</h2>
+<section id="binary-files" class="slide level2">
+<h2>Binary files</h2>
 <ul>
-<li><p>By default, the code and result will show up.</p></li>
-<li><p>control the behavior with <code>#|</code></p></li>
-<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
+<li><p>Opening image files such as jpg or png in a text editor or using <code>readLines</code> in R will not show comprehensible content: these are <em>binary</em> files.</p></li>
+<li><p>binary files have many formats specific to their data type, are not human readable</p></li>
+<li><p>R’s <code>readBin</code> function can process any binary file</p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="other-local-controls" class="slide level2">
-<h2>Other local controls</h2>
+<section id="r-base-parsers" class="slide level2">
+<h2>R Base Parsers</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">read.table</span>(<span class="st">"murders.csv"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>) <span class="co">#wrong delimiter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 V1
+1 state,abb,region,population,total
+2      Alabama,AL,South,4779736,135</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">read.csv</span>(<span class="st">"murders.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    state abb region population total
+1 Alabama  AL  South    4779736   135
+2  Alaska  AK   West     710231    19</code></pre>
+</div>
+</div>
+<p>Compare the difference.</p>
+</section>
+<section id="readr-parsers" class="slide level2">
+<h2>readr Parsers</h2>
+<p><strong>readr</strong> provides alternatives that produce tibbles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">read_csv</span>(<span class="st">"murders.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  state   abb   region population total
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Alabama AL    South     4779736   135
+2 Alaska  AK    West       710231    19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">read_delim</span>(<span class="st">"murders.csv"</span>, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>) <span class="co">#incorrect delimiter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  `state,abb,region,population,total`
+  &lt;chr&gt;                              
+1 Alabama,AL,South,4779736,135       
+2 Alaska,AK,West,710231,19           </code></pre>
+</div>
+</div>
+</section>
+<section id="readr-parsers-1" class="slide level2">
+<h2>readr Parsers</h2>
+<table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 64%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Format</th>
+<th>Suffix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>read_table</td>
+<td>white space separated values</td>
+<td>txt</td>
+</tr>
+<tr class="even">
+<td>read_csv</td>
+<td>comma separated values</td>
+<td>csv</td>
+</tr>
+<tr class="odd">
+<td>read_csv2</td>
+<td>semicolon separated values</td>
+<td>csv</td>
+</tr>
+<tr class="even">
+<td>read_tsv</td>
+<td>tab separated values</td>
+<td>tsv</td>
+</tr>
+<tr class="odd">
+<td>read_delim</td>
+<td>must define delimiter</td>
+<td>txt</td>
+</tr>
+<tr class="even">
+<td>read_lines</td>
+<td>similar to <code>readLines</code></td>
+<td>any file</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="readxl-parsers" class="slide level2">
+<h2>readxl Parsers</h2>
+<p>For Excel files can use the <strong>readxl</strong> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dir, <span class="st">"extdata/2010_bigfive_regents.xls"</span>) </span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">read_xls</span>(fn) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  label     `INTEGRATED ALGEBRA` `GLOBAL HISTORY` `LIVING ENVIRONMENT` ENGLISH
+  &lt;chr&gt;                    &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;   &lt;dbl&gt;
+1 test_year                 2010             2010                 2010    2010
+2 Scores                  131024           113804               104201  103886
+# ℹ 1 more variable: `U.S. HISTORY` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="readxl-parsers-1" class="slide level2">
+<h2>readxl Parsers</h2>
+<p>You can read specific sheets and see them using</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">excel_sheets</span>(fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sheet1" "Sheet2" "Sheet3"</code></pre>
+</div>
+</div>
+<p>Note that <code>read_xls</code> has a sheet argument.</p>
+</section>
+<section id="readxl-parsers-2" class="slide level2">
+<h2>readxl Parsers</h2>
+<table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 64%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Format</th>
+<th>Suffix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>read_excel</td>
+<td>auto detect the format</td>
+<td>xls, xlsx</td>
+</tr>
+<tr class="even">
+<td>read_xls</td>
+<td>original format</td>
+<td>xls</td>
+</tr>
+<tr class="odd">
+<td>read_xlsx</td>
+<td>new format</td>
+<td>xlsx</td>
+</tr>
+<tr class="even">
+<td>excel_sheets</td>
+<td>detects sheets</td>
+<td>xls, xlsx</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data.table-fast-parsers" class="slide level2 smaller">
+<h2>data.table fast Parsers</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>x <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"murders.csv"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.table" "data.frame"</code></pre>
+</div>
+</div>
 <ul>
-<li><p>There are many options</p></li>
-<li><p>to avoid executing the code use <code>eval: FALSE</code>.</p></li>
-<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
+<li>An R object can have multiple classes. <code>data.table</code> is compatible with <code>data.frame</code>. The object <code>x</code> has both <code>data.frame</code> and <code>data.table</code> behavior.</li>
+<li><code>data.table</code> core syntax <code>DT[i,j,by]</code>
+<ul>
+<li><code>i</code>: filter rows; <code>j</code>: compute/select columns; <code>by</code>: group</li>
+</ul></li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>x[region <span class="sc">==</span> <span class="st">"South"</span>, .(<span class="at">avg_total =</span> <span class="fu">mean</span>(total)), by <span class="ot">=</span> state] <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)  <span class="co"># `.` alias for list()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      state avg_total
+1:  Alabama       135
+2: Arkansas        93</code></pre>
+</div>
+</div>
+<ul>
+<li><code>data.table</code> can modify columns inplace (no copyig) using <code>:=</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>x[, pop_millions <span class="sc">:</span><span class="er">=</span> population<span class="sc">/</span><span class="fl">1e6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="scan-lower-level-base-r" class="slide level2">
+<h2>scan (lower-level base R)</h2>
+<ul>
+<li><p>The <code>scan</code> function is the most general parser.</p></li>
+<li><p>It will read in any text file and return a vector so you are on your own coverting it to a data frame.</p></li>
+<li><p>Because it returns a vector, you need to tell it in advance what data type to expect:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">scan</span>(<span class="st">"murders.csv"</span>, <span class="at">what =</span> <span class="st">"c"</span>, <span class="at">sep =</span> <span class="st">","</span>, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#c: as char. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "state"      "abb"        "region"     "population" "total"     
+ [6] "Alabama"    "AL"         "South"      "4779736"    "135"       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># read the first 10 items</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="encoding-ascii" class="slide level2">
+<h2>Encoding: ASCII</h2>
+<p><a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/locales.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/wrangling/locales.html</a></p>
+<ul>
+<li><p>Computer translates everything into 0s and 1s.</p></li>
+<li><p>ASCII is an <em>encoding</em> system that assigns specific numbers to characters.</p></li>
+<li><p>Using 7 bits, ASCII can represent <span class="math inline">\(2^7 = 128\)</span> unique symbols, sufficient for all English keyboard characters.</p></li>
+<li><p>However, many global languages contain characters outside ASCII’s range.</p></li>
+</ul>
+</section>
+<section id="unicode-transoformation-format-utf" class="slide level2">
+<h2>Unicode Transoformation Format (UTF)</h2>
+<ul>
+<li><p>For instance, the é in “México” isn’t in ASCII’s catalog.</p></li>
+<li><p>To address this, broader encodings emerged.</p></li>
+<li><p>Unicode (all writing systems + symbols) offers variations using 8, 16, or 32 bits, known as UTF-8, UTF-16, and UTF-32.</p></li>
+<li><p>RStudio typically uses UTF-8 as its default.</p></li>
+<li><p>ASCII is a subset of UTF-8, if a file is ASCII-encoded, presuming it’s UTF-8 encoded won’t cause issues.</p></li>
+</ul>
+</section>
+<section id="other-encodings" class="slide level2">
+<h2>Other Encodings</h2>
+<ul>
+<li>However, there other encodings, such as ISO-8859-1 (also known as Latin-1) developed for the western European languages (Spanish accents like á, é, ñ), Big5 for Traditional Chinese, and ISO-8859-6 for Arabic.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>fn <span class="ot">&lt;-</span> <span class="st">"calificaciones.csv"</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">file.copy</span>(<span class="fu">file.path</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="at">package =</span> <span class="st">"dslabs"</span>), fn), fn) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">readLines</span>(fn, <span class="at">n =</span> <span class="dv">1</span>) <span class="co">#return the first line</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "\"nombre\",\"f.n.\",\"estampa\",\"puntuaci\xf3n\""</code></pre>
+</div>
+</div>
+</section>
+<section id="guess_encoding" class="slide level2">
+<h2><code>guess_encoding</code></h2>
+<ul>
+<li><p>The <strong>readr</strong> parsers permit us to specify an encoding.</p></li>
+<li><p>It also includes a function that tries to guess the encoding:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">guess_encoding</span>(<span class="st">"murders.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  encoding confidence
+  &lt;chr&gt;         &lt;dbl&gt;
+1 ASCII             1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">guess_encoding</span>(<span class="st">"calificaciones.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  encoding   confidence
+  &lt;chr&gt;           &lt;dbl&gt;
+1 ISO-8859-1       0.92
+2 ISO-8859-2       0.72
+3 ISO-8859-9       0.53</code></pre>
+</div>
+</div>
+</section>
+<section id="specify-encoding" class="slide level2">
+<h2>Specify encoding</h2>
+<ul>
+<li>Once we know the encoding we can specify it through the <code>locale</code> argument:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"calificaciones.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="co">#suppress col info</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>                <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>)) </span>
+<span id="cb34-3"><a href="#cb34-3"></a>dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 4
+  nombre   f.n.                     estampa             puntuación
+  &lt;chr&gt;    &lt;chr&gt;                    &lt;dttm&gt;                   &lt;dbl&gt;
+1 Beyoncé  04 de septiembre de 1981 2023-09-22 02:11:02        875
+2 Blümchen 20 de abril de 1980      2023-09-22 03:23:05        990
+3 João     10 de junio de 1931      2023-09-21 22:43:28        989
+4 López    24 de julio de 1969      2023-09-22 01:06:59        887
+5 Ñengo    15 de diciembre de 1981  2023-09-21 23:35:37        931
+6 Plácido  24 de enero de 1941      2023-09-21 23:17:21        887
+7 Thalía   26 de agosto de 1971     2023-09-21 23:08:02        830</code></pre>
+</div>
+</div>
+</section>
+<section id="read-csv-directly-from-web" class="slide level2">
+<h2>Read csv directly from web</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://raw.githubusercontent.com/"</span>, </span>
+<span id="cb36-2"><a href="#cb36-2"></a>              <span class="st">"rafalab/dslabs/master/inst/extdata/murders.csv"</span>) </span>
+<span id="cb36-3"><a href="#cb36-3"></a>x <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url) </span>
+<span id="cb36-4"><a href="#cb36-4"></a>x <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    state abb region population total
+1 Alabama  AL  South    4779736   135
+2  Alaska  AK   West     710231    19
+3 Arizona  AZ   West    6392017   232</code></pre>
+</div>
+</div>
+<ul>
+<li><code>paste0()</code>: join strings with no separators</li>
+</ul>
+</section>
+<section id="downloading-files" class="slide level2">
+<h2>Downloading files</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">download.file</span>(url, <span class="st">"murders.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>This will download the file and save it on your system with the name <code>murders.csv</code>.</p></li>
+<li><p>You can use any name here, not necessarily <code>murders.csv</code>.</p></li>
+</ul>
+<div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Note</strong></p>
+<p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>to apply an option globally, set them in the header.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function <code>download.file</code> overwrites existing files without warning.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="labeling-a-code-chun-is-a-good-practice" class="slide level2">
-<h2>Labeling a code chun is a good practice</h2>
+<section id="tempfile-and-tempdir" class="slide level2">
+<h2>tempfile and tempdir</h2>
 <ul>
-<li>We recommend getting into the habit of labeling code chunks:</li>
+<li>create temp file name or dir name</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Helps with debugging</li>
-<li>Helps reading the code</li>
-</ul>
-</section>
-<section id="more-on-markdown" class="slide level2">
-<h2>More on markdown</h2>
-<ul>
-<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
-<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
-<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
-<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
-<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
-</ul>
-</section>
-<section id="quarto-render" class="slide level2">
-<h2>Quarto render</h2>
-<ul>
-<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
-<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
-<li><p><code>quarto render</code> renders all qmd files.</p></li>
-<li><p>You can produce html, pdf, or word documents.</p></li>
-<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>tmp_filename <span class="ot">&lt;-</span> <span class="fu">tempfile</span>() </span>
+<span id="cb39-2"><a href="#cb39-2"></a>tmp_filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:\\Users\\ywang2\\AppData\\Local\\Temp\\RtmpM7vSFr\\file3d741897f51"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">download.file</span>(url, tmp_filename) </span>
+<span id="cb41-2"><a href="#cb41-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(tmp_filename) </span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="fu">file.remove</span>(tmp_filename) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
 
 <div class="footer footer-default">
 
