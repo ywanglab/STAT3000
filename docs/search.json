@@ -844,7 +844,7 @@
     "href": "index.html",
     "title": "STAT 3000",
     "section": "",
-    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE and SD",
     "crumbs": [
       "Home"
     ]
@@ -854,7 +854,7 @@
     "href": "index.html#course-information",
     "title": "STAT 3000",
     "section": "",
-    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE and SD",
     "crumbs": [
       "Home"
     ]
@@ -934,7 +934,7 @@
     "href": "slides/04-git.html#privacy-privacy-privacy",
     "title": "Git and GitHub",
     "section": "Privacy Privacy Privacy",
-    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who you are on Github.\n\n*Type the following two commands in our terminal window:\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
+    "text": "Privacy Privacy Privacy\n\nThe next step is to let Git know who you are on Github.\nType the following two commands in our terminal window:\n\n\n#\ngit config --global user.name \"Your_chosen_nickname\" #(do not use real name for privacy)\ngit config --global user.mail \"12345678+your_github_name@users.noreply.github.com\" \n# get your private email from \n# GitHub-&gt;Settings-&gt;Emails-&gt;\"Keep my email private\"",
     "crumbs": [
       "Lecture 3-Git & GitHub"
     ]
@@ -4639,7 +4639,7 @@
     "href": "slides/16-joining-tables.html#left-join-1",
     "title": "Joining Tables",
     "section": "Left join",
-    "text": "Left join\n\nSuppose we want a table like tab_1, but adding electoral votes to whatever states we have available.\nFor this, we use left_join with tab_1 as the first argument.\nWe specify which column to use to match with the by argument.\n\n\nleft_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4   Arkansas    2915918 NA\n5 California   37253956 55\n6   Colorado    5029196 NA\n\n\n\nNote that NAs are added to the two states not appearing in tab_2."
+    "text": "Left join\n\nAlso, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:\n\n\ntab_1 |&gt; left_join(tab_2, by = \"state\")"
   },
   {
     "objectID": "slides/16-joining-tables.html#right-join",
@@ -4910,21 +4910,21 @@
     "href": "slides/standard_errors.html",
     "title": "Standard Errors vs. Standard Deviation",
     "section": "",
-    "text": "For method=\"lm\" the CI ribbon is based on the standard error of the estimated mean \\(\\hat y(x_0)=\\widehat{E[Y\\mid X=x_0]}\\). The SE formula comes directly from the variance of a linear combination of the OLS estimator.\n\nWrite the linear model in matrix form\n\n\\[ y = X\\beta + \\varepsilon,\\qquad \\mathbb E\\varepsilon=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n.\\] 2) OLS estimator and its variance\nOLS gives \\[ \\hat\\beta=(X^\\top X)^{-1}X^\\top y.\\] Because \\(\\hat\\beta\\) is a linear function of \\(y\\), \\[ \\mathrm{Var}(\\hat\\beta) = (X^\\top X)^{-1}X^\\top \\mathrm{Var}(y) X (X^\\top X)^{-1}.\\] But \\(y=X\\beta+\\varepsilon\\) and \\(\\mathrm{Var}(y)=\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\), so \\[ \\mathrm{Var}(\\hat\\beta)=\\sigma^2 (X^\\top X)^{-1}.\\]\n\nFitted mean at a point is a linear combo of \\(\\hat\\beta\\)\n\nAt \\(x_0\\), let the (row) design vector be \\[ x_0^* = (1 \\;\\;x_0)\\] (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is\n\\[ \\hat y(x_0)=x_0^* \\hat\\beta.\\]\n\nVariance of a linear combination\n\nUse the rule: if \\(a\\) is a constant vector and \\(Z\\) is random, \\[ \\mathrm{Var}(a^\\top Z)=a^\\top \\mathrm{Var}(Z)a.\\] Here \\(a = (x_0^*)^\\top\\) and \\(Z=\\hat\\beta\\). Therefore,\n\\[\\mathrm{Var}(\\hat y(x_0)) = \\mathrm{Var}(x_0^* \\hat\\beta) = x_0^*\\mathrm{Var}(\\hat\\beta)(x_0^*)^\\top = x_0^* \\big(\\sigma ^2 (X^\\top X)^{-1}\\big) (x_0^*)^\\top.\\] So the standard error is \\[ SE{\\hat y(x_0)}=\\sqrt{\\sigma^2 x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\nReplace \\(\\sigma ^2\\) by its sample estimate\n\nSince \\(\\sigma\\^2\\) is unknown, we plug in\n\\[ \\hat\\sigma^2=\\frac{\\sum_{i=1}^n \\hat\\varepsilon_i^2}{n-p},\\] giving the practical SE:\n\\[SE{\\hat y(x_0)}=\\sqrt{\\hat\\sigma^2  x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\n\nsame formula in “simple regression” scalar form\n\nFor \\(y=\\beta_0+\\beta_1 x+\\varepsilon\\),\n\\[SE{\\hat y(x_0)}=\\hat\\sigma\\sqrt{\\frac{1}{n}+\\frac{(x_0-\\bar x)^2}{\\sum_{i=1}^n (x_i-\\bar x)^2}}.\\] This is algebraically equivalent to the matrix expression above."
+    "text": "For method=\"lm\" the CI ribbon is based on the standard error of the estimated mean \\(\\hat y(x_0)=\\widehat{E[Y\\mid X=x_0]}\\). The SE formula comes directly from the variance of a linear combination of the OLS estimator.\n\nWrite the linear model in matrix form\n\n\\[ y = X\\beta + \\varepsilon,\\qquad \\mathbb E\\varepsilon=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n.\\] 2) OLS estimator and its variance\nOLS gives \\[ \\hat\\beta=(X^\\top X)^{-1}X^\\top y.\\] Because \\(\\hat\\beta\\) is a linear function of \\(y\\), \\[ \\mathrm{Var}(\\hat\\beta) = (X^\\top X)^{-1}X^\\top \\mathrm{Var}(y) X (X^\\top X)^{-1}.\\] But \\(y=X\\beta+\\varepsilon\\) and \\(\\mathrm{Var}(y)=\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\), so \\[ \\mathrm{Var}(\\hat\\beta)=\\sigma^2 (X^\\top X)^{-1}.\\]\n\nFitted mean at a point is a linear combo of \\(\\hat\\beta\\)\n\nAt \\(x_0\\), let the (row) design vector be \\[ x_0^* = (1 \\;\\;x_0)\\] (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is\n\\[ \\hat y(x_0)=x_0^* \\hat\\beta.\\]\n\nVariance of a linear combination\n\nUse the rule: if \\(a\\) is a constant vector and \\(Z\\) is random, \\[ \\mathrm{Var}(a^\\top Z)=a^\\top \\mathrm{Var}(Z)a.\\] Here \\(a = (x_0^*)^\\top\\) and \\(Z=\\hat\\beta\\). Therefore,\n\\[\\mathrm{Var}(\\hat y(x_0)) = \\mathrm{Var}(x_0^* \\hat\\beta) = x_0^*\\mathrm{Var}(\\hat\\beta)(x_0^*)^\\top = x_0^* \\big(\\sigma ^2 (X^\\top X)^{-1}\\big) (x_0^*)^\\top.\\] So the standard error is \\[ SE{\\hat y(x_0)}=\\sqrt{\\sigma^2 x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\nReplace \\(\\sigma ^2\\) by its sample estimate\n\nSince \\(\\sigma^2\\) is unknown, we plug in\n\\[ \\hat\\sigma^2=\\frac{\\sum_{i=1}^n \\hat\\varepsilon_i^2}{n-p},\\] giving the practical SE:\n\\[SE{\\hat y(x_0)}=\\sqrt{\\hat\\sigma^2  x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\n\nsame formula in “simple regression” scalar form\n\nFor \\(y=\\beta_0+\\beta_1 x+\\varepsilon\\),\n\\[SE{\\hat y(x_0)}=\\hat\\sigma\\sqrt{\\frac{1}{n}+\\frac{(x_0-\\bar x)^2}{\\sum_{i=1}^n (x_i-\\bar x)^2}}.\\] This is algebraically equivalent to the matrix expression above."
   },
   {
     "objectID": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
     "href": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
     "title": "Standard Errors vs. Standard Deviation",
     "section": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?",
-    "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma\\^2,\\] meaning \\[ \\hat\\sigma\\^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
+    "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma^2,\\] meaning \\[ \\hat\\sigma^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
   },
   {
     "objectID": "slides/16-joining-tables.html#plot-using-the-joined-table",
     "href": "slides/16-joining-tables.html#plot-using-the-joined-table",
     "title": "Joining Tables",
     "section": "Plot using the joined table",
-    "text": "Plot using the joined table\n\n\ngeom_smooth(se=TRUE, level=0.95) # draw 95% CI (default)\nMore on SE"
+    "text": "Plot using the joined table"
   },
   {
     "objectID": "slides/16-joining-tables.html#left-join-2",
@@ -4932,5 +4932,101 @@
     "title": "Joining Tables",
     "section": "Left join",
     "text": "Left join\n\nAlso, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:\n\n\ntab_1 |&gt; left_join(tab_2, by = \"state\")"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#join-methods",
+    "href": "slides/16-joining-tables.html#join-methods",
+    "title": "Joining Tables",
+    "section": "Join methods",
+    "text": "Join methods\n.\nNote: These names are based on SQL."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#example-create-two-tables",
+    "href": "slides/16-joining-tables.html#example-create-two-tables",
+    "title": "Joining Tables",
+    "section": "Example: create two tables",
+    "text": "Example: create two tables\n\ntab_1 &lt;- slice(murders, 1:6) |&gt; select(state, population)  \n# slice() select rows by row numbers: here select the first 6 rows\ntab_1 \n\n       state population\n1    Alabama    4779736\n2     Alaska     710231\n3    Arizona    6392017\n4   Arkansas    2915918\n5 California   37253956\n6   Colorado    5029196\n\ntab_2 &lt;- results_us_election_2016 |&gt;  \n  filter(state %in% c(\"Alabama\", \"Alaska\", \"Arizona\",  \n                    \"California\", \"Connecticut\", \"Delaware\")) |&gt;  \n  select(state, electoral_votes) |&gt; rename(ev = electoral_votes) \ntab_2\n\n        state ev\n1  California 55\n2     Arizona 11\n3     Alabama  9\n4 Connecticut  7\n5      Alaska  3\n6    Delaware  3"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#left-join-example",
+    "href": "slides/16-joining-tables.html#left-join-example",
+    "title": "Joining Tables",
+    "section": "Left join example",
+    "text": "Left join example\n\nSuppose we want a table like tab_1, but adding electoral votes to whatever states we have\nwe use left_join with tab_1 as the first argument.\nspecify which column to use to match with the by argument.\n\n\nleft_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4   Arkansas    2915918 NA\n5 California   37253956 55\n6   Colorado    5029196 NA\n\n\n\nNote that NAs are added to the two states not appearing in tab_2."
+  },
+  {
+    "objectID": "psets/pset-01-unix-quarto.html",
+    "href": "psets/pset-01-unix-quarto.html",
+    "title": "Problem set 1",
+    "section": "",
+    "text": "Make sure you have a GitHub account and create a repo named HW1\nStart an RStudio project. Pick a good name following a naming convention. Start a Quarto document called beginning.qmd.\nCreate a directory called img and save a screen shot of your RStudio session for the project. Include your screenshot in the Quarto document.\nNext, in your Quarto document, define variables \\(a=1, b=-1, c=-2\\) and print out the solutions to \\(f(x) = ax^2+bx+c=0\\). Do not report complex solutions, only real numbers.\nInclude a graph of \\(f(x)\\) versus \\(x\\) for \\(x \\in (-5,5)\\).\n\n\nx &lt;- seq(-5, 5, length = 100)\n# Hint: Use the plot function\n\n\nCreate a directory called docs. Use the command quarto render to create a PDF and save it to the docs directory. Show us the command you typed:\n\n# Your code here\n\nUse Unix to create a directory called data in the project home directory. Include the Unix command you used to create the directory.\n\n# Your code here\n\nUse a terminal-based text editor to create a file coefs.txt in the data directory and save three coefficients, 1 -1 -2 for example. Show us the Unix commands you used to achieve this:\n\n# Your code here\n\nMake a directory called code. Use Unix to copy the file beginning.qmd to a file called quadratic.qmd in the code directory. Show us the Unix commands you used.\n\n# Your code here\n\nEdit the quadratic.qmd file to read in a, b, and c from the file coefs.txt. Make sure to use a relative path when reading the file. As before, print out the solutions to \\(f(x) = ax^2+bx+c=0\\). Do not report complex solutions, only real numbers.\nChange the path of the file you are reading to the full path you get when you type file.path(getwd(), \"data/coefs.txt\"). Confirm that the file still renders. Then move the entire pset-01-rmarkdown project to a directory called RtmpyDknq4. Does the file render? Change the path back to a relative path and see if it renders."
+  },
+  {
+    "objectID": "psets/hw1.html",
+    "href": "psets/hw1.html",
+    "title": "Problem set 1",
+    "section": "",
+    "text": "Create a GitHub repository named HW1.\nCreate an RStudio Project connected to that repo (clone or connect existing).\nName your project folder using a clear convention (e.g., stat3000-hw1).\nAnswer each item inside this Quarto file. Show commands/code where requested."
+  },
+  {
+    "objectID": "psets/hw1.html#instructions",
+    "href": "psets/hw1.html#instructions",
+    "title": "Problem set 1",
+    "section": "",
+    "text": "Create a GitHub repository named HW1.\nCreate an RStudio Project connected to that repo (clone or connect existing).\nName your project folder using a clear convention (e.g., stat3000-hw1).\nAnswer each item inside this Quarto file. Show commands/code where requested."
+  },
+  {
+    "objectID": "psets/hw1.html#tasks",
+    "href": "psets/hw1.html#tasks",
+    "title": "Problem set 1",
+    "section": "2 Tasks",
+    "text": "2 Tasks\n\nGitHub + repo setup\nCreate a GitHub repo named HW1. In your Quarto document, include:\n\nthe repo URL\na screenshot showing the repo page on GitHub\n\nRStudio project + Quarto document\nCreate an RStudio Project for HW1. Create a Quarto document named hw1.qmd (this file).\nInclude a screenshot of your RStudio session showing:\n\nFiles pane (project structure)\nGit pane (if available)\n\nProject folders\nIn your project root, create the folders: img/, data/, code/, docs/.\nProvide either:\n\nthe Unix commands you used, or\nthe R commands you used\n\n\n\n# Your commands here\n\n\nCreate and include a plot image\nCreate a simple plot in R (any plot you like), save it as img/plot.png, and include it below.\n\n\n# Example idea (you can change it):\n# png(\"img/plot.png\", width = 800, height = 500)\n# plot(cars)\n# dev.off()\n\n\n\nDefine a function and compute real roots In this document, define coefficients \\(a=2\\), \\(b=-5\\), \\(c=-3\\). Consider \\(f(x) = ax^2 + bx + c\\). Print the real solutions of \\(f(x)=0\\) (if any).\n\nIf the discriminant is negative, print a message like \"No real roots\".\n\n\n\n# a &lt;- 2\n# b &lt;- -5\n# c &lt;- -3\n# \n# disc &lt;- b^2 - 4*a*c\n# disc\n\n# Your code here to print only real roots\n\n\nGraph the quadratic on a specified interval Make a graph of \\(f(x)\\) versus \\(x\\) for \\(x \\in (-6, 6)\\). Add:\n\na horizontal line at \\(y = 0\\)\npoints for the real roots (if they exist)\n\n\n\n# x &lt;- seq(-6, 6, length.out = 400)\n# fx &lt;- a*x^2 + b*x + c\n\n# Hint: use plot(x, fx, type=\"l\") and abline(h=0)\n\n\nWrite coefficients to a text file using Unix Use Unix to create a file data/coefs.txt containing a single line with:\n2 -5 -3\nShow the Unix commands you used:\n# Your commands here\nCopy the Quarto file using Unix Use Unix to copy hw1.qmd into code/ and name it quadratic.qmd. Show the Unix command(s):\n# Your commands here\nRead coefficients from file using a relative path Edit code/quadratic.qmd so it reads a, b, c from data/coefs.txt using a relative path. In this document, show the R code you used (it should also appear in quadratic.qmd).\n\n\n# Your code here (example outline):\n\n# coefs &lt;- scan(\"data/coefs.txt\")\n\n# a &lt;- coefs[1]; b &lt;- coefs[2]; c &lt;- coefs[3]\n\n# then compute real roots again\n\n\nSwitch to an absolute path and test portability In code/quaratic.qmd, replace the relative path with: file.path(getwd(), \"data/coefs.txt\") Render it once to confirm it works.\nThen move the entire project folder to a new folder name (e.g., RtmpXXXX). Re-render code/quadratic.qmd. Does it still render? Briefly explain what happened, then switch back to a relative path and confirm it renders again.\nRender to PDF and publish to GitHub Pages-style docs folder Render a PDF version of hw1.qmd (or code/quadratic.qmd) and place the PDF into docs/. Show the terminal command(s) you typed:\n\n# Your command here, e.g.\n# quarto render hw1.qmd --to pdf --output-dir docs\n\nGit workflow Make at least three commits with meaningful messages, such as:\n\n\nAdd initial project structure\nAdd quadratic root computation\nAdd rendering output to docs\n\nIn this document, paste the output of:\ngit log --oneline --decorate -n 5\n\nPush to GitHub Push your work to GitHub. In this document, include:\n\n\na screenshot of your GitHub repo showing the folders img/, data/, code/, docs/\nthe link to the rendered PDF file in your repo (if applicable)"
+  },
+  {
+    "objectID": "psets/hw1.html#submission-checklist",
+    "href": "psets/hw1.html#submission-checklist",
+    "title": "Problem set 1",
+    "section": "3 Submission checklist",
+    "text": "3 Submission checklist\n\nRepo exists and is named HW1\nhw1.qmd renders without errors\nimg/plot.png exists and is included in the document\ndata/coefs.txt exists and is read using a relative path\ndocs/ contains the rendered PDF\nAt least three commits + pushed to GitHub"
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-github-account-and-repo",
+    "href": "slides/04-git.html#create-a-github-account-and-repo",
+    "title": "Git and GitHub",
+    "section": "Create a GitHub account and repo",
+    "text": "Create a GitHub account and repo\n\nCreate an account at https://github.com, by picking a professional sounding name.\nCreate a repo (e.g. STAT3000) by clicking the + icon and follow the instructions, toggle on adding README.md. The repo site looks like:\n\nhttps://github.com/your-username/your-repo-name.git\n\nInstructions are here.\nExample here.",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-local-repo-using-rstudio",
+    "href": "slides/04-git.html#create-a-local-repo-using-rstudio",
+    "title": "Git and GitHub",
+    "section": "Create a Local Repo using RStudio",
+    "text": "Create a Local Repo using RStudio\nFollow these steps:\n\nRStudio -&gt; New Project -&gt; Version Control -&gt; Git -&gt; enter the GitHub repo address-&gt;Choose a local parent directory\nThe local repo now is connected to the remote GitHub repo",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#connect-to-github-from-a-local-repo",
+    "href": "slides/04-git.html#connect-to-github-from-a-local-repo",
+    "title": "Git and GitHub",
+    "section": "Connect to GitHub from a local repo",
+    "text": "Connect to GitHub from a local repo\nhttps://ywanglab.github.io/stat1010/git.html\n\ninitialize the directory:\n\n\ngit init\ngit branch -M main #rename the branch name to main\n\n\nLet Git know what is the remote repository.\n\n\ngit remote add origin &lt;remote-url&gt; # Follow the auth steps\n\nNow the two are connected.\n\n\n\n\n\n\nNote\n\n\norigin is a nickname for the remote. It can be a different name, but this is the convention.",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/04-git.html#create-a-local-repo-using-rstudio-easy-way",
+    "href": "slides/04-git.html#create-a-local-repo-using-rstudio-easy-way",
+    "title": "Git and GitHub",
+    "section": "Create a Local Repo using RStudio (easy way)",
+    "text": "Create a Local Repo using RStudio (easy way)\nFollow these steps:\n\nRStudio -&gt; New Project -&gt; Version Control -&gt; Git -&gt; enter the GitHub repo address-&gt;Choose a local parent directory\nThe local repo now is connected to the remote GitHub repo",
+    "crumbs": [
+      "Lecture 3-Git & GitHub"
+    ]
   }
 ]

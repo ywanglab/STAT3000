@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT 3000</title>
+<title>STAT 3000 - Standard Errors vs.&nbsp;Standard Deviation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -66,8 +66,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -79,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Standard Errors vs.&nbsp;Standard Deviation</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -93,8 +95,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
     <a href="https://github.com/ywanglab/STAT3000" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
@@ -109,31 +111,31 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/00-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/00-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 0-Intro</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/01-unix.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/01-unix.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 1-Unix</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/02-rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/02-rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 2-RStudio &amp; Quarto</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/04-git.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/04-git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 3-Git &amp; GitHub</span></a>
   </div>
 </li>
@@ -147,29 +149,120 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course-information" id="toc-course-information" class="nav-link active" data-scroll-target="#course-information">Course Information</a></li>
+  <li><a href="#derive-se" id="toc-derive-se" class="nav-link active" data-scroll-target="#derive-se">Derive SE</a></li>
+  <li><a href="#sd-vs-se" id="toc-sd-vs-se" class="nav-link" data-scroll-target="#sd-vs-se">SD vs SE</a></li>
+  <li><a href="#the-classic-relationship-mean" id="toc-the-classic-relationship-mean" class="nav-link" data-scroll-target="#the-classic-relationship-mean">The classic relationship: mean</a></li>
+  <li><a href="#in-regression-geom_smoothmethodlm-setrue" id="toc-in-regression-geom_smoothmethodlm-setrue" class="nav-link" data-scroll-target="#in-regression-geom_smoothmethodlm-setrue">In regression (<code>geom_smooth(method="lm", se=TRUE)</code>)</a></li>
+  <li><a href="#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" id="toc-why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" class="nav-link" data-scroll-target="#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p">Why is <span class="math inline">\(\hat{\sigma}^2 = \dfrac{\sum \hat\varepsilon_i^2}{n-p}\)</span> ?</a>
+  <ul class="collapse">
+  <li><a href="#key-fact-degrees-of-freedom" id="toc-key-fact-degrees-of-freedom" class="nav-link" data-scroll-target="#key-fact-degrees-of-freedom">Key fact (degrees of freedom)</a></li>
+  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/docs/slides/standard_errors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Standard Errors vs.&nbsp;Standard Deviation</h1>
+</div>
 
 
 
-<section id="course-information" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="course-information">Course Information</h2>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="derive-se" class="level3">
+<h3 class="anchored" data-anchor-id="derive-se">Derive SE</h3>
+<p>For <code>method="lm"</code> the CI ribbon is based on the <strong>standard error of the estimated mean</strong> <span class="math inline">\(\hat y(x_0)=\widehat{E[Y\mid X=x_0]}\)</span>. The SE formula comes directly from the variance of a <strong>linear combination</strong> of the OLS estimator.</p>
+<ol type="1">
+<li>Write the linear model in matrix form</li>
+</ol>
+<p><span class="math display">\[ y = X\beta + \varepsilon,\qquad \mathbb E\varepsilon=0,\quad \mathrm{Var}(\varepsilon)=\sigma^2 I_n.\]</span> 2) OLS estimator and its variance</p>
+<p>OLS gives <span class="math display">\[ \hat\beta=(X^\top X)^{-1}X^\top y.\]</span> Because <span class="math inline">\(\hat\beta\)</span> is a linear function of <span class="math inline">\(y\)</span>, <span class="math display">\[ \mathrm{Var}(\hat\beta) = (X^\top X)^{-1}X^\top \mathrm{Var}(y) X (X^\top X)^{-1}.\]</span> But <span class="math inline">\(y=X\beta+\varepsilon\)</span> and <span class="math inline">\(\mathrm{Var}(y)=\mathrm{Var}(\varepsilon)=\sigma^2 I\)</span>, so <span class="math display">\[ \mathrm{Var}(\hat\beta)=\sigma^2 (X^\top X)^{-1}.\]</span></p>
+<ol start="3" type="1">
+<li>Fitted mean at a point is a linear combo of <span class="math inline">\(\hat\beta\)</span></li>
+</ol>
+<p>At <span class="math inline">\(x_0\)</span>, let the (row) design vector be <span class="math display">\[ x_0^* = (1 \;\;x_0)\]</span> (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is</p>
+<p><span class="math display">\[ \hat y(x_0)=x_0^* \hat\beta.\]</span></p>
+<ol start="4" type="1">
+<li>Variance of a linear combination</li>
+</ol>
+<p>Use the rule: if <span class="math inline">\(a\)</span> is a constant vector and <span class="math inline">\(Z\)</span> is random, <span class="math display">\[ \mathrm{Var}(a^\top Z)=a^\top \mathrm{Var}(Z)a.\]</span> Here <span class="math inline">\(a = (x_0^*)^\top\)</span> and <span class="math inline">\(Z=\hat\beta\)</span>. Therefore,</p>
+<p><span class="math display">\[\mathrm{Var}(\hat y(x_0)) = \mathrm{Var}(x_0^* \hat\beta) = x_0^*\mathrm{Var}(\hat\beta)(x_0^*)^\top = x_0^* \big(\sigma ^2 (X^\top X)^{-1}\big) (x_0^*)^\top.\]</span> So the standard error is <span class="math display">\[ SE{\hat y(x_0)}=\sqrt{\sigma^2 x_0^*(X^\top X)^{-1}(x_0^*)^\top }.\]</span></p>
+<ol start="5" type="1">
+<li>Replace <span class="math inline">\(\sigma ^2\)</span> by its sample estimate</li>
+</ol>
+<p>Since <span class="math inline">\(\sigma\^2\)</span> is unknown, we plug in</p>
+<p><span class="math display">\[ \hat\sigma^2=\frac{\sum_{i=1}^n \hat\varepsilon_i^2}{n-p},\]</span> giving the practical SE:</p>
+<p><span class="math display">\[SE{\hat y(x_0)}=\sqrt{\hat\sigma^2  x_0^*(X^\top X)^{-1}(x_0^*)^\top }.\]</span></p>
+<hr>
+<ol start="6" type="1">
+<li>same formula in “simple regression” scalar form</li>
+</ol>
+<p>For <span class="math inline">\(y=\beta_0+\beta_1 x+\varepsilon\)</span>,</p>
+<p><span class="math display">\[SE{\hat y(x_0)}=\hat\sigma\sqrt{\frac{1}{n}+\frac{(x_0-\bar x)^2}{\sum_{i=1}^n (x_i-\bar x)^2}}.\]</span> This is algebraically equivalent to the matrix expression above.</p>
+</section>
+<section id="sd-vs-se" class="level3">
+<h3 class="anchored" data-anchor-id="sd-vs-se">SD vs SE</h3>
+<p><strong>SD (standard deviation)</strong> describes <strong>how spread out the data are</strong>.</p>
 <ul>
-<li>Textbooks: <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/">DS Book (Part 1)</a>, <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/">DS Book (Part 2)</a></li>
-<li>GitHub: <a href="https://github.com/ywanglab/STAT3000">Course Repository</a></li>
-<li>Lecture Notes: <a href="https://ywanglab.github.io/STAT3000/">website</a></li>
-<li>Additional Notes:
-<ul>
-<li><a href="./slides/standard_errors.html">SE and SD</a></li>
-</ul></li>
+<li>It’s a property of the <em>observations</em>.</li>
+<li>Example: “Students’ heights have SD = 7 cm” = individual heights vary a lot.</li>
 </ul>
+<p><strong>SE (standard error)</strong> describes <strong>how uncertain an estimate is</strong> (because it’s based on a sample).</p>
+<ul>
+<li>It’s a property of an <em>estimator</em> (sample mean, regression slope, fitted mean, etc.).</li>
+<li>Example: “The sample mean height has SE = 1 cm” = the mean is estimated pretty precisely.</li>
+</ul>
+<p>A good one-liner:</p>
+<ul>
+<li><strong>SD = variability of points</strong></li>
+<li><strong>SE = variability of a statistic across repeated samples</strong></li>
+</ul>
+<hr>
+</section>
+<section id="the-classic-relationship-mean" class="level3">
+<h3 class="anchored" data-anchor-id="the-classic-relationship-mean">The classic relationship: mean</h3>
+<p>If <span class="math inline">\(X_1,\dots,X_n\)</span> are i.i.d. with <span class="math inline">\(\mathrm{Var}(X_i)=\sigma ^2\)</span>, then <span class="math display">\[ \bar X=\frac{1}{n}\sum\_{i=1}\^n X_i,\qquad \mathrm{Var}(\bar X)=\frac{\sigma^2}{n}.\]</span> So <span class="math display">\[ SE(\bar X)=\sqrt{\mathrm{Var}(\bar X)}=\frac{\sigma}{\sqrt n}.\]</span> In practice we don’t know $), so we plug in the sample SD <span class="math inline">\(s\)</span>: <span class="math display">\[ \widehat{SE}(\bar X)=\frac{s}{\sqrt n}.\]</span> This is why <strong>SE shrinks as <span class="math inline">\(n\)</span> grows</strong>, while SD typically doesn’t.</p>
+<hr>
+</section>
+<section id="in-regression-geom_smoothmethodlm-setrue" class="level3">
+<h3 class="anchored" data-anchor-id="in-regression-geom_smoothmethodlm-setrue">In regression (<code>geom_smooth(method="lm", se=TRUE)</code>)</h3>
+<ul>
+<li>The <strong>SD-like quantity</strong> is the residual spread around the line (noise level).</li>
+<li>The <strong>SE band</strong> is uncertainty in the <em>estimated mean line</em> <span class="math inline">\(\hat y(x)\)</span>. It’s smaller near <span class="math inline">\(\bar x\)</span> and larger near the ends because the line is less well anchored there.</li>
+</ul>
+<hr>
+</section>
+<section id="why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p">Why is <span class="math inline">\(\hat{\sigma}^2 = \dfrac{\sum \hat\varepsilon_i^2}{n-p}\)</span> ?</h2>
+<p>Consider the linear model <span class="math display">\[ y = X\beta + \varepsilon,\quad \mathbb E(\varepsilon)=0,\quad \mathrm{Var}(\varepsilon)=\sigma^2 I_n,\]</span> with <span class="math inline">\(p\)</span> parameters (in simple regression, (p=2): intercept + slope).</p>
+<p>Let <span class="math inline">\(\hat y = X\hat\beta\)</span> be fitted values and residuals <span class="math inline">\(e = y-\hat y\)</span>. The residual sum of squares is <span class="math display">\[ RSS = e^\top e = \sum_{i=1}^n e_i^2.\]</span></p>
+<section id="key-fact-degrees-of-freedom" class="level3">
+<h3 class="anchored" data-anchor-id="key-fact-degrees-of-freedom">Key fact (degrees of freedom)</h3>
+<p>The fitted values live in the column space of <span class="math inline">\(X\)</span>, which is <span class="math inline">\(p\)</span>-dimensional. Residuals live in the orthogonal complement, which has dimension <span class="math inline">\(n-p\)</span>. So residuals have <strong>only <span class="math inline">\(n-p\)</span> independent pieces of variation</strong>.</p>
+<p>More formally, define the “residual-maker” matrix <span class="math display">\[ M = I - H,\quad H = X(X^\top X)^{-1}X^\top.\]</span> Then <span class="math inline">\(e = My\)</span> and <span class="math inline">\(M\)</span> is symmetric idempotent with <span class="math display">\[ \mathrm{rank}(M)=n-p,\quad \mathrm{tr}(M)=n-p.\]</span> Since <span class="math inline">\(y = X\beta + \varepsilon\)</span> and <span class="math inline">\(MX\beta=0\)</span>, <span class="math display">\[ e = M\varepsilon.\]</span> Now compute the expected RSS: <span class="math display">\[\mathbb E(RSS) = \mathbb E(e^\top e) = \mathbb E(\varepsilon^\top M^\top M \varepsilon) = \mathbb E(\varepsilon^\top M \varepsilon).
+\]</span> Using <span class="math inline">\(\mathbb E(\varepsilon^\top A \varepsilon)=\sigma^2\mathrm{tr}(A)\)</span> when <span class="math inline">\(\mathrm{Var}(\varepsilon)=\sigma^2 I\)</span>,</p>
+<p><span class="math display">\[ \mathbb E(RSS)=\sigma ^2 \mathrm{tr}(M)=\sigma^2 (n-p).\]</span> So <span class="math display">\[ \mathbb E\left(\frac{RSS}{n-p}\right)=\sigma\^2,\]</span> meaning <span class="math display">\[ \hat\sigma\^2=\frac{RSS}{n-p}\]</span> is an <strong>unbiased estimator</strong> of $^2).</p>
+</section>
+<section id="intuition" class="level3">
+<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
+<p>If you divided by <span class="math inline">\(n\)</span>, you’d systematically underestimate <span class="math inline">\(\sigma^2\)</span> because the regression line was chosen to make residuals small (you “spent” <span class="math inline">\(p\)</span> degrees of freedom estimating parameters). Dividing by <span class="math inline">\(n-p\)</span> corrects that.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

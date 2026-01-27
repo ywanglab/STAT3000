@@ -476,23 +476,24 @@
 <li>CI &amp; CD Automation tools</li>
 </ul>
 </section>
-<section id="create-a-github-account" class="slide level2">
-<h2>Create a GitHub account</h2>
+<section id="create-a-github-account-and-repo" class="slide level2">
+<h2>Create a GitHub account and repo</h2>
 <ul>
-<li>Click the <code>+</code> icon and follow the instructions. The repo site should look something like this:</li>
+<li>Create an account at <a href="https://github.com" class="uri">https://github.com</a>, by picking a professional sounding name.</li>
+<li>Create a repo (e.g.&nbsp;<code>STAT3000</code>) by clicking the <code>+</code> icon and follow the instructions, toggle on adding <code>README.md</code>. The repo site looks like:</li>
 </ul>
 <pre><code>https://github.com/your-username/your-repo-name.git</code></pre>
 <ul>
-<li><p>Pick a professional sounding name.</p></li>
-<li><p>Consider adding a profile <code>README.md</code>.</p></li>
 <li><p>Instructions are <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme">here</a>.</p></li>
 <li><p>Example <a href="https://github.com/ywanglab/STAT3000">here</a>.</p></li>
 </ul>
 </section>
-<section id="create-a-local-repo" class="slide level2">
-<h2>Create a Local Repo</h2>
+<section id="create-a-local-repo-using-rstudio-easy-way" class="slide level2">
+<h2>Create a Local Repo using RStudio (easy way)</h2>
+<p>Follow these steps:</p>
 <ul>
-<li>In a <strong>parent</strong> directory on your local computer, use Rstudio to create a new project in it, this will be the local repo.</li>
+<li><p>RStudio -&gt; New Project -&gt; Version Control -&gt; Git -&gt; enter the GitHub repo address-&gt;Choose a local <code>parent</code> directory</p></li>
+<li><p>The local repo now is connected to the remote GitHub repo</p></li>
 </ul>
 </section>
 <section id="connect-to-remote-repo-auth" class="slide level2">
@@ -507,8 +508,8 @@
 <li>Note that <strong>your GitHub website password isn’t your access token</strong>.</li>
 </ul>
 </section>
-<section id="connect-to-github" class="slide level2">
-<h2>Connect to GitHub</h2>
+<section id="connect-to-github-from-a-local-repo" class="slide level2 smaller">
+<h2>Connect to GitHub from a local repo</h2>
 <p><a href="https://ywanglab.github.io/stat1010/git.html" class="uri">https://ywanglab.github.io/stat1010/git.html</a></p>
 <ol type="1">
 <li>initialize the directory:</li>
@@ -541,9 +542,9 @@
 <section id="privacy-privacy-privacy" class="slide level2">
 <h2>Privacy Privacy Privacy</h2>
 <ul>
-<li>The next step is to let Git know who you are on Github.</li>
+<li><p>The next step is to let Git know who you are on Github.</p></li>
+<li><p>Type the following two commands in our terminal window:</p></li>
 </ul>
-<p>*Type the following two commands in our terminal window:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">"Your_chosen_nickname"</span> <span class="co">#(do not use real name for privacy)</span></span>
@@ -756,14 +757,6 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>git clone <span class="sc">&lt;</span>repo<span class="sc">-</span>url<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="using-git-in-rstudio" class="slide level2">
-<h2>Using Git in RStudio</h2>
-<ul>
-<li><p>Make sue you have a GitHub repo exited or create a new one</p></li>
-<li><p>Go to file, new project, version control, and follow the instructions.</p></li>
-<li><p>Then notice the <code>Git</code> tab added in the Environment window.</p></li>
-</ul>
 </section>
 
     </div>
