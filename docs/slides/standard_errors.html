@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT 3000 - Problem set 1</title>
+<title>STAT 3000 - Standard Errors vs.&nbsp;Standard Deviation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Problem set 1</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Standard Errors vs.&nbsp;Standard Deviation</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,18 +149,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructionssetup" id="toc-instructionssetup" class="nav-link active" data-scroll-target="#instructionssetup"><span class="header-section-number">1</span> Instructions/Setup</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks"><span class="header-section-number">2</span> Tasks</a></li>
-  <li><a href="#submission-checklist" id="toc-submission-checklist" class="nav-link" data-scroll-target="#submission-checklist"><span class="header-section-number">3</span> Submission checklist</a></li>
+  <li><a href="#derive-se" id="toc-derive-se" class="nav-link active" data-scroll-target="#derive-se">Derive SE</a></li>
+  <li><a href="#sd-vs-se" id="toc-sd-vs-se" class="nav-link" data-scroll-target="#sd-vs-se">SD vs SE</a></li>
+  <li><a href="#the-classic-relationship-mean" id="toc-the-classic-relationship-mean" class="nav-link" data-scroll-target="#the-classic-relationship-mean">The classic relationship: mean</a></li>
+  <li><a href="#in-regression-geom_smoothmethodlm-setrue" id="toc-in-regression-geom_smoothmethodlm-setrue" class="nav-link" data-scroll-target="#in-regression-geom_smoothmethodlm-setrue">In regression (<code>geom_smooth(method="lm", se=TRUE)</code>)</a></li>
+  <li><a href="#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" id="toc-why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" class="nav-link" data-scroll-target="#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p">Why is <span class="math inline">\(\hat{\sigma}^2 = \dfrac{\sum \hat\varepsilon_i^2}{n-p}\)</span> ?</a>
+  <ul class="collapse">
+  <li><a href="#key-fact-degrees-of-freedom" id="toc-key-fact-degrees-of-freedom" class="nav-link" data-scroll-target="#key-fact-degrees-of-freedom">Key fact (degrees of freedom)</a></li>
+  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/psets/hw1.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/slides/standard_errors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Problem set 1</h1>
+<h1 class="title">Standard Errors vs.&nbsp;Standard Deviation</h1>
 </div>
 
 
@@ -177,124 +183,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instructionssetup" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="instructionssetup"><span class="header-section-number">1</span> Instructions/Setup</h2>
-<ul>
-<li><p>Make sure you have a GitHub account. In your GitHub account, create a GitHub repository named <code>STAT3000</code>.</p></li>
-<li><p>Create an RStudio Project, e.g., <code>stat3000</code>, connected to the GitHub repo (clone or connect existing).</p></li>
-<li><p>Answer each item <strong>inside this Quarto file</strong>. Show commands/code where requested.</p></li>
-</ul>
-</section>
-<section id="tasks" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="tasks"><span class="header-section-number">2</span> Tasks</h2>
-<ol start="0" type="1">
-<li><p><strong>Project folders</strong><br>
-In your project root, create the folders: <code>hw/</code>, <code>img/</code>, <code>data/</code>, <code>code/</code>, <code>docs/</code>.<br>
-Provide either:</p>
-<ul>
-<li>the Unix commands you used, or</li>
-<li>the R commands you used</li>
-</ul>
-<pre><code># Your commands here
-</code></pre></li>
-<li><p><strong>RStudio project + Quarto document</strong><br>
-Create a Quarto document named <code>hw1.qmd</code> (this file).<br>
-Include a screenshot of your RStudio session showing:</p>
-<ul>
-<li>Files pane (project structure)</li>
-<li>Git pane (if available)</li>
-</ul></li>
-<li><p><strong>GitHub + repo setup</strong><br>
-In your Quarto document, include:</p>
-<ul>
-<li>the repo URL</li>
-<li>a screenshot showing the repo page on GitHub</li>
-</ul></li>
-<li><p><strong>Create and include a plot image</strong><br>
-Create a simple plot in R (any plot you like), save it as <code>img/plot.png</code>, and include it below.</p>
-<pre><code>
-  # Example idea (you can change it):
-  # png("img/plot.png", width = 800, height = 500) #open png device 
-  # plot(cars)
-  # dev.off() # close the device</code></pre></li>
+<section id="derive-se" class="level3">
+<h3 class="anchored" data-anchor-id="derive-se">Derive SE</h3>
+<p>For <code>method="lm"</code> the CI ribbon is based on the <strong>standard error of the estimated mean</strong> <span class="math inline">\(\hat y(x_0)=\widehat{E[Y\mid X=x_0]}\)</span>. The SE formula comes directly from the variance of a <strong>linear combination</strong> of the OLS estimator.</p>
+<ol type="1">
+<li>Write the linear model in matrix form</li>
 </ol>
-<p><img src="img/plot.png" class="img-fluid"></p>
+<p><span class="math display">\[ y = X\beta + \varepsilon,\qquad \mathbb E\varepsilon=0,\quad \mathrm{Var}(\varepsilon)=\sigma^2 I_n.\]</span> 2) OLS estimator and its variance</p>
+<p>OLS gives <span class="math display">\[ \hat\beta=(X^\top X)^{-1}X^\top y.\]</span> Because <span class="math inline">\(\hat\beta\)</span> is a linear function of <span class="math inline">\(y\)</span>, <span class="math display">\[ \mathrm{Var}(\hat\beta) = (X^\top X)^{-1}X^\top \mathrm{Var}(y) X (X^\top X)^{-1}.\]</span> But <span class="math inline">\(y=X\beta+\varepsilon\)</span> and <span class="math inline">\(\mathrm{Var}(y)=\mathrm{Var}(\varepsilon)=\sigma^2 I\)</span>, so <span class="math display">\[ \mathrm{Var}(\hat\beta)=\sigma^2 (X^\top X)^{-1}.\]</span></p>
+<ol start="3" type="1">
+<li>Fitted mean at a point is a linear combo of <span class="math inline">\(\hat\beta\)</span></li>
+</ol>
+<p>At <span class="math inline">\(x_0\)</span>, let the (row) design vector be <span class="math display">\[ x_0^* = (1 \;\;x_0)\]</span> (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is</p>
+<p><span class="math display">\[ \hat y(x_0)=x_0^* \hat\beta.\]</span></p>
 <ol start="4" type="1">
-<li><p><strong>Define a function and compute real roots</strong> In this document, define coefficients <span class="math inline">\(a=2\)</span>, <span class="math inline">\(b=-5\)</span>, <span class="math inline">\(c=-3\)</span>. Consider <span class="math inline">\(f(x) = ax^2 + bx + c\)</span>. Print the <strong>real</strong> solutions of <span class="math inline">\(f(x)=0\)</span> (if any).</p>
-<ul>
-<li>If the discriminant is negative, print a message like <code>"No real roots"</code>.</li>
-</ul>
-<pre><code>
-  # a &lt;- 2
-  # b &lt;- -5
-  # c &lt;- -3
-  # 
-  # disc &lt;- b^2 - 4*a*c
-  # disc
-
-  # Your code here to print only real roots
-</code></pre></li>
-<li><p><strong>Graph the quadratic on a specified interval</strong> Make a graph of <span class="math inline">\(f(x)\)</span> versus <span class="math inline">\(x\)</span> for <span class="math inline">\(x \in (-6, 6)\)</span>. Add:</p>
-<ul>
-<li>a horizontal line at <span class="math inline">\(y = 0\)</span></li>
-<li>points for the real roots (if they exist)</li>
-</ul>
-<pre><code># x &lt;- seq(-6, 6, length.out = 400)
-# fx &lt;- a*x^2 + b*x + c
-
-# Hint: use plot(x, fx, type="l") and abline(h=0)</code></pre></li>
-<li><p><strong>Write coefficients to a text file using Unix</strong> Use Unix to create a file <code>data/coefs.txt</code> containing a single line with:</p>
-<pre><code>2 -5 -3</code></pre>
-<p>Show the Unix commands you used:</p>
-<pre><code># Your commands here</code></pre></li>
-<li><p><strong>Copy the Quarto file using Unix</strong> Use Unix to copy <code>hw1.qmd</code> into <code>code/</code> and name it <code>quadratic.qmd</code>. Show the Unix command(s):</p>
-<pre><code># Your commands here</code></pre></li>
-<li><p><strong>Read coefficients from file using a relative path</strong></p>
-<p>Edit <code>code/quadratic.qmd</code> so it reads <code>a</code>, <code>b</code>, <code>c</code> from <code>data/coefs.txt</code> using a <strong>relative path</strong>. In <em>this</em> document, show the R code you used (it should also appear in <code>quadratic.qmd</code>).</p>
-<pre><code># Your code here (example outline):
-
-# coefs &lt;- scan("data/coefs.txt") #read numbers/string and return a vector
-
-# a &lt;- coefs[1]; b &lt;- coefs[2]; c &lt;- coefs[3]
-
-# then compute real roots again</code></pre></li>
-<li><p><strong>Switch to an absolute path and test portability</strong></p>
-<p>In <code>code/quadratic.qmd</code>, replace the relative path with: <code>file.path(getwd(), "data/coefs.txt")</code> Render it once to confirm it works.</p>
-<p>Then <strong>move the entire project folder</strong> to a new folder name (e.g., <code>RtmpXXXX</code>). Re-render <code>code/quadratic.qmd</code>. Does it still render? Briefly explain what happened, then switch back to a relative path and confirm it renders again.</p></li>
-<li><p><strong>Render to PDF and publish to GitHub Pages-style docs folder</strong></p>
-<p>Render a PDF version of <code>hw1.qmd</code> (or <code>code/quadratic.qmd</code>) and place the PDF into <code>docs/</code>. Show the terminal command(s) you typed:</p>
-<pre><code># Your command here, e.g.
-# quarto render hw1.qmd --to pdf --output-dir docs</code></pre></li>
-<li><p><strong>Git workflow</strong> Make at least <strong>three commits</strong> with meaningful messages, such as:</p></li>
+<li>Variance of a linear combination</li>
 </ol>
-<ul>
-<li><p><code>Add initial project structure</code></p></li>
-<li><p><code>Add quadratic root computation</code></p></li>
-<li><p><code>Add rendering output to docs</code></p>
-<p>In this document, paste the output of:</p>
-<pre><code>git log --oneline --decorate -n 5</code></pre></li>
-</ul>
-<ol start="12" type="1">
-<li><strong>Push to GitHub</strong> Push your work to GitHub. In this document, include:</li>
+<p>Use the rule: if <span class="math inline">\(a\)</span> is a constant vector and <span class="math inline">\(Z\)</span> is random, <span class="math display">\[ \mathrm{Var}(a^\top Z)=a^\top \mathrm{Var}(Z)a.\]</span> Here <span class="math inline">\(a = (x_0^*)^\top\)</span> and <span class="math inline">\(Z=\hat\beta\)</span>. Therefore,</p>
+<p><span class="math display">\[\mathrm{Var}(\hat y(x_0)) = \mathrm{Var}(x_0^* \hat\beta) = x_0^*\mathrm{Var}(\hat\beta)(x_0^*)^\top = x_0^* \big(\sigma ^2 (X^\top X)^{-1}\big) (x_0^*)^\top.\]</span> So the standard error is <span class="math display">\[ SE{\hat y(x_0)}=\sqrt{\sigma^2 x_0^*(X^\top X)^{-1}(x_0^*)^\top }.\]</span></p>
+<ol start="5" type="1">
+<li>Replace <span class="math inline">\(\sigma ^2\)</span> by its sample estimate</li>
 </ol>
+<p>Since <span class="math inline">\(\sigma^2\)</span> is unknown, we plug in</p>
+<p><span class="math display">\[ \hat\sigma^2=\frac{\sum_{i=1}^n \hat\varepsilon_i^2}{n-p},\]</span> giving the practical SE:</p>
+<p><span class="math display">\[SE{\hat y(x_0)}=\sqrt{\hat\sigma^2  x_0^*(X^\top X)^{-1}(x_0^*)^\top }.\]</span></p>
+<hr>
+<ol start="6" type="1">
+<li>same formula in “simple regression” scalar form</li>
+</ol>
+<p>For <span class="math inline">\(y=\beta_0+\beta_1 x+\varepsilon\)</span>,</p>
+<p><span class="math display">\[SE{\hat y(x_0)}=\hat\sigma\sqrt{\frac{1}{n}+\frac{(x_0-\bar x)^2}{\sum_{i=1}^n (x_i-\bar x)^2}}.\]</span> This is algebraically equivalent to the matrix expression above.</p>
+</section>
+<section id="sd-vs-se" class="level3">
+<h3 class="anchored" data-anchor-id="sd-vs-se">SD vs SE</h3>
+<p><strong>SD (standard deviation)</strong> describes <strong>how spread out the data are</strong>.</p>
 <ul>
-<li>a screenshot of your GitHub repo showing the folders <code>img/</code>, <code>data/</code>, <code>code/</code>, <code>docs/</code></li>
-<li>the link to the rendered PDF file in your repo (if applicable)</li>
+<li>It’s a property of the <em>observations</em>.</li>
+<li>Example: “Students’ heights have SD = 7 cm” = individual heights vary a lot.</li>
+</ul>
+<p><strong>SE (standard error)</strong> describes <strong>how uncertain an estimate is</strong> (because it’s based on a sample).</p>
+<ul>
+<li>It’s a property of an <em>estimator</em> (sample mean, regression slope, fitted mean, etc.).</li>
+<li>Example: “The sample mean height has SE = 1 cm” = the mean is estimated pretty precisely.</li>
+</ul>
+<p>A good one-liner:</p>
+<ul>
+<li><strong>SD = variability of points</strong></li>
+<li><strong>SE = variability of a statistic across repeated samples</strong></li>
 </ul>
 <hr>
 </section>
-<section id="submission-checklist" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="submission-checklist"><span class="header-section-number">3</span> Submission checklist</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Repo exists and is named <code>HW1</code></label></li>
-<li><label><input type="checkbox"><code>hw1.qmd</code> renders without errors</label></li>
-<li><label><input type="checkbox"><code>img/plot.png</code> exists and is included in the document</label></li>
-<li><label><input type="checkbox"><code>data/coefs.txt</code> exists and is read using a relative path</label></li>
-<li><label><input type="checkbox"><code>docs/</code> contains the rendered PDF</label></li>
-<li><label><input type="checkbox">At least three commits + pushed to GitHub</label></li>
+<section id="the-classic-relationship-mean" class="level3">
+<h3 class="anchored" data-anchor-id="the-classic-relationship-mean">The classic relationship: mean</h3>
+<p>If <span class="math inline">\(X_1,\dots,X_n\)</span> are i.i.d. with <span class="math inline">\(\mathrm{Var}(X_i)=\sigma ^2\)</span>, then <span class="math display">\[ \bar X=\frac{1}{n}\sum_{i=1}^n X_i,\qquad \mathrm{Var}(\bar X)=\frac{\sigma^2}{n}.\]</span> So <span class="math display">\[ SE(\bar X)=\sqrt{\mathrm{Var}(\bar X)}=\frac{\sigma}{\sqrt n}.\]</span> In practice we don’t know <span class="math inline">\(\sigma\)</span>, so we plug in the sample SD <span class="math inline">\(s\)</span>: <span class="math display">\[ \widehat{SE}(\bar X)=\frac{s}{\sqrt n}.\]</span> This is why <strong>SE shrinks as</strong> <span class="math inline">\(n\)</span> grows, while SD typically doesn’t.</p>
+<hr>
+</section>
+<section id="in-regression-geom_smoothmethodlm-setrue" class="level3">
+<h3 class="anchored" data-anchor-id="in-regression-geom_smoothmethodlm-setrue">In regression (<code>geom_smooth(method="lm", se=TRUE)</code>)</h3>
+<ul>
+<li>The <strong>SD-like quantity</strong> is the residual spread around the line (noise level).</li>
+<li>The <strong>SE band</strong> is uncertainty in the <em>estimated mean line</em> <span class="math inline">\(\hat y(x)\)</span>. It’s smaller near <span class="math inline">\(\bar x\)</span> and larger near the ends because the line is less well anchored there.</li>
 </ul>
+<hr>
+</section>
+<section id="why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p">Why is <span class="math inline">\(\hat{\sigma}^2 = \dfrac{\sum \hat\varepsilon_i^2}{n-p}\)</span> ?</h2>
+<p>Consider the linear model <span class="math display">\[ y = X\beta + \varepsilon,\quad \mathbb E(\varepsilon)=0,\quad \mathrm{Var}(\varepsilon)=\sigma^2 I_n,\]</span> with <span class="math inline">\(p\)</span> parameters (in simple regression, (p=2): intercept + slope).</p>
+<p>Let <span class="math inline">\(\hat y = X\hat\beta\)</span> be fitted values and residuals <span class="math inline">\(e = y-\hat y\)</span>. The residual sum of squares is <span class="math display">\[ RSS = e^\top e = \sum_{i=1}^n e_i^2.\]</span></p>
+<section id="key-fact-degrees-of-freedom" class="level3">
+<h3 class="anchored" data-anchor-id="key-fact-degrees-of-freedom">Key fact (degrees of freedom)</h3>
+<p>The fitted values live in the column space of <span class="math inline">\(X\)</span>, which is <span class="math inline">\(p\)</span>-dimensional. Residuals live in the orthogonal complement, which has dimension <span class="math inline">\(n-p\)</span>. So residuals have <strong>only</strong> <span class="math inline">\(n-p\)</span> independent pieces of variation.</p>
+<p>More formally, define the “residual-maker” matrix <span class="math display">\[ M = I - H,\quad H = X(X^\top X)^{-1}X^\top.\]</span> Then <span class="math inline">\(e = My\)</span> and <span class="math inline">\(M\)</span> is symmetric idempotent with <span class="math display">\[ \mathrm{rank}(M)=n-p,\quad \mathrm{tr}(M)=n-p.\]</span> Since <span class="math inline">\(y = X\beta + \varepsilon\)</span> and <span class="math inline">\(MX\beta=0\)</span>, <span class="math display">\[ e = M\varepsilon.\]</span> Now compute the expected RSS: <span class="math display">\[\mathbb E(RSS) = \mathbb E(e^\top e) = \mathbb E(\varepsilon^\top M^\top M \varepsilon) = \mathbb E(\varepsilon^\top M \varepsilon).
+\]</span> Using <span class="math inline">\(\mathbb E(\varepsilon^\top A \varepsilon)=\sigma^2\mathrm{tr}(A)\)</span> when <span class="math inline">\(\mathrm{Var}(\varepsilon)=\sigma^2 I\)</span>,</p>
+<p><span class="math display">\[ \mathbb E(RSS)=\sigma ^2 \mathrm{tr}(M)=\sigma^2 (n-p).\]</span> So <span class="math display">\[ \mathbb E\left(\frac{RSS}{n-p}\right)=\sigma^2,\]</span> meaning <span class="math display">\[ \hat\sigma^2=\frac{RSS}{n-p}\]</span> is an <strong>unbiased estimator</strong> of $^2).</p>
+</section>
+<section id="intuition" class="level3">
+<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
+<p>If you divided by <span class="math inline">\(n\)</span>, you’d systematically underestimate <span class="math inline">\(\sigma^2\)</span> because the regression line was chosen to make residuals small (you “spent” <span class="math inline">\(p\)</span> degrees of freedom estimating parameters). Dividing by <span class="math inline">\(n-p\)</span> corrects that.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
