@@ -1,0 +1,732 @@
+[
+  {
+    "objectID": "slides/05-r-basics.html#packages",
+    "href": "slides/05-r-basics.html#packages",
+    "title": "R Basics",
+    "section": "Packages",
+    "text": "Packages\n\nbase comes from the installation of R.\nadd-on packages that can be obtained from CRAN\nUse install.packages to install the dslabs package from CRAN\nTry: sessionInfo, installed.packages",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#prebuilt-functions",
+    "href": "slides/05-r-basics.html#prebuilt-functions",
+    "title": "R Basics",
+    "section": "Prebuilt functions",
+    "text": "Prebuilt functions\n\nR base includes automatically loaded packages: stats, graphics, grDevices, utils, datasets, methods.\nVery popular packages not included in R base: ggplot2, dplyr, tidyr, and data.table, caret, etc. They can be installed on the fly when RStudio prompts.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#base-r-functions",
+    "href": "slides/05-r-basics.html#base-r-functions",
+    "title": "R Basics",
+    "section": "Base R functions",
+    "text": "Base R functions\n\nExamples: ls, rm, library, search, factor, list, exists, str, typeof, and class.\nYou can see the raw code for a function by typing its name without the parentheses.\n\ntype ls on your console to see an example.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#help-system",
+    "href": "slides/05-r-basics.html#help-system",
+    "title": "R Basics",
+    "section": "Help system",
+    "text": "Help system\n\nYou can learn about function using\n\nhelp(\"ls\")\nor\n?ls\n\nmany packages provide vignettes that are like how-to manuals for different analyses",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#variables",
+    "href": "slides/05-r-basics.html#variables",
+    "title": "R Basics",
+    "section": "Variables",
+    "text": "Variables\n\nDefine a variable.\n\n\na &lt;- 2\n\n\nUse ls to see if it’s there. Also take a look at the Environment tab in RStudio.\n\n\nls()\n\n[1] \"a\"               \"has_annotations\"\n\n\n\nUse rm to remove the variable you defined.\n\n\nrm(a)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-workspace",
+    "href": "slides/05-r-basics.html#the-workspace",
+    "title": "R Basics",
+    "section": "The workspace",
+    "text": "The workspace\n\neach time start R, a new (clean slate) workspace that does not have any variables or libraries is loaded\nwhen exit R you will be asked if you want to save the workspace\n\nIn most cases, always better off saying NO\n\nif you save a workspace it will be saved as a hidden file and whenever R is started in a directory with a saved workspace then that workspace will be re-instantiated and used\n\nthis might be helpful if you do not want to recalculate.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-search-paths",
+    "href": "slides/05-r-basics.html#the-search-paths",
+    "title": "R Basics",
+    "section": "The search paths",
+    "text": "The search paths\n\nsearch() # return the search path that R checks in order\n\n[1] \".GlobalEnv\"        \"package:stats\"     \"package:graphics\" \n[4] \"package:grDevices\" \"package:utils\"     \"package:datasets\" \n[7] \"package:methods\"   \"Autoloads\"         \"package:base\"     \n\n\n\nTwo functions have the same name will be searched in the order defeined in the search path.\nWhen you run\n\n\nlibrary(deplyr)\n\npackage deplyr is added near the top of the search path.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#variable-naming-convention",
+    "href": "slides/05-r-basics.html#variable-naming-convention",
+    "title": "R Basics",
+    "section": "Variable naming convention",
+    "text": "Variable naming convention\n\nuse meaningful words (nouns) that describe what is stored, only lower case, and underscores, no spaces.\nDo not use the period . in variable names. R may treat it differently and those can cause unintended actions\nFor more this guide.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#main-data-types",
+    "href": "slides/05-r-basics.html#main-data-types",
+    "title": "R Basics",
+    "section": "Main data types",
+    "text": "Main data types\n\nOne dimensional vectors: double, integer, logical, complex, characters.\ninteger and double are both numeric\nFactors\nLists: this includes data frames.\nArrays: Matrices are the most widely used.\nDate and time\ntibble (comes from tidyverse, behaves like a dataframe, print friendly, no automatic type change, avoids silent bugs)\nS3 objects (default R system, flexible, but can be fragile) vs. S4 objects (srongly typed classes, avoid silent bugs)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types",
+    "href": "slides/05-r-basics.html#data-types",
+    "title": "R Basics",
+    "section": "Data types",
+    "text": "Data types\n\nstr stands for structure, gives us information about an object.\ntypeof gives you the lower-level data storage type of the object: double, integer, char, logical, list, closure(functions), enviroment.\nclass returns the object-oriented class attribute of an object at a higher level, often user-facing level.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#typeof-and-class",
+    "href": "slides/05-r-basics.html#typeof-and-class",
+    "title": "R Basics",
+    "section": "typeof and class",
+    "text": "typeof and class\n\nd &lt;- as.Date(\"2026-02-02\")\ntypeof(d)  # \"double\"\n\n[1] \"double\"\n\nclass(d)   # \"Date\"\n\n[1] \"Date\"\n\nunclass(d) # a number (days since 1970-01-01)\n\n[1] 20486\n\n\n\nd &lt;- as.Date(\"2026-02-02\")\ntypeof(d)  # \"double\"\n\n[1] \"double\"\n\nclass(d)   # \"Date\"\n\n[1] \"Date\"\n\nunclass(d) # a number (days since 1970-01-01)\n\n[1] 20486",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types-1",
+    "href": "slides/05-r-basics.html#data-types-1",
+    "title": "R Basics",
+    "section": "Data types",
+    "text": "Data types\nLet’s see some example:\n\nlibrary(dslabs)\ntypeof(murders)\n\n[1] \"list\"\n\nclass(murders)\n\n[1] \"data.frame\"\n\nstr(murders)\n\n'data.frame':   51 obs. of  5 variables:\n $ state     : chr  \"Alabama\" \"Alaska\" \"Arizona\" \"Arkansas\" ...\n $ abb       : chr  \"AL\" \"AK\" \"AZ\" \"AR\" ...\n $ region    : Factor w/ 4 levels \"Northeast\",\"South\",..: 2 4 4 2 4 4 1 2 2 2 ...\n $ population: num  4779736 710231 6392017 2915918 37253956 ...\n $ total     : num  135 19 232 93 1257 ...\n\ndim(murders)\n\n[1] 51  5",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames",
+    "href": "slides/05-r-basics.html#data-frames",
+    "title": "R Basics",
+    "section": "Data frames",
+    "text": "Data frames\n\nData frames are the most common class used in data analysis.\nData frames are like a matrix, but where the columns can have different types.\nUsually, rows represents observations and columns variables.\nyou can index them like you would a matrix, x[i, j] refers to the element in row i column j\nYou can see part of the content like this\n\n\nhead(murders)\n\n       state abb region population total\n1    Alabama  AL  South    4779736   135\n2     Alaska  AK   West     710231    19\n3    Arizona  AZ   West    6392017   232\n4   Arkansas  AR  South    2915918    93\n5 California  CA   West   37253956  1257\n6   Colorado  CO   West    5029196    65\n\n\nView a Data frames\n\nView(murders)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#add-a-column",
+    "href": "slides/05-r-basics.html#add-a-column",
+    "title": "R Basics",
+    "section": "Add a column",
+    "text": "Add a column\n\nmurders$pop_rank &lt;- rank(murders$population)\nhead(murders)\n\n       state abb region population total pop_rank\n1    Alabama  AL  South    4779736   135       29\n2     Alaska  AK   West     710231    19        5\n3    Arizona  AZ   West    6392017   232       36\n4   Arkansas  AR  South    2915918    93       20\n5 California  CA   West   37253956  1257       51\n6   Colorado  CO   West    5029196    65       30",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-frames-accessor",
+    "href": "slides/05-r-basics.html#data-frames-accessor",
+    "title": "R Basics",
+    "section": "Data frames: Accessor $",
+    "text": "Data frames: Accessor $\n\n$ is called an accessor because it lets us access columns.\n\n\nmurders$population\n\n [1]  4779736   710231  6392017  2915918 37253956  5029196  3574097   897934\n [9]   601723 19687653  9920000  1360301  1567582 12830632  6483802  3046355\n[17]  2853118  4339367  4533372  1328361  5773552  6547629  9883640  5303925\n[25]  2967297  5988927   989415  1826341  2700551  1316470  8791894  2059179\n[33] 19378102  9535483   672591 11536504  3751351  3831074 12702379  1052567\n[41]  4625364   814180  6346105 25145561  2763885   625741  8001024  6724540\n[49]  1852994  5686986   563626\n\n\n\nMore generally: $ can be used to access named components of a list.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#alternative-ways-to-access-columns-confusing",
+    "href": "slides/05-r-basics.html#alternative-ways-to-access-columns-confusing",
+    "title": "R Basics",
+    "section": "Alternative ways to access columns (confusing)",
+    "text": "Alternative ways to access columns (confusing)\n\nmurders$population\nmurders[, \"population\"]\nmurders[, 4] \nmurders[[\"population\"]]\nmurders[[4]]\n\n\nIn general, using the name rather than the number as adding or removing columns will change index values, but not names.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#gotcha",
+    "href": "slides/05-r-basics.html#gotcha",
+    "title": "R Basics",
+    "section": "Gotcha",
+    "text": "Gotcha\nCompare\n\nmurders$population\nmurders[, \"population\"]\nmurders[[\"population\"]] # access the column content\nmurders['population']   # access the column as a data frame\n\n\nclass(murders['population'])\n\n[1] \"data.frame\"\n\nclass(murders[[\"population\"]])\n\n[1] \"numeric\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#with-clause",
+    "href": "slides/05-r-basics.html#with-clause",
+    "title": "R Basics",
+    "section": "with clause",
+    "text": "with clause\n\nwith let’s us use the column names as symbols to access the data.\n\n\nrate &lt;- with(murders, total/population)\n\n\nNote you can write entire code chunks by enclosing it in curly brackets:\n\n\nwith(murders, {\n   rate &lt;- total/population\n   rate &lt;- round(rate*10^5)\n   print(rate[1:5])\n})\n\n[1] 3 3 4 3 3",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#atomic-vectors",
+    "href": "slides/05-r-basics.html#atomic-vectors",
+    "title": "R Basics",
+    "section": "Atomic vectors",
+    "text": "Atomic vectors\n\nThe columns of data frames are one dimensional (atomic) vectors.\nAn atomic vector is a vector where every element must be the same type.\n\n\nlength(murders$population)\n\n[1] 51\n\ntypeof(murders$population)\n\n[1] \"double\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#create-vectors",
+    "href": "slides/05-r-basics.html#create-vectors",
+    "title": "R Basics",
+    "section": "Create vectors",
+    "text": "Create vectors\n\nUSe the concatenate function c by listing its members.\n\n\nx &lt;- c(\"s\", \"t\", \"a\", \"t\",  \" \", \"3\", \"0\", \"0\",\"0\")\n\n\nWe access the elements using []\n\n\nx[5]\n\n[1] \" \"\n\ntypeof(x[5])\n\n[1] \"character\"\n\nx[12]\n\n[1] NA\n\n\n\nNOTE R does not do array bounds checking…it silently pads with missing values",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#sequences",
+    "href": "slides/05-r-basics.html#sequences",
+    "title": "R Basics",
+    "section": "Sequences",
+    "text": "Sequences\n\nSequences are vectors with equally spaced elements.\n\n\nseq(1, 10)\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nseq(1, 9, by=3)  # why the output?\n\n[1] 1 4 7\n\n\n\nWhen you want a sequence that increases/decreases by 1 you can use the colon :\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n3.3:7.8\n\n[1] 3.3 4.3 5.3 6.3 7.3\n\n4:-1\n\n[1]  4  3  2  1  0 -1",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#sequences-1",
+    "href": "slides/05-r-basics.html#sequences-1",
+    "title": "R Basics",
+    "section": "Sequences",
+    "text": "Sequences\n\nTo quickly generate a sequence the same length as a vector x is seq_along(x) cf. 1:length(x)\n\n\nx &lt;- c(\"b\", \"s\", \"t\", \" \", \"2\", \"6\", \"0\")\nseq_along(x)\n\n[1] 1 2 3 4 5 6 7\n\n\n\nfor (i in seq_along(x)) {\n  cat(toupper(x[i])) #concatenate and print\n}\n\nBST 260\n\n\n\nBut if the length of x is zero, then using 1:length(x) does not work for the above loop\n\n\nw = x[x==\"W\"]\nprint(w) # w=charactor(0): a char vector of length 0. \n\ncharacter(0)\n\n1:length(w) # a sequence [1 0]\n\n[1] 1 0\n\nseq_along(w) # an integer vector of legnth 0\n\ninteger(0)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#data-types-and-coercion",
+    "href": "slides/05-r-basics.html#data-types-and-coercion",
+    "title": "R Basics",
+    "section": "Data types and coercion",
+    "text": "Data types and coercion\n\ndouble, integer, logical, complex, characters and numeric\nEach basic type has its own version of NA (a missing value)\ntesting for types: is.TYPE,\ncoercing : as.TYPE, will result in NA if it is not possible\n\n\nis.numeric(\"a\")\n\n[1] FALSE\n\nis.double(1L)\n\n[1] FALSE\n\nas.double(\"6\")\n\n[1] 6\n\nas.numeric(x) + 3\n\n[1] NA NA NA NA  5  9  3\n\ntypeof(1:10)\n\n[1] \"integer\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing",
+    "href": "slides/05-r-basics.html#coercing",
+    "title": "R Basics",
+    "section": "Coercing",
+    "text": "Coercing\n\nWhen you do something inconsistent with data types, R tries to figure out what you mean and change it accordingly.\nWe call this coercing.\nR does not return an error and in some cases does not return a warning either.\nThis can cause confusion and unnoticed errors.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#vector-types-and-coercion",
+    "href": "slides/05-r-basics.html#vector-types-and-coercion",
+    "title": "R Basics",
+    "section": "Vector types and coercion",
+    "text": "Vector types and coercion\n\ncoercion is automatically performed when it is possible\ncoercison hierarchy: logical → integer → double → character\nTRUE coerces to 1 and FALSE to 0\nbut any non-zero integer coerces to TRUE, only 0 coerces to FALSE\nas.logical converts 0 and only 0 to FALSE, everything else to TRUE\nthe character string “NA” is not a missing value\n\n\ntypeof(1:10 + 0.1)\n\n[1] \"double\"\n\ntypeof(TRUE+1) # 1 is double by default in R; integer must be `1L`\n\n[1] \"double\"\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(.5)\n\n[1] TRUE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#more-coercing-examples",
+    "href": "slides/05-r-basics.html#more-coercing-examples",
+    "title": "R Basics",
+    "section": "More coercing examples",
+    "text": "More coercing examples\n\ntypeof(1L)\n\n[1] \"integer\"\n\ntypeof(1)\n\n[1] \"double\"\n\ntypeof(1 + 1L)\n\n[1] \"double\"\n\nc(\"a\", 1, 2)\n\n[1] \"a\" \"1\" \"2\"\n\nTRUE + FALSE\n\n[1] 1\n\nfactor(\"a\") == \"a\" #`==` compare values\n\n[1] TRUE\n\nidentical(factor(\"a\"), \"a\") #check if they are the same objects\n\n[1] FALSE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#when-coercing-fails",
+    "href": "slides/05-r-basics.html#when-coercing-fails",
+    "title": "R Basics",
+    "section": "When coercing fails",
+    "text": "When coercing fails\n\nWhen R can’t figure out how to coerce, rather an error it returns an NA:\n\n\nas.numeric(\"a\")\n\n[1] NA\n\n\n\nNote that including NAs in arithmetical operations usually returns an NA.\n\n\n1 + 2 + NA\n\n[1] NA",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#explicitly-coercing",
+    "href": "slides/05-r-basics.html#explicitly-coercing",
+    "title": "R Basics",
+    "section": "Explicitly coercing",
+    "text": "Explicitly coercing\n\nMost coercion functions start with as.\n\n\nx &lt;- factor(c(\"a\",\"b\",\"b\",\"c\"))\nprint(x)\n\n[1] a b b c\nLevels: a b c\n\nas.character(x)\n\n[1] \"a\" \"b\" \"b\" \"c\"\n\nas.numeric(x)\n\n[1] 1 2 2 3",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#coercing-and-parsing-by-readr",
+    "href": "slides/05-r-basics.html#coercing-and-parsing-by-readr",
+    "title": "R Basics",
+    "section": "Coercing and parsing by readr",
+    "text": "Coercing and parsing by readr\n\nThe readr package provides some tools for trying to parse\n\n\nx &lt;- c(\"12323\", \"12,323\")\nas.numeric(x)\n\n[1] 12323    NA\n\nlibrary(readr)\nparse_guess(x)\n\n[1] 12323 12323",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#atomic-vector-and-array",
+    "href": "slides/05-r-basics.html#atomic-vector-and-array",
+    "title": "R Basics",
+    "section": "Atomic vector and array",
+    "text": "Atomic vector and array\n\nAtomic vector is 1-D, contains only one type of data, has no dimensions (1dim =NULL`).\n\n\nx_num  &lt;- c(1, 2, 3)\nx_chr  &lt;- c(\"a\", \"b\", \"c\")\nx_log  &lt;- c(TRUE, FALSE, TRUE)\n\ntypeof(x_num) # \"double\"\n\n[1] \"double\"\n\nis.atomic(x_num) # TRUE\n\n[1] TRUE\n\ndim(x_num) # NULL\n\nNULL\n\n\n\nArray: \\(\\ge 2 D\\), one atomic type, has dim attribute\n\n\nm &lt;- matrix(1:6, nrow = 2)\ndim(m)\n\n[1] 2 3\n\n# 2 3\n\nis.atomic(m) # TRUE   (important!)\n\n[1] TRUE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-and-characters",
+    "href": "slides/05-r-basics.html#factors-and-characters",
+    "title": "R Basics",
+    "section": "Factors and Characters",
+    "text": "Factors and Characters\n\nThe murder dataset has examples of both.\n\n\nclass(murders$state)\n\n[1] \"character\"\n\nclass(murders$region)\n\n[1] \"factor\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#what-is-a-factor",
+    "href": "slides/05-r-basics.html#what-is-a-factor",
+    "title": "R Basics",
+    "section": "What is a factor?",
+    "text": "What is a factor?\n\nA factor is a R representation for a categorical variable, that has a fixed set of non-numeric values\n\nex: Sex has Male and Female in the murders dataset\n\nusually not good for variables that have lots of levels (like state names in the murders dataset)\nInternally a factor is stored as the unique set of labels (called levels) and an integer vector with values in 1 to length(levels)\n\nthe ith entry corresponds to the kth element of the levels\n\nUsually order does not matter, but if it does you can have ordered factors.\n\n\nx &lt;- murders$region\nlevels(x) # default order is lexicographical\n\n[1] \"Northeast\"     \"South\"         \"North Central\" \"West\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#setting-levels",
+    "href": "slides/05-r-basics.html#setting-levels",
+    "title": "R Basics",
+    "section": "Setting Levels",
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Male   Male   Female Male   Female Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Male   Male   Female Male   Female Male   Male   Male  \nLevels: Female Male",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#the-previous-example-continued",
+    "href": "slides/05-r-basics.html#the-previous-example-continued",
+    "title": "R Basics",
+    "section": "The previous example continued",
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Male   Male   Male   Female Female Female Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Male   Male   Male   Female Female Female Male   Male  \nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#categories-based-on-strata",
+    "href": "slides/05-r-basics.html#categories-based-on-strata",
+    "title": "R Basics",
+    "section": "Categories based on strata",
+    "text": "Categories based on strata\n\nThe function cut bins a numeric vector into intervals and returns a factor\n\n\nage &lt;- c(5, 93, 18, 102, 14, 22, 45, 65, 67, 25, 30, 16, 21)\ncut(age, c(0, 11, 27, 43, 59, 78, 96, Inf)) # number of categories =length(breaks)-1=7\n\n [1] (0,11]   (78,96]  (11,27]  (96,Inf] (11,27]  (11,27]  (43,59]  (59,78] \n [9] (59,78]  (11,27]  (27,43]  (11,27]  (11,27] \nLevels: (0,11] (11,27] (27,43] (43,59] (59,78] (78,96] (96,Inf]\n\n# cut(age,\n#     c(0,11,27,43,59,78,96,Inf),\n#     labels = c(\"Child\",\"Young\",\"Adult\",\"Mid\",\"Senior\",\"Old\",\"Very Old\"))\n\n\ncut(age, breaks, right = FALSE) # -&gt;[a,b)\ncut(age, breaks, include.lowest = TRUE) # include the lowest age 0",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#assigning-labels",
+    "href": "slides/05-r-basics.html#assigning-labels",
+    "title": "R Basics",
+    "section": "Assigning labels",
+    "text": "Assigning labels\n\nWe can assign more meaningful level names:\n\n\nage &lt;- c(5, 93, 18, 102, 14, 22, 45, 65, 67, 25, 30, 16, 21)\ncut(age, c(0, 11, 27, 43, 59, 78, 96, Inf), \n    labels = c(\"Alpha\", \"Zoomer\", \"Millennial\", \"X\", \"Boomer\", \"Silent\", \"Greatest\"))\n\n [1] Alpha      Silent     Zoomer     Greatest   Zoomer     Zoomer    \n [7] X          Boomer     Boomer     Zoomer     Millennial Zoomer    \n[13] Zoomer    \nLevels: Alpha Zoomer Millennial X Boomer Silent Greatest",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#changing-levels",
+    "href": "slides/05-r-basics.html#changing-levels",
+    "title": "R Basics",
+    "section": "Changing levels",
+    "text": "Changing levels\n\nThis is often needed for ordinal data because R defaults to alphabetical order\n\n\ngen &lt;- factor(c(\"Alpha\", \"Zoomer\", \"Millennial\"))\nlevels(gen)\n\n[1] \"Alpha\"      \"Millennial\" \"Zoomer\"    \n\n\n\nYou can change this with the levels argument:\n\n\ngen &lt;- factor(gen, levels = c(\"Alpha\", \"Zoomer\", \"Millennial\", \"X\", \"Boomer\", \"Silent\", \"Greatest\"))\nlevels(gen)\n\n[1] \"Alpha\"      \"Zoomer\"     \"Millennial\" \"X\"          \"Boomer\"    \n[6] \"Silent\"     \"Greatest\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#reference-level",
+    "href": "slides/05-r-basics.html#reference-level",
+    "title": "R Basics",
+    "section": "Reference level",
+    "text": "Reference level\n\nA common reason we want to change levels is to assure R uses the correct reference strata.\nThis is important for linear models (lm) because the first level is assumed to be the reference.\n\n\nx &lt;- factor(c(\"no drug\", \"drug 1\", \"drug 2\"))\nlevels(x)\n\n[1] \"drug 1\"  \"drug 2\"  \"no drug\"\n\nx &lt;- relevel(x, ref = \"no drug\") \n# factor(c(\"no drug\", \"drug 1\", \"drug 2\"), levels = c(\"no drug\", \"drug 1\", \"drug 2\"))\nlevels(x)          \n\n[1] \"no drug\" \"drug 1\"  \"drug 2\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#reorder-a-factor-categorical-variable",
+    "href": "slides/05-r-basics.html#reorder-a-factor-categorical-variable",
+    "title": "R Basics",
+    "section": "Reorder a factor (categorical) variable",
+    "text": "Reorder a factor (categorical) variable\n\nThe codeThe Graph\n\n\n\nWe often want to order strata (factor) based on a summary statistic.\n\n\nx &lt;- reorder(murders$region, murders$population, sum) #reorder(x,by, FUN)\n#order the regions by their total populations by ascedning (default)\n# reorder(murders$region, murders$population, sum, decreasing = TRUE)\nlibrary(ggplot2)\nggplot(murders, aes(x = reorder(region, population, sum),\n                    y = population)) +\n  geom_bar(stat = \"summary\", fun = \"sum\") #summarize y for each x using \"sum\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-integers-use-less-memory",
+    "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
+    "title": "R Basics",
+    "section": "Factors (integers) use less memory",
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3333027  0.3334910  0.3332063 \n\n# table counts the frequency of each unique value",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#factors-can-be-confusing",
+    "href": "slides/05-r-basics.html#factors-can-be-confusing",
+    "title": "R Basics",
+    "section": "Factors can be confusing",
+    "text": "Factors can be confusing\n\nx &lt;- factor(c(\"3\",\"2\",\"1\"), levels = c(\"3\",\"2\",\"1\"))\nas.numeric(x)\n\n[1] 1 2 3\n\nx[1]\n\n[1] 3\nLevels: 3 2 1\n\nlevels(x[1])\n\n[1] \"3\" \"2\" \"1\"\n\ntable(x[1])\n\n\n3 2 1 \n1 0 0",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#drop-extra-levels-with-droplevels",
+    "href": "slides/05-r-basics.html#drop-extra-levels-with-droplevels",
+    "title": "R Basics",
+    "section": "Drop extra levels with droplevels",
+    "text": "Drop extra levels with droplevels\n\nz &lt;- x[1]\nz &lt;- droplevels(z)\nz\n\n[1] 3\nLevels: 3\n\n\n\nBut note what happens if we change to another level:\n\n\nz[1] &lt;- \"1\" # Factors only allow values that exist in levels(z)\nz\n\n[1] &lt;NA&gt;\nLevels: 3",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-and-nulls",
+    "href": "slides/05-r-basics.html#nas-and-nulls",
+    "title": "R Basics",
+    "section": "NAs and NULLs",
+    "text": "NAs and NULLs\n\nNA stands for not available and represents missing data.\nIn R there is a different kind of NA for each of the basic vector data types.\nNULL, represents a zero length list and is often returned by functions or expressions that do not have a specified return value",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#checking-nas-by-is.na",
+    "href": "slides/05-r-basics.html#checking-nas-by-is.na",
+    "title": "R Basics",
+    "section": "Checking NAs by is.na",
+    "text": "Checking NAs by is.na\n\nlibrary(dslabs)\nna_example[1:20]\n\n [1]  2  1  3  2  1  3  1  4  3  2  2 NA  2  2  1  4 NA  1  1  2\n\n\n\nThe is.na function is key for dealing with NAs\n\n\nis.na(na_example[1])\n\n[1] FALSE\n\nis.na(na_example[17])\n\n[1] TRUE\n\nis.na(NA)\n\n[1] TRUE\n\nis.na(\"NA\")\n\n[1] FALSE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nas-and-logical-operators",
+    "href": "slides/05-r-basics.html#nas-and-logical-operators",
+    "title": "R Basics",
+    "section": "NAs and logical operators",
+    "text": "NAs and logical operators\n\nlogical operators like and (&) and or (|) coerce their arguments when needed and possible\nthe logical operators do “lazy” evaluation, from left to right\n\n\nTRUE & NA\n\n[1] NA\n\nTRUE & 0\n\n[1] FALSE\n\nTRUE | NA\n\n[1] TRUE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#nans-and-inf",
+    "href": "slides/05-r-basics.html#nans-and-inf",
+    "title": "R Basics",
+    "section": "NaNs and Inf",
+    "text": "NaNs and Inf\n\nNaN: Not a Number\nNaN is a double, coercing it to integer yields an NA\nInf and -Inf represent values of infinity and minus infinity\n\n\n0/0\n\n[1] NaN\n\nclass(0/0)\n\n[1] \"numeric\"\n\nsqrt(-1)\n\n[1] NaN\n\nlog(-1)\n\n[1] NaN\n\n1/Inf\n\n[1] 0\n\nInf-Inf\n\n[1] NaN",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#lists",
+    "href": "slides/05-r-basics.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\n\nData frames are a type of list.\nLists permit components of different types and, unlike data frames, different lengths:\n\n\nx &lt;- list(name = \"John\", id = 112, grades = c(95, 87, 92))\n\n\nThe JSON format is best represented as list in R.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#access-compoenents-of-a-list",
+    "href": "slides/05-r-basics.html#access-compoenents-of-a-list",
+    "title": "R Basics",
+    "section": "Access compoenents of a list",
+    "text": "Access compoenents of a list\n\nYou can access components in different ways:\n\n\nx$name\n\n[1] \"John\"\n\nx[[1]]\n\n[1] \"John\"\n\nx[[\"name\"]]\n\n[1] \"John\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#subsetsublist-and-extraction",
+    "href": "slides/05-r-basics.html#subsetsublist-and-extraction",
+    "title": "R Basics",
+    "section": "subset(sublist)[] and extraction [[]]",
+    "text": "subset(sublist)[] and extraction [[]]\n\nx$name == x[[1]]\n\n[1] TRUE\n\nclass(x[[1]])\n\n[1] \"character\"\n\nx[1]\n\n$name\n[1] \"John\"\n\nclass(x[1])\n\n[1] \"list\"\n\nx[[1]] == x[1]\n\nname \nTRUE \n\nidentical(x[1],x[[1]])\n\n[1] FALSE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#matrices-faster-computation",
+    "href": "slides/05-r-basics.html#matrices-faster-computation",
+    "title": "R Basics",
+    "section": "Matrices: Faster computation",
+    "text": "Matrices: Faster computation\n\nsimilar to data frames except all entries need to be of the same type.\n\n\nmat &lt;- matrix(1:12, 4, 3)\nmat\n\n     [,1] [,2] [,3]\n[1,]    1    5    9\n[2,]    2    6   10\n[3,]    3    7   11\n[4,]    4    8   12\n\nmat[2, 3]  # 10\n\n[1] 10\n\nmat[2,]\n\n[1]  2  6 10\n\nmat[,3]\n\n[1]  9 10 11 12\n\nmat[,2:3]\n\n     [,1] [,2]\n[1,]    5    9\n[2,]    6   10\n[3,]    7   11\n[4,]    8   12\n\nmat[1:2,2:3]\n\n     [,1] [,2]\n[1,]    5    9\n[2,]    6   10\n\nas.data.frame(mat)\n\n  V1 V2 V3\n1  1  5  9\n2  2  6 10\n3  3  7 11\n4  4  8 12",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#define-a-customized-functions",
+    "href": "slides/05-r-basics.html#define-a-customized-functions",
+    "title": "R Basics",
+    "section": "Define a customized functions",
+    "text": "Define a customized functions\n\nf &lt;- function(x, y, z = 0){\n  ### do calculations with x, y, z to compute object\n  return(object)\n}\n\n\npositional arguments, keyword arguments\narguments are matched by either exact name (which takes precedence) or position\nreturned value: the value specified in a call to return or the value of the last statement evaluated",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#functions",
+    "href": "slides/05-r-basics.html#functions",
+    "title": "R Basics",
+    "section": "Functions",
+    "text": "Functions\n\nany symbol found in the body of the function that does not match an argument has to be matched to a value by a process called scoping\n\n\nx &lt;-10\ns &lt;- function(n){\n  print(x)\n   return(sum(1:n))\n}\ns(2)\n\n[1] 10\n\n\n[1] 3",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#r-matches-named-arguments-first-positional-arguments-last",
+    "href": "slides/05-r-basics.html#r-matches-named-arguments-first-positional-arguments-last",
+    "title": "R Basics",
+    "section": "R matches named arguments first, positional arguments last",
+    "text": "R matches named arguments first, positional arguments last\n\nf &lt;- function(a, b, c) {\n  c(a, b, c)\n}\n\nf(1, c = 3, 2)\n\n[1] 1 2 3\n\n\n\nmean(na.rm = TRUE, c(1, NA, 3))\n\n[1] 2\n\n\n\nf &lt;- function(a, b, c) a + b + c\nf(1, 2, c = 3, b = 4)\n# Error in f(1, 2, c = 3, b = 4) : unused argument (2)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#flow-control-and-operators",
+    "href": "slides/05-r-basics.html#flow-control-and-operators",
+    "title": "R Basics",
+    "section": "Flow-control and operators",
+    "text": "Flow-control and operators\n\nif/else; while; repeat; for; break; next\nyou can read the manual pages by calling help or using ? (sometimes you must quote the argument)\n\n\n help(\"for\")\n ?\"break\"\n ?\"&\"\n ?\"/\"",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#if-else",
+    "href": "slides/05-r-basics.html#if-else",
+    "title": "R Basics",
+    "section": "if-else",
+    "text": "if-else\n\na &lt;- 0\n\nif (a != 0) {\n  print(1/a)\n} else{\n  print(\"No reciprocal for 0.\")\n}\n\n[1] \"No reciprocal for 0.\"\n\na &lt;- 0\nifelse(a &gt; 0, 1/a, NA)\n\n[1] NA\n\n#&gt; [1] NA",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#for-loop",
+    "href": "slides/05-r-basics.html#for-loop",
+    "title": "R Basics",
+    "section": "For loop",
+    "text": "For loop\n\nfor (i in 1:3) {\n  print(i)\n}\n\n[1] 1\n[1] 2\n[1] 3\n\ncompute_s_n &lt;- function(n) { \n  sum(1:n)\n}\nm &lt;- 5\ns_n &lt;- vector(length = m) # create an empty vector\nfor (n in 1:m) {\n  s_n[n] &lt;- compute_s_n(n)\n}\nn &lt;- 1:m\nplot(n, s_n)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators-and",
+    "href": "slides/05-r-basics.html#logical-operators-and",
+    "title": "R Basics",
+    "section": "Logical Operators & and |",
+    "text": "Logical Operators & and |\n\n& and | perform element-wise comparison; use for vector oprations, filtering, subsetting\n\n\nx &lt;- c(TRUE, FALSE, TRUE)\ny &lt;- c(TRUE, TRUE, FALSE)\n\nx & y\n\n[1]  TRUE FALSE FALSE\n\nx | y\n\n[1] TRUE TRUE TRUE\n\n\n\nTypical use: Subsetting\n\n\nx[x &gt; 0 & x &lt; 10]",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#logical-operators-and-1",
+    "href": "slides/05-r-basics.html#logical-operators-and-1",
+    "title": "R Basics",
+    "section": "Logical operators && and ||",
+    "text": "Logical operators && and ||\n\n&& and || lazy eval (short-circuit), move left to right and return when the result is determined. Use for if, while, and guards\n\n\nx &lt;- c(TRUE, FALSE)\ny &lt;- c(FALSE, TRUE)\n\nx && y  # wrong. Each side must return a single TRUE/FALSE\n\nx || y #wrong\n\n\nif (x &gt; 0 & x &lt; 10) { ... } # wrong\nif (x &gt; 0 && x &lt; 10) { ... } # wrong if x is a vector of length &gt;1",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#arithmetic-operators",
+    "href": "slides/05-r-basics.html#arithmetic-operators",
+    "title": "R Basics",
+    "section": "Arithmetic Operators",
+    "text": "Arithmetic Operators\n\noperators like ^ or +\n?Syntax will get you the manual page\nwhen in doubt always use parentheses\n\n\n2^1+1\n\n[1] 3\n\n2^(1+1)\n\n[1] 4\n\nTRUE || TRUE && FALSE   # is the same as\n\n[1] TRUE\n\nTRUE || (TRUE && FALSE) # and different from\n\n[1] TRUE\n\n(TRUE || TRUE) && FALSE\n\n[1] FALSE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-as-an-argument",
+    "href": "slides/05-r-basics.html#function-as-an-argument",
+    "title": "R Basics",
+    "section": "Function as an argument",
+    "text": "Function as an argument\n\nin R functions are first class objects - this means they can be passed as arguments, assigned to symbols, stored in other data structures\nin particular they can be passed as arguments to a function and returned as values\nin some languages (e.g. C or Java) functions are not first class objects and they cannot be passed as arguments\nPython uses a fairly similar strategy as in R",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#scope-1",
+    "href": "slides/05-r-basics.html#scope-1",
+    "title": "R Basics",
+    "section": "Scope",
+    "text": "Scope\n\nf &lt;- function(x){\n  cat(\"y is\", y,\"\\n\")\n  y &lt;- x\n  cat(\"y is\", y,\"\\n\")\n  return(y)\n}\ny &lt;- 2\nf(3)\n\ny is 2 \ny is 3 \n\n\n[1] 3",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
+    "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
+    "title": "R Basics",
+    "section": "Exampe: function as a returned value",
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x000001c17740e860&gt;",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#function-call-as-an-argument",
+    "href": "slides/05-r-basics.html#function-call-as-an-argument",
+    "title": "R Basics",
+    "section": "Function call as an argument",
+    "text": "Function call as an argument\n\n##possible values for mu\ny = seq(3,5,by = 0.1)\n\nplot(y, myLL(y), type=\"l\", xlab=\"mu\", ylab=\"log likelihood\") \n# \"l\"-line; \"p\"-points(default), \"b\"-both; \"h\"-vertical lines\nabline(v = y[which.max(myLL(y))], col = \"red\")\n\n\n\nMLE occurs at mu=3.7",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#order-of-binding",
+    "href": "slides/05-r-basics.html#order-of-binding",
+    "title": "R Basics",
+    "section": "Order of binding",
+    "text": "Order of binding\n\nsearch()\nfilter     #stats::filter()-&gt;time-series filtering\nlibrary(dplyr)\nsearch()\nfilter # dplyr::filter(): -&gt;row filtering\n\n\nby calling library(dplyr) the package dplyr has been put near the top of the search list. You can call search() before and after the call to library to check this.\nusers could inadvertently alter computations - and we will want to protect against that",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#namespaces",
+    "href": "slides/05-r-basics.html#namespaces",
+    "title": "R Basics",
+    "section": "Namespaces",
+    "text": "Namespaces\n\nTo avoid binding conflict, using &lt;pkgname&gt;::&lt;functionname&gt;:\n\n\nstats::filter\ndplyr::filter",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#examples",
+    "href": "slides/05-r-basics.html#examples",
+    "title": "R Basics",
+    "section": "Examples",
+    "text": "Examples\n\nRestart your R Console and study this example:\n\n\nlibrary(dslabs) #attach dsplabs to the search path\nexists(\"murders\")  # `murders` exists in `dslabs`\n\n[1] TRUE\n\nmurders &lt;- murders # create a copy `murders` in .GlobalEnv\nmurders2 &lt;- murders # 2nd copy\nrm(murders) # removes `murders` from .GlobalEnv\nexists(\"murders\") #R finds it in `dslabs`\n\n[1] TRUE\n\ndetach(\"package:dslabs\") #remove from the search path\nexists(\"murders\") # does not exist on the search path\n\n[1] FALSE\n\nexists(\"murders2\")\n\n[1] TRUE",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#object-oriented-programming",
+    "href": "slides/05-r-basics.html#object-oriented-programming",
+    "title": "R Basics",
+    "section": "Object Oriented Programming",
+    "text": "Object Oriented Programming\n\nR uses object oriented programming (OOP).\nBase R uses two approaches referred to as S3 and S4\nS3, the original approach, is more common, but has some limitations\nThe S4 approach is more similar to the conventions used by the Lisp family of languages.\nIn S4 there are classes that have attributes describing data structures and methods that are functions",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#object-oriented-programming-1",
+    "href": "slides/05-r-basics.html#object-oriented-programming-1",
+    "title": "R Basics",
+    "section": "Object Oriented Programming",
+    "text": "Object Oriented Programming\n\nTime seriesNumeric\n\n\n\nclass(co2) # ts object\n\n[1] \"ts\"\n\nplot(co2) # R calls plot.ts(co2)-&gt;x-axis: year\n\n\n\n\n\n\n\nplot(as.numeric(co2)) # strip away the time-index. R calls plot.default(). x-axix: index (1,2,3,...)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#plots",
+    "href": "slides/05-r-basics.html#plots",
+    "title": "R Basics",
+    "section": "Plots",
+    "text": "Plots\n\nSoon we will learn how to use the ggplot2 package to make plots.\nR base does have functions:\n\nplot - mainly for making scatterplots.\nlines - add lines/curves to an existing plot.\nhist - to make a histogram.\nboxplot - makes boxplots.\nimage - uses color to represent entries in a matrix.",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#plots-1",
+    "href": "slides/05-r-basics.html#plots-1",
+    "title": "R Basics",
+    "section": "Plots",
+    "text": "Plots\n\nin general, we recommend using ggplot2, R base plots are often better for quick exploratory plots.\nFor example, to make a histogram of values in x simply type:\n\n\nhist(x)\n\n\nTo make a scatter plot of y versus x and then add connected line:\n\n\nplot(x,y) # open a new figure (canvas)\nlines(x,y) #adds connected line to an existing plot. It does not create a new figure(canvas)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#scatterplot",
+    "href": "slides/05-r-basics.html#scatterplot",
+    "title": "R Basics",
+    "section": "scatterplot",
+    "text": "scatterplot\n\nlibrary(dslabs)\nwith(murders, plot(population, total))",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#histogram",
+    "href": "slides/05-r-basics.html#histogram",
+    "title": "R Basics",
+    "section": "histogram",
+    "text": "histogram\n\nx &lt;- with(murders, total / population * 100000)\nhist(x)",
+    "crumbs": [
+      "R Basics"
+    ]
+  },
+  {
+    "objectID": "slides/05-r-basics.html#boxplot",
+    "href": "slides/05-r-basics.html#boxplot",
+    "title": "R Basics",
+    "section": "boxplot",
+    "text": "boxplot\n\nmurders$rate &lt;- with(murders, total / population * 100000)\nboxplot(rate~region, data = murders) #y:rate x:region\n\n\n\n\nHome",
+    "crumbs": [
+      "R Basics"
+    ]
+  }
+]
