@@ -4966,7 +4966,7 @@
     "href": "psets/hw1.html",
     "title": "Problem set 1",
     "section": "",
-    "text": "qmd source code of this homework\n\nMake sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
+    "text": "Download source (.qmd)\n\nMake sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
     "crumbs": [
       "HW-1"
     ]
@@ -5043,7 +5043,7 @@
     "href": "psets/hw1.html#instructionssetup",
     "title": "Problem set 1",
     "section": "",
-    "text": "qmd source code of this homework\n\nMake sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
+    "text": "Download source (.qmd)\n\nMake sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
     "crumbs": [
       "HW-1"
     ]
