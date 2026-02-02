@@ -10,7 +10,7 @@ format:
 
 ## Instructions/Setup
 
-<a href="analysis.qmd">Download source (.qmd)</a>
+<a href="hw1.qmd">Download source (.qmd)</a>
 
 - Make sure you have a GitHub account. In your GitHub account, create a GitHub repository named `STAT3000`.
 - Create an RStudio Project, e.g.,  `stat3000`, connected to the GitHub repo (clone or connect existing).
