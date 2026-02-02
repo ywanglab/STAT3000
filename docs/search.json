@@ -4653,14 +4653,14 @@
     "href": "slides/16-joining-tables.html#inner-join",
     "title": "Joining Tables",
     "section": "Inner join",
-    "text": "Inner join\n\nIf we want to keep only the rows that have information in both tables, we use inner_join.\nYou can think of this as an intersection:\n\n\ninner_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4 California   37253956 55"
+    "text": "Inner join\n\nIf we want to keep only the rows that have information in both tables, we use inner_join.\nYou can think of this as an intersection:\n\n\ninner_join(tab_1, tab_2, by = \"state\") \n\n       state population ev\n1    Alabama    4779736  9\n2     Alaska     710231  3\n3    Arizona    6392017 11\n4 California   37253956 55\n\n\n\nNo NA anynore"
   },
   {
     "objectID": "slides/16-joining-tables.html#full-join",
     "href": "slides/16-joining-tables.html#full-join",
     "title": "Joining Tables",
     "section": "Full join",
-    "text": "Full join\n\nIf we want to keep all the rows and fill the missing parts with NAs, we can use full_join.\nYou can think of this as a union:\n\n\nfull_join(tab_1, tab_2, by = \"state\") \n\n        state population ev\n1     Alabama    4779736  9\n2      Alaska     710231  3\n3     Arizona    6392017 11\n4    Arkansas    2915918 NA\n5  California   37253956 55\n6    Colorado    5029196 NA\n7 Connecticut         NA  7\n8    Delaware         NA  3"
+    "text": "Full join\n\nIf we want to keep all the rows of both tables and fill the missing parts with NAs, we can use full_join.\nYou can think of this as a union:\n\n\nfull_join(tab_1, tab_2, by = \"state\") \n\n        state population ev\n1     Alabama    4779736  9\n2      Alaska     710231  3\n3     Arizona    6392017 11\n4    Arkansas    2915918 NA\n5  California   37253956 55\n6    Colorado    5029196 NA\n7 Connecticut         NA  7\n8    Delaware         NA  3"
   },
   {
     "objectID": "slides/16-joining-tables.html#semi-join",
@@ -4681,21 +4681,21 @@
     "href": "slides/16-joining-tables.html#binding",
     "title": "Joining Tables",
     "section": "Binding",
-    "text": "Binding\n\nAlthough we have yet to use it in this book, another common way in which datasets are combined is by binding them.\nUnlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets.\nIf the datasets don’t match by the appropriate dimensions, one obtains an error."
+    "text": "Binding\n\nUnlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets either horizontally or vertically.\nIf the datasets don’t match by the appropriate dimensions, one obtains an error."
   },
   {
     "objectID": "slides/16-joining-tables.html#binding-columns",
     "href": "slides/16-joining-tables.html#binding-columns",
     "title": "Joining Tables",
     "section": "Binding columns",
-    "text": "Binding columns\n\nThe dplyr function bind_cols binds two objects by making them columns in a tibble.\n\n\nbind_cols(a = 1:3, b = 4:6) \n\n# A tibble: 3 × 2\n      a     b\n  &lt;int&gt; &lt;int&gt;\n1     1     4\n2     2     5\n3     3     6\n\n\n\nThis function requires that we assign names to the columns. Here we chose a and b.\nNote that there is an R-base function cbind with the exact same functionality."
+    "text": "Binding columns\n\nThe dplyr function bind_cols binds two objects by making them columns in a tibble.\n\n\nbind_cols(a = 1:3, b = 4:6) \n\n# A tibble: 3 × 2\n      a     b\n  &lt;int&gt; &lt;int&gt;\n1     1     4\n2     2     5\n3     3     6\n\n\n\nThis function requires that we assign names to the columns. Here we chose a and b.\nthere is an R-base function cbind with similar functionality."
   },
   {
     "objectID": "slides/16-joining-tables.html#binding-columns-1",
     "href": "slides/16-joining-tables.html#binding-columns-1",
     "title": "Joining Tables",
     "section": "Binding columns",
-    "text": "Binding columns\n\nAn important difference is that cbind can create different types of objects, while bind_cols always produces a data frame.\nbind_cols can also bind two different data frames."
+    "text": "Binding columns\n\nFor example, here we break up the tab data frame and then bind them back together:\n\n\ntab_1 &lt;- tab[, 1:3] \ntab_2 &lt;- tab[, 4:6] \ntab_3 &lt;- tab[, 7:8] \nnew_tab &lt;- bind_cols(tab_1, tab_2, tab_3) \nhead(new_tab) \n\n       state abb region population total ev  clinton    trump\n1    Alabama  AL  South    4779736   135  9 34.35795 62.08309\n2     Alaska  AK   West     710231    19  3 36.55087 51.28151\n3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314\n4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191\n5 California  CA   West   37253956  1257 55 61.72640 31.61711\n6   Colorado  CO   West    5029196    65  9 48.15651 43.25098"
   },
   {
     "objectID": "slides/16-joining-tables.html#binding-columns-2",
@@ -4709,21 +4709,21 @@
     "href": "slides/16-joining-tables.html#binding-by-rows",
     "title": "Joining Tables",
     "section": "Binding by rows",
-    "text": "Binding by rows\n\nThe bind_rows function is similar to bind_cols, but binds rows instead of columns:\n\n\ntab_1 &lt;- tab[1:2,] \ntab_2 &lt;- tab[3:4,] \nbind_rows(tab_1, tab_2) \n\n     state abb region population total ev  clinton    trump  johnson     stein\n1  Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682\n2   Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176\n3  Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188 1.3185997\n4 Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769 0.8378174\n   mcmullin\n1 0.0000000\n2 0.0000000\n3 0.6699155\n4 1.1653206\n\n\n\nThis is based on an R-base function rbind."
+    "text": "Binding by rows\n\nThe bind_rows function is similar to bind_cols, but binds rows instead of columns:\n\n\ntab_1 &lt;- tab[1:2,] \ntab_2 &lt;- tab[3:4,] \nbind_rows(tab_1, tab_2) \n\n     state abb region population total ev  clinton    trump  johnson     stein\n1  Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682\n2   Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176\n3  Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188 1.3185997\n4 Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769 0.8378174\n   mcmullin\n1 0.0000000\n2 0.0000000\n3 0.6699155\n4 1.1653206\n\n\n\nsimilar R-base function rbind."
   },
   {
     "objectID": "slides/16-joining-tables.html#set-operators",
     "href": "slides/16-joining-tables.html#set-operators",
     "title": "Joining Tables",
     "section": "Set operators",
-    "text": "Set operators\n\nAnother set of commands useful for combining datasets are the set operators.\nWhen applied to vectors, these behave as their names suggest.\nExamples are intersect, union, setdiff, and setequal.\nHowever, if the tidyverse, or more specifically dplyr, is loaded, these functions can be used on data frames as opposed to just on vectors."
+    "text": "Set operators\n\nAnother set of commands useful for combining datasets are the set operators.\nWhen applied to vectors, these behave as their names suggest.\nExamples are intersect, union, setdiff, and setequal.\nHowever, if the tidyverse, or more specifically dplyr, is loaded, these functions can be used on data frames."
   },
   {
     "objectID": "slides/16-joining-tables.html#intersect",
     "href": "slides/16-joining-tables.html#intersect",
     "title": "Joining Tables",
     "section": "Intersect",
-    "text": "Intersect\n\nYou can take intersections of vectors of any type, such as numeric:\n\n\nintersect(1:10, 6:15) \n\n[1]  6  7  8  9 10\n\n\n\nor characters:\n\n\nintersect(c(\"a\",\"b\",\"c\"), c(\"b\",\"c\",\"d\")) \n\n[1] \"b\" \"c\"\n\n\n\ndplyr includes an intersect function that can be applied to tables with the same column names.\nThis function returns the rows in common between two tables."
+    "text": "Intersect\n\non vectors of any type, such as numeric:\n\n\nintersect(1:10, 6:15) \n\n[1]  6  7  8  9 10\n\n\n\nor characters:\n\n\nintersect(c(\"a\",\"b\",\"c\"), c(\"b\",\"c\",\"d\")) \n\n[1] \"b\" \"c\""
   },
   {
     "objectID": "slides/16-joining-tables.html#intersect-1",
@@ -4779,14 +4779,14 @@
     "href": "slides/16-joining-tables.html#joining-with-data.table",
     "title": "Joining Tables",
     "section": "Joining with data.table",
-    "text": "Joining with data.table\n\nThe data.table package includes merge, a very efficient function for joining tables.\nIn tidyverse we joined two tables with left_join:\n\n\ntab &lt;- left_join(murders, results_us_election_2016, by = \"state\")"
+    "text": "Joining with data.table\n\nIn tidyverse we joined two tables with left_join:\n\n\ntab &lt;- left_join(murders, results_us_election_2016, by = \"state\")  \n\n\nIn data.table the merge functions works similarly:\n\n\nlibrary(data.table) \ntab &lt;- merge(murders, results_us_election_2016, by = \"state\", all.x = TRUE) \n\n\nInstead of defining different functions for the different type of joins, merge uses the the logical arguments all (full join), all.x (left join), and all.y (right join)."
   },
   {
     "objectID": "slides/16-joining-tables.html#joining-with-data.table-1",
     "href": "slides/16-joining-tables.html#joining-with-data.table-1",
     "title": "Joining Tables",
     "section": "Joining with data.table",
-    "text": "Joining with data.table\n\nIn data.table the merge functions works similarly:\n\n\nlibrary(data.table) \ntab &lt;- merge(murders, results_us_election_2016, by = \"state\", all.x = TRUE)"
+    "text": "Joining with data.table\n\nInstead of defining different functions for the different type of joins, merge uses the the logical arguments all (full join), all.x (left join), and all.y (right join)."
   },
   {
     "objectID": "slides/16-joining-tables.html#joining-with-data.table-2",
@@ -4966,7 +4966,7 @@
     "href": "psets/hw1.html",
     "title": "Problem set 1",
     "section": "",
-    "text": "Make sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
+    "text": "qmd source code of this homework\n\nMake sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
     "crumbs": [
       "HW-1"
     ]
@@ -5043,9 +5043,807 @@
     "href": "psets/hw1.html#instructionssetup",
     "title": "Problem set 1",
     "section": "",
-    "text": "Make sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
+    "text": "qmd source code of this homework\n\nMake sure you have a GitHub account. In your GitHub account, create a GitHub repository named STAT3000.\nCreate an RStudio Project, e.g., stat3000, connected to the GitHub repo (clone or connect existing).\nAnswer each item inside this Quarto file. Show commands/code where requested.",
     "crumbs": [
       "HW-1"
     ]
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#left-join-by-pipe",
+    "href": "slides/16-joining-tables.html#left-join-by-pipe",
+    "title": "Joining Tables",
+    "section": "Left join by pipe",
+    "text": "Left join by pipe\n\nnotice that this function, as well as all the other joins, can receive the first arguments through the pipe:\n\n\ntab_1 |&gt; left_join(tab_2, by = \"state\") \ntab_1"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#right-join-example",
+    "href": "slides/16-joining-tables.html#right-join-example",
+    "title": "Joining Tables",
+    "section": "Right join example",
+    "text": "Right join example\n\nIf instead of a table with the same rows as first table, we want one with the same rows as second table, we can use right_join:\n\n\ntab_1 |&gt; right_join(tab_2, by = \"state\") \n\n        state population ev\n1     Alabama    4779736  9\n2      Alaska     710231  3\n3     Arizona    6392017 11\n4  California   37253956 55\n5 Connecticut         NA  7\n6    Delaware         NA  3\n\n\n\nNow the NAs are in the column coming from tab_1."
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#cbind-and-bind_cols",
+    "href": "slides/16-joining-tables.html#cbind-and-bind_cols",
+    "title": "Joining Tables",
+    "section": "cbind and bind_cols",
+    "text": "cbind and bind_cols\n\nAn important difference is that cbind can create matrix/df, while bind_cols always produces a data frame.\n\n\nx &lt;- 1:3\ny &lt;- c(10, 20, 30)\ncbind(x, y) #output a matrix\n\n     x  y\n[1,] 1 10\n[2,] 2 20\n[3,] 3 30\n\n\n\nA &lt;- matrix(1:6, nrow = 3) #Note the cols of A\nz &lt;- c(100, 200, 300)\ncbind(A, z) # add a col to A\n\n           z\n[1,] 1 4 100\n[2,] 2 5 200\n[3,] 3 6 300"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#binding-two-dfs",
+    "href": "slides/16-joining-tables.html#binding-two-dfs",
+    "title": "Joining Tables",
+    "section": "Binding two dfs",
+    "text": "Binding two dfs\n\nFor example, here we break up the tab data frame and then bind them back together:\n\n\ntab_1 &lt;- tab[, 1:3] \ntab_2 &lt;- tab[, 4:6] \ntab_3 &lt;- tab[, 7:8] \nnew_tab &lt;- bind_cols(tab_1, tab_2, tab_3) \nhead(new_tab) \n\n       state abb region population total ev  clinton    trump\n1    Alabama  AL  South    4779736   135  9 34.35795 62.08309\n2     Alaska  AK   West     710231    19  3 36.55087 51.28151\n3    Arizona  AZ   West    6392017   232 11 44.58042 48.08314\n4   Arkansas  AR  South    2915918    93  6 33.65190 60.57191\n5 California  CA   West   37253956  1257 55 61.72640 31.61711\n6   Colorado  CO   West    5029196    65  9 48.15651 43.25098"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#dyplyr-intersect",
+    "href": "slides/16-joining-tables.html#dyplyr-intersect",
+    "title": "Joining Tables",
+    "section": "dyplyr Intersect",
+    "text": "dyplyr Intersect\n\napplied to tables with the same column names.\nreturns the rows in common between two tables (common records)\nTo make sure we use the dplyr version of intersect rather than the base R version, use dplyr::intersect like this:\n\n\ntab_1 &lt;- tab[1:5,] \ntab_2 &lt;- tab[3:7,] \ndplyr::intersect(tab_1, tab_2) \n\n       state abb region population total ev  clinton    trump  johnson\n1    Arizona  AZ   West    6392017   232 11 44.58042 48.08314 4.082188\n2   Arkansas  AR  South    2915918    93  6 33.65190 60.57191 2.648769\n3 California  CA   West   37253956  1257 55 61.72640 31.61711 3.374092\n      stein  mcmullin\n1 1.3185997 0.6699155\n2 0.8378174 1.1653206\n3 1.9649200 0.2792070"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#r-base-intersect",
+    "href": "slides/16-joining-tables.html#r-base-intersect",
+    "title": "Joining Tables",
+    "section": "R-base Intersect",
+    "text": "R-base Intersect\n\non vectors of any type, such as numeric:\n\n\nintersect(1:10, 6:15) \n\n[1]  6  7  8  9 10\n\n\n\nor characters:\n\n\nintersect(c(\"a\",\"b\",\"c\"), c(\"b\",\"c\",\"d\")) \n\n[1] \"b\" \"c\""
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#r-base-union",
+    "href": "slides/16-joining-tables.html#r-base-union",
+    "title": "Joining Tables",
+    "section": "R-base Union",
+    "text": "R-base Union\n\nSimilarly union takes the union of vectors.\n\n\nunion(1:10, 6:15) \n\n [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n\nunion(c(\"a\",\"b\",\"c\"), c(\"b\",\"c\",\"d\")) \n\n[1] \"a\" \"b\" \"c\" \"d\""
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#dyplyr-union",
+    "href": "slides/16-joining-tables.html#dyplyr-union",
+    "title": "Joining Tables",
+    "section": "dyplyr Union",
+    "text": "dyplyr Union\n\ncombines all the rows of two tables with the same column names (combine records).\n\n\ntab_1 &lt;- tab[1:5,] \ntab_2 &lt;- tab[3:7,] \ndplyr::union(tab_1, tab_2)  \n\n        state abb    region population total ev  clinton    trump  johnson\n1     Alabama  AL     South    4779736   135  9 34.35795 62.08309 2.094169\n2      Alaska  AK      West     710231    19  3 36.55087 51.28151 5.877128\n3     Arizona  AZ      West    6392017   232 11 44.58042 48.08314 4.082188\n4    Arkansas  AR     South    2915918    93  6 33.65190 60.57191 2.648769\n5  California  CA      West   37253956  1257 55 61.72640 31.61711 3.374092\n6    Colorado  CO      West    5029196    65  9 48.15651 43.25098 5.183748\n7 Connecticut  CT Northeast    3574097    97  7 54.56630 40.92691 2.959171\n      stein  mcmullin\n1 0.4422682 0.0000000\n2 1.8000176 0.0000000\n3 1.3185997 0.6699155\n4 0.8378174 1.1653206\n5 1.9649200 0.2792070\n6 1.3825031 1.0400874\n7 1.3885782 0.1281521"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#r-basesetdiff",
+    "href": "slides/16-joining-tables.html#r-basesetdiff",
+    "title": "Joining Tables",
+    "section": "R-basesetdiff",
+    "text": "R-basesetdiff\n\nThe set difference between a first and second argument can be obtained with setdiff.\nUnlike intersect and union, this function is not symmetric:\n\n\nsetdiff(1:10, 6:15) \n\n[1] 1 2 3 4 5\n\nsetdiff(6:15, 1:10) \n\n[1] 11 12 13 14 15"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#dyplyr-setdiff",
+    "href": "slides/16-joining-tables.html#dyplyr-setdiff",
+    "title": "Joining Tables",
+    "section": "dyplyr setdiff",
+    "text": "dyplyr setdiff\n\ntab_1 &lt;- tab[1:5,] \ntab_2 &lt;- tab[3:7,] \ndplyr::setdiff(tab_1, tab_2) \n\n    state abb region population total ev  clinton    trump  johnson     stein\n1 Alabama  AL  South    4779736   135  9 34.35795 62.08309 2.094169 0.4422682\n2  Alaska  AK   West     710231    19  3 36.55087 51.28151 5.877128 1.8000176\n  mcmullin\n1        0\n2        0"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#r-base-setequal",
+    "href": "slides/16-joining-tables.html#r-base-setequal",
+    "title": "Joining Tables",
+    "section": "R-base setequal",
+    "text": "R-base setequal\n\ntells us if two sets are the same, regardless of order.\n\n\nsetequal(1:5, 1:6) \n\n[1] FALSE\n\n\n\nbut:\n\n\nsetequal(1:5, 5:1) \n\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/16-joining-tables.html#dyplyr-setequal",
+    "href": "slides/16-joining-tables.html#dyplyr-setequal",
+    "title": "Joining Tables",
+    "section": "dyplyr setequal",
+    "text": "dyplyr setequal\n\nchecks whether data frames are equal, regardless of order of rows or columns:\n\n\ndplyr::setequal(tab_1, tab_2) \n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation",
+    "href": "slides/17-dataviz-principles.html#some-motivation",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation\n\nThe next few slides are examples of infogrpahics that don’t follow data visualization principles.\nWe use them as motivation.\nSeveral of the examples come from here: https://venngage.com/blog/bad-infographics/"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-1",
+    "href": "slides/17-dataviz-principles.html#some-motivation-1",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-2",
+    "href": "slides/17-dataviz-principles.html#some-motivation-2",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-3",
+    "href": "slides/17-dataviz-principles.html#some-motivation-3",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-4",
+    "href": "slides/17-dataviz-principles.html#some-motivation-4",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-5",
+    "href": "slides/17-dataviz-principles.html#some-motivation-5",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-6",
+    "href": "slides/17-dataviz-principles.html#some-motivation-6",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivation-7",
+    "href": "slides/17-dataviz-principles.html#some-motivation-7",
+    "title": "Data Visualization Principles",
+    "section": "Some motivation",
+    "text": "Some motivation"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#data-visualization-principles",
+    "href": "slides/17-dataviz-principles.html#data-visualization-principles",
+    "title": "Data Visualization Principles",
+    "section": "Data visualization principles",
+    "text": "Data visualization principles\n\nWe provide some general principles we can use as a guide for effective data visualization.\nMuch of this section is based on a talk by Karl Broman titled Creating Effective Figures and Tables and includes some of the figures which were made with code that Karl makes available on his GitHub repository, as well as class notes from Peter Aldhous’ Introduction to Data Visualization course."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#data-visualization-principles-1",
+    "href": "slides/17-dataviz-principles.html#data-visualization-principles-1",
+    "title": "Data Visualization Principles",
+    "section": "Data visualization principles",
+    "text": "Data visualization principles\nWe may be comparing a\n\nViewable number of quantities.\nDescribing distributions for categories or numeric values.\nComparing the data from two groups.\nDescribing the relationship between two variables.\n\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#data-visualization-principles-2",
+    "href": "slides/17-dataviz-principles.html#data-visualization-principles-2",
+    "title": "Data Visualization Principles",
+    "section": "Data visualization principles",
+    "text": "Data visualization principles\n\nThe principles are mostly based on research related to how humans detect patterns and make visual comparisons.\nThe preferred approaches are those that best fit the way our brains process visual information.\nWhen deciding on a visualization approach, it is also important to keep our goal in mind."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#data-visualization-principles-3",
+    "href": "slides/17-dataviz-principles.html#data-visualization-principles-3",
+    "title": "Data Visualization Principles",
+    "section": "Data visualization principles",
+    "text": "Data visualization principles\nWe may be comparing a\n\nViewable number of quantities.\nDescribing distributions for categories or numeric values.\nComparing the data from two groups.\nDescribing the relationship between two variables.\n\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues",
+    "href": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues",
+    "title": "Data Visualization Principles",
+    "section": "Encoding data using visual cues",
+    "text": "Encoding data using visual cues\nSome principles for visualy encoding numerical values:\n\naligned lengths\nposition\nangles\narea\nbrightness\ncolor hue"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-1",
+    "href": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-1",
+    "title": "Data Visualization Principles",
+    "section": "Encoding data using visual cues",
+    "text": "Encoding data using visual cues\n\nHere we are representing quantities with both areas and angles, since both the angle and area of each pie slice are proportional to the quantity the slice represents.\nThis turns out to be a sub-optimal choice since, as demonstrated by perception studies, humans are not good at precisely quantifying angles and are even worse when area is the only available visual cue."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-2",
+    "href": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-2",
+    "title": "Data Visualization Principles",
+    "section": "Encoding data using visual cues",
+    "text": "Encoding data using visual cues\nThe donut chart uses only area:\n\nbrowsers |&gt; ggplot(aes(x = 2, y = Percentage, fill = Browser)) +\n  geom_bar(width = 1, stat = \"identity\", col = \"black\")  + \n  scale_x_continuous(limits = c(0.5,2.5)) + coord_polar(theta = \"y\") +\n  xlab(\"\") + ylab(\"\") +\n  theme(axis.text = element_blank(), \n        axis.ticks = element_blank(), \n        panel.grid  = element_blank()) +\n  facet_grid(.~Year)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-3",
+    "href": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-3",
+    "title": "Data Visualization Principles",
+    "section": "Encoding data using visual cues",
+    "text": "Encoding data using visual cues\nThe donut chart uses only area:\n\nbrowsers |&gt; ggplot(aes(x = 2, y = Percentage, fill = Browser)) +\n  geom_bar(width = 1, stat = \"identity\", col = \"black\")  + \n  scale_x_continuous(limits = c(0.5,2.5)) + coord_polar(theta = \"y\") +\n  xlab(\"\") + ylab(\"\") +\n  theme(axis.text = element_blank(), \n        axis.ticks = element_blank(), \n        panel.grid  = element_blank()) +\n  facet_grid(.~Year)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-4",
+    "href": "slides/17-dataviz-principles.html#encoding-data-using-visual-cues-4",
+    "title": "Data Visualization Principles",
+    "section": "Encoding data using visual cues",
+    "text": "Encoding data using visual cues\nThe donut chart uses only area:\n\nbrowsers |&gt; ggplot(aes(x = 2, y = Percentage, fill = Browser)) +\n  geom_bar(width = 1, stat = \"identity\", col = \"black\")  + \n  scale_x_continuous(limits = c(0.5,2.5)) + coord_polar(theta = \"y\") +\n  xlab(\"\") + ylab(\"\") +\n  theme(axis.text = element_blank(), \n        axis.ticks = element_blank(), \n        panel.grid  = element_blank()) +\n  facet_grid(.~Year)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#compare-2000-to-2015",
+    "href": "slides/17-dataviz-principles.html#compare-2000-to-2015",
+    "title": "Data Visualization Principles",
+    "section": "Compare 2000 to 2015",
+    "text": "Compare 2000 to 2015\n\nCan you determine the actual percentages and rank the browsers’ popularity?\nCan you see how they changed from 2000 to 2015?\n\n\nlibrary(ggthemes)\np1 &lt;- browsers |&gt; ggplot(aes(x = \"\", y = Percentage, fill = Browser)) +\n  geom_bar(width = 1, stat = \"identity\", col = \"black\")  + coord_polar(theta = \"y\") +\n  xlab(\"\") + ylab(\"\") +\n  theme(axis.text = element_blank(), \n        axis.ticks = element_blank(), \n        panel.grid  = element_blank()) +\n  facet_grid(.~Year)\np1"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#show-the-numbers",
+    "href": "slides/17-dataviz-principles.html#show-the-numbers",
+    "title": "Data Visualization Principles",
+    "section": "Show the numbers",
+    "text": "Show the numbers\nA better approach is to simply show the numbers.\n\nbrowsers |&gt; \n  spread(Year, Percentage) |&gt; #old function: wide-&gt;long\n  #equiv: pivot_wider(names_from = Year, values_from = Percentage)\n  knitr::kable()\n\n\n\n\nBrowser\n2000\n2015\n\n\n\n\nOpera\n3\n2\n\n\nSafari\n21\n22\n\n\nFirefox\n23\n21\n\n\nChrome\n26\n29\n\n\nIE\n28\n27"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#barplots",
+    "href": "slides/17-dataviz-principles.html#barplots",
+    "title": "Data Visualization Principles",
+    "section": "Barplots",
+    "text": "Barplots\n\nCodeThe Barplot\n\n\nLength is the best visual cue:\n\nlibrary(gridExtra)\np2 &lt;- browsers |&gt;\n  ggplot(aes(Browser, Percentage)) + \n  geom_bar(stat = \"identity\", width = 0.5) +\n  ylab(\"Percent using the Browser\") +\n  facet_grid(.~Year)\n\ngrid.arrange(p1, p2, nrow = 2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#if-foreced-to-make-a-pie-chart",
+    "href": "slides/17-dataviz-principles.html#if-foreced-to-make-a-pie-chart",
+    "title": "Data Visualization Principles",
+    "section": "If foreced to make a pie chart",
+    "text": "If foreced to make a pie chart\n\nThe codeThe pie chart\n\n\nLabel each pie slice with its respective percentage:\n\nlibrary(scales)\nbrowsers &lt;- filter(browsers, Year == 2015)\n# calculate the label positions\nat &lt;- with(browsers, 100 - cumsum(c(0,Percentage[-length(Percentage)])) - 0.5*Percentage)  \nlabel &lt;- percent(browsers$Percentage/100) # percent():create percent label\nbrowsers |&gt; ggplot(aes(x = \"\", y = Percentage, fill = Browser)) +\n  geom_bar(width = 1, stat = \"identity\", col = \"black\")  + coord_polar(theta = \"y\") +\n  xlab(\"\") + ylab(\"\") + ggtitle(\"2015\") +\n  theme(axis.text=element_blank(), \n        axis.ticks = element_blank(), \n        panel.grid  = element_blank()) +\nannotate(geom = \"text\", \n              x = 1.62, # labels on the same radius, tuned\n              y =  at, \n              label = label, size=4)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\n\nWhen using barplots, it is misinformative not to start the bars at 0.\nThis is because, by using a barplot, we are implying the length is proportional to the quantities being displayed.\nBy avoiding 0, relatively small differences can be made to look much bigger than they actually are.\nThis approach is often used by politicians or media organizations trying to exaggerate a difference."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-1",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-1",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\nBelow is an illustrative example used by Peter Aldhous in this lecture.\n\n(Source: Fox News, via Media Matters.)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-2",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-2",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\nHere is the correct plot:\n\ndata.frame(Year = as.character(c(2011, 2012, 2013)),Southwest_Border_Apprehensions = c(165244,170223,192298)) |&gt;\n  ggplot(aes(Year, Southwest_Border_Apprehensions )) +\n  geom_bar(stat = \"identity\", fill = \"yellow\", col = \"black\", width = 0.65)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-3",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-3",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\nAnother examples:\n\n(Source: Fox News, via Flowing Data.)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-4",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-4",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\nAnd here is the correct plot:\n\ndata.frame(date = c(\"Now\", \"Jan 1, 2013\"), tax_rate = c(35, 39.6)) |&gt;\n  mutate(date = reorder(date, tax_rate)) |&gt;\n  ggplot(aes(date, tax_rate)) + \n  ylab(\"\") + xlab(\"\") +\n  geom_bar(stat = \"identity\", fill = \"yellow\", col = \"black\", width = 0.5) + \n  ggtitle(\"Top Tax Rate If Bush Tax Cut Expires\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-5",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-5",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\nOne more example:\n\n(Source: Venezolana de Televisión via Pakistan Today and Diego Mariano.)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-6",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-6",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\nHere is the appropriate plot:\n\ndata.frame(Candidate = factor(c(\"Maduro\", \"Capriles\"), levels = c(\"Maduro\", \"Capriles\")),\n           Percent = c(50.66, 49.07)) |&gt;\n  ggplot(aes(Candidate, Percent, fill = Candidate)) +\n  geom_bar(stat = \"identity\", width = 0.65, show.legend = FALSE)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-7",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-7",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0",
+    "text": "Know when to include 0\n\nWhen using position rather than length, it is not necessary to include 0.\nIn particularly when comparing between to within groups variability.\n\n\nlibrary(dslabs)\np1 &lt;- gapminder |&gt; filter(year == 2012) |&gt;\n  ggplot(aes(continent, life_expectancy)) +\n  geom_point()\np2 &lt;- p1 +\n  scale_y_continuous(limits = c(0, 84))\ngrid.arrange(p2, p1, ncol = 2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#do-not-distort-quantities",
+    "href": "slides/17-dataviz-principles.html#do-not-distort-quantities",
+    "title": "Data Visualization Principles",
+    "section": "Do not distort quantities",
+    "text": "Do not distort quantities\nPresident Obama used the following chart to compare the US GDP to the GDP of four competing nations:\n\n(Source: The 2011 State of the Union Address)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#do-not-distort-quantities-1",
+    "href": "slides/17-dataviz-principles.html#do-not-distort-quantities-1",
+    "title": "Data Visualization Principles",
+    "section": "Do not distort quantities",
+    "text": "Do not distort quantities\n\nggplot2 defaults to using area rather than radius.\nOf course, in this case, we really should be using length:\n\n\ndata.frame(Country = c(\"United States\", \"China\", \"Japan\", \"Germany\", \"France\"), GDP = gdp) |&gt;\n  mutate(Country = reorder(Country, GDP)) |&gt;\n  ggplot(aes(Country, GDP)) + \n  geom_col(width = 0.5) + \n  ylab(\"GDP in trillions of US dollars\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#do-not-distort-quantities-2",
+    "href": "slides/17-dataviz-principles.html#do-not-distort-quantities-2",
+    "title": "Data Visualization Principles",
+    "section": "Do not distort quantities",
+    "text": "Do not distort quantities\n\nggplot2 defaults to using area rather than radius.\nOf course, in this case, we really should be using length:\n\n\ndata.frame(Country = c(\"United States\", \"China\", \"Japan\", \"Germany\", \"France\"), GDP = gdp) |&gt;\n  mutate(Country = reorder(Country, GDP)) |&gt;\n  ggplot(aes(Country, GDP)) + \n  geom_col(width = 0.5) + \n  ylab(\"GDP in trillions of US dollars\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#order-categories-by-a-meaningful-value",
+    "href": "slides/17-dataviz-principles.html#order-categories-by-a-meaningful-value",
+    "title": "Data Visualization Principles",
+    "section": "Order categories by a meaningful value",
+    "text": "Order categories by a meaningful value\n\nWhen one of the axes is used to show categories the default ggplot2 behavior is to order the categories alphabetically when they are defined by character strings.\nIf they are defined by factors, they are ordered by the factor levels.\nWe rarely want to use alphabetical order.\nInstead, we should order by a meaningful quantity."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#order-categories-by-a-meaningful-value-1",
+    "href": "slides/17-dataviz-principles.html#order-categories-by-a-meaningful-value-1",
+    "title": "Data Visualization Principles",
+    "section": "Order categories by a meaningful value",
+    "text": "Order categories by a meaningful value\nNote that the plot on the right is more informative:\n\ndata(murders)\np1 &lt;- murders |&gt; mutate(murder_rate = total / population * 100000) |&gt;\n  ggplot(aes(state, murder_rate)) +\n  geom_bar(stat = \"identity\") +\n  coord_flip() +\n  theme(axis.text.y = element_text(size = 8))  +\n  xlab(\"\")\n\np2 &lt;- murders |&gt; mutate(murder_rate = total / population * 100000) |&gt;\n  mutate(state = reorder(state, murder_rate)) |&gt;\n  ggplot(aes(state, murder_rate)) +\n  geom_bar(stat = \"identity\") +\n  coord_flip() +\n  theme(axis.text.y = element_text(size = 8))  +\n  xlab(\"\")\n\ngrid.arrange(p1, p2, ncol = 2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#order-categories-by-a-meaningful-value-2",
+    "href": "slides/17-dataviz-principles.html#order-categories-by-a-meaningful-value-2",
+    "title": "Data Visualization Principles",
+    "section": "Order categories by a meaningful value",
+    "text": "Order categories by a meaningful value\nHere is another example:\n\npast_year &lt;- 1970\np1 &lt;- gapminder |&gt; \n  mutate(dollars_per_day = gdp/population/365) |&gt;\n  filter(year == past_year & !is.na(gdp)) |&gt;\n  ggplot(aes(region, dollars_per_day)) +\n  geom_boxplot() +\n  geom_point() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  xlab(\"\")\n\np2 &lt;- gapminder |&gt; \n  mutate(dollars_per_day = gdp/population/365) |&gt;\n  filter(year == past_year & !is.na(gdp)) |&gt;\n  mutate(region = reorder(region, dollars_per_day, FUN = median)) |&gt;\n  ggplot(aes(region, dollars_per_day)) +\n  geom_boxplot() +\n  geom_point() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  xlab(\"\")\n\ngrid.arrange(p1, p2, nrow = 1)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#show-the-data",
+    "href": "slides/17-dataviz-principles.html#show-the-data",
+    "title": "Data Visualization Principles",
+    "section": "Show the data",
+    "text": "Show the data\n\nWe have focused on displaying single quantities across categories. We now shift our attention to displaying data, with a focus on comparing groups.\nSuppose we want to describe height data to an extra-terrestrial."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#show-the-data-1",
+    "href": "slides/17-dataviz-principles.html#show-the-data-1",
+    "title": "Data Visualization Principles",
+    "section": "Show the data",
+    "text": "Show the data\nA commonly used plot, popularized by Microsoft Excel, is a barplot like this:\n\ndata(\"heights\")\np1 &lt;- heights |&gt; \n  group_by(sex) |&gt; \n  summarize(average = mean(height), se=sd(height)/sqrt(n())) |&gt;\n  ggplot(aes(sex, average)) + \n  theme_excel() + \n  geom_errorbar(aes(ymin = average - 2*se, ymax = average + 2*se), width = 0.25) +\n  geom_bar(stat = \"identity\", width = 0.5, fill = \"blue\", color = \"black\") +\n  ylab(\"Height in inches\")\np1"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#show-the-data-2",
+    "href": "slides/17-dataviz-principles.html#show-the-data-2",
+    "title": "Data Visualization Principles",
+    "section": "Show the data",
+    "text": "Show the data\n\nheights |&gt; \n  ggplot(aes(sex, height)) + \n  geom_point() \n\n\nheights |&gt; \n  ggplot(aes(sex, height)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#show-the-data-3",
+    "href": "slides/17-dataviz-principles.html#show-the-data-3",
+    "title": "Data Visualization Principles",
+    "section": "Show the data",
+    "text": "Show the data\nUse jitter to avoid over-plotting\n\nheights |&gt; \n  ggplot(aes(sex, height)) +\n  geom_jitter(width = 0.1, alpha = 0.2) \n\n\nheights |&gt; \n  ggplot(aes(sex, height)) +\n  geom_jitter(width = 0.1, alpha = 0.2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#histograms",
+    "href": "slides/17-dataviz-principles.html#histograms",
+    "title": "Data Visualization Principles",
+    "section": "Histograms",
+    "text": "Histograms\nSince there are so many points, it is more effective to show distributions rather than individual points. We therefore show histograms for each group:\n\nheights |&gt; \n  ggplot(aes(height, ..density..)) +\n  geom_histogram(binwidth = 1, color = \"black\") +\n  facet_grid(.~sex, scales = \"free_x\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#ease-comparisons",
+    "href": "slides/17-dataviz-principles.html#ease-comparisons",
+    "title": "Data Visualization Principles",
+    "section": "Ease comparisons",
+    "text": "Ease comparisons\n\nUse common axes\nIf horizontal comparison, stack graphs vertically\nIf vertical comparison, stack graphs horizontally"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#stack-vertically",
+    "href": "slides/17-dataviz-principles.html#stack-vertically",
+    "title": "Data Visualization Principles",
+    "section": "Stack vertically",
+    "text": "Stack vertically\n\nheights |&gt; \n  ggplot(aes(height, ..density..)) +\n  geom_histogram(binwidth = 1, color=\"black\") +\n  facet_wrap(~sex, scales = \"free_x\", nrow=2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#same-axis",
+    "href": "slides/17-dataviz-principles.html#same-axis",
+    "title": "Data Visualization Principles",
+    "section": "Same axis",
+    "text": "Same axis\n\np2 &lt;- heights |&gt; \n  ggplot(aes(height, ..density..)) +\n  geom_histogram(binwidth = 1, color = \"black\") +\n  facet_grid(sex~.)\np2"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#boxplot-is-a-vertical",
+    "href": "slides/17-dataviz-principles.html#boxplot-is-a-vertical",
+    "title": "Data Visualization Principles",
+    "section": "Boxplot is a vertical",
+    "text": "Boxplot is a vertical\nStack horizontally\n\np3 &lt;- heights |&gt; \n  ggplot(aes(sex, height)) + \n  geom_boxplot(coef = 3) + \n  geom_jitter(width = 0.1, alpha = 0.2) +\n  ylab(\"Height in inches\")\np3"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#contrast-and-compare",
+    "href": "slides/17-dataviz-principles.html#contrast-and-compare",
+    "title": "Data Visualization Principles",
+    "section": "Contrast and compare",
+    "text": "Contrast and compare\n\ngrid.arrange(p1, p2, p3, ncol = 3)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#consider-transformations",
+    "href": "slides/17-dataviz-principles.html#consider-transformations",
+    "title": "Data Visualization Principles",
+    "section": "Consider transformations",
+    "text": "Consider transformations\nHere is a terrible plot comparing population across continents\n\ndata(gapminder)\np1 &lt;- gapminder |&gt; \n  filter(year == 2015) |&gt;\n  group_by(continent) |&gt; \n  summarize(population = mean(population)) |&gt;\n  mutate(continent = reorder(continent, population)) |&gt;\n  ggplot(aes(continent, population/10^6)) + \n  geom_bar(stat = \"identity\", width=0.5, fill = \"blue\") +\n  theme_excel() + \n  ylab(\"Population in Millions\") +\n  xlab(\"Continent\")\np1"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#two-countries-drive-average",
+    "href": "slides/17-dataviz-principles.html#two-countries-drive-average",
+    "title": "Data Visualization Principles",
+    "section": "Two countries drive average",
+    "text": "Two countries drive average\n\np2 &lt;- gapminder |&gt; filter(year == 2015) |&gt; \n  mutate(continent = reorder(continent, population, median)) |&gt;\n  ggplot(aes(continent, population/10^6)) + \n  ylab(\"Population in Millions\") +\n  xlab(\"Continent\")\np2 +  geom_jitter(width = .1, alpha = .5)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#transformations",
+    "href": "slides/17-dataviz-principles.html#transformations",
+    "title": "Data Visualization Principles",
+    "section": "Transformations",
+    "text": "Transformations\nHere a log transformation provides a much more informative plot:\n\np2 &lt;- p2 + geom_boxplot(coef = 3) + \n  geom_jitter(width = .1, alpha = .5) + \n  scale_y_log10(breaks = c(1,10,100,1000)) +\n  theme(axis.text.x = element_text(size = 7)) \ngrid.arrange(p1, p2, ncol = 2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#visual-cues-to-be-compared-should-be-adjacent",
+    "href": "slides/17-dataviz-principles.html#visual-cues-to-be-compared-should-be-adjacent",
+    "title": "Data Visualization Principles",
+    "section": "Visual cues to be compared should be adjacent",
+    "text": "Visual cues to be compared should be adjacent\nNote that it is hard to compare 1970 to 2020 by country:\n\ngapminder |&gt; \n  filter(year %in% c(1970, 2010) & !is.na(gdp)) |&gt;\n  mutate(dollars_per_day = gdp/population/365) |&gt;\n  mutate(labels = paste(year, continent)) |&gt;\n  ggplot(aes(labels, dollars_per_day)) +\n  geom_boxplot() + \n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  scale_y_continuous(trans = \"log2\") + \n  ylab(\"Income in dollars per day\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#visual-cues-to-be-compared-should-be-adjacent-1",
+    "href": "slides/17-dataviz-principles.html#visual-cues-to-be-compared-should-be-adjacent-1",
+    "title": "Data Visualization Principles",
+    "section": "Visual cues to be compared should be adjacent",
+    "text": "Visual cues to be compared should be adjacent\nMuch easier if they are adjacent\n\ngapminder |&gt; \n  filter(year %in% c(1970, 2010) & !is.na(gdp)) |&gt;\n  mutate(dollars_per_day = gdp/population/365) |&gt;\n  mutate(labels = paste(continent, year)) |&gt;\n  ggplot(aes(labels, dollars_per_day)) +\n  geom_boxplot() + \n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  scale_y_continuous(trans = \"log2\") + \n  ylab(\"Income in dollars per day\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#use-color",
+    "href": "slides/17-dataviz-principles.html#use-color",
+    "title": "Data Visualization Principles",
+    "section": "Use color",
+    "text": "Use color\nThe comparison becomes even easier to make if we use color to denote the two things we want to compare:\n\n gapminder |&gt; \n  filter(year %in% c(1970, 2010) & !is.na(gdp)) |&gt;\n  mutate(dollars_per_day = gdp/population/365, year = factor(year)) |&gt;\n  ggplot(aes(continent, dollars_per_day, fill = year)) +\n  geom_boxplot() + \n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  scale_y_continuous(trans = \"log2\") + \n  ylab(\"Income in dollars per day\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#think-of-the-color-blind",
+    "href": "slides/17-dataviz-principles.html#think-of-the-color-blind",
+    "title": "Data Visualization Principles",
+    "section": "Think of the color blind",
+    "text": "Think of the color blind\n\nApproximately 1 in 12 men (8%) and 1 in 200 women (0.5%) worldwide are color blind.\nThe most common type of color blindness is red-green color blindness, which affects around 99% of all color blind individuals.\nThe prevalence of blue-yellow color blindness and total color blindness (achromatopsia) is much lower.\nAn example of how we can use a color blind friendly palette is described here."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#think-of-the-color-blind-1",
+    "href": "slides/17-dataviz-principles.html#think-of-the-color-blind-1",
+    "title": "Data Visualization Principles",
+    "section": "Think of the color blind",
+    "text": "Think of the color blind\n\nExample of color-blind-friendly color palette:\n\n\ncolor_blind_friendly_cols &lt;- \n  c(\"#999999\", \"#E69F00\", \"#56B4E9\", \"#009E73\", \n    \"#F0E442\", \"#0072B2\", \"#D55E00\", \"#CC79A7\")\n\np1 &lt;- data.frame(x = 1:8, y = rep(1,8), col = as.character(1:8)) |&gt; \n  ggplot(aes(x, y, color = col)) + \n  geom_point(size = 8, show.legend = FALSE) +\n  theme(axis.title.x = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks.x = element_blank(),\n        axis.title.y = element_blank(),\n        axis.text.y = element_blank(),\n        axis.ticks.y = element_blank(),\n        panel.grid.major = element_blank(), \n        panel.grid.minor = element_blank())\n\np1 + scale_color_manual(values = color_blind_friendly_cols)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#plots-for-two-variables",
+    "href": "slides/17-dataviz-principles.html#plots-for-two-variables",
+    "title": "Data Visualization Principles",
+    "section": "Plots for two variables",
+    "text": "Plots for two variables\nIn general, you should use scatterplots to visualize the relationship between two variables.\nHowever, there are some exceptions.\n\nWe describe two alternative plots here:\n\nslope chart\nBland-Altman plot"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#slope-charts",
+    "href": "slides/17-dataviz-principles.html#slope-charts",
+    "title": "Data Visualization Principles",
+    "section": "Slope charts",
+    "text": "Slope charts\nSlope charts adds angle as a visual cue, useful when comparing two groups and each element across two variables, such as years.\n\nwest &lt;- c(\"Western Europe\",\"Northern Europe\",\"Southern Europe\",\n          \"Northern America\",\"Australia and New Zealand\")\n\ndat &lt;- gapminder |&gt; \n  filter(year %in% c(2010, 2015) & region %in% west & \n           !is.na(life_expectancy) & population &gt; 10^7) \n\ndat |&gt;\n  mutate(location = ifelse(year == 2010, 1, 2), \n         location = ifelse(year == 2015 & \n                             country %in% c(\"United Kingdom\", \"Portugal\"),\n                           location + 0.22, location),\n         hjust = ifelse(year == 2010, 1, 0)) |&gt;\n  mutate(year = as.factor(year)) |&gt;\n  ggplot(aes(year, life_expectancy, group = country)) +\n  geom_line(aes(color = country), show.legend = FALSE) +\n  geom_text(aes(x = location, label = country, hjust = hjust), \n            show.legend = FALSE) +\n  xlab(\"\") + ylab(\"Life Expectancy\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#scatterplot-version",
+    "href": "slides/17-dataviz-principles.html#scatterplot-version",
+    "title": "Data Visualization Principles",
+    "section": "Scatterplot version",
+    "text": "Scatterplot version\n\nlibrary(ggrepel)\nwest &lt;- c(\"Western Europe\",\"Northern Europe\",\"Southern Europe\",\n          \"Northern America\",\"Australia and New Zealand\")\n\ndat &lt;- gapminder |&gt; \n  filter(year %in% c(2010, 2015) & region %in% west & \n           !is.na(life_expectancy) & population &gt; 10^7) \n\ndat |&gt; \n  mutate(year = paste0(\"life_expectancy_\", year)) |&gt;\n  select(country, year, life_expectancy) |&gt;\n  spread(year, life_expectancy) |&gt; \n  ggplot(aes(x=life_expectancy_2010,y=life_expectancy_2015, label = country)) + \n  geom_point() + geom_text_repel() +\n  scale_x_continuous(limits = c(78.5, 83)) +\n  scale_y_continuous(limits = c(78.5, 83)) +\n  geom_abline(lty = 2) +\n  xlab(\"2010\") + \n  ylab(\"2015\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bland-altman-plot",
+    "href": "slides/17-dataviz-principles.html#bland-altman-plot",
+    "title": "Data Visualization Principles",
+    "section": "Bland-Altman plot",
+    "text": "Bland-Altman plot\nShows difference in the y-axis and average on the x-axis.\n\nlibrary(ggrepel)\ndat |&gt; \n  mutate(year = paste0(\"life_expectancy_\", year)) |&gt;\n  select(country, year, life_expectancy) |&gt; \n  pivot_wider(names_from = \"year\", values_from = \"life_expectancy\") |&gt; \n  mutate(average = (life_expectancy_2015 + life_expectancy_2010)/2,\n         difference = life_expectancy_2015 - life_expectancy_2010) |&gt;\n  ggplot(aes(average, difference, label = country)) + \n  geom_point() +\n  geom_text_repel() +\n  geom_abline(lty = 2) +\n  xlab(\"Average of 2010 and 2015\") + \n  ylab(\"Difference between 2015 and 2010\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-a-third-variable",
+    "href": "slides/17-dataviz-principles.html#encoding-a-third-variable",
+    "title": "Data Visualization Principles",
+    "section": "Encoding a third variable",
+    "text": "Encoding a third variable\nWe can use\n\ndifferent colors or shapes for categoris\nareas, brightness or hue for continuous values"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#encoding-a-third-variable-1",
+    "href": "slides/17-dataviz-principles.html#encoding-a-third-variable-1",
+    "title": "Data Visualization Principles",
+    "section": "Encoding a third variable",
+    "text": "Encoding a third variable\nWe encode OPEC membership, region, and population.\n\npresent_year &lt;- 2010\n\ndat &lt;- gapminder |&gt;\n  mutate(region = case_when(\n    region %in% west ~ \"The West\",\n    region %in% \"Northern Africa\" ~ \"Northern Africa\",\n    region %in% c(\"Eastern Asia\", \"South-Eastern Asia\") ~ \"East Asia\",\n    region == \"Southern Asia\"~ \"Southern Asia\",\n    region %in% c(\"Central America\", \"South America\", \"Caribbean\") ~ \"Latin America\",\n    continent == \"Africa\" & region != \"Northern Africa\" ~ \"Sub-Saharan Africa\",\n    region %in% c(\"Melanesia\", \"Micronesia\", \"Polynesia\") ~ \"Pacific Islands\"),\n    dollars_per_day = gdp / population / 365) |&gt;\n  filter(year %in% present_year & !is.na(gdp) & !is.na(infant_mortality) & !is.na(region) ) |&gt;\n  mutate(OPEC = ifelse(country %in% opec, \"Yes\", \"No\")) \n\ndat |&gt; \n  ggplot(aes(dollars_per_day, 1 - infant_mortality/1000, \n             col = region, size = population/10^6,\n             pch =  OPEC)) +\n  scale_x_continuous(trans = \"log2\", limits = c(0.25, 150)) +\n  scale_y_continuous(trans = \"logit\",limit = c(0.875, .9981),\n                     breaks = c(.85,.90,.95,.99,.995,.998)) + \n  geom_point(alpha = 0.5) +\n  ylab(\"Infant survival proportion\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#point-shapes-available-in-r",
+    "href": "slides/17-dataviz-principles.html#point-shapes-available-in-r",
+    "title": "Data Visualization Principles",
+    "section": "Point shapes available in R",
+    "text": "Point shapes available in R\n\ndat &lt;- data.frame(x = c(0:25))\nggplot() +\n  theme_minimal() +\n  theme(axis.title.x = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks.x = element_blank(),\n        axis.title.y = element_blank(),\n        axis.text.y = element_blank(),\n        axis.ticks.y = element_blank(),\n        panel.grid.major = element_blank(), \n        panel.grid.minor = element_blank()) +\nscale_shape_identity() + scale_y_reverse() +\ngeom_point(dat, mapping = aes(x%%9, x%/%9, shape = x), size = 4, fill=\"blue\") +\ngeom_text(dat, mapping = aes(x%%9, x%/%9+0.25, label = x), size = 4)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#using-intensity-or-hue",
+    "href": "slides/17-dataviz-principles.html#using-intensity-or-hue",
+    "title": "Data Visualization Principles",
+    "section": "Using intensity or hue",
+    "text": "Using intensity or hue\nWhen selecting colors to quantify a numeric variable, we choose between two options: sequential and diverging."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#sequential-colors",
+    "href": "slides/17-dataviz-principles.html#sequential-colors",
+    "title": "Data Visualization Principles",
+    "section": "Sequential colors",
+    "text": "Sequential colors\nSequential colors are suited for data that goes from high to low. High values are clearly distinguished from low values. Here are some examples offered by the package RColorBrewer:\n\nlibrary(RColorBrewer)\nrafalib::mypar()\ndisplay.brewer.all(type = \"seq\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#diverging-colors",
+    "href": "slides/17-dataviz-principles.html#diverging-colors",
+    "title": "Data Visualization Principles",
+    "section": "Diverging colors",
+    "text": "Diverging colors\nDiverging colors are used to represent values that diverge from a center. We put equal emphasis on both ends of the data range: higher than the center and lower than the center.\n\nlibrary(RColorBrewer)\nrafalib::mypar()\ndisplay.brewer.all(type = \"div\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots",
+    "href": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots",
+    "title": "Data Visualization Principles",
+    "section": "Avoid pseudo-3D plots",
+    "text": "Avoid pseudo-3D plots\nThe figure below, taken from the scientific literature, shows three variables: dose, drug type and survival:"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-1",
+    "href": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-1",
+    "title": "Data Visualization Principles",
+    "section": "Avoid pseudo-3D plots",
+    "text": "Avoid pseudo-3D plots\n\nHumans are not good at seeing in three dimensions and our limitation is even worse with regard to pseudo-three-dimensions."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-2",
+    "href": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-2",
+    "title": "Data Visualization Principles",
+    "section": "Avoid pseudo-3D plots",
+    "text": "Avoid pseudo-3D plots\n\nWhen does the purple ribbon intersects the red?"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-3",
+    "href": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-3",
+    "title": "Data Visualization Principles",
+    "section": "Avoid pseudo-3D plots",
+    "text": "Avoid pseudo-3D plots\nColor is enough to represent the categorical variable:\n\n##First read data\nurl &lt;- \"https://github.com/kbroman/Talk_Graphs/raw/master/R/fig8dat.csv\"\ndat &lt;- read.csv(url)\n\n##Now make alternative plot\ndat |&gt; gather(drug, survival, -log.dose) |&gt;\n  mutate(drug = gsub(\"Drug.\",\"\",drug)) |&gt;\n  ggplot(aes(log.dose, survival, color = drug)) +\n  geom_line()"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-4",
+    "href": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-4",
+    "title": "Data Visualization Principles",
+    "section": "Avoid pseudo-3D plots",
+    "text": "Avoid pseudo-3D plots\nPseudo-3D is sometimes used completely gratuitously: plots are made to look 3D even when the 3rd dimension does not represent a quantity. This only adds confusion and makes it harder to relay your message. We show two examples:"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-5",
+    "href": "slides/17-dataviz-principles.html#avoid-pseudo-3d-plots-5",
+    "title": "Data Visualization Principles",
+    "section": "Avoid pseudo-3D plots",
+    "text": "Avoid pseudo-3D plots\n\n\n\n\n\n\n\n\n\n\n(Images courtesy of Karl Broman)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits",
+    "href": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits",
+    "title": "Data Visualization Principles",
+    "section": "Avoid too many significant digits",
+    "text": "Avoid too many significant digits\n\nBy default, statistical software like R returns many significant digits.\nThe default behavior in R is to show 7 significant digits.\nThat many digits often adds no information and the added visual clutter can make it hard for the viewer to understand the message."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-1",
+    "href": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-1",
+    "title": "Data Visualization Principles",
+    "section": "Avoid too many significant digits",
+    "text": "Avoid too many significant digits\nAs an example, here are the per 10,000 disease rates, computed from totals and population in R, for California across the five decades:\n\ndata(us_contagious_diseases)\ntmp &lt;- 3\noptions(digits = 7)\ndat &lt;- us_contagious_diseases |&gt;\n  filter(year %in% seq(1940, 1980, 10) &  state == \"California\" &\n           disease %in% c(\"Measles\", \"Pertussis\", \"Polio\")) |&gt;\n  mutate(rate = count / population * 10000) |&gt; \n  mutate(state = reorder(state, rate)) |&gt; \n  select(state, year, disease, rate) |&gt;\n  spread(disease, rate) \n\nknitr::kable(dat) \n\n\n\n\nstate\nyear\nMeasles\nPertussis\nPolio\n\n\n\n\nCalifornia\n1940\n37.8826320\n18.3397861\n0.8266512\n\n\nCalifornia\n1950\n13.9124205\n4.7467350\n1.9742639\n\n\nCalifornia\n1960\n14.1386471\nNA\n0.2640419\n\n\nCalifornia\n1970\n0.9767889\nNA\nNA\n\n\nCalifornia\n1980\n0.3743467\n0.0515466\nNA"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-2",
+    "href": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-2",
+    "title": "Data Visualization Principles",
+    "section": "Avoid too many significant digits",
+    "text": "Avoid too many significant digits\n\nWe are reporting precision up to 0.00001 cases per 10,000, a very small value in the context of the changes that are occurring across the dates.\n\n\nknitr::kable(dat) \n\n\n\n\nstate\nyear\nMeasles\nPertussis\nPolio\n\n\n\n\nCalifornia\n1940\n37.8826320\n18.3397861\n0.8266512\n\n\nCalifornia\n1950\n13.9124205\n4.7467350\n1.9742639\n\n\nCalifornia\n1960\n14.1386471\nNA\n0.2640419\n\n\nCalifornia\n1970\n0.9767889\nNA\nNA\n\n\nCalifornia\n1980\n0.3743467\n0.0515466\nNA\n\n\n\n\noptions(digits = tmp)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-3",
+    "href": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-3",
+    "title": "Data Visualization Principles",
+    "section": "Avoid too many significant digits",
+    "text": "Avoid too many significant digits\n\nIn this case, two significant figures is more than enough and clearly makes the point that rates are decreasing:\n\n\n\n\n\n\nstate\nyear\nMeasles\nPertussis\nPolio\n\n\n\n\nCalifornia\n1940\n37.9\n18.3\n0.8\n\n\nCalifornia\n1950\n13.9\n4.7\n2.0\n\n\nCalifornia\n1960\n14.1\nNA\n0.3\n\n\nCalifornia\n1970\n1.0\nNA\nNA\n\n\nCalifornia\n1980\n0.4\n0.1\nNA"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-4",
+    "href": "slides/17-dataviz-principles.html#avoid-too-many-significant-digits-4",
+    "title": "Data Visualization Principles",
+    "section": "Avoid too many significant digits",
+    "text": "Avoid too many significant digits\nUseful ways to change the number of significant digits or to round numbers are\n\nsignif\nround\n\nYou can define the number of significant digits globally by setting options like this: options(digits = 3)."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#values-compared-in-columns",
+    "href": "slides/17-dataviz-principles.html#values-compared-in-columns",
+    "title": "Data Visualization Principles",
+    "section": "Values compared in columns",
+    "text": "Values compared in columns\nAnother principle related to displaying tables is to place values being compared on columns rather than rows. Compare these two presentations:\n\ndat &lt;- us_contagious_diseases |&gt;\n  filter(year %in% seq(1940, 1980, 10) &  state == \"California\" &\n          disease %in% c(\"Measles\", \"Pertussis\", \"Polio\")) |&gt;\n  mutate(rate = count / population * 10000) |&gt; \n  mutate(state = reorder(state, rate)) |&gt; \n  select(state, year, disease, rate) |&gt;\n  spread(year, rate) |&gt; \n  mutate_if(is.numeric, round, digits = 1) \n\nknitr::kable(dat)\n\n\n\n\nstate\ndisease\n1940\n1950\n1960\n1970\n1980\n\n\n\n\nCalifornia\nMeasles\n37.9\n13.9\n14.1\n1\n0.4\n\n\nCalifornia\nPertussis\n18.3\n4.7\nNA\nNA\n0.1\n\n\nCalifornia\nPolio\n0.8\n2.0\n0.3\nNA\nNA"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#values-compared-in-columns-1",
+    "href": "slides/17-dataviz-principles.html#values-compared-in-columns-1",
+    "title": "Data Visualization Principles",
+    "section": "Values compared in columns",
+    "text": "Values compared in columns\nAnother principle related to displaying tables is to place values being compared on columns rather than rows. Compare these two presentations:\n\n\n\n\n\nstate\nyear\nMeasles\nPertussis\nPolio\n\n\n\n\nCalifornia\n1940\n37.9\n18.3\n0.8\n\n\nCalifornia\n1950\n13.9\n4.7\n2.0\n\n\nCalifornia\n1960\n14.1\nNA\n0.3\n\n\nCalifornia\n1970\n1.0\nNA\nNA\n\n\nCalifornia\n1980\n0.4\n0.1\nNA"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-your-audience",
+    "href": "slides/17-dataviz-principles.html#know-your-audience",
+    "title": "Data Visualization Principles",
+    "section": "Know your audience",
+    "text": "Know your audience\nGraphs can be used for\n\nour own exploratory data analysis,\nto convey a message to experts, or\nto help tell a story to a general audience.\n\nMake sure that the intended audience understands each element of the plot."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#some-motivaton",
+    "href": "slides/17-dataviz-principles.html#some-motivaton",
+    "title": "Data Visualization Principles",
+    "section": "Some Motivaton",
+    "text": "Some Motivaton\n\nSeveral of the examples come from here: https://venngage.com/blog/bad-infographics/"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-1",
+    "href": "slides/17-dataviz-principles.html#bad-example-1",
+    "title": "Data Visualization Principles",
+    "section": "Bad example (1)",
+    "text": "Bad example (1)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-2",
+    "href": "slides/17-dataviz-principles.html#bad-example-2",
+    "title": "Data Visualization Principles",
+    "section": "Bad example (2)",
+    "text": "Bad example (2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-3",
+    "href": "slides/17-dataviz-principles.html#bad-example-3",
+    "title": "Data Visualization Principles",
+    "section": "Bad example (3)",
+    "text": "Bad example (3)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-4",
+    "href": "slides/17-dataviz-principles.html#bad-example-4",
+    "title": "Data Visualization Principles",
+    "section": "Bad example (4)",
+    "text": "Bad example (4)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-5",
+    "href": "slides/17-dataviz-principles.html#bad-example-5",
+    "title": "Data Visualization Principles",
+    "section": "Bad Example (5)",
+    "text": "Bad Example (5)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-6",
+    "href": "slides/17-dataviz-principles.html#bad-example-6",
+    "title": "Data Visualization Principles",
+    "section": "Bad Example (6)",
+    "text": "Bad Example (6)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#bad-example-7",
+    "href": "slides/17-dataviz-principles.html#bad-example-7",
+    "title": "Data Visualization Principles",
+    "section": "Bad Example (7)",
+    "text": "Bad Example (7)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#goals-of-data-visualization",
+    "href": "slides/17-dataviz-principles.html#goals-of-data-visualization",
+    "title": "Data Visualization Principles",
+    "section": "Goals of Data visualization",
+    "text": "Goals of Data visualization\n\nThe principles are mostly based on research related to how humans detect patterns and make visual comparisons.\nThe preferred approaches are those that best fit the way our brains process visual information.\nWhen deciding on a visualization approach, it is also important to keep our goal in mind."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#example-encoding-data",
+    "href": "slides/17-dataviz-principles.html#example-encoding-data",
+    "title": "Data Visualization Principles",
+    "section": "Example: Encoding data",
+    "text": "Example: Encoding data\n\nbrowsers &lt;- data.frame(Browser = rep(c(\"Opera\",\"Safari\",\"Firefox\",\"IE\",\"Chrome\"),2),\n                       Year = rep(c(2000, 2015), each = 5),\n                       Percentage = c(3,21,23,28,26, 2,22,21,27,29)) |&gt;\n  mutate(Browser = reorder(Browser, Percentage)) # reorder by mean of Perc\n# reorder(Browswer, Precentage, FUN=mean) # default mean\n\n\nrep(1:3, times = 2) # 1 2 3 1 2 3\nrep(1:3, each = 2) # 1 1 2 2 3 3\nrep(1:3, each = 2, times = 2) # 1 1 2 2 3 3 1 1 2 2 3 3\n\nExample:\n\nSuppose we want to report the results from two hypothetical polls regarding browser preference taken in 2000 and then 2015."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#pie-chart",
+    "href": "slides/17-dataviz-principles.html#pie-chart",
+    "title": "Data Visualization Principles",
+    "section": "Pie Chart",
+    "text": "Pie Chart\nA widely used graphical representation of percentages, popularized by Microsoft Excel, is the pie chart:\n\np1 &lt;- browsers |&gt; \n  ggplot(aes(x = \"\", y = Percentage, fill = Browser)) + #x=\"\": dummy single x-category\n  geom_bar(width = 1, stat = \"identity\", col = \"black\")  + #identity: actual val. stacked bar graph; col=\"black\": add black outline around slices.\n  coord_polar(theta = \"y\") + # mapping y to angles: bar-&gt;pie\n  xlab(\"\") + ylab(\"\") +\n  theme(axis.text = element_blank(), \n        axis.ticks = element_blank(), \n        panel.grid  = element_blank()) + #remove backgoround grid\n  facet_grid(.~Year) # split into two panels\np1"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#pie-chart-warning",
+    "href": "slides/17-dataviz-principles.html#pie-chart-warning",
+    "title": "Data Visualization Principles",
+    "section": "Pie-chart Warning",
+    "text": "Pie-chart Warning\n\nHere we are representing quantities with both areas and angles, since both the angle and area of each pie slice are proportional to the quantity the slice represents.\nThis turns out to be a sub-optimal choice since, as demonstrated by perception studies, humans are not good at precisely quantifying angles and are even worse when area is the only available visual cue."
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#donut-chart",
+    "href": "slides/17-dataviz-principles.html#donut-chart",
+    "title": "Data Visualization Principles",
+    "section": "Donut chart",
+    "text": "Donut chart\nThe donut chart uses only area:"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#code",
+    "href": "slides/17-dataviz-principles.html#code",
+    "title": "Data Visualization Principles",
+    "section": "Code",
+    "text": "Code\n\nlibrary(gridExtra)\np2 &lt;- browsers |&gt;\n  ggplot(aes(Browser, Percentage)) + \n  geom_bar(stat = \"identity\", width = 0.5) +\n  ylab(\"Percent using the Browser\") +\n  facet_grid(.~Year)\n\ngrid.arrange(p1, p2, nrow = 2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#the-barplot",
+    "href": "slides/17-dataviz-principles.html#the-barplot",
+    "title": "Data Visualization Principles",
+    "section": "The Barplot",
+    "text": "The Barplot\n\n:::"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-misleading",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-misleading",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0 (misleading)",
+    "text": "Know when to include 0 (misleading)\nBelow is an illustrative example used by Peter Aldhous in this lecture.\n\n(Source: Fox News, via Media Matters.)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-correct-way",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-correct-way",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0 (correct way)",
+    "text": "Know when to include 0 (correct way)\n\ndata.frame(Year = as.character(c(2011, 2012, 2013)),Southwest_Border_Apprehensions = c(165244,170223,192298)) |&gt;\n  ggplot(aes(Year, Southwest_Border_Apprehensions )) +\n  geom_bar(stat = \"identity\", fill = \"yellow\", col = \"black\", width = 0.65)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-misleading-1",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-misleading-1",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0 (misleading)",
+    "text": "Know when to include 0 (misleading)\n\n(Source: Fox News, via Flowing Data.)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-correct-way-1",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-correct-way-1",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0 (correct way)",
+    "text": "Know when to include 0 (correct way)\n\ndata.frame(date = c(\"Now\", \"Jan 1, 2013\"), tax_rate = c(35, 39.6)) |&gt;\n  mutate(date = reorder(date, tax_rate)) |&gt;\n  ggplot(aes(date, tax_rate)) + \n  ylab(\"\") + xlab(\"\") +\n  geom_bar(stat = \"identity\", fill = \"yellow\", col = \"black\", width = 0.5) + \n  ggtitle(\"Top Tax Rate If Bush Tax Cut Expires\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-misleading-2",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-misleading-2",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0 (misleading)",
+    "text": "Know when to include 0 (misleading)\nOne more example:\n\n(Source: Venezolana de Televisión via Pakistan Today and Diego Mariano.)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#know-when-to-include-0-correct-way-2",
+    "href": "slides/17-dataviz-principles.html#know-when-to-include-0-correct-way-2",
+    "title": "Data Visualization Principles",
+    "section": "Know when to include 0 (correct way)",
+    "text": "Know when to include 0 (correct way)\n\ndata.frame(Candidate = factor(c(\"Maduro\", \"Capriles\"), levels = c(\"Maduro\", \"Capriles\")),\n           Percent = c(50.66, 49.07)) |&gt;\n  ggplot(aes(Candidate, Percent, fill = Candidate)) +\n  geom_bar(stat = \"identity\", width = 0.65, show.legend = FALSE)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#when-using-postion",
+    "href": "slides/17-dataviz-principles.html#when-using-postion",
+    "title": "Data Visualization Principles",
+    "section": "When using postion",
+    "text": "When using postion\n\nThe CodeThe code\n\n\n\nWhen using position rather than length, it is not necessary to include 0.\nIn particularly when comparing between to within groups variability.\n\n\nlibrary(dslabs)\np1 &lt;- gapminder |&gt; filter(year == 2012) |&gt;\n  ggplot(aes(continent, life_expectancy)) +\n  geom_point()\np2 &lt;- p1 +\n  scale_y_continuous(limits = c(0, 84))\ngrid.arrange(p2, p1, ncol = 2)"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#area-vs.-radicus",
+    "href": "slides/17-dataviz-principles.html#area-vs.-radicus",
+    "title": "Data Visualization Principles",
+    "section": "Area vs. Radicus",
+    "text": "Area vs. Radicus\n\nThe codeThe Graph\n\n\n\nHere is comparison of using radius versus area:\n\ngdp &lt;- c(14.6, 5.7, 5.3, 3.3, 2.5)\ngdp_data &lt;- data.frame(Country = rep(c(\"United States\", \"China\", \"Japan\", \"Germany\", \"France\"),2),\n           y = factor(rep(c(\"Radius\",\"Area\"),each = 5), levels = c(\"Radius\", \"Area\")),\n           GDP = c(gdp^2/min(gdp^2), gdp/min(gdp))) |&gt; \n   mutate(Country = reorder(Country, GDP))\ngdp_data |&gt; \n  ggplot(aes(Country, y, size = GDP)) + \n  geom_point(show.legend = FALSE, color = \"blue\") + \n  scale_size(range = c(2,20)) +\n  coord_flip() + ylab(\"\") + xlab(\"\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#the-code-3",
+    "href": "slides/17-dataviz-principles.html#the-code-3",
+    "title": "Data Visualization Principles",
+    "section": "The code",
+    "text": "The code\nHere is comparison of using radius versus area:\n\ngdp &lt;- c(14.6, 5.7, 5.3, 3.3, 2.5)\ngdp_data &lt;- data.frame(Country = rep(c(\"United States\", \"China\", \"Japan\", \"Germany\", \"France\"),2),\n           y = factor(rep(c(\"Radius\",\"Area\"),each = 5), levels = c(\"Radius\", \"Area\")),\n           GDP = c(gdp^2/min(gdp^2), gdp/min(gdp))) |&gt; \n   mutate(Country = reorder(Country, GDP))\ngdp_data |&gt; \n  ggplot(aes(Country, y, size = GDP)) + \n  geom_point(show.legend = FALSE, color = \"blue\") + \n  scale_size(range = c(2,20)) +\n  coord_flip() + ylab(\"\") + xlab(\"\")"
+  },
+  {
+    "objectID": "slides/17-dataviz-principles.html#the-code-4",
+    "href": "slides/17-dataviz-principles.html#the-code-4",
+    "title": "Data Visualization Principles",
+    "section": "The code",
+    "text": "The code"
   }
 ]
