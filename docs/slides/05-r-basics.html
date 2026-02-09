@@ -471,10 +471,7 @@
 <ul>
 <li>In most cases, always better off saying <strong>NO</strong></li>
 </ul></li>
-<li><p>if you save a workspace it will be saved as a hidden file and whenever R is started in a directory with a saved workspace then that workspace will be re-instantiated and used</p>
-<ul>
-<li>this might be helpful if you do not want to recalculate.</li>
-</ul></li>
+<li><p>if you save a workspace it will be saved as a hidden file <code>.Rdata</code> and whenever R is started in a directory with a saved workspace then that workspace will be re-instantiated and used</p></li>
 </ul>
 </section>
 <section id="the-search-paths" class="slide level2">
@@ -508,10 +505,10 @@
 <h2>Main data types</h2>
 <ul>
 <li><p>One dimensional vectors: double, integer, logical, complex, characters.</p></li>
-<li><p>integer and double are both numeric</p></li>
-<li><p>Factors</p></li>
+<li><p>integer and double are both numerical</p></li>
+<li><p>Factors (categorical variables): take finite discrete values</p></li>
 <li><p>Lists: this includes data frames.</p></li>
-<li><p>Arrays: Matrices are the most widely used.</p></li>
+<li><p>Arrays (matrices): all elements are of the same type</p></li>
 <li><p>Date and time</p></li>
 <li><p>tibble (comes from <code>tidyverse</code>, behaves like a dataframe, print friendly, no automatic type change, avoids silent bugs)</p></li>
 <li><p>S3 objects (default R system, flexible, but can be fragile) vs.&nbsp;S4 objects (srongly typed classes, avoid silent bugs)</p></li>
@@ -1083,12 +1080,12 @@ Levels: a b c</code></pre>
 <span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">=</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>))</span>
 <span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a>y1[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Male   Male   Male   Female Male   Female Male   Male   Male  
+<pre><code> [1] Male   Male   Male   Female Female Male   Male   Male   Male   Female
 Levels: Male Female</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb145" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>y2[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Male   Male   Male   Female Male   Female Male   Male   Male  
+<pre><code> [1] Male   Male   Male   Female Female Male   Male   Male   Male   Female
 Levels: Female Male</code></pre>
 </div>
 </div>
@@ -1101,12 +1098,12 @@ Levels: Female Male</code></pre>
 <span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">=</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>))</span>
 <span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a>y1[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Female Male   Male   Male   Female Female Female Male   Male  
+<pre><code> [1] Male   Male   Female Female Male   Male   Male   Female Female Male  
 Levels: Male Female</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb149" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>y2[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Female Male   Male   Male   Female Female Female Male   Male  
+<pre><code> [1] Male   Male   Female Female Male   Male   Male   Female Female Male  
 Levels: Female Male</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb151" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>y1<span class="sc">==</span>y2 <span class="co"># value comparison</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1257,7 +1254,7 @@ Levels: Alpha Zoomer Millennial X Boomer Silent Greatest</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>x
 California   New York      Texas 
- 0.3333027  0.3334910  0.3332063 </code></pre>
+ 0.3331877  0.3332562  0.3335561 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb178"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1"></a><span class="co"># table counts the frequency of each unique value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1762,7 +1759,7 @@ y is 3 </code></pre>
 {
     n * log(mu) - mu * sumx
 }
-&lt;environment: 0x000001c17740e860&gt;</code></pre>
+&lt;environment: 0x0000027efc845080&gt;</code></pre>
 </div>
 </div>
 </section>

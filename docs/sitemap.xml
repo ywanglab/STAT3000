@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/05-r-basics.html</loc>
-    <lastmod>2026-02-02T18:14:11.997Z</lastmod>
+    <lastmod>2026-02-09T16:18:46.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/17-dataviz-principles.html</loc>
+    <lastmod>2026-02-06T22:52:21.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/standard_errors.html</loc>
+    <lastmod>2026-02-03T21:18:12.981Z</lastmod>
   </url>
 </urlset>
