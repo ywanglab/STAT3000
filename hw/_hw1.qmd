@@ -1,6 +1,6 @@
 ---
 title: "Problem set 1"
-date: ""
+date: "2026-02-02"
 
 format:
   html:
@@ -29,7 +29,12 @@ format:
    - the R commands you used
 
     ```
-    # Your commands here
+    # Linux command
+    mkdir hw
+    mkdir img
+    mkdir data
+    mkdir code
+    mkdir docs
     
     ```
 
@@ -39,23 +44,28 @@ format:
    - Files pane (project structure)
    - Git pane (if available)
    
+   ![Screenshot of RStudio](../img/Screenshot 2026-02-02 160544.png)
+   
 2. **GitHub + repo setup**  
    In your Quarto document, include:
    - the repo URL
+   <https://github.com/ywanglab/STAT3000>
    - a screenshot showing the repo page on GitHub
+   ![Screenshot of my Github Repo](../img/Screenshot 2026-02-02 162458.png)
 
 3. **Create and include a plot image**  
     Create a simple plot in R (any plot you like), save it as `img/plot.png`, and include it below.
 
-      ```
-    
-        # Example idea (you can change it):
-        # png("img/plot.png", width = 800, height = 500) #open png device 
-        # plot(cars)
-        # dev.off() # close the device
-      ```
+```{r}
+  
+    # Example idea (you can change it):
+    png("../img/cars.png", width = 800, height = 500) #open png device
+    plot(cars)
+    dev.off() # close the current device and fall backs to "null derice 1" (no device open)
+  
+```
 
-![](img/plot.png)
+
 
 4. **Define a function and compute real roots**
    In this document, define coefficients $a=2$, $b=-5$, $c=-3$.
@@ -63,18 +73,24 @@ format:
 
    * If the discriminant is negative, print a message like `"No real roots"`.
    
-    ```
+```{r}
     
-      # a <- 2
-      # b <- -5
-      # c <- -3
-      # 
-      # disc <- b^2 - 4*a*c
-      # disc
+      a <- 2
+      b <- -5
+      c <- -3
+      #
+      disc <- b^2 - 4*a*c
+     
       
       # Your code here to print only real roots
-    
-    ```
+     if (disc <0 ) {
+       cat("The discriminant is negative, hence no real roots")
+       } else {
+        x1<- 1/(2*a)*(-b+sqrt(disc))
+        x2 <- 1/(2*a)*(-b- sqrt(disc))
+        cat("The roots are x1 =", x1, ", x2 = ", x2)
+      }
+```
 
 5. **Graph the quadratic on a specified interval**
    Make a graph of $f(x)$ versus $x$ for $x \in (-6, 6)$.
@@ -83,12 +99,16 @@ format:
    * a horizontal line at $y = 0$
    * points for the real roots (if they exist)
      
-    ```
-    # x <- seq(-6, 6, length.out = 400)
-    # fx <- a*x^2 + b*x + c
+```{r}
+    x <- seq(-6, 6, length.out = 400)
+    fx <- a*x^2 + b*x + c
     
     # Hint: use plot(x, fx, type="l") and abline(h=0)
-    ```
+    plot(x, fx, type="l")
+    abline(h=0) #h=0: horizontal y-inercept; v=t: vertical line with x-intercept t; abline(a,b): y=a+bx
+    points(c(x1,x2), c(0,0), col="red") # add ponts to an exsiting plot
+    
+```
 
 6. **Write coefficients to a text file using Unix**
    Use Unix to create a file `data/coefs.txt` containing a single line with:
@@ -101,6 +121,9 @@ format:
 
    ```
    # Your commands here
+   printf "2 -5 -3" > ../data/coefs.txt
+   # or 
+   # echo "2 -5 -3" > ../data/ceofs.txt
    ```
 
 7. **Copy the Quarto file using Unix**
@@ -108,7 +131,8 @@ format:
    Show the Unix command(s):
 
    ```
-   # Your commands here
+   # Your commands here (assumng your curretn directory is the parent director of hw/ and code/)
+   cp hw/hw1.qmd code/quadratic.qmd
    ```
 
 8. **Read coefficients from file using a relative path**
@@ -116,23 +140,73 @@ format:
    Edit `code/quadratic.qmd` so it reads `a`, `b`, `c` from `data/coefs.txt` using a **relative path**.
    In *this* document, show the R code you used (it should also appear in `quadratic.qmd`).
 
-    ```
+  
+```{r}
     # Your code here (example outline):
     
-    # coefs <- scan("data/coefs.txt") #read numbers/string and return a vector
+    coefs <- scan("../data/coefs.txt") #read numbers/string and return a vector
     
-    # a <- coefs[1]; b <- coefs[2]; c <- coefs[3]
+    a <- coefs[1]; b <- coefs[2]; c <- coefs[3]
     
     # then compute real roots again
-    ```
+    
+      #
+      disc <- b^2 - 4*a*c
+     
+      
+      # Your code here to print only real roots
+     if (disc <0 ) {
+       cat("The discriminant is negative, hence no real roots")
+       } else {
+        x1<- 1/(2*a)*(-b+sqrt(disc))
+        x2 <- 1/(2*a)*(-b- sqrt(disc))
+        cat("The roots are x1 =", x1, ", x2 = ", x2)
+      }
+    
+```
 9. **Switch to an absolute path and test portability**
 
    In `code/quadratic.qmd`, replace the relative path with:
    `file.path(getwd(), "data/coefs.txt")`
    Render it once to confirm it works.
+   
+```{r}
+    # Your code here (example outline):
+    
+    coefs <- scan(file.path(getwd(), "../data/coefs.txt")) #
+# getwd(): get the abs. path of the current working directory
+# file.path(): build full abs path that works in any os. Second argularment is relative to the first argument
+    
+    a <- coefs[1]; b <- coefs[2]; c <- coefs[3]
+    
+    # then compute real roots again
+    
+      #
+      disc <- b^2 - 4*a*c
+     
+      
+      # Your code here to print only real roots
+     if (disc <0 ) {
+       cat("The discriminant is negative, hence no real roots")
+       } else {
+        x1<- 1/(2*a)*(-b+sqrt(disc))
+        x2 <- 1/(2*a)*(-b- sqrt(disc))
+        cat("The roots are x1 =", x1, ", x2 = ", x2)
+      }
+    
+```
 
    Then **move the entire project folder** to a new folder name (e.g., `RtmpXXXX`).
+    
+  ```
+  # example use the following code
+  # first change directory to the parent directory that contants the entire poject directory (e.g. STAT3000)
+  cp -r STAT3000 Rtmp  
+  ```
+   
    Re-render `code/quadratic.qmd`. Does it still render?
+   
+   
    Briefly explain what happened, then switch back to a relative path and confirm it renders again.
 
 10. **Render to PDF and publish to GitHub Pages-style docs folder**
@@ -154,6 +228,14 @@ format:
     Make at least **three commits** with meaningful messages, such as:
 
 * `Add initial project structure`
+```
+git add -A
+git commit -m "Add initial project structure"
+git push
+```
+
+
+
 * `Add quadratic root computation`
 * `Add rendering output to docs`
 
