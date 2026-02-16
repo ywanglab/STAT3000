@@ -2057,35 +2057,35 @@
     "href": "slides/19-dataviz-in-practice.html#ridge-plots",
     "title": "Dataviz In Practice",
     "section": "Ridge plots",
-    "text": "Ridge plots\n\nHere is the income data shown above with boxplots but with a ridge plot.\n\n\nlibrary(ggridges) \np &lt;- gapminder |&gt;  \n  filter(year == past_year & !is.na(dollars_per_day)) |&gt; \n  mutate(group = reorder(group, dollars_per_day, FUN = median)) |&gt; \n  ggplot(aes(dollars_per_day, group)) +  \n  scale_x_continuous(trans = \"log2\")  \np  + geom_density_ridges()"
+    "text": "Ridge plots\n\nThe codeThe plot\n\n\n\nHere is the income data shown above with boxplots but with a ridge plot.\n\n\nlibrary(ggridges) \np &lt;- gapminder |&gt;  \n  filter(year == past_year & !is.na(dollars_per_day)) |&gt; \n  mutate(group = reorder(group, dollars_per_day, FUN = median)) |&gt; \n  ggplot(aes(dollars_per_day, group)) +  \n  scale_x_continuous(trans = \"log2\")  \np  + geom_density_ridges()"
   },
   {
     "objectID": "slides/19-dataviz-in-practice.html#ridge-plots-1",
     "href": "slides/19-dataviz-in-practice.html#ridge-plots-1",
     "title": "Dataviz In Practice",
     "section": "Ridge plots",
-    "text": "Ridge plots"
+    "text": "Ridge plots\n\nIf the number of data points is small enough, we can add them to the ridge plot using the following code:\n\n\np + geom_density_ridges(jittered_points = TRUE)"
   },
   {
     "objectID": "slides/19-dataviz-in-practice.html#ridge-plots-2",
     "href": "slides/19-dataviz-in-practice.html#ridge-plots-2",
     "title": "Dataviz In Practice",
     "section": "Ridge plots",
-    "text": "Ridge plots\n\nIf the number of data points is small enough, we can add them to the ridge plot using the following code:\n\n\np + geom_density_ridges(jittered_points = TRUE)"
+    "text": "Ridge plots"
   },
   {
     "objectID": "slides/19-dataviz-in-practice.html#ridge-plots-3",
     "href": "slides/19-dataviz-in-practice.html#ridge-plots-3",
     "title": "Dataviz In Practice",
     "section": "Ridge plots",
-    "text": "Ridge plots"
+    "text": "Ridge plots\n\nTo show data points, but without using jitter we can use the following code to add what is referred to as a rug representation of the data.\n\n\np + geom_density_ridges(jittered_points = TRUE,  \n                        position = position_points_jitter(height = 0), \n                        point_shape = '|', point_size = 3,  \n                        point_alpha = 1, alpha = 0.7)"
   },
   {
     "objectID": "slides/19-dataviz-in-practice.html#ridge-plots-4",
     "href": "slides/19-dataviz-in-practice.html#ridge-plots-4",
     "title": "Dataviz In Practice",
     "section": "Ridge plots",
-    "text": "Ridge plots\n\nTo show data points, but without using jitter we can use the following code to add what is referred to as a rug representation of the data.\n\n\np + geom_density_ridges(jittered_points = TRUE,  \n                        position = position_points_jitter(height = 0), \n                        point_shape = '|', point_size = 3,  \n                        point_alpha = 1, alpha = 0.7)"
+    "text": "Ridge plots"
   },
   {
     "objectID": "slides/19-dataviz-in-practice.html#ridge-plots-5",
@@ -2454,6 +2454,524 @@
     "text": "3 Submission checklist\n\nRepo exists and is named HW1\nhw1.qmd renders without errors\nimg/plot.png exists and is included in the document\ndata/coefs.txt exists and is read using a relative path\ndocs/ contains the rendered PDF\nAt least three commits + pushed to GitHub",
     "crumbs": [
       "HW-1"
+    ]
+  },
+  {
+    "objectID": "slides/19-dataviz-in-practice.html#boxplot-maybe-insufficient",
+    "href": "slides/19-dataviz-in-practice.html#boxplot-maybe-insufficient",
+    "title": "Dataviz In Practice",
+    "section": "Boxplot maybe insufficient",
+    "text": "Boxplot maybe insufficient\n\nThe codeThe graph\n\n\n\nset.seed(1987) \nz &lt;- sample(c(0,1), 1000, replace = TRUE, prob = c(0.25, 0.75)) \nx &lt;- rnorm(1000)*z + rnorm(1000, 5)*(1 - z) # if z_i=1, x_i comes from N(0,1).  \np1 &lt;- data.frame(x=x) |&gt;  \n  ggplot(aes(x)) +  \n  geom_density(fill = 1, show.legend=FALSE, alpha = 0.2) + # fill=1: the first color in the palette. To see the color, `scales::hue_pal()(1) `\n  scale_x_continuous(limits=c(-4,8.5)) \np2 &lt;- data.frame(g= \"\", x=x) |&gt; ggplot(aes(g, x)) + geom_boxplot() + xlab(\"\") + # create empty first column\n  theme(axis.ticks = element_blank()) \n# the first part can be: ggplot(data.frame(x = x), aes(y = x)) + geom_boxplot()\n\ngridExtra::grid.arrange(p1, p2, nrow = 1)"
+  },
+  {
+    "objectID": "psets/hw2.html",
+    "href": "psets/hw2.html",
+    "title": "Problem set 2",
+    "section": "",
+    "text": "Download source\nFor these exercises, do not load any packages other than dslabs.\nMake sure to use vectorization whenever possible (avoid loops unless explicitly allowed).\nlibrary(dslabs)"
+  },
+  {
+    "objectID": "psets/hw2.html#qmd",
+    "href": "psets/hw2.html#qmd",
+    "title": "Problem set 2",
+    "section": "",
+    "text": "title: “Problem set 2” date: “” format: html: toc: true number-sections: true —\nDownload source\nFor these exercises, do not load any packages other than dslabs.\nMake sure to use vectorization whenever possible (avoid loops unless explicitly allowed).\n\nlibrary(dslabs)"
+  },
+  {
+    "objectID": "psets/hw2.html#section",
+    "href": "psets/hw2.html#section",
+    "title": "Problem set 2",
+    "section": "1 1",
+    "text": "1 1\nWhat is the sum of the first 150 positive integers? Use the functions seq and sum to compute the sum with R for any n.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-1",
+    "href": "psets/hw2.html#section-1",
+    "title": "Problem set 2",
+    "section": "2 2",
+    "text": "2 2\nLoad the murders dataset from dslabs. Use the function str to examine the structure of the murders object.\n\nWhat are the column names used by the data frame for these five variables: state name, abbreviation, region, population, total murders?\nShow the subset of murders showing states with less than 1.2 per 100,000 deaths.\nShow all variables.\n\n\nstr(murders)\n\n'data.frame':   51 obs. of  5 variables:\n $ state     : chr  \"Alabama\" \"Alaska\" \"Arizona\" \"Arkansas\" ...\n $ abb       : chr  \"AL\" \"AK\" \"AZ\" \"AR\" ...\n $ region    : Factor w/ 4 levels \"Northeast\",\"South\",..: 2 4 4 2 4 4 1 2 2 2 ...\n $ population: num  4779736 710231 6392017 2915918 37253956 ...\n $ total     : num  135 19 232 93 1257 ...\n\n\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-2",
+    "href": "psets/hw2.html#section-2",
+    "title": "Problem set 2",
+    "section": "3 3",
+    "text": "3 3\nShow the subset of murders showing states with less than 1.2 per 100,000 deaths and in the Northeast of the US. Do not show the region variable.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-3",
+    "href": "psets/hw2.html#section-3",
+    "title": "Problem set 2",
+    "section": "4 4",
+    "text": "4 4\nAmong states with a murder rate less than 1.2 per 100,000, show the smallest population state (show the state name, population, and rate).\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-4",
+    "href": "psets/hw2.html#section-4",
+    "title": "Problem set 2",
+    "section": "5 5",
+    "text": "5 5\nShow the state with a population of more than 8 million with the lowest murder rate (show the state name, population, and rate).\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-5",
+    "href": "psets/hw2.html#section-5",
+    "title": "Problem set 2",
+    "section": "6 6",
+    "text": "6 6\nCompute the murder rate for each region of the US (total murders divided by total population times 100,000). Return a data frame with one row per region and columns region and rate.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-6",
+    "href": "psets/hw2.html#section-6",
+    "title": "Problem set 2",
+    "section": "7 7",
+    "text": "7 7\nCreate a vector of numbers that starts at 5, does not pass 60, and adds numbers in increments of 3/8: 5, 5 + 3/8, 5 + 6/8, and so on.\nHow many numbers does the list have? Hint: use seq and length.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-7",
+    "href": "psets/hw2.html#section-7",
+    "title": "Problem set 2",
+    "section": "8 8",
+    "text": "8 8\nMake this data frame:\n\ntemp_f &lt;- c(72, 95, 41, 86, 78, 33)\ncity &lt;- c(\"Chicago\", \"Lagos\", \"Oslo\", \"Rio de Janeiro\", \n          \"San Juan\", \"Toronto\")\ncity_temps &lt;- data.frame(name = city, temperature_f = temp_f)\ncity_temps\n\n            name temperature_f\n1        Chicago            72\n2          Lagos            95\n3           Oslo            41\n4 Rio de Janeiro            86\n5       San Juan            78\n6        Toronto            33\n\n\nAdd a new column called temperature_c containing the temperatures in Celsius. Keep all existing columns.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-8",
+    "href": "psets/hw2.html#section-8",
+    "title": "Problem set 2",
+    "section": "9 9",
+    "text": "9 9\nWrite a function euler2 that computes the following sum for any n:\n\\[\nS_n = 1 + \\frac{1}{2^2} + \\frac{1}{3^2} + \\dots + \\frac{1}{n^2}.\n\\]\nYour function should:\n\ntake a single input n\nreturn a single number\n\nTest your function at n = 10 and n = 100.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-9",
+    "href": "psets/hw2.html#section-9",
+    "title": "Problem set 2",
+    "section": "10 10",
+    "text": "10 10\nShow that as \\(n\\) gets bigger, \\(S_n\\) gets closer to \\(\\pi^2/6\\) by plotting \\(S_n\\) versus \\(n\\) for \\(n = 1,2,\\dots,2000\\) with a horizontal dashed line at \\(\\pi^2/6\\).\nHints:\n\nCreate a vector n &lt;- 1:2000\nUse sapply(n, euler2) (vectorization through apply is fine)\nUse abline(h = ..., lty = 2)\n\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-10",
+    "href": "psets/hw2.html#section-10",
+    "title": "Problem set 2",
+    "section": "11 11",
+    "text": "11 11\nUse the %in% operator and the predefined object state.abb to create a logical vector that answers the question: which of the following are actual abbreviations?\nAL, AK, AZ, AR, AA\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-11",
+    "href": "psets/hw2.html#section-11",
+    "title": "Problem set 2",
+    "section": "12 12",
+    "text": "12 12\nExtend the code you used in the previous exercise to report the one entry that is not an actual abbreviation.\nHint: use ! then which to obtain an index.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-12",
+    "href": "psets/hw2.html#section-12",
+    "title": "Problem set 2",
+    "section": "13 13",
+    "text": "13 13\nIn the murders dataset, use %in% to show all variables for Florida, California, and New York, in that order.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-13",
+    "href": "psets/hw2.html#section-13",
+    "title": "Problem set 2",
+    "section": "14 14",
+    "text": "14 14\nWrite a function called vandermonde_helper2 that for any x and n, returns the vector:\n\\[\n(1, x, x^2, x^3, \\dots, x^n).\n\\]\nShow the results for x = 2 and n = 6.\nRestrictions:\n\nDo not use a loop.\nUse vectorization (e.g., ^ with 0:n).\n\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-14",
+    "href": "psets/hw2.html#section-14",
+    "title": "Problem set 2",
+    "section": "15 15",
+    "text": "15 15\nCreate a vector using:\n\nn &lt;- 20000\np &lt;- 0.35\nset.seed(2025-9-18)\nx &lt;- sample(c(0,1), n, prob = c(1 - p, p), replace = TRUE)\n\nCompute the length of each stretch of consecutive 1s (run lengths of 1s) and then plot the distribution of these values.\n\nDo not use a loop.\nHint: use rle(x).\n\nThen compare the empirical proportions to a geometric distribution prediction by printing a small table for run lengths 1 through 8.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-15",
+    "href": "psets/hw2.html#section-15",
+    "title": "Problem set 2",
+    "section": "16 16",
+    "text": "16 16\nIn the murders dataset:\n\nCompute the national average murder rate (total murders / total population * 100,000).\nCreate a logical vector indicating which states have both a murder rate higher than the national average and population greater than 6 million.\nUse ifelse to create a character vector labeling states:\n\n\"High Crime, High Pop\" if rate &gt; national average and pop &gt; 6 million\n\"High Crime, Low Pop\" if rate &gt; national average and pop ≤ 6 million\n\"Lower Crime\" otherwise\n\n\nFinally, create a table of counts of these labels with table().\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-16",
+    "href": "psets/hw2.html#section-16",
+    "title": "Problem set 2",
+    "section": "17 17",
+    "text": "17 17\nUse order, rank, and sort functions on the murder rates to answer the following:\nWhat is the murder rate of the state that ranks 12th in terms of murder rate (from highest to lowest)?\nShow your work by:\n\ncreating a murder rate vector called rate\nusing the appropriate function(s) to find the 12th ranked value\n\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-17",
+    "href": "psets/hw2.html#section-17",
+    "title": "Problem set 2",
+    "section": "18 18",
+    "text": "18 18\nWrite a function called compute_harmonic_mean that takes a numeric vector and returns the harmonic mean:\n\\[\n\\frac{n}{\\sum_{i=1}^n \\frac{1}{x_i}}.\n\\]\nThe function should return NA if any values are zero or negative.\nTest your function on the vector c(1, 2, 4, 8) and show that it returns approximately 2.133333.\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-18",
+    "href": "psets/hw2.html#section-18",
+    "title": "Problem set 2",
+    "section": "19 19",
+    "text": "19 19\nCreate a function called safe_divide that takes two arguments x and y and returns their ratio x/y, but returns the string \"Cannot divide by zero\" when y is zero.\nUse vectorization so that the function works element-wise on vectors.\nTest it on:\nx &lt;- c(10, 20, 30)\ny &lt;- c(2, 0, 5)\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2.html#section-19",
+    "href": "psets/hw2.html#section-19",
+    "title": "Problem set 2",
+    "section": "20 20",
+    "text": "20 20\nUsing the murders dataset, write a function called classify_state_safety that takes a state name as input and returns a classification based on the murder rate:\n\n\"Very Safe\" if rate &lt; 1\n\"Safe\" if 1 ≤ rate &lt; 3\n\"Moderate\" if 3 ≤ rate &lt; 5\n\"High Risk\" if rate ≥ 5\n\nIf the state name is not found, return \"State not found\".\nTest your function on:\n\n\"Vermont\"\n\"Texas\"\n\"California\"\n\"NotAState\"\n\nThen use sapply to classify all states and create a table showing how many states fall into each safety category using table().\n\n# Your code here"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html",
+    "href": "psets/hw2_more_scaffold.html",
+    "title": "Problem set 2",
+    "section": "",
+    "text": "Download source\nFor these exercises, do not load any packages other than dslabs.\nMake sure to use vectorization whenever possible (avoid loops unless explicitly allowed).\n# Load only the allowed package\nlibrary(dslabs)"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section",
+    "href": "psets/hw2_more_scaffold.html#section",
+    "title": "Problem set 2",
+    "section": "1 ",
+    "text": "1 \nWhat is the sum of the first 150 positive integers? Use the functions seq and sum to compute the sum with R for any n.\n\n# Step 1: define n\nn &lt;- 150\n\n# Step 2: create the sequence 1, 2, ..., n\nx &lt;- seq(1, n)\n\n# Step 3: take the sum\n# (replace NA with your answer)\nans &lt;- NA\nans\n\n[1] NA\n\n\n\n# Extension: write one line that works for any n (change n above)\n# sum(seq(1, n))"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-1",
+    "href": "psets/hw2_more_scaffold.html#section-1",
+    "title": "Problem set 2",
+    "section": "2 ",
+    "text": "2 \nLoad the murders dataset from dslabs. Use the function str to examine the structure of the murders object.\n\nWhat are the column names used by the data frame for these five variables: state name, abbreviation, region, population, total murders?\nShow the subset of murders showing states with less than 1.2 per 100,000 deaths.\nShow all variables.\n\n\n# Examine the structure\nstr(murders)\n\n'data.frame':   51 obs. of  5 variables:\n $ state     : chr  \"Alabama\" \"Alaska\" \"Arizona\" \"Arkansas\" ...\n $ abb       : chr  \"AL\" \"AK\" \"AZ\" \"AR\" ...\n $ region    : Factor w/ 4 levels \"Northeast\",\"South\",..: 2 4 4 2 4 4 1 2 2 2 ...\n $ population: num  4779736 710231 6392017 2915918 37253956 ...\n $ total     : num  135 19 232 93 1257 ...\n\n# Step: show column names\nnames(murders)\n\n[1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n\n\n\n# Step 1: compute murder rate per 100,000\nrate &lt;- murders$total / murders$population * 100000\n\n# Step 2: identify which states have rate &lt; 1.2\nidx &lt;- rate &lt; 1.2\n\n# Step 3: subset the data frame using idx\nmurders_low &lt;- murders[idx, ]\n\n# Step 4: show the subset\nmurders_low\n\n           state abb        region population total\n12        Hawaii  HI          West    1360301     7\n13         Idaho  ID          West    1567582    12\n16          Iowa  IA North Central    3046355    21\n20         Maine  ME     Northeast    1328361    11\n24     Minnesota  MN North Central    5303925    53\n30 New Hampshire  NH     Northeast    1316470     5\n35  North Dakota  ND North Central     672591     4\n38        Oregon  OR          West    3831074    36\n42  South Dakota  SD North Central     814180     8\n45          Utah  UT          West    2763885    22\n46       Vermont  VT     Northeast     625741     2\n51       Wyoming  WY          West     563626     5"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-2",
+    "href": "psets/hw2_more_scaffold.html#section-2",
+    "title": "Problem set 2",
+    "section": "3 ",
+    "text": "3 \nShow the subset of murders showing states with less than 1.2 per 100,000 deaths and in the Northeast of the US. Do not show the region variable.\n\n# Step 1: compute rate (or reuse from Q2 if still in your environment)\nrate &lt;- murders$total / murders$population * 100000\n\n# Step 2: logical condition for low-rate states\nlow &lt;- rate &lt; 1.2\n\n# Step 3: logical condition for Northeast region\nne &lt;- murders$region == \"Northeast\"\n\n# Step 4: combine conditions (use &)\nkeep &lt;- low & ne\n\n# Step 5: subset rows\nout &lt;- murders[keep, ]\n\n# Step 6: remove the region column\n# Hint: use out[, -which(names(out)==\"region\")] or select columns by name\nout_no_region &lt;- out[, names(out) != \"region\"]\n\nout_no_region\n\n           state abb population total\n20         Maine  ME    1328361    11\n30 New Hampshire  NH    1316470     5\n46       Vermont  VT     625741     2"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-3",
+    "href": "psets/hw2_more_scaffold.html#section-3",
+    "title": "Problem set 2",
+    "section": "4 ",
+    "text": "4 \nAmong states with a murder rate less than 1.2 per 100,000, show the smallest population state (show the state name, population, and rate).\n\n# Step 1: compute rate\nrate &lt;- murders$total / murders$population * 100000\n\n# Step 2: subset to states with rate &lt; 1.2\nlow &lt;- rate &lt; 1.2\n\n# Step 3: get populations for just those states\npop_low &lt;- murders$population[low]\n\n# Step 4: find index (within the low subset) of the smallest population\n# Hint: use which.min\nj &lt;- which.min(pop_low)\n\n# Step 5: convert to the original row index\n# Hint: which(low) gives the row numbers that are TRUE\nrows_low &lt;- which(low)\ni &lt;- rows_low[j]\n\n# Step 6: report state, population, and rate (as a small data frame)\ndata.frame(\n  state = murders$state[i],\n  population = murders$population[i],\n  rate = rate[i]\n)\n\n    state population      rate\n1 Wyoming     563626 0.8871131"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-4",
+    "href": "psets/hw2_more_scaffold.html#section-4",
+    "title": "Problem set 2",
+    "section": "5 ",
+    "text": "5 \nShow the state with a population of more than 8 million with the lowest murder rate (show the state name, population, and rate).\n\n# Step 1: compute rate\nrate &lt;- murders$total / murders$population * 100000\n\n# Step 2: create logical vector for pop &gt; 8 million\nbig &lt;- murders$population &gt; 8e6\n\n# Step 3: compute rates for those states\nrate_big &lt;- rate[big]\n\n# Step 4: find the smallest rate among big-pop states\nj &lt;- which.min(rate_big)\n\n# Step 5: map back to original row index\nrows_big &lt;- which(big)\ni &lt;- rows_big[j]\n\n# Step 6: report\ndata.frame(\n  state = murders$state[i],\n  population = murders$population[i],\n  rate = rate[i]\n)\n\n     state population    rate\n1 New York   19378102 2.66796"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-5",
+    "href": "psets/hw2_more_scaffold.html#section-5",
+    "title": "Problem set 2",
+    "section": "6 ",
+    "text": "6 \nCompute the murder rate for each region of the US (total murders divided by total population times 100,000). Return a data frame with one row per region and columns region and rate.\n\n# Step 1: list the region names\nregions &lt;- unique(murders$region)\nregions\n\n[1] South         West          Northeast     North Central\nLevels: Northeast South North Central West\n\n\n\n# Step 2: compute total murders per region\nmurders_by_region &lt;- tapply(murders$total, murders$region, sum)\n\n# Step 3: compute total population per region\npop_by_region &lt;- tapply(murders$population, murders$region, sum)\n\n# Step 4: compute rates per region\nrate_by_region &lt;- murders_by_region / pop_by_region * 100000\n\n# Step 5: build a data frame\nregion_rates &lt;- data.frame(\n  region = names(rate_by_region),\n  rate = as.numeric(rate_by_region)\n)\n\nregion_rates\n\n         region     rate\n1     Northeast 2.655592\n2         South 3.626558\n3 North Central 2.731334\n4          West 2.656175"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-6",
+    "href": "psets/hw2_more_scaffold.html#section-6",
+    "title": "Problem set 2",
+    "section": "7 ",
+    "text": "7 \nCreate a vector of numbers that starts at 5, does not pass 60, and adds numbers in increments of 3/8: 5, 5 + 3/8, 5 + 6/8, and so on.\nHow many numbers does the list have? Hint: use seq and length.\n\n# Step 1: define start, end, and step\nstart &lt;- 5\nend &lt;- 60\nstep &lt;- 3/8\n\n# Step 2: generate the sequence\nv &lt;- seq(from = start, to = end, by = step)\n\n# Step 3: check first few values\nhead(v)\n\n[1] 5.000 5.375 5.750 6.125 6.500 6.875\n\n# Step 4: how many values?\nlength(v)\n\n[1] 147"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-7",
+    "href": "psets/hw2_more_scaffold.html#section-7",
+    "title": "Problem set 2",
+    "section": "8 ",
+    "text": "8 \nMake this data frame:\n\ntemp_f &lt;- c(72, 95, 41, 86, 78, 33)\ncity &lt;- c(\"Chicago\", \"Lagos\", \"Oslo\", \"Rio de Janeiro\", \n          \"San Juan\", \"Toronto\")\ncity_temps &lt;- data.frame(name = city, temperature_f = temp_f)\ncity_temps\n\n            name temperature_f\n1        Chicago            72\n2          Lagos            95\n3           Oslo            41\n4 Rio de Janeiro            86\n5       San Juan            78\n6        Toronto            33\n\n\nAdd a new column called temperature_c containing the temperatures in Celsius. Keep all existing columns.\n\n# Step 1: write the conversion formula\n# C = (F - 32) * 5/9\n\n# Step 2: add the new column\ncity_temps$temperature_c &lt;- (city_temps$temperature_f - 32) * 5/9\n\n# Step 3: show the updated data frame\ncity_temps\n\n            name temperature_f temperature_c\n1        Chicago            72    22.2222222\n2          Lagos            95    35.0000000\n3           Oslo            41     5.0000000\n4 Rio de Janeiro            86    30.0000000\n5       San Juan            78    25.5555556\n6        Toronto            33     0.5555556"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-8",
+    "href": "psets/hw2_more_scaffold.html#section-8",
+    "title": "Problem set 2",
+    "section": "9 ",
+    "text": "9 \nWrite a function euler2 that computes the following sum for any n:\n\\[\nS_n = 1 + \\frac{1}{2^2} + \\frac{1}{3^2} + \\dots + \\frac{1}{n^2}.\n\\]\nYour function should:\n\ntake a single input n\nreturn a single number\n\nTest your function at n = 10 and n = 100.\n\n# Step 1: define the function skeleton\neuler2 &lt;- function(n) {\n  # Step 2: create the vector 1:n\n  k &lt;- 1:n\n  \n  # Step 3: compute the terms 1/k^2\n  terms &lt;- 1 / (k^2)\n  \n  # Step 4: sum the terms\n  sum(terms)\n}\n\n# Step 5: test\neuler2(10)\n\n[1] 1.549768\n\neuler2(100)\n\n[1] 1.634984"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-9",
+    "href": "psets/hw2_more_scaffold.html#section-9",
+    "title": "Problem set 2",
+    "section": "10 ",
+    "text": "10 \nShow that as \\(n\\) gets bigger, \\(S_n\\) gets closer to \\(\\pi^2/6\\) by plotting \\(S_n\\) versus \\(n\\) for \\(n = 1,2,\\dots,2000\\) with a horizontal dashed line at \\(\\pi^2/6\\).\nHints:\n\nCreate a vector n &lt;- 1:2000\nUse sapply(n, euler2) (vectorization through apply is fine)\nUse abline(h = ..., lty = 2)\n\n\n# Step 1: vector of n values\nn_vals &lt;- 1:2000\n\n# Step 2: compute S_n for each n\nS &lt;- sapply(n_vals, euler2)\n\n# Step 3: plot S_n vs n\nplot(n_vals, S, type = \"l\",\n     xlab = \"n\", ylab = \"S_n\")\n\n# Step 4: add horizontal line at pi^2/6\nabline(h = pi^2/6, lty = 2)\n\n\n\n# Step 5 (optional): print last value and difference\ntail(S, 1)\n\n[1] 1.644434\n\ntail(S, 1) - pi^2/6\n\n[1] -0.000499875"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-10",
+    "href": "psets/hw2_more_scaffold.html#section-10",
+    "title": "Problem set 2",
+    "section": "11 ",
+    "text": "11 \nUse the %in% operator and the predefined object state.abb to create a logical vector that answers the question: which of the following are actual abbreviations?\nAL, AK, AZ, AR, AA\n\n# Step 1: make a vector of abbreviations to check\ntest &lt;- c(\"AL\", \"AK\", \"AZ\", \"AR\", \"AA\")\n\n# Step 2: check membership in state.abb\nis_real &lt;- test %in% state.abb\n\n# Step 3: show results\nis_real\n\n[1]  TRUE  TRUE  TRUE  TRUE FALSE"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-11",
+    "href": "psets/hw2_more_scaffold.html#section-11",
+    "title": "Problem set 2",
+    "section": "12 ",
+    "text": "12 \nExtend the code you used in the previous exercise to report the one entry that is not an actual abbreviation.\nHint: use ! then which to obtain an index.\n\ntest &lt;- c(\"AL\", \"AK\", \"AZ\", \"AR\", \"AA\")\n\n# Step 1: logical vector of \"not in\"\nnot_real &lt;- !(test %in% state.abb)\n\n# Step 2: find the position(s) that are TRUE\nidx &lt;- which(not_real)\n\n# Step 3: report the entry (or entries)\ntest[idx]\n\n[1] \"AA\""
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-12",
+    "href": "psets/hw2_more_scaffold.html#section-12",
+    "title": "Problem set 2",
+    "section": "13 ",
+    "text": "13 \nIn the murders dataset, use %in% to show all variables for Florida, California, and New York, in that order.\n\n# Step 1: make a vector of target states in the order requested\ntargets &lt;- c(\"Florida\", \"California\", \"New York\")\n\n# Step 2: subset using %in%\nsub &lt;- murders[murders$state %in% targets, ]\n\n# Step 3: reorder rows to match the order in targets\n# Hint: match gives positions\nsub_ordered &lt;- sub[match(targets, sub$state), ]\n\n# Step 4: display\nsub_ordered\n\n        state abb    region population total\n10    Florida  FL     South   19687653   669\n5  California  CA      West   37253956  1257\n33   New York  NY Northeast   19378102   517"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-13",
+    "href": "psets/hw2_more_scaffold.html#section-13",
+    "title": "Problem set 2",
+    "section": "14 ",
+    "text": "14 \nWrite a function called vandermonde_helper2 that for any x and n, returns the vector:\n\\[\n(1, x, x^2, x^3, \\dots, x^n).\n\\]\nShow the results for x = 2 and n = 6.\nRestrictions:\n\nDo not use a loop.\nUse vectorization (e.g., ^ with 0:n).\n\n\n# Step 1: define the function\nvandermonde_helper2 &lt;- function(x, n) {\n  # Step 2: create exponents 0,1,2,...,n\n  e &lt;- 0:n\n  \n  # Step 3: compute x^e (vectorized)\n  x^e\n}\n\n# Step 4: test\nvandermonde_helper2(2, 6)\n\n[1]  1  2  4  8 16 32 64"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-14",
+    "href": "psets/hw2_more_scaffold.html#section-14",
+    "title": "Problem set 2",
+    "section": "15 ",
+    "text": "15 \nCreate a vector using:\n\nn &lt;- 20000\np &lt;- 0.35\nset.seed(2025-9-18)\nx &lt;- sample(c(0,1), n, prob = c(1 - p, p), replace = TRUE)\n\nCompute the length of each stretch of consecutive 1s (run lengths of 1s) and then plot the distribution of these values.\n\nDo not use a loop.\nHint: use rle(x).\n\nThen compare the empirical proportions to a geometric distribution prediction by printing a small table for run lengths 1 through 8.\n\n# Step 1: run-length encoding\nr &lt;- rle(x)\n\n# Step 2: extract run lengths where the run value is 1\nones_lengths &lt;- r$lengths[r$values == 1]\n\n# Step 3: look at first few run lengths\nhead(ones_lengths)\n\n[1] 1 2 1 2 1 1\n\n# Step 4: plot distribution (histogram or barplot)\n# Option A: histogram\nhist(ones_lengths, breaks = 30,\n     xlab = \"Run length of 1s\", main = \"Distribution of run lengths of 1s\")\n\n\n\n# Step 5: empirical proportions for run lengths 1:8\ntab &lt;- table(ones_lengths)\nemp_counts &lt;- as.numeric(tab[as.character(1:8)])\nemp_counts[is.na(emp_counts)] &lt;- 0\nemp_probs &lt;- emp_counts / length(ones_lengths)\n\n# Step 6: theoretical geometric comparison\n# For Bernoulli(p), P(run length = k) = (1-p) * p^(k-1)\nk &lt;- 1:8\ntheory_probs &lt;- (1 - p) * p^(k - 1)\n\n# Step 7: show a comparison table\ncomparison &lt;- data.frame(\n  run_length = k,\n  empirical_prob = emp_probs,\n  theory_prob = theory_probs\n)\ncomparison\n\n  run_length empirical_prob  theory_prob\n1          1   0.6491810536 0.6500000000\n2          2   0.2273129703 0.2275000000\n3          3   0.0836653386 0.0796250000\n4          4   0.0254537406 0.0278687500\n5          5   0.0084108012 0.0097540625\n6          6   0.0042054006 0.0034139219\n7          7   0.0006640106 0.0011948727\n8          8   0.0008853475 0.0004182054"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-15",
+    "href": "psets/hw2_more_scaffold.html#section-15",
+    "title": "Problem set 2",
+    "section": "16 ",
+    "text": "16 \nIn the murders dataset:\n\nCompute the national average murder rate (total murders / total population * 100,000).\nCreate a logical vector indicating which states have both a murder rate higher than the national average and population greater than 6 million.\nUse ifelse to create a character vector labeling states:\n\n\"High Crime, High Pop\" if rate &gt; national average and pop &gt; 6 million\n\"High Crime, Low Pop\" if rate &gt; national average and pop ≤ 6 million\n\"Lower Crime\" otherwise\n\n\nFinally, create a table of counts of these labels with table().\n\n# Step 1: state-level rate\nrate &lt;- murders$total / murders$population * 100000\n\n# Step 2: national average rate\nnational_rate &lt;- sum(murders$total) / sum(murders$population) * 100000\nnational_rate\n\n[1] 3.034555\n\n# Step 3: conditions\nhigh_crime &lt;- rate &gt; national_rate\nhigh_pop &lt;- murders$population &gt; 6e6\n\n# Step 4: label using ifelse (nested ifelse)\nlabels &lt;- ifelse(high_crime & high_pop, \"High Crime, High Pop\",\n                 ifelse(high_crime & !high_pop, \"High Crime, Low Pop\",\n                        \"Lower Crime\"))\n\n# Step 5: counts\ntable(labels)\n\nlabels\nHigh Crime, High Pop  High Crime, Low Pop          Lower Crime \n                   9                   10                   32 \n\n# Step 6 (optional): show states in each category\ndata.frame(state = murders$state, rate = rate, population = murders$population, label = labels)\n\n                  state       rate population                label\n1               Alabama  2.8244238    4779736          Lower Crime\n2                Alaska  2.6751860     710231          Lower Crime\n3               Arizona  3.6295273    6392017 High Crime, High Pop\n4              Arkansas  3.1893901    2915918  High Crime, Low Pop\n5            California  3.3741383   37253956 High Crime, High Pop\n6              Colorado  1.2924531    5029196          Lower Crime\n7           Connecticut  2.7139722    3574097          Lower Crime\n8              Delaware  4.2319369     897934  High Crime, Low Pop\n9  District of Columbia 16.4527532     601723  High Crime, Low Pop\n10              Florida  3.3980688   19687653 High Crime, High Pop\n11              Georgia  3.7903226    9920000 High Crime, High Pop\n12               Hawaii  0.5145920    1360301          Lower Crime\n13                Idaho  0.7655102    1567582          Lower Crime\n14             Illinois  2.8369608   12830632          Lower Crime\n15              Indiana  2.1900730    6483802          Lower Crime\n16                 Iowa  0.6893484    3046355          Lower Crime\n17               Kansas  2.2081106    2853118          Lower Crime\n18             Kentucky  2.6732010    4339367          Lower Crime\n19            Louisiana  7.7425810    4533372  High Crime, Low Pop\n20                Maine  0.8280881    1328361          Lower Crime\n21             Maryland  5.0748655    5773552  High Crime, Low Pop\n22        Massachusetts  1.8021791    6547629          Lower Crime\n23             Michigan  4.1786225    9883640 High Crime, High Pop\n24            Minnesota  0.9992600    5303925          Lower Crime\n25          Mississippi  4.0440846    2967297  High Crime, Low Pop\n26             Missouri  5.3598917    5988927  High Crime, Low Pop\n27              Montana  1.2128379     989415          Lower Crime\n28             Nebraska  1.7521372    1826341          Lower Crime\n29               Nevada  3.1104763    2700551  High Crime, Low Pop\n30        New Hampshire  0.3798036    1316470          Lower Crime\n31           New Jersey  2.7980319    8791894          Lower Crime\n32           New Mexico  3.2537239    2059179  High Crime, Low Pop\n33             New York  2.6679599   19378102          Lower Crime\n34       North Carolina  2.9993237    9535483          Lower Crime\n35         North Dakota  0.5947151     672591          Lower Crime\n36                 Ohio  2.6871225   11536504          Lower Crime\n37             Oklahoma  2.9589340    3751351          Lower Crime\n38               Oregon  0.9396843    3831074          Lower Crime\n39         Pennsylvania  3.5977513   12702379 High Crime, High Pop\n40         Rhode Island  1.5200933    1052567          Lower Crime\n41       South Carolina  4.4753235    4625364  High Crime, Low Pop\n42         South Dakota  0.9825837     814180          Lower Crime\n43            Tennessee  3.4509357    6346105 High Crime, High Pop\n44                Texas  3.2013603   25145561 High Crime, High Pop\n45                 Utah  0.7959810    2763885          Lower Crime\n46              Vermont  0.3196211     625741          Lower Crime\n47             Virginia  3.1246001    8001024 High Crime, High Pop\n48           Washington  1.3829942    6724540          Lower Crime\n49        West Virginia  1.4571013    1852994          Lower Crime\n50            Wisconsin  1.7056487    5686986          Lower Crime\n51              Wyoming  0.8871131     563626          Lower Crime"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-16",
+    "href": "psets/hw2_more_scaffold.html#section-16",
+    "title": "Problem set 2",
+    "section": "17 ",
+    "text": "17 \nUse order, rank, and sort functions on the murder rates to answer the following:\nWhat is the murder rate of the state that ranks 12th in terms of murder rate (from highest to lowest)?\nShow your work by:\n\ncreating a murder rate vector called rate\nusing the appropriate function(s) to find the 12th ranked value\n\n\n# Step 1: rate vector\nrate &lt;- murders$total / murders$population * 100000\n\n# Step 2: order indices from highest to lowest\nord &lt;- order(rate, decreasing = TRUE)\n\n# Step 3: 12th state index\ni &lt;- ord[12]\n\n# Step 4: report the rate and the state name\ndata.frame(\n  rank = 12,\n  state = murders$state[i],\n  rate = rate[i]\n)\n\n  rank     state     rate\n1   12 Tennessee 3.450936\n\n# Optional checks using sort and rank:\n# sort(rate, decreasing=TRUE)[12]\n# which(rank(-rate) == 12)"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-17",
+    "href": "psets/hw2_more_scaffold.html#section-17",
+    "title": "Problem set 2",
+    "section": "18 ",
+    "text": "18 \nWrite a function called compute_harmonic_mean that takes a numeric vector and returns the harmonic mean:\n\\[\n\\frac{n}{\\sum_{i=1}^n \\frac{1}{x_i}}.\n\\]\nThe function should return NA if any values are zero or negative.\nTest your function on the vector c(1, 2, 4, 8) and show that it returns approximately 2.133333.\n\ncompute_harmonic_mean &lt;- function(x) {\n  # Step 1: check for any non-positive values\n  if (any(x &lt;= 0)) return(NA)\n  \n  # Step 2: compute harmonic mean\n  n &lt;- length(x)\n  n / sum(1 / x)\n}\n\n# Test\ncompute_harmonic_mean(c(1, 2, 4, 8))\n\n[1] 2.133333"
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-18",
+    "href": "psets/hw2_more_scaffold.html#section-18",
+    "title": "Problem set 2",
+    "section": "19 ",
+    "text": "19 \nCreate a function called safe_divide that takes two arguments x and y and returns their ratio x/y, but returns the string \"Cannot divide by zero\" when y is zero.\nUse vectorization so that the function works element-wise on vectors.\nTest it on:\nx &lt;- c(10, 20, 30)\ny &lt;- c(2, 0, 5)\n\nsafe_divide &lt;- function(x, y) {\n  # Step 1: start with numeric division\n  out &lt;- x / y\n  \n  # Step 2: replace entries where y == 0\n  # Important: output must be character if we include a string\n  out_char &lt;- as.character(out)\n  out_char[y == 0] &lt;- \"Cannot divide by zero\"\n  \n  out_char\n}\n\n# Test\nx &lt;- c(10, 20, 30)\ny &lt;- c(2, 0, 5)\nsafe_divide(x, y)\n\n[1] \"5\"                     \"Cannot divide by zero\" \"6\""
+  },
+  {
+    "objectID": "psets/hw2_more_scaffold.html#section-19",
+    "href": "psets/hw2_more_scaffold.html#section-19",
+    "title": "Problem set 2",
+    "section": "20 ",
+    "text": "20 \nUsing the murders dataset, write a function called classify_state_safety that takes a state name as input and returns a classification based on the murder rate:\n\n\"Very Safe\" if rate &lt; 1\n\"Safe\" if 1 ≤ rate &lt; 3\n\"Moderate\" if 3 ≤ rate &lt; 5\n\"High Risk\" if rate ≥ 5\n\nIf the state name is not found, return \"State not found\".\nTest your function on:\n\n\"Vermont\"\n\"Texas\"\n\"California\"\n\"NotAState\"\n\nThen use sapply to classify all states and create a table showing how many states fall into each safety category using table().\n\n# Step 1: precompute state murder rates (named vector is helpful)\nrate &lt;- murders$total / murders$population * 100000\nrate_named &lt;- setNames(rate, murders$state)\n\n# Step 2: write function\nclassify_state_safety &lt;- function(state_name) {\n  # Step 2a: check if state exists\n  if (!(state_name %in% names(rate_named))) return(\"State not found\")\n  \n  # Step 2b: extract rate\n  r &lt;- rate_named[state_name]\n  \n  # Step 2c: classify using if/else\n  if (r &lt; 1) {\n    \"Very Safe\"\n  } else if (r &lt; 3) {\n    \"Safe\"\n  } else if (r &lt; 5) {\n    \"Moderate\"\n  } else {\n    \"High Risk\"\n  }\n}\n\n# Step 3: test on required states\nclassify_state_safety(\"Vermont\")\n\n[1] \"Very Safe\"\n\nclassify_state_safety(\"Texas\")\n\n[1] \"Moderate\"\n\nclassify_state_safety(\"California\")\n\n[1] \"Moderate\"\n\nclassify_state_safety(\"NotAState\")\n\n[1] \"State not found\"\n\n\n\n# Step 4: classify all states using sapply\ncats &lt;- sapply(murders$state, classify_state_safety)\n\n# Step 5: count categories\ntable(cats)\n\ncats\nHigh Risk  Moderate      Safe Very Safe \n        4        15        20        12"
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html",
+    "href": "psets/hw2_medium_hint.html",
+    "title": "Problem set 2",
+    "section": "",
+    "text": "Download source\nFor these exercises, do not load any packages other than dslabs.\nMake sure to use vectorization whenever possible (avoid loops unless explicitly allowed).\n# Load only the allowed package\nlibrary(dslabs)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section",
+    "href": "psets/hw2_medium_hint.html#section",
+    "title": "Problem set 2",
+    "section": "1",
+    "text": "1\nWhat is the sum of the first 150 positive integers? Use the functions seq and sum to compute the sum with R for any n.\n\n# Step 1: define n\nn &lt;- 150\n\n# Step 2: create the sequence 1, 2, ..., n\n# x &lt;- \n\n# Step 3: compute the sum of x\n# ans &lt;- \n\n# Step 4: print ans\n# ans",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-1",
+    "href": "psets/hw2_medium_hint.html#section-1",
+    "title": "Problem set 2",
+    "section": "2",
+    "text": "2\nLoad the murders dataset from dslabs. Use the function str to examine the structure of the murders object.\n\nWhat are the column names used by the data frame for these five variables: state name, abbreviation, region, population, total murders?\nShow the subset of murders showing states with less than 1.2 per 100,000 deaths.\nShow all variables.\n\n\n# Examine structure\nstr(murders)\n\n'data.frame':   51 obs. of  5 variables:\n $ state     : chr  \"Alabama\" \"Alaska\" \"Arizona\" \"Arkansas\" ...\n $ abb       : chr  \"AL\" \"AK\" \"AZ\" \"AR\" ...\n $ region    : Factor w/ 4 levels \"Northeast\",\"South\",..: 2 4 4 2 4 4 1 2 2 2 ...\n $ population: num  4779736 710231 6392017 2915918 37253956 ...\n $ total     : num  135 19 232 93 1257 ...\n\n# Step: print the column names\n# names(murders)\n\n\n# Step 1: compute murder rate per 100,000 into a vector called rate\n# rate &lt;- \n\n# Step 2: create a logical vector called idx for states with rate &lt; 1.2\n# idx &lt;- \n\n# Step 3: subset murders using idx\n# murders[idx, ]",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-2",
+    "href": "psets/hw2_medium_hint.html#section-2",
+    "title": "Problem set 2",
+    "section": "3",
+    "text": "3\nShow the subset of murders showing states with less than 1.2 per 100,000 deaths and in the Northeast of the US. Do not show the region variable.\n\n# Step 1: compute rate (or reuse from Q2)\n# rate &lt;- \n\n# Step 2: create logical vectors low and ne\n# low &lt;- \n# ne &lt;- \n\n# Step 3: combine conditions into keep\n# keep &lt;- \n\n# Step 4: subset and remove region column\n# out &lt;- \n# out_no_region &lt;- \n\n# out_no_region",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-3",
+    "href": "psets/hw2_medium_hint.html#section-3",
+    "title": "Problem set 2",
+    "section": "4",
+    "text": "4\nAmong states with a murder rate less than 1.2 per 100,000, show the smallest population state (show the state name, population, and rate).\n\n# Step 1: compute rate\n# rate &lt;- \n\n# Step 2: restrict to low-rate states\n# low &lt;- \n\n# Step 3: find the row index of the smallest population among those\n# Hint: use which(low) and which.min(...)\n# i &lt;- \n\n# Step 4: report as a small data frame with columns state, population, rate\n# data.frame(...)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-4",
+    "href": "psets/hw2_medium_hint.html#section-4",
+    "title": "Problem set 2",
+    "section": "5",
+    "text": "5\nShow the state with a population of more than 8 million with the lowest murder rate (show the state name, population, and rate).\n\n# Step 1: compute rate\n# rate &lt;- \n\n# Step 2: create logical vector big for population &gt; 8 million\n# big &lt;- \n\n# Step 3: find the row index i of the smallest rate among big-pop states\n# i &lt;- \n\n# Step 4: report state, population, rate\n# data.frame(...)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-5",
+    "href": "psets/hw2_medium_hint.html#section-5",
+    "title": "Problem set 2",
+    "section": "6",
+    "text": "6\nCompute the murder rate for each region of the US (total murders divided by total population times 100,000). Return a data frame with one row per region and columns region and rate.\n\n# Step 1: compute total murders by region\n# murders_by_region &lt;- tapply( , , sum)\n\n# Step 2: compute total population by region\n# pop_by_region &lt;- tapply( , , sum)\n\n# Step 3: compute rates\n# rate_by_region &lt;- \n\n# Step 4: make a data frame with region names and rates\n# region_rates &lt;- data.frame(...)\n# region_rates",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-6",
+    "href": "psets/hw2_medium_hint.html#section-6",
+    "title": "Problem set 2",
+    "section": "7",
+    "text": "7\nCreate a vector of numbers that starts at 5, does not pass 60, and adds numbers in increments of 3/8.\nHow many numbers does the list have?\n\n# Step 1: define start, end, step\nstart &lt;- 5\nend &lt;- 60\nstep &lt;- 3/8\n\n# Step 2: create the sequence v\n# v &lt;- \n\n# Step 3: show the first 6 values\n# head(v)\n\n# Step 4: show the length\n# length(v)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-7",
+    "href": "psets/hw2_medium_hint.html#section-7",
+    "title": "Problem set 2",
+    "section": "8",
+    "text": "8\nMake this data frame:\n\ntemp_f &lt;- c(72, 95, 41, 86, 78, 33)\ncity &lt;- c(\"Chicago\", \"Lagos\", \"Oslo\", \"Rio de Janeiro\", \n          \"San Juan\", \"Toronto\")\ncity_temps &lt;- data.frame(name = city, temperature_f = temp_f)\ncity_temps\n\n            name temperature_f\n1        Chicago            72\n2          Lagos            95\n3           Oslo            41\n4 Rio de Janeiro            86\n5       San Juan            78\n6        Toronto            33\n\n\nAdd a new column called temperature_c containing the temperatures in Celsius. Keep all existing columns.\n\n# Step 1: compute Celsius using (F - 32) * 5/9\n# city_temps$temperature_c &lt;- \n\n# Step 2: print city_temps\n# city_temps",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-8",
+    "href": "psets/hw2_medium_hint.html#section-8",
+    "title": "Problem set 2",
+    "section": "9",
+    "text": "9\nWrite a function euler2 that computes:\n\\[\nS_n = 1 + \\frac{1}{2^2} + \\frac{1}{3^2} + \\dots + \\frac{1}{n^2}.\n\\]\nTest your function at n = 10 and n = 100.\n\n# Step 1: write the function\neuler2 &lt;- function(n) {\n  # Step: create k &lt;- 1:n\n  # Step: compute terms &lt;- 1/(k^2)\n  # Step: return sum(terms)\n}\n\n# Step 2: test\n# euler2(10)\n# euler2(100)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-9",
+    "href": "psets/hw2_medium_hint.html#section-9",
+    "title": "Problem set 2",
+    "section": "10",
+    "text": "10\nPlot \\(S_n\\) versus \\(n\\) for \\(n = 1,2,\\dots,2000\\) with a horizontal dashed line at \\(\\pi^2/6\\).\n\n# Step 1: create n_vals &lt;- 1:2000\n# n_vals &lt;- \n\n# Step 2: compute S for each n using sapply\n# S &lt;- \n\n# Step 3: plot\n# plot(n_vals, S, type=\"l\", xlab=\"n\", ylab=\"S_n\")\n\n# Step 4: add dashed line at pi^2/6\n# abline(h = , lty = 2)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-10",
+    "href": "psets/hw2_medium_hint.html#section-10",
+    "title": "Problem set 2",
+    "section": "11",
+    "text": "11\nUse %in% and state.abb to create a logical vector for: AL, AK, AZ, AR, AA.\n\ntest &lt;- c(\"AL\", \"AK\", \"AZ\", \"AR\", \"AA\")\n\n# Step 1: create is_real\n# is_real &lt;- \n\n# Step 2: print is_real\n# is_real",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-11",
+    "href": "psets/hw2_medium_hint.html#section-11",
+    "title": "Problem set 2",
+    "section": "12",
+    "text": "12\nReport the one entry that is not an actual abbreviation.\n\ntest &lt;- c(\"AL\", \"AK\", \"AZ\", \"AR\", \"AA\")\n\n# Step 1: create not_real using !\n# not_real &lt;- \n\n# Step 2: find index with which()\n# idx &lt;- \n\n# Step 3: print the entry\n# test[idx]",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-12",
+    "href": "psets/hw2_medium_hint.html#section-12",
+    "title": "Problem set 2",
+    "section": "13",
+    "text": "13\nUsing %in%, show all variables for Florida, California, and New York, in that order.\n\ntargets &lt;- c(\"Florida\", \"California\", \"New York\")\n\n# Step 1: subset murders to those states\n# sub &lt;- \n\n# Step 2: reorder rows using match()\n# sub_ordered &lt;- \n\n# Step 3: print sub_ordered\n# sub_ordered",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-13",
+    "href": "psets/hw2_medium_hint.html#section-13",
+    "title": "Problem set 2",
+    "section": "14",
+    "text": "14\nWrite a function vander_helper(x, n) that returns \\((1, x, x^2, \\dots, x^n)\\). Show results for x=2, n=6.\nRestrictions: no loop.\n\nvander_helper &lt;- function(x, n) {\n  # Step: create exponents 0:n\n  # Step: return x^(0:n)\n}\n\n# Test:\n# vander_helper(2, 6)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-14",
+    "href": "psets/hw2_medium_hint.html#section-14",
+    "title": "Problem set 2",
+    "section": "15",
+    "text": "15\nCreate a vector using:\n\nn &lt;- 20000\np &lt;- 0.35\nset.seed(2025-9-18)\nx &lt;- sample(c(0,1), n, prob = c(1 - p, p), replace = TRUE)\n\nCompute the length of each stretch of consecutive 1s (run lengths of 1s) and plot the distribution.\n\nDo not use a loop.\nHint: use rle(x).\n\nThen compare empirical proportions to the geometric prediction for run lengths 1 through 8.\n\n# Step 1: compute r &lt;- rle(x)\n# r &lt;- \n\n# Step 2: extract ones_lengths (lengths where values == 1)\n# ones_lengths &lt;- \n\n# Step 3: plot distribution (hist or barplot)\n# hist(ones_lengths, breaks = 30)\n\n# Step 4: empirical proportions for k=1:8\n# tab &lt;- table(ones_lengths)\n# emp_counts &lt;- as.numeric(tab[as.character(1:8)])\n# emp_counts[is.na(emp_counts)] &lt;- 0\n# emp_probs &lt;- emp_counts / length(ones_lengths)\n\n# Step 5: theoretical probabilities (1-p)*p^(k-1)\n# k &lt;- 1:8\n# theory_probs &lt;- \n\n# Step 6: make a comparison data frame\n# comparison &lt;- data.frame(run_length = k, empirical_prob = emp_probs, theory_prob = theory_probs)\n# comparison",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-15",
+    "href": "psets/hw2_medium_hint.html#section-15",
+    "title": "Problem set 2",
+    "section": "16",
+    "text": "16\nIn the murders dataset:\n\nCompute the national average murder rate.\nCreate labels using ifelse:\n\n\"High Crime, High Pop\" if rate &gt; national average and pop &gt; 6 million\n\"High Crime, Low Pop\" if rate &gt; national average and pop ≤ 6 million\n\"Lower Crime\" otherwise\n\n\nThen show a table() of the labels.\n\n# Step 1: state-level rate\n# rate &lt;- \n\n# Step 2: national average rate\n# national_rate &lt;- \n\n# Step 3: logical vectors high_crime and high_pop\n# high_crime &lt;- \n# high_pop &lt;- \n\n# Step 4: labels using nested ifelse\n# labels &lt;- \n\n# Step 5: table(labels)\n# table(labels)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-16",
+    "href": "psets/hw2_medium_hint.html#section-16",
+    "title": "Problem set 2",
+    "section": "17",
+    "text": "17\nWhat is the murder rate of the state that ranks 12th in terms of murder rate (from highest to lowest)?\nShow your work using order (and optionally check with sort or rank).\n\n# Step 1: rate vector\n# rate &lt;- \n\n# Step 2: ord &lt;- order(rate, decreasing = TRUE)\n# ord &lt;- \n\n# Step 3: i &lt;- ord[12]\n# i &lt;- \n\n# Step 4: report state and rate\n# data.frame(state = murders$state[i], rate = rate[i])",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-17",
+    "href": "psets/hw2_medium_hint.html#section-17",
+    "title": "Problem set 2",
+    "section": "18",
+    "text": "18\nWrite a function compute_harmonic_mean that returns the harmonic mean of a numeric vector, but returns NA if any values are zero or negative. Test on c(1,2,4,8) and show it is about 2.133333.\n\ncompute_harmonic_mean &lt;- function(x) {\n  # Step 1: if any x &lt;= 0, return NA\n  # Step 2: compute n &lt;- length(x)\n  # Step 3: return n / sum(1/x)\n}\n\n# Test:\n# compute_harmonic_mean(c(1, 2, 4, 8))",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-18",
+    "href": "psets/hw2_medium_hint.html#section-18",
+    "title": "Problem set 2",
+    "section": "19",
+    "text": "19\nCreate a function safe_divide(x, y) that returns x/y but returns \"Cannot divide by zero\" when y is zero. Make it work element-wise on vectors (vectorized). Test it on:\nx &lt;- c(10, 20, 30)\ny &lt;- c(2, 0, 5)\n\nsafe_divide &lt;- function(x, y) {\n  # Step 1: compute out &lt;- x/y\n  # Step 2: convert to character so you can store the message\n  # Step 3: replace entries where y == 0\n}\n\n# Test:\n# x &lt;- c(10, 20, 30)\n# y &lt;- c(2, 0, 5)\n# safe_divide(x, y)",
+    "crumbs": [
+      "HW-2"
+    ]
+  },
+  {
+    "objectID": "psets/hw2_medium_hint.html#section-19",
+    "href": "psets/hw2_medium_hint.html#section-19",
+    "title": "Problem set 2",
+    "section": "20",
+    "text": "20\nWrite a function classify_state_safety(state_name) that returns:\n\n\"Very Safe\" if rate &lt; 1\n\"Safe\" if 1 ≤ rate &lt; 3\n\"Moderate\" if 3 ≤ rate &lt; 5\n\"High Risk\" if rate ≥ 5\n\"State not found\" if the state is not in the dataset\n\nTest on \"Vermont\", \"Texas\", \"California\", \"NotAState\".\nThen use sapply to classify all states and use table() to count how many fall into each category.\n\n# Step 1: compute a named vector of rates\n# rate &lt;- murders$total / murders$population * 100000\n# rate_named &lt;- setNames(rate, murders$state)\n\nclassify_state_safety &lt;- function(state_name) {\n  # Step 2: check if state_name is in names(rate_named)\n  # Step 3: pull out r &lt;- rate_named[state_name]\n  # Step 4: return the correct label using if/else\n}\n\n# Tests:\n# classify_state_safety(\"Vermont\")\n# classify_state_safety(\"Texas\")\n# classify_state_safety(\"California\")\n# classify_state_safety(\"NotAState\")\n\n\n# Step 5: classify all states with sapply\n# cats &lt;- sapply(murders$state, classify_state_safety)\n\n# Step 6: count categories\n# table(cats)",
+    "crumbs": [
+      "HW-2"
     ]
   }
 ]
