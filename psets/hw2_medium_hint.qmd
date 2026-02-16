@@ -460,5 +460,11 @@ classify_state_safety <- function(state_name) {
 # table(cats)
 ```
 
+## Convert to  a PDF file
+In a (Linux terminal), run the following command (install any missing packages on the fly)
+
 ```
+# change path_to_hw2.qmd to something like hw/hw2.qmd if the current directory is a parent diretory of hw/
+
+quarto render path_to_hw2.qmd --to pdf 
 ```

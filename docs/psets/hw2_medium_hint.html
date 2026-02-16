@@ -221,6 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#section-17" id="toc-section-17" class="nav-link" data-scroll-target="#section-17">18</a></li>
   <li><a href="#section-18" id="toc-section-18" class="nav-link" data-scroll-target="#section-18">19</a></li>
   <li><a href="#section-19" id="toc-section-19" class="nav-link" data-scroll-target="#section-19">20</a></li>
+  <li><a href="#convert-to-a-pdf-file" id="toc-convert-to-a-pdf-file" class="nav-link" data-scroll-target="#convert-to-a-pdf-file">Convert to a PDF file</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/psets/hw2_medium_hint.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -678,7 +679,13 @@ S_n = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \dots + \frac{1}{n^2}.
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: count categories</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># table(cats)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code></code></pre>
+</section>
+<section id="convert-to-a-pdf-file" class="level2">
+<h2 class="anchored" data-anchor-id="convert-to-a-pdf-file">Convert to a PDF file</h2>
+<p>In a (Linux terminal), run the following command (install any missing packages on the fly)</p>
+<pre><code># change path_to_hw2.qmd to something like hw/hw2.qmd if the current directory is a parent diretory of hw/
+
+quarto render path_to_hw2.qmd --to pdf </code></pre>
 
 
 </section>
