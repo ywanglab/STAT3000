@@ -1080,12 +1080,12 @@ Levels: a b c</code></pre>
 <span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">=</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>))</span>
 <span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a>y1[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Male   Male   Female Female Male   Male   Male   Male   Female
+<pre><code> [1] Male   Female Female Female Male   Male   Male   Male   Male   Female
 Levels: Male Female</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb145" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>y2[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Male   Male   Female Female Male   Male   Male   Male   Female
+<pre><code> [1] Male   Female Female Female Male   Male   Male   Male   Male   Female
 Levels: Female Male</code></pre>
 </div>
 </div>
@@ -1098,12 +1098,12 @@ Levels: Female Male</code></pre>
 <span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">=</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>))</span>
 <span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a>y1[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Male   Female Female Male   Male   Male   Female Female Male  
+<pre><code> [1] Male   Female Male   Male   Female Female Female Male   Female Male  
 Levels: Male Female</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb149" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>y2[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Male   Male   Female Female Male   Male   Male   Female Female Male  
+<pre><code> [1] Male   Female Male   Male   Female Female Female Male   Female Male  
 Levels: Female Male</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb151" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>y1<span class="sc">==</span>y2 <span class="co"># value comparison</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1254,7 +1254,7 @@ Levels: Alpha Zoomer Millennial X Boomer Silent Greatest</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>x
 California   New York      Texas 
- 0.3331877  0.3332562  0.3335561 </code></pre>
+ 0.3333222  0.3335328  0.3331450 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb178"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1"></a><span class="co"># table counts the frequency of each unique value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1759,7 +1759,7 @@ y is 3 </code></pre>
 {
     n * log(mu) - mu * sumx
 }
-&lt;environment: 0x0000027efc845080&gt;</code></pre>
+&lt;environment: 0x0000013fea40de40&gt;</code></pre>
 </div>
 </div>
 </section>
