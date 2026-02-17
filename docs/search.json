@@ -1,0 +1,303 @@
+[
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot2",
+    "href": "slides/08-ggplot2.html#ggplot2",
+    "title": "ggplot2",
+    "section": "ggplot2",
+    "text": "ggplot2\nWe fist load three libraries:\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(dslabs)\nlibrary(lattice)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-graph-we-will-create",
+    "href": "slides/08-ggplot2.html#the-graph-we-will-create",
+    "title": "ggplot2",
+    "section": "The graph we will create",
+    "text": "The graph we will create"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph",
+    "title": "ggplot2",
+    "section": "The components of a graph",
+    "text": "The components of a graph\n\ngg stands for grammar of graphics.\nAnalogy: we learn verbs and nouns to construct sentences.\nThe first step in learning ggplot2 is breaking a graph apart into components."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#three-main-components-of-a-graph",
+    "href": "slides/08-ggplot2.html#three-main-components-of-a-graph",
+    "title": "ggplot2",
+    "section": "Three main components of a graph",
+    "text": "Three main components of a graph\n\nData: ususally a data frame, such as murders used to generate the previous plot\nGeometry: plot type, such as the scatterplot above.\nAesthetic mapping: How we map visual cues (\\(x, y,\\) color, labels, etc.) to the data"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot-objects",
+    "href": "slides/08-ggplot2.html#ggplot-objects",
+    "title": "ggplot2",
+    "section": "ggplot objects",
+    "text": "ggplot objects\n\nStart by defining the dataset:\n\n\nggplot(data = murders)\n\n\nWe can also use the pipe:\n\n\nmurders |&gt; ggplot()\n\n\nWe assign the output to a variable\n\n\np &lt;- ggplot(data = murders)\nclass(p)\n\n[1] \"ggplot2::ggplot\" \"ggplot\"          \"ggplot2::gg\"     \"S7_object\"      \n[5] \"gg\""
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#print-a-ggplot-graph",
+    "href": "slides/08-ggplot2.html#print-a-ggplot-graph",
+    "title": "ggplot2",
+    "section": "Print a ggplot graph",
+    "text": "Print a ggplot graph\nTo see the plot we can print it:\n\nprint(p)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#graph-layers",
+    "href": "slides/08-ggplot2.html#graph-layers",
+    "title": "ggplot2",
+    "section": "Graph layers",
+    "text": "Graph layers\n\nWe create graphs by adding layers.\nLayers define geometries, compute summary statistics, define what scales to use, or even change styles.\nTo add layers, we use the symbol +.\nIn general, a line of code will look like this:\n\n\nDATA |&gt; ggplot() + LAYER 1 + LAYER 2 + ... + LAYER N\n\n\nUsually, the first added layer defines the geometry."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geometries",
+    "href": "slides/08-ggplot2.html#geometries",
+    "title": "ggplot2",
+    "section": "Geometries",
+    "text": "Geometries\n\nIf we want to make a scatterplot, what geometry do we use?\nLet’s look at the cheat sheet: https://rstudio.github.io/cheatsheets/data-visualization.pdf"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scatter-plot-geom_points",
+    "href": "slides/08-ggplot2.html#scatter-plot-geom_points",
+    "title": "ggplot2",
+    "section": "Scatter plot: geom_points",
+    "text": "Scatter plot: geom_points\n\nmurders |&gt; ggplot() + geom_point(aes(x = population/10^6, y = total))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-a-layer",
+    "href": "slides/08-ggplot2.html#add-a-layer",
+    "title": "ggplot2",
+    "section": "Add a layer",
+    "text": "Add a layer\n\nSince we defined p earlier, we can add a layer like this:\n\n\np + geom_point(aes(population/10^6, total))\n\n\n\nNote x= and y = can be omitted"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-text-with-geom_text",
+    "href": "slides/08-ggplot2.html#add-text-with-geom_text",
+    "title": "ggplot2",
+    "section": "Add text with geom_text",
+    "text": "Add text with geom_text\n\np + geom_point(aes(population/10^6, total)) +\n  geom_text(aes(population/10^6, total, label = abb))"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scopes-of-aesthetical-mapping",
+    "href": "slides/08-ggplot2.html#scopes-of-aesthetical-mapping",
+    "title": "ggplot2",
+    "section": "Scopes of aesthetical mapping",
+    "text": "Scopes of aesthetical mapping\n\nThis one is fine\n\n\np_test &lt;- p + geom_text(aes(population/10^6, total, label = abb))\n\nis fine, whereas this call: this one is not\n\np_test &lt;- p + geom_text(aes(population/10^6, total), label = abb) \n\nwill give you an error since abb is not found because it is outside of the aes function.\n\ngeom_text does not know where to find abb: it’s a column name and not a global variable."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#multipanel-plots---lattice",
+    "href": "slides/08-ggplot2.html#multipanel-plots---lattice",
+    "title": "ggplot2",
+    "section": "Multipanel plots - lattice",
+    "text": "Multipanel plots - lattice\n\npl &lt;- xyplot(total ~ population/10^6 | region, data = murders, #group by region\n      type = c(\"p\", \"g\"), xlab = \"Population/10^6\", ylab = \"Total\", # points +grid\n     strip = strip.custom(strip.names = TRUE, var.name = \"region\"), layout=c(2,2))\n# strip: title bar in each panel. strip.names=TRUE: show the var.name \"region\"\nprint(pl)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#multipanel-plots---ggplot2",
+    "href": "slides/08-ggplot2.html#multipanel-plots---ggplot2",
+    "title": "ggplot2",
+    "section": "Multipanel plots - ggplot2",
+    "text": "Multipanel plots - ggplot2\n\npg &lt;- ggplot(murders, aes(population/10^6, total)) + geom_point(shape = 1) +\n    facet_wrap(~region) + theme(aspect.ratio = 1) #square panels\nprint(pg)\n\n# shape =1: open circles; shape=16: filled circles"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#point-size",
+    "href": "slides/08-ggplot2.html#point-size",
+    "title": "ggplot2",
+    "section": "point size",
+    "text": "point size\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb))\n\n\n\nsize can be an aesthetic mapping, but here it is not, so all points get bigger."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
+    "href": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
+    "title": "ggplot2",
+    "section": "Tinkering with argumentsnudege_x`",
+    "text": "Tinkering with argumentsnudege_x`\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5) #shift x right\n\n\n\nnudge_x is not an aesthetic mapping."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-mappings",
+    "href": "slides/08-ggplot2.html#global-mappings",
+    "title": "ggplot2",
+    "section": "Global mappings",
+    "text": "Global mappings\n\nDefined in aes in the ggplot function:\n\n\nargs(ggplot)\n\nfunction (data = NULL, mapping = aes(), ..., environment = parent.frame()) \nNULL"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nAll the layers will assume the global mapping unless we explicitly define another one.\n\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb))\np + geom_point(size = 3) + geom_text(nudge_x = 1.5)\n\n\n\nThe two layers use the global mapping."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings-1",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings-1",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nWe can override the global aes by defining one in the geometry functions:\n\n\np + geom_point(size = 3) +  # global mapping\n  geom_text(aes(x = 10, y = 800, label = \"Hello there!\")) #local mapping"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scales",
+    "href": "slides/08-ggplot2.html#scales",
+    "title": "ggplot2",
+    "section": "Scales",
+    "text": "Scales\n\nLayers can define transformations:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_continuous(trans = \"log10\") +\n  scale_y_continuous(trans = \"log10\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scales-1",
+    "href": "slides/08-ggplot2.html#scales-1",
+    "title": "ggplot2",
+    "section": "Scales",
+    "text": "Scales\n\nThis particular transformation is so common that ggplot2 provides the specialized functions:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles",
+    "href": "slides/08-ggplot2.html#labels-and-titles",
+    "title": "ggplot2",
+    "section": "Labels and titles",
+    "text": "Labels and titles\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  xlab(\"Populations in millions (log scale)\") + \n  ylab(\"Total number of murders (log scale)\") +\n  ggtitle(\"US Gun Murders in 2010\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles-with-labs",
+    "href": "slides/08-ggplot2.html#labels-and-titles-with-labs",
+    "title": "ggplot2",
+    "section": "Labels and titles with labs",
+    "text": "Labels and titles with labs\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")\n\n\nThis produces the same graph as in the previous slide."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#almost-there",
+    "href": "slides/08-ggplot2.html#almost-there",
+    "title": "ggplot2",
+    "section": "Almost there",
+    "text": "Almost there\n\nTargetCurrent draftCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#adding-color",
+    "href": "slides/08-ggplot2.html#adding-color",
+    "title": "ggplot2",
+    "section": "Adding color",
+    "text": "Adding color\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\") +\n  geom_point(size = 3, color = \"blue\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#a-mapped-color",
+    "href": "slides/08-ggplot2.html#a-mapped-color",
+    "title": "ggplot2",
+    "section": "A mapped color",
+    "text": "A mapped color\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\") +\n  geom_point(aes(col = region), size = 3)\n\n\nA legend is added automatically!"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#change-legend-name",
+    "href": "slides/08-ggplot2.html#change-legend-name",
+    "title": "ggplot2",
+    "section": "Change legend name",
+    "text": "Change legend name\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") + # Lgend name comes from inside labs()\n  geom_point(aes(col = region), size = 3)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-adjustments",
+    "href": "slides/08-ggplot2.html#other-adjustments",
+    "title": "ggplot2",
+    "section": "Other adjustments",
+    "text": "Other adjustments\n\nadd a line with intercept the US rate.\n\n\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt; \n  pull(rate)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-a-line",
+    "href": "slides/08-ggplot2.html#add-a-line",
+    "title": "ggplot2",
+    "section": "Add a line",
+    "text": "Add a line\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\") \n\n#default slope=1; lty=2: dashed line\n\n0= no line, 1=solid, 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#we-are-close",
+    "href": "slides/08-ggplot2.html#we-are-close",
+    "title": "ggplot2",
+    "section": "We are close!",
+    "text": "We are close!"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#assign-the-graph-to-a-variable",
+    "href": "slides/08-ggplot2.html#assign-the-graph-to-a-variable",
+    "title": "ggplot2",
+    "section": "Assign the graph to a variable",
+    "text": "Assign the graph to a variable\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\")"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages",
+    "href": "slides/08-ggplot2.html#add-on-packages",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\n\nThe dslabs package can define the look used in the textbook:\n\n\nds_theme_set()\n\n\nMany other themes are added by the package ggthemes."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-1",
+    "href": "slides/08-ggplot2.html#add-on-packages-1",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nggthemes provides pre-designed themes.\n\nlibrary(ggthemes)\np + theme_economist()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_fivethirtyeight",
+    "href": "slides/08-ggplot2.html#theme_fivethirtyeight",
+    "title": "ggplot2",
+    "section": "theme_Fivethirtyeight()",
+    "text": "theme_Fivethirtyeight()\nHere is the FiveThirtyEight theme:\n\np + theme_fivethirtyeight()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_cecel",
+    "href": "slides/08-ggplot2.html#theme_cecel",
+    "title": "ggplot2",
+    "section": "theme_cecel()",
+    "text": "theme_cecel()\nmaybe not a good one!\n\np + theme_excel()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_starwars",
+    "href": "slides/08-ggplot2.html#theme_starwars",
+    "title": "ggplot2",
+    "section": "theme_starwars()",
+    "text": "theme_starwars()\nThemePark provides fun themes:\n\nlibrary(ThemePark)\np + theme_starwars()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_barbie",
+    "href": "slides/08-ggplot2.html#theme_barbie",
+    "title": "ggplot2",
+    "section": "theme_barbie()",
+    "text": "theme_barbie()\nThis is a fan favorite:\n\np + theme_barbie()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geom_text_repel",
+    "href": "slides/08-ggplot2.html#geom_text_repel",
+    "title": "ggplot2",
+    "section": "geom_text_repel()",
+    "text": "geom_text_repel()\n\nTo avoid the state abbreviations being on top of each other we can use the ggrepel package.\nWe change the layer geom_text(nudge_x = 0.05) to geom_text_repel()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#putting-it-all-together",
+    "href": "slides/08-ggplot2.html#putting-it-all-together",
+    "title": "ggplot2",
+    "section": "Putting it all together",
+    "text": "Putting it all together\n\nCodePlot\n\n\n\nlibrary(ggthemes)\nlibrary(ggrepel)\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt;\n  pull(rate)\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_text_repel() + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#grids-of-plots",
+    "href": "slides/08-ggplot2.html#grids-of-plots",
+    "title": "ggplot2",
+    "section": "Grids of plots",
+    "text": "Grids of plots\n\nWe often want to put plots next to each other.\nThe gridExtra package permits us to do that:\n\n\nCodePlot\n\n\n\nlibrary(gridExtra)\np1 &lt;- murders |&gt; \n  ggplot(aes(log10(population))) + \n  geom_histogram()\np2 &lt;- murders |&gt; \n  ggplot(aes(log10(population), log10(total))) + \n  geom_point()\ngrid.arrange(p1, p2, ncol = 2)"
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-packages-for-grids-of-plots",
+    "href": "slides/08-ggplot2.html#other-packages-for-grids-of-plots",
+    "title": "ggplot2",
+    "section": "Other packages for grids of plots",
+    "text": "Other packages for grids of plots\n\ncowplot: A versatile package designed for publication-quality plots, offering seamless integration with ggplot2.\nggpubr: Provides user-friendly functions for combining and annotating ggplot2 plots with minimal effort."
+  },
+  {
+    "objectID": "slides/standard_errors.html",
+    "href": "slides/standard_errors.html",
+    "title": "Standard Errors vs. Standard Deviation",
+    "section": "",
+    "text": "For method=\"lm\" the CI ribbon is based on the standard error of the estimated mean \\(\\hat y(x_0)=\\widehat{E[Y\\mid X=x_0]}\\). The SE formula comes directly from the variance of a linear combination of the OLS estimator.\n\nWrite the linear model in matrix form\n\n\\[ y = X\\beta + \\varepsilon,\\qquad \\mathbb E\\varepsilon=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n.\\] 2) OLS estimator and its variance\nOLS gives \\[ \\hat\\beta=(X^\\top X)^{-1}X^\\top y.\\] Because \\(\\hat\\beta\\) is a linear function of \\(y\\), \\[ \\mathrm{Var}(\\hat\\beta) = (X^\\top X)^{-1}X^\\top \\mathrm{Var}(y) X (X^\\top X)^{-1}.\\] But \\(y=X\\beta+\\varepsilon\\) and \\(\\mathrm{Var}(y)=\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\), so \\[ \\mathrm{Var}(\\hat\\beta)=\\sigma^2 (X^\\top X)^{-1}.\\]\n\nFitted mean at a point is a linear combo of \\(\\hat\\beta\\)\n\nAt \\(x_0\\), let the (row) design vector be \\[ x_0^* = (1 \\;\\;x_0)\\] (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is\n\\[ \\hat y(x_0)=x_0^* \\hat\\beta.\\]\n\nVariance of a linear combination\n\nUse the rule: if \\(a\\) is a constant vector and \\(Z\\) is random, \\[ \\mathrm{Var}(a^\\top Z)=a^\\top \\mathrm{Var}(Z)a.\\] Here \\(a = (x_0^*)^\\top\\) and \\(Z=\\hat\\beta\\). Therefore,\n\\[\\mathrm{Var}(\\hat y(x_0)) = \\mathrm{Var}(x_0^* \\hat\\beta) = x_0^*\\mathrm{Var}(\\hat\\beta)(x_0^*)^\\top = x_0^* \\big(\\sigma ^2 (X^\\top X)^{-1}\\big) (x_0^*)^\\top.\\] So the standard error is \\[ SE{\\hat y(x_0)}=\\sqrt{\\sigma^2 x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\nReplace \\(\\sigma ^2\\) by its sample estimate\n\nSince \\(\\sigma^2\\) is unknown, we plug in\n\\[ \\hat\\sigma^2=\\frac{\\sum_{i=1}^n \\hat\\varepsilon_i^2}{n-p},\\] giving the practical SE:\n\\[SE{\\hat y(x_0)}=\\sqrt{\\hat\\sigma^2  x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\n\nsame formula in “simple regression” scalar form\n\nFor \\(y=\\beta_0+\\beta_1 x+\\varepsilon\\),\n\\[SE{\\hat y(x_0)}=\\hat\\sigma\\sqrt{\\frac{1}{n}+\\frac{(x_0-\\bar x)^2}{\\sum_{i=1}^n (x_i-\\bar x)^2}}.\\] This is algebraically equivalent to the matrix expression above."
+  },
+  {
+    "objectID": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
+    "href": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
+    "title": "Standard Errors vs. Standard Deviation",
+    "section": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?",
+    "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma^2,\\] meaning \\[ \\hat\\sigma^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
+  }
+]
