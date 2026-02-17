@@ -299,5 +299,25 @@
     "title": "Standard Errors vs. Standard Deviation",
     "section": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?",
     "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma^2,\\] meaning \\[ \\hat\\sigma^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STAT 3000",
+    "section": "",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE and SD",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "STAT 3000",
+    "section": "",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE and SD",
+    "crumbs": [
+      "Home"
+    ]
   }
 ]
