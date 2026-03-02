@@ -1,0 +1,464 @@
+---
+title: "Problem set 3"
+date: ""
+format:
+  html:
+    toc: true
+    number-sections: false
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+[Download source](https://raw.githubusercontent.com/ywanglab/STAT3000/refs/heads/main/psets/hw3.qmd)
+
+In these exercises, we will explore a subset of the NHANES dataset to investigate potential differences in systolic blood pressure across groups defined by self reported race. You can find more information about the NHANES survey data in the [reference manual](https://cran.r-project.org/web/packages/NHANES/refman/NHANES.html) of the `NHANES` CRAN package.
+
+### Grading Information {.unnumbered}
+
+Problems 1-15 are mandatory. Problems 16-18 are optional.
+
+### Instructions {.unnumbered}
+
+- For each exercise, write a **single piped expression** using the pipe (`|>`) to chain operations together. You may break it across multiple physical lines, but the work for the exercise should be one continuous pipeline (no intermediate assignments), **except** when the problem explicitly asks you to save an object (like `dat`) or define a function.
+- Generate an HTML document that shows the code for each exercise.
+- For tables: use `knitr::kable()` (do not print raw data frames).
+- Use only **two significant digits** for numbers displayed in tables.
+- Submit a PDF in Canvas using the following code
+```
+quarto render hw/hw3.qmd --to pdf 
+```
+
+You will need the following libraries:
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(ggplot2)
+library(knitr)
+library(NHANES)
+options(digits = 2)
+```
+
+---
+
+## Exercises {.unnumbered}
+
+## 1
+
+Filter the `NHANES` data to only include survey year 2011-2012. Save the resulting `data.frame` (in `tbl` or `tbl_df` format) in `dat`.
+This `data.frame` should have 5,000 rows and 76 columns.
+
+```{r}
+# Scaffold (uncomment and complete):
+# dat <- NHANES |>
+#   filter(SurveyYr == "2011_12")
+
+# After you create dat, check the dimensions:
+# dim(dat)
+```
+
+## 2
+
+Compute the average and standard deviation (SD) for the combined systolic blood pressure reading (`BPSysAve`) for males and females separately. Show a data frame with two rows (female and male) and two columns (average and SD).
+
+```{r}
+# Scaffold (single pipeline, then kable):
+# dat |>
+#   filter(!is.na(BPSysAve)) |>
+#   group_by(Gender) |>
+#   summarize(
+#     avg = mean(BPSysAve),
+#     sd  = sd(BPSysAve),
+#     .groups = "drop"
+#   ) |>
+#   select(Gender, avg, sd) |>
+#   kable()
+```
+
+## 3
+
+Compute the average and SD for SBP for each race variable in column `Race3` for females and males separately.
+Table: 4 columns (sex, race, average, SD) and 12 rows. Arrange from highest to lowest average.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(Race3), !is.na(Gender)) |>
+#   group_by(Gender, Race3) |>
+#   summarize(
+#     avg = mean(BPSysAve),
+#     sd  = sd(BPSysAve),
+#     .groups = "drop"
+#   ) |>
+#   arrange(desc(avg)) |>
+#   select(Gender, Race3, avg, sd) |>
+#   kable()
+```
+
+## 4
+
+Repeat Exercise 3 but add two columns for a 95% confidence interval (`lower`, `upper`):
+
+$$
+\bar{X} \pm 1.96 \, s / \sqrt{n}.
+$$
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(Race3), !is.na(Gender)) |>
+#   group_by(Gender, Race3) |>
+#   summarize(
+#     n   = n(),
+#     avg = mean(BPSysAve),
+#     sd  = sd(BPSysAve),
+#     .groups = "drop"
+#   ) |>
+#   mutate(
+#     lower = avg - 1.96 * sd / sqrt(n),
+#     upper = avg + 1.96 * sd / sqrt(n)
+#   ) |>
+#   arrange(desc(avg)) |>
+#   select(Gender, Race3, avg, sd, lower, upper) |>
+#   kable()
+```
+
+## 5
+
+Make a graph showing the results from Exercise 4. Plot averages as points and confidence intervals as error bars (`geom_errorbar`).
+Order the groups from lowest to highest average (based on the average of the male and female averages). Use `facet_wrap` to separate females and males.
+Axes: *Race* and *Average*. Title: *Comparing systolic blood pressure across groups*. Caption: *Bars represent 95% confidence intervals*.
+
+```{r}
+# Scaffold idea:
+# 1) Make the summary table (Gender, Race3, avg, lower, upper) like Exercise 4
+# 2) Create an ordering key across genders:
+#    group_by(Race3) |> summarize(overall_avg = mean(avg))
+# 3) Use fct_reorder(Race3, overall_avg) to order categories
+# 4) Plot with ggplot + geom_point + geom_errorbar + facet_wrap(~Gender)
+
+# Example structure (students should write the full pipeline):
+# dat |>
+#   ...summary steps... |>
+#   mutate(Race3 = fct_reorder(Race3, overall_avg)) |>
+#   ggplot(aes(x = Race3, y = avg)) +
+#   geom_point() +
+#   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.15) +
+#   facet_wrap(~ Gender) +
+#   labs(
+#     x = "Race",
+#     y = "Average",
+#     title = "Comparing systolic blood pressure across groups",
+#     caption = "Bars represent 95% confidence intervals"
+#   )
+```
+
+## 6
+
+Create a table like Exercise 4 but show average SBP by sex and age group (`AgeDecade`). Order groups chronologically. Make a separate plot for males and females. Filter out observations with no `AgeDecade`.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(AgeDecade), !is.na(Gender)) |>
+#   group_by(Gender, AgeDecade) |>
+#   summarize(
+#     n   = n(),
+#     avg = mean(BPSysAve),
+#     sd  = sd(BPSysAve),
+#     .groups = "drop"
+#   ) |>
+#   mutate(
+#     lower = avg - 1.96 * sd / sqrt(n),
+#     upper = avg + 1.96 * sd / sqrt(n),
+#     AgeDecade = fct_inorder(AgeDecade)   # keeps factor order as it appears
+#   ) |>
+#   ggplot(aes(x = AgeDecade, y = avg)) +
+#   geom_point() +
+#   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.15) +
+#   facet_wrap(~ Gender) +
+#   labs(x = "Age group", y = "Average SBP")
+```
+
+## 7
+
+Explore age distributions of each `Race3` group. Make a histogram of `Age` for each `Race3` group and stack them vertically. Generate two columns (males and females). Use bins of width 5 years up to 80.
+
+Below the graph, comment on what you notice and how this can explain the difference between the *White* and *Mexican* groups.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(Age), !is.na(Race3), !is.na(Gender), Age <= 80) |>
+#   ggplot(aes(x = Age)) +
+#   geom_histogram(binwidth = 5, boundary = 0) +
+#   facet_grid(Race3 ~ Gender) +
+#   labs(x = "Age", y = "Count")
+```
+
+**Comment (write 2–4 sentences):**
+*(Your text here.)*
+
+## 8
+
+Compute the median age for each `Race3` group and the percent of individuals younger than 18. Order rows by median age.
+Table: 6 rows and 3 columns (group, median age, children).
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(Age), !is.na(Race3)) |>
+#   group_by(Race3) |>
+#   summarize(
+#     median_age = median(Age),
+#     children   = mean(Age < 18) * 100,
+#     .groups = "drop"
+#   ) |>
+#   arrange(median_age) |>
+#   select(Race3, median_age, children) |>
+#   kable()
+```
+
+Given these results, provide an explanation for why systolic pressure is lower when comparing the `White` and `Mexican` groups.
+
+**Explanation (write 2–4 sentences):**
+*(Your text here.)*
+
+## 9
+
+Write a function that computes the number of observations in each gender, age group, and race combination. Show groups with fewer than five observations.
+
+* Remove rows with no `BPSysAve` before counting.
+* Include combinations with 0 individuals (use `complete`).
+* Table columns: gender, age strata, group, count.
+
+```{r}
+# Scaffold: define the function (you will complete the pipeline inside)
+count_cells <- function(df) {
+  # df |>
+  #   filter(!is.na(BPSysAve)) |>
+  #   count(Gender, AgeDecade, Race3) |>
+  #   complete(Gender, AgeDecade, Race3, fill = list(n = 0))
+}
+
+# Scaffold: use the function and then filter small cells
+# count_cells(dat) |>
+#   filter(n < 5) |>
+#   select(Gender, AgeDecade, Race3, n) |>
+#   kable()
+```
+
+## 10
+
+Redefine `dat` with:
+
+* Include only survey year 2011-2012.
+* Remove observations with no age group reported.
+* Remove the 0-9 age group.
+* Combine the 60-69 and 70+ age groups into a 60+ group.
+* Remove `Other` in `Race3`.
+* Rename `Race3` to `Race`.
+
+Hints:
+
+* Levels in `AgeDecade` start with a space.
+* Use `fct_collapse` to combine factors.
+
+```{r}
+# Scaffold:
+# dat <- NHANES |>
+#   filter(SurveyYr == "2011_12") |>
+#   filter(!is.na(AgeDecade)) |>
+#   filter(AgeDecade != " 0-9") |>
+#   mutate(AgeDecade = fct_collapse(AgeDecade, ` 60+` = c(" 60-69", " 70+"))) |>
+#   filter(!is.na(Race3), Race3 != "Other") |>
+#   rename(Race = Race3)
+```
+
+## 11
+
+Create a plot showing average SBP for each age decade. Show race groups with color and connect points with lines. Make separate plots for males and females.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(AgeDecade), !is.na(Race), !is.na(Gender)) |>
+#   group_by(Gender, Race, AgeDecade) |>
+#   summarize(avg = mean(BPSysAve), .groups = "drop") |>
+#   ggplot(aes(x = AgeDecade, y = avg, color = Race, group = Race)) +
+#   geom_point() +
+#   geom_line() +
+#   facet_wrap(~ Gender) +
+#   labs(x = "Age decade", y = "Average SBP")
+```
+
+## 12
+
+Pick two race groups that you think are consistently different. Redo Exercise 11 for only these two groups, add confidence intervals, remove lines, and put confidence intervals next to each other (use `position_dodge`). Comment on your finding.
+
+```{r}
+# Choose your two groups:
+group1 <- "White"
+group2 <- "Mexican"
+
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(AgeDecade), Race %in% c(group1, group2)) |>
+#   group_by(Gender, Race, AgeDecade) |>
+#   summarize(
+#     n   = n(),
+#     avg = mean(BPSysAve),
+#     sd  = sd(BPSysAve),
+#     .groups = "drop"
+#   ) |>
+#   mutate(
+#     lower = avg - 1.96 * sd / sqrt(n),
+#     upper = avg + 1.96 * sd / sqrt(n)
+#   ) |>
+#   ggplot(aes(x = AgeDecade, y = avg, color = Race)) +
+#   geom_point(position = position_dodge(width = 0.4)) +
+#   geom_errorbar(aes(ymin = lower, ymax = upper),
+#                 width = 0.15,
+#                 position = position_dodge(width = 0.4)) +
+#   facet_wrap(~ Gender) +
+#   labs(x = "Age decade", y = "Average SBP")
+```
+
+**Comment (write 2–4 sentences):**
+*(Your text here.)*
+
+## 13
+
+For the two groups selected above, compute the difference in average SBP between the two groups for each age strata.
+Table columns: age strata, difference for females, difference for males.
+
+```{r}
+# Scaffold plan:
+# 1) Summarize avg by Gender, AgeDecade, Race for the two groups
+# 2) pivot_wider(names_from = Race, values_from = avg)
+# 3) compute diff = avg(group1) - avg(group2)
+# 4) keep Gender, AgeDecade, diff
+# 5) pivot_wider(names_from = Gender, values_from = diff)
+# 6) kable()
+
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(AgeDecade), Race %in% c(group1, group2)) |>
+#   group_by(Gender, AgeDecade, Race) |>
+#   summarize(avg = mean(BPSysAve), .groups = "drop") |>
+#   pivot_wider(names_from = Race, values_from = avg) |>
+#   mutate(diff = .data[[group1]] - .data[[group2]]) |>
+#   select(Gender, AgeDecade, diff) |>
+#   pivot_wider(names_from = Gender, values_from = diff) |>
+#   kable()
+```
+
+## 14
+
+Create a table showing average BMI (`BMI`) for each `Race` and `Gender` combination using the redefined `dat` from Exercise 10.
+
+Include: number of observations, average BMI, SD of BMI. Remove missing BMI values. Order by average BMI from lowest to highest.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BMI), !is.na(Race), !is.na(Gender)) |>
+#   group_by(Race, Gender) |>
+#   summarize(
+#     n = n(),
+#     avg_bmi = mean(BMI),
+#     sd_bmi  = sd(BMI),
+#     .groups = "drop"
+#   ) |>
+#   arrange(avg_bmi) |>
+#   kable()
+```
+
+## 15
+
+Create a summary table showing average SBP by smoking status (`Smoke100`) for each `Race` and `Gender`.
+
+Columns: race, gender, smoking status (Yes/No), n, average SBP, SD of SBP.
+Filter out missing `Smoke100` or `BPSysAve`. Arrange by race, then gender, then smoking status.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(Smoke100), !is.na(BPSysAve)) |>
+#   group_by(Race, Gender, Smoke100) |>
+#   summarize(
+#     n = n(),
+#     avg_sbp = mean(BPSysAve),
+#     sd_sbp  = sd(BPSysAve),
+#     .groups = "drop"
+#   ) |>
+#   arrange(Race, Gender, Smoke100) |>
+#   kable()
+```
+
+---
+
+## Optional Exercises {.unnumbered}
+
+## 16
+
+Create box plots comparing SBP distributions across race groups. Make separate plots for smokers and non-smokers and use facets for males/females. Filter out missing `BPSysAve` and `Smoke100`. Title: "Systolic Blood Pressure by Race and Smoking Status".
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(Smoke100), !is.na(Race), !is.na(Gender)) |>
+#   ggplot(aes(x = Race, y = BPSysAve)) +
+#   geom_boxplot() +
+#   facet_grid(Gender ~ Smoke100) +
+#   labs(
+#     x = "Race",
+#     y = "Systolic blood pressure",
+#     title = "Systolic Blood Pressure by Race and Smoking Status"
+#   )
+```
+
+## 17
+
+Create a table showing counts for each combination of `AgeDecade`, `Race`, and `Gender`, but only for combinations with fewer than 10 observations. Include only non-missing `BPSysAve`.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(AgeDecade), !is.na(Race), !is.na(Gender)) |>
+#   count(AgeDecade, Race, Gender) |>
+#   filter(n < 10) |>
+#   kable()
+```
+
+## 18
+
+For each `Race` and `Gender`, compute: n, avg SBP, avg age, % smokers, avg BMI.
+Filter out missing `BPSysAve`, `Age`, `Smoke100`, `BMI`. Round numeric values to 1 decimal. Arrange by race then gender.
+
+```{r}
+# Scaffold:
+# dat |>
+#   filter(!is.na(BPSysAve), !is.na(Age), !is.na(Smoke100), !is.na(BMI)) |>
+#   group_by(Race, Gender) |>
+#   summarize(
+#     n = n(),
+#     avg_sbp = mean(BPSysAve),
+#     avg_age = mean(Age),
+#     pct_smoke = mean(Smoke100 == "Yes") * 100,
+#     avg_bmi = mean(BMI),
+#     .groups = "drop"
+#   ) |>
+#   mutate(
+#     avg_sbp = round(avg_sbp, 1),
+#     avg_age = round(avg_age, 1),
+#     pct_smoke = round(pct_smoke, 1),
+#     avg_bmi = round(avg_bmi, 1)
+#   ) |>
+#   arrange(Race, Gender) |>
+#   kable()
+```
+
+

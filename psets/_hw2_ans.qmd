@@ -1,0 +1,304 @@
+---
+title: "Problem set 2 — Answer Key"
+date: 2025-09-18
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+For these exercises, do not load any packages other than **dslabs**.
+
+```{r}
+library(dslabs)
+```
+
+## 1
+
+What is the sum of the first 150 positive integers? Use the functions `seq` and `sum` to compute the sum with R for any `n`.
+
+```{r}
+n <- 150
+sum(seq(1, n))
+```
+
+## 2
+
+Load the `murders` dataset from **dslabs**. Use `str` to examine the structure of the `murders` object.
+
+* What are the column names used by the data frame for these five variables: state name, abbreviation, region, population, total murders?
+* Show the subset of `murders` showing states with less than 1.2 per 100,000 deaths. Show all variables.
+
+```{r}
+str(murders)
+```
+
+```{r}
+# Column names for the requested variables
+c("state", "abb", "region", "population", "total")
+```
+
+```{r}
+rate <- murders$total / murders$population * 100000
+murders[rate < 1.2, ]
+```
+
+## 3
+
+Show the subset of `murders` showing states with less than 1.2 per 100,000 deaths and in the Northeast of the US. Don't show the `region` variable.
+
+```{r}
+rate <- murders$total / murders$population * 100000
+out <- murders[rate < 1.2 & murders$region == "Northeast", ]
+out[, names(out) != "region"]
+```
+
+## 4
+
+Among states with a murder rate less than 1.2 per 100,000, show the smallest population state (state name, population, and rate).
+
+```{r}
+rate <- murders$total / murders$population * 100000
+low <- rate < 1.2
+i <- which(low)[which.min(murders$population[low])]
+data.frame(state = murders$state[i], population = murders$population[i], rate = rate[i])
+```
+
+## 5
+
+Show the state with a population of more than 8 million with the lowest murder rate (state name, population, and rate).
+
+```{r}
+rate <- murders$total / murders$population * 100000
+big <- murders$population > 8e6
+i <- which(big)[which.min(rate[big])]
+data.frame(state = murders$state[i], population = murders$population[i], rate = rate[i])
+```
+
+## 6
+
+Compute the murder rate for each region of the US (total murders / total population * 100,000). Return a data frame with one row per region and columns `region` and `rate`.
+
+```{r}
+murders_by_region <- tapply(murders$total, murders$region, sum)
+pop_by_region <- tapply(murders$population, murders$region, sum)
+rate_by_region <- murders_by_region / pop_by_region * 100000
+data.frame(region = names(rate_by_region), rate = as.numeric(rate_by_region))
+```
+
+## 7
+
+Create a vector of numbers starting at 5, not passing 60, in increments of 3/8. How many numbers are in the list?
+
+```{r}
+v <- seq(from = 5, to = 60, by = 3/8)
+length(v)
+```
+
+## 8
+
+Make the data frame below and add Celsius temperatures.
+
+```{r}
+temp_f <- c(72, 95, 41, 86, 78, 33)
+city <- c("Chicago", "Lagos", "Oslo", "Rio de Janeiro", 
+          "San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature_f = temp_f)
+city_temps
+```
+
+```{r}
+city_temps$temperature_c <- (city_temps$temperature_f - 32) * 5/9
+city_temps
+```
+
+## 9
+
+Write a function `euler2` that computes (S_n = \sum_{k=1}^n 1/k^2). Test at n=10 and n=100.
+
+```{r}
+euler2 <- function(n) sum(1/(seq(1, n)^2))
+euler2(10)
+euler2(100)
+```
+
+## 10
+
+Plot (S_n) versus (n) for (n=1,\dots,2000) with a horizontal dashed line at (\pi^2/6).
+
+```{r}
+n_vals <- 1:2000
+S <- sapply(n_vals, euler2)
+plot(n_vals, S, type = "l", xlab = "n", ylab = expression(S[n]))
+abline(h = pi^2/6, lty = 2)
+```
+
+## 11
+
+Use `%in%` and `state.abb` to check which of these are real state abbreviations: AL, AK, AZ, AR, AA.
+
+```{r}
+test <- c("AL", "AK", "AZ", "AR", "AA")
+test %in% state.abb
+```
+
+## 12
+
+Report the one entry that is not an actual abbreviation.
+
+```{r}
+test <- c("AL", "AK", "AZ", "AR", "AA")
+test[which(!(test %in% state.abb))]
+```
+
+## 13
+
+In the `murders` dataset, use `%in%` to show all variables for Florida, California, and New York, in that order.
+
+```{r}
+targets <- c("Florida", "California", "New York")
+sub <- murders[murders$state %in% targets, ]
+sub[match(targets, sub$state), ]
+```
+
+## 14
+
+Write `vandermonde_helper2(x, n)` that returns ((1, x, x^2, \dots, x^n)). Show results for x=2, n=6.
+
+```{r}
+vandermonde_helper2 <- function(x, n) x^(0:n)
+vandermonde_helper2(2, 6)
+```
+
+## 15
+
+Simulate Bernoulli data and compute run lengths of consecutive 1s (no loop). Plot distribution. Compare empirical proportions for run lengths 1–8 to geometric theory.
+
+```{r}
+n <- 20000
+p <- 0.35
+set.seed(2025-9-18)
+x <- sample(c(0,1), n, prob = c(1 - p, p), replace = TRUE)
+```
+
+```{r}
+r <- rle(x)
+ones_lengths <- r$lengths[r$values == 1]
+
+hist(ones_lengths, breaks = 30, xlab = "Run length of 1s",
+     main = "Distribution of run lengths of 1s")
+
+tab <- table(ones_lengths)
+emp_counts <- as.numeric(tab[as.character(1:8)])
+emp_counts[is.na(emp_counts)] <- 0
+emp_probs <- emp_counts / length(ones_lengths)
+
+k <- 1:8
+theory_probs <- (1 - p) * p^(k - 1)
+
+data.frame(run_length = k, empirical_prob = emp_probs, theory_prob = theory_probs)
+```
+
+## 16
+
+In `murders`, compute the national average murder rate. Label states using `ifelse`:
+
+* "High Crime, High Pop" if rate > national avg and pop > 6 million
+* "High Crime, Low Pop" if rate > national avg and pop ≤ 6 million
+* "Lower Crime" otherwise
+  Then show a table of counts.
+
+```{r}
+rate <- murders$total / murders$population * 100000
+national_rate <- sum(murders$total) / sum(murders$population) * 100000
+
+high_crime <- rate > national_rate
+high_pop <- murders$population > 6e6
+
+labels <- ifelse(high_crime & high_pop, "High Crime, High Pop",
+                 ifelse(high_crime & !high_pop, "High Crime, Low Pop",
+                        "Lower Crime"))
+table(labels)
+```
+
+## 17
+
+What is the murder rate of the state that ranks 12th in murder rate (highest to lowest)? Show work using `order` (optionally check with `sort` and `rank`).
+
+```{r}
+rate <- murders$total / murders$population * 100000
+ord <- order(rate, decreasing = TRUE)
+i <- ord[12]
+data.frame(rank = 12, state = murders$state[i], rate = rate[i])
+```
+
+## 18
+
+Write `compute_harmonic_mean(x)` returning the harmonic mean, but `NA` if any values are zero/negative. Test on `c(1,2,4,8)`.
+
+```{r}
+compute_harmonic_mean <- function(x) {
+  if (any(x <= 0)) return(NA_real_)
+  length(x) / sum(1/x)
+}
+compute_harmonic_mean(c(1, 2, 4, 8))
+```
+
+## 19
+
+Create `safe_divide(x, y)` returning `x/y`, but "Cannot divide by zero" when `y` is 0. Vectorized. Test on `x <- c(10,20,30)` and `y <- c(2,0,5)`.
+
+```{r}
+safe_divide <- function(x, y) {
+  out <- x / y
+  out <- as.character(out)
+  out[y == 0] <- "Cannot divide by zero"
+  out
+}
+
+x <- c(10, 20, 30)
+y <- c(2, 0, 5)
+safe_divide(x, y)
+```
+
+## 20
+
+Write `classify_state_safety(state_name)` based on murder rate:
+
+* "Very Safe" if rate < 1
+* "Safe" if 1 ≤ rate < 3
+* "Moderate" if 3 ≤ rate < 5
+* "High Risk" if rate ≥ 5
+  If state not found, return "State not found".
+
+Test on "Vermont", "Texas", "California", "NotAState". Then classify all states with `sapply` and tabulate categories.
+
+```{r}
+rate <- murders$total / murders$population * 100000
+rate_named <- setNames(rate, murders$state)
+
+classify_state_safety <- function(state_name) {
+  if (!(state_name %in% names(rate_named))) return("State not found")
+  r <- rate_named[state_name]
+  if (r < 1) "Very Safe"
+  else if (r < 3) "Safe"
+  else if (r < 5) "Moderate"
+  else "High Risk"
+}
+
+classify_state_safety("Vermont")
+classify_state_safety("Texas")
+classify_state_safety("California")
+classify_state_safety("NotAState")
+```
+
+```{r}
+cats <- sapply(murders$state, classify_state_safety)
+table(cats)
+```
+
+
