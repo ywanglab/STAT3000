@@ -1,0 +1,1668 @@
+[
+  {
+    "objectID": "slides/20-intro-to-prob.html#probability",
+    "href": "slides/20-intro-to-prob.html#probability",
+    "title": "Introduction to Probability",
+    "section": "Probability",
+    "text": "Probability\n\nThe term probability is used in everyday language.\nYet answering questions about probability is often hard, if not impossible.\nIn contrast probability has a very intuitive definition in games of chance.\nProbability Theory was born because certain mathematcial computations can give an advantage in games of chance."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#events",
+    "href": "slides/20-intro-to-prob.html#events",
+    "title": "Introduction to Probability",
+    "section": "Events",
+    "text": "Events\n\nEvents are fundamental concepts that help us understand and quantify uncertainty in various situations.\nAn event is defined as a specific outcome or a collection of outcomes from a random experiment."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#example-of-events",
+    "href": "slides/20-intro-to-prob.html#example-of-events",
+    "title": "Introduction to Probability",
+    "section": "Example of events",
+    "text": "Example of events\n\n2 red beads and 3 blue beads inside an urn, and we perform the random experiment of picking 1 bead, there are two outcomes: bead is red or blue.\n\n\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3)) \n#rep(x, times=...):repeat each element of x the number of times gieven in times\nbeads\n\n[1] \"red\"  \"red\"  \"blue\" \"blue\" \"blue\"\n\n\n\nThe four possible events: bead is red, bead is blue, bead is red or blue, and an event with no outcomes."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#more-examples-of-events",
+    "href": "slides/20-intro-to-prob.html#more-examples-of-events",
+    "title": "Introduction to Probability",
+    "section": "More examples of events",
+    "text": "More examples of events\n\nIn more complex random experiment, we can define many more events.\nFor example if the random experiment is picking 2 beads, we can define events such as first bead is red, second bead is blue, both beads are red, and so on.\nIn a random experiment such as political poll, where we randomly phone 100 likely voters at random, we can form many million events, for example calling 48 Democrats and 52 Republicans."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#definitions-and-notation",
+    "href": "slides/20-intro-to-prob.html#definitions-and-notation",
+    "title": "Introduction to Probability",
+    "section": "Definitions and Notation",
+    "text": "Definitions and Notation\n\nWe usually use capital letters \\(A\\), \\(B\\), \\(C\\), … to to denote events.\nIf we denote an event as \\(A\\) then we use the notation \\(\\mbox{Pr}(A)\\) to denote the probability of event \\(A\\) occurring."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#union-and-intersection",
+    "href": "slides/20-intro-to-prob.html#union-and-intersection",
+    "title": "Introduction to Probability",
+    "section": "Union and Intersection",
+    "text": "Union and Intersection\n\nWe can combine events in different ways to form new events. For example, if event\n\\(A\\)=first bead is red and second bead is blue, and\n\\(B\\)=first bead is red and second bead is red\nthen \\(A \\cup B\\) (\\(A\\) or \\(B\\)) is the event first bead is red,\nwhile \\(A \\cap B\\) (\\(A\\) and \\(B\\)) is the empty event since both can’t happen."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#continuous-variable",
+    "href": "slides/20-intro-to-prob.html#continuous-variable",
+    "title": "Introduction to Probability",
+    "section": "Continuous variable",
+    "text": "Continuous variable\n\nWith continuous variables, events will relate to questions, such as Is this person taller than 6 feet?\nIn these cases, we represent events in a more mathematical form: \\(A = \\{X &gt; 6\\}\\)."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#independence",
+    "href": "slides/20-intro-to-prob.html#independence",
+    "title": "Introduction to Probability",
+    "section": "Independence",
+    "text": "Independence\n\nWhen we deal the first card, the probability of getting a King is 1/13 since there are thirteen possibilities: Ace, Deuce, Three, \\(\\dots\\), Ten, Jack, Queen, King, and Ace.\nIf we deal a King for the first card, the probability of a second card being a King decreases because there are only three Kings left: The probability is 3 out of 51."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#sampling-by-sample-function",
+    "href": "slides/20-intro-to-prob.html#sampling-by-sample-function",
+    "title": "Introduction to Probability",
+    "section": "Sampling by sample function",
+    "text": "Sampling by sample function\n\nBy default, the sample function samples without replacement\n\n\nset.seed(1996)\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- sample(beads, 5) \n\n\nIf you have to guess the color of the first bead, you will predict blue since blue has a 60% chance."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#independence-1",
+    "href": "slides/20-intro-to-prob.html#independence-1",
+    "title": "Introduction to Probability",
+    "section": "Independence",
+    "text": "Independence\n\nHowever, if I show you the result of the last four outcomes:\n\n\nx[2:5] \n\n[1] \"blue\" \"blue\" \"red\"  \"blue\"\n\n\n\nwould you still guess blue? Of course not."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#conditional-probabilities",
+    "href": "slides/20-intro-to-prob.html#conditional-probabilities",
+    "title": "Introduction to Probability",
+    "section": "Conditional probabilities",
+    "text": "Conditional probabilities\n\nWhen events are not independent, conditional probabilities are useful.\nWe use the \\(|\\) to shorten conditional on. For example:\n\n\\[\n\\mbox{Pr}(\\mbox{Card 2 is a king} \\mid \\mbox{Card 1 is a king}) = 3/51\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#conditional-probabilities-definition",
+    "href": "slides/20-intro-to-prob.html#conditional-probabilities-definition",
+    "title": "Introduction to Probability",
+    "section": "Conditional probabilities definition",
+    "text": "Conditional probabilities definition\n\nWhen two events, say \\(A\\) and \\(B\\), are independent, we have:\n\n\\[\n\\mbox{Pr}(A \\mid B) = \\mbox{Pr}(A)  \n\\]\n\nIn fact, this can be considered the mathematical definition of independence."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#multiplication-rule",
+    "href": "slides/20-intro-to-prob.html#multiplication-rule",
+    "title": "Introduction to Probability",
+    "section": "Multiplication rule",
+    "text": "Multiplication rule\n\nIf we want to determine the probability of two events, say \\(A\\) and \\(B\\), occurring, we can use the multiplication rule:\n\n\\[\n\\mbox{Pr}(A \\cap B) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#multiplication-rule-example",
+    "href": "slides/20-intro-to-prob.html#multiplication-rule-example",
+    "title": "Introduction to Probability",
+    "section": "Multiplication rule: example",
+    "text": "Multiplication rule: example\n\nFor example:\n\n\\[\n\\mbox{Pr}(\\mbox{Blackjack in first hand}) = \\\\\n\\mbox{Pr}(\\mbox{Ace first})\\mbox{Pr}(\\mbox{Face card second}\\mid \\mbox{Ace first}) +\\\\\n\\mbox{Pr}(\\mbox{Face card first})\\mbox{Pr}(\\mbox{Ace}\\mid \\mbox{Face card first}) =\\\\\n\\frac{1}{13}\\frac{16}{51} + \\frac{4}{13}\\frac{4}{51} \\approx 0.0483\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#multiplication-rule-for-multipel-events",
+    "href": "slides/20-intro-to-prob.html#multiplication-rule-for-multipel-events",
+    "title": "Introduction to Probability",
+    "section": "Multiplication rule for multipel events",
+    "text": "Multiplication rule for multipel events\n\nWe can use induction to expand for more events:\n\n\\[\n\\mbox{Pr}(A \\cap B \\cap C) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\\mbox{Pr}(C \\mid A \\cap B)\n\\]\n\nWhen dealing with independent events, the multiplication rule becomes simpler:\n\n\\[\n\\mbox{Pr}(A \\cap B \\cap C) = \\mbox{Pr}(A)\\mbox{Pr}(B)\\mbox{Pr}(C)\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#multiplication-rule-example-1",
+    "href": "slides/20-intro-to-prob.html#multiplication-rule-example-1",
+    "title": "Introduction to Probability",
+    "section": "Multiplication rule example",
+    "text": "Multiplication rule example\n\nImagine a court case in which the suspect was described as having a mustache and a beard.\nThe defendant has both and an “expert” testifies that 1/10 men have beards and 1/5 have mustaches.\nUsing the multiplication rule, he concludes that \\(1/10 \\times 1/5\\) or 0.02 have both.\nBut this assumes independence!\nIf the conditional probability of a man having a mustache, conditional on him having a beard, is .95, then the probability is: \\(1/10 \\times 95/100 = 0.095\\)"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#computing-conditional-probability",
+    "href": "slides/20-intro-to-prob.html#computing-conditional-probability",
+    "title": "Introduction to Probability",
+    "section": "computing conditional probability",
+    "text": "computing conditional probability\n\nThe multiplication rule also gives us a general formula for computing conditional probabilities:\n\n\\[\n\\mbox{Pr}(B \\mid A) = \\frac{\\mbox{Pr}(A \\cap B)}{ \\mbox{Pr}(A)}\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#addition-rule",
+    "href": "slides/20-intro-to-prob.html#addition-rule",
+    "title": "Introduction to Probability",
+    "section": "Addition rule",
+    "text": "Addition rule\n\nThe ruleThe code\n\n\n\\[\n\\mbox{Pr}(A \\cup B) = \\mbox{Pr}(A) + \\mbox{Pr}(B) - \\mbox{Pr}(A \\cap B)\n\\]\n\n\n\n\n\n\n\n\nlibrary(VennDiagram) \nrafalib::mypar() # sets some base plotting parameters, relevant to base R plots\ngrid.newpage() # clears the curetn grid graphics page\ntmp &lt;- draw.pairwise.venn(22, 20, 11, category = c(\"A\", \"B\"),  #(areaA=22, areaB=20, coss.area=11)\n                   lty = rep(\"blank\", 2), # remove the circle borders \n                   fill = c(\"light blue\", \"pink\"),  \n                   alpha = rep(0.5, 2),   \n                   cat.dist = rep(0.025, 2), # distance of category lables from the circles\n                   cex = 0, # tex size fore region counts. 0 hides the numbers\n                   cat.cex = rep(2.5,2)) # text size for the category labels"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#random-variables",
+    "href": "slides/20-intro-to-prob.html#random-variables",
+    "title": "Introduction to Probability",
+    "section": "Random Variables",
+    "text": "Random Variables\n\nRandom variables are numeric outcomes resulting from random processes (formally, a mapping)\n\\(X: \\text{outcome}\\mapsto \\mathbb{R}\\)\ndefine X to be 1 if a bead is blue and red otherwise:\n\n\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- ifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 0\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 1\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 0"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#random-variables-examples",
+    "href": "slides/20-intro-to-prob.html#random-variables-examples",
+    "title": "Introduction to Probability",
+    "section": "Random Variables examples",
+    "text": "Random Variables examples\n\nMore interesting random variables are:\n\nthe number of times we win in a game of chance,\nthe number of democrats in a random sample of 1,000 voters, and\nthe proportion of patients randomly assigned to a control group in drug trial."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#discrete-probability",
+    "href": "slides/20-intro-to-prob.html#discrete-probability",
+    "title": "Introduction to Probability",
+    "section": "Discrete probability",
+    "text": "Discrete probability\nIf I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#discrete-probability-1",
+    "href": "slides/20-intro-to-prob.html#discrete-probability-1",
+    "title": "Introduction to Probability",
+    "section": "Discrete probability",
+    "text": "Discrete probability\n\nA precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event pick a red bead.\nSince each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#discrete-probability-frequentist-way",
+    "href": "slides/20-intro-to-prob.html#discrete-probability-frequentist-way",
+    "title": "Introduction to Probability",
+    "section": "Discrete probability: frequentist way",
+    "text": "Discrete probability: frequentist way\n\nA more tangible way to think about the probability of an event is as the proportion of times the event occurs when we repeat the experiment an infinite number of times, independently, and under the same conditions.\nThis is the frequentist way of thinking about probability."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo",
+    "href": "slides/20-intro-to-prob.html#monte-carlo",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nMonte Carlo simulations use computers to perform these experiments.\nRandom number generators permit us to mimic the process of picking at random.\nThe sample function in R uses a random number generator:\n\n\nbeads &lt;- rep(c(\"red\", \"blue\"), times = c(2,3))\nsample(beads, 1)\n\n[1] \"blue\""
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-1",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-1",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nIf we repeat the experiment over and over, we can define the probability using the frequentists definition\n\n\nn &lt;- 10^7\nx &lt;- sample(beads, n, replace = TRUE)\ntable(x)/n\n\nx\n     blue       red \n0.6002232 0.3997768 \n\n\n\nNote the definition is for \\(n=\\infty\\). In practice we use very large numbers to get very close."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#probability-distributions",
+    "href": "slides/20-intro-to-prob.html#probability-distributions",
+    "title": "Introduction to Probability",
+    "section": "Probability distributions",
+    "text": "Probability distributions\nAn example of a probability distribution is:\n\n\n\nPr(picking a Republican)\n=\n0.44\n\n\nPr(picking a Democrat)\n=\n0.44\n\n\nPr(picking an undecided)\n=\n0.10\n\n\nPr(picking a Green)\n=\n0.02"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#setting-the-random-seed",
+    "href": "slides/20-intro-to-prob.html#setting-the-random-seed",
+    "title": "Introduction to Probability",
+    "section": "Setting the random seed",
+    "text": "Setting the random seed\n\nset.seed(2026-02-14)  \n\n\nWhen using random number generators you get a different answer each time.\nThis is fine, but if you want to ensure that results are consistent with each run, you can set R’s random number generation seed to a specific number."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations",
+    "href": "slides/20-intro-to-prob.html#combinations-and-permutations",
+    "title": "Introduction to Probability",
+    "section": "Combinations and permutations",
+    "text": "Combinations and permutations\n\nBeing able to count combinations and permutations is an important part of performing discrete probability computations.\nthe function expand.grid\nand the gtools functions permutatios and combinations.\ngenerate a deck of cards:\n\n\nsuits &lt;- c(\"Diamonds\", \"Clubs\", \"Hearts\", \"Spades\") \nnumbers &lt;- c(\"Ace\", \"Deuce\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\",  \n             \"Eight\", \"Nine\", \"Ten\", \"Jack\", \"Queen\", \"King\") \ndeck &lt;- expand.grid(number = numbers, suit = suits) # expand.grid makes a df of all combinations of (number, suit). Vary number fist: Ace Diamonds, Deuce Diamonds, ...,\ndeck &lt;- paste(deck$number, deck$suit) # combine two columns with a space\nhead(deck,3)\n\n[1] \"Ace Diamonds\"   \"Deuce Diamonds\" \"Three Diamonds\""
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations-1",
+    "href": "slides/20-intro-to-prob.html#combinations-and-permutations-1",
+    "title": "Introduction to Probability",
+    "section": "Combinations and permutations",
+    "text": "Combinations and permutations\n\nchoose two numbers from a list consisting of 1,2,3:\n\n\nlibrary(gtools) \npermutations(3, 2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    1\n[4,]    2    3\n[5,]    3    1\n[6,]    3    2\n\n\n\nThe order matters here: 3,1 is different than 1,3.\n(1,1), (2,2), and (3,3) do not appear because once we pick a number, it can’t appear again."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations-2",
+    "href": "slides/20-intro-to-prob.html#combinations-and-permutations-2",
+    "title": "Introduction to Probability",
+    "section": "Combinations and permutations",
+    "text": "Combinations and permutations\n\nTo compute all possible ways we can choose two cards when the order matters, we type, you can use the v option:\n\n\nhands &lt;- permutations(52, 2, v = deck)"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations-3",
+    "href": "slides/20-intro-to-prob.html#combinations-and-permutations-3",
+    "title": "Introduction to Probability",
+    "section": "Combinations and permutations",
+    "text": "Combinations and permutations\n\nWhat about if the order does not matter? For example, in Blackjack, if you obtain an Ace and a face card in the first draw, it is called a Natural 21, and you win automatically.\nIf we wanted to compute the probability of this happening, we would enumerate the combinations, not the permutations, since the order does not matter.\n\n\ncombinations(3,2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    3"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#continuous-probability",
+    "href": "slides/20-intro-to-prob.html#continuous-probability",
+    "title": "Introduction to Probability",
+    "section": "Continuous probability",
+    "text": "Continuous probability\n\nWhen summarizing a list of numeric values, such as heights, it is not useful to construct a distribution that defines a proportion to each possible outcome.\nSimilarly, for a random variable that can take any value in a continuous set, it impossible to assign a positive probabilities to the infinite number of possible values."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#ecdf",
+    "href": "slides/20-intro-to-prob.html#ecdf",
+    "title": "Introduction to Probability",
+    "section": "eCDF",
+    "text": "eCDF\n\nWe use the heights of adult male students as an example:\n\n\nlibrary(tidyverse) \nlibrary(dslabs) \nx &lt;- heights %&gt;% filter(sex == \"Male\") %&gt;% pull(height) \n\n\nand defined the empirical cumulative distribution function (eCDF) as.\n\n\nF &lt;- function(a) mean(x &lt;= a) \n\n\nwhich, for any value a, gives the proportion of values in the list x that are smaller or equal than a."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#cdf",
+    "href": "slides/20-intro-to-prob.html#cdf",
+    "title": "Introduction to Probability",
+    "section": "CDF",
+    "text": "CDF\n\nThere is a connection to the empirical CDF.\nIf I randomly pick one of the male students, what is the chance that he is taller than 70.5 inches?\nSince every student has the same chance of being picked, the answer is the proportion of students that are taller than 70.5 inches."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#cdf-1",
+    "href": "slides/20-intro-to-prob.html#cdf-1",
+    "title": "Introduction to Probability",
+    "section": "CDF",
+    "text": "CDF\n\nUsing the eCDF we obtain an answer by typing:\n\n\n1 - F(70.5) \n\n[1] 0.3633005\n\n\n\nThe CDF is a version of the eCDF that assigns theoretical probabilities for each \\(a\\) rather than proportions computed from data."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#cdf-2",
+    "href": "slides/20-intro-to-prob.html#cdf-2",
+    "title": "Introduction to Probability",
+    "section": "CDF",
+    "text": "CDF\n\nSpecifically, the CDF for a random outcome \\(X\\) defines, for any number \\(a\\), the probability of observing a value less than or equal to \\(a\\).\n\n\\[ F(a) = \\mbox{Pr}(X \\leq a) \\]\n\nOnce a CDF is defined, we can use it to compute the probability of any subset of values."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#cdf-3",
+    "href": "slides/20-intro-to-prob.html#cdf-3",
+    "title": "Introduction to Probability",
+    "section": "CDF",
+    "text": "CDF\n\nFor instance, the probability of a student being between height a and height b is:\n\n\\[\n\\mbox{Pr}(a &lt; X \\leq b) = F(b)-F(a)\n\\]\n\nSince we can compute the probability for any possible event using this approach, the CDF defines the probability distribution."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#probability-density-function",
+    "href": "slides/20-intro-to-prob.html#probability-density-function",
+    "title": "Introduction to Probability",
+    "section": "Probability density function",
+    "text": "Probability density function\n\nA mathematical result that is very useful in practice is that, for most CDFs, we can define a function, call it \\(f(x)\\), that permits us to construct the CDF using Calculus, like this:\n\n\\[\nF(b) - F(a) = \\int_a^b f(x)\\,dx\n\\]\n\n\\(f(x)\\) is referred to as the probability density function."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#probability-density-function-1",
+    "href": "slides/20-intro-to-prob.html#probability-density-function-1",
+    "title": "Introduction to Probability",
+    "section": "Probability density function",
+    "text": "Probability density function\n\nThe intuition is that even for continuous outcomes we can define tiny intervals, that are almost as small as points, that have positive probabilities.\nIf we think of the size of these intervals as the base of a rectangle, the probability density function \\(f\\) determines the height of the rectangle so that the summing up of the area of these rectangles approximate the probability \\(F(b) - F(a)\\)."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#probability-density-function-2",
+    "href": "slides/20-intro-to-prob.html#probability-density-function-2",
+    "title": "Introduction to Probability",
+    "section": "Probability density function",
+    "text": "Probability density function\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ncont &lt;- data.frame(x = seq(0, 5, len = 300), y = dgamma(seq(0, 5, len = 300), 2, 2)) #Gamma(shape=2, rate=2): f(a, b)=b^a/Gamma(a) x^{a-1}e^{-bx}\ndisc &lt;- data.frame(x = seq(0, 5, 0.075), y = dgamma(seq(0, 5, 0.075), 2, 2)) \nggplot(mapping = aes(x, y)) + \n  geom_col(data =  disc) + \n  geom_line(data = cont) + \n  ylab(\"f(x)\") \n\n\ngeom_bar(stat=“count”): (default)for raw data; geom_col(stat=“identity”): (default) need x and y, use y values"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#normal-distribution",
+    "href": "slides/20-intro-to-prob.html#normal-distribution",
+    "title": "Introduction to Probability",
+    "section": "Normal distribution",
+    "text": "Normal distribution\n\nThe probability density function is given by:\n\n\\[f(x) = e^{-\\frac{1}{2}\\left( \\frac{x-m}{s} \\right)^2} \\]\n\nThe cumulative distribution for the normal distribution in R can be obtained with the function pnorm."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#cdf-of-a-normal-distribution",
+    "href": "slides/20-intro-to-prob.html#cdf-of-a-normal-distribution",
+    "title": "Introduction to Probability",
+    "section": "cdf of a normal distribution",
+    "text": "cdf of a normal distribution\n\na random quantity is normally distributed with average m and standard deviation s\n\n\nF(a) = pnorm(a, m, s) \n\n\nif we use the normal approximation, What is the probability that a randomly selected student is taller then 70.5 inches?\n\n\nm &lt;- mean(x) \ns &lt;- sd(x) \n1 - pnorm(70.5, m, s) \n\n[1] 0.371369"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#distributions-as-approximations",
+    "href": "slides/20-intro-to-prob.html#distributions-as-approximations",
+    "title": "Introduction to Probability",
+    "section": "Distributions as approximations",
+    "text": "Distributions as approximations\n\nThe graphThe code\n\n\n\nBelow is a plot of that probability distribution:\n\n\n\n\n\n\n\n\n\nrafalib::mypar() \nplot(prop.table(table(x)), xlab = \"a = Height in inches\", ylab = \"Pr(X = a)\") \n\n\ntable(): frequency counts. Default drops NA, unless table(x, useNA=\"ifany\")\nprop.table(): divides those counts by the total count-&gt;relative frequency\nfor 2-way table\n\n\nprop.table(table(a, b), margin = 1)  # rows sum to 1\nprop.table(table(a, b), margin = 2)  # cols sum to 1"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#does-it-make-sense",
+    "href": "slides/20-intro-to-prob.html#does-it-make-sense",
+    "title": "Introduction to Probability",
+    "section": "Does it make sense?",
+    "text": "Does it make sense?\n\nWhile most students rounded up their heights to the nearest inch, others reported values with more precision.\nOne student reported his height to be 69.6850393700787, which is 177 centimeters.\nThe probability assigned to this height is 0.0012315 or 1 in 812.\nThe probability for 70 inches is much higher at 0.1059113,\nDoes it really make sense to think of the probability of being exactly 70 inches as being different than 69.6850393700787?"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#use-a-continuous-variable",
+    "href": "slides/20-intro-to-prob.html#use-a-continuous-variable",
+    "title": "Introduction to Probability",
+    "section": "Use a continuous variable",
+    "text": "Use a continuous variable\n\nClearly it is much more useful to treat this outcome as a continuous numeric variable, keeping in mind that very few people, or perhaps none, are exactly 70 inches, and that the reason we get more values at 70 is because people round to the nearest inch.\nWith continuous distributions, the probability of a singular value is 0.\nWe therefore could ask, what is the probability that someone is between 69.5 and 70.5?"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#proportioins-from-data",
+    "href": "slides/20-intro-to-prob.html#proportioins-from-data",
+    "title": "Introduction to Probability",
+    "section": "Proportioins from data",
+    "text": "Proportioins from data\n\nthe normal distribution is useful for approximating the proportion of students reporting values in intervals like the following three:\n\n\nmean(x &lt;= 68.5) - mean(x &lt;= 67.5) \n\n[1] 0.114532\n\nmean(x &lt;= 69.5) - mean(x &lt;= 68.5) \n\n[1] 0.1194581\n\nmean(x &lt;= 70.5) - mean(x &lt;= 69.5) \n\n[1] 0.1219212"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#proportions-from-normal-distribution",
+    "href": "slides/20-intro-to-prob.html#proportions-from-normal-distribution",
+    "title": "Introduction to Probability",
+    "section": "Proportions from normal distribution",
+    "text": "Proportions from normal distribution\n\nNote how close we get with the normal approximation:\n\n\npnorm(68.5, m, s) - pnorm(67.5, m, s)  \n\n[1] 0.1031077\n\npnorm(69.5, m, s) - pnorm(68.5, m, s)  \n\n[1] 0.1097121\n\npnorm(70.5, m, s) - pnorm(69.5, m, s)  \n\n[1] 0.1081743\n\n\n\nHowever, the approximation is not as useful for other intervals."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#problems-caused-by-discretization",
+    "href": "slides/20-intro-to-prob.html#problems-caused-by-discretization",
+    "title": "Introduction to Probability",
+    "section": "Problems caused by discretization",
+    "text": "Problems caused by discretization\n\nnotice how the approximation breaks down:\n\n\nmean(x &lt;= 70.9) - mean(x &lt;= 70.1) \n\n[1] 0.02216749\n\n\n\npnorm(70.9, m, s) - pnorm(70.1, m, s) \n\n[1] 0.08359562\n\n\n\nIn general, we call this situation discretization.\nAlthough the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding.\nAs long as we are aware of how to deal with this reality, the normal approximation can still be a very useful tool."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#the-probability-density",
+    "href": "slides/20-intro-to-prob.html#the-probability-density",
+    "title": "Introduction to Probability",
+    "section": "The probability density",
+    "text": "The probability density\n\nFor categorical distributions, we can define the probability of a category.\nFor example, a roll of a die, let’s call it \\(X\\), can be 1, 2, 3, 4, 5 or 6.\nThe probability of 4 is defined as:\n\n\\[\n\\mbox{Pr}(X=4) = 1/6\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#pdf-for-discrete-rvs",
+    "href": "slides/20-intro-to-prob.html#pdf-for-discrete-rvs",
+    "title": "Introduction to Probability",
+    "section": "pdf for discrete RVs",
+    "text": "pdf for discrete RVs\n\nThe CDF can then easily be defined:\n\n\\[\n\\begin{aligned}\nF(4) &= &  \\mbox{Pr}(X\\leq 4) \\\\\n&= &  \\mbox{Pr}(X = 4) +  \\mbox{Pr}(X = 3) \\\\\n& + & \\mbox{Pr}(X = 2) +  \\mbox{Pr}(X = 1)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#pdf-for-continuous-rvs",
+    "href": "slides/20-intro-to-prob.html#pdf-for-continuous-rvs",
+    "title": "Introduction to Probability",
+    "section": "pdf for continuous RVs",
+    "text": "pdf for continuous RVs\n\nAlthough for continuous distributions the probability of a single value \\(\\mbox{Pr}(X=x)\\) is not defined, there is a theoretical definition that has a similar interpretation.\nThe probability density at \\(x\\) is defined as the function \\(f(a)\\) such that:\n\n\\[\nF(a) = \\mbox{Pr}(X\\leq a) = \\int_{-\\infty}^a f(x)\\, dx\n\\]"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#normal-distribution-example",
+    "href": "slides/20-intro-to-prob.html#normal-distribution-example",
+    "title": "Introduction to Probability",
+    "section": "Normal distribution example",
+    "text": "Normal distribution example\n\nFor example, to use the normal approximation to estimate the probability of someone being taller than 76 inches, we use:\n\n\n1 - pnorm(76, m, s) \n\n[1] 0.03206008"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#pdf-of-normal-distribution",
+    "href": "slides/20-intro-to-prob.html#pdf-of-normal-distribution",
+    "title": "Introduction to Probability",
+    "section": "pdf of normal distribution",
+    "text": "pdf of normal distribution\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ndat &lt;- tibble(x = seq(-4, 4, length = 100)*s + m, # x\\in [m-4s, m+4s]\n              y = dnorm(x, m, s)) \ndat_ribbon &lt;- filter(dat, x &gt;= 2*s + m) # the right tail at least 2 sd from the mean\nggplot(dat, aes(x, y)) + \n  geom_line() + \n  geom_ribbon(aes(ymin = 0, ymax = y), data = dat_ribbon) \n\n\ngeom_ribbon(): add a shading"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#the-probability-density-1",
+    "href": "slides/20-intro-to-prob.html#the-probability-density-1",
+    "title": "Introduction to Probability",
+    "section": "The probability density",
+    "text": "The probability density\n\nThe curve you see is the probability density for the normal distribution.\nIn R, we get this using the function dnorm.\nWhile it may not be immediately apparent why knowing about probability densities is useful, understanding this concept is essential for individuals aiming to fit models to data for which predefined functions are not available."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-2",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-2",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nThe codeThe graph\n\n\n\nB &lt;- 10000 \ntallest &lt;- replicate(B, { \n  simulated_data &lt;- rnorm(800, m, s) \n  max(simulated_data) \n}) \n\n\nreplicate(B, {...}): run the block inside {...} B times.\nHaving a seven-footer is quite rare:\n\n\nmean(tallest &gt;= 7*12) \n\n[1] 0.0192\n\n\n\n\n\nHere is the resulting distribution:\n\n\n\n\n\n\n\nNote that it does not look normal."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-3",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-3",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nThis is one of the most useful functions in R, as it will permit us to generate data that mimics natural events and answers questions related to what could happen by chance by running Monte Carlo simulations.\nIf, for example, we pick 800 males at random, what is the distribution of the tallest person? How rare is a seven-footer in a group of 800 males? The following Monte Carlo simulation helps us answer that question:"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-4",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-4",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nB &lt;- 10000 \ntallest &lt;- replicate(B, { \n  simulated_data &lt;- rnorm(800, m, s) \n  max(simulated_data) \n})"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-5",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-5",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nHaving a seven-footer is quite rare:\n\n\nmean(tallest &gt;= 7*12) \n\n[1] 0.0192"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-6",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-6",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nHere is the resulting distribution:\n\n\n\nNote that it does not look normal."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-7",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-7",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nHaving a seven-footer is quite rare:\n\n\nmean(tallest &gt;= 7*12) \n\n[1] 0.0192"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-8",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-8",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\n\nHere is the resulting distribution:\n\n\n\nNote that it does not look normal."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#continuous-distributions",
+    "href": "slides/20-intro-to-prob.html#continuous-distributions",
+    "title": "Introduction to Probability",
+    "section": "Continuous distributions",
+    "text": "Continuous distributions\n\nThe normal distribution is not the only useful theoretical distribution.\nOther continuous distributions: the student-t, Chi-square, exponential, gamma, beta, and beta-binomial.\nR provides functions to compute the density, the quantiles, the cumulative distribution functions and to generate Monte Carlo simulations."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#continuous-distributions-1",
+    "href": "slides/20-intro-to-prob.html#continuous-distributions-1",
+    "title": "Introduction to Probability",
+    "section": "Continuous distributions",
+    "text": "Continuous distributions\n\nThe codeThe graph\n\n\n\nR uses the letters d, q, p, and r in front of a shorthand for the distribution.\nWe have already seen the functions dnorm, pnorm, and rnorm for the normal distribution.\nThe functions qnorm gives us the quantiles.\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nlibrary(ggplot2)\ndf &lt;- data.frame(x = x, f = dnorm(x))\nggplot(df, aes(x, f)) + geom_line()\n\n\n\n\n\n\n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#continuous-distributions-2",
+    "href": "slides/20-intro-to-prob.html#continuous-distributions-2",
+    "title": "Introduction to Probability",
+    "section": "Continuous distributions",
+    "text": "Continuous distributions\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html",
+    "href": "slides/20-intro-to-prob.html",
+    "title": "Introduction to Probability",
+    "section": "",
+    "text": "The term probability is used in everyday language.\nYet answering questions about probability is often hard, if not impossible.\nIn contrast probability has a very intuitive definition in games of chance.\nProbability Theory was born because certain mathematcial computations can give an advantage in games of chance."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-example",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-example",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo example",
+    "text": "Monte Carlo example\n\nThe codeThe histogram of the simulated data\n\n\n\nHere is an example of how we could generate data that looks like our reported heights:\n\n\nn &lt;- length(x) \nm &lt;- mean(x) \ns &lt;- sd(x) \nsimulated_heights &lt;- rnorm(n, m, s)"
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#rnorm",
+    "href": "slides/20-intro-to-prob.html#rnorm",
+    "title": "Introduction to Probability",
+    "section": "rnorm",
+    "text": "rnorm\n\nR provides functions to generate normally distributed outcomes.\nSpecifically, the rnorm function takes three arguments: size, average (defaults to 0), and standard deviation (defaults to 1), and produces random numbers."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#monte-carlo-simulation",
+    "href": "slides/20-intro-to-prob.html#monte-carlo-simulation",
+    "title": "Introduction to Probability",
+    "section": "Monte Carlo simulation",
+    "text": "Monte Carlo simulation\n\nit will permit us to generate data that mimics natural events and answers questions related to what could happen by chance by running Monte Carlo simulations.\nIf, for example, we pick 800 males at random, what is the distribution of the tallest person? How rare is a seven-footer in a group of 800 males? The following Monte Carlo simulation helps us answer that question:"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models",
+    "href": "slides/21-inference-foundations.html#sampling-models",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nMany data generation procedures can be effectively modeled as draws from an urn.\nWe can model the process of polling likely voters as drawing 0s for one party and 1s for the other.\nEpidemiologist assume subjects in their studies are a random sample from the population of interest.\nIn general, the data related to a specific outcome can be modeled as a random sample from an urn containing the outcomes for the entire population of interest."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-1",
+    "href": "slides/21-inference-foundations.html#sampling-models-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-2",
+    "href": "slides/21-inference-foundations.html#sampling-models-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-3",
+    "href": "slides/21-inference-foundations.html#sampling-models-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nTo construct our random variable \\(S\\), we can use this code:\n\n\nn &lt;- 1000 \nx &lt;- sample(ifelse(color == \"Red\", -1, 1),  n, replace = TRUE) \nx[1:10] \n#&gt;  [1]  1  1  1 -1  1  1 -1 -1  1  1"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-4",
+    "href": "slides/21-inference-foundations.html#sampling-models-4",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nBecause we know the proportions of 1s and -1s, we can generate the draws without defining color.\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19))"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-5",
+    "href": "slides/21-inference-foundations.html#sampling-models-5",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-6",
+    "href": "slides/21-inference-foundations.html#sampling-models-6",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-7",
+    "href": "slides/21-inference-foundations.html#sampling-models-7",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThe 1,000 outcomes from 1,000 people playing are independent draws from this urn.\nIf red comes up, the gambler wins, and the casino loses a dollar, resulting random variable being -$1.\nOtherwise, the casino wins a dollar, and the random variable is $1."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-8",
+    "href": "slides/21-inference-foundations.html#sampling-models-8",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nTo construct our random variable \\(S\\), we can use this code:\n\n\nn &lt;- 1000 \nx &lt;- sample(ifelse(color == \"Red\", -1, 1),  n, replace = TRUE) \nx[1:10] \n#&gt;  [1]  1  1  1 -1  1  1 -1 -1  1  1"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-9",
+    "href": "slides/21-inference-foundations.html#sampling-models-9",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nBecause we know the proportions of 1s and -1s, we can generate the draws without defining color.\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19))"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-10",
+    "href": "slides/21-inference-foundations.html#sampling-models-10",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sampling-models-11",
+    "href": "slides/21-inference-foundations.html#sampling-models-11",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sampling models",
+    "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distributions",
+    "href": "slides/21-inference-foundations.html#the-probability-distributions",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distributions",
+    "text": "The probability distributions\n\nThe probability distribution of a random variable informs us about the probability of the observed value falling in any given interval.\nFor example, if we want to know the probability that we lose money, we are asking the probability that \\(S\\) is in the interval \\((-\\infty,0)\\).\n\\(F(a) = \\mbox{Pr}(S\\leq a)\\)\nWe can estimate the distribution function for \\(S\\) using a Monte Carlo simulation."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nWe can visualize the distribution of \\(S\\) by creating a histogram showing the probability \\(F(b)-F(a)\\) for several intervals \\((a,b]\\):"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-1",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nWe see that the distribution appears to be approximately normal.\nA QQ-plot will confirm that the normal approximation is close to a perfect approximation."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-2",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nRemeber, if the distribution is normal, all we need to define it are the average and the standard deviation (SD).\nSince we have the original values from which the distribution is created, we can easily compute these with mean(s) and sd(s).\nThe blue curve added to the histogram is a normal density with this average and standard deviation."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-3",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nThis average and this standard deviation have special names; they are referred to as the expected value and standard error (SE) of the random variable \\(S\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-4",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-4",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nWe can visualize the distribution of \\(S\\) by creating a histogram showing the probability \\(F(b)-F(a)\\) for several intervals \\((a,b]\\):"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-5",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-5",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nWe see that the distribution appears to be approximately normal.\nA QQ-plot will confirm that the normal approximation is close to a perfect approximation."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-6",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-6",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nRemeber, if the distribution is normal, all we need to define it are the average and the standard deviation (SD).\nSince we have the original values from which the distribution is created, we can easily compute these with mean(s) and sd(s).\nThe blue curve added to the histogram is a normal density with this average and standard deviation."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-probability-distribution-7",
+    "href": "slides/21-inference-foundations.html#the-probability-distribution-7",
+    "title": "Foundations of Statistical Inference",
+    "section": "The probability distribution",
+    "text": "The probability distribution\n\nThis average and this standard deviation have special names; they are referred to as the expected value and standard error (SE) of the random variable \\(S\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nBefore we continue, let’s establish an important distinction and connection between the distribution of a list of numbers and a probability distribution.\nAny list of numbers \\(x_1,\\dots,x_n\\) has a distribution.\nIt does not have a probability distribution because they are not random."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-1",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nA random variable \\(X\\) has a distribution function.\nTo define this, we do not need a list of numbers; it is a theoretical concept.\nWe define the distribution as the \\(F(a)\\) that answers the question: What is the probability that \\(X\\) is less than or equal to \\(a\\)?"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-2",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nHowever, if \\(X\\) is defined by drawing from an urn containing numbers, then there is a list: the list of numbers inside the urn.\nIn this case, the distribution of that list is the probability distribution of \\(X\\), and the average and standard deviation of that list are the expected value and standard error of the random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-3",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nAnother way to think about it without involving an urn is by running a Monte Carlo simulation and generating a very large list of outcomes of \\(X\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-4",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-4",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nThese outcomes form a list of numbers, and the distribution of this list will be a very good approximation of the probability distribution of \\(X\\).\nThe longer the list, the better the approximation.\nThe average and standard deviation of this list will approximate the expected value and standard error of the random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-5",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-5",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nAnother way to think about it without involving an urn is by running a Monte Carlo simulation and generating a very large list of outcomes of \\(X\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-6",
+    "href": "slides/21-inference-foundations.html#distributions-versus-probability-distributions-6",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions versus probability distributions",
+    "text": "Distributions versus probability distributions\n\nThese outcomes form a list of numbers, and the distribution of this list will be a very good approximation of the probability distribution of \\(X\\).\nThe longer the list, the better the approximation.\nThe average and standard deviation of this list will approximate the expected value and standard error of the random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#notation-for-random-variables",
+    "href": "slides/21-inference-foundations.html#notation-for-random-variables",
+    "title": "Foundations of Statistical Inference",
+    "section": "Notation for random variables",
+    "text": "Notation for random variables\n\nIn statistical textbooks, upper case letters denote random variables,\nLower case letters are used for observed values.\nFor example, you will see events defined as \\(X \\leq x\\).\nHere \\(X\\) is a random variable and \\(x\\) is an arbitrary value and not random."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#notation-for-random-variables-1",
+    "href": "slides/21-inference-foundations.html#notation-for-random-variables-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Notation for random variables",
+    "text": "Notation for random variables\n\nSo, for example, \\(X\\) might represent the number on a die roll and \\(x\\) will represent an actual value we see: 1, 2, 3, 4, 5, or 6.\nIn this case, the probability of \\(X=x\\) is 1/6 regardless of the observed value \\(x\\).\nWe can discuss what we expect \\(X\\) to be, what values are probable, but we can’t discuss what value \\(X\\) is."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#notation-for-random-variables-2",
+    "href": "slides/21-inference-foundations.html#notation-for-random-variables-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Notation for random variables",
+    "text": "Notation for random variables\n\nOnce we have data, we do see a realization of \\(X\\).\nTherefore, data analysts often speak of what could have been after observing what actually happened."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-1",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-2",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-3",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-4",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-4",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nSince one draw is obviously the sum of just one draw, we can use the formula above to calculate that the random variable defined by one draw has an expected value of 0.05 and a SE of about 1.\nThis makes sense since we obtain either 1 or -1, with 1 slightly favored over -1."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-5",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-5",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nA widely used mathematical result is that if our draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-6",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-6",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-7",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-7",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-8",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-8",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-9",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-9",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-10",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-10",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nA widely used mathematical result is that if our draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-11",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-11",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-12",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-12",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-13",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-13",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nA widely used mathematical result is that if our draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-14",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-14",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-15",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-15",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-16",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-16",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nA widely used mathematical result is that if our draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-17",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-17",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-18",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-18",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-19",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-19",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nSo in our roulette example, the standard deviation of the values inside the urn is:\n\n\\[\n| 1 - (-1) | \\sqrt{10/19 \\times 9/19}\n\\]\nor:\n\n2*sqrt(90)/19 \n#&gt; [1] 0.999"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-20",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-20",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nSince one draw is obviously the sum of just one draw, we can use the formula above to calculate that the random variable defined by one draw has an expected value of 0.05 and a SE of about 1.\nThis makes sense since we obtain either 1 or -1, with 1 slightly favored over -1."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-21",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-21",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nA widely used mathematical result is that if our draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-22",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-22",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nUsing this formula, the sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-and-se-23",
+    "href": "slides/21-inference-foundations.html#the-expected-value-and-se-23",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value and SE",
+    "text": "The expected value and SE\n\nAs a result, when 1,000 people bet on red, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nThe Central Limit Theorem (CLT) tells us that when the number of draws, also called the sample size, is large, the probability distribution of the sum of the independent draws is approximately normal (which can be described by \\(\\mu\\) and \\(\\sigma\\))\nGiven that sampling models are used for so many data generation processes, the CLT is considered one of the most important mathematical insights in history."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-1",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nUsing the CLT, we can skip the Monte Carlo simulation and instead compute the probability of the casino losing money using this approximation:\n\n\nmu &lt;- n*(20 - 18)/38 \nse &lt;- sqrt(n)*2*sqrt(90)/19  \npnorm(0, mu, se) \n#&gt; [1] 0.0478\n\n\nwhich is also in very good agreement with our Monte Carlo result:\n\n\nmean(s &lt; 0) \n#&gt; [1] 0.044"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-2",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nIf a random variable has a probability distribution that is approximated with the normal distribution, then all we need to describe the probability distribution are the average and standard deviation, referred to as the expected value and standard error."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-3",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nWe previously ran this Monte Carlo simulation:\n\n\nn &lt;- 1000 \nB &lt;- 10000 \nroulette_winnings &lt;- function(n){ \n  x &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \n  sum(x) \n} \ns &lt;- replicate(B, roulette_winnings(n))"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-4",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-4",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nThe Central Limit Theorem (CLT) tells us that the sum \\(S\\) is approximated by a normal distribution.\nUsing the formulas above, we know that the expected value and standard error are:\n\n\nn * (20 - 18)/38  \n#&gt; [1] 52.6\nsqrt(n)*2*sqrt(90)/19  \n#&gt; [1] 31.6"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-5",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-5",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nThe theoretical values above match those obtained with the Monte Carlo simulation:\n\n\nmean(s) \n#&gt; [1] 52.6\nsd(s) \n#&gt; [1] 31.5"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-6",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-6",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nUsing the CLT, we can skip the Monte Carlo simulation and instead compute the probability of the casino losing money using this approximation:\n\n\nmu &lt;- n*(20 - 18)/38 \nse &lt;- sqrt(n)*2*sqrt(90)/19  \npnorm(0, mu, se) \n#&gt; [1] 0.0478\n\n\nwhich is also in very good agreement with our Monte Carlo result:\n\n\nmean(s &lt; 0) \n#&gt; [1] 0.044"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt",
+    "href": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt",
+    "title": "Foundations of Statistical Inference",
+    "section": "How large is large in the CLT?",
+    "text": "How large is large in the CLT?\n\nThe CLT works when the number of draws is large, but “large” is a relative term.\nIn many circumstances, as few as 30 draws is enough to make the CLT useful.\nIn some specific instances, as few as 10 is enough.\nHowever, these should not be considered general rules.\nNote that when the probability of success is very small, much larger sample sizes are needed."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt-1",
+    "href": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "How large is large in the CLT?",
+    "text": "How large is large in the CLT?\n\nBy way of illustration, let’s consider the lottery.\nIn the lottery, the chances of winning are less than 1 in a million.\nThousands of people play so the number of draws is very large.\nYet the number of winners, the sum of the draws, range between 0 and 4.\nThis sum is certainly not well approximated by a normal distribution, so the CLT does not apply, even with the very large sample size."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt-2",
+    "href": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "How large is large in the CLT?",
+    "text": "How large is large in the CLT?\n\nThis is generally true when the probability of a success is very low.\nIn these cases, the Poisson distribution is more appropriate.\nYou can explore the properties of the Poisson distribution using dpois and ppois.\nYou can generate random variables following this distribution with rpois.\nHowever, we won’t cover the theory here."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt-3",
+    "href": "slides/21-inference-foundations.html#how-large-is-large-in-the-clt-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "How large is large in the CLT?",
+    "text": "How large is large in the CLT?\n\nYou can learn about the Poisson distribution in any probability textbook and even Wikipedia"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#statistical-properties-of-averages",
+    "href": "slides/21-inference-foundations.html#statistical-properties-of-averages",
+    "title": "Foundations of Statistical Inference",
+    "section": "Statistical properties of averages",
+    "text": "Statistical properties of averages\n\nThere are several useful mathematical results that we used above and often employ when working with data.\nWe list them below."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-1",
+    "href": "slides/21-inference-foundations.html#property-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 1",
+    "text": "Property 1\n\nThe expected value of the sum of random variables is the sum of each random variable’s expected value.\nWe can write it like this:\n\n\\[\n\\mbox{E}[X_1+X_2+\\dots+X_n] =  \\mbox{E}[X_1] + \\mbox{E}[X_2]+\\dots+\\mbox{E}[X_n]\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-1-1",
+    "href": "slides/21-inference-foundations.html#property-1-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 1",
+    "text": "Property 1\n\nIf \\(X\\) represents independent draws from the urn, then they all have the same expected value.\nLet’s denote the expected value with \\(\\mu\\) and rewrite the equation as:\n\n\\[\n\\mbox{E}[X_1+X_2+\\dots+X_n]=  n\\mu\n\\]\n\nwhich is another way of writing the result we show above for the sum of draws."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-2",
+    "href": "slides/21-inference-foundations.html#property-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 2",
+    "text": "Property 2\n\nThe expected value of a non-random constant times a random variable is the non-random constant times the expected value of a random variable. \\[\n\\mbox{E}[aX] =  a\\times\\mbox{E}[X]\n\\]\nIf we change the units of a random variable, such as from dollars to cents, the expectation should change in the same way."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-2-1",
+    "href": "slides/21-inference-foundations.html#property-2-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 2",
+    "text": "Property 2\n\nA consequence of the above two facts is that the expected value of the average of independent draws from the same urn is the expected value of the urn, denoted as \\(\\mu\\) again:\n\n\\[\n\\begin{aligned}\n\\mbox{E}[(X_1+X_2+\\dots+X_n) / n] & =   \\mbox{E}[X_1+X_2+\\dots+X_n] / n \\\\\n& = n\\mu/n = \\mu  \n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-2-2",
+    "href": "slides/21-inference-foundations.html#property-2-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 2",
+    "text": "Property 2\n\nA consequence of the above two facts is that the expected value of the average of independent draws from the same urn is the expected value of the urn, denoted as \\(\\mu\\) again:\n\n\\[\n\\mbox{E}[(X_1+X_2+\\dots+X_n) / n]=   \\mbox{E}[X_1+X_2+\\dots+X_n] / n = n\\mu/n = \\mu  \n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-3",
+    "href": "slides/21-inference-foundations.html#property-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 3",
+    "text": "Property 3\n\nThe square of the standard error of the sum of independent random variables is the sum of the square of the standard error of each random variable.\n\n\\[\n\\begin{aligned}\n\\mbox{SE}[X_1+X_2+\\dots+X_n]  = & \\\\\n\\sqrt{\\mbox{SE}[X_1]^2 + \\mbox{SE}[X_2]^2+\\dots+\\mbox{SE}[X_n]^2  } &\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-3-1",
+    "href": "slides/21-inference-foundations.html#property-3-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 3",
+    "text": "Property 3\n\nThe square of the standard error is referred to as the variance in statistical textbooks.\nNote that this particular property is not as intuitive as the previous three and more in depth explanations can be found in statistics textbooks."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-4",
+    "href": "slides/21-inference-foundations.html#property-4",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 4",
+    "text": "Property 4\n\nThe standard error of a non-random constant times a random variable is the non-random constant times the random variable’s standard error.\nAs with the expectation:\n\n\\[\n\\mbox{SE}[aX] =  a \\times \\mbox{SE}[X]\n\\]\n\nTo see why this is intuitive, again think of units."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-4-1",
+    "href": "slides/21-inference-foundations.html#property-4-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 4",
+    "text": "Property 4\n\nA consequence of 3 and 4 is that the standard error of the average of independent draws from the same urn is the standard deviation of the urn divided by the square root of \\(n\\) (the number of draws), call it \\(\\sigma\\):\n\n\\[\n\\begin{aligned}\n\\mbox{SE}[(X_1+X_2+\\dots+X_n) / n] &=   \\mbox{SE}[X_1+X_2+\\dots+X_n]/n \\\\\n&= \\sqrt{\\mbox{SE}[X_1]^2+\\mbox{SE}[X_2]^2+\\dots+\\mbox{SE}[X_n]^2}/n \\\\\n&= \\sqrt{\\sigma^2+\\sigma^2+\\dots+\\sigma^2}/n\\\\\n&= \\sqrt{n\\sigma^2}/n\\\\\n&= \\sigma / \\sqrt{n}     \n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#property-5",
+    "href": "slides/21-inference-foundations.html#property-5",
+    "title": "Foundations of Statistical Inference",
+    "section": "Property 5",
+    "text": "Property 5\n\nIf \\(X\\) is a normally distributed random variable, then if \\(a\\) and \\(b\\) are non-random constants, \\(aX + b\\) is also a normally distributed random variable.\nAll we are doing is changing the units of the random variable by multiplying by \\(a\\), then shifting the center by \\(b\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#notation",
+    "href": "slides/21-inference-foundations.html#notation",
+    "title": "Foundations of Statistical Inference",
+    "section": "Notation",
+    "text": "Notation\n\nNote that statistical textbooks use the Greek letters \\(\\mu\\) and \\(\\sigma\\) to denote the expected value and standard error, respectively.\nThis is because \\(\\mu\\) is the Greek letter for \\(m\\), the first letter of mean, which is another term used for expected value.\nSimilarly, \\(\\sigma\\) is the Greek letter for \\(s\\), the first letter of standard error."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-assumption-of-independence-is-important",
+    "href": "slides/21-inference-foundations.html#the-assumption-of-independence-is-important",
+    "title": "Foundations of Statistical Inference",
+    "section": "The assumption of independence is important",
+    "text": "The assumption of independence is important\n\nIf \\(X_1, X_2, \\dots, X_n\\) are not independent (correlated)\nIf the correlation coefficient among the \\(X\\) variables is \\(\\rho\\) \\[\n\\mbox{SE}\\left(\\bar{X}\\right) = \\sigma \\sqrt{\\frac{1 + (n-1) \\rho}{n}}\n\\]\nas \\(\\rho\\) approaches its upper limit of 1, the SE increases.\nWhen \\(\\rho = 1\\), \\(\\mbox{SE}(\\bar{X})=\\sigma\\), unaffected by the sample size \\(n\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-assumption-of-independence-is-important-1",
+    "href": "slides/21-inference-foundations.html#the-assumption-of-independence-is-important-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "The assumption of independence is important",
+    "text": "The assumption of independence is important\n\nWe later introduce the concept of correlation, which quantifies the degree to which variables are interdependent.\nIf the correlation coefficient among the \\(X\\) variables is \\(\\rho\\), the standard error of their average is:\n\n\\[\n\\mbox{SE}\\left(\\bar{X}\\right) = \\sigma \\sqrt{\\frac{1 + (n-1) \\rho}{n}}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-assumption-of-independence-is-important-2",
+    "href": "slides/21-inference-foundations.html#the-assumption-of-independence-is-important-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "The assumption of independence is important",
+    "text": "The assumption of independence is important\n\nThe key observation here is that as \\(\\rho\\) approaches its upper limit of 1, the standard error increases.\nNotably, in the situation where \\(\\rho = 1\\), the standard error, \\(\\mbox{SE}(\\bar{X})\\), equals \\(\\sigma\\), and it becomes unaffected by the sample size \\(n\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#law-of-large-numbers",
+    "href": "slides/21-inference-foundations.html#law-of-large-numbers",
+    "title": "Foundations of Statistical Inference",
+    "section": "Law of large numbers",
+    "text": "Law of large numbers\n\nAn important implication of result 4 above is that the standard error of the average becomes smaller and smaller as \\(n\\) grows larger.\nWhen \\(n\\) is very large, then the standard error is practically 0 and the average of the draws converges to the average of the urn.\nThis is known in statistical textbooks as the law of large numbers or the law of averages."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages",
+    "href": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages",
+    "title": "Foundations of Statistical Inference",
+    "section": "Misinterpretation of the law of averages",
+    "text": "Misinterpretation of the law of averages\n\nFor example, if you toss a coin 5 times and see a head each time, you might hear someone argue that the next toss is probably a tail because of the law of averages: on average we should see 50% heads and 50% tails.\nA similar argument would be to say that red “is due” on the roulette wheel after seeing black come up five times in a row.\nYet these events are independent so the chance of a coin landing heads is 50%, regardless of the previous 5.\nThe same principle applies to the roulette outcome."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages-1",
+    "href": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Misinterpretation of the law of averages",
+    "text": "Misinterpretation of the law of averages\n\nAfter a million tosses, you will definitely see about 50% heads regardless of the outcome of the first five tosses.\nAnother funny misuse of the law of averages is in sports when TV sportscasters predict a player is about to succeed because they have failed a few times in a row.\n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages-2",
+    "href": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages-2",
+    "title": "Foundations of Statistical Inference",
+    "section": "Misinterpretation of the law of averages",
+    "text": "Misinterpretation of the law of averages\n\nThe same principle applies to the roulette outcome.\nThe law of averages applies only when the number of draws is very large and not in small samples."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages-3",
+    "href": "slides/21-inference-foundations.html#misinterpretation-of-the-law-of-averages-3",
+    "title": "Foundations of Statistical Inference",
+    "section": "Misinterpretation of the law of averages",
+    "text": "Misinterpretation of the law of averages\n\nAfter a million tosses, you will definitely see about 50% heads regardless of the outcome of the first five tosses.\nAnother funny misuse of the law of averages is in sports when TV sportscasters predict a player is about to succeed because they have failed a few times in a row.\n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#casino-example",
+    "href": "slides/21-inference-foundations.html#casino-example",
+    "title": "Foundations of Statistical Inference",
+    "section": "Casino example",
+    "text": "Casino example\n\nThe questionThe roullette\n\n\n\nThey want a range of values and, in particular, they want to know what’s the chance of losing money.\nWe will assume that 1,000 people will play, and that the only game available on the roulette wheel is to bet on red or black.\ndefine a random variable \\(S\\) that will represent the casino’s total winnings."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-roullette",
+    "href": "slides/21-inference-foundations.html#the-roullette",
+    "title": "Foundations of Statistical Inference",
+    "section": "The roullette",
+    "text": "The roullette"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#construct-the-urn",
+    "href": "slides/21-inference-foundations.html#construct-the-urn",
+    "title": "Foundations of Statistical Inference",
+    "section": "Construct the urn",
+    "text": "Construct the urn\n\nA roulette wheel has 18 red pockets, 18 black pockets and 2 green ones.\nSo playing a color in one game of roulette is equivalent to drawing from this urn:\n\n\ncolor &lt;- rep(c(\"Black\", \"Red\", \"Green\"), c(18, 18, 2))"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#construct-the-rv-s",
+    "href": "slides/21-inference-foundations.html#construct-the-rv-s",
+    "title": "Foundations of Statistical Inference",
+    "section": "Construct the RV \\(S\\)",
+    "text": "Construct the RV \\(S\\)\n\nThe codeAlternative code\n\n\n\nThe 1,000 outcomes from 1,000 people playing are independent draws from this urn.\nIf red comes up, the gambler wins, and the casino loses a dollar, resulting random variable being -$1.\nOtherwise, the casino wins a dollar, and the random variable is $1.\n\n\nn &lt;- 1000 \nx &lt;- sample(ifelse(color == \"Red\", -1, 1),  n, replace = TRUE) \nx[1:10] \n#&gt;  [1]  1  1  1 -1  1  1 -1 -1  1  1\n\n\n\n\nBecause we know the proportions of 1s and -1s, we can generate the draws without defining color.\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19))"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-monte-carlo-simulation",
+    "href": "slides/21-inference-foundations.html#the-monte-carlo-simulation",
+    "title": "Foundations of Statistical Inference",
+    "section": "The Monte Carlo simulation",
+    "text": "The Monte Carlo simulation\n\nwe run the experiment of having 1,000 people repeatedly play roulette, \\(B = 10,000\\) times:\n\n\nn &lt;- 1000 \nB &lt;- 10000 \nroulette_winnings &lt;- function(n){ \n  x &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \n  sum(x) \n} \ns &lt;- replicate(B, roulette_winnings(n)) \n\n\nTo approx \\(F(a)\\) (how often did we get sums \\(\\le a\\))\n\n\nmean(s &lt;= a) \n\n\nHow likely is it that the casino will lose money?\n\n\nmean(s &lt; 0) \n#&gt; [1] 0.0411"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-histrogram-of-s",
+    "href": "slides/21-inference-foundations.html#the-histrogram-of-s",
+    "title": "Foundations of Statistical Inference",
+    "section": "The histrogram of \\(S\\)",
+    "text": "The histrogram of \\(S\\)\n\nThe histogramThe code\n\n\n\nWe can visualize the distribution of \\(S\\) by creating a histogram\n\n\n\n\n\n\n\n\n\nss &lt;- seq(min(s), max(s), length = 100) \nnormal_density &lt;- data.frame(s = ss, f = dnorm(ss, mean(s), sd(s))) \ndata.frame(s = s) |&gt; ggplot(aes(s, after_stat(density))) + \n  geom_histogram(color = \"black\", binwidth = 10)  + \n  ylab(\"Probability\") +  \n  geom_line(data = normal_density, mapping = aes(s,f), color = \"blue\")"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#standard-error",
+    "href": "slides/21-inference-foundations.html#standard-error",
+    "title": "Foundations of Statistical Inference",
+    "section": "Standard Error",
+    "text": "Standard Error\n\nSince we have the original values from which the distribution is created, we can easily compute these with mean(s) and sd(s).\nThis average and this standard deviation have special names; they are referred to as the expected value and standard error (SE) of the random variable \\(S\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#distributions-for-a-list",
+    "href": "slides/21-inference-foundations.html#distributions-for-a-list",
+    "title": "Foundations of Statistical Inference",
+    "section": "Distributions for a list",
+    "text": "Distributions for a list\n\nWe define \\(F(a)\\) as the function that indicates what proportion of the list is less than or equal to \\(a\\).\nwe also define the average and standard deviation.\nThese are determined with a straightforward operation involving the vector containing the list of numbers, denoted as x:\n\n\nm &lt;- sum(x)/length(x) \ns &lt;- sqrt(sum((x - m)^2)/length(x)) # note use length(x) in the denominator (for population)"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#probability-distributions-for-a-rv",
+    "href": "slides/21-inference-foundations.html#probability-distributions-for-a-rv",
+    "title": "Foundations of Statistical Inference",
+    "section": "probability distributions for a rv",
+    "text": "probability distributions for a rv\n\nA random variable \\(X\\) has a distribution function.\nTo define this, we do not need a list of numbers; it is a theoretical concept.\nWe define the distribution as the \\(F(a)\\) that answers the question: What is the probability that \\(X\\) is less than or equal to \\(a\\)?"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sample-distribution",
+    "href": "slides/21-inference-foundations.html#sample-distribution",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sample distribution",
+    "text": "Sample distribution\n\nHowever, if \\(X\\) is defined by drawing from an urn containing numbers, and we perform experiments, then there is a list: the list of numbers inside the urn.\nIn this case, the distribution of that (sample) list is the (sample) probability distribution of \\(X\\), and the average and standard deviation of that list are the expected value and standard error of the random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#sample-probability-distributions",
+    "href": "slides/21-inference-foundations.html#sample-probability-distributions",
+    "title": "Foundations of Statistical Inference",
+    "section": "Sample probability distributions",
+    "text": "Sample probability distributions\n\nAnother way to think about it without involving an urn is by running a Monte Carlo simulation and generating a very large list of outcomes of \\(X\\).\nThese outcomes form a list of numbers, and the distribution of this list will be a very good approximation of the probability distribution of \\(X\\).\nThe longer the list, the better the approximation.\nThe average and standard deviation of this list will approximate the expected value and standard error of the random variable."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#examples-of-rv",
+    "href": "slides/21-inference-foundations.html#examples-of-rv",
+    "title": "Foundations of Statistical Inference",
+    "section": "Examples of rv",
+    "text": "Examples of rv\n\nSo, for example, \\(X\\) might represent the number on a die roll and \\(x\\) will represent an actual value we see: 1, 2, 3, 4, 5, or 6.\nIn this case, the probability of \\(X=x\\) is 1/6 regardless of the observed value \\(x\\).\nWe can discuss what we expect \\(X\\) to be, what values are probable, but we can’t discuss what value \\(X\\) is.\nOnce we have data, we do see a realization of \\(X\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value",
+    "href": "slides/21-inference-foundations.html#the-expected-value",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value",
+    "text": "The expected value\n\nNotation: \\[\\mbox{E}[X]\\]\nA random variable will vary around its expected value in a manner that if you take the average of many, many draws, the average will approximate the expected value.\nThis approximation improves as you take more draws, making the expected value a useful quantity to compute."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-for-discrete-rv",
+    "href": "slides/21-inference-foundations.html#the-expected-value-for-discrete-rv",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value for discrete rv",
+    "text": "The expected value for discrete rv\n\nFor discrete random variable with possible outcomes \\(x_1,\\dots,x_n\\), \\[\n\\mbox{E}[X] = \\sum_{i=1}^n x_i \\,\\mbox{Pr}(X = x_i)\n\\]\nIn the case that we are picking values from an urn, and each value \\(x_i\\) has an equal chance \\(1/n\\) of being selected \\[\n\\mbox{E}[X] = \\frac{1}{n}\\sum_{i=1}^n x_i  \n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-for-continuous-r.v.",
+    "href": "slides/21-inference-foundations.html#the-expected-value-for-continuous-r.v.",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value for continuous r.v.",
+    "text": "The expected value for continuous r.v.\n\nIf \\(X\\) is a continuous random variable with a range of values \\(a\\) to \\(b\\) and a probability density function \\(f(x)\\), this sum transforms into an integral:\n\n\\[\n\\mbox{E}[X] = \\int_a^b x f(x)\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-valueexample",
+    "href": "slides/21-inference-foundations.html#the-expected-valueexample",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value:Example",
+    "text": "The expected value:Example\n\nIn the urn used to model betting on red in roulette, we have 20 one-dollar bills and 18 negative one-dollar bills, \\[\n\\mbox{E}[X] = (20 + (-18) /38\n\\] which is about 5 cents.\nYou might consider it a bit counterintuitive to say that \\(X\\) varies around 0.05 when it only takes the values 1 and -1.\nTo make sense of the expected value in this context is by realizing that, if we play the game over and over, the casino wins, on average, 5 cents per game."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-by-mc",
+    "href": "slides/21-inference-foundations.html#the-expected-value-by-mc",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value: by MC",
+    "text": "The expected value: by MC\n\nB &lt;- 10^6 \nx &lt;- sample(c(-1, 1), B, replace = TRUE, prob = c(9/19, 10/19)) \nmean(x) \n#&gt; [1] 0.0517"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-with-two-outcomes",
+    "href": "slides/21-inference-foundations.html#the-expected-value-with-two-outcomes",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value with two outcomes",
+    "text": "The expected value with two outcomes\n\nIn general, if the urn has two possible outcomes, say \\(a\\) and \\(b\\), with proportions \\(p\\) and \\(1-p\\) respectively,\n\n\\[\\mbox{E}[X] = ap + b(1-p)\\]\n\nOne way to see this is: observe that if there are \\(n\\) beads in the urn, then we have \\(np\\) \\(a\\)’s and \\(n(1-p)\\) \\(b\\)’s, and because the average is the sum: \\(n\\times a \\times p + n\\times b \\times (1-p)\\) divided by the total \\(n\\), we get the average \\(ap + b(1-p)\\)."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-of-a-sum-of-draws",
+    "href": "slides/21-inference-foundations.html#the-expected-value-of-a-sum-of-draws",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value of a sum of draws",
+    "text": "The expected value of a sum of draws\n\nthe expected value of the sum of the draws is the number of draws \\(\\times\\) the average of the numbers in the urn.\nTherefore, if 1,000 people play roulette, the casino expects to win, on average, about 1,000 \\(\\times\\) $0.05 = $50.\nHow different can one observation be from the expected value? The casino really needs to know this.\nWhat is the range of possibilities? If negative numbers are too likely, they will not install roulette wheels."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-se",
+    "href": "slides/21-inference-foundations.html#the-se",
+    "title": "Foundations of Statistical Inference",
+    "section": "The SE",
+    "text": "The SE\n\nThe standard error (SE) gives us an idea of the size of the variation around the expected value.\n\\[\\mbox{SE}[X] = \\sqrt{\\mbox{Var}[X]}\\]\nFor discrete random variable with possible outcomes \\(x_1,\\dots,x_n\\), the standard error is defined as:\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\sum_{i=1}^n \\left(x_i - E[X]\\right)^2 \\,\\mbox{Pr}(X = x_i)},\n\\]\n\nwhich you can think of as the expected average distance of \\(X\\) from the expected value."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-se-for-discrete-r.v.",
+    "href": "slides/21-inference-foundations.html#the-se-for-discrete-r.v.",
+    "title": "Foundations of Statistical Inference",
+    "section": "The SE for discrete r.v.",
+    "text": "The SE for discrete r.v.\n\n\\[\\mbox{SE}[X] = \\sqrt{\\mbox{Var}[X]}\\]\nFor discrete random variable with possible outcomes \\(x_1,\\dots,x_n\\),\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\sum_{i=1}^n \\left(x_i - E[X]\\right)^2 \\,\\mbox{Pr}(X = x_i)},\n\\]\n\nwhich you can think of as the expected average distance of \\(X\\) from the expected value."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#se-and-sd",
+    "href": "slides/21-inference-foundations.html#se-and-sd",
+    "title": "Foundations of Statistical Inference",
+    "section": "SE and SD",
+    "text": "SE and SD\n\nIn the case that we are picking values from an urn where each value \\(x_i\\) has an equal chance \\(1/n\\) of being selected, the above equation is simply the standard deviation of of the \\(x_i\\)s.\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\frac{1}{n}\\sum_{i=1}^n (x_i - \\bar{x})^2} \\mbox{ with } \\bar{x} =  \\frac{1}{n}\\sum_{i=1}^n x_i  \n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#these-for-a-continuous-r.v.",
+    "href": "slides/21-inference-foundations.html#these-for-a-continuous-r.v.",
+    "title": "Foundations of Statistical Inference",
+    "section": "TheSE for a continuous r.v.",
+    "text": "TheSE for a continuous r.v.\n\nIf \\(X\\) is a continuous random variable, with range of values \\(a\\) to \\(b\\) and probability density function \\(f(x)\\), this sum turns into an integral:\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\int_a^b \\left(x-\\mbox{E}[X]\\right)^2 f(x)\\,\\mathrm{d}x}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-sd-of-a-r.v.-with-two-values",
+    "href": "slides/21-inference-foundations.html#the-sd-of-a-r.v.-with-two-values",
+    "title": "Foundations of Statistical Inference",
+    "section": "The SD of a r.v. with two values",
+    "text": "The SD of a r.v. with two values\n\nif an urn contains two values \\(a\\) and \\(b\\) with proportions \\(p\\) and \\((1-p)\\), respectively, the standard deviation is: \\[SE=| b - a |\\sqrt{p(1-p)}.\\]\nSo in our roulette example,\n\n\\[\nSE= | 1 - (-1) | \\sqrt{10/19 \\times 9/19}\n\\]\n\n2*sqrt(90)/19 \n#&gt; [1] 0.999"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-se-for-a-continuous-r.v.",
+    "href": "slides/21-inference-foundations.html#the-se-for-a-continuous-r.v.",
+    "title": "Foundations of Statistical Inference",
+    "section": "The SE for a continuous r.v.",
+    "text": "The SE for a continuous r.v.\n\nIf \\(X\\) is a continuous random variable, with range of values \\(a\\) to \\(b\\) and probability density function \\(f(x)\\), this sum turns into an integral:\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\int_a^b \\left(x-\\mbox{E}[X]\\right)^2 f(x)\\,\\mathrm{d}x}\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-se-for-the-sum-and-the-mean",
+    "href": "slides/21-inference-foundations.html#the-se-for-the-sum-and-the-mean",
+    "title": "Foundations of Statistical Inference",
+    "section": "The SE for the sum and the mean",
+    "text": "The SE for the sum and the mean\n\nif draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\] - if draws are independent, then the standard error of the mean is\n\\[\n\\frac{ \\mbox{ SD of the numbers in the urn} }{\\sqrt{\\mbox{number of draws}} }\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#example-se-of-a-sum",
+    "href": "slides/21-inference-foundations.html#example-se-of-a-sum",
+    "title": "Foundations of Statistical Inference",
+    "section": "Example: SE of a sum",
+    "text": "Example: SE of a sum\n\nthe sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6\n\n\nAs a result, when 1,000 people play, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#central-limit-theorem-example",
+    "href": "slides/21-inference-foundations.html#central-limit-theorem-example",
+    "title": "Foundations of Statistical Inference",
+    "section": "Central Limit Theorem: Example",
+    "text": "Central Limit Theorem: Example\n\nWe previously ran this Monte Carlo simulation:\n\n\nn &lt;- 1000 \nB &lt;- 10000 \nroulette_winnings &lt;- function(n){ \n  x &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \n  sum(x) \n} \ns &lt;- replicate(B, roulette_winnings(n))"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#theoretical-values-and-simulated-values",
+    "href": "slides/21-inference-foundations.html#theoretical-values-and-simulated-values",
+    "title": "Foundations of Statistical Inference",
+    "section": "Theoretical values and simulated values",
+    "text": "Theoretical values and simulated values\n\nThe Central Limit Theorem (CLT) tells us that the sum \\(S\\) is approximated by a normal distribution with the expected value and standard error:\n\n\nn * (20 - 18)/38  \n#&gt; [1] 52.6\nsqrt(n)*2*sqrt(90)/19  \n#&gt; [1] 31.6\n\n\nThe theoretical values above match those obtained with the Monte Carlo simulation:\n\n\nmean(s) \n#&gt; [1] 52.6\nsd(s) \n#&gt; [1] 31.5"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#using-central-limit-theorem",
+    "href": "slides/21-inference-foundations.html#using-central-limit-theorem",
+    "title": "Foundations of Statistical Inference",
+    "section": "Using Central Limit Theorem",
+    "text": "Using Central Limit Theorem\n\ncompute the probability of the casino losing money:\n\n\nmu &lt;- n*(20 - 18)/38 \nse &lt;- sqrt(n)*2*sqrt(90)/19  \npnorm(0, mu, se) \n#&gt; [1] 0.0478\n\n\nwhich is also in very good agreement with our Monte Carlo result:\n\n\nmean(s &lt; 0) \n#&gt; [1] 0.044"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#events-with-small-probability",
+    "href": "slides/21-inference-foundations.html#events-with-small-probability",
+    "title": "Foundations of Statistical Inference",
+    "section": "Events with small probability",
+    "text": "Events with small probability\n\nBy way of illustration, let’s consider the lottery.\nIn the lottery, the chances of winning are less than 1 in a million.\nThousands of people play so the number of draws is very large.\nYet the number of winners, ranges between 0 and 4.\nThis sum is certainly not well approximated by a normal distribution, so the CLT does not apply, even with the very large sample size."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#poisson-distribution",
+    "href": "slides/21-inference-foundations.html#poisson-distribution",
+    "title": "Foundations of Statistical Inference",
+    "section": "Poisson distribution",
+    "text": "Poisson distribution\n\nIn these cases, the Poisson distribution is more appropriate.\nYou can explore the properties of the Poisson distribution using dpois and ppois.\nYou can generate random variables following this distribution with rpois.\nYou can learn about the Poisson distribution in any probability textbook and even Wikipedia"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#statistical-properties-of-averages-1",
+    "href": "slides/21-inference-foundations.html#statistical-properties-of-averages-1",
+    "title": "Foundations of Statistical Inference",
+    "section": "Statistical properties of averages: 1",
+    "text": "Statistical properties of averages: 1\n\\[\n\\mbox{E}[X_1+X_2+\\dots+X_n] =  \\mbox{E}[X_1] + \\mbox{E}[X_2]+\\dots+\\mbox{E}[X_n]\n\\]\n\nIf \\(X\\) represents independent draws from the urn, then they all have the same expected value.\n\n\\[\n\\mbox{E}[X_1+X_2+\\dots+X_n]=  n\\mu\n\\]"
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#se-of-a-mean",
+    "href": "slides/21-inference-foundations.html#se-of-a-mean",
+    "title": "Foundations of Statistical Inference",
+    "section": "SE of a mean",
+    "text": "SE of a mean\n\nthe standard error of the average of independent draws from the same urn is the standard deviation \\(\\sigma\\) of the urn divided by the square root of \\(n\\) (the number of draws),\n\n\\[\n\\begin{aligned}\n\\mbox{SE}[(X_1+X_2+\\dots+X_n) / n] &=   \\mbox{SE}[X_1+X_2+\\dots+X_n]/n \\\\\n&= \\sqrt{\\mbox{SE}[X_1]^2+\\mbox{SE}[X_2]^2+\\dots+\\mbox{SE}[X_n]^2}/n \\\\\n&= \\sqrt{\\sigma^2+\\sigma^2+\\dots+\\sigma^2}/n\\\\\n&= \\sqrt{n\\sigma^2}/n\\\\\n&= \\sigma / \\sqrt{n}     \n\\end{aligned}\n\\] ## Law of large numbers\n\nAn important implication above is that the standard error of the average becomes smaller and smaller as \\(n\\) grows larger.\nWhen \\(n\\) is very large, then the standard error is practically 0 and the average of the draws converges to the average of the urn.\nThis is known as the law of large numbers or the law of averages."
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#correct-interpretation-of-the-law-of-averages",
+    "href": "slides/21-inference-foundations.html#correct-interpretation-of-the-law-of-averages",
+    "title": "Foundations of Statistical Inference",
+    "section": "Correct interpretation of the law of averages",
+    "text": "Correct interpretation of the law of averages\n\nThe law of averages applies only when the number of draws is very large and not in small samples.\nAfter a million tosses, you will definitely see about 50% heads regardless of the outcome of the first five tosses.\nAnother funny misuse of the law of averages is in sports when TV sportscasters predict a player is about to succeed because they have failed a few times in a row.\n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference",
+    "href": "slides/22-intro-inference.html#statistical-inference",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nStatistical Inference is the branch of statistics dedicated to distinguishing patterns arising from signal versus those arising from chance.\nIt is a broad topic and we review the basics using polls as a motivating example.\nWe motivate the concepts with election forecasting as a case study."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-1",
+    "href": "slides/22-intro-inference.html#statistical-inference-1",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nThe day before the 2008 presidential election, Nate Silver’s FiveThirtyEight stated that “Barack Obama appears poised for a decisive electoral victory”.\nThey went further and predicted that Obama would win the election with 349 electoral votes to 189, and the popular vote by a margin of 6.1%.\nFiveThirtyEight also attached a probabilistic statement to their prediction claiming that Obama had a 91% chance of winning the election."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-2",
+    "href": "slides/22-intro-inference.html#statistical-inference-2",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nThe predictions were quite accurate since, in the final results, Obama won the electoral college 365 to 173 and the popular vote by a 7.2% difference.\nTheir performance in the 2008 election brought FiveThirtyEight to the attention of political pundits and TV personalities.\nFour years later, the week before the 2012 presidential election, FiveThirtyEight’s Nate Silver was giving Obama a 90% chance of winning despite many of the experts thinking the final results would be closer."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-3",
+    "href": "slides/22-intro-inference.html#statistical-inference-3",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nPolitical commentator Joe Scarborough said during his show\n\n\n\nAnybody that thinks that this race is anything but a toss-up right now is such an ideologue they’re jokes."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-4",
+    "href": "slides/22-intro-inference.html#statistical-inference-4",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nTo which Nate Silver responded via Twitter:\n\n\n\nIf you think it’s a toss-up, let’s bet. If Obama wins, you donate $1,000 to the American Red Cross. If Romney wins, I do. Deal?"
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-5",
+    "href": "slides/22-intro-inference.html#statistical-inference-5",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nIn 2016, Silver was not as certain and gave Hillary Clinton only a 71% of winning.\nIn contrast, many other forecasters were almost certain she would win.\nShe lost."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-6",
+    "href": "slides/22-intro-inference.html#statistical-inference-6",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nBut 71% is still more than 50%, so was Mr. Silver wrong?\nWhat does probability mean in this context anyway?\nWe will demonstrate how the probability concepts covered in the previous part can be applied to develop statistical approaches that render polls effective tools."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-7",
+    "href": "slides/22-intro-inference.html#statistical-inference-7",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nForecasting an election is a more complex process that involves combining results from 50 states and DC.\nWe will learn the statistical concepts necessary to define estimates and margins of errors for the popular vote, and show how these are used to construct confidence intervals.\nOnce we grasp these ideas, we will be able to understand statistical power and p-values, concepts that are ubiquitous in the academic literature."
+  },
+  {
+    "objectID": "slides/22-intro-inference.html#statistical-inference-8",
+    "href": "slides/22-intro-inference.html#statistical-inference-8",
+    "title": "Introduction to Statistical Inference and Models",
+    "section": "Statistical inference",
+    "text": "Statistical inference\n\nWe will then aggregate data from different pollsters to highlight the shortcomings of the models used by traditional pollsters and present a method for improving these models.\nTo understand probabilistic statements about the chances of a candidate winning, we will introduce Bayesian modeling.\nFinally, we put it all together using hierarchical models to recreate the simplified version of the FiveThirtyEight model and apply it to the 2016 election.\n\n\n\nHome"
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidyverse",
+    "href": "slides/07-tidyverse.html#tidyverse",
+    "title": "Tidyverse",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nlibrary(tidyverse)\n\n\nThe tidyverse is not a package but a group of packages.\nA popular tool for data analysis by sacrificing some flexibility.\nOne way code is simplified by ensuring all functions take and return tidy data.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-long-data",
+    "href": "slides/07-tidyverse.html#tidy-data-long-data",
+    "title": "Tidyverse",
+    "section": "Tidy data (long data)",
+    "text": "Tidy data (long data)\n\nStored in a data frame.\nEach observation is exactly one row.\nVariables are stored in columns.\nNot all data can be represented this way.\nAssuming data is tidy simplifies coding.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data",
+    "href": "slides/07-tidyverse.html#tidy-data",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nThis is an example of a tidy dataset:\n\n\nlibrary(dslabs)\ntidy_data &lt;- gapminder |&gt; \n  filter(country %in% c(\"South Korea\", \"Germany\") & !is.na(fertility)) |&gt;\n  select(country, year, fertility)\nhead(tidy_data, 6)\n\n      country year fertility\n1     Germany 1960      2.41\n2 South Korea 1960      6.16\n3     Germany 1961      2.44\n4 South Korea 1961      5.99\n5     Germany 1962      2.47\n6 South Korea 1962      5.79",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidy-data-1",
+    "href": "slides/07-tidyverse.html#tidy-data-1",
+    "title": "Tidyverse",
+    "section": "Tidy data",
+    "text": "Tidy data\n\nOriginally, the data was in the following format:\n\n\npath &lt;- system.file(\"extdata\", package = \"dslabs\") #return the full path of the directory \"extdata\" in \"dslabs\"\nfilename &lt;- file.path(path, \"fertility-two-countries-example.csv\") \n # return the path with the system-specific seprator (Win: \\; Mac/Linux: /)\nwide_data &lt;- read_csv(filename)\nselect(wide_data, country, `1960`:`1970`) |&gt; as.data.frame()\n\n      country 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970\n1     Germany 2.41 2.44 2.47 2.49 2.49 2.48 2.44 2.37 2.28 2.17 2.04\n2 South Korea 6.16 5.99 5.79 5.57 5.36 5.16 4.99 4.85 4.73 4.62 4.53\n\n\n\nThis is not tidy. Each row has multiple measures across multiple columns.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tidyverse-packages",
+    "href": "slides/07-tidyverse.html#tidyverse-packages",
+    "title": "Tidyverse",
+    "section": "Tidyverse packages",
+    "text": "Tidyverse packages\n\ntibble - modifies the data frame class.\nreadr - import data.\ndplyr - used to modify data frames.\nggplot2 - simplifies plotting.\ntidyr - helps convert data into tidy format.\nstringr - string processing.\nforcats - utilities for categorical data.\npurrr - tidy version of apply functions.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#dplyr",
+    "href": "slides/07-tidyverse.html#dplyr",
+    "title": "Tidyverse",
+    "section": "dplyr",
+    "text": "dplyr\n\nWe focus on the following functions:\n\nmutate\nselect\nacross\nfilter\ngroup_by\nsummarize",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#adding-a-column-with-mutate",
+    "href": "slides/07-tidyverse.html#adding-a-column-with-mutate",
+    "title": "Tidyverse",
+    "section": "Adding a column with mutate",
+    "text": "Adding a column with mutate\n\ncolnames(murders)\n\n[1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n\nmurders &lt;- mutate(murders, rate = total/population*100000)\ncolnames(murders)\n\n[1] \"state\"      \"abb\"        \"region\"     \"population\" \"total\"     \n[6] \"rate\"      \n\nfilter(murders, rate &lt;= 0.71)\n\n          state abb        region population total      rate\n1        Hawaii  HI          West    1360301     7 0.5145920\n2          Iowa  IA North Central    3046355    21 0.6893484\n3 New Hampshire  NH     Northeast    1316470     5 0.3798036\n4  North Dakota  ND North Central     672591     4 0.5947151\n5       Vermont  VT     Northeast     625741     2 0.3196211\n\n\n\nNotice that here we used total and population inside the function, which are objects that are not defined in our workspace.\nThis is known as non-standard evaluation where the context is used to know what variable names means.\nTidyverse extensively uses non-standard evaluation.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#subsetting-with-filter",
+    "href": "slides/07-tidyverse.html#subsetting-with-filter",
+    "title": "Tidyverse",
+    "section": "Subsetting with filter",
+    "text": "Subsetting with filter\n\nfilter(murders, rate &lt;= 0.71)\n\n          state abb        region population total      rate\n1        Hawaii  HI          West    1360301     7 0.5145920\n2          Iowa  IA North Central    3046355    21 0.6893484\n3 New Hampshire  NH     Northeast    1316470     5 0.3798036\n4  North Dakota  ND North Central     672591     4 0.5947151\n5       Vermont  VT     Northeast     625741     2 0.3196211",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#selecting-columns-with-select",
+    "href": "slides/07-tidyverse.html#selecting-columns-with-select",
+    "title": "Tidyverse",
+    "section": "Selecting columns with select",
+    "text": "Selecting columns with select\n\nnew_table &lt;- select(murders, state, region, rate)\nfilter(new_table, rate &lt;= 0.71)\n\n          state        region      rate\n1        Hawaii          West 0.5145920\n2          Iowa North Central 0.6893484\n3 New Hampshire     Northeast 0.3798036\n4  North Dakota North Central 0.5947151\n5       Vermont     Northeast 0.3196211",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-variables",
+    "href": "slides/07-tidyverse.html#transforming-variables",
+    "title": "Tidyverse",
+    "section": "Transforming variables",
+    "text": "Transforming variables\n\nThe function mutate can also be used to transform variables.\nFor example, the following code takes the log transformation of the population variable:\n\n\nmutate(murders, population = log10(population)) |&gt; head()\n\n       state abb region population total     rate\n1    Alabama  AL  South   6.679404   135 2.824424\n2     Alaska  AK   West   5.851400    19 2.675186\n3    Arizona  AZ   West   6.805638   232 3.629527\n4   Arkansas  AR  South   6.464775    93 3.189390\n5 California  CA   West   7.571172  1257 3.374138\n6   Colorado  CO   West   6.701499    65 1.292453",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#transforming-several-variables",
+    "href": "slides/07-tidyverse.html#transforming-several-variables",
+    "title": "Tidyverse",
+    "section": "Transforming several variables",
+    "text": "Transforming several variables\n\nOften, we need to apply the same transformation to several variables.\nThe function across facilitates the operation.\nFor example if want to log transform both population and total murders we can use:\n\n\nmutate(murders, across(c(population, total), log10)) |&gt; head()\n\n       state abb region population    total     rate\n1    Alabama  AL  South   6.679404 2.130334 2.824424\n2     Alaska  AK   West   5.851400 1.278754 2.675186\n3    Arizona  AZ   West   6.805638 2.365488 3.629527\n4   Arkansas  AR  South   6.464775 1.968483 3.189390\n5 California  CA   West   7.571172 3.099335 3.374138\n6   Colorado  CO   West   6.701499 1.812913 1.292453",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#more-examples-with-across",
+    "href": "slides/07-tidyverse.html#more-examples-with-across",
+    "title": "Tidyverse",
+    "section": "More examples with across",
+    "text": "More examples with across\n\napply the same transformation to all numeric variables:\n\n\nmutate(murders, across(where(is.numeric), log10)) |&gt;head(2)\n\n    state abb region population    total      rate\n1 Alabama  AL  South   6.679404 2.130334 0.4509299\n2  Alaska  AK   West   5.851400 1.278754 0.4273540\n\n\n\nor all character variables:\n\n\nmutate(murders, across(where(is.character), tolower)) |&gt; head(2)\n\n    state abb region population total     rate\n1 alabama  al  South    4779736   135 2.824424\n2  alaska  ak   West     710231    19 2.675186",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#the-pipe",
+    "href": "slides/07-tidyverse.html#the-pipe",
+    "title": "Tidyverse",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n\nWe use the pipe to chain a series of operations.\nFor example if we want to select columns and then filter rows: \\[ \\mbox{original data }\n\\rightarrow \\mbox{ select }\n\\rightarrow \\mbox{ filter } \\]\n\n\nmurders |&gt; select(state, region, rate) |&gt; filter(rate &lt;= 0.71)\n\n          state        region      rate\n1        Hawaii          West 0.5145920\n2          Iowa North Central 0.6893484\n3 New Hampshire     Northeast 0.3798036\n4  North Dakota North Central 0.5947151\n5       Vermont     Northeast 0.3196211\n\n\n\nThe output of the left side of a pipe is used as the input (as first argument) for the function on the right.\nHere is a simple example:\n\n\n16 |&gt; sqrt() |&gt; log(base = 2)\n\n[1] 2",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data",
+    "href": "slides/07-tidyverse.html#summarizing-data",
+    "title": "Tidyverse",
+    "section": "Summarizing data",
+    "text": "Summarizing data\n\nWe use the dplyr summarize function, not to be confused with summary from R base.\n\n\nmurders |&gt; summarize(avg = mean(rate))\n\n       avg\n1 2.779125\n\n\n\nIs this calculation correct?",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#summarizing-data-correct-calculation",
+    "href": "slides/07-tidyverse.html#summarizing-data-correct-calculation",
+    "title": "Tidyverse",
+    "section": "Summarizing data: Correct calculation",
+    "text": "Summarizing data: Correct calculation\n\nNo.\nThe correct calculation is\n\n\nmurders |&gt; summarize(rate = sum(total)/sum(population)*100000)\n\n      rate\n1 3.034555",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries",
+    "href": "slides/07-tidyverse.html#multiple-summaries",
+    "title": "Tidyverse",
+    "section": "Multiple summaries",
+    "text": "Multiple summaries\n\nSuppose we want the median, minimum and max population size:\n\n\nmurders |&gt; summarize(median = median(population), min = min(population), max = max(population))\n\n   median    min      max\n1 4339367 563626 37253956\n\n\n\nuse quantiles?\n\n\nmurders |&gt; summarize(quantiles = quantile(population, c(0.5, 0, 1)))\n\nWarning: Returning more (or less) than 1 row per `summarise()` group was deprecated in\ndplyr 1.1.0.\nℹ Please use `reframe()` instead.\nℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`\n  always returns an ungrouped data frame and adjust accordingly.\n\n\n  quantiles\n1   4339367\n2    563626\n3  37253956",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-with-reframe",
+    "href": "slides/07-tidyverse.html#multiple-summaries-with-reframe",
+    "title": "Tidyverse",
+    "section": "Multiple summaries with reframe",
+    "text": "Multiple summaries with reframe\n\nmurders |&gt; reframe(quantiles = quantile(population, c(0.5, 0, 1)))\n\n  quantiles\n1   4339367\n2    563626\n3  37253956",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#multiple-summaries-with-a-dataframe",
+    "href": "slides/07-tidyverse.html#multiple-summaries-with-a-dataframe",
+    "title": "Tidyverse",
+    "section": "Multiple summaries with a dataframe",
+    "text": "Multiple summaries with a dataframe\n\nTo have a column per summary, as when we called min, median, and max separately, we have to define a function that returns a data frame like this:\n\n\nmedian_min_max &lt;- function(x){\n  qs &lt;- quantile(x, c(0.5, 0, 1))\n  data.frame(median = qs[1], min = qs[2], max = qs[3])\n}\n\n\nThen we can call summarize:\n\n\nmurders |&gt; summarize(median_min_max(population))\n\n   median    min      max\n1 4339367 563626 37253956\n\n\nCompare\n\n median_min_max(murders$population) \n\n     median    min      max\n50% 4339367 563626 37253956\n\n#data.frame will use the first string `median` as the row name, but changed it to `50%`",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group-using-group_by",
+    "href": "slides/07-tidyverse.html#group-using-group_by",
+    "title": "Tidyverse",
+    "section": "Group using group_by",
+    "text": "Group using group_by\n\nLet’s compute murder rate by region.\n\n\nmurders |&gt; group_by(region) |&gt; head(4)\n\n# A tibble: 4 × 6\n# Groups:   region [2]\n  state    abb   region population total  rate\n  &lt;chr&gt;    &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Alabama  AL    South     4779736   135  2.82\n2 Alaska   AK    West       710231    19  2.68\n3 Arizona  AZ    West      6392017   232  3.63\n4 Arkansas AR    South     2915918    93  3.19\n\n\n\nNote the Groups: region at the top. This is the number of groups in the first 4 rows.\nThis is a special data frame called a grouped data frame.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group_by-then-summarize",
+    "href": "slides/07-tidyverse.html#group_by-then-summarize",
+    "title": "Tidyverse",
+    "section": "Group_by then summarize",
+    "text": "Group_by then summarize\n\nmurders |&gt; \n  group_by(region) |&gt; \n  summarize(rate = sum(total) / sum(population) * 100000)\n\n# A tibble: 4 × 2\n  region         rate\n  &lt;fct&gt;         &lt;dbl&gt;\n1 Northeast      2.66\n2 South          3.63\n3 North Central  2.73\n4 West           2.66\n\n\n\nThe summarize function applies the summarization to each group separately.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group_by-then-summarize-1",
+    "href": "slides/07-tidyverse.html#group_by-then-summarize-1",
+    "title": "Tidyverse",
+    "section": "Group_by then summarize",
+    "text": "Group_by then summarize\n\ncompute the median, minimum, and maximum population in the four regions\n\n\nmurders |&gt; group_by(region) |&gt; summarize(median_min_max(population))\n\n# A tibble: 4 × 4\n  region          median    min      max\n  &lt;fct&gt;            &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 Northeast     3574097  625741 19378102\n2 South         4625364  601723 25145561\n3 North Central 5495456. 672591 12830632\n4 West          2700551  563626 37253956\n\n\n\nsummarize takes a dataframe or a column, or a list of values, as an input",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#group_by-then-mutate",
+    "href": "slides/07-tidyverse.html#group_by-then-mutate",
+    "title": "Tidyverse",
+    "section": "group_by then mutate",
+    "text": "group_by then mutate\n\nTo summarize a variable but not collapse the dataset, use group_by then mutate instead of summarize.\nNext example adds a column with the population in each region and the number of states in the region, shown for each state.\n\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n()) |&gt; head(2)\n\n# A tibble: 2 × 8\n# Groups:   region [2]\n  state   abb   region population total  rate region_pop     n\n  &lt;chr&gt;   &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;\n1 Alabama AL    South     4779736   135  2.82  115674434    17\n2 Alaska  AK    West       710231    19  2.68   71945553    13",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#ungroup",
+    "href": "slides/07-tidyverse.html#ungroup",
+    "title": "Tidyverse",
+    "section": "ungroup",
+    "text": "ungroup\n\nmurders |&gt; group_by(region) |&gt; \n  mutate(region_pop = sum(population), n = n()) |&gt;\n  ungroup() |&gt; head(2)\n\n# A tibble: 2 × 8\n  state   abb   region population total  rate region_pop     n\n  &lt;chr&gt;   &lt;chr&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;\n1 Alabama AL    South     4779736   135  2.82  115674434    17\n2 Alaska  AK    West       710231    19  2.68   71945553    13\n\n\n\nThis avoids having a grouped data frame that we don’t need.",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#tydeverse-returns-a-df",
+    "href": "slides/07-tidyverse.html#tydeverse-returns-a-df",
+    "title": "Tidyverse",
+    "section": "Tydeverse returns a df",
+    "text": "Tydeverse returns a df\n\nTidyverse function always returns a data frame. Even if its just one number.\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  class()\n\n[1] \"data.frame\"",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#pull",
+    "href": "slides/07-tidyverse.html#pull",
+    "title": "Tidyverse",
+    "section": "pull",
+    "text": "pull\n\nTo get a numeric use pull:\n\n\nmurders |&gt; \n  summarize(rate = sum(total)/sum(population)*100000) |&gt;\n  pull(rate) \n\n[1] 3.034555",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-data-frames-with-arrange",
+    "href": "slides/07-tidyverse.html#sorting-data-frames-with-arrange",
+    "title": "Tidyverse",
+    "section": "Sorting data frames with arrange",
+    "text": "Sorting data frames with arrange\n\nStates order by rate\n\n\nmurders |&gt; arrange(rate) |&gt; head()\n\n          state abb        region population total      rate\n1       Vermont  VT     Northeast     625741     2 0.3196211\n2 New Hampshire  NH     Northeast    1316470     5 0.3798036\n3        Hawaii  HI          West    1360301     7 0.5145920\n4  North Dakota  ND North Central     672591     4 0.5947151\n5          Iowa  IA North Central    3046355    21 0.6893484\n6         Idaho  ID          West    1567582    12 0.7655102",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-in-descending-order",
+    "href": "slides/07-tidyverse.html#sorting-in-descending-order",
+    "title": "Tidyverse",
+    "section": "Sorting in descending order",
+    "text": "Sorting in descending order\n\nwe can either use the negative or, use desc:\n\n\nmurders |&gt; arrange(desc(rate)) |&gt; head()\n\n                 state abb        region population total      rate\n1 District of Columbia  DC         South     601723    99 16.452753\n2            Louisiana  LA         South    4533372   351  7.742581\n3             Missouri  MO North Central    5988927   321  5.359892\n4             Maryland  MD         South    5773552   293  5.074866\n5       South Carolina  SC         South    4625364   207  4.475323\n6             Delaware  DE         South     897934    38  4.231937",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  },
+  {
+    "objectID": "slides/07-tidyverse.html#sorting-by-multiple-variabls",
+    "href": "slides/07-tidyverse.html#sorting-by-multiple-variabls",
+    "title": "Tidyverse",
+    "section": "Sorting by multiple variabls",
+    "text": "Sorting by multiple variabls\n\nmurders |&gt; arrange(region, desc(rate)) |&gt; head(11)\n\n                  state abb    region population total       rate\n1          Pennsylvania  PA Northeast   12702379   457  3.5977513\n2            New Jersey  NJ Northeast    8791894   246  2.7980319\n3           Connecticut  CT Northeast    3574097    97  2.7139722\n4              New York  NY Northeast   19378102   517  2.6679599\n5         Massachusetts  MA Northeast    6547629   118  1.8021791\n6          Rhode Island  RI Northeast    1052567    16  1.5200933\n7                 Maine  ME Northeast    1328361    11  0.8280881\n8         New Hampshire  NH Northeast    1316470     5  0.3798036\n9               Vermont  VT Northeast     625741     2  0.3196211\n10 District of Columbia  DC     South     601723    99 16.4527532\n11            Louisiana  LA     South    4533372   351  7.7425810\n\n\n\n\nHome",
+    "crumbs": [
+      "TidyVerse"
+    ]
+  }
+]

@@ -504,6 +504,15 @@
 <pre><code>[1] "state"      "abb"        "region"     "population" "total"     
 [6] "rate"      </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">filter</span>(murders, rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          state abb        region population total      rate
+1        Hawaii  HI          West    1360301     7 0.5145920
+2          Iowa  IA North Central    3046355    21 0.6893484
+3 New Hampshire  NH     Northeast    1316470     5 0.3798036
+4  North Dakota  ND North Central     672591     4 0.5947151
+5       Vermont  VT     Northeast     625741     2 0.3196211</code></pre>
+</div>
 </div>
 <ul>
 <li><p>Notice that here we used <code>total</code> and <code>population</code> inside the function, which are objects that are <strong>not</strong> defined in our workspace.</p></li>
@@ -514,7 +523,7 @@
 <section id="subsetting-with-filter" class="slide level2">
 <h2>Subsetting with <code>filter</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">filter</span>(murders, rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">filter</span>(murders, rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          state abb        region population total      rate
 1        Hawaii  HI          West    1360301     7 0.5145920
@@ -528,8 +537,8 @@
 <section id="selecting-columns-with-select" class="slide level2">
 <h2>Selecting columns with <code>select</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>new_table <span class="ot">&lt;-</span> <span class="fu">select</span>(murders, state, region, rate)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">filter</span>(new_table, rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>new_table <span class="ot">&lt;-</span> <span class="fu">select</span>(murders, state, region, rate)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">filter</span>(new_table, rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          state        region      rate
 1        Hawaii          West 0.5145920
@@ -547,7 +556,7 @@
 <li><p>For example, the following code takes the log transformation of the population variable:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">mutate</span>(murders, <span class="at">population =</span> <span class="fu">log10</span>(population)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">mutate</span>(murders, <span class="at">population =</span> <span class="fu">log10</span>(population)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       state abb region population total     rate
 1    Alabama  AL  South   6.679404   135 2.824424
@@ -567,7 +576,7 @@
 <li><p>For example if want to log transform both population and total murders we can use:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">mutate</span>(murders, <span class="fu">across</span>(<span class="fu">c</span>(population, total), log10)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">mutate</span>(murders, <span class="fu">across</span>(<span class="fu">c</span>(population, total), log10)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       state abb region population    total     rate
 1    Alabama  AL  South   6.679404 2.130334 2.824424
@@ -585,7 +594,7 @@
 <li>apply the same transformation to all numeric variables:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">mutate</span>(murders, <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), log10)) <span class="sc">|&gt;</span><span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">mutate</span>(murders, <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), log10)) <span class="sc">|&gt;</span><span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    state abb region population    total      rate
 1 Alabama  AL  South   6.679404 2.130334 0.4509299
@@ -596,7 +605,7 @@
 <li>or all character variables:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">mutate</span>(murders, <span class="fu">across</span>(<span class="fu">where</span>(is.character), tolower)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">mutate</span>(murders, <span class="fu">across</span>(<span class="fu">where</span>(is.character), tolower)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    state abb region population total     rate
 1 alabama  al  South    4779736   135 2.824424
@@ -613,7 +622,7 @@
 \rightarrow \mbox{ filter } \]</span></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">select</span>(state, region, rate) <span class="sc">|&gt;</span> <span class="fu">filter</span>(rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">select</span>(state, region, rate) <span class="sc">|&gt;</span> <span class="fu">filter</span>(rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          state        region      rate
 1        Hawaii          West 0.5145920
@@ -628,7 +637,7 @@
 <li><p>Here is a simple example:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="dv">16</span> <span class="sc">|&gt;</span> <span class="fu">sqrt</span>() <span class="sc">|&gt;</span> <span class="fu">log</span>(<span class="at">base =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="dv">16</span> <span class="sc">|&gt;</span> <span class="fu">sqrt</span>() <span class="sc">|&gt;</span> <span class="fu">log</span>(<span class="at">base =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -640,7 +649,7 @@
 <li>We use the <strong>dplyr</strong> <code>summarize</code> function, not to be confused with <code>summary</code> from R base.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(rate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(rate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       avg
 1 2.779125</code></pre>
@@ -657,7 +666,7 @@
 <li><p>The correct calculation is</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span><span class="fu">sum</span>(population)<span class="sc">*</span><span class="dv">100000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span><span class="fu">sum</span>(population)<span class="sc">*</span><span class="dv">100000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      rate
 1 3.034555</code></pre>
@@ -670,7 +679,7 @@
 <li>Suppose we want the median, minimum and max population size:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">median =</span> <span class="fu">median</span>(population), <span class="at">min =</span> <span class="fu">min</span>(population), <span class="at">max =</span> <span class="fu">max</span>(population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">median =</span> <span class="fu">median</span>(population), <span class="at">min =</span> <span class="fu">min</span>(population), <span class="at">max =</span> <span class="fu">max</span>(population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   median    min      max
 1 4339367 563626 37253956</code></pre>
@@ -680,7 +689,7 @@
 <li>use <code>quantiles</code>?</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">quantiles =</span> <span class="fu">quantile</span>(population, <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">quantiles =</span> <span class="fu">quantile</span>(population, <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
 dplyr 1.1.0.
@@ -699,7 +708,7 @@ dplyr 1.1.0.
 <section id="multiple-summaries-with-reframe" class="slide level2">
 <h2>Multiple summaries with <code>reframe</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">reframe</span>(<span class="at">quantiles =</span> <span class="fu">quantile</span>(population, <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">reframe</span>(<span class="at">quantiles =</span> <span class="fu">quantile</span>(population, <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  quantiles
 1   4339367
@@ -714,16 +723,16 @@ dplyr 1.1.0.
 <li>To have a column per summary, as when we called <code>min</code>, <code>median</code>, and <code>max</code> separately, we have to define a function that returns a data frame like this:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>median_min_max <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb37-2"><a href="#cb37-2"></a>  qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">data.frame</span>(<span class="at">median =</span> qs[<span class="dv">1</span>], <span class="at">min =</span> qs[<span class="dv">2</span>], <span class="at">max =</span> qs[<span class="dv">3</span>])</span>
-<span id="cb37-4"><a href="#cb37-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>median_min_max <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb39-2"><a href="#cb39-2"></a>  qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">data.frame</span>(<span class="at">median =</span> qs[<span class="dv">1</span>], <span class="at">min =</span> qs[<span class="dv">2</span>], <span class="at">max =</span> qs[<span class="dv">3</span>])</span>
+<span id="cb39-4"><a href="#cb39-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Then we can call <code>summarize</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">median_min_max</span>(population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">median_min_max</span>(population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   median    min      max
 1 4339367 563626 37253956</code></pre>
@@ -731,12 +740,12 @@ dplyr 1.1.0.
 </div>
 <p>Compare</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a> <span class="fu">median_min_max</span>(murders<span class="sc">$</span>population) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a> <span class="fu">median_min_max</span>(murders<span class="sc">$</span>population) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     median    min      max
 50% 4339367 563626 37253956</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co">#data.frame will use the first string `median` as the row name, but changed it to `50%`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">#data.frame will use the first string `median` as the row name, but changed it to `50%`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="group-using-group_by" class="slide level2">
@@ -745,7 +754,7 @@ dplyr 1.1.0.
 <li>Let’s compute murder rate by region.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 6
 # Groups:   region [2]
@@ -765,9 +774,9 @@ dplyr 1.1.0.
 <section id="group_by-then-summarize" class="slide level2">
 <h2>Group_by then summarize</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>murders <span class="sc">|&gt;</span> </span>
-<span id="cb45-2"><a href="#cb45-2"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
-<span id="cb45-3"><a href="#cb45-3"></a>  <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total) <span class="sc">/</span> <span class="fu">sum</span>(population) <span class="sc">*</span> <span class="dv">100000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>murders <span class="sc">|&gt;</span> </span>
+<span id="cb47-2"><a href="#cb47-2"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
+<span id="cb47-3"><a href="#cb47-3"></a>  <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total) <span class="sc">/</span> <span class="fu">sum</span>(population) <span class="sc">*</span> <span class="dv">100000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   region         rate
@@ -788,7 +797,7 @@ dplyr 1.1.0.
 <li>compute the median, minimum, and maximum population in the four regions</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">median_min_max</span>(population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">median_min_max</span>(population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
   region          median    min      max
@@ -810,8 +819,8 @@ dplyr 1.1.0.
 <li><p>Next example adds a column with the population in each region and the number of states in the region, shown for each state.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
-<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">mutate</span>(<span class="at">region_pop =</span> <span class="fu">sum</span>(population), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">mutate</span>(<span class="at">region_pop =</span> <span class="fu">sum</span>(population), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 8
 # Groups:   region [2]
@@ -825,9 +834,9 @@ dplyr 1.1.0.
 <section id="ungroup" class="slide level2">
 <h2>ungroup</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
-<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">mutate</span>(<span class="at">region_pop =</span> <span class="fu">sum</span>(population), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb51-3"><a href="#cb51-3"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">mutate</span>(<span class="at">region_pop =</span> <span class="fu">sum</span>(population), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 8
   state   abb   region population total  rate region_pop     n
@@ -846,9 +855,9 @@ dplyr 1.1.0.
 <li>Tidyverse function always returns a data frame. Even if its just one number.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>murders <span class="sc">|&gt;</span> </span>
-<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span><span class="fu">sum</span>(population)<span class="sc">*</span><span class="dv">100000</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>murders <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="#cb55-2"></a>  <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span><span class="fu">sum</span>(population)<span class="sc">*</span><span class="dv">100000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="#cb55-3"></a>  <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
@@ -860,9 +869,9 @@ dplyr 1.1.0.
 <li>To get a numeric use pull:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>murders <span class="sc">|&gt;</span> </span>
-<span id="cb55-2"><a href="#cb55-2"></a>  <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span><span class="fu">sum</span>(population)<span class="sc">*</span><span class="dv">100000</span>) <span class="sc">|&gt;</span></span>
-<span id="cb55-3"><a href="#cb55-3"></a>  <span class="fu">pull</span>(rate) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>murders <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="#cb57-2"></a>  <span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span><span class="fu">sum</span>(population)<span class="sc">*</span><span class="dv">100000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb57-3"><a href="#cb57-3"></a>  <span class="fu">pull</span>(rate) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.034555</code></pre>
 </div>
@@ -874,7 +883,7 @@ dplyr 1.1.0.
 <li>States order by rate</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">arrange</span>(rate) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">arrange</span>(rate) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          state abb        region population total      rate
 1       Vermont  VT     Northeast     625741     2 0.3196211
@@ -892,7 +901,7 @@ dplyr 1.1.0.
 <li>we can either use the negative or, use <code>desc</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(rate)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(rate)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 state abb        region population total      rate
 1 District of Columbia  DC         South     601723    99 16.452753
@@ -907,7 +916,7 @@ dplyr 1.1.0.
 <section id="sorting-by-multiple-variabls" class="slide level2">
 <h2>Sorting by multiple variabls</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">arrange</span>(region, <span class="fu">desc</span>(rate)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">arrange</span>(region, <span class="fu">desc</span>(rate)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  state abb    region population total       rate
 1          Pennsylvania  PA Northeast   12702379   457  3.5977513
