@@ -1664,5 +1664,415 @@
     "crumbs": [
       "TidyVerse"
     ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot2",
+    "href": "slides/08-ggplot2.html#ggplot2",
+    "title": "ggplot2",
+    "section": "ggplot2",
+    "text": "ggplot2\nWe fist load three libraries:\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(dslabs)\nlibrary(lattice)",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-graph-we-will-create",
+    "href": "slides/08-ggplot2.html#the-graph-we-will-create",
+    "title": "ggplot2",
+    "section": "The graph we will create",
+    "text": "The graph we will create",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#the-components-of-a-graph",
+    "href": "slides/08-ggplot2.html#the-components-of-a-graph",
+    "title": "ggplot2",
+    "section": "The components of a graph",
+    "text": "The components of a graph\n\ngg stands for grammar of graphics.\nAnalogy: we learn verbs and nouns to construct sentences.\nThe first step in learning ggplot2 is breaking a graph apart into components.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#three-main-components-of-a-graph",
+    "href": "slides/08-ggplot2.html#three-main-components-of-a-graph",
+    "title": "ggplot2",
+    "section": "Three main components of a graph",
+    "text": "Three main components of a graph\n\nData: ususally a data frame, such as murders used to generate the previous plot\nGeometry: plot type, such as the scatterplot above.\nAesthetic mapping: How we map visual cues (\\(x, y,\\) color, labels, etc.) to the data",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#ggplot-objects",
+    "href": "slides/08-ggplot2.html#ggplot-objects",
+    "title": "ggplot2",
+    "section": "ggplot objects",
+    "text": "ggplot objects\n\nStart by defining the dataset:\n\n\nggplot(data = murders)\n\n\nWe can also use the pipe:\n\n\nmurders |&gt; ggplot()\n\n\nWe assign the output to a variable\n\n\np &lt;- ggplot(data = murders)\nclass(p)\n\n[1] \"ggplot2::ggplot\" \"ggplot\"          \"ggplot2::gg\"     \"S7_object\"      \n[5] \"gg\"",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#print-a-ggplot-graph",
+    "href": "slides/08-ggplot2.html#print-a-ggplot-graph",
+    "title": "ggplot2",
+    "section": "Print a ggplot graph",
+    "text": "Print a ggplot graph\nTo see the plot we can print it:\n\nprint(p)",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#graph-layers",
+    "href": "slides/08-ggplot2.html#graph-layers",
+    "title": "ggplot2",
+    "section": "Graph layers",
+    "text": "Graph layers\n\nWe create graphs by adding layers.\nLayers define geometries, compute summary statistics, define what scales to use, or even change styles.\nTo add layers, we use the symbol +.\nIn general, a line of code will look like this:\n\n\nDATA |&gt; ggplot() + LAYER 1 + LAYER 2 + ... + LAYER N\n\n\nUsually, the first added layer defines the geometry.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geometries",
+    "href": "slides/08-ggplot2.html#geometries",
+    "title": "ggplot2",
+    "section": "Geometries",
+    "text": "Geometries\n\nIf we want to make a scatterplot, what geometry do we use?\nLet’s look at the cheat sheet: https://rstudio.github.io/cheatsheets/data-visualization.pdf",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scatter-plot-geom_points",
+    "href": "slides/08-ggplot2.html#scatter-plot-geom_points",
+    "title": "ggplot2",
+    "section": "Scatter plot: geom_points",
+    "text": "Scatter plot: geom_points\n\nmurders |&gt; ggplot() + geom_point(aes(x = population/10^6, y = total))",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-a-layer",
+    "href": "slides/08-ggplot2.html#add-a-layer",
+    "title": "ggplot2",
+    "section": "Add a layer",
+    "text": "Add a layer\n\nSince we defined p earlier, we can add a layer like this:\n\n\np + geom_point(aes(population/10^6, total))\n\n\n\nNote x= and y = can be omitted",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-text-with-geom_text",
+    "href": "slides/08-ggplot2.html#add-text-with-geom_text",
+    "title": "ggplot2",
+    "section": "Add text with geom_text",
+    "text": "Add text with geom_text\n\np + geom_point(aes(population/10^6, total)) +\n  geom_text(aes(population/10^6, total, label = abb))",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scopes-of-aesthetical-mapping",
+    "href": "slides/08-ggplot2.html#scopes-of-aesthetical-mapping",
+    "title": "ggplot2",
+    "section": "Scopes of aesthetical mapping",
+    "text": "Scopes of aesthetical mapping\n\nThis one is fine\n\n\np_test &lt;- p + geom_text(aes(population/10^6, total, label = abb))\n\nis fine, whereas this call: this one is not\n\np_test &lt;- p + geom_text(aes(population/10^6, total), label = abb) \n\nwill give you an error since abb is not found because it is outside of the aes function.\n\ngeom_text does not know where to find abb: it’s a column name and not a global variable.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#multipanel-plots---lattice",
+    "href": "slides/08-ggplot2.html#multipanel-plots---lattice",
+    "title": "ggplot2",
+    "section": "Multipanel plots - lattice",
+    "text": "Multipanel plots - lattice\n\npl &lt;- xyplot(total ~ population/10^6 | region, data = murders, #group by region\n      type = c(\"p\", \"g\"), xlab = \"Population/10^6\", ylab = \"Total\", # points +grid\n     strip = strip.custom(strip.names = TRUE, var.name = \"region\"), layout=c(2,2))\n# strip: title bar in each panel. strip.names=TRUE: show the var.name \"region\"\nprint(pl)",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#multipanel-plots---ggplot2",
+    "href": "slides/08-ggplot2.html#multipanel-plots---ggplot2",
+    "title": "ggplot2",
+    "section": "Multipanel plots - ggplot2",
+    "text": "Multipanel plots - ggplot2\n\npg &lt;- ggplot(murders, aes(population/10^6, total)) + geom_point(shape = 1) +\n    facet_wrap(~region) + theme(aspect.ratio = 1) #square panels\nprint(pg)\n\n# shape =1: open circles; shape=16: filled circles",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#point-size",
+    "href": "slides/08-ggplot2.html#point-size",
+    "title": "ggplot2",
+    "section": "point size",
+    "text": "point size\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb))\n\n\n\nsize can be an aesthetic mapping, but here it is not, so all points get bigger.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
+    "href": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
+    "title": "ggplot2",
+    "section": "Tinkering with argumentsnudege_x`",
+    "text": "Tinkering with argumentsnudege_x`\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5) #shift x right\n\n\n\nnudge_x is not an aesthetic mapping.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-mappings",
+    "href": "slides/08-ggplot2.html#global-mappings",
+    "title": "ggplot2",
+    "section": "Global mappings",
+    "text": "Global mappings\n\nDefined in aes in the ggplot function:\n\n\nargs(ggplot)\n\nfunction (data = NULL, mapping = aes(), ..., environment = parent.frame()) \nNULL",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nAll the layers will assume the global mapping unless we explicitly define another one.\n\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb))\np + geom_point(size = 3) + geom_text(nudge_x = 1.5)\n\n\n\nThe two layers use the global mapping.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#global-versus-local-mappings-1",
+    "href": "slides/08-ggplot2.html#global-versus-local-mappings-1",
+    "title": "ggplot2",
+    "section": "Global versus local mappings",
+    "text": "Global versus local mappings\n\nWe can override the global aes by defining one in the geometry functions:\n\n\np + geom_point(size = 3) +  # global mapping\n  geom_text(aes(x = 10, y = 800, label = \"Hello there!\")) #local mapping",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scales",
+    "href": "slides/08-ggplot2.html#scales",
+    "title": "ggplot2",
+    "section": "Scales",
+    "text": "Scales\n\nLayers can define transformations:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_continuous(trans = \"log10\") +\n  scale_y_continuous(trans = \"log10\")",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#scales-1",
+    "href": "slides/08-ggplot2.html#scales-1",
+    "title": "ggplot2",
+    "section": "Scales",
+    "text": "Scales\n\nThis particular transformation is so common that ggplot2 provides the specialized functions:\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles",
+    "href": "slides/08-ggplot2.html#labels-and-titles",
+    "title": "ggplot2",
+    "section": "Labels and titles",
+    "text": "Labels and titles\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  xlab(\"Populations in millions (log scale)\") + \n  ylab(\"Total number of murders (log scale)\") +\n  ggtitle(\"US Gun Murders in 2010\")",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#labels-and-titles-with-labs",
+    "href": "slides/08-ggplot2.html#labels-and-titles-with-labs",
+    "title": "ggplot2",
+    "section": "Labels and titles with labs",
+    "text": "Labels and titles with labs\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")\n\n\nThis produces the same graph as in the previous slide.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#almost-there",
+    "href": "slides/08-ggplot2.html#almost-there",
+    "title": "ggplot2",
+    "section": "Almost there",
+    "text": "Almost there\n\nTargetCurrent draftCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np + geom_point(size = 3) +  \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\")",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#adding-color",
+    "href": "slides/08-ggplot2.html#adding-color",
+    "title": "ggplot2",
+    "section": "Adding color",
+    "text": "Adding color\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\") +\n  geom_point(size = 3, color = \"blue\")",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#a-mapped-color",
+    "href": "slides/08-ggplot2.html#a-mapped-color",
+    "title": "ggplot2",
+    "section": "A mapped color",
+    "text": "A mapped color\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\") +\n  geom_point(aes(col = region), size = 3)\n\n\nA legend is added automatically!",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#change-legend-name",
+    "href": "slides/08-ggplot2.html#change-legend-name",
+    "title": "ggplot2",
+    "section": "Change legend name",
+    "text": "Change legend name\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") + # Lgend name comes from inside labs()\n  geom_point(aes(col = region), size = 3)",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-adjustments",
+    "href": "slides/08-ggplot2.html#other-adjustments",
+    "title": "ggplot2",
+    "section": "Other adjustments",
+    "text": "Other adjustments\n\nadd a line with intercept the US rate.\n\n\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt; \n  pull(rate)",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-a-line",
+    "href": "slides/08-ggplot2.html#add-a-line",
+    "title": "ggplot2",
+    "section": "Add a line",
+    "text": "Add a line\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\") \n\n#default slope=1; lty=2: dashed line\n\n0= no line, 1=solid, 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#we-are-close",
+    "href": "slides/08-ggplot2.html#we-are-close",
+    "title": "ggplot2",
+    "section": "We are close!",
+    "text": "We are close!",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#assign-the-graph-to-a-variable",
+    "href": "slides/08-ggplot2.html#assign-the-graph-to-a-variable",
+    "title": "ggplot2",
+    "section": "Assign the graph to a variable",
+    "text": "Assign the graph to a variable\n\np &lt;- murders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_text(nudge_x = 0.05) + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\")",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages",
+    "href": "slides/08-ggplot2.html#add-on-packages",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\n\nThe dslabs package can define the look used in the textbook:\n\n\nds_theme_set()\n\n\nMany other themes are added by the package ggthemes.",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#add-on-packages-1",
+    "href": "slides/08-ggplot2.html#add-on-packages-1",
+    "title": "ggplot2",
+    "section": "Add-on packages",
+    "text": "Add-on packages\nggthemes provides pre-designed themes.\n\nlibrary(ggthemes)\np + theme_economist()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_fivethirtyeight",
+    "href": "slides/08-ggplot2.html#theme_fivethirtyeight",
+    "title": "ggplot2",
+    "section": "theme_Fivethirtyeight()",
+    "text": "theme_Fivethirtyeight()\nHere is the FiveThirtyEight theme:\n\np + theme_fivethirtyeight()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_cecel",
+    "href": "slides/08-ggplot2.html#theme_cecel",
+    "title": "ggplot2",
+    "section": "theme_cecel()",
+    "text": "theme_cecel()\nmaybe not a good one!\n\np + theme_excel()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_starwars",
+    "href": "slides/08-ggplot2.html#theme_starwars",
+    "title": "ggplot2",
+    "section": "theme_starwars()",
+    "text": "theme_starwars()\nThemePark provides fun themes:\n\nlibrary(ThemePark)\np + theme_starwars()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_barbie",
+    "href": "slides/08-ggplot2.html#theme_barbie",
+    "title": "ggplot2",
+    "section": "theme_barbie()",
+    "text": "theme_barbie()\nThis is a fan favorite:\n\np + theme_barbie()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#geom_text_repel",
+    "href": "slides/08-ggplot2.html#geom_text_repel",
+    "title": "ggplot2",
+    "section": "geom_text_repel()",
+    "text": "geom_text_repel()\n\nTo avoid the state abbreviations being on top of each other we can use the ggrepel package.\nWe change the layer geom_text(nudge_x = 0.05) to geom_text_repel()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#putting-it-all-together",
+    "href": "slides/08-ggplot2.html#putting-it-all-together",
+    "title": "ggplot2",
+    "section": "Putting it all together",
+    "text": "Putting it all together\n\nCodePlot\n\n\n\nlibrary(ggthemes)\nlibrary(ggrepel)\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt;\n  pull(rate)\n\nmurders |&gt; ggplot(aes(population/10^6, total, label = abb)) +   \n  geom_abline(intercept = log10(r), lty = 2, color = \"darkgrey\") +\n  geom_point(aes(col = region), size = 3) +\n  geom_text_repel() + \n  scale_x_log10() +\n  scale_y_log10() +\n  labs(x = \"Populations in millions (log scale)\", \n       y = \"Total number of murders (log scale)\", \n       title = \"US Gun Murders in 2010\",\n       color = \"Region\") +\n  theme_economist()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#grids-of-plots",
+    "href": "slides/08-ggplot2.html#grids-of-plots",
+    "title": "ggplot2",
+    "section": "Grids of plots",
+    "text": "Grids of plots\n\nWe often want to put plots next to each other.\nThe gridExtra package permits us to do that:\n\n\nCodePlot\n\n\n\nlibrary(gridExtra)\np1 &lt;- murders |&gt; \n  ggplot(aes(log10(population))) + \n  geom_histogram()\np2 &lt;- murders |&gt; \n  ggplot(aes(log10(population), log10(total))) + \n  geom_point()\ngrid.arrange(p1, p2, ncol = 2)",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#other-packages-for-grids-of-plots",
+    "href": "slides/08-ggplot2.html#other-packages-for-grids-of-plots",
+    "title": "ggplot2",
+    "section": "Other packages for grids of plots",
+    "text": "Other packages for grids of plots\n\ncowplot: A versatile package designed for publication-quality plots, offering seamless integration with ggplot2.\nggpubr: Provides user-friendly functions for combining and annotating ggplot2 plots with minimal effort.\n\n\n\nHome",
+    "crumbs": [
+      "Visualization"
+    ]
   }
 ]
