@@ -1897,7 +1897,7 @@
     "href": "slides/08-ggplot2.html#print-a-ggplot-graph",
     "title": "ggplot2",
     "section": "Print a ggplot graph",
-    "text": "Print a ggplot graph\nTo see the plot we can print it:\n\nprint(p)",
+    "text": "Print a ggplot graph\nTo see the plot we can print it:\n\nprint(p)  # only a canvas is printed, as there is no geometry adde yet",
     "crumbs": [
       "Visualization"
     ]
