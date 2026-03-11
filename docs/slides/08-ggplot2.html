@@ -566,7 +566,7 @@
 </ul>
 </section>
 <section id="tinkering-with-argumentsnudege_x" class="slide level2">
-<h2>Tinkering with <code>arguments</code>nudege_x`</h2>
+<h2>Tinkering with arguments<code>nudege_x</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb), <span class="at">nudge_x =</span> <span class="fl">1.5</span>) <span class="co">#shift x right</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,7 +582,7 @@
 <li>Defined in <code>aes</code> in the <code>ggplot</code> function:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">args</span>(ggplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">args</span>(ggplot) <span class="co"># show the arguments of ggplot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (data = NULL, mapping = aes(), ..., environment = parent.frame()) 
 NULL</code></pre>
@@ -747,8 +747,7 @@ NULL</code></pre>
 <section id="other-adjustments" class="slide level2">
 <h2>Other adjustments</h2>
 <ul>
-<li><p>add a line with intercept the US rate.</p></li>
-<li></li>
+<li>add a line with intercept the US rate.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>r <span class="ot">&lt;-</span> murders <span class="sc">|&gt;</span> </span>
@@ -822,8 +821,8 @@ NULL</code></pre>
 
 </div>
 <img data-src="08-ggplot2_files/figure-revealjs/fivethirtyeight-1.png" width="960" class="r-stretch"></section>
-<section id="theme_cecel" class="slide level2">
-<h2>theme_cecel()</h2>
+<section id="theme_excel" class="slide level2">
+<h2>theme_excel()</h2>
 <p>maybe not a good one!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>p <span class="sc">+</span> <span class="fu">theme_excel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

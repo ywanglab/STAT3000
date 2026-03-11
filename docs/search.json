@@ -4,371 +4,530 @@
     "href": "slides/20-intro-to-prob.html#probability",
     "title": "Introduction to Probability",
     "section": "Probability",
-    "text": "Probability\n\nThe term probability is used in everyday language.\nYet answering questions about probability is often hard, if not impossible.\nIn contrast probability has a very intuitive definition in games of chance.\nProbability Theory was born because certain mathematcial computations can give an advantage in games of chance."
+    "text": "Probability\n\nThe term probability is used in everyday language.\nYet answering questions about probability is often hard, if not impossible.\nIn contrast probability has a very intuitive definition in games of chance.\nProbability Theory was born because certain mathematcial computations can give an advantage in games of chance.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#events",
     "href": "slides/20-intro-to-prob.html#events",
     "title": "Introduction to Probability",
     "section": "Events",
-    "text": "Events\n\nEvents are fundamental concepts that help us understand and quantify uncertainty in various situations.\nAn event is defined as a specific outcome or a collection of outcomes from a random experiment."
+    "text": "Events\n\nEvents are fundamental concepts that help us understand and quantify uncertainty in various situations.\nAn event is defined as a specific outcome or a collection of outcomes from a random experiment.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#example-of-events",
     "href": "slides/20-intro-to-prob.html#example-of-events",
     "title": "Introduction to Probability",
     "section": "Example of events",
-    "text": "Example of events\n\n2 red beads and 3 blue beads inside an urn, and we perform the random experiment of picking 1 bead, there are two outcomes: bead is red or blue.\n\n\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3)) \n#rep(x, times=...):repeat each element of x the number of times gieven in times\nbeads\n\n[1] \"red\"  \"red\"  \"blue\" \"blue\" \"blue\"\n\n\n\nThe four possible events: bead is red, bead is blue, bead is red or blue, and an event with no outcomes."
+    "text": "Example of events\n\n2 red beads and 3 blue beads inside an urn, and we perform the random experiment of picking 1 bead, there are two outcomes: bead is red or blue.\n\n\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3)) \n#rep(x, times=...):repeat each element of x the number of times gieven in times\nbeads\n\n[1] \"red\"  \"red\"  \"blue\" \"blue\" \"blue\"\n\n\n\nThe four possible events: bead is red, bead is blue, bead is red or blue, and an event with no outcomes.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#more-examples-of-events",
     "href": "slides/20-intro-to-prob.html#more-examples-of-events",
     "title": "Introduction to Probability",
     "section": "More examples of events",
-    "text": "More examples of events\n\nIn more complex random experiment, we can define many more events.\nFor example if the random experiment is picking 2 beads, we can define events such as first bead is red, second bead is blue, both beads are red, and so on.\nIn a random experiment such as political poll, where we randomly phone 100 likely voters at random, we can form many million events, for example calling 48 Democrats and 52 Republicans."
+    "text": "More examples of events\n\nIn more complex random experiment, we can define many more events.\nFor example if the random experiment is picking 2 beads, we can define events such as first bead is red, second bead is blue, both beads are red, and so on.\nIn a random experiment such as political poll, where we randomly phone 100 likely voters at random, we can form many million events, for example calling 48 Democrats and 52 Republicans.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#definitions-and-notation",
     "href": "slides/20-intro-to-prob.html#definitions-and-notation",
     "title": "Introduction to Probability",
     "section": "Definitions and Notation",
-    "text": "Definitions and Notation\n\nWe usually use capital letters \\(A\\), \\(B\\), \\(C\\), … to to denote events.\nIf we denote an event as \\(A\\) then we use the notation \\(\\mbox{Pr}(A)\\) to denote the probability of event \\(A\\) occurring."
+    "text": "Definitions and Notation\n\nWe usually use capital letters \\(A\\), \\(B\\), \\(C\\), … to to denote events.\nIf we denote an event as \\(A\\) then we use the notation \\(\\mbox{Pr}(A)\\) to denote the probability of event \\(A\\) occurring.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#union-and-intersection",
     "href": "slides/20-intro-to-prob.html#union-and-intersection",
     "title": "Introduction to Probability",
     "section": "Union and Intersection",
-    "text": "Union and Intersection\n\nWe can combine events in different ways to form new events. For example, if event\n\\(A\\)=first bead is red and second bead is blue, and\n\\(B\\)=first bead is red and second bead is red\nthen \\(A \\cup B\\) (\\(A\\) or \\(B\\)) is the event first bead is red,\nwhile \\(A \\cap B\\) (\\(A\\) and \\(B\\)) is the empty event since both can’t happen."
+    "text": "Union and Intersection\n\nWe can combine events in different ways to form new events. For example, if event\n\\(A\\)=first bead is red and second bead is blue, and\n\\(B\\)=first bead is red and second bead is red\nthen \\(A \\cup B\\) (\\(A\\) or \\(B\\)) is the event first bead is red,\nwhile \\(A \\cap B\\) (\\(A\\) and \\(B\\)) is the empty event since both can’t happen.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#continuous-variable",
     "href": "slides/20-intro-to-prob.html#continuous-variable",
     "title": "Introduction to Probability",
     "section": "Continuous variable",
-    "text": "Continuous variable\n\nWith continuous variables, events will relate to questions, such as Is this person taller than 6 feet?\nIn these cases, we represent events in a more mathematical form: \\(A = \\{X &gt; 6\\}\\)."
+    "text": "Continuous variable\n\nWith continuous variables, events will relate to questions, such as Is this person taller than 6 feet?\nIn these cases, we represent events in a more mathematical form: \\(A = \\{X &gt; 6\\}\\).",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#independence",
     "href": "slides/20-intro-to-prob.html#independence",
     "title": "Introduction to Probability",
     "section": "Independence",
-    "text": "Independence\n\nWhen we deal the first card, the probability of getting a King is 1/13 since there are thirteen possibilities: Ace, Deuce, Three, \\(\\dots\\), Ten, Jack, Queen, King, and Ace.\nIf we deal a King for the first card, the probability of a second card being a King decreases because there are only three Kings left: The probability is 3 out of 51."
+    "text": "Independence\n\nWhen we deal the first card, the probability of getting a King is 1/13 since there are thirteen possibilities: Ace, Deuce, Three, \\(\\dots\\), Ten, Jack, Queen, King, and Ace.\nIf we deal a King for the first card, the probability of a second card being a King decreases because there are only three Kings left: The probability is 3 out of 51.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#sampling-by-sample-function",
     "href": "slides/20-intro-to-prob.html#sampling-by-sample-function",
     "title": "Introduction to Probability",
     "section": "Sampling by sample function",
-    "text": "Sampling by sample function\n\nBy default, the sample function samples without replacement\n\n\nset.seed(1996)\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- sample(beads, 5) \n\n\nIf you have to guess the color of the first bead, you will predict blue since blue has a 60% chance."
+    "text": "Sampling by sample function\n\nBy default, the sample function samples without replacement\n\n\nset.seed(1996)\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- sample(beads, 5) \n\n\nIf you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#independence-1",
     "href": "slides/20-intro-to-prob.html#independence-1",
     "title": "Introduction to Probability",
     "section": "Independence",
-    "text": "Independence\n\nHowever, if I show you the result of the last four outcomes:\n\n\nx[2:5] \n\n[1] \"blue\" \"blue\" \"red\"  \"blue\"\n\n\n\nwould you still guess blue? Of course not."
+    "text": "Independence\n\nHowever, if I show you the result of the last four outcomes:\n\n\nx[2:5] \n\n[1] \"blue\" \"blue\" \"red\"  \"blue\"\n\n\n\nwould you still guess blue? Of course not.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#conditional-probabilities",
     "href": "slides/20-intro-to-prob.html#conditional-probabilities",
     "title": "Introduction to Probability",
     "section": "Conditional probabilities",
-    "text": "Conditional probabilities\n\nWhen events are not independent, conditional probabilities are useful.\nWe use the \\(|\\) to shorten conditional on. For example:\n\n\\[\n\\mbox{Pr}(\\mbox{Card 2 is a king} \\mid \\mbox{Card 1 is a king}) = 3/51\n\\]"
+    "text": "Conditional probabilities\n\nWhen events are not independent, conditional probabilities are useful.\nWe use the \\(|\\) to shorten conditional on. For example:\n\n\\[\n\\mbox{Pr}(\\mbox{Card 2 is a king} \\mid \\mbox{Card 1 is a king}) = 3/51\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#conditional-probabilities-definition",
     "href": "slides/20-intro-to-prob.html#conditional-probabilities-definition",
     "title": "Introduction to Probability",
     "section": "Conditional probabilities definition",
-    "text": "Conditional probabilities definition\n\nWhen two events, say \\(A\\) and \\(B\\), are independent, we have:\n\n\\[\n\\mbox{Pr}(A \\mid B) = \\mbox{Pr}(A)  \n\\]\n\nIn fact, this can be considered the mathematical definition of independence."
+    "text": "Conditional probabilities definition\n\nWhen two events, say \\(A\\) and \\(B\\), are independent, we have:\n\n\\[\n\\mbox{Pr}(A \\mid B) = \\mbox{Pr}(A)  \n\\]\n\nIn fact, this can be considered the mathematical definition of independence.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#multiplication-rule",
     "href": "slides/20-intro-to-prob.html#multiplication-rule",
     "title": "Introduction to Probability",
     "section": "Multiplication rule",
-    "text": "Multiplication rule\n\nIf we want to determine the probability of two events, say \\(A\\) and \\(B\\), occurring, we can use the multiplication rule:\n\n\\[\n\\mbox{Pr}(A \\cap B) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\n\\]"
+    "text": "Multiplication rule\n\nIf we want to determine the probability of two events, say \\(A\\) and \\(B\\), occurring, we can use the multiplication rule:\n\n\\[\n\\mbox{Pr}(A \\cap B) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#multiplication-rule-example",
     "href": "slides/20-intro-to-prob.html#multiplication-rule-example",
     "title": "Introduction to Probability",
     "section": "Multiplication rule: example",
-    "text": "Multiplication rule: example\n\nFor example:\n\n\\[\n\\mbox{Pr}(\\mbox{Blackjack in first hand}) = \\\\\n\\mbox{Pr}(\\mbox{Ace first})\\mbox{Pr}(\\mbox{Face card second}\\mid \\mbox{Ace first}) +\\\\\n\\mbox{Pr}(\\mbox{Face card first})\\mbox{Pr}(\\mbox{Ace}\\mid \\mbox{Face card first}) =\\\\\n\\frac{1}{13}\\frac{16}{51} + \\frac{4}{13}\\frac{4}{51} \\approx 0.0483\n\\]"
+    "text": "Multiplication rule: example\n\nFor example:\n\n\\[\n\\mbox{Pr}(\\mbox{Blackjack in first hand}) = \\\\\n\\mbox{Pr}(\\mbox{Ace first})\\mbox{Pr}(\\mbox{Face card second}\\mid \\mbox{Ace first}) +\\\\\n\\mbox{Pr}(\\mbox{Face card first})\\mbox{Pr}(\\mbox{Ace}\\mid \\mbox{Face card first}) =\\\\\n\\frac{1}{13}\\frac{16}{51} + \\frac{4}{13}\\frac{4}{51} \\approx 0.0483\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#multiplication-rule-for-multipel-events",
     "href": "slides/20-intro-to-prob.html#multiplication-rule-for-multipel-events",
     "title": "Introduction to Probability",
     "section": "Multiplication rule for multipel events",
-    "text": "Multiplication rule for multipel events\n\nWe can use induction to expand for more events:\n\n\\[\n\\mbox{Pr}(A \\cap B \\cap C) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\\mbox{Pr}(C \\mid A \\cap B)\n\\]\n\nWhen dealing with independent events, the multiplication rule becomes simpler:\n\n\\[\n\\mbox{Pr}(A \\cap B \\cap C) = \\mbox{Pr}(A)\\mbox{Pr}(B)\\mbox{Pr}(C)\n\\]"
+    "text": "Multiplication rule for multipel events\n\nWe can use induction to expand for more events:\n\n\\[\n\\mbox{Pr}(A \\cap B \\cap C) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\\mbox{Pr}(C \\mid A \\cap B)\n\\]\n\nWhen dealing with independent events, the multiplication rule becomes simpler:\n\n\\[\n\\mbox{Pr}(A \\cap B \\cap C) = \\mbox{Pr}(A)\\mbox{Pr}(B)\\mbox{Pr}(C)\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#multiplication-rule-example-1",
     "href": "slides/20-intro-to-prob.html#multiplication-rule-example-1",
     "title": "Introduction to Probability",
     "section": "Multiplication rule example",
-    "text": "Multiplication rule example\n\nImagine a court case in which the suspect was described as having a mustache and a beard.\nThe defendant has both and an “expert” testifies that 1/10 men have beards and 1/5 have mustaches.\nUsing the multiplication rule, he concludes that \\(1/10 \\times 1/5\\) or 0.02 have both.\nBut this assumes independence!\nIf the conditional probability of a man having a mustache, conditional on him having a beard, is .95, then the probability is: \\(1/10 \\times 95/100 = 0.095\\)"
+    "text": "Multiplication rule example\n\nImagine a court case in which the suspect was described as having a mustache and a beard.\nThe defendant has both and an “expert” testifies that 1/10 men have beards and 1/5 have mustaches.\nUsing the multiplication rule, he concludes that \\(1/10 \\times 1/5\\) or 0.02 have both.\nBut this assumes independence!\nIf the conditional probability of a man having a mustache, conditional on him having a beard, is .95, then the probability is: \\(1/10 \\times 95/100 = 0.095\\)",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#computing-conditional-probability",
     "href": "slides/20-intro-to-prob.html#computing-conditional-probability",
     "title": "Introduction to Probability",
     "section": "computing conditional probability",
-    "text": "computing conditional probability\n\nThe multiplication rule also gives us a general formula for computing conditional probabilities:\n\n\\[\n\\mbox{Pr}(B \\mid A) = \\frac{\\mbox{Pr}(A \\cap B)}{ \\mbox{Pr}(A)}\n\\]"
+    "text": "computing conditional probability\n\nThe multiplication rule also gives us a general formula for computing conditional probabilities:\n\n\\[\n\\mbox{Pr}(B \\mid A) = \\frac{\\mbox{Pr}(A \\cap B)}{ \\mbox{Pr}(A)}\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#addition-rule",
     "href": "slides/20-intro-to-prob.html#addition-rule",
     "title": "Introduction to Probability",
     "section": "Addition rule",
-    "text": "Addition rule\n\nThe ruleThe code\n\n\n\\[\n\\mbox{Pr}(A \\cup B) = \\mbox{Pr}(A) + \\mbox{Pr}(B) - \\mbox{Pr}(A \\cap B)\n\\]\n\n\n\n\n\n\n\n\nlibrary(VennDiagram) \nrafalib::mypar() # sets some base plotting parameters, relevant to base R plots\ngrid.newpage() # clears the curetn grid graphics page\ntmp &lt;- draw.pairwise.venn(22, 20, 11, category = c(\"A\", \"B\"),  #(areaA=22, areaB=20, coss.area=11)\n                   lty = rep(\"blank\", 2), # remove the circle borders \n                   fill = c(\"light blue\", \"pink\"),  \n                   alpha = rep(0.5, 2),   \n                   cat.dist = rep(0.025, 2), # distance of category lables from the circles\n                   cex = 0, # tex size fore region counts. 0 hides the numbers\n                   cat.cex = rep(2.5,2)) # text size for the category labels"
+    "text": "Addition rule\n\nThe ruleThe code\n\n\n\\[\n\\mbox{Pr}(A \\cup B) = \\mbox{Pr}(A) + \\mbox{Pr}(B) - \\mbox{Pr}(A \\cap B)\n\\]\n\n\n\n\n\n\n\n\nlibrary(VennDiagram) \nrafalib::mypar() # sets some base plotting parameters, relevant to base R plots\ngrid.newpage() # clears the curetn grid graphics page\ntmp &lt;- draw.pairwise.venn(22, 20, 11, category = c(\"A\", \"B\"),  #(areaA=22, areaB=20, coss.area=11)\n                   lty = rep(\"blank\", 2), # remove the circle borders \n                   fill = c(\"light blue\", \"pink\"),  \n                   alpha = rep(0.5, 2),   \n                   cat.dist = rep(0.025, 2), # distance of category lables from the circles\n                   cex = 0, # tex size fore region counts. 0 hides the numbers\n                   cat.cex = rep(2.5,2)) # text size for the category labels",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#random-variables",
     "href": "slides/20-intro-to-prob.html#random-variables",
     "title": "Introduction to Probability",
     "section": "Random Variables",
-    "text": "Random Variables\n\nRandom variables are numeric outcomes resulting from random processes (formally, a mapping)\n\\(X: \\text{outcome}\\mapsto \\mathbb{R}\\)\ndefine X to be 1 if a bead is blue and red otherwise:\n\n\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- ifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 0\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 1\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 0"
+    "text": "Random Variables\n\nRandom variables are numeric outcomes resulting from random processes (formally, a mapping)\n\\(X: \\text{outcome}\\mapsto \\mathbb{R}\\)\ndefine X to be 1 if a bead is blue and red otherwise:\n\n\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- ifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 0\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 1\n\nifelse(sample(beads, 1) == \"blue\", 1, 0)\n\n[1] 0",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#random-variables-examples",
     "href": "slides/20-intro-to-prob.html#random-variables-examples",
     "title": "Introduction to Probability",
     "section": "Random Variables examples",
-    "text": "Random Variables examples\n\nMore interesting random variables are:\n\nthe number of times we win in a game of chance,\nthe number of democrats in a random sample of 1,000 voters, and\nthe proportion of patients randomly assigned to a control group in drug trial."
+    "text": "Random Variables examples\n\nMore interesting random variables are:\n\nthe number of times we win in a game of chance,\nthe number of democrats in a random sample of 1,000 voters, and\nthe proportion of patients randomly assigned to a control group in drug trial.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#discrete-probability",
     "href": "slides/20-intro-to-prob.html#discrete-probability",
     "title": "Introduction to Probability",
     "section": "Discrete probability",
-    "text": "Discrete probability\nIf I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%."
+    "text": "Discrete probability\nIf I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#discrete-probability-1",
     "href": "slides/20-intro-to-prob.html#discrete-probability-1",
     "title": "Introduction to Probability",
     "section": "Discrete probability",
-    "text": "Discrete probability\n\nA precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event pick a red bead.\nSince each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue."
+    "text": "Discrete probability\n\nA precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event pick a red bead.\nSince each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#discrete-probability-frequentist-way",
     "href": "slides/20-intro-to-prob.html#discrete-probability-frequentist-way",
     "title": "Introduction to Probability",
     "section": "Discrete probability: frequentist way",
-    "text": "Discrete probability: frequentist way\n\nA more tangible way to think about the probability of an event is as the proportion of times the event occurs when we repeat the experiment an infinite number of times, independently, and under the same conditions.\nThis is the frequentist way of thinking about probability."
+    "text": "Discrete probability: frequentist way\n\nA more tangible way to think about the probability of an event is as the proportion of times the event occurs when we repeat the experiment an infinite number of times, independently, and under the same conditions.\nThis is the frequentist way of thinking about probability.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#monte-carlo",
     "href": "slides/20-intro-to-prob.html#monte-carlo",
     "title": "Introduction to Probability",
     "section": "Monte Carlo",
-    "text": "Monte Carlo\n\nMonte Carlo simulations use computers to perform these experiments.\nRandom number generators permit us to mimic the process of picking at random.\nThe sample function in R uses a random number generator:\n\n\nbeads &lt;- rep(c(\"red\", \"blue\"), times = c(2,3))\nsample(beads, 1)\n\n[1] \"blue\""
+    "text": "Monte Carlo\n\nMonte Carlo simulations use computers to perform these experiments.\nRandom number generators permit us to mimic the process of picking at random.\nThe sample function in R uses a random number generator:\n\n\nbeads &lt;- rep(c(\"red\", \"blue\"), times = c(2,3))\nsample(beads, 1)\n\n[1] \"blue\"",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#monte-carlo-1",
     "href": "slides/20-intro-to-prob.html#monte-carlo-1",
     "title": "Introduction to Probability",
     "section": "Monte Carlo",
-    "text": "Monte Carlo\n\nIf we repeat the experiment over and over, we can define the probability using the frequentists definition\n\n\nn &lt;- 10^7\nx &lt;- sample(beads, n, replace = TRUE)\ntable(x)/n\n\nx\n     blue       red \n0.6002232 0.3997768 \n\n\n\nNote the definition is for \\(n=\\infty\\). In practice we use very large numbers to get very close."
+    "text": "Monte Carlo\n\nIf we repeat the experiment over and over, we can define the probability using the frequentists definition\n\n\nn &lt;- 10^7\nx &lt;- sample(beads, n, replace = TRUE)\ntable(x)/n\n\nx\n     blue       red \n0.6002232 0.3997768 \n\n\n\nNote the definition is for \\(n=\\infty\\). In practice we use very large numbers to get very close.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#probability-distributions",
     "href": "slides/20-intro-to-prob.html#probability-distributions",
     "title": "Introduction to Probability",
     "section": "Probability distributions",
-    "text": "Probability distributions\nAn example of a probability distribution is:\n\n\n\nPr(picking a Republican)\n=\n0.44\n\n\nPr(picking a Democrat)\n=\n0.44\n\n\nPr(picking an undecided)\n=\n0.10\n\n\nPr(picking a Green)\n=\n0.02"
+    "text": "Probability distributions\nAn example of a probability distribution is:\n\n\n\nPr(picking a Republican)\n=\n0.44\n\n\nPr(picking a Democrat)\n=\n0.44\n\n\nPr(picking an undecided)\n=\n0.10\n\n\nPr(picking a Green)\n=\n0.02",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#setting-the-random-seed",
     "href": "slides/20-intro-to-prob.html#setting-the-random-seed",
     "title": "Introduction to Probability",
     "section": "Setting the random seed",
-    "text": "Setting the random seed\n\nset.seed(2026-02-14)  \n\n\nWhen using random number generators you get a different answer each time.\nThis is fine, but if you want to ensure that results are consistent with each run, you can set R’s random number generation seed to a specific number."
+    "text": "Setting the random seed\n\nset.seed(2026-02-14)  \n\n\nWhen using random number generators you get a different answer each time.\nThis is fine, but if you want to ensure that results are consistent with each run, you can set R’s random number generation seed to a specific number.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations",
     "href": "slides/20-intro-to-prob.html#combinations-and-permutations",
     "title": "Introduction to Probability",
     "section": "Combinations and permutations",
-    "text": "Combinations and permutations\n\nBeing able to count combinations and permutations is an important part of performing discrete probability computations.\nthe function expand.grid\nand the gtools functions permutatios and combinations.\ngenerate a deck of cards:\n\n\nsuits &lt;- c(\"Diamonds\", \"Clubs\", \"Hearts\", \"Spades\") \nnumbers &lt;- c(\"Ace\", \"Deuce\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\",  \n             \"Eight\", \"Nine\", \"Ten\", \"Jack\", \"Queen\", \"King\") \ndeck &lt;- expand.grid(number = numbers, suit = suits) # expand.grid makes a df of all combinations of (number, suit). Vary number fist: Ace Diamonds, Deuce Diamonds, ...,\ndeck &lt;- paste(deck$number, deck$suit) # combine two columns with a space\nhead(deck,3)\n\n[1] \"Ace Diamonds\"   \"Deuce Diamonds\" \"Three Diamonds\""
+    "text": "Combinations and permutations\n\nBeing able to count combinations and permutations is an important part of performing discrete probability computations.\nthe function expand.grid\nand the gtools functions permutatios and combinations.\ngenerate a deck of cards:\n\n\nsuits &lt;- c(\"Diamonds\", \"Clubs\", \"Hearts\", \"Spades\") \nnumbers &lt;- c(\"Ace\", \"Deuce\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\",  \n             \"Eight\", \"Nine\", \"Ten\", \"Jack\", \"Queen\", \"King\") \ndeck &lt;- expand.grid(number = numbers, suit = suits) # expand.grid makes a df of all combinations of (number, suit). Vary number fist: Ace Diamonds, Deuce Diamonds, ...,\ndeck &lt;- paste(deck$number, deck$suit) # combine two columns with a space\nhead(deck,3)\n\n[1] \"Ace Diamonds\"   \"Deuce Diamonds\" \"Three Diamonds\"",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations-1",
     "href": "slides/20-intro-to-prob.html#combinations-and-permutations-1",
     "title": "Introduction to Probability",
     "section": "Combinations and permutations",
-    "text": "Combinations and permutations\n\nchoose two numbers from a list consisting of 1,2,3:\n\n\nlibrary(gtools) \npermutations(3, 2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    1\n[4,]    2    3\n[5,]    3    1\n[6,]    3    2\n\n\n\nThe order matters here: 3,1 is different than 1,3.\n(1,1), (2,2), and (3,3) do not appear because once we pick a number, it can’t appear again."
+    "text": "Combinations and permutations\n\nchoose two numbers from a list consisting of 1,2,3:\n\n\nlibrary(gtools) \npermutations(3, 2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    1\n[4,]    2    3\n[5,]    3    1\n[6,]    3    2\n\n\n\nThe order matters here: 3,1 is different than 1,3.\n(1,1), (2,2), and (3,3) do not appear because once we pick a number, it can’t appear again.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations-2",
     "href": "slides/20-intro-to-prob.html#combinations-and-permutations-2",
     "title": "Introduction to Probability",
     "section": "Combinations and permutations",
-    "text": "Combinations and permutations\n\nTo compute all possible ways we can choose two cards when the order matters, we type, you can use the v option:\n\n\nhands &lt;- permutations(52, 2, v = deck)"
+    "text": "Combinations and permutations\n\nTo compute all possible ways we can choose two cards when the order matters, we type, you can use the v option:\n\n\nhands &lt;- permutations(52, 2, v = deck)",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#combinations-and-permutations-3",
     "href": "slides/20-intro-to-prob.html#combinations-and-permutations-3",
     "title": "Introduction to Probability",
     "section": "Combinations and permutations",
-    "text": "Combinations and permutations\n\nWhat about if the order does not matter? For example, in Blackjack, if you obtain an Ace and a face card in the first draw, it is called a Natural 21, and you win automatically.\nIf we wanted to compute the probability of this happening, we would enumerate the combinations, not the permutations, since the order does not matter.\n\n\ncombinations(3,2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    3"
+    "text": "Combinations and permutations\n\nWhat about if the order does not matter? For example, in Blackjack, if you obtain an Ace and a face card in the first draw, it is called a Natural 21, and you win automatically.\nIf we wanted to compute the probability of this happening, we would enumerate the combinations, not the permutations, since the order does not matter.\n\n\ncombinations(3,2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    3",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#continuous-probability",
     "href": "slides/20-intro-to-prob.html#continuous-probability",
     "title": "Introduction to Probability",
     "section": "Continuous probability",
-    "text": "Continuous probability\n\nWhen summarizing a list of numeric values, such as heights, it is not useful to construct a distribution that defines a proportion to each possible outcome.\nSimilarly, for a random variable that can take any value in a continuous set, it impossible to assign a positive probabilities to the infinite number of possible values."
+    "text": "Continuous probability\n\nWhen summarizing a list of numeric values, such as heights, it is not useful to construct a distribution that defines a proportion to each possible outcome.\nSimilarly, for a random variable that can take any value in a continuous set, it impossible to assign a positive probabilities to the infinite number of possible values.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#ecdf",
     "href": "slides/20-intro-to-prob.html#ecdf",
     "title": "Introduction to Probability",
     "section": "eCDF",
-    "text": "eCDF\n\nWe use the heights of adult male students as an example:\n\n\nlibrary(tidyverse) \nlibrary(dslabs) \nx &lt;- heights %&gt;% filter(sex == \"Male\") %&gt;% pull(height) \n\n\nand defined the empirical cumulative distribution function (eCDF) as.\n\n\nF &lt;- function(a) mean(x &lt;= a) \n\n\nwhich, for any value a, gives the proportion of values in the list x that are smaller or equal than a."
+    "text": "eCDF\n\nWe use the heights of adult male students as an example:\n\n\nlibrary(tidyverse) \nlibrary(dslabs) \nx &lt;- heights %&gt;% filter(sex == \"Male\") %&gt;% pull(height) \n\n\nand defined the empirical cumulative distribution function (eCDF) as.\n\n\nF &lt;- function(a) mean(x &lt;= a) \n\n\nwhich, for any value a, gives the proportion of values in the list x that are smaller or equal than a.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#cdf",
     "href": "slides/20-intro-to-prob.html#cdf",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nThere is a connection to the empirical CDF.\nIf I randomly pick one of the male students, what is the chance that he is taller than 70.5 inches?\nSince every student has the same chance of being picked, the answer is the proportion of students that are taller than 70.5 inches."
+    "text": "CDF\n\nThere is a connection to the empirical CDF.\nIf I randomly pick one of the male students, what is the chance that he is taller than 70.5 inches?\nSince every student has the same chance of being picked, the answer is the proportion of students that are taller than 70.5 inches.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#cdf-1",
     "href": "slides/20-intro-to-prob.html#cdf-1",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nUsing the eCDF we obtain an answer by typing:\n\n\n1 - F(70.5) \n\n[1] 0.3633005\n\n\n\nThe CDF is a version of the eCDF that assigns theoretical probabilities for each \\(a\\) rather than proportions computed from data."
+    "text": "CDF\n\nUsing the eCDF we obtain an answer by typing:\n\n\n1 - F(70.5) \n\n[1] 0.3633005\n\n\n\nThe CDF is a version of the eCDF that assigns theoretical probabilities for each \\(a\\) rather than proportions computed from data.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#cdf-2",
     "href": "slides/20-intro-to-prob.html#cdf-2",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nSpecifically, the CDF for a random outcome \\(X\\) defines, for any number \\(a\\), the probability of observing a value less than or equal to \\(a\\).\n\n\\[ F(a) = \\mbox{Pr}(X \\leq a) \\]\n\nOnce a CDF is defined, we can use it to compute the probability of any subset of values."
+    "text": "CDF\n\nSpecifically, the CDF for a random outcome \\(X\\) defines, for any number \\(a\\), the probability of observing a value less than or equal to \\(a\\).\n\n\\[ F(a) = \\mbox{Pr}(X \\leq a) \\]\n\nOnce a CDF is defined, we can use it to compute the probability of any subset of values.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#cdf-3",
     "href": "slides/20-intro-to-prob.html#cdf-3",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nFor instance, the probability of a student being between height a and height b is:\n\n\\[\n\\mbox{Pr}(a &lt; X \\leq b) = F(b)-F(a)\n\\]\n\nSince we can compute the probability for any possible event using this approach, the CDF defines the probability distribution."
+    "text": "CDF\n\nFor instance, the probability of a student being between height a and height b is:\n\n\\[\n\\mbox{Pr}(a &lt; X \\leq b) = F(b)-F(a)\n\\]\n\nSince we can compute the probability for any possible event using this approach, the CDF defines the probability distribution.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#probability-density-function",
     "href": "slides/20-intro-to-prob.html#probability-density-function",
     "title": "Introduction to Probability",
     "section": "Probability density function",
-    "text": "Probability density function\n\nA mathematical result that is very useful in practice is that, for most CDFs, we can define a function, call it \\(f(x)\\), that permits us to construct the CDF using Calculus, like this:\n\n\\[\nF(b) - F(a) = \\int_a^b f(x)\\,dx\n\\]\n\n\\(f(x)\\) is referred to as the probability density function."
+    "text": "Probability density function\n\nA mathematical result that is very useful in practice is that, for most CDFs, we can define a function, call it \\(f(x)\\), that permits us to construct the CDF using Calculus, like this:\n\n\\[\nF(b) - F(a) = \\int_a^b f(x)\\,dx\n\\]\n\n\\(f(x)\\) is referred to as the probability density function.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#probability-density-function-1",
     "href": "slides/20-intro-to-prob.html#probability-density-function-1",
     "title": "Introduction to Probability",
     "section": "Probability density function",
-    "text": "Probability density function\n\nThe intuition is that even for continuous outcomes we can define tiny intervals, that are almost as small as points, that have positive probabilities.\nIf we think of the size of these intervals as the base of a rectangle, the probability density function \\(f\\) determines the height of the rectangle so that the summing up of the area of these rectangles approximate the probability \\(F(b) - F(a)\\)."
+    "text": "Probability density function\n\nThe intuition is that even for continuous outcomes we can define tiny intervals, that are almost as small as points, that have positive probabilities.\nIf we think of the size of these intervals as the base of a rectangle, the probability density function \\(f\\) determines the height of the rectangle so that the summing up of the area of these rectangles approximate the probability \\(F(b) - F(a)\\).",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#probability-density-function-2",
     "href": "slides/20-intro-to-prob.html#probability-density-function-2",
     "title": "Introduction to Probability",
     "section": "Probability density function",
-    "text": "Probability density function\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ncont &lt;- data.frame(x = seq(0, 5, len = 300), y = dgamma(seq(0, 5, len = 300), 2, 2)) #Gamma(shape=2, rate=2): f(a, b)=b^a/Gamma(a) x^{a-1}e^{-bx}\ndisc &lt;- data.frame(x = seq(0, 5, 0.075), y = dgamma(seq(0, 5, 0.075), 2, 2)) \nggplot(mapping = aes(x, y)) + \n  geom_col(data =  disc) + \n  geom_line(data = cont) + \n  ylab(\"f(x)\") \n\n\ngeom_bar(stat=“count”): (default)for raw data; geom_col(stat=“identity”): (default) need x and y, use y values"
+    "text": "Probability density function\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ncont &lt;- data.frame(x = seq(0, 5, len = 300), y = dgamma(seq(0, 5, len = 300), 2, 2)) #Gamma(shape=2, rate=2): f(a, b)=b^a/Gamma(a) x^{a-1}e^{-bx}\ndisc &lt;- data.frame(x = seq(0, 5, 0.075), y = dgamma(seq(0, 5, 0.075), 2, 2)) \nggplot(mapping = aes(x, y)) + \n  geom_col(data =  disc) + \n  geom_line(data = cont) + \n  ylab(\"f(x)\") \n\n\ngeom_bar(stat=“count”): (default)for raw data; geom_col(stat=“identity”): (default) need x and y, use y values",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#normal-distribution",
     "href": "slides/20-intro-to-prob.html#normal-distribution",
     "title": "Introduction to Probability",
     "section": "Normal distribution",
-    "text": "Normal distribution\n\nThe probability density function is given by:\n\n\\[f(x) = e^{-\\frac{1}{2}\\left( \\frac{x-m}{s} \\right)^2} \\]\n\nThe cumulative distribution for the normal distribution in R can be obtained with the function pnorm."
+    "text": "Normal distribution\n\nThe probability density function is given by:\n\n\\[f(x) = e^{-\\frac{1}{2}\\left( \\frac{x-m}{s} \\right)^2} \\]\n\nThe cumulative distribution for the normal distribution in R can be obtained with the function pnorm.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#cdf-of-a-normal-distribution",
     "href": "slides/20-intro-to-prob.html#cdf-of-a-normal-distribution",
     "title": "Introduction to Probability",
     "section": "cdf of a normal distribution",
-    "text": "cdf of a normal distribution\n\na random quantity is normally distributed with average m and standard deviation s\n\n\nF(a) = pnorm(a, m, s) \n\n\nif we use the normal approximation, What is the probability that a randomly selected student is taller then 70.5 inches?\n\n\nm &lt;- mean(x) \ns &lt;- sd(x) \n1 - pnorm(70.5, m, s) \n\n[1] 0.371369"
+    "text": "cdf of a normal distribution\n\na random quantity is normally distributed with average m and standard deviation s\n\n\nF(a) = pnorm(a, m, s) \n\n\nif we use the normal approximation, What is the probability that a randomly selected student is taller then 70.5 inches?\n\n\nm &lt;- mean(x) \ns &lt;- sd(x) \n1 - pnorm(70.5, m, s) \n\n[1] 0.371369",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#distributions-as-approximations",
     "href": "slides/20-intro-to-prob.html#distributions-as-approximations",
     "title": "Introduction to Probability",
     "section": "Distributions as approximations",
-    "text": "Distributions as approximations\n\nThe graphThe code\n\n\n\nBelow is a plot of that probability distribution:\n\n\n\n\n\n\n\n\n\nrafalib::mypar() \nplot(prop.table(table(x)), xlab = \"a = Height in inches\", ylab = \"Pr(X = a)\") \n\n\ntable(): frequency counts. Default drops NA, unless table(x, useNA=\"ifany\")\nprop.table(): divides those counts by the total count-&gt;relative frequency\nfor 2-way table\n\n\nprop.table(table(a, b), margin = 1)  # rows sum to 1\nprop.table(table(a, b), margin = 2)  # cols sum to 1"
+    "text": "Distributions as approximations\n\nThe graphThe code\n\n\n\nBelow is a plot of that probability distribution:\n\n\n\n\n\n\n\n\n\nrafalib::mypar() \nplot(prop.table(table(x)), xlab = \"a = Height in inches\", ylab = \"Pr(X = a)\") \n\n\ntable(): frequency counts. Default drops NA, unless table(x, useNA=\"ifany\")\nprop.table(): divides those counts by the total count-&gt;relative frequency\nfor 2-way table\n\n\nprop.table(table(a, b), margin = 1)  # rows sum to 1\nprop.table(table(a, b), margin = 2)  # cols sum to 1",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#does-it-make-sense",
     "href": "slides/20-intro-to-prob.html#does-it-make-sense",
     "title": "Introduction to Probability",
     "section": "Does it make sense?",
-    "text": "Does it make sense?\n\nWhile most students rounded up their heights to the nearest inch, others reported values with more precision.\nOne student reported his height to be 69.6850393700787, which is 177 centimeters.\nThe probability assigned to this height is 0.0012315 or 1 in 812.\nThe probability for 70 inches is much higher at 0.1059113,\nDoes it really make sense to think of the probability of being exactly 70 inches as being different than 69.6850393700787?"
+    "text": "Does it make sense?\n\nWhile most students rounded up their heights to the nearest inch, others reported values with more precision.\nOne student reported his height to be 69.6850393700787, which is 177 centimeters.\nThe probability assigned to this height is 0.0012315 or 1 in 812.\nThe probability for 70 inches is much higher at 0.1059113,\nDoes it really make sense to think of the probability of being exactly 70 inches as being different than 69.6850393700787?",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#use-a-continuous-variable",
     "href": "slides/20-intro-to-prob.html#use-a-continuous-variable",
     "title": "Introduction to Probability",
     "section": "Use a continuous variable",
-    "text": "Use a continuous variable\n\nClearly it is much more useful to treat this outcome as a continuous numeric variable, keeping in mind that very few people, or perhaps none, are exactly 70 inches, and that the reason we get more values at 70 is because people round to the nearest inch.\nWith continuous distributions, the probability of a singular value is 0.\nWe therefore could ask, what is the probability that someone is between 69.5 and 70.5?"
+    "text": "Use a continuous variable\n\nClearly it is much more useful to treat this outcome as a continuous numeric variable, keeping in mind that very few people, or perhaps none, are exactly 70 inches, and that the reason we get more values at 70 is because people round to the nearest inch.\nWith continuous distributions, the probability of a singular value is 0.\nWe therefore could ask, what is the probability that someone is between 69.5 and 70.5?",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#proportioins-from-data",
     "href": "slides/20-intro-to-prob.html#proportioins-from-data",
     "title": "Introduction to Probability",
     "section": "Proportioins from data",
-    "text": "Proportioins from data\n\nthe normal distribution is useful for approximating the proportion of students reporting values in intervals like the following three:\n\n\nmean(x &lt;= 68.5) - mean(x &lt;= 67.5) \n\n[1] 0.114532\n\nmean(x &lt;= 69.5) - mean(x &lt;= 68.5) \n\n[1] 0.1194581\n\nmean(x &lt;= 70.5) - mean(x &lt;= 69.5) \n\n[1] 0.1219212"
+    "text": "Proportioins from data\n\nthe normal distribution is useful for approximating the proportion of students reporting values in intervals like the following three:\n\n\nmean(x &lt;= 68.5) - mean(x &lt;= 67.5) \n\n[1] 0.114532\n\nmean(x &lt;= 69.5) - mean(x &lt;= 68.5) \n\n[1] 0.1194581\n\nmean(x &lt;= 70.5) - mean(x &lt;= 69.5) \n\n[1] 0.1219212",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#proportions-from-normal-distribution",
     "href": "slides/20-intro-to-prob.html#proportions-from-normal-distribution",
     "title": "Introduction to Probability",
     "section": "Proportions from normal distribution",
-    "text": "Proportions from normal distribution\n\nNote how close we get with the normal approximation:\n\n\npnorm(68.5, m, s) - pnorm(67.5, m, s)  \n\n[1] 0.1031077\n\npnorm(69.5, m, s) - pnorm(68.5, m, s)  \n\n[1] 0.1097121\n\npnorm(70.5, m, s) - pnorm(69.5, m, s)  \n\n[1] 0.1081743\n\n\n\nHowever, the approximation is not as useful for other intervals."
+    "text": "Proportions from normal distribution\n\nNote how close we get with the normal approximation:\n\n\npnorm(68.5, m, s) - pnorm(67.5, m, s)  \n\n[1] 0.1031077\n\npnorm(69.5, m, s) - pnorm(68.5, m, s)  \n\n[1] 0.1097121\n\npnorm(70.5, m, s) - pnorm(69.5, m, s)  \n\n[1] 0.1081743\n\n\n\nHowever, the approximation is not as useful for other intervals.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#problems-caused-by-discretization",
     "href": "slides/20-intro-to-prob.html#problems-caused-by-discretization",
     "title": "Introduction to Probability",
     "section": "Problems caused by discretization",
-    "text": "Problems caused by discretization\n\nnotice how the approximation breaks down:\n\n\nmean(x &lt;= 70.9) - mean(x &lt;= 70.1) \n\n[1] 0.02216749\n\n\n\npnorm(70.9, m, s) - pnorm(70.1, m, s) \n\n[1] 0.08359562\n\n\n\nIn general, we call this situation discretization.\nAlthough the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding.\nAs long as we are aware of how to deal with this reality, the normal approximation can still be a very useful tool."
+    "text": "Problems caused by discretization\n\nnotice how the approximation breaks down:\n\n\nmean(x &lt;= 70.9) - mean(x &lt;= 70.1) \n\n[1] 0.02216749\n\n\n\npnorm(70.9, m, s) - pnorm(70.1, m, s) \n\n[1] 0.08359562\n\n\n\nIn general, we call this situation discretization.\nAlthough the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding.\nAs long as we are aware of how to deal with this reality, the normal approximation can still be a very useful tool.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#the-probability-density",
     "href": "slides/20-intro-to-prob.html#the-probability-density",
     "title": "Introduction to Probability",
     "section": "The probability density",
-    "text": "The probability density\n\nFor categorical distributions, we can define the probability of a category.\nFor example, a roll of a die, let’s call it \\(X\\), can be 1, 2, 3, 4, 5 or 6.\nThe probability of 4 is defined as:\n\n\\[\n\\mbox{Pr}(X=4) = 1/6\n\\]"
+    "text": "The probability density\n\nFor categorical distributions, we can define the probability of a category.\nFor example, a roll of a die, let’s call it \\(X\\), can be 1, 2, 3, 4, 5 or 6.\nThe probability of 4 is defined as:\n\n\\[\n\\mbox{Pr}(X=4) = 1/6\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#pdf-for-discrete-rvs",
     "href": "slides/20-intro-to-prob.html#pdf-for-discrete-rvs",
     "title": "Introduction to Probability",
     "section": "pdf for discrete RVs",
-    "text": "pdf for discrete RVs\n\nThe CDF can then easily be defined:\n\n\\[\n\\begin{aligned}\nF(4) &= &  \\mbox{Pr}(X\\leq 4) \\\\\n&= &  \\mbox{Pr}(X = 4) +  \\mbox{Pr}(X = 3) \\\\\n& + & \\mbox{Pr}(X = 2) +  \\mbox{Pr}(X = 1)\n\\end{aligned}\n\\]"
+    "text": "pdf for discrete RVs\n\nThe CDF can then easily be defined:\n\n\\[\n\\begin{aligned}\nF(4) &= &  \\mbox{Pr}(X\\leq 4) \\\\\n&= &  \\mbox{Pr}(X = 4) +  \\mbox{Pr}(X = 3) \\\\\n& + & \\mbox{Pr}(X = 2) +  \\mbox{Pr}(X = 1)\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#pdf-for-continuous-rvs",
     "href": "slides/20-intro-to-prob.html#pdf-for-continuous-rvs",
     "title": "Introduction to Probability",
     "section": "pdf for continuous RVs",
-    "text": "pdf for continuous RVs\n\nAlthough for continuous distributions the probability of a single value \\(\\mbox{Pr}(X=x)\\) is not defined, there is a theoretical definition that has a similar interpretation.\nThe probability density at \\(x\\) is defined as the function \\(f(a)\\) such that:\n\n\\[\nF(a) = \\mbox{Pr}(X\\leq a) = \\int_{-\\infty}^a f(x)\\, dx\n\\]"
+    "text": "pdf for continuous RVs\n\nAlthough for continuous distributions the probability of a single value \\(\\mbox{Pr}(X=x)\\) is not defined, there is a theoretical definition that has a similar interpretation.\nThe probability density at \\(x\\) is defined as the function \\(f(a)\\) such that:\n\n\\[\nF(a) = \\mbox{Pr}(X\\leq a) = \\int_{-\\infty}^a f(x)\\, dx\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#normal-distribution-example",
     "href": "slides/20-intro-to-prob.html#normal-distribution-example",
     "title": "Introduction to Probability",
     "section": "Normal distribution example",
-    "text": "Normal distribution example\n\nFor example, to use the normal approximation to estimate the probability of someone being taller than 76 inches, we use:\n\n\n1 - pnorm(76, m, s) \n\n[1] 0.03206008"
+    "text": "Normal distribution example\n\nFor example, to use the normal approximation to estimate the probability of someone being taller than 76 inches, we use:\n\n\n1 - pnorm(76, m, s) \n\n[1] 0.03206008",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#pdf-of-normal-distribution",
     "href": "slides/20-intro-to-prob.html#pdf-of-normal-distribution",
     "title": "Introduction to Probability",
     "section": "pdf of normal distribution",
-    "text": "pdf of normal distribution\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ndat &lt;- tibble(x = seq(-4, 4, length = 100)*s + m, # x\\in [m-4s, m+4s]\n              y = dnorm(x, m, s)) \ndat_ribbon &lt;- filter(dat, x &gt;= 2*s + m) # the right tail at least 2 sd from the mean\nggplot(dat, aes(x, y)) + \n  geom_line() + \n  geom_ribbon(aes(ymin = 0, ymax = y), data = dat_ribbon) \n\n\ngeom_ribbon(): add a shading"
+    "text": "pdf of normal distribution\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ndat &lt;- tibble(x = seq(-4, 4, length = 100)*s + m, # x\\in [m-4s, m+4s]\n              y = dnorm(x, m, s)) \ndat_ribbon &lt;- filter(dat, x &gt;= 2*s + m) # the right tail at least 2 sd from the mean\nggplot(dat, aes(x, y)) + \n  geom_line() + \n  geom_ribbon(aes(ymin = 0, ymax = y), data = dat_ribbon) \n\n\ngeom_ribbon(): add a shading",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#the-probability-density-1",
@@ -382,7 +541,10 @@
     "href": "slides/20-intro-to-prob.html#monte-carlo-2",
     "title": "Introduction to Probability",
     "section": "Monte Carlo",
-    "text": "Monte Carlo\n\nThe codeThe graph\n\n\n\nB &lt;- 10000 \ntallest &lt;- replicate(B, { \n  simulated_data &lt;- rnorm(800, m, s) \n  max(simulated_data) \n}) \n\n\nreplicate(B, {...}): run the block inside {...} B times.\nHaving a seven-footer is quite rare:\n\n\nmean(tallest &gt;= 7*12) \n\n[1] 0.0192\n\n\n\n\n\nHere is the resulting distribution:\n\n\n\n\n\n\n\nNote that it does not look normal."
+    "text": "Monte Carlo\n\nThe codeThe graph\n\n\n\nB &lt;- 10000 \ntallest &lt;- replicate(B, { \n  simulated_data &lt;- rnorm(800, m, s) \n  max(simulated_data) \n}) \n\n\nreplicate(B, {...}): run the block inside {...} B times.\nHaving a seven-footer is quite rare:\n\n\nmean(tallest &gt;= 7*12) \n\n[1] 0.0192\n\n\n\n\n\nHere is the resulting distribution:\n\n\n\n\n\n\n\nNote that it does not look normal.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#monte-carlo-3",
@@ -431,14 +593,20 @@
     "href": "slides/20-intro-to-prob.html#continuous-distributions",
     "title": "Introduction to Probability",
     "section": "Continuous distributions",
-    "text": "Continuous distributions\n\nThe normal distribution is not the only useful theoretical distribution.\nOther continuous distributions: the student-t, Chi-square, exponential, gamma, beta, and beta-binomial.\nR provides functions to compute the density, the quantiles, the cumulative distribution functions and to generate Monte Carlo simulations."
+    "text": "Continuous distributions\n\nThe normal distribution is not the only useful theoretical distribution.\nOther continuous distributions: the student-t, Chi-square, exponential, gamma, beta, and beta-binomial.\nR provides functions to compute the density, the quantiles, the cumulative distribution functions and to generate Monte Carlo simulations.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#continuous-distributions-1",
     "href": "slides/20-intro-to-prob.html#continuous-distributions-1",
     "title": "Introduction to Probability",
     "section": "Continuous distributions",
-    "text": "Continuous distributions\n\nThe codeThe graph\n\n\n\nR uses the letters d, q, p, and r in front of a shorthand for the distribution.\nWe have already seen the functions dnorm, pnorm, and rnorm for the normal distribution.\nThe functions qnorm gives us the quantiles.\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nlibrary(ggplot2)\ndf &lt;- data.frame(x = x, f = dnorm(x))\nggplot(df, aes(x, f)) + geom_line()\n\n\n\n\n\n\n\n\n\nHome"
+    "text": "Continuous distributions\n\nThe codeThe graph\n\n\n\nR uses the letters d, q, p, and r in front of a shorthand for the distribution.\nWe have already seen the functions dnorm, pnorm, and rnorm for the normal distribution.\nThe functions qnorm gives us the quantiles.\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nlibrary(ggplot2)\ndf &lt;- data.frame(x = x, f = dnorm(x))\nggplot(df, aes(x, f)) + geom_line()\n\n\n\n\n\n\n\n\n\nHome",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#continuous-distributions-2",
@@ -459,21 +627,30 @@
     "href": "slides/20-intro-to-prob.html#monte-carlo-example",
     "title": "Introduction to Probability",
     "section": "Monte Carlo example",
-    "text": "Monte Carlo example\n\nThe codeThe histogram of the simulated data\n\n\n\nHere is an example of how we could generate data that looks like our reported heights:\n\n\nn &lt;- length(x) \nm &lt;- mean(x) \ns &lt;- sd(x) \nsimulated_heights &lt;- rnorm(n, m, s)"
+    "text": "Monte Carlo example\n\nThe codeThe histogram of the simulated data\n\n\n\nHere is an example of how we could generate data that looks like our reported heights:\n\n\nn &lt;- length(x) \nm &lt;- mean(x) \ns &lt;- sd(x) \nsimulated_heights &lt;- rnorm(n, m, s)",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#rnorm",
     "href": "slides/20-intro-to-prob.html#rnorm",
     "title": "Introduction to Probability",
     "section": "rnorm",
-    "text": "rnorm\n\nR provides functions to generate normally distributed outcomes.\nSpecifically, the rnorm function takes three arguments: size, average (defaults to 0), and standard deviation (defaults to 1), and produces random numbers."
+    "text": "rnorm\n\nR provides functions to generate normally distributed outcomes.\nSpecifically, the rnorm function takes three arguments: size, average (defaults to 0), and standard deviation (defaults to 1), and produces random numbers.",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/20-intro-to-prob.html#monte-carlo-simulation",
     "href": "slides/20-intro-to-prob.html#monte-carlo-simulation",
     "title": "Introduction to Probability",
     "section": "Monte Carlo simulation",
-    "text": "Monte Carlo simulation\n\nit will permit us to generate data that mimics natural events and answers questions related to what could happen by chance by running Monte Carlo simulations.\nIf, for example, we pick 800 males at random, what is the distribution of the tallest person? How rare is a seven-footer in a group of 800 males? The following Monte Carlo simulation helps us answer that question:"
+    "text": "Monte Carlo simulation\n\nit will permit us to generate data that mimics natural events and answers questions related to what could happen by chance by running Monte Carlo simulations.\nIf, for example, we pick 800 males at random, what is the distribution of the tallest person? How rare is a seven-footer in a group of 800 males? The following Monte Carlo simulation helps us answer that question:",
+    "crumbs": [
+      "Probability"
+    ]
   },
   {
     "objectID": "slides/21-inference-foundations.html#sampling-models",
@@ -1660,7 +1837,7 @@
     "href": "slides/07-tidyverse.html#sorting-by-multiple-variabls",
     "title": "Tidyverse",
     "section": "Sorting by multiple variabls",
-    "text": "Sorting by multiple variabls\n\nmurders |&gt; arrange(region, desc(rate)) |&gt; head(11)\n\n                  state abb    region population total       rate\n1          Pennsylvania  PA Northeast   12702379   457  3.5977513\n2            New Jersey  NJ Northeast    8791894   246  2.7980319\n3           Connecticut  CT Northeast    3574097    97  2.7139722\n4              New York  NY Northeast   19378102   517  2.6679599\n5         Massachusetts  MA Northeast    6547629   118  1.8021791\n6          Rhode Island  RI Northeast    1052567    16  1.5200933\n7                 Maine  ME Northeast    1328361    11  0.8280881\n8         New Hampshire  NH Northeast    1316470     5  0.3798036\n9               Vermont  VT Northeast     625741     2  0.3196211\n10 District of Columbia  DC     South     601723    99 16.4527532\n11            Louisiana  LA     South    4533372   351  7.7425810\n\n\n\n\nHome",
+    "text": "Sorting by multiple variabls\n\nmurders |&gt; arrange(region, desc(rate)) |&gt; head(11)\n\n                  state abb    region population total       rate\n1          Pennsylvania  PA Northeast   12702379   457  3.5977513\n2            New Jersey  NJ Northeast    8791894   246  2.7980319\n3           Connecticut  CT Northeast    3574097    97  2.7139722\n4              New York  NY Northeast   19378102   517  2.6679599\n5         Massachusetts  MA Northeast    6547629   118  1.8021791\n6          Rhode Island  RI Northeast    1052567    16  1.5200933\n7                 Maine  ME Northeast    1328361    11  0.8280881\n8         New Hampshire  NH Northeast    1316470     5  0.3798036\n9               Vermont  VT Northeast     625741     2  0.3196211\n10 District of Columbia  DC     South     601723    99 16.4527532\n11            Louisiana  LA     South    4533372   351  7.7425810",
     "crumbs": [
       "TidyVerse"
     ]
@@ -1819,8 +1996,8 @@
     "objectID": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
     "href": "slides/08-ggplot2.html#tinkering-with-argumentsnudege_x",
     "title": "ggplot2",
-    "section": "Tinkering with argumentsnudege_x`",
-    "text": "Tinkering with argumentsnudege_x`\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5) #shift x right\n\n\n\nnudge_x is not an aesthetic mapping.",
+    "section": "Tinkering with argumentsnudege_x",
+    "text": "Tinkering with argumentsnudege_x\n\np + geom_point(aes(population/10^6, total), size = 3) +\n  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5) #shift x right\n\n\n\nnudge_x is not an aesthetic mapping.",
     "crumbs": [
       "Visualization"
     ]
@@ -1830,7 +2007,7 @@
     "href": "slides/08-ggplot2.html#global-mappings",
     "title": "ggplot2",
     "section": "Global mappings",
-    "text": "Global mappings\n\nDefined in aes in the ggplot function:\n\n\nargs(ggplot)\n\nfunction (data = NULL, mapping = aes(), ..., environment = parent.frame()) \nNULL",
+    "text": "Global mappings\n\nDefined in aes in the ggplot function:\n\n\nargs(ggplot) # show the arguments of ggplot()\n\nfunction (data = NULL, mapping = aes(), ..., environment = parent.frame()) \nNULL",
     "crumbs": [
       "Visualization"
     ]
@@ -1940,7 +2117,7 @@
     "href": "slides/08-ggplot2.html#other-adjustments",
     "title": "ggplot2",
     "section": "Other adjustments",
-    "text": "Other adjustments\n\nadd a line with intercept the US rate.\n\n\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt; \n  pull(rate)",
+    "text": "Other adjustments\n\nadd a line with intercept the US rate.\n\n\nr &lt;- murders |&gt; \n  summarize(rate = sum(total) /  sum(population) * 10^6) |&gt; \n  pull(rate)",
     "crumbs": [
       "Visualization"
     ]
@@ -2088,5 +2265,75 @@
     "title": "Standard Errors vs. Standard Deviation",
     "section": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?",
     "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma^2,\\] meaning \\[ \\hat\\sigma^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
+  },
+  {
+    "objectID": "slides/08-ggplot2.html#theme_excel",
+    "href": "slides/08-ggplot2.html#theme_excel",
+    "title": "ggplot2",
+    "section": "theme_excel()",
+    "text": "theme_excel()\nmaybe not a good one!\n\np + theme_excel()",
+    "crumbs": [
+      "Visualization"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#general-information",
+    "href": "slides/00-intro.html#general-information",
+    "title": "Introduction",
+    "section": "General Information",
+    "text": "General Information\n\nSTAT 3000: Statistics with R Programming\nTentative Plan: lectures mixed with labs.",
+    "crumbs": [
+      "Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#course-description",
+    "href": "slides/00-intro.html#course-description",
+    "title": "Introduction",
+    "section": "Course Description",
+    "text": "Course Description\nLecture notes: https://ywanglab.github.io/STAT3000/\nLecture Repo: https://github.com/ywanglab/STAT3000/\nStatistics with R Notes: https://ywanglab.github.io/statistics_r/",
+    "crumbs": [
+      "Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#to-be-successful-in-this-course-you-will",
+    "href": "slides/00-intro.html#to-be-successful-in-this-course-you-will",
+    "title": "Introduction",
+    "section": "To be successful in this course, you will",
+    "text": "To be successful in this course, you will\n\nPre-read each chapter before coming to each lecture\nAttend each lecture\nReview lecture notes after the lecture\nComplete each ungraded lab solidly\nComplete homework Assignments",
+    "crumbs": [
+      "Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#whats-coming",
+    "href": "slides/00-intro.html#whats-coming",
+    "title": "Introduction",
+    "section": "What’s coming",
+    "text": "What’s coming\n\nUNIX/Linux shell\nReproducible document preparation\nR programming\nData wrangling with dplyr\nData visualization with ggplot2\nProbability theory, inference and modeling\nRegression Analysis with R\nIntro to Machine Learning",
+    "crumbs": [
+      "Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#llm-as-a-tutor-very-useful",
+    "href": "slides/00-intro.html#llm-as-a-tutor-very-useful",
+    "title": "Introduction",
+    "section": "LLM as a Tutor-very Useful",
+    "text": "LLM as a Tutor-very Useful",
+    "crumbs": [
+      "Intro"
+    ]
+  },
+  {
+    "objectID": "slides/00-intro.html#lets-get-started",
+    "href": "slides/00-intro.html#lets-get-started",
+    "title": "Introduction",
+    "section": "Let’s get started",
+    "text": "Let’s get started\n\nSetting up Computing Environment: (Install R& R_Studio) https://ywanglab.github.io/statistics_r/intro.html\n\nWindows\nMac\nGetting Started\n\nInstall Git: https://ywanglab.github.io/stat1010/git.html",
+    "crumbs": [
+      "Intro"
+    ]
   }
 ]
