@@ -1208,7 +1208,7 @@
     "href": "slides/05-r-basics.html#setting-levels",
     "title": "R Basics",
     "section": "Setting Levels",
-    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Female Female Female Female Female Male   Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Female Female Female Female Female Male   Male   Female\nLevels: Female Male",
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Male   Male   Male   Male   Male   Female Female Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Male   Male   Male   Male   Male   Female Female Female\nLevels: Female Male",
     "crumbs": [
       "R Basics"
     ]
@@ -1218,7 +1218,7 @@
     "href": "slides/05-r-basics.html#the-previous-example-continued",
     "title": "R Basics",
     "section": "The previous example continued",
-    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Female Male   Male   Male   Male   Female Male   Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Female Male   Male   Male   Male   Female Male   Male   Female\nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Female Male   Female Female Male   Female Female Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Female Male   Female Female Male   Female Female Male   Female\nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
     "crumbs": [
       "R Basics"
     ]
@@ -1278,7 +1278,7 @@
     "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
     "title": "R Basics",
     "section": "Factors (integers) use less memory",
-    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3333468  0.3333923  0.3332609 \n\n# table counts the frequency of each unique value",
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3332619  0.3334989  0.3332392 \n\n# table counts the frequency of each unique value",
     "crumbs": [
       "R Basics"
     ]
@@ -1498,7 +1498,7 @@
     "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
     "title": "R Basics",
     "section": "Exampe: function as a returned value",
-    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x0000025b78a4f320&gt;",
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x000001c20de510b8&gt;",
     "crumbs": [
       "R Basics"
     ]
@@ -2878,7 +2878,7 @@
     "href": "slides/06-vectorization.html#add-two-vectors",
     "title": "Vectorization",
     "section": "Add two vectors",
-    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 69.14572 61.79450 66.10241 70.07088 70.00866 73.04074 66.91388 72.87467\n [9] 66.96975 70.11611",
+    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 69.10769 62.10455 66.23180 69.82315 70.00443 73.07495 66.96842 72.94043\n [9] 66.96325 70.17979",
     "crumbs": [
       "Vectorization"
     ]
@@ -3500,7 +3500,7 @@
     "section": "Sampling models",
     "text": "Sampling models\n\nMany data generation procedures can be effectively modeled as draws from an urn.\nWe can model the process of polling likely voters as drawing 0s for one party and 1s for the other.\nEpidemiologist assume subjects in their studies are a random sample from the population of interest.\nIn general, the data related to a specific outcome can be modeled as a random sample from an urn containing the outcomes for the entire population of interest.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3510,7 +3510,7 @@
     "section": "Casino example",
     "text": "Casino example\n\nThe questionThe roullette\n\n\n\nThey want a range of values and, in particular, they want to know what’s the chance of losing money.\nWe will assume that 1,000 people will play, and that the only game available on the roulette wheel is to bet on red or black.\ndefine a random variable \\(S\\) that will represent the casino’s total winnings.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3520,7 +3520,7 @@
     "section": "Construct the urn",
     "text": "Construct the urn\n\nA roulette wheel has 18 red pockets, 18 black pockets and 2 green ones.\nSo playing a color in one game of roulette is equivalent to drawing from this urn:\n\n\ncolor &lt;- rep(c(\"Black\", \"Red\", \"Green\"), c(18, 18, 2))",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3530,7 +3530,7 @@
     "section": "Construct the RV \\(S\\)",
     "text": "Construct the RV \\(S\\)\n\nThe codeAlternative code\n\n\n\nThe 1,000 outcomes from 1,000 people playing are independent draws from this urn.\nIf red comes up, the gambler wins, and the casino loses a dollar, resulting random variable being -$1.\nOtherwise, the casino wins a dollar, and the random variable is $1.\n\n\nn &lt;- 1000 \nx &lt;- sample(ifelse(color == \"Red\", -1, 1),  n, replace = TRUE) \nx[1:10] \n#&gt;  [1]  1  1  1 -1  1  1 -1 -1  1  1\n\n\n\n\nBecause we know the proportions of 1s and -1s, we can generate the draws without defining color.\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19))",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3540,7 +3540,7 @@
     "section": "Sampling models",
     "text": "Sampling models\n\nThis is a sampling model, as it models the random behavior through the sampling of draws from an urn.\nThe total winnings \\(S\\) is simply the sum of these 1,000 independent draws:\n\n\nx &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \ns &lt;- sum(x) \ns \n#&gt; [1] 10\n\n\nIf you rerun the code above, you see that \\(S\\) changes every time.\n\\(S\\) is a random variable.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3550,7 +3550,7 @@
     "section": "The probability distributions",
     "text": "The probability distributions\n\nThe probability distribution of a random variable informs us about the probability of the observed value falling in any given interval.\nFor example, if we want to know the probability that we lose money, we are asking the probability that \\(S\\) is in the interval \\((-\\infty,0)\\).\n\\(F(a) = \\mbox{Pr}(S\\leq a)\\)\nWe can estimate the distribution function for \\(S\\) using a Monte Carlo simulation.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3560,7 +3560,7 @@
     "section": "The Monte Carlo simulation",
     "text": "The Monte Carlo simulation\n\nwe run the experiment of having 1,000 people repeatedly play roulette, \\(B = 10,000\\) times:\n\n\nn &lt;- 1000 \nB &lt;- 10000 \nroulette_winnings &lt;- function(n){ \n  x &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \n  sum(x) \n} \ns &lt;- replicate(B, roulette_winnings(n)) \n\n\nTo approx \\(F(a)\\) (how often did we get sums \\(\\le a\\))\n\n\nmean(s &lt;= a) \n\n\nHow likely is it that the casino will lose money?\n\n\nmean(s &lt; 0) \n#&gt; [1] 0.0411",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3570,7 +3570,7 @@
     "section": "The histrogram of \\(S\\)",
     "text": "The histrogram of \\(S\\)\n\nThe histogramThe code\n\n\n\nWe can visualize the distribution of \\(S\\) by creating a histogram\n\n\n\n\n\n\n\n\n\nss &lt;- seq(min(s), max(s), length = 100) \nnormal_density &lt;- data.frame(s = ss, f = dnorm(ss, mean(s), sd(s))) \ndata.frame(s = s) |&gt; ggplot(aes(s, after_stat(density))) + \n  geom_histogram(color = \"black\", binwidth = 10)  + \n  ylab(\"Probability\") +  \n  geom_line(data = normal_density, mapping = aes(s,f), color = \"blue\")",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3580,7 +3580,7 @@
     "section": "Standard Error",
     "text": "Standard Error\n\nSince we have the original values from which the distribution is created, we can easily compute these with mean(s) and sd(s).\nThis average and this standard deviation have special names; they are referred to as the expected value and standard error (SE) of the random variable \\(S\\).",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3590,7 +3590,7 @@
     "section": "Distributions versus probability distributions",
     "text": "Distributions versus probability distributions\n\nBefore we continue, let’s establish an important distinction and connection between the distribution of a list of numbers and a probability distribution.\nAny list of numbers \\(x_1,\\dots,x_n\\) has a distribution.\nIt does not have a probability distribution because they are not random.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3600,7 +3600,7 @@
     "section": "Distributions for a list",
     "text": "Distributions for a list\n\nWe define \\(F(a)\\) as the function that indicates what proportion of the list is less than or equal to \\(a\\).\nwe also define the average and standard deviation.\nThese are determined with a straightforward operation involving the vector containing the list of numbers, denoted as x:\n\n\nm &lt;- sum(x)/length(x) \ns &lt;- sqrt(sum((x - m)^2)/length(x)) # note use length(x) in the denominator (for population)",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3610,7 +3610,7 @@
     "section": "probability distributions for a rv",
     "text": "probability distributions for a rv\n\nA random variable \\(X\\) has a distribution function.\nTo define this, we do not need a list of numbers; it is a theoretical concept.\nWe define the distribution as the \\(F(a)\\) that answers the question: What is the probability that \\(X\\) is less than or equal to \\(a\\)?",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3620,7 +3620,7 @@
     "section": "Sample distribution",
     "text": "Sample distribution\n\nHowever, if \\(X\\) is defined by drawing from an urn containing numbers, and we perform experiments, then there is a list: the list of numbers inside the urn.\nIn this case, the distribution of that (sample) list is the (sample) probability distribution of \\(X\\), and the average and standard deviation of that list are the expected value and standard error of the random variable.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3630,7 +3630,7 @@
     "section": "Sample probability distributions",
     "text": "Sample probability distributions\n\nAnother way to think about it without involving an urn is by running a Monte Carlo simulation and generating a very large list of outcomes of \\(X\\).\nThese outcomes form a list of numbers, and the distribution of this list will be a very good approximation of the probability distribution of \\(X\\).\nThe longer the list, the better the approximation.\nThe average and standard deviation of this list will approximate the expected value and standard error of the random variable.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3640,7 +3640,7 @@
     "section": "Notation for random variables",
     "text": "Notation for random variables\n\nIn statistical textbooks, upper case letters denote random variables,\nLower case letters are used for observed values.\nFor example, you will see events defined as \\(X \\leq x\\).\nHere \\(X\\) is a random variable and \\(x\\) is an arbitrary value and not random.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3650,7 +3650,7 @@
     "section": "Examples of rv",
     "text": "Examples of rv\n\nSo, for example, \\(X\\) might represent the number on a die roll and \\(x\\) will represent an actual value we see: 1, 2, 3, 4, 5, or 6.\nIn this case, the probability of \\(X=x\\) is 1/6 regardless of the observed value \\(x\\).\nWe can discuss what we expect \\(X\\) to be, what values are probable, but we can’t discuss what value \\(X\\) is.\nOnce we have data, we do see a realization of \\(X\\).",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3660,7 +3660,7 @@
     "section": "The expected value",
     "text": "The expected value\n\nNotation: \\[\\mbox{E}[X]\\]\nA random variable will vary around its expected value in a manner that if you take the average of many, many draws, the average will approximate the expected value.\nThis approximation improves as you take more draws, making the expected value a useful quantity to compute.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3670,7 +3670,7 @@
     "section": "The expected value for discrete rv",
     "text": "The expected value for discrete rv\n\nFor discrete random variable with possible outcomes \\(x_1,\\dots,x_n\\), \\[\n\\mbox{E}[X] = \\sum_{i=1}^n x_i \\,\\mbox{Pr}(X = x_i)\n\\]\nIn the case that we are picking values from an urn, and each value \\(x_i\\) has an equal chance \\(1/n\\) of being selected \\[\n\\mbox{E}[X] = \\frac{1}{n}\\sum_{i=1}^n x_i  \n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3680,7 +3680,7 @@
     "section": "The expected value for continuous r.v.",
     "text": "The expected value for continuous r.v.\n\nIf \\(X\\) is a continuous random variable with a range of values \\(a\\) to \\(b\\) and a probability density function \\(f(x)\\), this sum transforms into an integral:\n\n\\[\n\\mbox{E}[X] = \\int_a^b x f(x)\n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3690,7 +3690,7 @@
     "section": "The expected value:Example",
     "text": "The expected value:Example\n\nIn the urn used to model betting on red in roulette, we have 20 one-dollar bills and 18 negative one-dollar bills, \\[\n\\mbox{E}[X] = (20 + (-18) /38\n\\] which is about 5 cents.\nYou might consider it a bit counterintuitive to say that \\(X\\) varies around 0.05 when it only takes the values 1 and -1.\nTo make sense of the expected value in this context is by realizing that, if we play the game over and over, the casino wins, on average, 5 cents per game.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3700,7 +3700,7 @@
     "section": "The expected value: by MC",
     "text": "The expected value: by MC\n\nB &lt;- 10^6 \nx &lt;- sample(c(-1, 1), B, replace = TRUE, prob = c(9/19, 10/19)) \nmean(x) \n#&gt; [1] 0.0517",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3710,7 +3710,7 @@
     "section": "The expected value with two outcomes",
     "text": "The expected value with two outcomes\n\nIn general, if the urn has two possible outcomes, say \\(a\\) and \\(b\\), with proportions \\(p\\) and \\(1-p\\) respectively,\n\n\\[\\mbox{E}[X] = ap + b(1-p)\\]\n\nOne way to see this is: observe that if there are \\(n\\) beads in the urn, then we have \\(np\\) \\(a\\)’s and \\(n(1-p)\\) \\(b\\)’s, and because the average is the sum: \\(n\\times a \\times p + n\\times b \\times (1-p)\\) divided by the total \\(n\\), we get the average \\(ap + b(1-p)\\).",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3720,7 +3720,7 @@
     "section": "The expected value of a sum of draws",
     "text": "The expected value of a sum of draws\n\nthe expected value of the sum of the draws is the number of draws \\(\\times\\) the average of the numbers in the urn.\nTherefore, if 1,000 people play roulette, the casino expects to win, on average, about 1,000 \\(\\times\\) $0.05 = $50.\nHow different can one observation be from the expected value? The casino really needs to know this.\nWhat is the range of possibilities? If negative numbers are too likely, they will not install roulette wheels.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3730,7 +3730,7 @@
     "section": "The SE for discrete r.v.",
     "text": "The SE for discrete r.v.\n\n\\[\\mbox{SE}[X] = \\sqrt{\\mbox{Var}[X]}\\]\nFor discrete random variable with possible outcomes \\(x_1,\\dots,x_n\\),\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\sum_{i=1}^n \\left(x_i - E[X]\\right)^2 \\,\\mbox{Pr}(X = x_i)},\n\\]\n\nwhich you can think of as the expected average distance of \\(X\\) from the expected value.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3740,7 +3740,7 @@
     "section": "SE and SD",
     "text": "SE and SD\n\nIn the case that we are picking values from an urn where each value \\(x_i\\) has an equal chance \\(1/n\\) of being selected, the above equation is simply the standard deviation of of the \\(x_i\\)s.\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\frac{1}{n}\\sum_{i=1}^n (x_i - \\bar{x})^2} \\mbox{ with } \\bar{x} =  \\frac{1}{n}\\sum_{i=1}^n x_i  \n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3750,7 +3750,7 @@
     "section": "The SE for a continuous r.v.",
     "text": "The SE for a continuous r.v.\n\nIf \\(X\\) is a continuous random variable, with range of values \\(a\\) to \\(b\\) and probability density function \\(f(x)\\), this sum turns into an integral:\n\n\\[\n\\mbox{SE}[X] = \\sqrt{\\int_a^b \\left(x-\\mbox{E}[X]\\right)^2 f(x)\\,\\mathrm{d}x}\n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3760,7 +3760,7 @@
     "section": "The SD of a r.v. with two values",
     "text": "The SD of a r.v. with two values\n\nif an urn contains two values \\(a\\) and \\(b\\) with proportions \\(p\\) and \\((1-p)\\), respectively, the standard deviation is: \\[SE=| b - a |\\sqrt{p(1-p)}.\\]\nSo in our roulette example,\n\n\\[\nSE= | 1 - (-1) | \\sqrt{10/19 \\times 9/19}\n\\]\n\n2*sqrt(90)/19 \n#&gt; [1] 0.999",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3770,7 +3770,7 @@
     "section": "The SE for the sum and the mean",
     "text": "The SE for the sum and the mean\n\nif draws are independent, then the standard error of the sum is given by the equation:\n\n\\[\n\\sqrt{\\mbox{number of draws}} \\times \\mbox{ SD of the numbers in the urn}\n\\] - if draws are independent, then the standard error of the mean is\n\\[\n\\frac{ \\mbox{ SD of the numbers in the urn} }{\\sqrt{\\mbox{number of draws}} }\n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3780,7 +3780,7 @@
     "section": "Example: SE of a sum",
     "text": "Example: SE of a sum\n\nthe sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6\n\n\nAs a result, when 1,000 people play, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3790,7 +3790,7 @@
     "section": "Central Limit Theorem",
     "text": "Central Limit Theorem\n\nThe Central Limit Theorem (CLT) tells us that when the number of draws, also called the sample size, is large, the probability distribution of the sum of the independent draws is approximately normal (which can be described by \\(\\mu\\) and \\(\\sigma\\))\nGiven that sampling models are used for so many data generation processes, the CLT is considered one of the most important mathematical insights in history.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3800,7 +3800,7 @@
     "section": "Central Limit Theorem: Example",
     "text": "Central Limit Theorem: Example\n\nWe previously ran this Monte Carlo simulation:\n\n\nn &lt;- 1000 \nB &lt;- 10000 \nroulette_winnings &lt;- function(n){ \n  x &lt;- sample(c(-1, 1), n, replace = TRUE, prob = c(9/19, 10/19)) \n  sum(x) \n} \ns &lt;- replicate(B, roulette_winnings(n))",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3810,7 +3810,7 @@
     "section": "Theoretical values and simulated values",
     "text": "Theoretical values and simulated values\n\nThe Central Limit Theorem (CLT) tells us that the sum \\(S\\) is approximated by a normal distribution with the expected value and standard error:\n\n\nn * (20 - 18)/38  \n#&gt; [1] 52.6\nsqrt(n)*2*sqrt(90)/19  \n#&gt; [1] 31.6\n\n\nThe theoretical values above match those obtained with the Monte Carlo simulation:\n\n\nmean(s) \n#&gt; [1] 52.6\nsd(s) \n#&gt; [1] 31.5",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3820,7 +3820,7 @@
     "section": "Using Central Limit Theorem",
     "text": "Using Central Limit Theorem\n\ncompute the probability of the casino losing money:\n\n\nmu &lt;- n*(20 - 18)/38 \nse &lt;- sqrt(n)*2*sqrt(90)/19  \npnorm(0, mu, se) \n#&gt; [1] 0.0478\n\n\nwhich is also in very good agreement with our Monte Carlo result:\n\n\nmean(s &lt; 0) \n#&gt; [1] 0.044",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3830,7 +3830,7 @@
     "section": "How large is large in the CLT?",
     "text": "How large is large in the CLT?\n\nThe CLT works when the number of draws is large, but “large” is a relative term.\nIn many circumstances, as few as 30 draws is enough to make the CLT useful.\nIn some specific instances, as few as 10 is enough.\nHowever, these should not be considered general rules.\nNote that when the probability of success is very small, much larger sample sizes are needed.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3840,7 +3840,7 @@
     "section": "Events with small probability",
     "text": "Events with small probability\n\nBy way of illustration, let’s consider the lottery.\nIn the lottery, the chances of winning are less than 1 in a million.\nThousands of people play so the number of draws is very large.\nYet the number of winners, ranges between 0 and 4.\nThis sum is certainly not well approximated by a normal distribution, so the CLT does not apply, even with the very large sample size.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3850,7 +3850,7 @@
     "section": "Poisson distribution",
     "text": "Poisson distribution\n\nIn these cases, the Poisson distribution is more appropriate.\nYou can explore the properties of the Poisson distribution using dpois and ppois.\nYou can generate random variables following this distribution with rpois.\nYou can learn about the Poisson distribution in any probability textbook and even Wikipedia",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3860,7 +3860,7 @@
     "section": "Statistical properties of averages: 1",
     "text": "Statistical properties of averages: 1\n\\[\n\\mbox{E}[X_1+X_2+\\dots+X_n] =  \\mbox{E}[X_1] + \\mbox{E}[X_2]+\\dots+\\mbox{E}[X_n]\n\\]\n\nIf \\(X\\) represents independent draws from the urn, then they all have the same expected value.\n\n\\[\n\\mbox{E}[X_1+X_2+\\dots+X_n]=  n\\mu\n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3870,7 +3870,7 @@
     "section": "Property 2",
     "text": "Property 2\n\nThe expected value of a non-random constant times a random variable is the non-random constant times the expected value of a random variable. \\[\n\\mbox{E}[aX] =  a\\times\\mbox{E}[X]\n\\]\nIf we change the units of a random variable, such as from dollars to cents, the expectation should change in the same way.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3880,7 +3880,7 @@
     "section": "Property 2",
     "text": "Property 2\n\nA consequence of the above two facts is that the expected value of the average of independent draws from the same urn is the expected value of the urn, denoted as \\(\\mu\\) again:\n\n\\[\n\\begin{aligned}\n\\mbox{E}[(X_1+X_2+\\dots+X_n) / n] & =   \\mbox{E}[X_1+X_2+\\dots+X_n] / n \\\\\n& = n\\mu/n = \\mu  \n\\end{aligned}\n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3890,7 +3890,7 @@
     "section": "Property 3",
     "text": "Property 3\n\nThe square of the standard error of the sum of independent random variables is the sum of the square of the standard error of each random variable.\n\n\\[\n\\begin{aligned}\n\\mbox{SE}[X_1+X_2+\\dots+X_n]  = & \\\\\n\\sqrt{\\mbox{SE}[X_1]^2 + \\mbox{SE}[X_2]^2+\\dots+\\mbox{SE}[X_n]^2  } &\n\\end{aligned}\n\\]",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3900,7 +3900,7 @@
     "section": "Property 4",
     "text": "Property 4\n\nThe standard error of a non-random constant times a random variable is the non-random constant times the random variable’s standard error.\nAs with the expectation:\n\n\\[\n\\mbox{SE}[aX] =  a \\times \\mbox{SE}[X]\n\\]\n\nTo see why this is intuitive, again think of units.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3910,7 +3910,7 @@
     "section": "SE of a mean",
     "text": "SE of a mean\n\nthe standard error of the average of independent draws from the same urn is the standard deviation \\(\\sigma\\) of the urn divided by the square root of \\(n\\) (the number of draws),\n\n\\[\n\\begin{aligned}\n\\mbox{SE}[(X_1+X_2+\\dots+X_n) / n] &=   \\mbox{SE}[X_1+X_2+\\dots+X_n]/n \\\\\n&= \\sqrt{\\mbox{SE}[X_1]^2+\\mbox{SE}[X_2]^2+\\dots+\\mbox{SE}[X_n]^2}/n \\\\\n&= \\sqrt{\\sigma^2+\\sigma^2+\\dots+\\sigma^2}/n\\\\\n&= \\sqrt{n\\sigma^2}/n\\\\\n&= \\sigma / \\sqrt{n}     \n\\end{aligned}\n\\] ## Law of large numbers\n\nAn important implication above is that the standard error of the average becomes smaller and smaller as \\(n\\) grows larger.\nWhen \\(n\\) is very large, then the standard error is practically 0 and the average of the draws converges to the average of the urn.\nThis is known as the law of large numbers or the law of averages.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3920,7 +3920,7 @@
     "section": "Property 5",
     "text": "Property 5\n\nIf \\(X\\) is a normally distributed random variable, then if \\(a\\) and \\(b\\) are non-random constants, \\(aX + b\\) is also a normally distributed random variable.\nAll we are doing is changing the units of the random variable by multiplying by \\(a\\), then shifting the center by \\(b\\).",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3930,7 +3930,7 @@
     "section": "Notation",
     "text": "Notation\n\nNote that statistical textbooks use the Greek letters \\(\\mu\\) and \\(\\sigma\\) to denote the expected value and standard error, respectively.\nThis is because \\(\\mu\\) is the Greek letter for \\(m\\), the first letter of mean, which is another term used for expected value.\nSimilarly, \\(\\sigma\\) is the Greek letter for \\(s\\), the first letter of standard error.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3940,7 +3940,7 @@
     "section": "The assumption of independence is important",
     "text": "The assumption of independence is important\n\nIf \\(X_1, X_2, \\dots, X_n\\) are not independent (correlated)\nIf the correlation coefficient among the \\(X\\) variables is \\(\\rho\\) \\[\n\\mbox{SE}\\left(\\bar{X}\\right) = \\sigma \\sqrt{\\frac{1 + (n-1) \\rho}{n}}\n\\]\nas \\(\\rho\\) approaches its upper limit of 1, the SE increases.\nWhen \\(\\rho = 1\\), \\(\\mbox{SE}(\\bar{X})=\\sigma\\), unaffected by the sample size \\(n\\).",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3950,7 +3950,7 @@
     "section": "Misinterpretation of the law of averages",
     "text": "Misinterpretation of the law of averages\n\nFor example, if you toss a coin 5 times and see a head each time, you might hear someone argue that the next toss is probably a tail because of the law of averages: on average we should see 50% heads and 50% tails.\nA similar argument would be to say that red “is due” on the roulette wheel after seeing black come up five times in a row.\nYet these events are independent so the chance of a coin landing heads is 50%, regardless of the previous 5.\nThe same principle applies to the roulette outcome.",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   },
   {
@@ -3960,7 +3960,7 @@
     "section": "Correct interpretation of the law of averages",
     "text": "Correct interpretation of the law of averages\n\nThe law of averages applies only when the number of draws is very large and not in small samples.\nAfter a million tosses, you will definitely see about 50% heads regardless of the outcome of the first five tosses.\nAnother funny misuse of the law of averages is in sports when TV sportscasters predict a player is about to succeed because they have failed a few times in a row.\n\n\n\nHome",
     "crumbs": [
-      "Probability"
+      "Inference"
     ]
   }
 ]
