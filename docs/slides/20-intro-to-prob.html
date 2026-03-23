@@ -405,7 +405,7 @@
 <ul>
 <li><p>The term <em>probability</em> is used in everyday language.</p></li>
 <li><p>Yet answering questions about probability is often hard, if not impossible.</p></li>
-<li><p>In contrast probability has a very intuitive definition in games of chance.</p></li>
+<li><p>Probability has a very intuitive definition in games of chance.</p></li>
 <li><p>Probability Theory was born because certain mathematcial computations can give an advantage in games of chance.</p></li>
 </ul>
 </section>
@@ -444,7 +444,7 @@
 <section id="definitions-and-notation" class="slide level2">
 <h2>Definitions and Notation</h2>
 <ul>
-<li><p>We usually use capital letters <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, … to to denote events.</p></li>
+<li><p>We usually use capital letters <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, … to denote events.</p></li>
 <li><p>If we denote an event as <span class="math inline">\(A\)</span> then we use the notation <span class="math inline">\(\mbox{Pr}(A)\)</span> to denote the probability of event <span class="math inline">\(A\)</span> occurring.</p></li>
 </ul>
 </section>
@@ -480,7 +480,7 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set.seed</span>(<span class="dv">1996</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>beads <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb3-3"><a href="#cb3-3"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(beads, <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(beads, <span class="dv">5</span>) <span class="co">#by default, replace=FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>If you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.</li>
@@ -544,8 +544,8 @@
 \frac{1}{13}\frac{16}{51} + \frac{4}{13}\frac{4}{51} \approx 0.0483
 \]</span></p>
 </section>
-<section id="multiplication-rule-for-multipel-events" class="slide level2">
-<h2>Multiplication rule for multipel events</h2>
+<section id="multiplication-rule-for-multiple-events" class="slide level2">
+<h2>Multiplication rule for multiple events</h2>
 <ul>
 <li>We can use induction to expand for more events:</li>
 </ul>
@@ -615,7 +615,7 @@
 <ul>
 <li><p>Random variables are numeric outcomes resulting from random processes (formally, a mapping)</p></li>
 <li><p><span class="math inline">\(X: \text{outcome}\mapsto \mathbb{R}\)</span></p></li>
-<li><p>define <code>X</code> to be 1 if a bead is blue and red otherwise:</p></li>
+<li><p>define <code>X</code> to be 1 if a bead is blue and 0 if red:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>beads <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
@@ -742,7 +742,7 @@
 <ul>
 <li><p>Being able to count combinations and permutations is an important part of performing discrete probability computations.</p></li>
 <li><p>the function <code>expand.grid</code></p></li>
-<li><p>and the <strong>gtools</strong> functions <code>permutatios</code> and <code>combinations</code>.</p></li>
+<li><p><strong>gtools</strong> functions: <code>permutatios</code>, <code>combinations</code>.</p></li>
 <li><p>generate a deck of cards:</p></li>
 </ul>
 <div class="cell">
