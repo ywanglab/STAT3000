@@ -5,6 +5,7 @@
 * Lecture Notes:  [website](https://ywanglab.github.io/STAT3000/)
 * Additional Notes:
   - [SE and SD ](slides/standard_errors.qmd)
+  - [QQ plot](slides/qq-plot.qmd)
 
 
 

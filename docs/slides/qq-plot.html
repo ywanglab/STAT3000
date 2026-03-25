@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT 3000 - Problem set 1</title>
+<title>STAT 3000 - QQ plot</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../psets/hw1.html">HW-1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">QQ plot</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -141,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../psets/hw1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../psets/hw1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HW-1</span></a>
   </div>
 </li>
@@ -215,18 +249,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructionssetup" id="toc-instructionssetup" class="nav-link active" data-scroll-target="#instructionssetup"><span class="header-section-number">1</span> Instructions/Setup</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks"><span class="header-section-number">2</span> Tasks</a></li>
-  <li><a href="#submission-checklist" id="toc-submission-checklist" class="nav-link" data-scroll-target="#submission-checklist"><span class="header-section-number">3</span> Submission checklist</a></li>
+  <li><a href="#how-a-qq-plot-is-constructed" id="toc-how-a-qq-plot-is-constructed" class="nav-link active" data-scroll-target="#how-a-qq-plot-is-constructed">How a Q–Q plot is constructed</a>
+  <ul class="collapse">
+  <li><a href="#step-1-sort-the-data" id="toc-step-1-sort-the-data" class="nav-link" data-scroll-target="#step-1-sort-the-data">Step 1: sort the data</a></li>
+  <li><a href="#step-2-choose-plotting-probabilities" id="toc-step-2-choose-plotting-probabilities" class="nav-link" data-scroll-target="#step-2-choose-plotting-probabilities">Step 2: choose plotting probabilities</a></li>
+  <li><a href="#step-3-compute-theoretical-quantiles" id="toc-step-3-compute-theoretical-quantiles" class="nav-link" data-scroll-target="#step-3-compute-theoretical-quantiles">Step 3: compute theoretical quantiles</a></li>
+  <li><a href="#step-4-plot-the-pairs" id="toc-step-4-plot-the-pairs" class="nav-link" data-scroll-target="#step-4-plot-the-pairs">Step 4: plot the pairs</a></li>
+  </ul></li>
+  <li><a href="#why-the-line-yx-appears" id="toc-why-the-line-yx-appears" class="nav-link" data-scroll-target="#why-the-line-yx-appears">Why the line (y=x) appears</a></li>
+  <li><a href="#how-to-interpret-the-shape" id="toc-how-to-interpret-the-shape" class="nav-link" data-scroll-target="#how-to-interpret-the-shape">How to interpret the shape</a></li>
+  <li><a href="#small-concrete-example" id="toc-small-concrete-example" class="nav-link" data-scroll-target="#small-concrete-example">Small concrete example</a></li>
+  <li><a href="#better-reference-line" id="toc-better-reference-line" class="nav-link" data-scroll-target="#better-reference-line">Better reference line</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/psets/hw1.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/slides/qq-plot.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Problem set 1</h1>
+<h1 class="title">QQ plot</h1>
 </div>
 
 
@@ -243,128 +285,180 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instructionssetup" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="instructionssetup"><span class="header-section-number">1</span> Instructions/Setup</h2>
-<p><a href="https://raw.githubusercontent.com/ywanglab/STAT3000/refs/heads/main/psets/hw1.qmd">Download source</a></p>
+<section id="how-a-qq-plot-is-constructed" class="level2">
+<h2 class="anchored" data-anchor-id="how-a-qq-plot-is-constructed">How a Q–Q plot is constructed</h2>
+<p>A Q–Q plot compares:</p>
 <ul>
-<li><p>Make sure you have a GitHub account. In your GitHub account, create a GitHub repository named <code>STAT3000</code>.</p></li>
-<li><p>Create an RStudio Project, e.g., <code>stat3000</code>, connected to the GitHub repo (clone or connect existing).</p></li>
-<li><p>Answer each item <strong>inside this Quarto file</strong>. Show commands/code where requested.</p></li>
+<li><strong>sample quantiles</strong> from your data</li>
+<li><strong>theoretical quantiles</strong> from some reference distribution, often a normal distribution</li>
 </ul>
+<p>The idea is: if the data really come from that reference distribution, the points should lie roughly on a straight line.</p>
+<p>Suppose your data are</p>
+<p><span class="math display">\[
+x_1, x_2, \dots, x_n.
+\]</span></p>
+<section id="step-1-sort-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-sort-the-data">Step 1: sort the data</h3>
+<p>Order them from smallest to largest:</p>
+<p><span class="math display">\[
+x_{(1)} \le x_{(2)} \le \cdots \le x_{(n)}.
+\]</span></p>
+<p>These are the <strong>sample quantiles</strong>.</p>
+<hr>
 </section>
-<section id="tasks" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="tasks"><span class="header-section-number">2</span> Tasks</h2>
-<ol start="0" type="1">
-<li><p><strong>Project folders</strong><br>
-In your project root, create the folders: <code>hw/</code>, <code>img/</code>, <code>data/</code>, <code>code/</code>, <code>docs/</code>.<br>
-Provide either:</p>
+<section id="step-2-choose-plotting-probabilities" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-choose-plotting-probabilities">Step 2: choose plotting probabilities</h3>
+<p>For each rank (i), assign a probability, often approximately</p>
+<p><span class="math display">\[
+p_i = \frac{i - 0.5}{n}, \qquad i=1,\dots,n.
+\]</span></p>
+<p>These probabilities mark where each ordered observation sits in the distribution.</p>
+<hr>
+</section>
+<section id="step-3-compute-theoretical-quantiles" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-compute-theoretical-quantiles">Step 3: compute theoretical quantiles</h3>
+<p>If the reference distribution is (N(,^2)), compute</p>
+<p><span class="math display">\[
+q_i = F^{-1}(p_i),
+\]</span></p>
+<p>where (F^{-1}) is the quantile function of that normal distribution.</p>
+<p>So (q_i) is the theoretical value such that</p>
+<p><span class="math display">\[
+P(X \le q_i) = p_i.
+\]</span></p>
+<p>For a normal Q–Q plot, these are the normal quantiles.</p>
+<hr>
+</section>
+<section id="step-4-plot-the-pairs" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-plot-the-pairs">Step 4: plot the pairs</h3>
+<p>Plot the points</p>
+<p><span class="math display">\[
+(q_i,; x_{(i)}).
+\]</span></p>
+<p>So:</p>
 <ul>
-<li>the Unix commands you used, or</li>
-<li>the R commands you used</li>
+<li>x-axis = theoretical quantiles</li>
+<li>y-axis = sample quantiles</li>
 </ul>
-<pre><code># Your commands here
-</code></pre></li>
-<li><p><strong>RStudio project + Quarto document</strong><br>
-Create a Quarto document named <code>hw1.qmd</code> (this file).<br>
-Include a screenshot of your RStudio session showing:</p>
+<p>If the sample distribution matches the theoretical one well, then</p>
+<p><span class="math display">\[
+x_{(i)} \approx q_i
+\]</span></p>
+<p>up to location and scale, so the points fall near a straight line.</p>
+<hr>
+</section>
+</section>
+<section id="why-the-line-yx-appears" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-line-yx-appears">Why the line (y=x) appears</h2>
+<p>If the theoretical distribution and the sample have exactly the same center and spread, then the points should lie near</p>
+<p><span class="math display">\[
+y=x.
+\]</span></p>
+<p>But there is an important subtlety:</p>
 <ul>
-<li>Files pane (project structure)</li>
-<li>Git pane (if available)</li>
-</ul></li>
-<li><p><strong>GitHub + repo setup</strong><br>
-In your Quarto document, include:</p>
-<ul>
-<li>the repo URL</li>
-<li>a screenshot showing the repo page on GitHub</li>
-</ul></li>
-<li><p><strong>Create and include a plot image</strong><br>
-Create a simple plot in R (any plot you like), save it as <code>img/plot.png</code>, and include it below.</p>
-<pre><code>
-  # Example idea (you can change it):
-  # png("img/plot.png", width = 800, height = 500) #open png device 
-  # plot(cars)
-  # dev.off() # close the device</code></pre></li>
+<li>if you compare your data to the <strong>standard normal</strong> <span class="math inline">\(N(0,1)\)</span>, the ideal line is only <span class="math inline">\(y=x\)</span> when your data also have mean 0 and sd 1</li>
+<li>if you compare to a normal with the same mean and sd as your data, then <span class="math inline">\(y=x\)</span> is more sensible</li>
+</ul>
+<p>Even then, <code>stat_qq_line()</code> is usually better because it computes a fitted reference line based on quartiles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.45</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, { </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(x) </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x_hat =</span> x_hat) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span>  x_hat)) <span class="sc">+</span>  </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">dparams =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x_hat), <span class="at">sd =</span> <span class="fu">sd</span>(x_hat))) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="qq-plot_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>this works as follows:</p>
+<ol type="1">
+<li><code>stat_qq(...)</code> sorts the values of <code>x_hat</code></li>
+<li>it computes theoretical quantiles from a normal distribution with mean <code>mean(x_hat)</code> and sd <code>sd(x_hat)</code></li>
+<li>it plots sample quantiles against theoretical quantiles</li>
+<li><code>geom_abline()</code> adds the line (y=x)</li>
 </ol>
-<p><img src="img/plot.png" class="img-fluid"></p>
-<ol start="4" type="1">
-<li><p><strong>Define a function and compute real roots</strong> In this document, define coefficients <span class="math inline">\(a=2\)</span>, <span class="math inline">\(b=-5\)</span>, <span class="math inline">\(c=-3\)</span>. Consider <span class="math inline">\(f(x) = ax^2 + bx + c\)</span>. Print the <strong>real</strong> solutions of <span class="math inline">\(f(x)=0\)</span> (if any).</p>
+<p>So the plot checks whether the ordered values of <code>x_hat</code> look like quantiles from that normal distribution.</p>
+<hr>
+</section>
+<section id="how-to-interpret-the-shape" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-interpret-the-shape">How to interpret the shape</h2>
+<p>If points are close to a straight line:</p>
 <ul>
-<li>If the discriminant is negative, print a message like <code>"No real roots"</code>.</li>
+<li>the data are approximately from the reference distribution</li>
 </ul>
-<pre><code>
-  # a &lt;- 2
-  # b &lt;- -5
-  # c &lt;- -3
-  # 
-  # disc &lt;- b^2 - 4*a*c
-  # disc
-
-  # Your code here to print only real roots
-</code></pre></li>
-<li><p><strong>Graph the quadratic on a specified interval</strong> Make a graph of <span class="math inline">\(f(x)\)</span> versus <span class="math inline">\(x\)</span> for <span class="math inline">\(x \in (-6, 6)\)</span>. Add:</p>
+<p>If the plot bends upward or downward:</p>
 <ul>
-<li>a horizontal line at <span class="math inline">\(y = 0\)</span></li>
-<li>points for the real roots (if they exist)</li>
+<li>the data may be skewed</li>
 </ul>
-<pre><code># x &lt;- seq(-6, 6, length.out = 400)
-# fx &lt;- a*x^2 + b*x + c
-
-# Hint: use plot(x, fx, type="l") and abline(h=0)</code></pre></li>
-<li><p><strong>Write coefficients to a text file using Unix</strong> Use Unix to create a file <code>data/coefs.txt</code> containing a single line with:</p>
-<pre><code>2 -5 -3</code></pre>
-<p>Show the Unix commands you used:</p>
-<pre><code># Your commands here</code></pre></li>
-<li><p><strong>Copy the Quarto file using Unix</strong> Use Unix to copy <code>hw1.qmd</code> into <code>code/</code> and name it <code>quadratic.qmd</code>. Show the Unix command(s):</p>
-<pre><code># Your commands here</code></pre></li>
-<li><p><strong>Read coefficients from file using a relative path</strong></p>
-<p>Edit <code>code/quadratic.qmd</code> so it reads <code>a</code>, <code>b</code>, <code>c</code> from <code>data/coefs.txt</code> using a <strong>relative path</strong>. In <em>this</em> document, show the R code you used (it should also appear in <code>quadratic.qmd</code>).</p>
-<pre><code># Your code here (example outline):
-
-# coefs &lt;- scan("data/coefs.txt") #read numbers/string and return a vector
-
-# a &lt;- coefs[1]; b &lt;- coefs[2]; c &lt;- coefs[3]
-
-# then compute real roots again</code></pre></li>
-<li><p><strong>Switch to an absolute path and test portability</strong></p>
-<p>In <code>code/quadratic.qmd</code>, replace the relative path with: <code>file.path(getwd(), "data/coefs.txt")</code> Render it once to confirm it works.</p>
-<p>Then <strong>move the entire project folder</strong> to a new folder name (e.g., <code>RtmpXXXX</code>). Re-render <code>code/quadratic.qmd</code>. Does it still render? Briefly explain what happened, then switch back to a relative path and confirm it renders again.</p></li>
-<li><p><strong>Render to PDF and publish to GitHub Pages-style docs folder</strong></p>
-<p>Render a PDF version of <code>hw1.qmd</code> (or <code>code/quadratic.qmd</code>) and place the PDF into <code>docs/</code>. Show the terminal command(s) you typed:</p>
-<pre><code># Your command here. This shuold be run in a Linux terminal. 
-# This command assumes your current directory is the parent directory containing `hw/hw1.qmd`. Otherwise, make appropriate change to the path to hw1.qmd
-#install any missing packages on the fly
-
-quarto render hw/hw1.qmd --to pdf  
-cp hw/hw1.pdf docs/
-</code></pre></li>
-<li><p><strong>Git workflow</strong> Make at least <strong>three commits</strong> with meaningful messages, such as:</p></li>
-</ol>
+<p>If the ends depart strongly:</p>
 <ul>
-<li><p><code>Add initial project structure</code></p></li>
-<li><p><code>Add quadratic root computation</code></p></li>
-<li><p><code>Add rendering output to docs</code></p>
-<p>In this document, paste the output of:</p>
-<pre><code>git log --oneline --decorate -n 5</code></pre></li>
+<li>the tails may be heavier or lighter than the reference distribution</li>
 </ul>
-<ol start="12" type="1">
-<li><strong>Push to GitHub</strong> Push your work to GitHub. In this document, include:</li>
-</ol>
+<p>For example:</p>
 <ul>
-<li>a screenshot of your GitHub repo showing the folders <code>img/</code>, <code>data/</code>, <code>code/</code>, <code>docs/</code></li>
-<li>the link to the rendered PDF file in your repo (if applicable)</li>
+<li><strong>right tail too large</strong>: upper-right points rise above the line</li>
+<li><strong>left tail too small</strong>: lower-left points fall below the line</li>
+<li><strong>S-shape</strong>: often suggests heavier tails than normal</li>
 </ul>
 <hr>
 </section>
-<section id="submission-checklist" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="submission-checklist"><span class="header-section-number">3</span> Submission checklist</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Repo exists and is named <code>HW1</code></label></li>
-<li><label><input type="checkbox"><code>hw1.qmd</code> renders without errors</label></li>
-<li><label><input type="checkbox"><code>img/plot.png</code> exists and is included in the document</label></li>
-<li><label><input type="checkbox"><code>data/coefs.txt</code> exists and is read using a relative path</label></li>
-<li><label><input type="checkbox"><code>docs/</code> contains the rendered PDF</label></li>
-<li><label><input type="checkbox">At least three commits + pushed to GitHub</label></li>
-</ul>
+<section id="small-concrete-example" class="level2">
+<h2 class="anchored" data-anchor-id="small-concrete-example">Small concrete example</h2>
+<p>Suppose the sorted sample is</p>
+<p><span class="math display">\[
+x_{(1)}, x_{(2)}, x_{(3)}, x_{(4)}, x_{(5)}.
+\]</span></p>
+<p>For (n=5), a common choice is</p>
+<p><span class="math display">\[
+p_i = \frac{i-0.5}{5} = 0.1, 0.3, 0.5, 0.7, 0.9.
+\]</span></p>
+<p>If comparing to standard normal, the theoretical quantiles are about</p>
+<p><span class="math display">\[
+-1.28,\ -0.52,\ 0,\ 0.52,\ 1.28.
+\]</span></p>
+<p>Then the Q–Q plot points are</p>
+<p><span class="math display">\[
+(-1.28, x_{(1)}),\ (-0.52, x_{(2)}),\ (0, x_{(3)}),\ (0.52, x_{(4)}),\ (1.28, x_{(5)}).
+\]</span></p>
+<p>If the data are close to normal, these points line up.</p>
+<hr>
+</section>
+<section id="better-reference-line" class="level2">
+<h2 class="anchored" data-anchor-id="better-reference-line">Better reference line</h2>
+<p>Usually this is preferred:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x_hat =</span> x_hat), <span class="fu">aes</span>(<span class="at">sample =</span> x_hat)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">dparams =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x_hat), <span class="at">sd =</span> <span class="fu">sd</span>(x_hat))) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>(<span class="at">dparams =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x_hat), <span class="at">sd =</span> <span class="fu">sd</span>(x_hat)), <span class="at">color=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="qq-plot_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>because <code>stat_qq_line()</code> gives a more meaningful Q–Q reference line than simply forcing <span class="math inline">\(y=x\)</span>.</p>
 
 
 </section>
