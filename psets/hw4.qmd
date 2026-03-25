@@ -1,0 +1,561 @@
+---
+title: "Problem Set 4"
+date: ""
+format: html
+---
+
+[Download source](https://raw.githubusercontent.com/ywanglab/STAT3000/refs/heads/main/psets/hw4.qmd)
+
+## Introduction
+
+In this problem set, you will work with US Census and CDC COVID-19 data. The goal is not to produce a formal causal analysis, but rather to build a clean weekly state-level dataset and use graphics to investigate patterns in COVID-19 burden and vaccination uptake.
+
+We will focus on the following questions:
+
+1.  How did COVID-19 case, hospitalization, and death rates evolve during 2020 and 2021?
+2.  Were there regional differences in COVID-19 burden and vaccination progress?
+3.  During large national waves, did states with higher vaccination or booster coverage tend to have lower hospitalization or death rates?
+
+## Objective
+
+You will create a single weekly data frame for each jurisdiction in 2020 and 2021. Your final table should contain, at a minimum, the following variables:
+
+-   `date`
+-   `state`
+-   `state_name`
+-   `region`
+-   `region_name`
+-   `population`
+-   `cases`
+-   `hosp`
+-   `deaths`
+-   `vax`
+-   `booster`
+
+You will then use this table to create several figures.
+
+## Instructions {.unnumbered}
+
+### 1. Obtain a Census API key
+
+Go to <https://api.census.gov/data/key_signup.html> and request a Census API key.
+
+Do **not** hard-code your key directly into your homework file. Instead, create a file in your working directory called `_census-key.R` containing exactly one line of code:
+
+``` r
+census_key <- "YOUR_REAL_CENSUS_KEY"
+```
+
+Note that the API key must be enclosed inside the quotes. Your homework code should then load the key by sourcing that file.
+
+### 2. Create a project structure
+
+In your course Git repository, create a folder `hw4` that includes the following directories:
+
+-   `data`
+-   `code`
+-   `figs`
+
+Inside `code`, include:
+
+-   `funcs.R`
+-   `wrangle.R`
+-   `analysis.qmd`
+
+Your final wrangling script should save the completed dataset as an RDS file in `data`, and your figures should be saved as PNG files in `figs`.
+
+### 3. General guidance
+
+-   The CDC datasets do **not** all use the same variable names, so inspect the column names carefully.
+-   The CDC APIs can change over time, so part of the assignment is to verify the current schema before wrangling.
+-   Include comments in your code so a grader can follow your logic.
+-   In each code chunk, change `#| eval: false` to `#| eval: true`.
+-   Remove `NULL` in each code chunk after you add your own code.
+
+------------------------------------------------------------------------
+
+## Part I: Download the data
+
+For this part, put your code in `code/wrangle.R` unless otherwise specified.
+
+### 1. Load the required packages and source the Census key
+
+Add code that loads the packages you will need and defines `census_key` by sourcing `census-key.R`.
+
+```{r}
+#| eval: false
+# Load packages you plan to use
+library(tidyverse)
+library(httr2)
+library(janitor)
+library(jsonlite)
+library(purrr)
+library(lubridate)
+library(knitr)
+
+# Define census_key by sourcing the local file
+# Your code here
+```
+
+### 2. Download Census population data
+
+Use the Census API to request 2020 and 2021 state population estimates. The code below constructs and performs the request. Add **at least two lines of your own code** to do the following:
+
+-   check that the response was successful,
+-   determine the content type,
+-   and extract the body into an object called `population_raw`.
+
+```{r}
+#| eval: false
+census_url <- "https://api.census.gov/data/2021/pep/population"
+
+population_request <- request(census_url) |>
+  req_url_query(
+    get = "POP_2020,POP_2021,NAME",
+    "for" = "state:*",
+    key = census_key
+  )
+
+population_response <- population_request |>
+  req_perform()
+
+# Add your code below
+# 1. Check the response status
+# 2. Determine the content type
+# 3. Extract the body into population_raw
+```
+
+### 3. Tidy the population data
+
+Convert `population_raw` into a tidy tibble called `population` with one row per state-year. Your final table should include:
+
+-   `state_name`
+-   `state`
+-   `year`
+-   `population`
+
+Also add state abbreviations, making sure to handle DC and Puerto Rico correctly.
+
+```{r}
+#| eval: false
+## Create tidy population table
+population <- population_raw |>
+  # remove the header row problem
+  # convert to tibble
+  # pivot to long format
+  # parse year and population as numeric
+  # add state abbreviations
+  # keep a tidy set of variables
+  NULL
+```
+
+### 4. Download the regions file
+
+The following JSON file lists the Public Health Service regions:
+
+```{r}
+#| eval: false
+regions_url <- "https://github.com/datasciencelabs/2025/raw/refs/heads/main/data/regions.json"
+```
+
+Write code to create a data frame called `regions` with the variables:
+
+-   `state_name`
+-   `region`
+-   `region_name`
+
+One of the region names is long. Replace it with a shorter version.
+
+```{r}
+#| eval: false
+regions_json <- fromJSON(regions_url, simplifyVector = FALSE)
+
+regions <- 
+  # convert the parsed list into a tidy data frame
+  # shorten the longest region name
+  NULL
+```
+
+### 5. Join population and region information
+
+Join `regions` onto `population`.
+
+```{r}
+#| eval: false
+population <- 
+  # join population and regions
+  NULL
+```
+
+### 6. Write a reusable CDC downloader
+
+Save the following function in `code/funcs.R`. This function should download a CDC Socrata endpoint, remove the default row limit by setting a very large `$limit`, parse the JSON, and return a tibble with clean column names.
+
+```{r}
+#| eval: false
+get_cdc_data <- function(endpoint) {
+  request(endpoint) |>
+    req_url_query("$limit" = 10000000) |>
+    req_perform() |>
+    resp_check_status() |>
+    resp_body_json(simplifyVector = TRUE) |>
+    as_tibble() |>
+    janitor::clean_names()
+}
+```
+
+In `wrangle.R`, source `funcs.R`.
+
+```{r}
+#| eval: false
+source("code/funcs.R")
+```
+
+### 7. Download the CDC datasets
+
+Use the function above to download the four datasets below. Save them as `cases_raw`, `hosp_raw`, `deaths_raw`, and `vax_raw`.
+
+-   cases: `https://data.cdc.gov/resource/pwn4-m3yp.json`
+-   hospitalizations: `https://data.cdc.gov/resource/39z2-9zu6.json`
+-   deaths: `https://data.cdc.gov/resource/r8kw-7aab.json`
+-   vaccinations: `https://data.cdc.gov/resource/rh2h-3yt2.json`
+
+The download code is provided. Add **one or two lines of your own** to inspect the result, for example by checking dimensions or variable names.
+
+```{r}
+#| eval: false
+cases_raw  <- get_cdc_data("https://data.cdc.gov/resource/pwn4-m3yp.json")
+hosp_raw   <- get_cdc_data("https://data.cdc.gov/resource/39z2-9zu6.json")
+deaths_raw <- get_cdc_data("https://data.cdc.gov/resource/r8kw-7aab.json")
+vax_raw    <- get_cdc_data("https://data.cdc.gov/resource/rh2h-3yt2.json")
+
+# Add one or two quick inspection lines here
+```
+
+------------------------------------------------------------------------
+
+## Part II: Wrangle the weekly state-level dataset
+
+In this section, you will create a weekly panel for 2020 and 2021.
+
+### 8. Compare the raw schemas
+
+Create a small summary table that reports, for each raw CDC dataset:
+
+1.  the column containing the jurisdiction identifier,
+2.  whether the data are daily or weekly,
+3.  and the columns that contain time information.
+
+You may render the table with `knitr::kable()`.
+
+```{r}
+#| eval: false
+raw_summary <- tibble(
+  outcome = c("cases", "hospitalizations", "deaths", "vaccinations")
+  # add the remaining columns
+)
+
+# render the table
+```
+
+### 9. Wrangle the cases data
+
+Create a table called `cases` that contains one row per state-week with:
+
+-   `state`
+-   `mmwr_year`
+-   `mmwr_week`
+-   `date` (the week-ending date)
+-   `cases` (weekly total cases)
+
+Keep only states that appear in the `population` table.
+
+Hints:
+
+-   The date information may need to be parsed.
+-   Use `epiweek()` and `epiyear()` from **lubridate**.
+-   The cases dataset is already weekly, but you should still verify the time variable you use.
+
+```{r}
+#| eval: false
+## Wrangle weekly cases
+cases <- cases_raw |>
+  # choose the relevant state column
+  # choose the relevant date column
+  # choose the relevant cases column
+  # parse dates
+  # restrict to jurisdictions in population
+  # compute MMWR year and week
+  # aggregate to one row per state-week if needed
+  NULL
+```
+
+### 10. Wrangle the hospitalization data
+
+Create a table called `hosp` with the same weekly structure as `cases`, but containing weekly hospitalizations in a variable named `hosp`.
+
+Because hospitalization data are daily, collapse them to state-week totals. Remove weeks with fewer than 7 reporting days.
+
+```{r}
+#| eval: false
+## Wrangle weekly hospitalizations
+hosp <- hosp_raw |>
+  # identify the state, date, and hospitalization columns
+  # parse the dates
+  # compute MMWR year and week
+  # aggregate to weekly totals
+  # count number of reporting days per week
+  # remove incomplete weeks
+  NULL
+```
+
+### 11. Wrangle the deaths data
+
+Create a table called `deaths` with weekly COVID-19 deaths by state. Keep the variables:
+
+-   `state`
+-   `mmwr_year`
+-   `mmwr_week`
+-   `date`
+-   `deaths`
+
+Be careful: this dataset may contain national rows and grouping variables.
+
+```{r}
+#| eval: false
+## Wrangle weekly deaths
+# Possible tasks:
+# - keep only state-level observations
+# - filter to a weekly grouping if needed
+# - choose the COVID death count column
+# - parse the week-ending date
+# - keep the needed variables
+
+deaths <- deaths_raw |>
+  NULL
+```
+
+### 12. Wrangle the vaccination data
+
+Create a table called `vax` containing the most recent vaccination record within each state-week. Keep:
+
+-   `state`
+-   `mmwr_year`
+-   `mmwr_week`
+-   `date`
+-   `vax` (primary series cumulative count)
+-   `booster` (booster cumulative count)
+
+```{r}
+#| eval: false
+## Wrangle weekly vaccination data
+vax <- vax_raw |>
+  # identify state and date columns
+  # choose cumulative primary-series and booster variables
+  # parse dates
+  # compute MMWR year and week
+  # keep the last record within each state-week
+  NULL
+```
+
+### 13. Create the full state-week panel
+
+We will include all state-week combinations from 2020 and 2021, even if one of the datasets is missing a value for a particular week.
+
+Use the following scaffold to create all possible weeks and join population information:
+
+```{r}
+#| eval: false
+all_dates <- data.frame(
+  date = seq(make_date(2020, 1, 25), make_date(2021, 12, 31), by = "week")
+) |>
+  mutate(date = ceiling_date(date, unit = "week", week_start = 7) - days(1)) |>
+  mutate(mmwr_year = epiyear(date), mmwr_week = epiweek(date))
+
+dates_and_pop <- cross_join(
+  all_dates,
+  data.frame(state = unique(population$state))
+) |>
+  left_join(population, by = c("state", "mmwr_year" = "year"))
+```
+
+Now join `cases`, `hosp`, `deaths`, and `vax` to create a final table called `dat`.
+
+Requirements:
+
+-   order observations by `state` and `date`,
+-   fill vaccination and booster counts forward within state,
+-   replace missing counts for `cases`, `hosp`, and `deaths` with 0,
+-   save the final table as `data/dat.rds`.
+
+```{r}
+#| eval: false
+## Join the weekly tables
+
+dat <- dates_and_pop |>
+  # join weekly cases
+  # join weekly hospitalizations
+  # join weekly deaths
+  # join weekly vaccinations
+  # arrange within state by date
+  # fill cumulative vaccination variables forward
+  # replace missing weekly counts with 0
+  NULL
+
+## Save the dataset
+# Your code here
+```
+
+------------------------------------------------------------------------
+
+## Part III: Create figures in `analysis.qmd`
+
+In your `analysis.qmd` file, load the weekly dataset from `data/dat.rds`. Each figure should have:
+
+-   a short descriptive paragraph,
+-   a code chunk that is shown in the rendered document,
+-   and appropriate titles and axis labels.
+
+```{r}
+#| eval: false
+# Setup chunk for analysis.qmd
+library(tidyverse)
+library(lubridate)
+library(scales)
+
+dat <- readRDS("data/dat.rds")
+```
+
+### 14. Figure 1: National weekly burden
+
+Create a trend plot showing national weekly **cases**, **hospitalizations**, and **deaths** per 100,000 people. Place the three panels on top of one another.
+
+Hint: first aggregate to the national level by week, then use `pivot_longer()` and `facet_wrap()`.
+
+```{r}
+#| eval: false
+## Figure 1: National weekly burden
+fig1_dat <- dat |>
+  # aggregate to national weekly rates per 100,000
+  NULL
+
+# make the plot
+```
+
+### 15. Figure 2: Regional case rates over time
+
+Create a line plot of weekly **case rates per 100,000** over time for each `region_name`. Use one line per region.
+
+```{r}
+#| eval: false
+## Figure 2: Regional case rates
+fig2_dat <- dat |>
+  # aggregate to regional weekly rates
+  NULL
+
+# make the plot
+```
+
+### 16. Figure 3: Vaccination and booster progress by region
+
+For each region, compute the percent of the regional population that completed the primary series and the percent that received a booster dose. Plot both over time.
+
+One reasonable approach is to create a long data frame with one row per region-date-series.
+
+```{r}
+#| eval: false
+## Figure 3: Vaccination and booster progress
+fig3_dat <- dat |>
+  # compute regional percentages
+  NULL
+
+# make the plot
+```
+
+### 17. Figure 4: Top 10 states by cumulative death rate
+
+By the end of 2021, which states had the highest cumulative COVID-19 death rates per 100,000? Create a bar plot of the top 10 states.
+
+```{r}
+#| eval: false
+## Figure 4: Top 10 cumulative death rates
+fig4_dat <- dat |>
+  # compute cumulative deaths by state
+  # convert to a per-100,000 rate
+  # keep the top 10
+  NULL
+
+# make the plot
+```
+
+### 18. Figure 5: Vaccination and hospitalization during a major wave
+
+Use your earlier figures to identify **one major national COVID-19 wave in 2021** during which a meaningful share of the population had already completed the primary series.
+
+For your chosen period:
+
+-   compute **hospitalizations per day per 100,000** for each state,
+-   compute the **primary-series vaccination rate** in each state at the end of the period,
+-   create a scatter plot with vaccination rate on the x-axis and hospitalization rate on the y-axis.
+
+Briefly explain how you chose the time window.
+
+```{r}
+#| eval: false
+## Figure 5: Vaccination vs hospitalization
+start_date <- as_date("YYYY-MM-DD")
+end_date   <- as_date("YYYY-MM-DD")
+
+fig5_dat <- dat |>
+  # filter to the selected period
+  # summarize hospitalization burden
+  # join vaccination coverage at the end date
+  # compute rates
+  NULL
+
+# make the plot
+```
+
+### 19. Figure 6: Booster coverage and death rates
+
+Repeat the previous exercise, but now examine the relationship between:
+
+-   **booster coverage** at the end of the period, and
+-   **COVID-19 deaths per day per 100,000** during the period.
+
+Use a late-2021 window for which booster coverage is nontrivial.
+
+```{r}
+#| eval: false
+## Figure 6: Booster coverage vs death rate
+start_date <- as_date("YYYY-MM-DD")
+end_date   <- as_date("YYYY-MM-DD")
+
+fig6_dat <- dat |>
+  # filter to the selected period
+  # summarize deaths during the period
+  # join booster coverage at the end date
+  # compute rates
+  NULL
+
+# make the plot
+```
+
+------------------------------------------------------------------------
+
+## Deliverables
+
+1.  Push your `hw4` folder to your Git repo that contains:
+
+-   `code/funcs.R`
+-   `code/wrangle.R`
+-   `code/analysis.qmd`
+-   `data/dat.rds`
+-   at least six PNG files in `figs`
+
+Submit a link to your GitHub repo. 
+
+2.  A rendered PDF of this QMD file that should display both code and output:
+```
+quarto render hw4.qmd --to pdf 
+```

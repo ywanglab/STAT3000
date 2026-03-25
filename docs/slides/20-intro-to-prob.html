@@ -472,8 +472,8 @@
 <li><p>If we deal a King for the first card, the probability of a second card being a King decreases because there are only three Kings left: The probability is 3 out of 51.</p></li>
 </ul>
 </section>
-<section id="sampling-by-sample-function" class="slide level2">
-<h2>Sampling by <code>sample</code> function</h2>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
 <ul>
 <li>By default, the <code>sample</code> function samples <em>without replacement</em></li>
 </ul>
@@ -483,13 +483,8 @@
 <span id="cb3-3"><a href="#cb3-3"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(beads, <span class="dv">5</span>) <span class="co">#by default, replace=FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>If you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.</li>
-</ul>
-</section>
-<section id="independence-1" class="slide level2">
-<h2>Independence</h2>
-<ul>
-<li>However, if I show you the result of the last four outcomes:</li>
+<li><p>If you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.</p></li>
+<li><p>However, if I show you the result of the last four outcomes:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>x[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -650,9 +645,6 @@
 <section id="discrete-probability" class="slide level2">
 <h2>Discrete probability</h2>
 <p>If I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.</p>
-</section>
-<section id="discrete-probability-1" class="slide level2">
-<h2>Discrete probability</h2>
 <ul>
 <li><p>A precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event <strong>pick a red bead</strong>.</p></li>
 <li><p>Since each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue.</p></li>
@@ -835,15 +827,9 @@
 <section id="cdf" class="slide level2">
 <h2>CDF</h2>
 <ul>
-<li><p>There is a connection to the empirical CDF.</p></li>
 <li><p>If I randomly pick one of the male students, what is the chance that he is taller than 70.5 inches?</p></li>
 <li><p>Since every student has the same chance of being picked, the answer is the proportion of students that are taller than 70.5 inches.</p></li>
-</ul>
-</section>
-<section id="cdf-1" class="slide level2">
-<h2>CDF</h2>
-<ul>
-<li>Using the eCDF we obtain an answer by typing:</li>
+<li><p>Using the eCDF we obtain an answer by typing:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">F</span>(<span class="fl">70.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -855,7 +841,7 @@
 <li>The CDF is a version of the eCDF that assigns theoretical probabilities for each <span class="math inline">\(a\)</span> rather than proportions computed from data.</li>
 </ul>
 </section>
-<section id="cdf-2" class="slide level2">
+<section id="cdf-1" class="slide level2">
 <h2>CDF</h2>
 <ul>
 <li>Specifically, the CDF for a random outcome <span class="math inline">\(X\)</span> defines, for any number <span class="math inline">\(a\)</span>, the probability of observing a value less than or equal to <span class="math inline">\(a\)</span>.</li>
@@ -865,7 +851,7 @@
 <li>Once a CDF is defined, we can use it to compute the probability of any subset of values.</li>
 </ul>
 </section>
-<section id="cdf-3" class="slide level2">
+<section id="cdf-2" class="slide level2">
 <h2>CDF</h2>
 <ul>
 <li>For instance, the probability of a student being between height <code>a</code> and height <code>b</code> is:</li>
@@ -876,6 +862,16 @@
 <ul>
 <li>Since we can compute the probability for any possible event using this approach, the CDF defines the probability distribution.</li>
 </ul>
+</section>
+<section id="pdf-for-continuous-rvs" class="slide level2">
+<h2>pdf for continuous RVs</h2>
+<ul>
+<li><p>Although for continuous distributions the probability of a single value <span class="math inline">\(\mbox{Pr}(X=x)\)</span> is not defined, there is a theoretical definition that has a similar interpretation.</p></li>
+<li><p>The probability density at <span class="math inline">\(x\)</span> is defined as the function <span class="math inline">\(f(a)\)</span> such that:</p></li>
+</ul>
+<p><span class="math display">\[
+F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
+\]</span></p>
 </section>
 <section id="probability-density-function" class="slide level2">
 <h2>Probability density function</h2>
@@ -934,21 +930,49 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <li>The cumulative distribution for the normal distribution in R can be obtained with the function <code>pnorm</code>.</li>
 </ul>
 </section>
+<section id="pdf-of-normal-distribution" class="slide level2">
+<h2>pdf of normal distribution</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">The graph</a></li><li><a href="#tabset-3-2">The code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="20-intro-to-prob_files/figure-revealjs/intergrals-code-graph-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length =</span> <span class="dv">100</span>)<span class="sc">*</span>s <span class="sc">+</span> m, <span class="co"># x\in [m-4s, m+4s]</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>              <span class="at">y =</span> <span class="fu">dnorm</span>(x, m, s)) </span>
+<span id="cb31-3"><a href="#cb31-3"></a>dat_ribbon <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, x <span class="sc">&gt;=</span> <span class="dv">2</span><span class="sc">*</span>s <span class="sc">+</span> m) <span class="co"># the right tail at least 2 sd from the mean</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
+<span id="cb31-5"><a href="#cb31-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> y), <span class="at">data =</span> dat_ribbon) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>geom_ribbon(): add a shading</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 <section id="cdf-of-a-normal-distribution" class="slide level2">
 <h2>cdf of a normal distribution</h2>
 <ul>
 <li>a random quantity is normally distributed with average <code>m</code> and standard deviation <code>s</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">F</span>(a) <span class="ot">=</span> <span class="fu">pnorm</span>(a, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">F</span>(a) <span class="ot">=</span> <span class="fu">pnorm</span>(a, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>if we use the normal approximation, <strong>What is the probability that a randomly selected student is taller then 70.5 inches?</strong></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span>
-<span id="cb32-2"><a href="#cb32-2"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x) </span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">70.5</span>, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span>
+<span id="cb33-2"><a href="#cb33-2"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x) </span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">70.5</span>, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.371369</code></pre>
 </div>
@@ -957,9 +981,9 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <section id="distributions-as-approximations" class="slide level2">
 <h2>Distributions as approximations</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">The graph</a></li><li><a href="#tabset-3-2">The code</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">The graph</a></li><li><a href="#tabset-4-2">The code</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-4-1">
 <ul>
 <li>Below is a plot of that probability distribution:</li>
 </ul>
@@ -969,10 +993,10 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 </div>
 </div>
 </div>
-<div id="tabset-3-2">
+<div id="tabset-4-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>rafalib<span class="sc">::</span><span class="fu">mypar</span>() </span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">plot</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(x)), <span class="at">xlab =</span> <span class="st">"a = Height in inches"</span>, <span class="at">ylab =</span> <span class="st">"Pr(X = a)"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>rafalib<span class="sc">::</span><span class="fu">mypar</span>() </span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">plot</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(x)), <span class="at">xlab =</span> <span class="st">"a = Height in inches"</span>, <span class="at">ylab =</span> <span class="st">"Pr(X = a)"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>table()</code>: frequency counts. Default drops NA, unless <code>table(x, useNA="ifany")</code></li>
@@ -980,8 +1004,8 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <li>for 2-way table</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(a, b), <span class="at">margin =</span> <span class="dv">1</span>)  <span class="co"># rows sum to 1</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(a, b), <span class="at">margin =</span> <span class="dv">2</span>)  <span class="co"># cols sum to 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(a, b), <span class="at">margin =</span> <span class="dv">1</span>)  <span class="co"># rows sum to 1</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(a, b), <span class="at">margin =</span> <span class="dv">2</span>)  <span class="co"># cols sum to 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1011,15 +1035,15 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <li>the normal distribution is useful for approximating the proportion of students reporting values in intervals like the following three:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">68.5</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">67.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">68.5</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">67.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.114532</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">69.5</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">68.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">69.5</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">68.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1194581</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">70.5</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">69.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">70.5</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">69.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1219212</code></pre>
 </div>
@@ -1031,15 +1055,15 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <li>Note how close we get with the normal approximation:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">pnorm</span>(<span class="fl">68.5</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">67.5</span>, m, s)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">pnorm</span>(<span class="fl">68.5</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">67.5</span>, m, s)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1031077</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">pnorm</span>(<span class="fl">69.5</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">68.5</span>, m, s)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">pnorm</span>(<span class="fl">69.5</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">68.5</span>, m, s)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1097121</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">pnorm</span>(<span class="fl">70.5</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">69.5</span>, m, s)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">pnorm</span>(<span class="fl">70.5</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">69.5</span>, m, s)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1081743</code></pre>
 </div>
@@ -1054,13 +1078,13 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <li>notice how the approximation breaks down:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">70.9</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">70.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">70.9</span>) <span class="sc">-</span> <span class="fu">mean</span>(x <span class="sc">&lt;=</span> <span class="fl">70.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02216749</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">pnorm</span>(<span class="fl">70.9</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">70.1</span>, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">pnorm</span>(<span class="fl">70.9</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">70.1</span>, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.08359562</code></pre>
 </div>
@@ -1082,8 +1106,8 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 \mbox{Pr}(X=4) = 1/6
 \]</span></p>
 </section>
-<section id="pdf-for-discrete-rvs" class="slide level2">
-<h2>pdf for discrete RVs</h2>
+<section id="cdf-for-discrete-rvs" class="slide level2">
+<h2>CDF for discrete RVs</h2>
 <ul>
 <li>The CDF can then easily be defined:</li>
 </ul>
@@ -1095,53 +1119,15 @@ F(4) &amp;= &amp;  \mbox{Pr}(X\leq 4) \\
 \end{aligned}
 \]</span></p>
 </section>
-<section id="pdf-for-continuous-rvs" class="slide level2">
-<h2>pdf for continuous RVs</h2>
-<ul>
-<li><p>Although for continuous distributions the probability of a single value <span class="math inline">\(\mbox{Pr}(X=x)\)</span> is not defined, there is a theoretical definition that has a similar interpretation.</p></li>
-<li><p>The probability density at <span class="math inline">\(x\)</span> is defined as the function <span class="math inline">\(f(a)\)</span> such that:</p></li>
-</ul>
-<p><span class="math display">\[
-F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
-\]</span></p>
-</section>
 <section id="normal-distribution-example" class="slide level2">
 <h2>Normal distribution example</h2>
 <ul>
 <li>For example, to use the normal approximation to estimate the probability of someone being taller than 76 inches, we use:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">76</span>, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">76</span>, m, s) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.03206008</code></pre>
-</div>
-</div>
-</section>
-<section id="pdf-of-normal-distribution" class="slide level2">
-<h2>pdf of normal distribution</h2>
-<div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">The graph</a></li><li><a href="#tabset-4-2">The code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="20-intro-to-prob_files/figure-revealjs/intergrals-code-graph-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-4-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length =</span> <span class="dv">100</span>)<span class="sc">*</span>s <span class="sc">+</span> m, <span class="co"># x\in [m-4s, m+4s]</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a>              <span class="at">y =</span> <span class="fu">dnorm</span>(x, m, s)) </span>
-<span id="cb54-3"><a href="#cb54-3"></a>dat_ribbon <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, x <span class="sc">&gt;=</span> <span class="dv">2</span><span class="sc">*</span>s <span class="sc">+</span> m) <span class="co"># the right tail at least 2 sd from the mean</span></span>
-<span id="cb54-4"><a href="#cb54-4"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
-<span id="cb54-5"><a href="#cb54-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb54-6"><a href="#cb54-6"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> y), <span class="at">data =</span> dat_ribbon) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>geom_ribbon(): add a shading</li>
-</ul>
-</div>
 </div>
 </div>
 </section>
@@ -1233,8 +1219,8 @@ F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
 <li><p>R provides functions to compute the density, the quantiles, the cumulative distribution functions and to generate Monte Carlo simulations.</p></li>
 </ul>
 </section>
-<section id="continuous-distributions-1" class="slide level2">
-<h2>Continuous distributions</h2>
+<section id="other-continuous-distributions" class="slide level2">
+<h2>Other continuous distributions</h2>
 <div class="panel-tabset">
 <ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">The code</a></li><li><a href="#tabset-7-2">The graph</a></li></ul>
 <div class="tab-content">

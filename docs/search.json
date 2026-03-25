@@ -218,7 +218,7 @@
     "href": "slides/20-intro-to-prob.html#discrete-probability",
     "title": "Introduction to Probability",
     "section": "Discrete probability",
-    "text": "Discrete probability\nIf I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.",
+    "text": "Discrete probability\nIf I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.\n\nA precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event pick a red bead.\nSince each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue.",
     "crumbs": [
       "Probability"
     ]
@@ -348,7 +348,7 @@
     "href": "slides/20-intro-to-prob.html#cdf",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nThere is a connection to the empirical CDF.\nIf I randomly pick one of the male students, what is the chance that he is taller than 70.5 inches?\nSince every student has the same chance of being picked, the answer is the proportion of students that are taller than 70.5 inches.",
+    "text": "CDF\n\nIf I randomly pick one of the male students, what is the chance that he is taller than 70.5 inches?\nSince every student has the same chance of being picked, the answer is the proportion of students that are taller than 70.5 inches.\nUsing the eCDF we obtain an answer by typing:\n\n\n1 - F(70.5) \n\n[1] 0.3633005\n\n\n\nThe CDF is a version of the eCDF that assigns theoretical probabilities for each \\(a\\) rather than proportions computed from data.",
     "crumbs": [
       "Probability"
     ]
@@ -358,7 +358,7 @@
     "href": "slides/20-intro-to-prob.html#cdf-1",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nUsing the eCDF we obtain an answer by typing:\n\n\n1 - F(70.5) \n\n[1] 0.3633005\n\n\n\nThe CDF is a version of the eCDF that assigns theoretical probabilities for each \\(a\\) rather than proportions computed from data.",
+    "text": "CDF\n\nSpecifically, the CDF for a random outcome \\(X\\) defines, for any number \\(a\\), the probability of observing a value less than or equal to \\(a\\).\n\n\\[ F(a) = \\mbox{Pr}(X \\leq a) \\]\n\nOnce a CDF is defined, we can use it to compute the probability of any subset of values.",
     "crumbs": [
       "Probability"
     ]
@@ -368,7 +368,7 @@
     "href": "slides/20-intro-to-prob.html#cdf-2",
     "title": "Introduction to Probability",
     "section": "CDF",
-    "text": "CDF\n\nSpecifically, the CDF for a random outcome \\(X\\) defines, for any number \\(a\\), the probability of observing a value less than or equal to \\(a\\).\n\n\\[ F(a) = \\mbox{Pr}(X \\leq a) \\]\n\nOnce a CDF is defined, we can use it to compute the probability of any subset of values.",
+    "text": "CDF\n\nFor instance, the probability of a student being between height a and height b is:\n\n\\[\n\\mbox{Pr}(a &lt; X \\leq b) = F(b)-F(a)\n\\]\n\nSince we can compute the probability for any possible event using this approach, the CDF defines the probability distribution.",
     "crumbs": [
       "Probability"
     ]
@@ -3961,6 +3961,116 @@
     "text": "Correct interpretation of the law of averages\n\nThe law of averages applies only when the number of draws is very large and not in small samples.\nAfter a million tosses, you will definitely see about 50% heads regardless of the outcome of the first five tosses.\nAnother funny misuse of the law of averages is in sports when TV sportscasters predict a player is about to succeed because they have failed a few times in a row.\n\n\n\nHome",
     "crumbs": [
       "Inference"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html",
+    "href": "psets/hw4.html",
+    "title": "Problem Set 4",
+    "section": "",
+    "text": "Download source",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#introduction",
+    "href": "psets/hw4.html#introduction",
+    "title": "Problem Set 4",
+    "section": "Introduction",
+    "text": "Introduction\nIn this problem set, you will work with US Census and CDC COVID-19 data. The goal is not to produce a formal causal analysis, but rather to build a clean weekly state-level dataset and use graphics to investigate patterns in COVID-19 burden and vaccination uptake.\nWe will focus on the following questions:\n\nHow did COVID-19 case, hospitalization, and death rates evolve during 2020 and 2021?\nWere there regional differences in COVID-19 burden and vaccination progress?\nDuring large national waves, did states with higher vaccination or booster coverage tend to have lower hospitalization or death rates?",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#objective",
+    "href": "psets/hw4.html#objective",
+    "title": "Problem Set 4",
+    "section": "Objective",
+    "text": "Objective\nYou will create a single weekly data frame for each jurisdiction in 2020 and 2021. Your final table should contain, at a minimum, the following variables:\n\ndate\nstate\nstate_name\nregion\nregion_name\npopulation\ncases\nhosp\ndeaths\nvax\nbooster\n\nYou will then use this table to create several figures.",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#instructions",
+    "href": "psets/hw4.html#instructions",
+    "title": "Problem Set 4",
+    "section": "Instructions",
+    "text": "Instructions\n\n1. Obtain a Census API key\nGo to https://api.census.gov/data/key_signup.html and request a Census API key.\nDo not hard-code your key directly into your homework file. Instead, create a file in your working directory called _census-key.R containing exactly one line of code:\ncensus_key &lt;- \"YOUR_REAL_CENSUS_KEY\"\nNote that the API key must be enclosed inside the quotes. Your homework code should then load the key by sourcing that file.\n\n\n2. Create a project structure\nIn your course Git repository, create a folder hw4 that includes the following directories:\n\ndata\ncode\nfigs\n\nInside code, include:\n\nfuncs.R\nwrangle.R\nanalysis.qmd\n\nYour final wrangling script should save the completed dataset as an RDS file in data, and your figures should be saved as PNG files in figs.\n\n\n3. General guidance\n\nThe CDC datasets do not all use the same variable names, so inspect the column names carefully.\nThe CDC APIs can change over time, so part of the assignment is to verify the current schema before wrangling.\nInclude comments in your code so a grader can follow your logic.\nIn each code chunk, change #| eval: false to #| eval: true.\nRemove NULL in each code chunk after you add your own code.",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#part-i-download-the-data",
+    "href": "psets/hw4.html#part-i-download-the-data",
+    "title": "Problem Set 4",
+    "section": "Part I: Download the data",
+    "text": "Part I: Download the data\nFor this part, put your code in code/wrangle.R unless otherwise specified.\n\n1. Load the required packages and source the Census key\nAdd code that loads the packages you will need and defines census_key by sourcing census-key.R.\n\n# Load packages you plan to use\nlibrary(tidyverse)\nlibrary(httr2)\nlibrary(janitor)\nlibrary(jsonlite)\nlibrary(purrr)\nlibrary(lubridate)\nlibrary(knitr)\n\n# Define census_key by sourcing the local file\n# Your code here\n\n\n\n2. Download Census population data\nUse the Census API to request 2020 and 2021 state population estimates. The code below constructs and performs the request. Add at least two lines of your own code to do the following:\n\ncheck that the response was successful,\ndetermine the content type,\nand extract the body into an object called population_raw.\n\n\ncensus_url &lt;- \"https://api.census.gov/data/2021/pep/population\"\n\npopulation_request &lt;- request(census_url) |&gt;\n  req_url_query(\n    get = \"POP_2020,POP_2021,NAME\",\n    \"for\" = \"state:*\",\n    key = census_key\n  )\n\npopulation_response &lt;- population_request |&gt;\n  req_perform()\n\n# Add your code below\n# 1. Check the response status\n# 2. Determine the content type\n# 3. Extract the body into population_raw\n\n\n\n3. Tidy the population data\nConvert population_raw into a tidy tibble called population with one row per state-year. Your final table should include:\n\nstate_name\nstate\nyear\npopulation\n\nAlso add state abbreviations, making sure to handle DC and Puerto Rico correctly.\n\n## Create tidy population table\npopulation &lt;- population_raw |&gt;\n  # remove the header row problem\n  # convert to tibble\n  # pivot to long format\n  # parse year and population as numeric\n  # add state abbreviations\n  # keep a tidy set of variables\n  NULL\n\n\n\n4. Download the regions file\nThe following JSON file lists the Public Health Service regions:\n\nregions_url &lt;- \"https://github.com/datasciencelabs/2025/raw/refs/heads/main/data/regions.json\"\n\nWrite code to create a data frame called regions with the variables:\n\nstate_name\nregion\nregion_name\n\nOne of the region names is long. Replace it with a shorter version.\n\nregions_json &lt;- fromJSON(regions_url, simplifyVector = FALSE)\n\nregions &lt;- \n  # convert the parsed list into a tidy data frame\n  # shorten the longest region name\n  NULL\n\n\n\n5. Join population and region information\nJoin regions onto population.\n\npopulation &lt;- \n  # join population and regions\n  NULL\n\n\n\n6. Write a reusable CDC downloader\nSave the following function in code/funcs.R. This function should download a CDC Socrata endpoint, remove the default row limit by setting a very large $limit, parse the JSON, and return a tibble with clean column names.\n\nget_cdc_data &lt;- function(endpoint) {\n  request(endpoint) |&gt;\n    req_url_query(\"$limit\" = 10000000) |&gt;\n    req_perform() |&gt;\n    resp_check_status() |&gt;\n    resp_body_json(simplifyVector = TRUE) |&gt;\n    as_tibble() |&gt;\n    janitor::clean_names()\n}\n\nIn wrangle.R, source funcs.R.\n\nsource(\"code/funcs.R\")\n\n\n\n7. Download the CDC datasets\nUse the function above to download the four datasets below. Save them as cases_raw, hosp_raw, deaths_raw, and vax_raw.\n\ncases: https://data.cdc.gov/resource/pwn4-m3yp.json\nhospitalizations: https://data.cdc.gov/resource/39z2-9zu6.json\ndeaths: https://data.cdc.gov/resource/r8kw-7aab.json\nvaccinations: https://data.cdc.gov/resource/rh2h-3yt2.json\n\nThe download code is provided. Add one or two lines of your own to inspect the result, for example by checking dimensions or variable names.\n\ncases_raw  &lt;- get_cdc_data(\"https://data.cdc.gov/resource/pwn4-m3yp.json\")\nhosp_raw   &lt;- get_cdc_data(\"https://data.cdc.gov/resource/39z2-9zu6.json\")\ndeaths_raw &lt;- get_cdc_data(\"https://data.cdc.gov/resource/r8kw-7aab.json\")\nvax_raw    &lt;- get_cdc_data(\"https://data.cdc.gov/resource/rh2h-3yt2.json\")\n\n# Add one or two quick inspection lines here",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#part-ii-wrangle-the-weekly-state-level-dataset",
+    "href": "psets/hw4.html#part-ii-wrangle-the-weekly-state-level-dataset",
+    "title": "Problem Set 4",
+    "section": "Part II: Wrangle the weekly state-level dataset",
+    "text": "Part II: Wrangle the weekly state-level dataset\nIn this section, you will create a weekly panel for 2020 and 2021.\n\n8. Compare the raw schemas\nCreate a small summary table that reports, for each raw CDC dataset:\n\nthe column containing the jurisdiction identifier,\nwhether the data are daily or weekly,\nand the columns that contain time information.\n\nYou may render the table with knitr::kable().\n\nraw_summary &lt;- tibble(\n  outcome = c(\"cases\", \"hospitalizations\", \"deaths\", \"vaccinations\")\n  # add the remaining columns\n)\n\n# render the table\n\n\n\n9. Wrangle the cases data\nCreate a table called cases that contains one row per state-week with:\n\nstate\nmmwr_year\nmmwr_week\ndate (the week-ending date)\ncases (weekly total cases)\n\nKeep only states that appear in the population table.\nHints:\n\nThe date information may need to be parsed.\nUse epiweek() and epiyear() from lubridate.\nThe cases dataset is already weekly, but you should still verify the time variable you use.\n\n\n## Wrangle weekly cases\ncases &lt;- cases_raw |&gt;\n  # choose the relevant state column\n  # choose the relevant date column\n  # choose the relevant cases column\n  # parse dates\n  # restrict to jurisdictions in population\n  # compute MMWR year and week\n  # aggregate to one row per state-week if needed\n  NULL\n\n\n\n10. Wrangle the hospitalization data\nCreate a table called hosp with the same weekly structure as cases, but containing weekly hospitalizations in a variable named hosp.\nBecause hospitalization data are daily, collapse them to state-week totals. Remove weeks with fewer than 7 reporting days.\n\n## Wrangle weekly hospitalizations\nhosp &lt;- hosp_raw |&gt;\n  # identify the state, date, and hospitalization columns\n  # parse the dates\n  # compute MMWR year and week\n  # aggregate to weekly totals\n  # count number of reporting days per week\n  # remove incomplete weeks\n  NULL\n\n\n\n11. Wrangle the deaths data\nCreate a table called deaths with weekly COVID-19 deaths by state. Keep the variables:\n\nstate\nmmwr_year\nmmwr_week\ndate\ndeaths\n\nBe careful: this dataset may contain national rows and grouping variables.\n\n## Wrangle weekly deaths\n# Possible tasks:\n# - keep only state-level observations\n# - filter to a weekly grouping if needed\n# - choose the COVID death count column\n# - parse the week-ending date\n# - keep the needed variables\n\ndeaths &lt;- deaths_raw |&gt;\n  NULL\n\n\n\n12. Wrangle the vaccination data\nCreate a table called vax containing the most recent vaccination record within each state-week. Keep:\n\nstate\nmmwr_year\nmmwr_week\ndate\nvax (primary series cumulative count)\nbooster (booster cumulative count)\n\n\n## Wrangle weekly vaccination data\nvax &lt;- vax_raw |&gt;\n  # identify state and date columns\n  # choose cumulative primary-series and booster variables\n  # parse dates\n  # compute MMWR year and week\n  # keep the last record within each state-week\n  NULL\n\n\n\n13. Create the full state-week panel\nWe will include all state-week combinations from 2020 and 2021, even if one of the datasets is missing a value for a particular week.\nUse the following scaffold to create all possible weeks and join population information:\n\nall_dates &lt;- data.frame(\n  date = seq(make_date(2020, 1, 25), make_date(2021, 12, 31), by = \"week\")\n) |&gt;\n  mutate(date = ceiling_date(date, unit = \"week\", week_start = 7) - days(1)) |&gt;\n  mutate(mmwr_year = epiyear(date), mmwr_week = epiweek(date))\n\ndates_and_pop &lt;- cross_join(\n  all_dates,\n  data.frame(state = unique(population$state))\n) |&gt;\n  left_join(population, by = c(\"state\", \"mmwr_year\" = \"year\"))\n\nNow join cases, hosp, deaths, and vax to create a final table called dat.\nRequirements:\n\norder observations by state and date,\nfill vaccination and booster counts forward within state,\nreplace missing counts for cases, hosp, and deaths with 0,\nsave the final table as data/dat.rds.\n\n\n## Join the weekly tables\n\ndat &lt;- dates_and_pop |&gt;\n  # join weekly cases\n  # join weekly hospitalizations\n  # join weekly deaths\n  # join weekly vaccinations\n  # arrange within state by date\n  # fill cumulative vaccination variables forward\n  # replace missing weekly counts with 0\n  NULL\n\n## Save the dataset\n# Your code here",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#part-iii-create-figures-in-analysis.qmd",
+    "href": "psets/hw4.html#part-iii-create-figures-in-analysis.qmd",
+    "title": "Problem Set 4",
+    "section": "Part III: Create figures in analysis.qmd",
+    "text": "Part III: Create figures in analysis.qmd\nIn your analysis.qmd file, load the weekly dataset from data/dat.rds. Each figure should have:\n\na short descriptive paragraph,\na code chunk that is shown in the rendered document,\nand appropriate titles and axis labels.\n\n\n# Setup chunk for analysis.qmd\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(scales)\n\ndat &lt;- readRDS(\"data/dat.rds\")\n\n\n14. Figure 1: National weekly burden\nCreate a trend plot showing national weekly cases, hospitalizations, and deaths per 100,000 people. Place the three panels on top of one another.\nHint: first aggregate to the national level by week, then use pivot_longer() and facet_wrap().\n\n## Figure 1: National weekly burden\nfig1_dat &lt;- dat |&gt;\n  # aggregate to national weekly rates per 100,000\n  NULL\n\n# make the plot\n\n\n\n15. Figure 2: Regional case rates over time\nCreate a line plot of weekly case rates per 100,000 over time for each region_name. Use one line per region.\n\n## Figure 2: Regional case rates\nfig2_dat &lt;- dat |&gt;\n  # aggregate to regional weekly rates\n  NULL\n\n# make the plot\n\n\n\n16. Figure 3: Vaccination and booster progress by region\nFor each region, compute the percent of the regional population that completed the primary series and the percent that received a booster dose. Plot both over time.\nOne reasonable approach is to create a long data frame with one row per region-date-series.\n\n## Figure 3: Vaccination and booster progress\nfig3_dat &lt;- dat |&gt;\n  # compute regional percentages\n  NULL\n\n# make the plot\n\n\n\n17. Figure 4: Top 10 states by cumulative death rate\nBy the end of 2021, which states had the highest cumulative COVID-19 death rates per 100,000? Create a bar plot of the top 10 states.\n\n## Figure 4: Top 10 cumulative death rates\nfig4_dat &lt;- dat |&gt;\n  # compute cumulative deaths by state\n  # convert to a per-100,000 rate\n  # keep the top 10\n  NULL\n\n# make the plot\n\n\n\n18. Figure 5: Vaccination and hospitalization during a major wave\nUse your earlier figures to identify one major national COVID-19 wave in 2021 during which a meaningful share of the population had already completed the primary series.\nFor your chosen period:\n\ncompute hospitalizations per day per 100,000 for each state,\ncompute the primary-series vaccination rate in each state at the end of the period,\ncreate a scatter plot with vaccination rate on the x-axis and hospitalization rate on the y-axis.\n\nBriefly explain how you chose the time window.\n\n## Figure 5: Vaccination vs hospitalization\nstart_date &lt;- as_date(\"YYYY-MM-DD\")\nend_date   &lt;- as_date(\"YYYY-MM-DD\")\n\nfig5_dat &lt;- dat |&gt;\n  # filter to the selected period\n  # summarize hospitalization burden\n  # join vaccination coverage at the end date\n  # compute rates\n  NULL\n\n# make the plot\n\n\n\n19. Figure 6: Booster coverage and death rates\nRepeat the previous exercise, but now examine the relationship between:\n\nbooster coverage at the end of the period, and\nCOVID-19 deaths per day per 100,000 during the period.\n\nUse a late-2021 window for which booster coverage is nontrivial.\n\n## Figure 6: Booster coverage vs death rate\nstart_date &lt;- as_date(\"YYYY-MM-DD\")\nend_date   &lt;- as_date(\"YYYY-MM-DD\")\n\nfig6_dat &lt;- dat |&gt;\n  # filter to the selected period\n  # summarize deaths during the period\n  # join booster coverage at the end date\n  # compute rates\n  NULL\n\n# make the plot",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "psets/hw4.html#deliverables",
+    "href": "psets/hw4.html#deliverables",
+    "title": "Problem Set 4",
+    "section": "Deliverables",
+    "text": "Deliverables\n\nPush your hw4 folder to your Git repo that contains:\n\n\ncode/funcs.R\ncode/wrangle.R\ncode/analysis.qmd\ndata/dat.rds\nat least six PNG files in figs\n\nSubmit a link to your GitHub repo.\n\nA rendered PDF of this QMD file that should display both code and output:\n\nquarto render hw4.qmd --to pdf",
+    "crumbs": [
+      "HW-4"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#examples",
+    "href": "slides/20-intro-to-prob.html#examples",
+    "title": "Introduction to Probability",
+    "section": "Examples",
+    "text": "Examples\n\nBy default, the sample function samples without replacement\n\n\nset.seed(1996)\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- sample(beads, 5) #by default, replace=FALSE\n\n\nIf you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.\nHowever, if I show you the result of the last four outcomes:\n\n\nx[2:5] \n\n[1] \"blue\" \"blue\" \"red\"  \"blue\"\n\n\n\nwould you still guess blue? Of course not.",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#cdf-for-discrete-rvs",
+    "href": "slides/20-intro-to-prob.html#cdf-for-discrete-rvs",
+    "title": "Introduction to Probability",
+    "section": "CDF for discrete RVs",
+    "text": "CDF for discrete RVs\n\nThe CDF can then easily be defined:\n\n\\[\n\\begin{aligned}\nF(4) &= &  \\mbox{Pr}(X\\leq 4) \\\\\n&= &  \\mbox{Pr}(X = 4) +  \\mbox{Pr}(X = 3) \\\\\n& + & \\mbox{Pr}(X = 2) +  \\mbox{Pr}(X = 1)\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#other-continuous-distributions",
+    "href": "slides/20-intro-to-prob.html#other-continuous-distributions",
+    "title": "Introduction to Probability",
+    "section": "Other continuous distributions",
+    "text": "Other continuous distributions\n\nThe codeThe graph\n\n\n\nR uses the letters d, q, p, and r in front of a shorthand for the distribution.\nWe have already seen the functions dnorm, pnorm, and rnorm for the normal distribution.\nThe functions qnorm gives us the quantiles.\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nlibrary(ggplot2)\ndf &lt;- data.frame(x = x, f = dnorm(x))\nggplot(df, aes(x, f)) + geom_line()\n\n\n\n\n\n\n\n\n\nHome",
+    "crumbs": [
+      "Probability"
     ]
   }
 ]

@@ -1,0 +1,624 @@
+---
+title: "Problem Set 4 Solution"
+date: ""
+format: html
+editor: visual
+---
+
+## Introduction
+
+This document provides a complete solution to Problem Set 6 in a single `.qmd` file. In a project-style submission, I would split the code across `code/funcs.R`, `code/wrangle.R`, and `code/analysis.qmd`, save the final weekly dataset to `data/dat.rds`, and save the figures to `figs/`. For convenience, everything is included inline here.
+
+## Setup
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(httr2)
+library(janitor)
+library(jsonlite)
+library(purrr)
+library(lubridate)
+library(knitr)
+library(scales)
+
+dir.create("data", showWarnings = FALSE)
+dir.create("code", showWarnings = FALSE)
+dir.create("figs", showWarnings = FALSE)
+
+source("_census-key.R")
+```
+
+## Helper functions
+
+```{r}
+# Parse dates that may arrive in multiple formats
+parse_date_flex <- function(x) {
+  x <- as.character(x)
+  out <- suppressWarnings(as_date(ymd_hms(x, quiet = TRUE)))
+  needs_mdy <- is.na(out)
+  out[needs_mdy] <- suppressWarnings(as_date(mdy(x[needs_mdy], quiet = TRUE)))
+  needs_ymd <- is.na(out)
+  out[needs_ymd] <- suppressWarnings(as_date(ymd(x[needs_ymd], quiet = TRUE)))
+  out
+}
+
+# Pick the first matching column name from a list of candidates
+pick_col <- function(dat, candidates) {
+  found <- intersect(candidates, names(dat))
+  if (length(found) == 0) {
+    stop(
+      "None of the candidate columns were found: ",
+      paste(candidates, collapse = ", ")
+    )
+  }
+  found[1]
+}
+
+pick_col_or_na <- function(dat, candidates) {
+  found <- intersect(candidates, names(dat))
+  if (length(found) == 0) NA_character_ else found[1]
+}
+
+# Downloader for CDC Socrata endpoints
+get_cdc_data <- function(endpoint) {
+  request(endpoint) |>
+    req_url_query("$limit" = 10000000) |>
+    req_perform() |>
+    resp_check_status() |>
+    resp_body_json(simplifyVector = TRUE) |>
+    as_tibble() |>
+    janitor::clean_names()
+}
+```
+
+## Part I: Download the data
+
+### 1. Census population data
+
+```{r}
+census_url <- "https://api.census.gov/data/2021/pep/population"
+
+population_request <- request(census_url) |>
+  req_url_query(
+    get = "POP_2020,POP_2021,NAME",
+    "for" = "state:*",
+    key = census_key
+  )
+
+population_response <- population_request |>
+  req_perform() |>
+  resp_check_status()
+
+resp_content_type(population_response)
+
+population_raw <- population_response |>
+  resp_body_json(simplifyVector = TRUE) |>
+  as.data.frame(stringsAsFactors = FALSE)
+```
+
+### 2. Tidy the population data
+
+```{r}
+population <- population_raw |>
+  row_to_names(1) |>
+  as_tibble() |>
+  select(NAME, POP_2020, POP_2021) |>
+  rename(state_name = NAME) |>
+  pivot_longer(
+    cols = starts_with("POP_"),
+    names_to = "year",
+    values_to = "population"
+  ) |>
+  mutate(
+    year = readr::parse_number(year),
+    population = readr::parse_number(population),
+    state = case_when(
+      state_name == "District of Columbia" ~ "DC",
+      state_name == "Puerto Rico" ~ "PR",
+      TRUE ~ state.abb[match(state_name, state.name)]
+    )
+  ) |>
+  select(state_name, state, year, population)
+
+population
+```
+
+### 3. Regions data
+
+```{r}
+regions_url <- "https://github.com/datasciencelabs/2025/raw/refs/heads/main/data/regions.json"
+
+regions_json <- fromJSON(regions_url, simplifyVector = FALSE)
+
+regions <- map_dfr(regions_json, \(x) {
+  tibble(
+    state_name = unlist(x$states),
+    region = as.integer(x$region[[1]]),
+    region_name = x$region_name
+  )
+}) |>
+  mutate(
+    region_name = if_else(
+      region_name == "New York and New Jersey, Puerto Rico, Virgin Islands",
+      "NY/NJ/PR/VI",
+      region_name
+    )
+  )
+
+regions
+```
+
+### 4. Join population and regions
+
+```{r}
+population <- population |>
+  left_join(regions, by = "state_name")
+
+population
+```
+
+### 5. Download the CDC datasets
+
+```{r}
+cases_raw  <- get_cdc_data("https://data.cdc.gov/resource/pwn4-m3yp.json")
+hosp_raw   <- get_cdc_data("https://data.cdc.gov/resource/39z2-9zu6.json")
+deaths_raw <- get_cdc_data("https://data.cdc.gov/resource/r8kw-7aab.json")
+vax_raw    <- get_cdc_data("https://data.cdc.gov/resource/rh2h-3yt2.json")
+
+map(
+  list(
+    cases = cases_raw,
+    hospitalizations = hosp_raw,
+    deaths = deaths_raw,
+    vaccinations = vax_raw
+  ),
+  dim
+)
+```
+
+## Part II: Wrangle the weekly state-level dataset
+
+### 6. Compare the raw schemas
+
+```{r}
+raw_summary <- tibble(
+  outcome = c("cases", "hospitalizations", "deaths", "vaccinations"),
+  jurisdiction_column = c(
+    pick_col_or_na(cases_raw, c("state", "jurisdiction", "location")),
+    pick_col_or_na(hosp_raw, c("jurisdiction", "state", "location")),
+    pick_col_or_na(deaths_raw, c("state", "jurisdiction")),
+    pick_col_or_na(vax_raw, c("location", "state", "jurisdiction"))
+  ),
+  frequency = c("weekly", "daily", "weekly", "daily"),
+  time_columns = c(
+    paste(intersect(c("start_date", "end_date", "submission_date", "date", "date_updated"), names(cases_raw)), collapse = ", "),
+    paste(intersect(c("collection_date", "date"), names(hosp_raw)), collapse = ", "),
+    paste(intersect(c("start_date", "end_date", "week_ending_date", "date", "mmwr_week", "year"), names(deaths_raw)), collapse = ", "),
+    paste(intersect(c("date", "mmwr_week", "mmwr_year", "date_type"), names(vax_raw)), collapse = ", ")
+  )
+)
+
+kable(raw_summary)
+```
+
+### 7. Wrangle the cases data
+
+```{r}
+case_state_col <- pick_col(cases_raw, c("state", "jurisdiction", "location"))
+case_date_col  <- pick_col(cases_raw, c("end_date", "submission_date", "week_ending_date", "date"))
+case_n_col     <- pick_col(cases_raw, c("new_cases", "new_case", "cases"))
+
+cases <- cases_raw |>
+  transmute(
+    state = .data[[case_state_col]],
+    date = parse_date_flex(.data[[case_date_col]]),
+    cases = readr::parse_number(as.character(.data[[case_n_col]]))
+  ) |>
+  semi_join(population |> distinct(state), by = "state") |>
+  filter(!is.na(date)) |>
+  mutate(
+    mmwr_year = epiyear(date),
+    mmwr_week = epiweek(date)
+  ) |>
+  group_by(state, mmwr_year, mmwr_week) |>
+  summarise(
+    date = max(date, na.rm = TRUE),
+    cases = sum(cases, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+cases
+```
+
+### 8. Wrangle the hospitalization data
+
+```{r}
+hosp_state_col <- pick_col(hosp_raw, c("jurisdiction", "state", "location"))
+hosp_date_col  <- pick_col(hosp_raw, c("collection_date", "date"))
+hosp_n_col     <- pick_col(hosp_raw, c("new_covid_19_hospital", "new_hospital_admissions_covid"))
+
+hosp <- hosp_raw |>
+  transmute(
+    state = .data[[hosp_state_col]],
+    date = parse_date_flex(.data[[hosp_date_col]]),
+    hosp = readr::parse_number(as.character(.data[[hosp_n_col]]))
+  ) |>
+  semi_join(population |> distinct(state), by = "state") |>
+  filter(!is.na(date)) |>
+  mutate(
+    mmwr_year = epiyear(date),
+    mmwr_week = epiweek(date)
+  ) |>
+  group_by(state, mmwr_year, mmwr_week) |>
+  summarise(
+    date = max(date, na.rm = TRUE),
+    hosp = sum(hosp, na.rm = TRUE),
+    n_days = n_distinct(date),
+    .groups = "drop"
+  ) |>
+  filter(n_days == 7) |>
+  select(-n_days)
+
+hosp
+```
+
+### 9. Wrangle the deaths data
+
+```{r}
+death_state_col <- pick_col(deaths_raw, c("state", "jurisdiction"))
+death_date_col  <- pick_col(deaths_raw, c("week_ending_date", "end_date", "date"))
+death_n_col     <- pick_col(deaths_raw, c("covid_19_deaths", "covid_deaths"))
+
+deaths <- deaths_raw |>
+  (\(x) {
+    if ("group" %in% names(x)) filter(x, group == "By Week") else x
+  })() |>
+  transmute(
+    state_value = .data[[death_state_col]],
+    date = parse_date_flex(.data[[death_date_col]]),
+    deaths = readr::parse_number(as.character(.data[[death_n_col]]))
+  ) |>
+  left_join(
+    population |>
+      distinct(state, state_name),
+    by = c("state_value" = "state_name")
+  ) |>
+  mutate(state = coalesce(state, state_value)) |>
+  select(state, date, deaths) |>
+  semi_join(population |> distinct(state), by = "state") |>
+  filter(!is.na(date)) |>
+  mutate(
+    mmwr_year = epiyear(date),
+    mmwr_week = epiweek(date)
+  ) |>
+  group_by(state, mmwr_year, mmwr_week) |>
+  summarise(
+    date = max(date, na.rm = TRUE),
+    deaths = sum(deaths, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+deaths
+```
+
+### 10. Wrangle the vaccination data
+
+```{r}
+vax_state_col  <- pick_col(vax_raw, c("location", "state", "jurisdiction"))
+vax_date_col   <- pick_col(vax_raw, c("date"))
+vax_series_col <- pick_col(vax_raw, c("series_complete_cumulative", "series_complete_yes", "series_complete"))
+vax_boost_col  <- pick_col(vax_raw, c("booster_cumulative", "booster_doses", "additional_doses"))
+
+vax <- vax_raw |>
+  (\(x) {
+    if ("date_type" %in% names(x)) filter(x, is.na(date_type) | date_type == "Report") else x
+  })() |>
+  transmute(
+    state = .data[[vax_state_col]],
+    date = parse_date_flex(.data[[vax_date_col]]),
+    vax = readr::parse_number(as.character(.data[[vax_series_col]])),
+    booster = readr::parse_number(as.character(.data[[vax_boost_col]]))
+  ) |>
+  semi_join(population |> distinct(state), by = "state") |>
+  filter(!is.na(date)) |>
+  mutate(
+    mmwr_year = epiyear(date),
+    mmwr_week = epiweek(date)
+  ) |>
+  arrange(state, date) |>
+  group_by(state, mmwr_year, mmwr_week) |>
+  slice_max(date, n = 1, with_ties = FALSE) |>
+  ungroup()
+
+vax
+```
+
+### 11. Create the full state-week panel
+
+```{r}
+all_dates <- tibble(
+  date = seq(make_date(2020, 1, 25), make_date(2021, 12, 31), by = "week")
+) |>
+  mutate(
+    date = ceiling_date(date, unit = "week", week_start = 7) - days(1),
+    mmwr_year = epiyear(date),
+    mmwr_week = epiweek(date)
+  )
+
+dates_and_pop <- expand_grid(
+  all_dates,
+  state = unique(population$state)
+) |>
+  left_join(population, by = c("state", "mmwr_year" = "year"))
+
+dat <- dates_and_pop |>
+  left_join(select(cases,  -date), by = c("state", "mmwr_year", "mmwr_week")) |>
+  left_join(select(hosp,   -date), by = c("state", "mmwr_year", "mmwr_week")) |>
+  left_join(select(deaths, -date), by = c("state", "mmwr_year", "mmwr_week")) |>
+  left_join(select(vax,    -date), by = c("state", "mmwr_year", "mmwr_week")) |>
+  group_by(state) |>
+  arrange(date, .by_group = TRUE) |>
+  fill(vax, booster, .direction = "down") |>
+  ungroup() |>
+  mutate(
+    cases = replace_na(cases, 0),
+    hosp = replace_na(hosp, 0),
+    deaths = replace_na(deaths, 0),
+    vax = replace_na(vax, 0),
+    booster = replace_na(booster, 0)
+  ) |>
+  arrange(state, date)
+
+saveRDS(dat, "data/dat.rds")
+
+dat
+```
+
+## Part III: Analysis figures
+
+### Figure 1: National weekly burden
+
+This figure shows national weekly cases, hospitalizations, and deaths per 100,000 population. The three outcomes are displayed in separate panels so their trends can be compared without forcing a common y-axis scale.
+
+```{r}
+fig1_dat <- dat |>
+  group_by(date) |>
+  summarise(
+    cases_rate = sum(cases, na.rm = TRUE) / sum(population, na.rm = TRUE) * 100000,
+    hosp_rate = sum(hosp, na.rm = TRUE) / sum(population, na.rm = TRUE) * 100000,
+    deaths_rate = sum(deaths, na.rm = TRUE) / sum(population, na.rm = TRUE) * 100000,
+    .groups = "drop"
+  ) |>
+  pivot_longer(
+    cols = ends_with("_rate"),
+    names_to = "outcome",
+    values_to = "rate_per_100k"
+  ) |>
+  mutate(
+    outcome = recode(
+      outcome,
+      cases_rate = "Cases",
+      hosp_rate = "Hospitalizations",
+      deaths_rate = "Deaths"
+    )
+  )
+
+p1 <- ggplot(fig1_dat, aes(date, rate_per_100k)) +
+  geom_line(linewidth = 0.7) +
+  facet_wrap(~ outcome, ncol = 1, scales = "free_y") +
+  labs(
+    title = "National weekly COVID-19 burden, 2020-2021",
+    subtitle = "Weekly totals per 100,000 population",
+    x = NULL,
+    y = "Rate per 100,000"
+  ) +
+  theme_minimal()
+
+p1
+
+ggsave("figs/figure1.png", p1, width = 8, height = 9, dpi = 300)
+```
+
+### Figure 2: Regional case rates over time
+
+This plot compares weekly case rates per 100,000 across Public Health Service regions. The regional lines make it easier to see whether large national waves happened at the same time and magnitude everywhere.
+
+```{r}
+fig2_dat <- dat |>
+  group_by(date, region_name) |>
+  summarise(
+    case_rate = sum(cases, na.rm = TRUE) / sum(population, na.rm = TRUE) * 100000,
+    .groups = "drop"
+  )
+
+p2 <- ggplot(fig2_dat, aes(date, case_rate, color = region_name)) +
+  geom_line(linewidth = 0.8) +
+  labs(
+    title = "Regional weekly COVID-19 case rates",
+    subtitle = "Weekly cases per 100,000 population",
+    x = NULL,
+    y = "Cases per 100,000",
+    color = "Region"
+  ) +
+  theme_minimal()
+
+p2
+
+ggsave("figs/figure2.png", p2, width = 9, height = 5, dpi = 300)
+```
+
+### Figure 3: Vaccination and booster progress by region
+
+This figure tracks primary-series vaccination and booster uptake over time by region. The percentages are population-weighted regional averages based on the cumulative state totals in the weekly panel.
+
+```{r}
+fig3_dat <- dat |>
+  group_by(date, region_name) |>
+  summarise(
+    vax_pct = sum(vax, na.rm = TRUE) / sum(population, na.rm = TRUE) * 100,
+    booster_pct = sum(booster, na.rm = TRUE) / sum(population, na.rm = TRUE) * 100,
+    .groups = "drop"
+  ) |>
+  pivot_longer(
+    cols = c(vax_pct, booster_pct),
+    names_to = "series",
+    values_to = "percent"
+  ) |>
+  mutate(
+    series = recode(
+      series,
+      vax_pct = "Primary series",
+      booster_pct = "Booster"
+    )
+  )
+
+p3 <- ggplot(fig3_dat, aes(date, percent, color = region_name)) +
+  geom_line(linewidth = 0.8) +
+  facet_wrap(~ series, ncol = 1) +
+  labs(
+    title = "Vaccination and booster progress by region",
+    x = NULL,
+    y = "Percent of population",
+    color = "Region"
+  ) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  theme_minimal()
+
+p3
+
+ggsave("figs/figure3.png", p3, width = 9, height = 8, dpi = 300)
+```
+
+### Figure 4: Top 10 states by cumulative death rate
+
+To answer this question, I sum weekly deaths for each state over 2020 and 2021 and divide by the 2021 population estimate. The resulting bar plot shows the 10 jurisdictions with the highest cumulative death burden by the end of 2021.
+
+```{r}
+fig4_dat <- dat |>
+  group_by(state, state_name) |>
+  summarise(
+    total_deaths = sum(deaths, na.rm = TRUE),
+    population_2021 = max(population, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(death_rate = total_deaths / population_2021 * 100000) |>
+  slice_max(death_rate, n = 10) |>
+  arrange(death_rate) |>
+  mutate(state_name = fct_reorder(state_name, death_rate))
+
+p4 <- ggplot(fig4_dat, aes(death_rate, state_name)) +
+  geom_col() +
+  labs(
+    title = "Top 10 states by cumulative COVID-19 death rate through 2021",
+    x = "Deaths per 100,000",
+    y = NULL
+  ) +
+  theme_minimal()
+
+p4
+
+ggsave("figs/figure4.png", p4, width = 8, height = 5, dpi = 300)
+```
+
+### Figure 5: Vaccination and hospitalization during a major wave
+
+I use the Delta-wave period from July 4, 2021 to September 25, 2021. This window captures a major national hospitalization surge in 2021 and occurs after primary-series vaccination had become meaningful in much of the country.
+
+```{r}
+wave5_start <- as_date("2021-07-04")
+wave5_end   <- as_date("2021-09-25")
+wave5_days  <- as.numeric(wave5_end - wave5_start) + 1
+
+fig5_hosp <- dat |>
+  filter(date >= wave5_start, date <= wave5_end) |>
+  group_by(state, state_name) |>
+  summarise(
+    hosp = sum(hosp, na.rm = TRUE),
+    population = max(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig5_vax <- dat |>
+  filter(date == wave5_end) |>
+  select(state, vax)
+
+fig5_dat <- fig5_hosp |>
+  left_join(fig5_vax, by = "state") |>
+  mutate(
+    hosp_per_day_per_100k = hosp / wave5_days / population * 100000,
+    vax_rate = vax / population * 100
+  )
+
+p5 <- ggplot(fig5_dat, aes(vax_rate, hosp_per_day_per_100k)) +
+  geom_point(alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.7) +
+  labs(
+    title = "Vaccination coverage and hospitalization burden during the Delta wave",
+    subtitle = paste(wave5_start, "to", wave5_end),
+    x = "Primary-series vaccination rate at end of period (%)",
+    y = "Hospitalizations per day per 100,000"
+  ) +
+  theme_minimal()
+
+p5
+
+ggsave("figs/figure5.png", p5, width = 8, height = 5, dpi = 300)
+```
+
+### Figure 6: Booster coverage and death rates
+
+For booster coverage, I use a late-2021 window from November 7, 2021 to December 25, 2021. By then booster uptake was no longer trivial, so it is reasonable to compare end-of-period booster coverage with death rates during that wave.
+
+```{r}
+wave6_start <- as_date("2021-11-07")
+wave6_end   <- as_date("2021-12-25")
+wave6_days  <- as.numeric(wave6_end - wave6_start) + 1
+
+fig6_deaths <- dat |>
+  filter(date >= wave6_start, date <= wave6_end) |>
+  group_by(state, state_name) |>
+  summarise(
+    deaths = sum(deaths, na.rm = TRUE),
+    population = max(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+fig6_booster <- dat |>
+  filter(date == wave6_end) |>
+  select(state, booster)
+
+fig6_dat <- fig6_deaths |>
+  left_join(fig6_booster, by = "state") |>
+  mutate(
+    deaths_per_day_per_100k = deaths / wave6_days / population * 100000,
+    booster_rate = booster / population * 100
+  )
+
+p6 <- ggplot(fig6_dat, aes(booster_rate, deaths_per_day_per_100k)) +
+  geom_point(alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.7) +
+  labs(
+    title = "Booster coverage and death burden in late 2021",
+    subtitle = paste(wave6_start, "to", wave6_end),
+    x = "Booster coverage at end of period (%)",
+    y = "Deaths per day per 100,000"
+  ) +
+  theme_minimal()
+
+p6
+
+ggsave("figs/figure6.png", p6, width = 8, height = 5, dpi = 300)
+```
+
+## Final check
+
+The final dataset has the requested variables, the weekly panel is saved to `data/dat.rds`, and the six figures are saved as PNG files in `figs/`.
+
+```{r}
+colnames(dat)
+
+list.files("figs")
+```

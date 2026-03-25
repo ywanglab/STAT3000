@@ -570,9 +570,9 @@
 <li><p>in our example above, statistics shows that <span class="math inline">\(S_n\)</span> follows a binomial distribution.</p></li>
 <li><p>We can use the function <code>dbinom</code> and <code>pbinom</code> to compute the probabilities exactly.</p></li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="21-inference-foundations_cache/revealjs/unnamed-chunk-8_f7ec041a9cd243d9881a4c7efef879b5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">pbinom</span>(n<span class="sc">/</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>, <span class="at">size =</span> n, <span class="at">prob =</span> <span class="dv">10</span><span class="sc">/</span><span class="dv">19</span>) </span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">pbinom</span>(n<span class="sc">/</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>, <span class="at">size =</span> n, <span class="at">prob =</span> <span class="dv">10</span><span class="sc">/</span><span class="dv">19</span>) <span class="co"># compute cdf: P[X\le (n/2-1)]</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; [1] 0.0448</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
