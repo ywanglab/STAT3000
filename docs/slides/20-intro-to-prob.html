@@ -436,8 +436,7 @@
 <section id="more-examples-of-events" class="slide level2">
 <h2>More examples of events</h2>
 <ul>
-<li><p>In more complex random experiment, we can define many more events.</p></li>
-<li><p>For example if the random experiment is picking 2 beads, we can define events such as <strong>first bead is red</strong>, <strong>second bead is blue</strong>, <strong>both beads are red</strong>, and so on.</p></li>
+<li><p>For example, if the random experiment is picking 2 beads, we can define events such as <strong>first bead is red</strong>, <strong>second bead is blue</strong>, <strong>both beads are red</strong>, and so on.</p></li>
 <li><p>In a random experiment such as political poll, where we randomly phone 100 likely voters at random, we can form many million events, for example <em>calling 48 Democrats and 52 Republicans</em>.</p></li>
 </ul>
 </section>
@@ -448,8 +447,8 @@
 <li><p>If we denote an event as <span class="math inline">\(A\)</span> then we use the notation <span class="math inline">\(\mbox{Pr}(A)\)</span> to denote the probability of event <span class="math inline">\(A\)</span> occurring.</p></li>
 </ul>
 </section>
-<section id="union-and-intersection" class="slide level2">
-<h2>Union and Intersection</h2>
+<section id="combine-events-union-and-intersection" class="slide level2">
+<h2>Combine events: Union and Intersection</h2>
 <ul>
 <li><p>We can combine events in different ways to form new events. For example, if event</p></li>
 <li><p><span class="math inline">\(A\)</span>=<strong>first bead is red and second bead is blue</strong>, and</p></li>
@@ -458,15 +457,15 @@
 <li><p>while <span class="math inline">\(A \cap B\)</span> (<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>) is the empty event since both can’t happen.</p></li>
 </ul>
 </section>
-<section id="continuous-variable" class="slide level2">
-<h2>Continuous variable</h2>
+<section id="events-related-to-a-continuous-variable" class="slide level2">
+<h2>Events related to a continuous variable</h2>
 <ul>
 <li><p>With continuous variables, events will relate to questions, such as <strong>Is this person taller than 6 feet?</strong></p></li>
 <li><p>In these cases, we represent events in a more mathematical form: <span class="math inline">\(A = \{X &gt; 6\}\)</span>.</p></li>
 </ul>
 </section>
-<section id="independence" class="slide level2">
-<h2>Independence</h2>
+<section id="independence-of-events" class="slide level2">
+<h2>Independence of Events</h2>
 <ul>
 <li><p>When we deal the first card, the probability of getting a King is 1/13 since there are thirteen possibilities: Ace, Deuce, Three, <span class="math inline">\(\dots\)</span>, Ten, Jack, Queen, King, and Ace.</p></li>
 <li><p>If we deal a King for the first card, the probability of a second card being a King decreases because there are only three Kings left: The probability is 3 out of 51.</p></li>
@@ -474,9 +473,6 @@
 </section>
 <section id="examples" class="slide level2">
 <h2>Examples</h2>
-<ul>
-<li>By default, the <code>sample</code> function samples <em>without replacement</em></li>
-</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set.seed</span>(<span class="dv">1996</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>beads <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
@@ -496,8 +492,8 @@
 <li>would you still guess blue? Of course not.</li>
 </ul>
 </section>
-<section id="conditional-probabilities" class="slide level2">
-<h2>Conditional probabilities</h2>
+<section id="conditional-probabilities-on-dependence" class="slide level2">
+<h2>Conditional probabilities on dependence</h2>
 <ul>
 <li><p>When events are not independent, <em>conditional probabilities</em> are useful.</p></li>
 <li><p>We use the <span class="math inline">\(|\)</span> to shorten <em>conditional on</em>. For example:</p></li>
@@ -506,8 +502,8 @@
 \mbox{Pr}(\mbox{Card 2 is a king} \mid \mbox{Card 1 is a king}) = 3/51
 \]</span></p>
 </section>
-<section id="conditional-probabilities-definition" class="slide level2">
-<h2>Conditional probabilities definition</h2>
+<section id="conditional-probabilities-for-independent-events" class="slide level2">
+<h2>Conditional probabilities for Independent events</h2>
 <ul>
 <li>When two events, say <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, are independent, we have:</li>
 </ul>
@@ -518,8 +514,8 @@
 <li>In fact, this can be considered the mathematical definition of independence.</li>
 </ul>
 </section>
-<section id="multiplication-rule" class="slide level2">
-<h2>Multiplication rule</h2>
+<section id="multiplication-rule-for-intersection-event" class="slide level2">
+<h2>Multiplication rule for intersection event</h2>
 <ul>
 <li>If we want to determine the probability of two events, say <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, occurring, we can use the multiplication rule:</li>
 </ul>
@@ -557,7 +553,7 @@
 <section id="multiplication-rule-example-1" class="slide level2">
 <h2>Multiplication rule example</h2>
 <ul>
-<li><p>Imagine a court case in which the suspect was described as having a mustache and a beard.</p></li>
+<li><p>Imagine a court case in which the suspect was described as having a mustache <strong>and</strong> a beard.</p></li>
 <li><p>The defendant has both and an “expert” testifies that 1/10 men have beards and 1/5 have mustaches.</p></li>
 <li><p>Using the multiplication rule, he concludes that <span class="math inline">\(1/10 \times 1/5\)</span> or 0.02 have both.</p></li>
 <li><p>But this assumes independence!</p></li>
@@ -573,8 +569,8 @@
 \mbox{Pr}(B \mid A) = \frac{\mbox{Pr}(A \cap B)}{ \mbox{Pr}(A)}
 \]</span></p>
 </section>
-<section id="addition-rule" class="slide level2">
-<h2>Addition rule</h2>
+<section id="addition-rule-for-union-of-events" class="slide level2">
+<h2>Addition rule for union of events</h2>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">The rule</a></li><li><a href="#tabset-1-2">The code</a></li></ul>
 <div class="tab-content">
@@ -631,8 +627,8 @@
 </div>
 </div>
 </section>
-<section id="random-variables-examples" class="slide level2">
-<h2>Random Variables examples</h2>
+<section id="more-random-variables-examples" class="slide level2">
+<h2>More Random Variables examples</h2>
 <ul>
 <li>More interesting random variables are:
 <ul>
@@ -642,19 +638,19 @@
 </ul></li>
 </ul>
 </section>
-<section id="discrete-probability" class="slide level2">
-<h2>Discrete probability</h2>
-<p>If I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.</p>
-<ul>
-<li><p>A precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event <strong>pick a red bead</strong>.</p></li>
-<li><p>Since each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue.</p></li>
-</ul>
-</section>
 <section id="discrete-probability-frequentist-way" class="slide level2">
 <h2>Discrete probability: frequentist way</h2>
 <ul>
 <li><p>A more tangible way to think about the probability of an event is as the proportion of times the event occurs when we repeat the experiment an infinite number of times, independently, and under the same conditions.</p></li>
 <li><p>This is the <em><strong>frequentist</strong></em> way of thinking about probability.</p></li>
+</ul>
+</section>
+<section id="discrete-probability-example" class="slide level2">
+<h2>Discrete probability: Example</h2>
+<p>If I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.</p>
+<ul>
+<li><p>A precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event <strong>pick a red bead</strong>.</p></li>
+<li><p>Since each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue.</p></li>
 </ul>
 </section>
 <section id="monte-carlo" class="slide level2">
@@ -719,6 +715,30 @@
 </tbody>
 </table>
 </section>
+<section id="the-probability-density-for-discrete-r.v." class="slide level2">
+<h2>The probability density for discrete r.v.</h2>
+<ul>
+<li><p>For categorical distributions, we can define the probability of a category.</p></li>
+<li><p>For example, a roll of a die, let’s call it <span class="math inline">\(X\)</span>, can be 1, 2, 3, 4, 5 or 6.</p></li>
+<li><p>The probability of 4 is defined as:</p></li>
+</ul>
+<p><span class="math display">\[
+\mbox{Pr}(X=4) = 1/6
+\]</span></p>
+</section>
+<section id="cdf-for-discrete-rvs" class="slide level2">
+<h2>CDF for discrete RVs</h2>
+<ul>
+<li>The CDF can then easily be defined:</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+F(4) &amp;= &amp;  \mbox{Pr}(X\leq 4) \\
+&amp;= &amp;  \mbox{Pr}(X = 4) +  \mbox{Pr}(X = 3) \\
+&amp; + &amp; \mbox{Pr}(X = 2) +  \mbox{Pr}(X = 1)
+\end{aligned}
+\]</span></p>
+</section>
 <section id="setting-the-random-seed" class="slide level2">
 <h2>Setting the random seed</h2>
 <div class="cell">
@@ -749,8 +769,8 @@
 </div>
 </div>
 </section>
-<section id="combinations-and-permutations-1" class="slide level2">
-<h2>Combinations and permutations</h2>
+<section id="permutations" class="slide level2">
+<h2>Permutations</h2>
 <ul>
 <li>choose two numbers from a list consisting of <code>1,2,3</code>:</li>
 </ul>
@@ -770,19 +790,14 @@
 <ul>
 <li><p>The order matters here: 3,1 is different than 1,3.</p></li>
 <li><p>(1,1), (2,2), and (3,3) do not appear because once we pick a number, it can’t appear again.</p></li>
-</ul>
-</section>
-<section id="combinations-and-permutations-2" class="slide level2">
-<h2>Combinations and permutations</h2>
-<ul>
-<li>To compute all possible ways we can choose two cards when the order matters, we type, you can use the <code>v</code> option:</li>
+<li><p>To compute all possible ways we can choose two cards when the order matters, we type, you can use the <code>v</code> option:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>hands <span class="ot">&lt;-</span> <span class="fu">permutations</span>(<span class="dv">52</span>, <span class="dv">2</span>, <span class="at">v =</span> deck) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="combinations-and-permutations-3" class="slide level2">
-<h2>Combinations and permutations</h2>
+<section id="combinations" class="slide level2">
+<h2>Combinations</h2>
 <ul>
 <li><p>What about if the order does not matter? For example, in Blackjack, if you obtain an Ace and a face card in the first draw, it is called a <em>Natural 21</em>, and you win automatically.</p></li>
 <li><p>If we wanted to compute the probability of this happening, we would enumerate the <em>combinations</em>, not the permutations, since the order does not matter.</p></li>
@@ -867,32 +882,23 @@
 <h2>pdf for continuous RVs</h2>
 <ul>
 <li><p>Although for continuous distributions the probability of a single value <span class="math inline">\(\mbox{Pr}(X=x)\)</span> is not defined, there is a theoretical definition that has a similar interpretation.</p></li>
-<li><p>The probability density at <span class="math inline">\(x\)</span> is defined as the function <span class="math inline">\(f(a)\)</span> such that:</p></li>
+<li><p>The <em>probability density function</em> is defined as</p></li>
 </ul>
 <p><span class="math display">\[
 F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
 \]</span></p>
-</section>
-<section id="probability-density-function" class="slide level2">
-<h2>Probability density function</h2>
-<ul>
-<li>A mathematical result that is very useful in practice is that, for most CDFs, we can define a function, call it <span class="math inline">\(f(x)\)</span>, that permits us to construct the CDF using Calculus, like this:</li>
-</ul>
 <p><span class="math display">\[
 F(b) - F(a) = \int_a^b f(x)\,dx
 \]</span></p>
-<ul>
-<li><span class="math inline">\(f(x)\)</span> is referred to as the <em>probability density function</em>.</li>
-</ul>
 </section>
-<section id="probability-density-function-1" class="slide level2">
+<section id="probability-density-function" class="slide level2">
 <h2>Probability density function</h2>
 <ul>
 <li><p>The intuition is that even for continuous outcomes we can define tiny intervals, that are almost as small as points, that have positive probabilities.</p></li>
 <li><p>If we think of the size of these intervals as the base of a rectangle, the probability density function <span class="math inline">\(f\)</span> determines the height of the rectangle so that the summing up of the area of these rectangles approximate the probability <span class="math inline">\(F(b) - F(a)\)</span>.</p></li>
 </ul>
 </section>
-<section id="probability-density-function-2" class="slide level2">
+<section id="probability-density-function-1" class="slide level2">
 <h2>Probability density function</h2>
 <div class="panel-tabset">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">The graph</a></li><li><a href="#tabset-2-2">The code</a></li></ul>
@@ -985,7 +991,7 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 <div class="tab-content">
 <div id="tabset-4-1">
 <ul>
-<li>Below is a plot of that probability distribution:</li>
+<li>Below is a plot of that (discrete) probability distribution of the height data set</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
@@ -1090,34 +1096,9 @@ F(b) - F(a) = \int_a^b f(x)\,dx
 </div>
 </div>
 <ul>
-<li><p>In general, we call this situation <em>discretization</em>.</p></li>
-<li><p>Although the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding.</p></li>
+<li><p>Although the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding. We call this situation <em>discretization</em>.</p></li>
 <li><p>As long as we are aware of how to deal with this reality, the normal approximation can still be a very useful tool.</p></li>
 </ul>
-</section>
-<section id="the-probability-density" class="slide level2">
-<h2>The probability density</h2>
-<ul>
-<li><p>For categorical distributions, we can define the probability of a category.</p></li>
-<li><p>For example, a roll of a die, let’s call it <span class="math inline">\(X\)</span>, can be 1, 2, 3, 4, 5 or 6.</p></li>
-<li><p>The probability of 4 is defined as:</p></li>
-</ul>
-<p><span class="math display">\[
-\mbox{Pr}(X=4) = 1/6
-\]</span></p>
-</section>
-<section id="cdf-for-discrete-rvs" class="slide level2">
-<h2>CDF for discrete RVs</h2>
-<ul>
-<li>The CDF can then easily be defined:</li>
-</ul>
-<p><span class="math display">\[
-\begin{aligned}
-F(4) &amp;= &amp;  \mbox{Pr}(X\leq 4) \\
-&amp;= &amp;  \mbox{Pr}(X = 4) +  \mbox{Pr}(X = 3) \\
-&amp; + &amp; \mbox{Pr}(X = 2) +  \mbox{Pr}(X = 1)
-\end{aligned}
-\]</span></p>
 </section>
 <section id="normal-distribution-example" class="slide level2">
 <h2>Normal distribution example</h2>
@@ -1211,15 +1192,15 @@ F(4) &amp;= &amp;  \mbox{Pr}(X\leq 4) \\
 </div>
 </div>
 </section>
-<section id="continuous-distributions" class="slide level2">
-<h2>Continuous distributions</h2>
+<section id="other-continuous-distributions" class="slide level2">
+<h2>Other Continuous distributions</h2>
 <ul>
 <li><p>The normal distribution is not the only useful theoretical distribution.</p></li>
 <li><p>Other continuous distributions: the student-t, Chi-square, exponential, gamma, beta, and beta-binomial.</p></li>
 <li><p>R provides functions to compute the density, the quantiles, the cumulative distribution functions and to generate Monte Carlo simulations.</p></li>
 </ul>
 </section>
-<section id="other-continuous-distributions" class="slide level2">
+<section id="other-continuous-distributions-1" class="slide level2">
 <h2>Other continuous distributions</h2>
 <div class="panel-tabset">
 <ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">The code</a></li><li><a href="#tabset-7-2">The graph</a></li></ul>

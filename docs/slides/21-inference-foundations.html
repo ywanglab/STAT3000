@@ -600,7 +600,7 @@
 </div>
 </section>
 <section id="probability-distributions-for-a-rv" class="slide level2">
-<h2>probability distributions for a rv</h2>
+<h2>Probability distributions for a rv</h2>
 <ul>
 <li><p>A random variable <span class="math inline">\(X\)</span> has a <strong>distribution function</strong>.</p></li>
 <li><p>To define this, we do not need a list of numbers; it is a theoretical concept.</p></li>
@@ -669,14 +669,14 @@
 \mbox{E}[X] = \int_a^b x f(x)
 \]</span></p>
 </section>
-<section id="the-expected-valueexample" class="slide level2">
-<h2>The expected value:Example</h2>
+<section id="the-expected-value-example" class="slide level2">
+<h2>The expected value: Example</h2>
 <ul>
 <li><p>In the urn used to model betting on red in roulette, we have 20 one-dollar bills and 18 negative one-dollar bills, <span class="math display">\[
 \mbox{E}[X] = (20 + (-18) /38
 \]</span> which is about 5 cents.</p></li>
 <li><p>You might consider it a bit counterintuitive to say that <span class="math inline">\(X\)</span> varies around 0.05 when it only takes the values 1 and -1.</p></li>
-<li><p>To make sense of the expected value in this context is by realizing that, if we play the game over and over, the casino wins, on average, 5 cents per game.</p></li>
+<li><p>Intepretation: if we play the game over and over, the casino wins, on average, 5 cents per game.</p></li>
 </ul>
 </section>
 <section id="the-expected-value-by-mc" class="slide level2">
@@ -695,7 +695,7 @@
 </ul>
 <p><span class="math display">\[\mbox{E}[X] = ap + b(1-p)\]</span></p>
 <ul>
-<li>One way to see this is: observe that if there are <span class="math inline">\(n\)</span> beads in the urn, then we have <span class="math inline">\(np\)</span> <span class="math inline">\(a\)</span>’s and <span class="math inline">\(n(1-p)\)</span> <span class="math inline">\(b\)</span>’s, and because the average is the sum: <span class="math inline">\(n\times a \times p + n\times b \times (1-p)\)</span> divided by the total <span class="math inline">\(n\)</span>, we get the average <span class="math inline">\(ap + b(1-p)\)</span>.</li>
+<li>One way to see this is: observe that if there are <span class="math inline">\(n\)</span> beads in the urn, then we have <span class="math inline">\(np\)</span> <span class="math inline">\(a\)</span>’s and <span class="math inline">\(n(1-p)\)</span> <span class="math inline">\(b\)</span>’s, and because the average is the sum: <span class="math inline">\(n a p + n b (1-p)\)</span> divided by the total <span class="math inline">\(n\)</span>, we get the average <span class="math inline">\(ap + b(1-p)\)</span>.</li>
 </ul>
 </section>
 <section id="the-expected-value-of-a-sum-of-draws" class="slide level2">
@@ -769,9 +769,9 @@ SE= | 1 - (-1) | \sqrt{10/19 \times 9/19}
 <ul>
 <li>the sum of 1,000 people playing has standard error of about $32:</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="21-inference-foundations_cache/revealjs/unnamed-chunk-12_2206ed550712a64602408f7ed8d2cb73">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">sqrt</span>(n)<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">90</span>)<span class="sc">/</span><span class="dv">19</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">sqrt</span>(n)<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">90</span>)<span class="sc">/</span><span class="dv">19</span> <span class="co"># (1- (-1)) sqrt( 10/19* 9*/19)</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt; [1] 31.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -802,7 +802,7 @@ SE= | 1 - (-1) | \sqrt{10/19 \times 9/19}
 <section id="central-limit-theorem" class="slide level2">
 <h2>Central Limit Theorem</h2>
 <ul>
-<li><p>The Central Limit Theorem (CLT) tells us that when the number of draws, also called the <em>sample size</em>, is large, the probability distribution of the <strong>sum</strong> of the independent draws is approximately normal (which can be described by <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>)</p></li>
+<li><p>The Central Limit Theorem (CLT) tells us that when the number of draws, also called the <em>sample size</em>, is large, the probability distribution of the <strong>sum</strong> of the independent draws is approximately normal (which can be described with <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>)</p></li>
 <li><p>Given that sampling models are used for so many data generation processes, the CLT is considered one of the most important mathematical insights in history.</p></li>
 </ul>
 </section>

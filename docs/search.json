@@ -256,7 +256,7 @@
     "href": "slides/23-parameters-estimates.html#why-not-run-a-very-large-poll",
     "title": "Parameters and Estimates",
     "section": "Why not run a very large poll?",
-    "text": "Why not run a very large poll?\n\nFor realistic values of \\(p\\), let’s say ranging from 0.35 to 0.65, if we conduct a very large poll with 100,000 people, theory tells us that we would predict the election perfectly, as the largest possible margin of error is around 0.3%."
+    "text": "Why not run a very large poll?\n\nFor realistic values of \\(p\\), let’s say ranging from 0.35 to 0.65, if we conduct a very large poll with 100,000 people, theory tells us that we would predict the election perfectly, as the largest possible margin of error is around 0.3%.\nOne reason is that a large poll is expensive.\nAnother possibly reason is that theory has its limitations.\nPolling is much more complicated than simply picking beads from an urn.\nSome people might lie to pollsters, and others might not have phones."
   },
   {
     "objectID": "slides/23-parameters-estimates.html#why-not-run-a-very-large-poll-1",
@@ -393,8 +393,8 @@
     "objectID": "slides/21-inference-foundations.html#probability-distributions-for-a-rv",
     "href": "slides/21-inference-foundations.html#probability-distributions-for-a-rv",
     "title": "Foundations of Statistical Inference",
-    "section": "probability distributions for a rv",
-    "text": "probability distributions for a rv\n\nA random variable \\(X\\) has a distribution function.\nTo define this, we do not need a list of numbers; it is a theoretical concept.\nWe define the distribution as the \\(F(a)\\) that answers the question: What is the probability that \\(X\\) is less than or equal to \\(a\\)?",
+    "section": "Probability distributions for a rv",
+    "text": "Probability distributions for a rv\n\nA random variable \\(X\\) has a distribution function.\nTo define this, we do not need a list of numbers; it is a theoretical concept.\nWe define the distribution as the \\(F(a)\\) that answers the question: What is the probability that \\(X\\) is less than or equal to \\(a\\)?",
     "crumbs": [
       "Inference"
     ]
@@ -494,7 +494,7 @@
     "href": "slides/21-inference-foundations.html#the-expected-value-with-two-outcomes",
     "title": "Foundations of Statistical Inference",
     "section": "The expected value with two outcomes",
-    "text": "The expected value with two outcomes\n\nIn general, if the urn has two possible outcomes, say \\(a\\) and \\(b\\), with proportions \\(p\\) and \\(1-p\\) respectively,\n\n\\[\\mbox{E}[X] = ap + b(1-p)\\]\n\nOne way to see this is: observe that if there are \\(n\\) beads in the urn, then we have \\(np\\) \\(a\\)’s and \\(n(1-p)\\) \\(b\\)’s, and because the average is the sum: \\(n\\times a \\times p + n\\times b \\times (1-p)\\) divided by the total \\(n\\), we get the average \\(ap + b(1-p)\\).",
+    "text": "The expected value with two outcomes\n\nIn general, if the urn has two possible outcomes, say \\(a\\) and \\(b\\), with proportions \\(p\\) and \\(1-p\\) respectively,\n\n\\[\\mbox{E}[X] = ap + b(1-p)\\]\n\nOne way to see this is: observe that if there are \\(n\\) beads in the urn, then we have \\(np\\) \\(a\\)’s and \\(n(1-p)\\) \\(b\\)’s, and because the average is the sum: \\(n a p + n b (1-p)\\) divided by the total \\(n\\), we get the average \\(ap + b(1-p)\\).",
     "crumbs": [
       "Inference"
     ]
@@ -564,7 +564,7 @@
     "href": "slides/21-inference-foundations.html#example-se-of-a-sum",
     "title": "Foundations of Statistical Inference",
     "section": "Example: SE of a sum",
-    "text": "Example: SE of a sum\n\nthe sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 \n#&gt; [1] 31.6\n\n\nAs a result, when 1,000 people play, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard.",
+    "text": "Example: SE of a sum\n\nthe sum of 1,000 people playing has standard error of about $32:\n\n\nn &lt;- 1000 \nsqrt(n)*2*sqrt(90)/19 # (1- (-1)) sqrt( 10/19* 9*/19)\n#&gt; [1] 31.6\n\n\nAs a result, when 1,000 people play, the casino is expected to win $50 with a standard error of $32.\nIt therefore seems like a safe bet to install more roulette wheels.\nBut we still haven’t answered the question: How likely is the casino to lose money? The CLT will help in this regard.",
     "crumbs": [
       "Inference"
     ]
@@ -574,7 +574,7 @@
     "href": "slides/21-inference-foundations.html#central-limit-theorem",
     "title": "Foundations of Statistical Inference",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nThe Central Limit Theorem (CLT) tells us that when the number of draws, also called the sample size, is large, the probability distribution of the sum of the independent draws is approximately normal (which can be described by \\(\\mu\\) and \\(\\sigma\\))\nGiven that sampling models are used for so many data generation processes, the CLT is considered one of the most important mathematical insights in history.",
+    "text": "Central Limit Theorem\n\nThe Central Limit Theorem (CLT) tells us that when the number of draws, also called the sample size, is large, the probability distribution of the sum of the independent draws is approximately normal (which can be described with \\(\\mu\\) and \\(\\sigma\\))\nGiven that sampling models are used for so many data generation processes, the CLT is considered one of the most important mathematical insights in history.",
     "crumbs": [
       "Inference"
     ]
@@ -3754,7 +3754,7 @@
     "href": "slides/20-intro-to-prob.html#more-examples-of-events",
     "title": "Introduction to Probability",
     "section": "More examples of events",
-    "text": "More examples of events\n\nIn more complex random experiment, we can define many more events.\nFor example if the random experiment is picking 2 beads, we can define events such as first bead is red, second bead is blue, both beads are red, and so on.\nIn a random experiment such as political poll, where we randomly phone 100 likely voters at random, we can form many million events, for example calling 48 Democrats and 52 Republicans.",
+    "text": "More examples of events\n\nFor example, if the random experiment is picking 2 beads, we can define events such as first bead is red, second bead is blue, both beads are red, and so on.\nIn a random experiment such as political poll, where we randomly phone 100 likely voters at random, we can form many million events, for example calling 48 Democrats and 52 Republicans.",
     "crumbs": [
       "Probability"
     ]
@@ -3804,7 +3804,7 @@
     "href": "slides/20-intro-to-prob.html#examples",
     "title": "Introduction to Probability",
     "section": "Examples",
-    "text": "Examples\n\nBy default, the sample function samples without replacement\n\n\nset.seed(1996)\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- sample(beads, 5) #by default, replace=FALSE\n\n\nIf you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.\nHowever, if I show you the result of the last four outcomes:\n\n\nx[2:5] \n\n[1] \"blue\" \"blue\" \"red\"  \"blue\"\n\n\n\nwould you still guess blue? Of course not.",
+    "text": "Examples\n\nset.seed(1996)\nbeads &lt;- rep( c(\"red\", \"blue\"), times = c(2,3))\nx &lt;- sample(beads, 5) #by default, replace=FALSE\n\n\nIf you have to guess the color of the first bead, you will predict blue since blue has a 60% chance.\nHowever, if I show you the result of the last four outcomes:\n\n\nx[2:5] \n\n[1] \"blue\" \"blue\" \"red\"  \"blue\"\n\n\n\nwould you still guess blue? Of course not.",
     "crumbs": [
       "Probability"
     ]
@@ -4064,7 +4064,7 @@
     "href": "slides/20-intro-to-prob.html#pdf-for-continuous-rvs",
     "title": "Introduction to Probability",
     "section": "pdf for continuous RVs",
-    "text": "pdf for continuous RVs\n\nAlthough for continuous distributions the probability of a single value \\(\\mbox{Pr}(X=x)\\) is not defined, there is a theoretical definition that has a similar interpretation.\nThe probability density at \\(x\\) is defined as the function \\(f(a)\\) such that:\n\n\\[\nF(a) = \\mbox{Pr}(X\\leq a) = \\int_{-\\infty}^a f(x)\\, dx\n\\]",
+    "text": "pdf for continuous RVs\n\nAlthough for continuous distributions the probability of a single value \\(\\mbox{Pr}(X=x)\\) is not defined, there is a theoretical definition that has a similar interpretation.\nThe probability density function is defined as\n\n\\[\nF(a) = \\mbox{Pr}(X\\leq a) = \\int_{-\\infty}^a f(x)\\, dx\n\\]\n\\[\nF(b) - F(a) = \\int_a^b f(x)\\,dx\n\\]",
     "crumbs": [
       "Probability"
     ]
@@ -4074,7 +4074,7 @@
     "href": "slides/20-intro-to-prob.html#probability-density-function",
     "title": "Introduction to Probability",
     "section": "Probability density function",
-    "text": "Probability density function\n\nA mathematical result that is very useful in practice is that, for most CDFs, we can define a function, call it \\(f(x)\\), that permits us to construct the CDF using Calculus, like this:\n\n\\[\nF(b) - F(a) = \\int_a^b f(x)\\,dx\n\\]\n\n\\(f(x)\\) is referred to as the probability density function.",
+    "text": "Probability density function\n\nThe intuition is that even for continuous outcomes we can define tiny intervals, that are almost as small as points, that have positive probabilities.\nIf we think of the size of these intervals as the base of a rectangle, the probability density function \\(f\\) determines the height of the rectangle so that the summing up of the area of these rectangles approximate the probability \\(F(b) - F(a)\\).",
     "crumbs": [
       "Probability"
     ]
@@ -4084,7 +4084,7 @@
     "href": "slides/20-intro-to-prob.html#probability-density-function-1",
     "title": "Introduction to Probability",
     "section": "Probability density function",
-    "text": "Probability density function\n\nThe intuition is that even for continuous outcomes we can define tiny intervals, that are almost as small as points, that have positive probabilities.\nIf we think of the size of these intervals as the base of a rectangle, the probability density function \\(f\\) determines the height of the rectangle so that the summing up of the area of these rectangles approximate the probability \\(F(b) - F(a)\\).",
+    "text": "Probability density function\n\nThe graphThe code\n\n\n\n\n\n\n\n\n\n\ncont &lt;- data.frame(x = seq(0, 5, len = 300), y = dgamma(seq(0, 5, len = 300), 2, 2)) #Gamma(shape=2, rate=2): f(a, b)=b^a/Gamma(a) x^{a-1}e^{-bx}\ndisc &lt;- data.frame(x = seq(0, 5, 0.075), y = dgamma(seq(0, 5, 0.075), 2, 2)) \nggplot(mapping = aes(x, y)) + \n  geom_col(data =  disc) + \n  geom_line(data = cont) + \n  ylab(\"f(x)\") \n\n\ngeom_bar(stat=“count”): (default)for raw data; geom_col(stat=“identity”): (default) need x and y, use y values",
     "crumbs": [
       "Probability"
     ]
@@ -4134,7 +4134,7 @@
     "href": "slides/20-intro-to-prob.html#distributions-as-approximations",
     "title": "Introduction to Probability",
     "section": "Distributions as approximations",
-    "text": "Distributions as approximations\n\nThe graphThe code\n\n\n\nBelow is a plot of that probability distribution:\n\n\n\n\n\n\n\n\n\nrafalib::mypar() \nplot(prop.table(table(x)), xlab = \"a = Height in inches\", ylab = \"Pr(X = a)\") \n\n\ntable(): frequency counts. Default drops NA, unless table(x, useNA=\"ifany\")\nprop.table(): divides those counts by the total count-&gt;relative frequency\nfor 2-way table\n\n\nprop.table(table(a, b), margin = 1)  # rows sum to 1\nprop.table(table(a, b), margin = 2)  # cols sum to 1",
+    "text": "Distributions as approximations\n\nThe graphThe code\n\n\n\nBelow is a plot of that (discrete) probability distribution of the height data set\n\n\n\n\n\n\n\n\n\nrafalib::mypar() \nplot(prop.table(table(x)), xlab = \"a = Height in inches\", ylab = \"Pr(X = a)\") \n\n\ntable(): frequency counts. Default drops NA, unless table(x, useNA=\"ifany\")\nprop.table(): divides those counts by the total count-&gt;relative frequency\nfor 2-way table\n\n\nprop.table(table(a, b), margin = 1)  # rows sum to 1\nprop.table(table(a, b), margin = 2)  # cols sum to 1",
     "crumbs": [
       "Probability"
     ]
@@ -4184,7 +4184,7 @@
     "href": "slides/20-intro-to-prob.html#problems-caused-by-discretization",
     "title": "Introduction to Probability",
     "section": "Problems caused by discretization",
-    "text": "Problems caused by discretization\n\nnotice how the approximation breaks down:\n\n\nmean(x &lt;= 70.9) - mean(x &lt;= 70.1) \n\n[1] 0.02216749\n\n\n\npnorm(70.9, m, s) - pnorm(70.1, m, s) \n\n[1] 0.08359562\n\n\n\nIn general, we call this situation discretization.\nAlthough the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding.\nAs long as we are aware of how to deal with this reality, the normal approximation can still be a very useful tool.",
+    "text": "Problems caused by discretization\n\nnotice how the approximation breaks down:\n\n\nmean(x &lt;= 70.9) - mean(x &lt;= 70.1) \n\n[1] 0.02216749\n\n\n\npnorm(70.9, m, s) - pnorm(70.1, m, s) \n\n[1] 0.08359562\n\n\n\nAlthough the true height distribution is continuous, the reported heights tend to be more common at discrete values, in this case, due to rounding. We call this situation discretization.\nAs long as we are aware of how to deal with this reality, the normal approximation can still be a very useful tool.",
     "crumbs": [
       "Probability"
     ]
@@ -4273,8 +4273,8 @@
     "objectID": "slides/20-intro-to-prob.html#other-continuous-distributions",
     "href": "slides/20-intro-to-prob.html#other-continuous-distributions",
     "title": "Introduction to Probability",
-    "section": "Other continuous distributions",
-    "text": "Other continuous distributions\n\nThe codeThe graph\n\n\n\nR uses the letters d, q, p, and r in front of a shorthand for the distribution.\nWe have already seen the functions dnorm, pnorm, and rnorm for the normal distribution.\nThe functions qnorm gives us the quantiles.\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nlibrary(ggplot2)\ndf &lt;- data.frame(x = x, f = dnorm(x))\nggplot(df, aes(x, f)) + geom_line()\n\n\n\n\n\n\n\n\n\nHome",
+    "section": "Other Continuous distributions",
+    "text": "Other Continuous distributions\n\nThe normal distribution is not the only useful theoretical distribution.\nOther continuous distributions: the student-t, Chi-square, exponential, gamma, beta, and beta-binomial.\nR provides functions to compute the density, the quantiles, the cumulative distribution functions and to generate Monte Carlo simulations.",
     "crumbs": [
       "Probability"
     ]
@@ -4387,8 +4387,8 @@
     "objectID": "slides/qq-plot.html#why-the-line-yx-appears",
     "href": "slides/qq-plot.html#why-the-line-yx-appears",
     "title": "QQ plot",
-    "section": "Why the line (y=x) appears",
-    "text": "Why the line (y=x) appears\nIf the theoretical distribution and the sample have exactly the same center and spread, then the points should lie near\n\\[\ny=x.\n\\]\nBut there is an important subtlety:\n\nif you compare your data to the standard normal \\(N(0,1)\\), the ideal line is only \\(y=x\\) when your data also have mean 0 and sd 1\nif you compare to a normal with the same mean and sd as your data, then \\(y=x\\) is more sensible\n\nEven then, stat_qq_line() is usually better because it computes a fitted reference line based on quartiles.\n\np &lt;- 0.45 \nN &lt;- 1000 \nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \n\n\nB &lt;- 10000 \nx_hat &lt;- replicate(B, { \n  x &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  mean(x) \n}) \n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.6\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.2     ✔ tibble    3.3.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.2\n✔ purrr     1.2.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata.frame(x_hat = x_hat) |&gt; ggplot(aes(sample =  x_hat)) +  \n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) + \n  geom_abline()\n\n\n\n\nthis works as follows:\n\nstat_qq(...) sorts the values of x_hat\nit computes theoretical quantiles from a normal distribution with mean mean(x_hat) and sd sd(x_hat)\nit plots sample quantiles against theoretical quantiles\ngeom_abline() adds the line (y=x)\n\nSo the plot checks whether the ordered values of x_hat look like quantiles from that normal distribution."
+    "section": "Why the line \\(y=x\\) appears",
+    "text": "Why the line \\(y=x\\) appears\nIf the theoretical distribution and the sample have exactly the same center and spread, then the points should lie near\n\\[\ny=x.\n\\]\nBut there is an important subtlety:\n\nif you compare your data to the standard normal \\(N(0,1)\\), the ideal line is only \\(y=x\\) when your data also have mean 0 and sd 1\nif you compare to a normal with the same mean and sd as your data, then \\(y=x\\) is more sensible\n\nEven then, stat_qq_line() is usually better because it computes a fitted reference line based on quartiles.\n\np &lt;- 0.45 \nN &lt;- 1000 \nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \n\n\nB &lt;- 10000 \nx_hat &lt;- replicate(B, { \n  x &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  mean(x) \n}) \n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.6\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.2     ✔ tibble    3.3.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.2\n✔ purrr     1.2.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata.frame(x_hat = x_hat) |&gt; ggplot(aes(sample =  x_hat)) +  \n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) + \n  geom_abline()\n\n\n\n\nthis works as follows:\n\nstat_qq(...) sorts the values of x_hat\nit computes theoretical quantiles from a normal distribution with mean mean(x_hat) and sd sd(x_hat)\nit plots sample quantiles against theoretical quantiles\ngeom_abline() adds the line (y=x)\n\nSo the plot checks whether the ordered values of x_hat look like quantiles from that normal distribution."
   },
   {
     "objectID": "slides/qq-plot.html#how-to-interpret-the-shape",
@@ -4410,5 +4410,145 @@
     "title": "QQ plot",
     "section": "Better reference line",
     "text": "Better reference line\nUsually this is preferred:\n\nggplot(data.frame(x_hat = x_hat), aes(sample = x_hat)) +\n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) +\n  stat_qq_line(dparams = list(mean = mean(x_hat), sd = sd(x_hat)), color=\"red\")\n\n\n\n\nbecause stat_qq_line() gives a more meaningful Q–Q reference line than simply forcing \\(y=x\\)."
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#combine-events-union-and-intersection",
+    "href": "slides/20-intro-to-prob.html#combine-events-union-and-intersection",
+    "title": "Introduction to Probability",
+    "section": "Combine events: Union and Intersection",
+    "text": "Combine events: Union and Intersection\n\nWe can combine events in different ways to form new events. For example, if event\n\\(A\\)=first bead is red and second bead is blue, and\n\\(B\\)=first bead is red and second bead is red\nthen \\(A \\cup B\\) (\\(A\\) or \\(B\\)) is the event first bead is red,\nwhile \\(A \\cap B\\) (\\(A\\) and \\(B\\)) is the empty event since both can’t happen.",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#events-related-to-a-continuous-variable",
+    "href": "slides/20-intro-to-prob.html#events-related-to-a-continuous-variable",
+    "title": "Introduction to Probability",
+    "section": "Events related to a continuous variable",
+    "text": "Events related to a continuous variable\n\nWith continuous variables, events will relate to questions, such as Is this person taller than 6 feet?\nIn these cases, we represent events in a more mathematical form: \\(A = \\{X &gt; 6\\}\\).",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#independence-of-events",
+    "href": "slides/20-intro-to-prob.html#independence-of-events",
+    "title": "Introduction to Probability",
+    "section": "Independence of Events",
+    "text": "Independence of Events\n\nWhen we deal the first card, the probability of getting a King is 1/13 since there are thirteen possibilities: Ace, Deuce, Three, \\(\\dots\\), Ten, Jack, Queen, King, and Ace.\nIf we deal a King for the first card, the probability of a second card being a King decreases because there are only three Kings left: The probability is 3 out of 51.",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#conditional-probabilities-on-dependence",
+    "href": "slides/20-intro-to-prob.html#conditional-probabilities-on-dependence",
+    "title": "Introduction to Probability",
+    "section": "Conditional probabilities on dependence",
+    "text": "Conditional probabilities on dependence\n\nWhen events are not independent, conditional probabilities are useful.\nWe use the \\(|\\) to shorten conditional on. For example:\n\n\\[\n\\mbox{Pr}(\\mbox{Card 2 is a king} \\mid \\mbox{Card 1 is a king}) = 3/51\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#conditional-probabilities-for-independent-events",
+    "href": "slides/20-intro-to-prob.html#conditional-probabilities-for-independent-events",
+    "title": "Introduction to Probability",
+    "section": "Conditional probabilities for Independent events",
+    "text": "Conditional probabilities for Independent events\n\nWhen two events, say \\(A\\) and \\(B\\), are independent, we have:\n\n\\[\n\\mbox{Pr}(A \\mid B) = \\mbox{Pr}(A)  \n\\]\n\nIn fact, this can be considered the mathematical definition of independence.",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#multiplication-rule-for-intersection-event",
+    "href": "slides/20-intro-to-prob.html#multiplication-rule-for-intersection-event",
+    "title": "Introduction to Probability",
+    "section": "Multiplication rule for intersection event",
+    "text": "Multiplication rule for intersection event\n\nIf we want to determine the probability of two events, say \\(A\\) and \\(B\\), occurring, we can use the multiplication rule:\n\n\\[\n\\mbox{Pr}(A \\cap B) = \\mbox{Pr}(A)\\mbox{Pr}(B \\mid A)\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#addition-rule-for-union-of-events",
+    "href": "slides/20-intro-to-prob.html#addition-rule-for-union-of-events",
+    "title": "Introduction to Probability",
+    "section": "Addition rule for union of events",
+    "text": "Addition rule for union of events\n\nThe ruleThe code\n\n\n\\[\n\\mbox{Pr}(A \\cup B) = \\mbox{Pr}(A) + \\mbox{Pr}(B) - \\mbox{Pr}(A \\cap B)\n\\]\n\n\n\n\n\n\n\n\nlibrary(VennDiagram) \nrafalib::mypar() # sets some base plotting parameters, relevant to base R plots\ngrid.newpage() # clears the curetn grid graphics page\ntmp &lt;- draw.pairwise.venn(22, 20, 11, category = c(\"A\", \"B\"),  #(areaA=22, areaB=20, coss.area=11)\n                   lty = rep(\"blank\", 2), # remove the circle borders \n                   fill = c(\"light blue\", \"pink\"),  \n                   alpha = rep(0.5, 2),   \n                   cat.dist = rep(0.025, 2), # distance of category lables from the circles\n                   cex = 0, # tex size fore region counts. 0 hides the numbers\n                   cat.cex = rep(2.5,2)) # text size for the category labels",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#more-random-variables-examples",
+    "href": "slides/20-intro-to-prob.html#more-random-variables-examples",
+    "title": "Introduction to Probability",
+    "section": "More Random Variables examples",
+    "text": "More Random Variables examples\n\nMore interesting random variables are:\n\nthe number of times we win in a game of chance,\nthe number of democrats in a random sample of 1,000 voters, and\nthe proportion of patients randomly assigned to a control group in drug trial.",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#discrete-probability-example",
+    "href": "slides/20-intro-to-prob.html#discrete-probability-example",
+    "title": "Introduction to Probability",
+    "section": "Discrete probability: Example",
+    "text": "Discrete probability: Example\nIf I have 2 red beads and 3 blue beads inside an urn and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%.\n\nA precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event pick a red bead.\nSince each of the five outcomes has an equal chance of occurring, we conclude that the probability is .4 for red and .6 for blue.",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#the-probability-density-for-discrete-r.v.",
+    "href": "slides/20-intro-to-prob.html#the-probability-density-for-discrete-r.v.",
+    "title": "Introduction to Probability",
+    "section": "The probability density for discrete r.v.",
+    "text": "The probability density for discrete r.v.\n\nFor categorical distributions, we can define the probability of a category.\nFor example, a roll of a die, let’s call it \\(X\\), can be 1, 2, 3, 4, 5 or 6.\nThe probability of 4 is defined as:\n\n\\[\n\\mbox{Pr}(X=4) = 1/6\n\\]",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#permutations",
+    "href": "slides/20-intro-to-prob.html#permutations",
+    "title": "Introduction to Probability",
+    "section": "Permutations",
+    "text": "Permutations\n\nchoose two numbers from a list consisting of 1,2,3:\n\n\nlibrary(gtools) \npermutations(3, 2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    1\n[4,]    2    3\n[5,]    3    1\n[6,]    3    2\n\n\n\nThe order matters here: 3,1 is different than 1,3.\n(1,1), (2,2), and (3,3) do not appear because once we pick a number, it can’t appear again.\nTo compute all possible ways we can choose two cards when the order matters, we type, you can use the v option:\n\n\nhands &lt;- permutations(52, 2, v = deck)",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#combinations",
+    "href": "slides/20-intro-to-prob.html#combinations",
+    "title": "Introduction to Probability",
+    "section": "Combinations",
+    "text": "Combinations\n\nWhat about if the order does not matter? For example, in Blackjack, if you obtain an Ace and a face card in the first draw, it is called a Natural 21, and you win automatically.\nIf we wanted to compute the probability of this happening, we would enumerate the combinations, not the permutations, since the order does not matter.\n\n\ncombinations(3,2) \n\n     [,1] [,2]\n[1,]    1    2\n[2,]    1    3\n[3,]    2    3",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/20-intro-to-prob.html#other-continuous-distributions-1",
+    "href": "slides/20-intro-to-prob.html#other-continuous-distributions-1",
+    "title": "Introduction to Probability",
+    "section": "Other continuous distributions",
+    "text": "Other continuous distributions\n\nThe codeThe graph\n\n\n\nR uses the letters d, q, p, and r in front of a shorthand for the distribution.\nWe have already seen the functions dnorm, pnorm, and rnorm for the normal distribution.\nThe functions qnorm gives us the quantiles.\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nqplot(x, f, geom = \"line\", data = data.frame(x, f = dnorm(x))) \n\n\n\n\nx &lt;- seq(-4, 4, length.out = 100) \nlibrary(ggplot2)\ndf &lt;- data.frame(x = x, f = dnorm(x))\nggplot(df, aes(x, f)) + geom_line()\n\n\n\n\n\n\n\n\n\nHome",
+    "crumbs": [
+      "Probability"
+    ]
+  },
+  {
+    "objectID": "slides/21-inference-foundations.html#the-expected-value-example",
+    "href": "slides/21-inference-foundations.html#the-expected-value-example",
+    "title": "Foundations of Statistical Inference",
+    "section": "The expected value: Example",
+    "text": "The expected value: Example\n\nIn the urn used to model betting on red in roulette, we have 20 one-dollar bills and 18 negative one-dollar bills, \\[\n\\mbox{E}[X] = (20 + (-18) /38\n\\] which is about 5 cents.\nYou might consider it a bit counterintuitive to say that \\(X\\) varies around 0.05 when it only takes the values 1 and -1.\nIntepretation: if we play the game over and over, the casino wins, on average, 5 cents per game.",
+    "crumbs": [
+      "Inference"
+    ]
   }
 ]
