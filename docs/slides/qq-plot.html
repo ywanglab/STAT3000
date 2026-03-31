@@ -229,14 +229,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../psets/hw5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW-5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../slides/21-inference-foundations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Inference</span></a>
+ <span class="menu-text">Inference Foundation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/22-intro-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Inference</span></a>
+ <span class="menu-text">Intro to Inference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/23-parameters-estimates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Parameters Estimate</span></a>
   </div>
 </li>
     </ul>
@@ -260,6 +272,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-to-interpret-the-shape" id="toc-how-to-interpret-the-shape" class="nav-link" data-scroll-target="#how-to-interpret-the-shape">How to interpret the shape</a></li>
   <li><a href="#small-concrete-example" id="toc-small-concrete-example" class="nav-link" data-scroll-target="#small-concrete-example">Small concrete example</a></li>
   <li><a href="#better-reference-line" id="toc-better-reference-line" class="nav-link" data-scroll-target="#better-reference-line">Better reference line</a></li>
+  <li><a href="#qqnorm-and-qqplot" id="toc-qqnorm-and-qqplot" class="nav-link" data-scroll-target="#qqnorm-and-qqplot"><code>qqnorm()</code> and <code>qqplot()</code></a>
+  <ul class="collapse">
+  <li><a href="#example-qqnorm" id="toc-example-qqnorm" class="nav-link" data-scroll-target="#example-qqnorm">1. Example: <code>qqnorm()</code></a></li>
+  <li><a href="#example-qqplot" id="toc-example-qqplot" class="nav-link" data-scroll-target="#example-qqplot">2. Example: <code>qqplot()</code></a></li>
+  <li><a href="#qqplot-against-a-theoretical-distribution" id="toc-qqplot-against-a-theoretical-distribution" class="nav-link" data-scroll-target="#qqplot-against-a-theoretical-distribution">3. <code>qqplot()</code> against a theoretical distribution</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/slides/qq-plot.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -310,9 +328,8 @@ x_{(1)} \le x_{(2)} \le \cdots \le x_{(n)}.
 <h3 class="anchored" data-anchor-id="step-2-choose-plotting-probabilities">Step 2: choose plotting probabilities</h3>
 <p>For each rank (i), assign a probability, often approximately</p>
 <p><span class="math display">\[
-p_i = \frac{i - 0.5}{n}, \qquad i=1,\dots,n.
-\]</span></p>
-<p>These probabilities mark where each ordered observation sits in the distribution.</p>
+p_i = \frac{i - a}{n+1-2a}, \qquad i=1,\dots,n.
+\]</span> where the default offset is <span class="math display">\[a=\begin{cases} 3/8, &amp; n\ge 10 \\ 1/2, &amp; n &gt;10 \end{cases} \]</span> These probabilities mark where each ordered observation sits in the distribution. If <span class="math inline">\(n &gt;10\)</span>, <span class="math inline">\(a=1/2\)</span> and <span class="math inline">\(p_i \approx \frac{i-1/2}{n}\)</span>.</p>
 <hr>
 </section>
 <section id="step-3-compute-theoretical-quantiles" class="level3">
@@ -459,8 +476,66 @@ p_i = \frac{i-0.5}{5} = 0.1, 0.3, 0.5, 0.7, 0.9.
 </div>
 </div>
 <p>because <code>stat_qq_line()</code> gives a more meaningful Q–Q reference line than simply forcing <span class="math inline">\(y=x\)</span>.</p>
+</section>
+<section id="qqnorm-and-qqplot" class="level2">
+<h2 class="anchored" data-anchor-id="qqnorm-and-qqplot"><code>qqnorm()</code> and <code>qqplot()</code></h2>
+<p><code>qqnorm()</code> is for comparing one sample to a <strong>normal distribution</strong>. <code>qqplot()</code> is for comparing the quantiles of <strong>two datasets</strong>. Both rely on probability points internally, and <code>qqnorm()</code> specifically produces a normal QQ-plot.</p>
+<section id="example-qqnorm" class="level3">
+<h3 class="anchored" data-anchor-id="example-qqnorm">1. Example: <code>qqnorm()</code></h3>
+<p>Use this when you want to check whether data look approximately normal.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>qqnorm(x)</code> plots the sample quantiles of <code>x</code> against the theoretical normal quantiles.</li>
+<li><code>qqline(x)</code> adds a reference line. By default, that line is based on the first and third quartiles, not necessarily the identity line (y=x).</li>
+</ul>
+<p>A second example with non-normal data:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(y)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(y, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This plot will usually bend away from the line because exponential data are not normal.</p>
+</section>
+<section id="example-qqplot" class="level3">
+<h3 class="anchored" data-anchor-id="example-qqplot">2. Example: <code>qqplot()</code></h3>
+<p>Use this when you want to compare the distributions of two samples.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(x, y,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Quantiles of x"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Quantiles of y"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"QQ-plot of y against x"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>qqplot(x, y)</code> compares the quantiles of <code>x</code> and <code>y</code>.</li>
+<li>If the points fall near a straight line, the two distributions have similar shape.</li>
+<li>If the line is not close to slope 1 or intercept 0, one sample may be more spread out or shifted than the other.</li>
+</ul>
+</section>
+<section id="qqplot-against-a-theoretical-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="qqplot-against-a-theoretical-distribution">3. <code>qqplot()</code> against a theoretical distribution</h3>
+<p>You can also use <code>qqplot()</code> to compare data to a non-normal theoretical distribution by supplying theoretical quantiles yourself.</p>
+<p>For example, compare data to a chi-square distribution:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="dv">100</span>, <span class="at">df =</span> <span class="dv">3</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>theoretical <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fu">ppoints</span>(<span class="fu">length</span>(y)), <span class="at">df =</span> <span class="dv">3</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(theoretical, <span class="fu">sort</span>(y),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Theoretical chi-square quantiles"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Sample quantiles"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Chi-square QQ-plot"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This works because <code>ppoints()</code> generates the plotting probabilities used to evaluate inverse distribution functions such as <code>qnorm()</code> or <code>qchisq()</code>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

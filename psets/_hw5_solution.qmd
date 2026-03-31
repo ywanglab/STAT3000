@@ -1,0 +1,503 @@
+---
+title: Problem set 5 solutions
+date: ""
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+This solution set explores probability through two settings: repeated dice rolls and American roulette. It uses both Monte Carlo simulation and exact mathematical calculations.
+
+```{r setup}
+library(tidyverse)
+
+theme_set(theme_minimal())
+options(digits = 4)
+
+# Event: in n rolls of two fair dice, do we see at least one double-six?
+double_six <- function(n){
+  die1 <- sample(1:6, n, replace = TRUE)
+  die2 <- sample(1:6, n, replace = TRUE)
+  any(die1 == 6 & die2 == 6)
+}
+
+# Exact probability of at least one double-six in n rolls.
+exact_prob <- function(n){
+  1 - (35/36)^n
+}
+
+# Faster Monte Carlo for the double-six event.
+# Each roll of two dice is one of 36 equally likely outcomes,
+# and one of those outcomes is a double-six.
+mc_prob_fast <- function(n, B = 1000){
+  sims <- matrix(sample.int(36, n * B, replace = TRUE), nrow = B) #B by n
+  mean(rowSums(sims == 36) > 0) # proportion of simulations where each has at least one 36. 
+}
+
+# Casino profit from one $1 bet on red:
+# -1 if the player wins (ball lands on red), +1 otherwise.
+simulate_X <- function(n = 1){
+  sample(c(-1, 1), size = n, replace = TRUE, prob = c(18/38, 20/38))
+}
+
+# Total casino profit S from n independent $1 bets on red.
+# If W is the number of casino wins among n bets, then total profit S = W-(n-W) = 2W - n.
+simulate_S <- function(n, B = 10000){
+  2 * rbinom(B, size = n, prob = 20/38) - n # rbinom(B, n, 20/38): generate B values of W
+}
+
+```
+For example
+```{r}
+set.seed(1)
+S <- simulate_S(1000, B = 10000)
+mean(S < 0)     # estimated probability casino loses money
+mean(S)         # estimated expected profit
+sd(S)           # estimated standard error of S
+```
+
+## Part I: Rolling two dice
+
+### 1. Function `double_six`
+
+We simulate `n` rolls of two fair dice and return `TRUE` if at least one roll is `(6, 6)`.
+
+```{r q1}
+double_six
+```
+
+### 2. Estimated probability for 24 rolls
+
+We estimate the probability of seeing at least one double-six in 24 rolls using `B = 1000` Monte Carlo trials.
+
+```{r q2}
+set.seed(2026)
+B <- 10^3
+n <- 24
+prob_est_24 <- mean(replicate(B, double_six(n)))
+prob_est_24
+```
+
+The Monte Carlo estimate is `r round(prob_est_24, 4)`.
+
+### 3. When does the probability exceed 50%?
+
+We repeat the simulation for several values of `n`.
+
+```{r q3}
+set.seed(1997)
+compute_prob <- function(n, B = 10^3){
+  mean(replicate(B, double_six(n)))
+}
+
+n_vals <- 1:60
+mc_probs <- sapply(n_vals, compute_prob) # sapply(X, FUN) applies FUN to each element of X; lapply returns a list
+n_50 <- min(n_vals[mc_probs > 0.5])
+n_50
+```
+
+From this simulation, the probability first exceeds 50% at about `r n_50` rolls.
+
+For comparison, the exact threshold solves
+
+$$
+1 - \left(\frac{35}{36}\right)^n > 0.5.
+$$
+
+This is equivalent to
+
+$$
+\left(\frac{35}{36}\right)^n < 0.5,
+$$
+
+so
+
+$$
+n > \frac{\log(0.5)}{\log(35/36)} \approx 24.61.
+$$
+
+Therefore the smallest integer is
+
+$$
+n = 25.
+$$
+
+### 4. Compare Monte Carlo to the exact probability
+
+The exact probability is
+
+$$
+\Pr(\text{at least one double-six in } n \text{ rolls})
+= 1 - \left(\frac{35}{36}\right)^n.
+$$
+
+```{r q4}
+plot_df <- tibble(
+  n = n_vals,
+  monte_carlo = mc_probs,
+  exact = exact_prob(n_vals)
+)
+
+ggplot(plot_df, aes(n, monte_carlo)) + # ggplot sets the global aes(x=, y=)
+  geom_point(size = 1.8) +
+  geom_line(aes(y = exact), color = "red", linewidth = 1) + #overide y locally
+  labs(
+    title = "Double-six probability: Monte Carlo vs exact",
+    x = "Number of rolls (n)",
+    y = "Probability"
+  )
+```
+
+The red curve gives the exact probability, while the points are the Monte Carlo estimates based on `B = 1000` trials.
+
+### 5. How large should `B` be?
+
+Now we fix `n = 24` and vary the number of Monte Carlo iterations.
+
+```{r q5}
+set.seed(1998)
+B_seq <- seq(10, 250, 5)^2
+n <- 24
+exact_p24 <- exact_prob(n)
+est_probs_q5 <- sapply(B_seq, function(b) mc_prob_fast(n, b))
+
+within_band <- abs(est_probs_q5 - exact_p24) <= 0.005
+threshold_candidates <- which(vapply(seq_along(est_probs_q5), function(i) {
+  all(within_band[i:length(within_band)]) # check for each index i to the end, whether all remaining values are true
+}, logical(1))) #vapply is safer than sapply, it rquires to speicfy the output type. logical(1): each funcition must return exactly one logical value. 
+threshold_index <- if (length(threshold_candidates) == 0) length(B_seq) else threshold_candidates[1]
+# if no such index, use the lat one, otherwise use the first valid threshold
+
+sqrt_B_threshold <- sqrt(B_seq[threshold_index]) # find the first value of  sqrt(B) after which the MC estimates stays within the desired error band
+
+q5_df <- tibble(
+  sqrt_B = sqrt(B_seq),
+  estimate = est_probs_q5
+)
+
+ggplot(q5_df, aes(sqrt_B, estimate)) +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = exact_p24, color = "red", linewidth = 1) +
+  geom_hline(yintercept = exact_p24 + 0.005, linetype = 2, color = "blue") +
+  geom_hline(yintercept = exact_p24 - 0.005, linetype = 2, color = "blue") +
+  labs(
+    title = "Monte Carlo accuracy for n = 24",
+    x = expression(sqrt(B)),
+    y = "Estimated probability"
+  )
+```
+
+In this run, the estimates stay within `0.005` of the exact probability from about $\sqrt(B)$ = `r sqrt_B_threshold` onward. This corresponds to B = `r B_seq[threshold_index]`.
+
+### 6. Improved Monte Carlo versus exact curve
+
+Based on question 5, a value around 40,000 iterations is enough to make the Monte Carlo points practically fall on the exact curve while still rendering quickly.
+
+```{r q6}
+set.seed(1999)
+B_star <- max(40000, B_seq[threshold_index])
+n_vals <- 1:60
+mc_probs_better <- sapply(n_vals, function(n) mc_prob_fast(n, B_star))
+
+plot_df_better <- tibble(
+  n = n_vals,
+  monte_carlo = mc_probs_better,
+  exact = exact_prob(n_vals)
+)
+
+ggplot(plot_df_better, aes(n, monte_carlo)) +
+  geom_point(size = 1.5) +
+  geom_line(aes(y = exact), color = "red", linewidth = 1) +
+  labs(
+    title = paste("Monte Carlo vs exact with B =", format(B_star, big.mark = ",")),
+    x = "Number of rolls (n)",
+    y = "Probability"
+  )
+```
+
+## Part II: American roulette
+
+In American roulette there are 38 slots total: 18 red, 18 black, and 2 green.
+
+### 7. Probability that the casino wins a $1 bet on red
+
+If a player bets on red, then the casino wins whenever the outcome is black or green.
+
+There are
+
+- 18 black slots,
+- 2 green slots,
+
+so the casino wins on
+
+$$
+18 + 2 = 20
+$$
+
+of the 38 slots. Therefore,
+
+$$
+\Pr(\text{casino wins}) = \frac{20}{38} = \frac{10}{19}.
+$$
+
+### 8. Sampling model for $X$
+
+Here $X$ is the casino's profit from a single $1 bet on red:
+
+- $X = -1$ if the ball lands on red,
+- $X = +1$ otherwise.
+
+```{r q8}
+set.seed(2030)
+X <- simulate_X(10)
+X
+```
+
+So one convenient sampling model is
+
+```{r q8-model}
+sample(c(-1, 1), size = 1, replace = TRUE, prob = c(18/38, 20/38))
+```
+
+### 9. Probability that the casino loses money when 1000 people play
+
+Let $S$ be the casino's total profit from `n = 1000` independent bets on red.
+
+```{r q9}
+set.seed(2031)
+n <- 1000
+B <- 10^4
+S <- simulate_S(n, B)
+prob_lose_mc <- mean(S < 0)
+prob_lose_mc
+```
+
+The Monte Carlo estimate of the probability that the casino loses money is `r round(prob_lose_mc, 4)`.
+
+### 10. Expected value of $X$
+
+Since
+
+$$
+\Pr(X = -1) = \frac{18}{38}
+\qquad \text{and} \qquad
+\Pr(X = 1) = \frac{20}{38},
+$$
+
+we have
+
+$$
+E[X] = (-1)\left(\frac{18}{38}\right) + (1)\left(\frac{20}{38}\right)
+= \frac{2}{38}
+= \frac{1}{19}.
+$$
+
+Therefore,
+
+$$
+E[X] = \frac{1}{19} \approx 0.0526.
+$$
+
+### 11. Standard error of $X$
+
+Here the "standard error" of the random variable $X$ is its standard deviation.
+
+First,
+
+$$
+E[X^2] = (-1)^2\left(\frac{18}{38}\right) + (1)^2\left(\frac{20}{38}\right) = 1.
+$$
+
+So
+
+$$
+\operatorname{Var}(X) = E[X^2] - (E[X])^2 = 1 - \left(\frac{1}{19}\right)^2
+= \frac{360}{361}.
+$$
+
+Hence,
+
+$$
+\operatorname{SE}(X) = \sqrt{\operatorname{Var}(X)}
+= \sqrt{\frac{360}{361}}
+= \frac{6\sqrt{10}}{19}
+\approx 0.9986.
+$$
+
+### 12. Expected value of $S$
+
+Since $S$ is the sum of 1000 independent copies of $X$,
+
+$$
+E[S] = nE[X] = 1000\left(\frac{1}{19}\right) = \frac{1000}{19} \approx 52.63.
+$$
+
+```{r q12}
+expected_S <- n / 19
+mc_mean_S <- mean(S)
+c(expected_S = expected_S, monte_carlo_mean = mc_mean_S)
+```
+
+The Monte Carlo mean is very close to the theoretical value, so the simulation confirms the result.
+
+### 13. Standard error of $S$
+
+Because $S$ is the sum of `n = 1000` independent copies of $X$,
+
+$$
+\operatorname{Var}(S) = n\operatorname{Var}(X)
+= 1000\left(\frac{360}{361}\right).
+$$
+
+Therefore,
+
+$$
+\operatorname{SE}(S) = \sqrt{\operatorname{Var}(S)}
+= \sqrt{1000}\cdot \frac{6\sqrt{10}}{19}
+= \frac{600}{19}
+\approx 31.58.
+$$
+
+```{r q13}
+se_S <- 600 / 19
+mc_sd_S <- sd(S)
+c(theoretical_se = se_S, monte_carlo_sd = mc_sd_S)
+```
+
+Again, the Monte Carlo standard deviation is close to the theoretical value.
+
+### 14. Visualizing the distribution of $S$
+
+We standardize $S$ and then make a histogram and a QQ-plot.
+
+```{r q14}
+S_std <- (S - expected_S) / se_S
+
+tmp_par <- par(mfrow = c(1, 2)) # next plots are arranged in a 1 row by 2 columns layout, and saves the preivous graphics seetings in tmp_par which can be restored by using par(tmp_par)
+
+hist(
+  S_std,
+  breaks = 30,
+  main = "Histogram of standardized S",
+  xlab = "Standardized S"
+)
+
+qq_df <- data.frame(
+  theoretical = qnorm(ppoints(length(S_std))),
+  sample = sort(S_std)
+)
+plot(qq_df$theoretical, qq_df$sample,
+     main = "QQ-plot of standardized S",
+     xlab = "Theoretical quantiles",
+     ylab = "Sample quantiles")
+abline(0, 1, col = "red", lwd = 2) # line y=x, intercept=0, slope=1
+
+par(tmp_par) #restore the preivous plotting setting
+```
+
+The histogram is close to bell-shaped, and the QQ-plot lies close to the line $y = x$, so the normal approximation is reasonable.
+
+### 15. What improves the normal approximation?
+
+Increasing the number of people playing `n` improves the normal approximation more. The Central Limit Theorem becomes more accurate as the number of independent terms in the sum increases. Increasing the number of Monte Carlo iterations `B` only makes the simulation estimate more stable; it does not make the true distribution of $S$ more normal.
+
+### 16. CLT approximation for the probability the casino loses money
+
+From the previous parts,
+
+$$
+E[S] = \frac{n}{19},
+\qquad
+\operatorname{SE}(S) = \frac{6\sqrt{10n}}{19}.
+$$
+
+So by the Central Limit Theorem,
+
+$$
+\Pr(S < 0)
+\approx
+\Phi\left(
+\frac{0 - n/19}{6\sqrt{10n}/19}
+\right).
+$$
+
+For `n = 1000`, this becomes
+
+$$
+\Pr(S < 0)
+\approx
+\Phi\left(
+\frac{-1000/19}{6\sqrt{10000}/19}
+\right)
+=
+\Phi\left(-\frac{5}{3}\right).
+$$
+
+```{r q16}
+clt_prob <- pnorm(0, mean = expected_S, sd = se_S)
+clt_prob_cc <- pnorm(-1, mean = expected_S, sd = se_S)  # continuity correction. S=2W-n, taking on even values, P(S<0)=P(S<=-2) \approx P(Y\le -1) where Y is a normal approximation. use -1 because the boundary between the included value -2 and the excluded value 0 is -1. 
+c(monte_carlo = prob_lose_mc, clt = clt_prob, clt_continuity_corrected = clt_prob_cc)
+```
+
+The plain CLT approximation is close to the Monte Carlo estimate, and the continuity-corrected version is usually a little closer.
+
+### 17. Minimum number of players so the casino loses with probability about 1%
+
+We want
+
+$$
+\Pr(S < 0) \approx 0.01.
+$$
+
+Using the CLT,
+
+$$
+\Phi\left(
+\frac{0 - n/19}{6\sqrt{10n}/19}
+\right)
+\approx 0.01.
+$$
+
+So we set
+
+$$
+\frac{0 - n/19}{6\sqrt{10n}/19} = z_{0.01}.
+$$
+
+Since $z_{0.01} = -z_{0.99}$, this gives
+
+$$
+\frac{\sqrt{n}}{6\sqrt{10}} = z_{0.99}.
+$$
+
+Hence,
+
+$$
+n = \left(6\sqrt{10}\, z_{0.99}\right)^2.
+$$
+
+```{r q17}
+n_star <- ceiling((6 * sqrt(10) * qnorm(0.99))^2)
+n_star
+```
+
+Thus the CLT gives n = `r n_star`.
+
+Now we check with Monte Carlo simulation.
+
+```{r q17-check}
+set.seed(2032)
+B_check <- 10^5
+prob_n_star <- mean(simulate_S(n_star, B_check) < 0)
+prob_prev <- mean(simulate_S(n_star - 1, B_check) < 0)
+
+c(
+  `n_star - 1` = prob_prev,
+  n_star = prob_n_star
+)
+```
+
+The simulation shows that n = `r n_star` brings the casino's chance of losing to about 1%, while n = `r n_star - 1` is still slightly above that level.

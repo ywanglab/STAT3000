@@ -1,0 +1,172 @@
+---
+title: Problem set 5
+date: ""
+execute:
+  eval: false
+---
+
+[Download source](https://raw.githubusercontent.com/ywanglab/STAT3000/refs/heads/main/psets/hw5.qmd)
+
+This problem set explores probability through two settings: repeated dice rolls and American roulette. You will use both Monte Carlo simulation and exact mathematical calculations to understand these models.
+
+Please answer each of the exercises below. For those asking for a mathematical calculation, use LaTeX to show your work.
+
+Important: Make sure that your document renders in less than 5 minutes.
+
+## Part I: Rolling two dice
+
+1. Write a function called `double_six` that takes a number `n` as an argument, simulates rolling two fair dice `n` times, and returns `TRUE` if at least one of the `n` rolls is a double-six.
+
+   Hint: generate two vectors of rolls and check whether any pair equals `(6, 6)`.
+
+```{r}
+double_six <- function(n){
+  ## Your code here
+}
+```
+
+2. Suppose you roll two fair dice 24 times. If we define success to mean seeing at least one double-six, what is the estimated probability of success? Use a Monte Carlo simulation with `B = 1000` trials based on the function `double_six` from the previous exercise.
+
+```{r}
+B <- 10^3
+n <- 24
+## Your code here
+```
+
+3. Redo the previous exercise for several values of `n` to determine at what number of rolls the probability becomes greater than 50%. Set the seed at 1997.
+
+```{r}
+set.seed(1997)
+compute_prob <- function(n, B = 10^3){
+  ## Your code here
+}
+
+n_vals <- 1:60
+## Your code here
+```
+
+4. These probabilities can be computed exactly instead of relying on Monte Carlo approximations. Since the probability of not getting a double-six on a single roll is `35/36`, we have
+
+$$
+\Pr(\text{at least one double-six in } n \text{ rolls})
+= 1 - \left(\frac{35}{36}\right)^n.
+$$
+
+Plot the probabilities you obtained using Monte Carlo as points and the exact probabilities with a red line.
+
+```{r}
+exact_prob <- function(n){
+  ## Your code here
+}
+
+## Your code here
+```
+
+5. The Monte Carlo points in question 4 will not exactly match the red curve because the simulation uses only 1,000 iterations. Repeat exercise 2 for `n = 24`, but now try `B <- seq(10, 250, 5)^2` iterations. Plot the estimated probability against `sqrt(B)`. At what value of `sqrt(B)` do the estimates consistently stay within `0.005` of the exact probability? Add horizontal lines at the exact probability plus and minus `0.005`. Set the seed to 1998.
+
+```{r}
+set.seed(1998)
+B <- seq(10, 250, 5)^2
+n <- 24
+## Your code here
+```
+
+6. Repeat the comparison from question 4 (Monte Carlo points versus exact red line), but now use your findings from question 5 to choose an appropriate value of `B` so that the points practically fall on the red curve.
+
+   Hint: choose a value of `B` that is large enough for a good plot, but not so large that your document takes too long to render.
+
+```{r}
+n_vals <- 1:60
+## Your code here
+```
+
+## Part II: American roulette
+
+In American roulette there are 38 slots total: 18 red, 18 black, and 2 green.
+
+7. If a player bets $1 on red, what is the probability that the casino wins the bet?
+
+$$
+\text{Derivation here}
+$$
+
+8. If a player bets $1 on red, the casino's profit from that single bet is represented by the random variable $X$:
+
+- $X = -1$ if the ball lands on red,
+- $X = +1$ otherwise.
+
+Create a sampling model for `X` using the `sample` function.
+
+```{r}
+## Your code here
+```
+
+9. Now create a random variable $S$ for the casino's total profit if `n = 1000` people each make a $1 bet on red. Use Monte Carlo simulation with `B = 10000` trials to estimate the probability that the casino loses money.
+
+```{r}
+n <- 1000
+B <- 10^4
+## Your code here
+```
+
+10. What is the expected value of $X$?
+
+$$
+\text{Your derivation here}
+$$
+
+11. What is the standard error of $X$?
+
+$$
+\text{Your derivation here}
+$$
+
+12. What is the expected value of $S$? Does the Monte Carlo simulation confirm this?
+
+$$
+\text{Your derivation here}
+$$
+
+```{r}
+## Your code here
+```
+
+13. What is the standard error of $S$? Does the Monte Carlo simulation confirm this?
+
+$$
+\text{Your derivation here}
+$$
+
+```{r}
+## Your code here
+```
+
+14. Use data visualization to convince yourself that the distribution of $S$ is approximately normal. Make a histogram and a QQ-plot of the standardized values of $S$. The QQ-plot should be close to the identity line.
+
+```{r}
+## Your code here
+```
+
+15. The normal approximation will not be perfect in the tails. What would improve the approximation more: increasing the number of people playing `n`, or increasing the number of Monte Carlo iterations `B`? Explain your reasoning.
+
+**Answer here**
+
+16. Use the Central Limit Theorem to approximate the probability that the casino loses money. Does your CLT approximation agree with the Monte Carlo estimate from question 9?
+
+$$
+\text{Your derivation here}
+$$
+
+```{r}
+## Your code here
+```
+
+17. What is the minimum number of people `n` who must each bet $1 on red so that the probability the casino loses money is approximately 1% according to the CLT? Check your answer with a Monte Carlo simulation.
+
+$$
+\text{Your derivation here}
+$$
+
+```{r}
+## Your code here
+```
