@@ -11,8 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <meta name="keywords" content="Inference">
-  <title>STAT 3000 - Parameters and Estimates</title>
+  <meta name="keywords" content="Productivity Tools">
+  <title>STAT 3000 - RStudio IDE and Quarto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,388 +393,296 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Parameters and Estimates</h1>
-  <p class="subtitle"><a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/estimates-confidence-intervals.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/estimates-confidence-intervals.html</a></p>
+  <h1 class="title">RStudio IDE and Quarto</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="the-poll-example" class="slide level2">
-<h2>The poll example</h2>
-<p>The week before the election <a href="http://www.realclearpolitics.com/epolls/2016/president/us/general_election_trump_vs_clinton-5491.html">Real Clear Politics</a> showed this:</p>
+<section id="integrated-development-environment-ide" class="slide level2">
+<h2>Integrated Development Environment (IDE)</h2>
+<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html</a> </span></p>
+<ul>
+<li>Posit provides a free IDE for R with RStudio</li>
+<li><a href="https://github.com/posit-dev/positron/releases">Positron</a> (newer and adapted to LLMs)</li>
+</ul>
+</section>
+<section id="the-panes" class="slide level2">
+<h2>The panes</h2>
 
-<img data-src="img/rcp-table.png" class="r-stretch"></section>
-<section id="the-sampling-model-for-polls" class="slide level2">
-<h2>The sampling model for polls</h2>
+<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/R/img/rstudio.png" class="r-stretch"></section>
+<section id="the-basics" class="slide level2">
+<h2>The Basics</h2>
 <ul>
-<li><p>To simulate the challenge pollsters encounter in terms of competing with other pollsters for media attention, we will use an urn filled with beads to represent voters, and pretend we are competing for a $25 dollar prize.</p></li>
-<li><p>The challenge is to guess the spread between the proportion of blue and red beads in an urn.</p></li>
+<li>Open a new R script file. (<a href="../codes/example.R">example.R</a>)</li>
+<li>Learn tab complete.</li>
+<li>Run commands while editing scripts.</li>
+<li>Run the entire script.</li>
+<li>Make a plot.</li>
+<li>Change options to never save workspace.</li>
+<li>Change IDE appearance.</li>
 </ul>
 </section>
-<section id="the-sampling-model-for-polls-1" class="slide level2">
-<h2>The sampling model for polls</h2>
+<section id="projects" class="slide level2">
+<h2>Projects</h2>
 <ul>
-<li><p>Before making a prediction, you can take a sample (with replacement) from the urn.</p></li>
-<li><p>To reflect the fact that running polls is expensive, it costs you $0.10 for each bead you sample.</p></li>
-<li><p>Therefore, if your sample size is 250, and you win, you will break even since you would have paid $25 to collect your $25 prize.</p></li>
-<li><p>Your entry into the competition can be an interval.</p></li>
+<li>Start a new project in a new directory.</li>
+<li>Start a new project in an existing directory.</li>
+<li>Change projects.</li>
+<li>Use the <code>File</code> menu to create a new Quarto document</li>
 </ul>
 </section>
-<section id="the-sampling-model-for-polls-2" class="slide level2">
-<h2>The sampling model for polls</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">The Procedure</a></li><li><a href="#tabset-1-2">The graph</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
+<section id="type-of-editor" class="slide level2 smaller">
+<h2>Type of editor</h2>
 <ul>
-<li><p>If the interval you submit contains the true proportion, you receive half what you paid and proceed to the second phase of the competition.</p></li>
-<li><p>In the second phase, the entry with the smallest interval is selected as the winner.</p></li>
-</ul>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dslabs) </span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">take_poll</span>(<span class="dv">25</span>) <span class="co">#dslabs function shows a  random draw form thir urn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="23-parameters-estimates_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="populations-samples-parameters-and-spread" class="slide level2">
-<h2>Populations, samples, parameters, and spread</h2>
+<li><p>we will be creating and editing markdown documents - mostly using the Quarto paradigm</p></li>
+<li><p>for Quarto you can use either a source view or a visual view:</p>
 <ul>
-<li><p>In statistical class, the beads in the urn are called the <em>population</em>.</p></li>
-<li><p>The proportion of blue beads in the (unknown) population <span class="math inline">\(p\)</span> is called a <em>parameter</em>.</p></li>
-<li><p>The 25 beads we see in the previous plot are called a <em>sample</em>.</p></li>
-<li><p>We want to estimate the <strong>spread</strong>: <span class="math inline">\(p - (1-p)\)</span> = <span class="math inline">\(2p - 1\)</span>.</p></li>
-</ul>
-</section>
-<section id="goal-of-inference" class="slide level2">
-<h2>Goal of Inference</h2>
-<ul>
-<li><p>The goal of statistical inference is to predict the population parameter <span class="math inline">\(p\)</span> based on the observed data in the sample.</p></li>
-<li><p>For example, given that we see 13 red and 12 blue beads, it is unlikely that <span class="math inline">\(p\)</span> &gt; .9 or <span class="math inline">\(p\)</span> &lt; .1.</p></li>
-<li><p>We want to construct an estimate of <span class="math inline">\(p\)</span> using only the information we observe (the sample).</p></li>
-</ul>
-</section>
-<section id="example-of-samples" class="slide level2">
-<h2>Example of Samples</h2>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">The graphs</a></li><li><a href="#tabset-2-2">The code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-<ul>
-<li>Observe that in the four random samples shown above, the sample proportions range from 0.44 to 0.60.</li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="23-parameters-estimates_files/figure-revealjs/four-simulated-polls-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-2-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">0</span>), <span class="at">mgp =</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">0.5</span>, <span class="dv">0</span>))  </span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">take_poll</span>(<span class="dv">25</span>); <span class="fu">take_poll</span>(<span class="dv">25</span>); <span class="fu">take_poll</span>(<span class="dv">25</span>); <span class="fu">take_poll</span>(<span class="dv">25</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="23-parameters-estimates_files/figure-revealjs/four-simulated-polls-code-1.png" width="960"></p>
-</div>
-</div>
-<ul>
-<li><code>par()</code>: changes plotting layout and margins</li>
-<li><code>mfrow=c(2,2)</code>: 2 by 2 grid</li>
-<li><code>mar=c(3,1,3,0)</code>: set margins in the order of c(bottom, left, top, right)</li>
-<li><code>mgp=c(1.5, o.5, 0)</code>: (postion of the axis title, axis tick labels, axis line)</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="parameters" class="slide level2">
-<h2>Parameters</h2>
-<ul>
-<li><p>Just as we use variables to define unknowns in systems of equations, in statistical inference, we define <em>parameters</em> to represent unknown parts of our models.</p></li>
-<li><p>For example, we may want to determine</p>
-<ul>
-<li>the difference in health improvement between patients receiving treatment and a control group,</li>
-<li>investigate the health effects of smoking on a population,</li>
-<li>analyze the differences in racial groups of fatal shootings by police, or</li>
-<li>assess the rate of change in life expectancy in the US during the last 10 years.</li>
+<li>Source - See the actual code (WYSIWYG)</li>
+<li>Visual - Partial preview of final document.</li>
 </ul></li>
 </ul>
+<p>Note: You can state your preference in the header:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="estimating-mean-by-clt" class="slide level2">
-<h2>Estimating mean by CLT</h2>
+<section id="the-header" class="slide level2">
+<h2>The header</h2>
 <ul>
-<li>The properties we learned tell us that:</li>
+<li><p>Start a new empty document.</p></li>
+<li><p>At the top you see:</p></li>
 </ul>
-<p><span class="math display">\[
-\mbox{E}(\bar{X}) = p
-\]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-\mbox{SE}(\bar{X}) = \sqrt{p(1-p)/N}
-\]</span></p>
-</section>
-<section id="properties-of-our-estimate" class="slide level2">
-<h2>Properties of our estimate</h2>
+<p><br></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <ul>
-<li><p>The law of large numbers tells us that with a large enough poll, <span class="math inline">\(\bar{X}\to p\)</span>.</p></li>
-<li><p>If we take a large enough poll to make our standard error about 1%, we will be quite certain about who will win.</p></li>
-<li><p>But how large does the poll have to be for the standard error to be this small?</p></li>
-<li><p>One problem is that we do not know <span class="math inline">\(p\)</span>, so we can’t compute the standard error.</p></li>
-</ul>
-</section>
-<section id="se-vs.-sample-size-n" class="slide level2">
-<h2>SE vs.&nbsp;sample size <span class="math inline">\(n\)</span></h2>
-<div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">The graph</a></li><li><a href="#tabset-3-2">The code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1">
-<ul>
-<li>For illustrative purposes, let’s assume that <span class="math inline">\(p=0.51\)</span> and make a plot of the standard error versus the sample size <span class="math inline">\(N\)</span>:</li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="23-parameters-estimates_files/figure-revealjs/standard-error-versus-sample-size-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div id="tabset-3-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.51</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>, <span class="at">len =</span> <span class="dv">100</span>) <span class="co"># vector of values of N</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">data.frame</span>(<span class="at">N =</span> N, <span class="at">SE =</span> <span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> p)<span class="sc">/</span>N)) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(N, SE)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>), <span class="at">trans =</span> <span class="st">"log10"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="sampple-size" class="slide level2">
-<h2>Sampple size</h2>
-<ul>
-<li><p>The plot shows that we would need a poll of over 10,000 people to achieve a standard error that low.</p></li>
-<li><p>We rarely see polls of this size due in part to the associated costs.</p></li>
-<li><p>According to the Real Clear Politics table, sample sizes in opinion polls range from 500-3,500 people.</p></li>
-<li><p>For a sample size of 1,000 and <span class="math inline">\(p=0.51\)</span>, the standard error is:</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> p))<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">1000</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.01580823</code></pre>
-</div>
-</div>
-</section>
-<section id="distribution-of-our-estimates" class="slide level2">
-<h2>Distribution of our estimates</h2>
-<ul>
-<li><p>The CLT tells us that the distribution function for a sum of draws is approximately normal.</p></li>
-<li><p>Using the properties we learned: <span class="math inline">\(\bar{X}\)</span> has an approximately normal distribution with expected value <span class="math inline">\(p\)</span> and standard error <span class="math inline">\(\sqrt{p(1-p)/N}\)</span>.</p></li>
+<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
+<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
 </ul>
 </section>
-<section id="what-is-the-probability-of-within-1-of-p" class="slide level2">
-<h2>What is the probability of within 1% of p?</h2>
-$$
-<span class="math display">\[\begin{aligned}
-\mbox{Pr}(| \bar{X} - p| \leq .01)
-=
-\mbox{Pr}(\bar{X}\leq p + .01) - \mbox{Pr}(\bar{X} \leq p - .01)  \\
-=
+<section id="quick-markdown-text-formating" class="slide level2">
+<h2>Quick Markdown Text formating</h2>
+<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
+<p><code>**bold**</code> = <strong>bold</strong></p>
+<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
+<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
+<p><code>`code`</code> = <code>code</code></p>
+</section>
+<section id="code-chunk" class="slide level2">
+<h2>Code chunk</h2>
+<p>This:</p>
+<pre><code>```
+line 1
+line 2
+```</code></pre>
+<p>shows a code chunk:</p>
+<pre><code>line 1
+line 2</code></pre>
+</section>
+<section class="slide level2">
 
-\mbox{Pr}\left(Z \leq \frac{ \,.01} {\mbox{SE}(\bar{X})} \right) -
-\mbox{Pr}\left(Z \leq - \frac{ \,.01} {\mbox{SE}(\bar{X})} \right)  
-\end{aligned}\]</span>
-<p>$$</p>
+<h3 id="headings">Headings</h3>
+<p>You can start sections and subsections like this:</p>
+<p><code># Header 1</code></p>
+<p><code>## Header 2</code></p>
+<p><code>### Header 3</code></p>
+</section>
+<section id="links" class="slide level2">
+<h2>Links</h2>
 <ul>
-<li>Since <span class="math inline">\(p\)</span> is the expected value and <span class="math inline">\(\mbox{SE}(\bar{X}) = \sqrt{p(1-p)/N}\)</span> is the standard error</li>
+<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
+<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
+</ul>
+<p>Looks like this:</p>
+<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
+<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
+</section>
+<section id="images" class="slide level2">
+<h2>Images</h2>
+<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
+<p>Shows the plot and caption:</p>
+
+<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">Introductory Statistics with R</p><ul>
+<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
 </ul>
 </section>
-<section id="estimate-the-se" class="slide level2">
-<h2>Estimate the SE</h2>
+<section id="unordered-lists" class="slide level2">
+<h2>Unordered Lists</h2>
+<p>Bullets:</p>
+<pre><code>-   bullet 1
+    -   sub-bullet 1
+    -   sub-bullet 2
+-   bullet 2</code></pre>
+<p>Looks like this:</p>
 <ul>
-<li><p>One problem we have is that since we don’t know <span class="math inline">\(p\)</span>, we don’t know <span class="math inline">\(\mbox{SE}(\bar{X})\)</span>.</p></li>
-<li><p>using <span class="math inline">\(\bar{X}\)</span> in place of <span class="math inline">\(p\)</span> (CLT)</p></li>
+<li>bullet 1
+<ul>
+<li>sub-bullet 1</li>
+<li>sub-bullet 2</li>
+</ul></li>
+<li>bullet 2</li>
 </ul>
+</section>
+<section id="ordered-lists" class="slide level2">
+<h2>Ordered Lists</h2>
+<p>Ordered list:</p>
+<pre><code>1.  Item 1
+2.  Item 2</code></pre>
+<p>Looks like this:</p>
+<ol type="1">
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+</section>
+<section id="equations" class="slide level2">
+<h2>Equations</h2>
+
+<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Technical report often uses LaTeX for typesetting.</p>
+<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="equations-using-latex." class="slide level2">
+<h2>Equations using LaTeX.</h2>
+<p>Examples:</p>
+<ul>
+<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
+<li><p>Display math:</p></li>
+</ul>
+<pre><code>$$
+\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
+$$</code></pre>
+<p>looks like this:</p>
 <p><span class="math display">\[
-\hat{\mbox{SE}}(\bar{X})=\sqrt{\bar{X}(1-\bar{X})/N}
+\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
 \]</span></p>
-<ul>
-<li>In our first sample, we had 12 blue and 13 red, so <span class="math inline">\(\bar{X} = 0.48\)</span>:</li>
-</ul>
+</section>
+<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
+<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
+<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="r-code-chuns" class="slide level2">
+<h2>R Code Chuns</h2>
+<p>We can write something like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>x_hat <span class="ot">&lt;-</span> <span class="fl">0.48</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x_hat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>x_hat)<span class="sc">/</span><span class="dv">25</span>) </span>
-<span id="cb6-3"><a href="#cb6-3"></a>se </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.09991997</code></pre>
+<pre><code>[1] 3</code></pre>
 </div>
 </div>
+<p>Note that it was evaluated and the result is shown.</p>
 </section>
-<section id="answer-to-our-previous-question" class="slide level2">
-<h2>Answer to our previous question</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">pnorm</span>(<span class="fl">0.01</span><span class="sc">/</span>se) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.01</span><span class="sc">/</span>se) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.07971926</code></pre>
-</div>
-</div>
+<section id="local-control" class="slide level2">
+<h2>Local control</h2>
 <ul>
-<li>Therefore, there is a small chance that we will be close.</li>
+<li><p>By default, the code and result will show up.</p></li>
+<li><p>control the behavior with <code>#|</code></p></li>
+<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
 </ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="margin-of-error" class="slide level2">
-<h2>Margin of error</h2>
+<section id="other-local-controls" class="slide level2">
+<h2>Other local controls</h2>
 <ul>
-<li><span class="math inline">\(1.96\)</span> times the standard error</li>
+<li><p>There are many options</p></li>
+<li><p>to avoid executing the code use <code>eval: FALSE</code>.</p></li>
+<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fl">1.96</span><span class="sc">*</span>se </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1958431</code></pre>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<p><strong>Note</strong></p>
 </div>
-<ul>
-<li>Because the probability that we are within 1.96 standard errors from <span class="math inline">\(p\)</span> <span class="math display">\[
-\begin{aligned}
-&amp; \mbox{Pr}\left(Z \leq \, 1.96\,\mbox{SE}(\bar{X})  / \mbox{SE}(\bar{X}) \right) -
-\mbox{Pr}\left(Z \leq - 1.96\, \mbox{SE}(\bar{X}) / \mbox{SE}(\bar{X}) \right)   \\
-= &amp; \mbox{Pr}\left(Z \leq 1.96 \right) -
-\mbox{Pr}\left(Z \leq - 1.96\right)  = 0.95
-\end{aligned}
-\]</span></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.96</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9500042</code></pre>
-</div>
-</div>
-</section>
-<section id="central-limit-theorem" class="slide level2">
-<h2>Central Limit Theorem</h2>
-<ul>
-<li><p>There is a 95% probability that <span class="math inline">\(\bar{X}\)</span> will be within <span class="math inline">\(1.96\times \hat{SE}(\bar{X})\)</span>, in our case within about 0.2, of <span class="math inline">\(p\)</span>.</p></li>
-<li><p>Observe that 95% is somewhat of an arbitrary choice and sometimes other percentages are used, but it is the most commonly used value to define margin of error.</p></li>
-</ul>
-</section>
-<section id="a-monte-carlo-simulation" class="slide level2">
-<h2>A Monte Carlo simulation</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, { </span>
-<span id="cb14-4"><a href="#cb14-4"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">mean</span>(x) </span>
-<span id="cb14-6"><a href="#cb14-6"></a>}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>The problem is, of course, that we don’t know <code>p</code>.</li>
-</ul>
-</section>
-<section id="a-monte-carlo-simulation-1" class="slide level2">
-<h2>A Monte Carlo simulation</h2>
-<ul>
-<li><p>Let’s set <code>p=0.45</code>.</p></li>
-<li><p>We can then simulate a poll:</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.45</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
-<span id="cb15-3"><a href="#cb15-3"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
-<span id="cb15-4"><a href="#cb15-4"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>In this particular sample, our estimate is <code>x_hat</code>.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span> </span>
-<span id="cb16-2"><a href="#cb16-2"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, { </span>
-<span id="cb16-3"><a href="#cb16-3"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">mean</span>(x) </span>
-<span id="cb16-5"><a href="#cb16-5"></a>}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="simulation-results" class="slide level2">
-<h2>Simulation results</h2>
-<ul>
-<li><p>To review, the theory tells us that <span class="math inline">\(\bar{X}\)</span> is approximately normally distributed, has expected value <span class="math inline">\(p=\)</span> 0.45, and standard error <span class="math inline">\(\sqrt{p(1-p)/N}\)</span> = 0.0157321.</p></li>
-<li><p>The simulation confirms this:</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">mean</span>(x_hat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4500751</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">sd</span>(x_hat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.01584011</code></pre>
-</div>
-</div>
-</section>
-<section id="a-monte-carlo-simulation-analysis-of-x_hat" class="slide level2">
-<h2>A Monte Carlo simulation: Analysis of x_hat</h2>
-<div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">The graph</a></li><li><a href="#tabset-4-2">The code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1">
-<ul>
-<li>A histogram and qqplot confirm that the normal approximation is also accurate:</li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="23-parameters-estimates_files/figure-revealjs/normal-approximation-for-polls-1.png" style="width:100.0%"></p>
-</div>
-</div>
-</div>
-<div id="tabset-4-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># cache=FALSE: tell Quarto not to cache the reuslts of this chunk</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">library</span>(gridExtra) </span>
-<span id="cb21-5"><a href="#cb21-5"></a>p1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x_hat =</span> x_hat) <span class="sc">|&gt;</span>  </span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x_hat)) <span class="sc">+</span>  </span>
-<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="co">#binwidth: refer to the data values </span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>p2 <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">x_hat =</span> x_hat) <span class="sc">|&gt;</span>  </span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> x_hat)) <span class="sc">+</span>  </span>
-<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">stat_qq</span>(<span class="at">dparams =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x_hat), <span class="at">sd =</span> <span class="fu">sd</span>(x_hat))) <span class="sc">+</span> <span class="co"># compare to Normal(mean, sd), not Nornal(0,1)</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span>  <span class="co">#geom_abline(intercept=0, slope=1)</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a>  <span class="fu">ylab</span>(<span class="st">"x_hat"</span>) <span class="sc">+</span>  </span>
-<span id="cb21-13"><a href="#cb21-13"></a>  <span class="fu">xlab</span>(<span class="st">"Theoretical normal"</span>) </span>
-<span id="cb21-14"><a href="#cb21-14"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="callout-content">
+<p>to apply an option globally, set them in the header.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="why-not-run-a-very-large-poll" class="slide level2">
-<h2>Why not run a very large poll?</h2>
+<section id="labeling-a-code-chun-is-a-good-practice" class="slide level2">
+<h2>Labeling a code chun is a good practice</h2>
 <ul>
-<li><p>For realistic values of <span class="math inline">\(p\)</span>, let’s say ranging from 0.35 to 0.65, if we conduct a very large poll with 100,000 people, theory tells us that we would predict the election perfectly, as the largest possible margin of error is around 0.3%.</p></li>
-<li><p>One reason is that a large poll is expensive.</p></li>
-<li><p>Another possibly reason is that theory has its limitations.</p></li>
-<li><p>Polling is much more complicated than simply picking beads from an urn.</p></li>
-<li><p>Some people might lie to pollsters, and others might not have phones.</p></li>
+<li>We recommend getting into the habit of labeling code chunks:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Helps with debugging</li>
+<li>Helps reading the code</li>
 </ul>
 </section>
-<section id="bias-why-not-run-a-very-large-poll" class="slide level2">
-<h2>Bias: Why not run a very large poll?</h2>
+<section id="more-on-markdown" class="slide level2">
+<h2>More on markdown</h2>
 <ul>
-<li><p>However, perhaps the most important way an actual poll differs from an urn model is that we don’t actually know for sure who is in our population and who is not.</p></li>
-<li><p>How do we know who is going to vote? Are we reaching all possible voters? Hence, even if our margin of error is very small, it might not be exactly right that our expected value is <span class="math inline">\(p\)</span>.</p></li>
-<li><p>We call this bias.</p></li>
-<li><p>Historically, we observe that polls are indeed biased, although not by a substantial amount.</p></li>
-<li><p>The typical bias appears to be about 2-3%.</p></li>
+<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
+<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
+<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
+<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
+<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
+</ul>
+</section>
+<section id="quarto-render" class="slide level2">
+<h2>Quarto render</h2>
+<ul>
+<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
+<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
+<li><p><code>quarto render</code> renders all qmd files.</p></li>
+<li><p>You can produce html, pdf, or word documents.</p></li>
+<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
 </ul>
 
 <div class="footer footer-default">
-<p><a href="../index.html">Home</a></p>
+
 </div>
 </section>
     </div>

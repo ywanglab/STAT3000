@@ -18,7 +18,7 @@
     "href": "slides/23-parameters-estimates.html#the-sampling-model-for-polls",
     "title": "Parameters and Estimates",
     "section": "The sampling model for polls",
-    "text": "The sampling model for polls\nThe week before the election Real Clear Politics showed this:",
+    "text": "The sampling model for polls\n\nTo simulate the challenge pollsters encounter in terms of competing with other pollsters for media attention, we will use an urn filled with beads to represent voters, and pretend we are competing for a $25 dollar prize.\nThe challenge is to guess the spread between the proportion of blue and red beads in an urn.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -28,7 +28,7 @@
     "href": "slides/23-parameters-estimates.html#the-sampling-model-for-polls-1",
     "title": "Parameters and Estimates",
     "section": "The sampling model for polls",
-    "text": "The sampling model for polls\n\nTo help us understand the connection between polls and what we have learned, let’s construct a situation similar to what pollsters face.\nTo simulate the challenge pollsters encounter in terms of competing with other pollsters for media attention, we will use an urn filled with beads to represent voters, and pretend we are competing for a $25 dollar prize.\nThe challenge is to guess the spread between the proportion of blue and red beads in an urn.",
+    "text": "The sampling model for polls\n\nBefore making a prediction, you can take a sample (with replacement) from the urn.\nTo reflect the fact that running polls is expensive, it costs you $0.10 for each bead you sample.\nTherefore, if your sample size is 250, and you win, you will break even since you would have paid $25 to collect your $25 prize.\nYour entry into the competition can be an interval.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -38,7 +38,7 @@
     "href": "slides/23-parameters-estimates.html#the-sampling-model-for-polls-2",
     "title": "Parameters and Estimates",
     "section": "The sampling model for polls",
-    "text": "The sampling model for polls\n\nBefore making a prediction, you can take a sample (with replacement) from the urn.\nTo reflect the fact that running polls is expensive, it costs you $0.10 for each bead you sample.\nTherefore, if your sample size is 250, and you win, you will break even since you would have paid $25 to collect your $25 prize.\nYour entry into the competition can be an interval.",
+    "text": "The sampling model for polls\n\nThe ProcedureThe graph\n\n\n\nIf the interval you submit contains the true proportion, you receive half what you paid and proceed to the second phase of the competition.\nIn the second phase, the entry with the smallest interval is selected as the winner.\n\n\n\n\nset.seed(1)\nlibrary(tidyverse) \nlibrary(dslabs) \ntake_poll(25) #dslabs function shows a  random draw form thir urn",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -58,7 +58,7 @@
     "href": "slides/23-parameters-estimates.html#populations-samples-parameters-and-estimates",
     "title": "Parameters and Estimates",
     "section": "Populations, samples, parameters, and estimates",
-    "text": "Populations, samples, parameters, and estimates\n\nWe want to predict difference proportion of blue beads - proportion of red beads\nLet’s the proportion of blue \\(p\\)\nWe want to estimate \\(p - (1-p)\\) = \\(2p - 1\\).",
+    "text": "Populations, samples, parameters, and estimates\n\nWe want to predict difference proportion of blue beads - proportion of red beads\nLet’s the proportion of blue \\(p\\)\nWe want to estimatethe spread: \\(p - (1-p)\\) = \\(2p - 1\\).",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -78,7 +78,7 @@
     "href": "slides/23-parameters-estimates.html#populations-samples-parameters-and-estimates-2",
     "title": "Parameters and Estimates",
     "section": "Populations, samples, parameters, and estimates",
-    "text": "Populations, samples, parameters, and estimates\n\nThe goal of statistical inference is to predict the parameter \\(p\\) based on the observed data in the sample.\nCan we do this with the 25 observations above? It is certainly informative.\nFor example, given that we see 13 red and 12 blue beads, it is unlikely that \\(p\\) &gt; .9 or \\(p\\) &lt; .1.\nWe want to construct an estimate of \\(p\\) using only the information we observe.",
+    "text": "Populations, samples, parameters, and estimates\n\nThe goal of statistical inference is to predict the population parameter \\(p\\) based on the observed data in the sample.\nFor example, given that we see 13 red and 12 blue beads, it is unlikely that \\(p\\) &gt; .9 or \\(p\\) &lt; .1.\nWe want to construct an estimate of \\(p\\) using only the information we observe (the sample).",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -98,7 +98,7 @@
     "href": "slides/23-parameters-estimates.html#the-sample-average",
     "title": "Parameters and Estimates",
     "section": "The sample average",
-    "text": "The sample average\n\nWe use the symbol \\(\\bar{X}\\) to represent this average.\nIn statistics textbooks, a bar on top of a symbol typically denotes the average.\nThe theory we just covered about the sum of draws becomes useful because the average is a sum of draws multiplied by the constant \\(1/N\\):\n\n\\[\\bar{X} = \\frac{1}{N} \\sum_{i=1}^N X_i\\]",
+    "text": "The sample average\n\\[\\bar{X} = \\frac{1}{N} \\sum_{i=1}^N X_i\\]\n\nWhat do we know about the distribution of the sum?\nWe know that the expected value of the sum of draws is \\(N\\) times the average of the values in the urn.\nWe know that the average of the 0s and 1s in the urn must be \\(p\\), the proportion of blue beads.\nwe don’t know the composition of the urn. we want to estimate \\(p\\).",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -118,7 +118,7 @@
     "href": "slides/23-parameters-estimates.html#parameters",
     "title": "Parameters and Estimates",
     "section": "Parameters",
-    "text": "Parameters\n\nJust as we use variables to define unknowns in systems of equations, in statistical inference, we define parameters to represent unknown parts of our models.\nWe define the parameters \\(p\\) to represent the the proportion of blue beads in the urn.\nSince our main goal is determining \\(p\\), we are going to estimate this parameter.",
+    "text": "Parameters\n\nJust as we use variables to define unknowns in systems of equations, in statistical inference, we define parameters to represent unknown parts of our models.\nFor example, we may want to determine\n\nthe difference in health improvement between patients receiving treatment and a control group,\ninvestigate the health effects of smoking on a population,\nanalyze the differences in racial groups of fatal shootings by police, or\nassess the rate of change in life expectancy in the US during the last 10 years.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -148,7 +148,7 @@
     "href": "slides/23-parameters-estimates.html#properties-of-our-estimate",
     "title": "Parameters and Estimates",
     "section": "Properties of our estimate",
-    "text": "Properties of our estimate\n\nThe law of large numbers tells us that with a large enough poll, our estimate converges to \\(p\\).\nIf we take a large enough poll to make our standard error about 1%, we will be quite certain about who will win.\nBut how large does the poll have to be for the standard error to be this small?\nOne problem is that we do not know \\(p\\), so we can’t compute the standard error.",
+    "text": "Properties of our estimate\n\nThe law of large numbers tells us that with a large enough poll, \\(\\bar{X}\\to p\\).\nIf we take a large enough poll to make our standard error about 1%, we will be quite certain about who will win.\nBut how large does the poll have to be for the standard error to be this small?\nOne problem is that we do not know \\(p\\), so we can’t compute the standard error.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -188,7 +188,7 @@
     "href": "slides/23-parameters-estimates.html#central-limit-theorem",
     "title": "Parameters and Estimates",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nNow how can answer questions like what is the probability that we are within 1% from \\(p\\).\nWe are basically asking what is:\n\n\\[\n\\mbox{Pr}(| \\bar{X} - p| \\leq .01)\n\\]\nwhich is the same as:\n\\[\n\\mbox{Pr}(\\bar{X}\\leq p + .01) - \\mbox{Pr}(\\bar{X} \\leq p - .01)\n\\]",
+    "text": "Central Limit Theorem\n\nThere is a 95% probability that \\(\\bar{X}\\) will be within \\(1.96\\times \\hat{SE}(\\bar{X})\\), in our case within about 0.2, of \\(p\\).\nObserve that 95% is somewhat of an arbitrary choice and sometimes other percentages are used, but it is the most commonly used value to define margin of error.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -198,7 +198,7 @@
     "href": "slides/23-parameters-estimates.html#central-limit-theorem-1",
     "title": "Parameters and Estimates",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nSince \\(p\\) is the expected value and \\(\\mbox{SE}(\\bar{X}) = \\sqrt{p(1-p)/N}\\) is the standard error, we get:\n\n\\[\n\\mbox{Pr}\\left(Z \\leq \\frac{ \\,.01} {\\mbox{SE}(\\bar{X})} \\right) -\n\\mbox{Pr}\\left(Z \\leq - \\frac{ \\,.01} {\\mbox{SE}(\\bar{X})} \\right)  \n\\]",
+    "text": "Central Limit Theorem\n\nThere is a 95% probability that \\(\\bar{X}\\) will be within \\(1.96\\times \\hat{SE}(\\bar{X})\\), in our case within about 0.2, of \\(p\\).\nObserve that 95% is somewhat of an arbitrary choice and sometimes other percentages are used, but it is the most commonly used value to define margin of error.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -208,7 +208,7 @@
     "href": "slides/23-parameters-estimates.html#central-limit-theorem-2",
     "title": "Parameters and Estimates",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nOne problem we have is that since we don’t know \\(p\\), we don’t know \\(\\mbox{SE}(\\bar{X})\\).\nHowever, it turns out that the CLT still works if we estimate the standard error by using \\(\\bar{X}\\) in place of \\(p\\).\nWe say that we plug-in the estimate.\nOur estimate of the standard error is therefore:\n\n\\[\n\\hat{\\mbox{SE}}(\\bar{X})=\\sqrt{\\bar{X}(1-\\bar{X})/N}\n\\]",
+    "text": "Central Limit Theorem\n\nOne problem we have is that since we don’t know \\(p\\), we don’t know \\(\\mbox{SE}(\\bar{X})\\).\nIt turns out that the CLT still works if we estimate the standard error by using \\(\\bar{X}\\) in place of \\(p\\).\nOur estimate of the standard error is therefore:\n\n\\[\n\\hat{\\mbox{SE}}(\\bar{X})=\\sqrt{\\bar{X}(1-\\bar{X})/N}\n\\]",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -218,7 +218,7 @@
     "href": "slides/23-parameters-estimates.html#central-limit-theorem-3",
     "title": "Parameters and Estimates",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nNow we continue with our calculation, but dividing by\n\n\\[\\hat{\\mbox{SE}}(\\bar{X})=\\sqrt{\\bar{X}(1-\\bar{X})/N})\\]",
+    "text": "Central Limit Theorem\n\nIn our first sample, we had 12 blue and 13 red, so \\(\\bar{X} = 0.48\\) and our estimate of standard error is:\n\n\nx_hat &lt;- 0.48 \nse &lt;- sqrt(x_hat*(1-x_hat)/25) \nse \n\n[1] 0.09991997",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -228,7 +228,7 @@
     "href": "slides/23-parameters-estimates.html#central-limit-theorem-4",
     "title": "Parameters and Estimates",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nIn our first sample, we had 12 blue and 13 red, so \\(\\bar{X} = 0.48\\) and our estimate of standard error is:\n\n\nx_hat &lt;- 0.48 \nse &lt;- sqrt(x_hat*(1-x_hat)/25) \nse \n\n[1] 0.09991997",
+    "text": "Central Limit Theorem\n\nNow, we can answer the question of the probability of being close to \\(p\\).\nThe answer is:\n\n\npnorm(0.01/se) - pnorm(-0.01/se) \n\n[1] 0.07971926\n\n\n\nTherefore, there is a small chance that we will be close.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -238,7 +238,7 @@
     "href": "slides/23-parameters-estimates.html#central-limit-theorem-5",
     "title": "Parameters and Estimates",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nNow, we can answer the question of the probability of being close to \\(p\\).\nThe answer is:\n\n\npnorm(0.01/se) - pnorm(-0.01/se) \n\n[1] 0.07971926\n\n\n\nTherefore, there is a small chance that we will be close.",
+    "text": "Central Limit Theorem\n\nThere is a 95% probability that \\(\\bar{X}\\) will be within \\(1.96\\times \\hat{SE}(\\bar{X})\\), in our case within about 0.2, of \\(p\\).\nObserve that 95% is somewhat of an arbitrary choice and sometimes other percentages are used, but it is the most commonly used value to define margin of error.",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -298,7 +298,7 @@
     "href": "slides/23-parameters-estimates.html#a-monte-carlo-simulation-1",
     "title": "Parameters and Estimates",
     "section": "A Monte Carlo simulation",
-    "text": "A Monte Carlo simulation\n\nLet’s set p=0.45.\nWe can then simulate a poll:\n\n\np &lt;- 0.45 \nN &lt;- 1000 \nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \n\n\nIn this particular sample, our estimate is x_hat.\nWe can use that code to do a Monte Carlo simulation:",
+    "text": "A Monte Carlo simulation\n\nLet’s set p=0.45.\nWe can then simulate a poll:\n\n\np &lt;- 0.45 \nN &lt;- 1000 \nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \n\n\nIn this particular sample, our estimate is x_hat.\n\n\nB &lt;- 10000 \nx_hat &lt;- replicate(B, { \n  x &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  mean(x) \n})",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -358,7 +358,7 @@
     "href": "slides/23-parameters-estimates.html#bias-why-not-run-a-very-large-poll",
     "title": "Parameters and Estimates",
     "section": "Bias: Why not run a very large poll?",
-    "text": "Bias: Why not run a very large poll?\n\nHowever, perhaps the most important way an actual poll differs from an urn model is that we don’t actually know for sure who is in our population and who is not.\nHow do we know who is going to vote? Are we reaching all possible voters? Hence, even if our margin of error is very small, it might not be exactly right that our expected value is \\(p\\).\nWe call this bias.",
+    "text": "Bias: Why not run a very large poll?\n\nHowever, perhaps the most important way an actual poll differs from an urn model is that we don’t actually know for sure who is in our population and who is not.\nHow do we know who is going to vote? Are we reaching all possible voters? Hence, even if our margin of error is very small, it might not be exactly right that our expected value is \\(p\\).\nWe call this bias.\nHistorically, we observe that polls are indeed biased, although not by a substantial amount.\nThe typical bias appears to be about 2-3%.\n\n\n\nHome",
     "crumbs": [
       "Parameters Estimate"
     ]
@@ -4521,5 +4521,145 @@
     "title": "QQ plot",
     "section": "qqnorm() and qqplot()",
     "text": "qqnorm() and qqplot()\nqqnorm() is for comparing one sample to a normal distribution. qqplot() is for comparing the quantiles of two datasets. Both rely on probability points internally, and qqnorm() specifically produces a normal QQ-plot.\n\n1. Example: qqnorm()\nUse this when you want to check whether data look approximately normal.\nset.seed(1)\nx &lt;- rnorm(100)\n\nqqnorm(x)\nqqline(x, col = \"red\", lwd = 2)\n\nqqnorm(x) plots the sample quantiles of x against the theoretical normal quantiles.\nqqline(x) adds a reference line. By default, that line is based on the first and third quartiles, not necessarily the identity line (y=x).\n\nA second example with non-normal data:\nset.seed(1)\ny &lt;- rexp(100)\n\nqqnorm(y)\nqqline(y, col = \"red\", lwd = 2)\nThis plot will usually bend away from the line because exponential data are not normal.\n\n\n2. Example: qqplot()\nUse this when you want to compare the distributions of two samples.\nset.seed(1)\nx &lt;- rnorm(100, mean = 0, sd = 1)\ny &lt;- rnorm(100, mean = 1, sd = 1.5)\n\nqqplot(x, y,\n       xlab = \"Quantiles of x\",\n       ylab = \"Quantiles of y\",\n       main = \"QQ-plot of y against x\")\nabline(0, 1, col = \"red\", lwd = 2)\n\nqqplot(x, y) compares the quantiles of x and y.\nIf the points fall near a straight line, the two distributions have similar shape.\nIf the line is not close to slope 1 or intercept 0, one sample may be more spread out or shifted than the other.\n\n\n\n3. qqplot() against a theoretical distribution\nYou can also use qqplot() to compare data to a non-normal theoretical distribution by supplying theoretical quantiles yourself.\nFor example, compare data to a chi-square distribution:\nset.seed(1)\ny &lt;- rchisq(100, df = 3)\n\ntheoretical &lt;- qchisq(ppoints(length(y)), df = 3)\n\nqqplot(theoretical, sort(y),\n       xlab = \"Theoretical chi-square quantiles\",\n       ylab = \"Sample quantiles\",\n       main = \"Chi-square QQ-plot\")\nabline(0, 1, col = \"red\", lwd = 2)\nThis works because ppoints() generates the plotting probabilities used to evaluate inverse distribution functions such as qnorm() or qchisq()."
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#margin-of-error",
+    "href": "slides/23-parameters-estimates.html#margin-of-error",
+    "title": "Parameters and Estimates",
+    "section": "Margin of error",
+    "text": "Margin of error\n\n\\(1.96\\) times the standard error\n\n\n1.96*se \n\n[1] 0.1958431\n\n\n\nBecause the probability that we are within 1.96 standard errors from \\(p\\) \\[\n\\begin{aligned}\n& \\mbox{Pr}\\left(Z \\leq \\, 1.96\\,\\mbox{SE}(\\bar{X})  / \\mbox{SE}(\\bar{X}) \\right) -\n\\mbox{Pr}\\left(Z \\leq - 1.96\\, \\mbox{SE}(\\bar{X}) / \\mbox{SE}(\\bar{X}) \\right)   \\\\\n= & \\mbox{Pr}\\left(Z \\leq 1.96 \\right) -\n\\mbox{Pr}\\left(Z \\leq - 1.96\\right)  = 0.95\n\\end{aligned}\n\\]\n\n\npnorm(1.96) - pnorm(-1.96) \n\n[1] 0.9500042",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#the-poll-example",
+    "href": "slides/23-parameters-estimates.html#the-poll-example",
+    "title": "Parameters and Estimates",
+    "section": "The poll example",
+    "text": "The poll example\nThe week before the election Real Clear Politics showed this:",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#populations-samples-parameters-and-spread",
+    "href": "slides/23-parameters-estimates.html#populations-samples-parameters-and-spread",
+    "title": "Parameters and Estimates",
+    "section": "Populations, samples, parameters, and spread",
+    "text": "Populations, samples, parameters, and spread\n\nIn statistical class, the beads in the urn are called the population.\nThe proportion of blue beads in the (unknown) population \\(p\\) is called a parameter.\nThe 25 beads we see in the previous plot are called a sample.\nWe want to estimate the spread: \\(p - (1-p)\\) = \\(2p - 1\\).",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#goal-of-inference",
+    "href": "slides/23-parameters-estimates.html#goal-of-inference",
+    "title": "Parameters and Estimates",
+    "section": "Goal of Inference",
+    "text": "Goal of Inference\n\nThe goal of statistical inference is to predict the population parameter \\(p\\) based on the observed data in the sample.\nFor example, given that we see 13 red and 12 blue beads, it is unlikely that \\(p\\) &gt; .9 or \\(p\\) &lt; .1.\nWe want to construct an estimate of \\(p\\) using only the information we observe (the sample).",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#example-of-samples",
+    "href": "slides/23-parameters-estimates.html#example-of-samples",
+    "title": "Parameters and Estimates",
+    "section": "Example of Samples",
+    "text": "Example of Samples\n\nThe graphsThe code\n\n\n\nObserve that in the four random samples shown above, the sample proportions range from 0.44 to 0.60.\n\n\n\n\n\n\n\n\n\npar(mfrow = c(2,2), mar = c(3, 1, 3, 0), mgp = c(1.5, 0.5, 0))  \ntake_poll(25); take_poll(25); take_poll(25); take_poll(25) \n\n\n\n\n\npar(): changes plotting layout and margins\nmfrow=c(2,2): 2 by 2 grid\nmar=c(3,1,3,0): set margins in the order of c(bottom, left, top, right)\nmgp=c(1.5, o.5, 0): (postion of the axis title, axis tick labels, axis line)",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#estimating-mean-by-clt",
+    "href": "slides/23-parameters-estimates.html#estimating-mean-by-clt",
+    "title": "Parameters and Estimates",
+    "section": "Estimating mean by CLT",
+    "text": "Estimating mean by CLT\n\nThe properties we learned tell us that:\n\n\\[\n\\mbox{E}(\\bar{X}) = p\n\\]\nand\n\\[\n\\mbox{SE}(\\bar{X}) = \\sqrt{p(1-p)/N}\n\\]",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#se-vs.-sample-size-n",
+    "href": "slides/23-parameters-estimates.html#se-vs.-sample-size-n",
+    "title": "Parameters and Estimates",
+    "section": "SE vs. sample size \\(n\\)",
+    "text": "SE vs. sample size \\(n\\)\n\nThe graphThe code\n\n\n\nFor illustrative purposes, let’s assume that \\(p=0.51\\) and make a plot of the standard error versus the sample size \\(N\\):\n\n\n\n\n\n\n\n\n\np &lt;- 0.51 \nN &lt;- 10^seq(1,5, len = 100) # vector of values of N\ndata.frame(N = N, SE = sqrt(p*(1 - p)/N)) |&gt; ggplot(aes(N, SE)) + geom_line() + scale_x_continuous(breaks = c(10, 100, 1000, 10000), trans = \"log10\")",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#sampple-size",
+    "href": "slides/23-parameters-estimates.html#sampple-size",
+    "title": "Parameters and Estimates",
+    "section": "Sampple size",
+    "text": "Sampple size\n\nThe plot shows that we would need a poll of over 10,000 people to achieve a standard error that low.\nWe rarely see polls of this size due in part to the associated costs.\nAccording to the Real Clear Politics table, sample sizes in opinion polls range from 500-3,500 people.\nFor a sample size of 1,000 and \\(p=0.51\\), the standard error is:\n\n\nsqrt(p*(1 - p))/sqrt(1000) \n\n[1] 0.01580823",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#distribution-of-our-estimates",
+    "href": "slides/23-parameters-estimates.html#distribution-of-our-estimates",
+    "title": "Parameters and Estimates",
+    "section": "Distribution of our estimates",
+    "text": "Distribution of our estimates\n\nThe CLT tells us that the distribution function for a sum of draws is approximately normal.\nUsing the properties we learned: \\(\\bar{X}\\) has an approximately normal distribution with expected value \\(p\\) and standard error \\(\\sqrt{p(1-p)/N}\\).",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#what-is-the-probability-of-within-1-of-p",
+    "href": "slides/23-parameters-estimates.html#what-is-the-probability-of-within-1-of-p",
+    "title": "Parameters and Estimates",
+    "section": "What is the probability of within 1% of p?",
+    "text": "What is the probability of within 1% of p?\n$$\n\\[\\begin{aligned}\n\\mbox{Pr}(| \\bar{X} - p| \\leq .01)\n=\n\\mbox{Pr}(\\bar{X}\\leq p + .01) - \\mbox{Pr}(\\bar{X} \\leq p - .01)  \\\\\n=\n\n\\mbox{Pr}\\left(Z \\leq \\frac{ \\,.01} {\\mbox{SE}(\\bar{X})} \\right) -\n\\mbox{Pr}\\left(Z \\leq - \\frac{ \\,.01} {\\mbox{SE}(\\bar{X})} \\right)  \n\\end{aligned}\\]\n$$\n\nSince \\(p\\) is the expected value and \\(\\mbox{SE}(\\bar{X}) = \\sqrt{p(1-p)/N}\\) is the standard error",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#estimate-the-se",
+    "href": "slides/23-parameters-estimates.html#estimate-the-se",
+    "title": "Parameters and Estimates",
+    "section": "Estimate the SE",
+    "text": "Estimate the SE\n\nOne problem we have is that since we don’t know \\(p\\), we don’t know \\(\\mbox{SE}(\\bar{X})\\).\nusing \\(\\bar{X}\\) in place of \\(p\\) (CLT)\n\n\\[\n\\hat{\\mbox{SE}}(\\bar{X})=\\sqrt{\\bar{X}(1-\\bar{X})/N}\n\\]\n\nIn our first sample, we had 12 blue and 13 red, so \\(\\bar{X} = 0.48\\):\n\n\nx_hat &lt;- 0.48 \nse &lt;- sqrt(x_hat*(1-x_hat)/25) \nse \n\n[1] 0.09991997",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#answer-to-our-previous-question",
+    "href": "slides/23-parameters-estimates.html#answer-to-our-previous-question",
+    "title": "Parameters and Estimates",
+    "section": "Answer to our previous question",
+    "text": "Answer to our previous question\n\npnorm(0.01/se) - pnorm(-0.01/se) \n\n[1] 0.07971926\n\n\n\nTherefore, there is a small chance that we will be close.",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#simulation-results",
+    "href": "slides/23-parameters-estimates.html#simulation-results",
+    "title": "Parameters and Estimates",
+    "section": "Simulation results",
+    "text": "Simulation results\n\nTo review, the theory tells us that \\(\\bar{X}\\) is approximately normally distributed, has expected value \\(p=\\) 0.45, and standard error \\(\\sqrt{p(1-p)/N}\\) = 0.0157321.\nThe simulation confirms this:\n\n\nmean(x_hat) \n\n[1] 0.4500751\n\nsd(x_hat) \n\n[1] 0.01584011",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
+  },
+  {
+    "objectID": "slides/23-parameters-estimates.html#a-monte-carlo-simulation-analysis-of-x_hat",
+    "href": "slides/23-parameters-estimates.html#a-monte-carlo-simulation-analysis-of-x_hat",
+    "title": "Parameters and Estimates",
+    "section": "A Monte Carlo simulation: Analysis of x_hat",
+    "text": "A Monte Carlo simulation: Analysis of x_hat\n\nThe graphThe code\n\n\n\nA histogram and qqplot confirm that the normal approximation is also accurate:\n\n\n\n\n\n\n\n\n\n# cache=FALSE: tell Quarto not to cache the reuslts of this chunk\n\nlibrary(tidyverse) \nlibrary(gridExtra) \np1 &lt;- data.frame(x_hat = x_hat) |&gt;  \n  ggplot(aes(x_hat)) +  \n  geom_histogram(binwidth = 0.005, color = \"black\") #binwidth: refer to the data values \np2 &lt;-  data.frame(x_hat = x_hat) |&gt;  \n  ggplot(aes(sample = x_hat)) +  \n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) + # compare to Normal(mean, sd), not Nornal(0,1)\n  geom_abline() +  #geom_abline(intercept=0, slope=1)\n  ylab(\"x_hat\") +  \n  xlab(\"Theoretical normal\") \ngrid.arrange(p1, p2, nrow = 1)",
+    "crumbs": [
+      "Parameters Estimate"
+    ]
   }
 ]
