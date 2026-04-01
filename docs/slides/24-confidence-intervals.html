@@ -11,8 +11,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.398">
 
-  <meta name="keywords" content="Productivity Tools">
-  <title>STAT 3000 - RStudio IDE and Quarto</title>
+  <meta name="keywords" content="Inference">
+  <title>STAT 3000 - Confidence Intervals</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,296 +393,228 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">RStudio IDE and Quarto</h1>
+  <h1 class="title">Confidence Intervals</h1>
+  <p class="subtitle"><a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/estimates-confidence-intervals.html#confidence-intervals" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/estimates-confidence-intervals.html#confidence-intervals</a></p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="integrated-development-environment-ide" class="slide level2">
-<h2>Integrated Development Environment (IDE)</h2>
-<p><span style="font-size: 0.5em;"> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html" class="uri">https://rafalab.dfci.harvard.edu/dsbook-part-1/productivity/reproducible-projects.html</a> </span></p>
+<section id="confidence-intervals" class="slide level2">
+<h2>Confidence intervals</h2>
 <ul>
-<li>Posit provides a free IDE for R with RStudio</li>
-<li><a href="https://github.com/posit-dev/positron/releases">Positron</a> (newer and adapted to LLMs)</li>
+<li><p>Confidence intervals are a very useful concept widely employed by data analysts.</p></li>
+<li><p>A version of these that are commonly seen come from the <code>ggplot</code> geometry <code>geom_smooth</code>.</p></li>
+<li><p>Below is an example using a temperature dataset available in R:</p></li>
 </ul>
 </section>
-<section id="the-panes" class="slide level2">
-<h2>The panes</h2>
-
-<img data-src="http://rafalab.dfci.harvard.edu/dsbook-part-1/R/img/rstudio.png" class="r-stretch"></section>
-<section id="the-basics" class="slide level2">
-<h2>The Basics</h2>
-<ul>
-<li>Open a new R script file. (<a href="../codes/example.R">example.R</a>)</li>
-<li>Learn tab complete.</li>
-<li>Run commands while editing scripts.</li>
-<li>Run the entire script.</li>
-<li>Make a plot.</li>
-<li>Change options to never save workspace.</li>
-<li>Change IDE appearance.</li>
-</ul>
-</section>
-<section id="projects" class="slide level2">
-<h2>Projects</h2>
-<ul>
-<li>Start a new project in a new directory.</li>
-<li>Start a new project in an existing directory.</li>
-<li>Change projects.</li>
-<li>Use the <code>File</code> menu to create a new Quarto document</li>
-</ul>
-</section>
-<section id="type-of-editor" class="slide level2 smaller">
-<h2>Type of editor</h2>
-<ul>
-<li><p>we will be creating and editing markdown documents - mostly using the Quarto paradigm</p></li>
-<li><p>for Quarto you can use either a source view or a visual view:</p>
-<ul>
-<li>Source - See the actual code (WYSIWYG)</li>
-<li>Visual - Partial preview of final document.</li>
-</ul></li>
-</ul>
-<p>Note: You can state your preference in the header:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> RStudio IDE</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="st">"Productivity Tools"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> source</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="the-header" class="slide level2">
-<h2>The header</h2>
-<ul>
-<li><p>Start a new empty document.</p></li>
-<li><p>At the top you see:</p></li>
-</ul>
-<p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<ul>
-<li><p>The things between the <code>---</code> are the <a href="https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started">YAML</a> header.</p></li>
-<li><p><a href="https://quarto.org/docs/guide/">Quarto guide</a>.</p></li>
-</ul>
-</section>
-<section id="quick-markdown-text-formating" class="slide level2">
-<h2>Quick Markdown Text formating</h2>
-<p><code>*italics*</code> or <code>_italics_</code> = <em>italics</em></p>
-<p><code>**bold**</code> = <strong>bold</strong></p>
-<p><code>***bold italics***</code> = <strong><em>bold italics</em></strong></p>
-<p><code>~~strikethrough~~</code> = <del>strikethrough</del></p>
-<p><code>`code`</code> = <code>code</code></p>
-</section>
-<section id="code-chunk" class="slide level2">
-<h2>Code chunk</h2>
-<p>This:</p>
-<pre><code>```
-line 1
-line 2
-```</code></pre>
-<p>shows a code chunk:</p>
-<pre><code>line 1
-line 2</code></pre>
-</section>
-<section class="slide level2">
-
-<h3 id="headings">Headings</h3>
-<p>You can start sections and subsections like this:</p>
-<p><code># Header 1</code></p>
-<p><code>## Header 2</code></p>
-<p><code>### Header 3</code></p>
-</section>
-<section id="links" class="slide level2">
-<h2>Links</h2>
-<ul>
-<li><p>Show the link: <code>&lt;https://quarto.org/docs/guide/&gt;</code></p></li>
-<li><p>Add link to text: <code>[Quarto Guide](https://quarto.org/docs/guide/)</code></p></li>
-</ul>
-<p>Looks like this:</p>
-<p><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p>
-<p><a href="https://quarto.org/docs/guide/">Quarto Guide</a></p>
-</section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
-<p><code>![Introductory Statistics with R](https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg)</code></p>
-<p>Shows the plot and caption:</p>
-
-<img data-src="https://m.media-amazon.com/images/I/51gZOXbaNnL._AC_UF1000,1000_QL80_.jpg" class="r-stretch quarto-figure-center"><p class="caption">Introductory Statistics with R</p><ul>
-<li>The image can also be a local file (replacing the html link with the path to the image.)</li>
-</ul>
-</section>
-<section id="unordered-lists" class="slide level2">
-<h2>Unordered Lists</h2>
-<p>Bullets:</p>
-<pre><code>-   bullet 1
-    -   sub-bullet 1
-    -   sub-bullet 2
--   bullet 2</code></pre>
-<p>Looks like this:</p>
-<ul>
-<li>bullet 1
-<ul>
-<li>sub-bullet 1</li>
-<li>sub-bullet 2</li>
-</ul></li>
-<li>bullet 2</li>
-</ul>
-</section>
-<section id="ordered-lists" class="slide level2">
-<h2>Ordered Lists</h2>
-<p>Ordered list:</p>
-<pre><code>1.  Item 1
-2.  Item 2</code></pre>
-<p>Looks like this:</p>
-<ol type="1">
-<li>Item 1</li>
-<li>Item 2</li>
-</ol>
-</section>
-<section id="equations" class="slide level2">
-<h2>Equations</h2>
-
-<img data-src="https://i.redd.it/1zfte27tn3q21.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="confidence-intervals-geom_smooth" class="slide level2">
+<h2>Confidence intervals: geom_smooth</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">The graph</a></li><li><a href="#tabset-1-2">The code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="24-confidence-intervals_files/figure-revealjs/first-confidence-intervals-example-1.png" width="960"></p>
 </div>
-<p><strong>Note</strong></p>
 </div>
-<div class="callout-content">
-<p>Technical report often uses LaTeX for typesetting.</p>
-<p>There are many online tutorials, like <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this one</a>.</p>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#nhtemp is built-in R ts</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(<span class="fu">time</span>(nhtemp)), <span class="at">temperature =</span> <span class="fu">as.numeric</span>(nhtemp)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, temperature)) <span class="sc">+</span>  </span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span>  <span class="co"># plot smooth trend-curve (LOESS(small set)/lm (large set)) with a (default) 95% CI</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Yearly Temperatures in New Haven"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="equations-using-latex." class="slide level2">
-<h2>Equations using LaTeX.</h2>
-<p>Examples:</p>
+<section id="confidence-intervals-1" class="slide level2">
+<h2>Confidence intervals</h2>
 <ul>
-<li><p>Inline: <code>$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$</code> looks like this <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></p></li>
-<li><p>Display math:</p></li>
+<li><p><span class="math inline">\([0,1]\)</span> is guaranteed to include <span class="math inline">\(p\)</span>, but not useful</p></li>
+<li><p>the spread between -100% and 100%, will be ridiculed for stating the obvious.</p></li>
+<li><p>Even a smaller interval, such as saying the spread between -10 and 10%, will not be considered serious.</p></li>
+<li><p>a very small intervals but misses the mark most of the time will not be considered good</p></li>
+<li><p>We can use the statistical theory to compute the probability of any given interval including <span class="math inline">\(p\)</span>.</p></li>
 </ul>
-<pre><code>$$
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
-$$</code></pre>
-<p>looks like this:</p>
+</section>
+<section id="confidence-intervals-mc-simulation-parameter" class="slide level2">
+<h2>Confidence intervals: MC simulation Parameter</h2>
+<ul>
+<li><p>To illustrate this we run the Monte Carlo simulation.</p></li>
+<li><p>We use the same parameters as above:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.45</span> </span>
+<span id="cb2-2"><a href="#cb2-2"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="confidence-intervals-simulation" class="slide level2">
+<h2>Confidence intervals: Simulation</h2>
+<ul>
+<li>And notice that the interval here:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
+<span id="cb3-2"><a href="#cb3-2"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span>
+<span id="cb3-3"><a href="#cb3-3"></a>se_hat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> x_hat)<span class="sc">/</span>N) </span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">c</span>(x_hat <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat, x_hat <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4102262 0.4717738</code></pre>
+</div>
+</div>
+<ul>
+<li>is different from this one:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
+<span id="cb5-2"><a href="#cb5-2"></a>x_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span>
+<span id="cb5-3"><a href="#cb5-3"></a>se_hat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> x_hat)<span class="sc">/</span>N) </span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">c</span>(x_hat <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat, x_hat <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.429109 0.490891</code></pre>
+</div>
+</div>
+<ul>
+<li>Keep sampling and creating intervals, and you will see the random variation.</li>
+</ul>
+</section>
+<section id="probability-of-a-confidence-intervals-including-p" class="slide level2">
+<h2>Probability of a Confidence intervals including <span class="math inline">\(p\)</span></h2>
+<ul>
+<li>To determine the probability that the interval includes <span class="math inline">\(p\)</span>, we need to compute the following:</li>
+</ul>
 <p><span class="math display">\[
-\mathbf{Y} = \mathbf{X\beta} + \mathbf{\varepsilon}
+\mbox{Pr}\left(\bar{X} - 1.96\hat{\mbox{SE}}(\bar{X}) \leq p \leq \bar{X} + 1.96\hat{\mbox{SE}}(\bar{X})\right)
+\]</span> Equivalently</p>
+<p><span class="math display">\[
+\mbox{Pr}\left(-1.96 \leq \frac{\bar{X}- p}{\hat{\mbox{SE}}(\bar{X})} \leq  1.96\right)
 \]</span></p>
 </section>
-<section id="code-in-quarto-document-.qmd-or-rmarkdown-.rmd" class="slide level2">
-<h2>Code in Quarto document .qmd (or RMarkdown .rmd)</h2>
-<p>One can include and execute the code chunks in <code>.qmd</code> document by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="in"># R code here, e.g.</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="in">2+3</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>To add an R chunks, type the shortcut key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="r-code-chuns" class="slide level2">
-<h2>R Code Chuns</h2>
-<p>We can write something like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="in">x + y</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It looks like this:</p>
+<section id="confidence-intervals-with-95-confidence-level" class="slide level2">
+<h2>Confidence intervals with 95% confidence level</h2>
+<ul>
+<li>The term in the middle is an approximately normal random variable with expected value 0 and standard error 1, which we have been denoting with <span class="math inline">\(Z\)</span>, so we have:</li>
+</ul>
+<p><span class="math display">\[
+\mbox{Pr}\left(-1.96 \leq Z \leq  1.96\right)
+\]</span></p>
+<ul>
+<li>which we can quickly compute using :</li>
+</ul>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.96</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] 0.9500042</code></pre>
 </div>
 </div>
-<p>Note that it was evaluated and the result is shown.</p>
-</section>
-<section id="local-control" class="slide level2">
-<h2>Local control</h2>
 <ul>
-<li><p>By default, the code and result will show up.</p></li>
-<li><p>control the behavior with <code>#|</code></p></li>
-<li><p>For example, to avoid showing code in the final document, use <code>echo: FALSE</code>.</p></li>
+<li>proving that we have a 95% probability.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| echo: false</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="in">x + y</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="other-local-controls" class="slide level2">
-<h2>Other local controls</h2>
+<section id="confidence-intervals-of-99-confidence-level" class="slide level2">
+<h2>Confidence intervals of 99% confidence level</h2>
 <ul>
-<li><p>There are many options</p></li>
-<li><p>to avoid executing the code use <code>eval: FALSE</code>.</p></li>
-<li><p>To avoid showing warnings <code>warning: FALSE</code>, to avoid showing messages <code>message: FALSE</code>.</p></li>
+<li>If we want to have a larger probability, say 99%, we need to multiply by whatever <code>z</code> satisfies the following:</li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p><span class="math display">\[
+\mbox{Pr}\left(-z \leq Z \leq  z\right) = 0.99
+\]</span></p>
+<ul>
+<li>We use:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.995</span>) </span>
+<span id="cb9-2"><a href="#cb9-2"></a>z </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.575829</code></pre>
 </div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>to apply an option globally, set them in the header.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">pnorm</span>(z) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span>z) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.99</code></pre>
 </div>
 </div>
 </section>
-<section id="labeling-a-code-chun-is-a-good-practice" class="slide level2">
-<h2>Labeling a code chun is a good practice</h2>
+<section id="confidence-intervals-significance-level-alpha" class="slide level2">
+<h2>Confidence intervals: significance level <span class="math inline">\(\alpha\)</span></h2>
 <ul>
-<li>We recommend getting into the habit of labeling code chunks:</li>
+<li><p>Confidence interval formulas are given for arbitrary probabilities written as <span class="math inline">\(1-\alpha\)</span>.</p></li>
+<li><p>We can obtain the <span class="math inline">\(z\)</span> for the equation above using <code>z = qnorm(1 - alpha / 2)</code></p></li>
+<li><p>for <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(1 - \alpha/2 = 0.975\)</span> and we get the <span class="math inline">\(z=1.96\)</span>:</p></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="in">#| label: one-plus-two</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="in">x &lt;- 1</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="in">y &lt;- 2</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="in">x + y</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Helps with debugging</li>
-<li>Helps reading the code</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+</div>
 </section>
-<section id="more-on-markdown" class="slide level2">
-<h2>More on markdown</h2>
+<section id="a-monte-carlo-simulation" class="slide level2">
+<h2>A Monte Carlo simulation</h2>
 <ul>
-<li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></li>
-<li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></li>
-<li>Pandoc’s Markdown <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">in-depth documentation</a></li>
-<li><a href="https://quarto.org/docs/authoring/front-matter.html">Guide for academic reports</a></li>
-<li><a href="https://posit.co/wp-content/uploads/2022/10/rmarkdown-1.pdf">RMarkdwon Cheatsheet</a></li>
+<li>We can run a Monte Carlo simulation to confirm that, in fact, a 95% confidence interval includes <span class="math inline">\(p\)</span> 95% of the time.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>inside <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, { </span>
+<span id="cb15-4"><a href="#cb15-4"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
+<span id="cb15-5"><a href="#cb15-5"></a>  x_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span>
+<span id="cb15-6"><a href="#cb15-6"></a>  se_hat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> x_hat)<span class="sc">/</span>N) </span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">between</span>(p, x_hat <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat, x_hat <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat) </span>
+<span id="cb15-8"><a href="#cb15-8"></a>}) </span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="fu">mean</span>(inside) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9477</code></pre>
+</div>
+</div>
 </section>
-<section id="quarto-render" class="slide level2">
-<h2>Quarto render</h2>
+<section id="a-monte-carlo-simulation-1" class="slide level2">
+<h2>A Monte Carlo simulation</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">The Graph</a></li><li><a href="#tabset-2-2">The code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
 <ul>
-<li><p>RStudio provided <strong>Render</strong> button to compile the document.</p></li>
-<li><p><code>quarto render filename.qmd</code> in a terminal renders <strong>single</strong> qmd file.</p></li>
-<li><p><code>quarto render</code> renders all qmd files.</p></li>
-<li><p>You can produce html, pdf, or word documents.</p></li>
-<li><p>You can specify the default in the YAML header using: <code>format: html</code>, <code>format: pdf</code>,<code>format: docx</code>, or <code>format: gfm</code> (GitHub flavored markdown).</p></li>
+<li>The following plot shows the first 100 confidence intervals.</li>
 </ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="24-confidence-intervals_files/figure-revealjs/confidence-interval-coverage-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) </span>
+<span id="cb17-2"><a href="#cb17-2"></a>tab <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, { </span>
+<span id="cb17-3"><a href="#cb17-3"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> p, p)) </span>
+<span id="cb17-4"><a href="#cb17-4"></a>  x_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) </span>
+<span id="cb17-5"><a href="#cb17-5"></a>  se_hat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> x_hat)<span class="sc">/</span>N) </span>
+<span id="cb17-6"><a href="#cb17-6"></a>  hit <span class="ot">&lt;-</span> <span class="fu">between</span>(p, x_hat <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat, x_hat <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat) </span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">c</span>(x_hat, x_hat <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat, x_hat <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se_hat, hit) </span>
+<span id="cb17-8"><a href="#cb17-8"></a>}) <span class="co">#tab: 4 by 100 matrix</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">poll =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(tab), <span class="fu">t</span>(tab)) <span class="co"># add a "poll" index col, t(tab): transpose `tab`</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="fu">names</span>(tab) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"poll"</span>, <span class="st">"estimate"</span>, <span class="st">"low"</span>, <span class="st">"high"</span>, <span class="st">"hit"</span>) <span class="co">#rename columns</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>tab <span class="ot">&lt;-</span> <span class="fu">mutate</span>(tab, <span class="at">p_inside =</span> <span class="fu">ifelse</span>(hit, <span class="st">"Yes"</span>, <span class="st">"No"</span>)) </span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="fu">ggplot</span>(tab, <span class="fu">aes</span>(poll, estimate, <span class="at">ymin =</span> low, <span class="at">ymax =</span> high, <span class="at">col =</span> p_inside)) <span class="sc">+</span>  </span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb17-14"><a href="#cb17-14"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span>  <span class="co"># draw CI from y_min to y_max for each plotted point (poll, estimate)</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>  <span class="co"># geom_errorbar() does not compute the interval by itself</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  </span>
+<span id="cb17-17"><a href="#cb17-17"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> p) <span class="co"># draw the true value of p=0.45</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="footer footer-default">
-
+<p><a href="../index.html">Home</a></p>
 </div>
 </section>
     </div>
