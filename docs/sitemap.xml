@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/standard_errors.html</loc>
-    <lastmod>2026-02-03T21:18:12.981Z</lastmod>
+    <lastmod>2026-04-13T18:43:59.074Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/qq-plot.html</loc>
+    <lastmod>2026-03-31T20:30:53.217Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/24-confidence-intervals.html</loc>
@@ -42,7 +46,7 @@
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/index.html</loc>
-    <lastmod>2026-03-25T19:39:44.672Z</lastmod>
+    <lastmod>2026-04-13T18:50:14.785Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/psets/hw1.html</loc>
@@ -81,7 +85,11 @@
     <lastmod>2026-04-01T17:05:11.271Z</lastmod>
   </url>
   <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/qq-plot.html</loc>
-    <lastmod>2026-03-31T20:30:53.217Z</lastmod>
+    <loc>https://ywanglab.github.io/STAT3000/slides/LOESS.html</loc>
+    <lastmod>2026-04-03T16:59:29.942Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/SE-proportion.html</loc>
+    <lastmod>2026-04-13T18:48:02.499Z</lastmod>
   </url>
 </urlset>

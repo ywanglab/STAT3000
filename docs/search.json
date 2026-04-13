@@ -2,16 +2,65 @@
   {
     "objectID": "slides/standard_errors.html",
     "href": "slides/standard_errors.html",
-    "title": "Standard Errors vs. Standard Deviation",
+    "title": "Standard Errors for Regression",
     "section": "",
     "text": "For method=\"lm\" the CI ribbon is based on the standard error of the estimated mean \\(\\hat y(x_0)=\\widehat{E[Y\\mid X=x_0]}\\). The SE formula comes directly from the variance of a linear combination of the OLS estimator.\n\nWrite the linear model in matrix form\n\n\\[ y = X\\beta + \\varepsilon,\\qquad \\mathbb E\\varepsilon=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n.\\] 2) OLS estimator and its variance\nOLS gives \\[ \\hat\\beta=(X^\\top X)^{-1}X^\\top y.\\] Because \\(\\hat\\beta\\) is a linear function of \\(y\\), \\[ \\mathrm{Var}(\\hat\\beta) = (X^\\top X)^{-1}X^\\top \\mathrm{Var}(y) X (X^\\top X)^{-1}.\\] But \\(y=X\\beta+\\varepsilon\\) and \\(\\mathrm{Var}(y)=\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\), so \\[ \\mathrm{Var}(\\hat\\beta)=\\sigma^2 (X^\\top X)^{-1}.\\]\n\nFitted mean at a point is a linear combo of \\(\\hat\\beta\\)\n\nAt \\(x_0\\), let the (row) design vector be \\[ x_0^* = (1 \\;\\;x_0)\\] (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is\n\\[ \\hat y(x_0)=x_0^* \\hat\\beta.\\]\n\nVariance of a linear combination\n\nUse the rule: if \\(a\\) is a constant vector and \\(Z\\) is random, \\[ \\mathrm{Var}(a^\\top Z)=a^\\top \\mathrm{Var}(Z)a.\\] Here \\(a = (x_0^*)^\\top\\) and \\(Z=\\hat\\beta\\). Therefore,\n\\[\\mathrm{Var}(\\hat y(x_0)) = \\mathrm{Var}(x_0^* \\hat\\beta) = x_0^*\\mathrm{Var}(\\hat\\beta)(x_0^*)^\\top = x_0^* \\big(\\sigma ^2 (X^\\top X)^{-1}\\big) (x_0^*)^\\top.\\] So the standard error is \\[ SE{\\hat y(x_0)}=\\sqrt{\\sigma^2 x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\nReplace \\(\\sigma ^2\\) by its sample estimate\n\nSince \\(\\sigma^2\\) is unknown, we plug in\n\\[ \\hat\\sigma^2=\\frac{\\sum_{i=1}^n \\hat\\varepsilon_i^2}{n-p},\\] giving the practical SE:\n\\[SE{\\hat y(x_0)}=\\sqrt{\\hat\\sigma^2  x_0^*(X^\\top X)^{-1}(x_0^*)^\\top }.\\]\n\n\nsame formula in “simple regression” scalar form\n\nFor \\(y=\\beta_0+\\beta_1 x+\\varepsilon\\),\n\\[SE{\\hat y(x_0)}=\\hat\\sigma\\sqrt{\\frac{1}{n}+\\frac{(x_0-\\bar x)^2}{\\sum_{i=1}^n (x_i-\\bar x)^2}}.\\] This is algebraically equivalent to the matrix expression above."
   },
   {
     "objectID": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
     "href": "slides/standard_errors.html#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p",
-    "title": "Standard Errors vs. Standard Deviation",
+    "title": "Standard Errors for Regression",
     "section": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?",
     "text": "Why is \\(\\hat{\\sigma}^2 = \\dfrac{\\sum \\hat\\varepsilon_i^2}{n-p}\\) ?\nConsider the linear model \\[ y = X\\beta + \\varepsilon,\\quad \\mathbb E(\\varepsilon)=0,\\quad \\mathrm{Var}(\\varepsilon)=\\sigma^2 I_n,\\] with \\(p\\) parameters (in simple regression, (p=2): intercept + slope).\nLet \\(\\hat y = X\\hat\\beta\\) be fitted values and residuals \\(e = y-\\hat y\\). The residual sum of squares is \\[ RSS = e^\\top e = \\sum_{i=1}^n e_i^2.\\]\n\nKey fact (degrees of freedom)\nThe fitted values live in the column space of \\(X\\), which is \\(p\\)-dimensional. Residuals live in the orthogonal complement, which has dimension \\(n-p\\). So residuals have only \\(n-p\\) independent pieces of variation.\nMore formally, define the “residual-maker” matrix \\[ M = I - H,\\quad H = X(X^\\top X)^{-1}X^\\top.\\] Then \\(e = My\\) and \\(M\\) is symmetric idempotent with \\[ \\mathrm{rank}(M)=n-p,\\quad \\mathrm{tr}(M)=n-p.\\] Since \\(y = X\\beta + \\varepsilon\\) and \\(MX\\beta=0\\), \\[ e = M\\varepsilon.\\] Now compute the expected RSS: \\[\\mathbb E(RSS) = \\mathbb E(e^\\top e) = \\mathbb E(\\varepsilon^\\top M^\\top M \\varepsilon) = \\mathbb E(\\varepsilon^\\top M \\varepsilon).\n\\] Using \\(\\mathbb E(\\varepsilon^\\top A \\varepsilon)=\\sigma^2\\mathrm{tr}(A)\\) when \\(\\mathrm{Var}(\\varepsilon)=\\sigma^2 I\\),\n\\[ \\mathbb E(RSS)=\\sigma ^2 \\mathrm{tr}(M)=\\sigma^2 (n-p).\\] So \\[ \\mathbb E\\left(\\frac{RSS}{n-p}\\right)=\\sigma^2,\\] meaning \\[ \\hat\\sigma^2=\\frac{RSS}{n-p}\\] is an unbiased estimator of $^2).\n\n\nIntuition\nIf you divided by \\(n\\), you’d systematically underestimate \\(\\sigma^2\\) because the regression line was chosen to make residuals small (you “spent” \\(p\\) degrees of freedom estimating parameters). Dividing by \\(n-p\\) corrects that."
+  },
+  {
+    "objectID": "slides/qq-plot.html",
+    "href": "slides/qq-plot.html",
+    "title": "QQ plot",
+    "section": "",
+    "text": "A Q–Q plot compares:\n\nsample quantiles from your data\ntheoretical quantiles from some reference distribution, often a normal distribution\n\nThe idea is: if the data really come from that reference distribution, the points should lie roughly on a straight line.\nSuppose your data are\n\\[\nx_1, x_2, \\dots, x_n.\n\\]\n\n\nOrder them from smallest to largest:\n\\[\nx_{(1)} \\le x_{(2)} \\le \\cdots \\le x_{(n)}.\n\\]\nThese are the sample quantiles.\n\n\n\n\nFor each rank (i), assign a probability, often approximately\n\\[\np_i = \\frac{i - a}{n+1-2a}, \\qquad i=1,\\dots,n.\n\\] where the default offset is \\[a=\\begin{cases} 3/8, & n\\ge 10 \\\\ 1/2, & n &gt;10 \\end{cases} \\] These probabilities mark where each ordered observation sits in the distribution. If \\(n &gt;10\\), \\(a=1/2\\) and \\(p_i \\approx \\frac{i-1/2}{n}\\).\n\n\n\n\nIf the reference distribution is (N(,^2)), compute\n\\[\nq_i = F^{-1}(p_i),\n\\]\nwhere (F^{-1}) is the quantile function of that normal distribution.\nSo (q_i) is the theoretical value such that\n\\[\nP(X \\le q_i) = p_i.\n\\]\nFor a normal Q–Q plot, these are the normal quantiles.\n\n\n\n\nPlot the points\n\\[\n(q_i,; x_{(i)}).\n\\]\nSo:\n\nx-axis = theoretical quantiles\ny-axis = sample quantiles\n\nIf the sample distribution matches the theoretical one well, then\n\\[\nx_{(i)} \\approx q_i\n\\]\nup to location and scale, so the points fall near a straight line."
+  },
+  {
+    "objectID": "slides/qq-plot.html#how-a-qq-plot-is-constructed",
+    "href": "slides/qq-plot.html#how-a-qq-plot-is-constructed",
+    "title": "QQ plot",
+    "section": "",
+    "text": "A Q–Q plot compares:\n\nsample quantiles from your data\ntheoretical quantiles from some reference distribution, often a normal distribution\n\nThe idea is: if the data really come from that reference distribution, the points should lie roughly on a straight line.\nSuppose your data are\n\\[\nx_1, x_2, \\dots, x_n.\n\\]\n\n\nOrder them from smallest to largest:\n\\[\nx_{(1)} \\le x_{(2)} \\le \\cdots \\le x_{(n)}.\n\\]\nThese are the sample quantiles.\n\n\n\n\nFor each rank (i), assign a probability, often approximately\n\\[\np_i = \\frac{i - a}{n+1-2a}, \\qquad i=1,\\dots,n.\n\\] where the default offset is \\[a=\\begin{cases} 3/8, & n\\ge 10 \\\\ 1/2, & n &gt;10 \\end{cases} \\] These probabilities mark where each ordered observation sits in the distribution. If \\(n &gt;10\\), \\(a=1/2\\) and \\(p_i \\approx \\frac{i-1/2}{n}\\).\n\n\n\n\nIf the reference distribution is (N(,^2)), compute\n\\[\nq_i = F^{-1}(p_i),\n\\]\nwhere (F^{-1}) is the quantile function of that normal distribution.\nSo (q_i) is the theoretical value such that\n\\[\nP(X \\le q_i) = p_i.\n\\]\nFor a normal Q–Q plot, these are the normal quantiles.\n\n\n\n\nPlot the points\n\\[\n(q_i,; x_{(i)}).\n\\]\nSo:\n\nx-axis = theoretical quantiles\ny-axis = sample quantiles\n\nIf the sample distribution matches the theoretical one well, then\n\\[\nx_{(i)} \\approx q_i\n\\]\nup to location and scale, so the points fall near a straight line."
+  },
+  {
+    "objectID": "slides/qq-plot.html#why-the-line-yx-appears",
+    "href": "slides/qq-plot.html#why-the-line-yx-appears",
+    "title": "QQ plot",
+    "section": "Why the line \\(y=x\\) appears",
+    "text": "Why the line \\(y=x\\) appears\nIf the theoretical distribution and the sample have exactly the same center and spread, then the points should lie near\n\\[\ny=x.\n\\]\nBut there is an important subtlety:\n\nif you compare your data to the standard normal \\(N(0,1)\\), the ideal line is only \\(y=x\\) when your data also have mean 0 and sd 1\nif you compare to a normal with the same mean and sd as your data, then \\(y=x\\) is more sensible\n\nEven then, stat_qq_line() is usually better because it computes a fitted reference line based on quartiles.\n\np &lt;- 0.45 \nN &lt;- 1000 \nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \n\n\nB &lt;- 10000 \nx_hat &lt;- replicate(B, { \n  x &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  mean(x) \n}) \n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.6\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.2     ✔ tibble    3.3.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.2\n✔ purrr     1.2.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata.frame(x_hat = x_hat) |&gt; ggplot(aes(sample =  x_hat)) +  \n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) + \n  geom_abline()\n\n\n\n\nthis works as follows:\n\nstat_qq(...) sorts the values of x_hat\nit computes theoretical quantiles from a normal distribution with mean mean(x_hat) and sd sd(x_hat)\nit plots sample quantiles against theoretical quantiles\ngeom_abline() adds the line (y=x)\n\nSo the plot checks whether the ordered values of x_hat look like quantiles from that normal distribution."
+  },
+  {
+    "objectID": "slides/qq-plot.html#how-to-interpret-the-shape",
+    "href": "slides/qq-plot.html#how-to-interpret-the-shape",
+    "title": "QQ plot",
+    "section": "How to interpret the shape",
+    "text": "How to interpret the shape\nIf points are close to a straight line:\n\nthe data are approximately from the reference distribution\n\nIf the plot bends upward or downward:\n\nthe data may be skewed\n\nIf the ends depart strongly:\n\nthe tails may be heavier or lighter than the reference distribution\n\nFor example:\n\nright tail too large: upper-right points rise above the line\nleft tail too small: lower-left points fall below the line\nS-shape: often suggests heavier tails than normal"
+  },
+  {
+    "objectID": "slides/qq-plot.html#small-concrete-example",
+    "href": "slides/qq-plot.html#small-concrete-example",
+    "title": "QQ plot",
+    "section": "Small concrete example",
+    "text": "Small concrete example\nSuppose the sorted sample is\n\\[\nx_{(1)}, x_{(2)}, x_{(3)}, x_{(4)}, x_{(5)}.\n\\]\nFor (n=5), a common choice is\n\\[\np_i = \\frac{i-0.5}{5} = 0.1, 0.3, 0.5, 0.7, 0.9.\n\\]\nIf comparing to standard normal, the theoretical quantiles are about\n\\[\n-1.28,\\ -0.52,\\ 0,\\ 0.52,\\ 1.28.\n\\]\nThen the Q–Q plot points are\n\\[\n(-1.28, x_{(1)}),\\ (-0.52, x_{(2)}),\\ (0, x_{(3)}),\\ (0.52, x_{(4)}),\\ (1.28, x_{(5)}).\n\\]\nIf the data are close to normal, these points line up."
+  },
+  {
+    "objectID": "slides/qq-plot.html#better-reference-line",
+    "href": "slides/qq-plot.html#better-reference-line",
+    "title": "QQ plot",
+    "section": "Better reference line",
+    "text": "Better reference line\nUsually this is preferred:\n\nggplot(data.frame(x_hat = x_hat), aes(sample = x_hat)) +\n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) +\n  stat_qq_line(dparams = list(mean = mean(x_hat), sd = sd(x_hat)), color=\"red\")\n\n\n\n\nbecause stat_qq_line() gives a more meaningful Q–Q reference line than simply forcing \\(y=x\\)."
+  },
+  {
+    "objectID": "slides/qq-plot.html#qqnorm-and-qqplot",
+    "href": "slides/qq-plot.html#qqnorm-and-qqplot",
+    "title": "QQ plot",
+    "section": "qqnorm() and qqplot()",
+    "text": "qqnorm() and qqplot()\nqqnorm() is for comparing one sample to a normal distribution. qqplot() is for comparing the quantiles of two datasets. Both rely on probability points internally, and qqnorm() specifically produces a normal QQ-plot.\n\n1. Example: qqnorm()\nUse this when you want to check whether data look approximately normal.\nset.seed(1)\nx &lt;- rnorm(100)\n\nqqnorm(x)\nqqline(x, col = \"red\", lwd = 2)\n\nqqnorm(x) plots the sample quantiles of x against the theoretical normal quantiles.\nqqline(x) adds a reference line. By default, that line is based on the first and third quartiles, not necessarily the identity line (y=x).\n\nA second example with non-normal data:\nset.seed(1)\ny &lt;- rexp(100)\n\nqqnorm(y)\nqqline(y, col = \"red\", lwd = 2)\nThis plot will usually bend away from the line because exponential data are not normal.\n\n\n2. Example: qqplot()\nUse this when you want to compare the distributions of two samples.\nset.seed(1)\nx &lt;- rnorm(100, mean = 0, sd = 1)\ny &lt;- rnorm(100, mean = 1, sd = 1.5)\n\nqqplot(x, y,\n       xlab = \"Quantiles of x\",\n       ylab = \"Quantiles of y\",\n       main = \"QQ-plot of y against x\")\nabline(0, 1, col = \"red\", lwd = 2)\n\nqqplot(x, y) compares the quantiles of x and y.\nIf the points fall near a straight line, the two distributions have similar shape.\nIf the line is not close to slope 1 or intercept 0, one sample may be more spread out or shifted than the other.\n\n\n\n3. qqplot() against a theoretical distribution\nYou can also use qqplot() to compare data to a non-normal theoretical distribution by supplying theoretical quantiles yourself.\nFor example, compare data to a chi-square distribution:\nset.seed(1)\ny &lt;- rchisq(100, df = 3)\n\ntheoretical &lt;- qchisq(ppoints(length(y)), df = 3)\n\nqqplot(theoretical, sort(y),\n       xlab = \"Theoretical chi-square quantiles\",\n       ylab = \"Sample quantiles\",\n       main = \"Chi-square QQ-plot\")\nabline(0, 1, col = \"red\", lwd = 2)\nThis works because ppoints() generates the plotting probabilities used to evaluate inverse distribution functions such as qnorm() or qchisq()."
   },
   {
     "objectID": "slides/24-confidence-intervals.html#confidence-intervals",
@@ -58,7 +107,7 @@
     "href": "slides/24-confidence-intervals.html#confidence-intervals-simulation",
     "title": "Confidence Intervals",
     "section": "Confidence intervals: Simulation",
-    "text": "Confidence intervals: Simulation\n\nAnd notice that the interval here:\n\n\nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.4102262 0.4717738\n\n\n\nis different from this one:\n\n\nx &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.429109 0.490891\n\n\n\nKeep sampling and creating intervals, and you will see the random variation.",
+    "text": "Confidence intervals: Simulation\n\nAnd notice that the interval here:\n\n\nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.4042727 0.4657273\n\n\n\nis different from this one:\n\n\nx &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.4032809 0.4647191\n\n\n\nKeep sampling and creating intervals, and you will see the random variation.",
     "crumbs": [
       "Confidence Intervals"
     ]
@@ -108,7 +157,7 @@
     "href": "slides/24-confidence-intervals.html#a-monte-carlo-simulation",
     "title": "Confidence Intervals",
     "section": "A Monte Carlo simulation",
-    "text": "A Monte Carlo simulation\n\nWe can run a Monte Carlo simulation to confirm that, in fact, a 95% confidence interval includes \\(p\\) 95% of the time.\n\n\nN &lt;- 1000 \nB &lt;- 10000 \ninside &lt;- replicate(B, { \n  x &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  x_hat &lt;- mean(x) \n  se_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \n  between(p, x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n}) \nmean(inside) \n\n[1] 0.9477",
+    "text": "A Monte Carlo simulation\n\nWe can run a Monte Carlo simulation to confirm that, in fact, a 95% confidence interval includes \\(p\\) 95% of the time.\n\n\nN &lt;- 1000 \nB &lt;- 10000 \ninside &lt;- replicate(B, { \n  x &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  x_hat &lt;- mean(x) \n  se_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \n  between(p, x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n}) \nmean(inside) \n\n[1] 0.9503",
     "crumbs": [
       "Confidence Intervals"
     ]
@@ -1358,7 +1407,7 @@
     "href": "slides/05-r-basics.html#setting-levels",
     "title": "R Basics",
     "section": "Setting Levels",
-    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Male   Female Female Female Male   Male   Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Male   Female Female Female Male   Male   Male   Male   Male  \nLevels: Female Male",
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Female Male   Male   Female Female Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Female Male   Male   Female Female Male   Male   Male  \nLevels: Female Male",
     "crumbs": [
       "R Basics"
     ]
@@ -1368,7 +1417,7 @@
     "href": "slides/05-r-basics.html#the-previous-example-continued",
     "title": "R Basics",
     "section": "The previous example continued",
-    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Female Female Female Female Male   Male   Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Female Female Female Female Male   Male   Male   Female\nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Female Male   Male   Female Female Female Female Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Female Male   Male   Female Female Female Female Male   Female\nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
     "crumbs": [
       "R Basics"
     ]
@@ -1428,7 +1477,7 @@
     "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
     "title": "R Basics",
     "section": "Factors (integers) use less memory",
-    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3335301  0.3332706  0.3331993 \n\n# table counts the frequency of each unique value",
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3334735  0.3333375  0.3331890 \n\n# table counts the frequency of each unique value",
     "crumbs": [
       "R Basics"
     ]
@@ -1648,7 +1697,7 @@
     "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
     "title": "R Basics",
     "section": "Exampe: function as a returned value",
-    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x0000024b1764be80&gt;",
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x000001903c24fdd8&gt;",
     "crumbs": [
       "R Basics"
     ]
@@ -2338,7 +2387,7 @@
     "href": "index.html",
     "title": "STAT 3000",
     "section": "",
-    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE and SD\nQQ plot",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE For regression\nSE for a proportion\nQQ plot\nLOESS",
     "crumbs": [
       "Home"
     ]
@@ -2348,7 +2397,7 @@
     "href": "index.html#course-information",
     "title": "STAT 3000",
     "section": "",
-    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE and SD\nQQ plot",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE For regression\nSE for a proportion\nQQ plot\nLOESS",
     "crumbs": [
       "Home"
     ]
@@ -3138,7 +3187,7 @@
     "href": "slides/06-vectorization.html#add-two-vectors",
     "title": "Vectorization",
     "section": "Add two vectors",
-    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 68.92307 61.95413 65.92478 69.88652 69.93367 73.00120 66.98732 72.99954\n [9] 67.06828 69.97925",
+    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 68.79482 62.00226 65.90152 70.02025 70.08973 73.00030 66.89465 73.12105\n [9] 66.89338 69.96116",
     "crumbs": [
       "Vectorization"
     ]
@@ -4464,52 +4513,80 @@
     ]
   },
   {
-    "objectID": "slides/qq-plot.html",
-    "href": "slides/qq-plot.html",
-    "title": "QQ plot",
+    "objectID": "slides/LOESS.html",
+    "href": "slides/LOESS.html",
+    "title": "LOESS",
     "section": "",
-    "text": "A Q–Q plot compares:\n\nsample quantiles from your data\ntheoretical quantiles from some reference distribution, often a normal distribution\n\nThe idea is: if the data really come from that reference distribution, the points should lie roughly on a straight line.\nSuppose your data are\n\\[\nx_1, x_2, \\dots, x_n.\n\\]\n\n\nOrder them from smallest to largest:\n\\[\nx_{(1)} \\le x_{(2)} \\le \\cdots \\le x_{(n)}.\n\\]\nThese are the sample quantiles.\n\n\n\n\nFor each rank (i), assign a probability, often approximately\n\\[\np_i = \\frac{i - a}{n+1-2a}, \\qquad i=1,\\dots,n.\n\\] where the default offset is \\[a=\\begin{cases} 3/8, & n\\ge 10 \\\\ 1/2, & n &gt;10 \\end{cases} \\] These probabilities mark where each ordered observation sits in the distribution. If \\(n &gt;10\\), \\(a=1/2\\) and \\(p_i \\approx \\frac{i-1/2}{n}\\).\n\n\n\n\nIf the reference distribution is (N(,^2)), compute\n\\[\nq_i = F^{-1}(p_i),\n\\]\nwhere (F^{-1}) is the quantile function of that normal distribution.\nSo (q_i) is the theoretical value such that\n\\[\nP(X \\le q_i) = p_i.\n\\]\nFor a normal Q–Q plot, these are the normal quantiles.\n\n\n\n\nPlot the points\n\\[\n(q_i,; x_{(i)}).\n\\]\nSo:\n\nx-axis = theoretical quantiles\ny-axis = sample quantiles\n\nIf the sample distribution matches the theoretical one well, then\n\\[\nx_{(i)} \\approx q_i\n\\]\nup to location and scale, so the points fall near a straight line."
+    "text": "LOESS can be described mathematically as a sequence of local weighted least-squares fits."
   },
   {
-    "objectID": "slides/qq-plot.html#how-a-qq-plot-is-constructed",
-    "href": "slides/qq-plot.html#how-a-qq-plot-is-constructed",
-    "title": "QQ plot",
+    "objectID": "slides/LOESS.html#data-setup",
+    "href": "slides/LOESS.html#data-setup",
+    "title": "LOESS",
+    "section": "1. Data setup",
+    "text": "1. Data setup\nSuppose you observe data\n\\[\n(x_1,y_1), (x_2,y_2), \\dots, (x_n,y_n).\n\\]\nFor each target point \\(x_0\\), LOESS fits a small regression using points near \\(x_0\\), giving nearby points more weight."
+  },
+  {
+    "objectID": "slides/LOESS.html#local-regression-model",
+    "href": "slides/LOESS.html#local-regression-model",
+    "title": "LOESS",
+    "section": "2. Local regression model",
+    "text": "2. Local regression model\nAt a target location \\(x_0\\), LOESS approximates the regression function locally by a low-degree polynomial.\n\nLocal linear LOESS\nThe most common form is local linear:\n\\[\ny_i \\approx \\beta_0 + \\beta_1(x_i-x_0).\n\\]\n\n\nLocal quadratic LOESS\nA slightly more flexible version is local quadratic:\n\\[\ny_i \\approx \\beta_0 + \\beta_1(x_i-x_0) + \\beta_2(x_i-x_0)^2.\n\\]\nNotice the polynomial is written in terms of \\((x_i-x_0)\\), so the fit is centered at the target point \\(x_0\\)."
+  },
+  {
+    "objectID": "slides/LOESS.html#weighted-least-squares",
+    "href": "slides/LOESS.html#weighted-least-squares",
+    "title": "LOESS",
+    "section": "3. Weighted least squares",
+    "text": "3. Weighted least squares\nThe coefficients are chosen by minimizing a weighted sum of squared errors.\n\nLocal linear case\n\\[\n(\\hat\\beta_0,\\hat\\beta_1)\n\\arg\\min_{\\beta_0,\\beta_1}\n\\sum_{i=1}^n\nw_i(x_0)\\Big[y_i-\\beta_0-\\beta_1(x_i-x_0)\\Big]^2.\n\\]\n\n\nLocal quadratic case\n\\[\n(\\hat\\beta_0,\\hat\\beta_1,\\hat\\beta_2)\n\\arg\\min_{\\beta_0,\\beta_1,\\beta_2}\n\\sum_{i=1}^n\nw_i(x_0)\\Big[y_i-\\beta_0-\\beta_1(x_i-x_0)-\\beta_2(x_i-x_0)^2\\Big]^2.\n\\]\nThe fitted LOESS value at \\(x_0\\) is then\n\\[\n\\hat f(x_0)=\\hat\\beta_0,\n\\]\nbecause when \\(x_i=x_0\\), all the \\((x_i-x_0)\\) terms vanish."
+  },
+  {
+    "objectID": "slides/LOESS.html#the-weights",
+    "href": "slides/LOESS.html#the-weights",
+    "title": "LOESS",
+    "section": "4. The weights",
+    "text": "4. The weights\nThe weights depend on how far \\(x_i\\) is from \\(x_0\\).\nA standard LOESS weight is the tricube weight:\n\\[\nw_i(x_0)=\n\\begin{cases}\n\\left(1-\\left|\\dfrac{x_i-x_0}{h(x_0)}\\right|^3\\right)^3, & |x_i-x_0|&lt;h(x_0),\\\\\n0, & |x_i-x_0|\\ge h(x_0).\n\\end{cases}\n\\]\nHere:\n\n\\(h(x_0)\\) is the distance from \\(x_0\\) to the furthest point in the local neighborhood\npoints outside that neighborhood get weight 0\nnearby points get larger weights\npoints very close to \\(x_0\\) get weights near 1"
+  },
+  {
+    "objectID": "slides/LOESS.html#how-the-span-enters",
+    "href": "slides/LOESS.html#how-the-span-enters",
+    "title": "LOESS",
+    "section": "5. How the span enters",
+    "text": "5. How the span enters\nIf the span is \\(s\\), then at each \\(x_0\\), LOESS uses roughly the nearest\n\\[\nm = \\lceil sn \\rceil\n\\]\npoints.\nSo:\n\nsmaller \\(s\\) means a smaller neighborhood, more wiggle\nlarger \\(s\\) means a larger neighborhood, smoother fit\n\nFor example, with span = 0.1, each local fit uses about 10% of the data."
+  },
+  {
+    "objectID": "slides/LOESS.html#matrix-form",
+    "href": "slides/LOESS.html#matrix-form",
+    "title": "LOESS",
+    "section": "6. Matrix form",
+    "text": "6. Matrix form\nFor a local linear fit at \\(x_0\\), define\n\\[\nX(x_0)=\n\\begin{pmatrix}\n1 & x_1-x_0\\\\\n1 & x_2-x_0\\\\\n\\vdots & \\vdots\\\\\n1 & x_n-x_0\n\\end{pmatrix},\n\\qquad\ny=\n\\begin{pmatrix}\ny_1\\\\y_2\\\\ \\vdots\\\\ y_n\n\\end{pmatrix},\n\\qquad\nW(x_0)=\\operatorname{diag}(w_1(x_0),\\dots,w_n(x_0)).\n\\]\nThen the weighted least-squares estimator is\n\\[\n\\hat\\beta(x_0)=\n\\big(X(x_0)^T W(x_0) X(x_0)\\big)^{-1}\nX(x_0)^T W(x_0)y.\n\\]\nThe LOESS fit at \\(x_0\\) is the first component:\n\\[\n\\hat f(x_0)=\\begin{pmatrix}1 & 0\\end{pmatrix}\\hat\\beta(x_0).\n\\]\nFor the quadratic version, just add a third column \\((x_i-x_0)^2\\)."
+  },
+  {
+    "objectID": "slides/LOESS.html#robust-loess",
+    "href": "slides/LOESS.html#robust-loess",
+    "title": "LOESS",
+    "section": "7. Robust LOESS",
+    "text": "7. Robust LOESS\nSome versions of LOESS add a second layer of weights to reduce the effect of outliers.\nAfter an initial fit, compute residuals\n\\[\nr_i = y_i - \\hat f(x_i).\n\\]\nThen define robust weights, often using Tukey’s bisquare form:\n\\[\n\\delta_i=\n\\begin{cases}\n\\left(1-\\left(\\dfrac{r_i}{6M}\\right)^2\\right)^2, & |r_i|&lt;6M,\\\\\n0, & |r_i|\\ge 6M,\n\\end{cases}\n\\]\nwhere \\(M\\) is typically the median absolute residual.\nThen the new weighted least-squares problem uses combined weights\n\\[\nw_i(x_0)\\ \\delta_i.\n\\]\nSo outliers get downweighted."
+  },
+  {
+    "objectID": "slides/LOESS.html#final-conceptual-formula",
+    "href": "slides/LOESS.html#final-conceptual-formula",
+    "title": "LOESS",
+    "section": "8. Final conceptual formula",
+    "text": "8. Final conceptual formula\nLOESS does not give one single global formula like\n\\[\ny = a + bx + cx^2.\n\\]\nInstead, for each \\(x_0\\), it defines\n\\[\n\\hat f(x_0) =\n\\text{the fitted value from a weighted local polynomial around }x_0.\n\\]\nSo the fitted curve is built point by point."
+  },
+  {
+    "objectID": "slides/LOESS.html#in-words",
+    "href": "slides/LOESS.html#in-words",
+    "title": "LOESS",
+    "section": "9. In words",
+    "text": "9. In words\nAt each target \\(x_0\\):\n\nchoose nearby points,\nweight them by distance from \\(x_0\\),\nfit a local linear or quadratic regression,\ntake the fitted value at \\(x_0\\),\nrepeat for many \\(x_0\\)’s.\n\nThat sequence of local fits is the LOESS curve."
+  },
+  {
+    "objectID": "slides/SE-proportion.html",
+    "href": "slides/SE-proportion.html",
+    "title": "SE for a proportion",
     "section": "",
-    "text": "A Q–Q plot compares:\n\nsample quantiles from your data\ntheoretical quantiles from some reference distribution, often a normal distribution\n\nThe idea is: if the data really come from that reference distribution, the points should lie roughly on a straight line.\nSuppose your data are\n\\[\nx_1, x_2, \\dots, x_n.\n\\]\n\n\nOrder them from smallest to largest:\n\\[\nx_{(1)} \\le x_{(2)} \\le \\cdots \\le x_{(n)}.\n\\]\nThese are the sample quantiles.\n\n\n\n\nFor each rank (i), assign a probability, often approximately\n\\[\np_i = \\frac{i - a}{n+1-2a}, \\qquad i=1,\\dots,n.\n\\] where the default offset is \\[a=\\begin{cases} 3/8, & n\\ge 10 \\\\ 1/2, & n &gt;10 \\end{cases} \\] These probabilities mark where each ordered observation sits in the distribution. If \\(n &gt;10\\), \\(a=1/2\\) and \\(p_i \\approx \\frac{i-1/2}{n}\\).\n\n\n\n\nIf the reference distribution is (N(,^2)), compute\n\\[\nq_i = F^{-1}(p_i),\n\\]\nwhere (F^{-1}) is the quantile function of that normal distribution.\nSo (q_i) is the theoretical value such that\n\\[\nP(X \\le q_i) = p_i.\n\\]\nFor a normal Q–Q plot, these are the normal quantiles.\n\n\n\n\nPlot the points\n\\[\n(q_i,; x_{(i)}).\n\\]\nSo:\n\nx-axis = theoretical quantiles\ny-axis = sample quantiles\n\nIf the sample distribution matches the theoretical one well, then\n\\[\nx_{(i)} \\approx q_i\n\\]\nup to location and scale, so the points fall near a straight line."
-  },
-  {
-    "objectID": "slides/qq-plot.html#why-the-line-yx-appears",
-    "href": "slides/qq-plot.html#why-the-line-yx-appears",
-    "title": "QQ plot",
-    "section": "Why the line \\(y=x\\) appears",
-    "text": "Why the line \\(y=x\\) appears\nIf the theoretical distribution and the sample have exactly the same center and spread, then the points should lie near\n\\[\ny=x.\n\\]\nBut there is an important subtlety:\n\nif you compare your data to the standard normal \\(N(0,1)\\), the ideal line is only \\(y=x\\) when your data also have mean 0 and sd 1\nif you compare to a normal with the same mean and sd as your data, then \\(y=x\\) is more sensible\n\nEven then, stat_qq_line() is usually better because it computes a fitted reference line based on quartiles.\n\np &lt;- 0.45 \nN &lt;- 1000 \nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \n\n\nB &lt;- 10000 \nx_hat &lt;- replicate(B, { \n  x &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  mean(x) \n}) \n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.6\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.2     ✔ tibble    3.3.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.2\n✔ purrr     1.2.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata.frame(x_hat = x_hat) |&gt; ggplot(aes(sample =  x_hat)) +  \n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) + \n  geom_abline()\n\n\n\n\nthis works as follows:\n\nstat_qq(...) sorts the values of x_hat\nit computes theoretical quantiles from a normal distribution with mean mean(x_hat) and sd sd(x_hat)\nit plots sample quantiles against theoretical quantiles\ngeom_abline() adds the line (y=x)\n\nSo the plot checks whether the ordered values of x_hat look like quantiles from that normal distribution."
-  },
-  {
-    "objectID": "slides/qq-plot.html#how-to-interpret-the-shape",
-    "href": "slides/qq-plot.html#how-to-interpret-the-shape",
-    "title": "QQ plot",
-    "section": "How to interpret the shape",
-    "text": "How to interpret the shape\nIf points are close to a straight line:\n\nthe data are approximately from the reference distribution\n\nIf the plot bends upward or downward:\n\nthe data may be skewed\n\nIf the ends depart strongly:\n\nthe tails may be heavier or lighter than the reference distribution\n\nFor example:\n\nright tail too large: upper-right points rise above the line\nleft tail too small: lower-left points fall below the line\nS-shape: often suggests heavier tails than normal"
-  },
-  {
-    "objectID": "slides/qq-plot.html#small-concrete-example",
-    "href": "slides/qq-plot.html#small-concrete-example",
-    "title": "QQ plot",
-    "section": "Small concrete example",
-    "text": "Small concrete example\nSuppose the sorted sample is\n\\[\nx_{(1)}, x_{(2)}, x_{(3)}, x_{(4)}, x_{(5)}.\n\\]\nFor (n=5), a common choice is\n\\[\np_i = \\frac{i-0.5}{5} = 0.1, 0.3, 0.5, 0.7, 0.9.\n\\]\nIf comparing to standard normal, the theoretical quantiles are about\n\\[\n-1.28,\\ -0.52,\\ 0,\\ 0.52,\\ 1.28.\n\\]\nThen the Q–Q plot points are\n\\[\n(-1.28, x_{(1)}),\\ (-0.52, x_{(2)}),\\ (0, x_{(3)}),\\ (0.52, x_{(4)}),\\ (1.28, x_{(5)}).\n\\]\nIf the data are close to normal, these points line up."
-  },
-  {
-    "objectID": "slides/qq-plot.html#better-reference-line",
-    "href": "slides/qq-plot.html#better-reference-line",
-    "title": "QQ plot",
-    "section": "Better reference line",
-    "text": "Better reference line\nUsually this is preferred:\n\nggplot(data.frame(x_hat = x_hat), aes(sample = x_hat)) +\n  stat_qq(dparams = list(mean = mean(x_hat), sd = sd(x_hat))) +\n  stat_qq_line(dparams = list(mean = mean(x_hat), sd = sd(x_hat)), color=\"red\")\n\n\n\n\nbecause stat_qq_line() gives a more meaningful Q–Q reference line than simply forcing \\(y=x\\)."
-  },
-  {
-    "objectID": "slides/qq-plot.html#qqnorm-and-qqplot",
-    "href": "slides/qq-plot.html#qqnorm-and-qqplot",
-    "title": "QQ plot",
-    "section": "qqnorm() and qqplot()",
-    "text": "qqnorm() and qqplot()\nqqnorm() is for comparing one sample to a normal distribution. qqplot() is for comparing the quantiles of two datasets. Both rely on probability points internally, and qqnorm() specifically produces a normal QQ-plot.\n\n1. Example: qqnorm()\nUse this when you want to check whether data look approximately normal.\nset.seed(1)\nx &lt;- rnorm(100)\n\nqqnorm(x)\nqqline(x, col = \"red\", lwd = 2)\n\nqqnorm(x) plots the sample quantiles of x against the theoretical normal quantiles.\nqqline(x) adds a reference line. By default, that line is based on the first and third quartiles, not necessarily the identity line (y=x).\n\nA second example with non-normal data:\nset.seed(1)\ny &lt;- rexp(100)\n\nqqnorm(y)\nqqline(y, col = \"red\", lwd = 2)\nThis plot will usually bend away from the line because exponential data are not normal.\n\n\n2. Example: qqplot()\nUse this when you want to compare the distributions of two samples.\nset.seed(1)\nx &lt;- rnorm(100, mean = 0, sd = 1)\ny &lt;- rnorm(100, mean = 1, sd = 1.5)\n\nqqplot(x, y,\n       xlab = \"Quantiles of x\",\n       ylab = \"Quantiles of y\",\n       main = \"QQ-plot of y against x\")\nabline(0, 1, col = \"red\", lwd = 2)\n\nqqplot(x, y) compares the quantiles of x and y.\nIf the points fall near a straight line, the two distributions have similar shape.\nIf the line is not close to slope 1 or intercept 0, one sample may be more spread out or shifted than the other.\n\n\n\n3. qqplot() against a theoretical distribution\nYou can also use qqplot() to compare data to a non-normal theoretical distribution by supplying theoretical quantiles yourself.\nFor example, compare data to a chi-square distribution:\nset.seed(1)\ny &lt;- rchisq(100, df = 3)\n\ntheoretical &lt;- qchisq(ppoints(length(y)), df = 3)\n\nqqplot(theoretical, sort(y),\n       xlab = \"Theoretical chi-square quantiles\",\n       ylab = \"Sample quantiles\",\n       main = \"Chi-square QQ-plot\")\nabline(0, 1, col = \"red\", lwd = 2)\nThis works because ppoints() generates the plotting probabilities used to evaluate inverse distribution functions such as qnorm() or qchisq()."
+    "text": "Let \\(X_1,\\dots,X_n\\) be independent Bernoulli random variables, where\n\n\\(X_i=1\\) if the event occurs\n\\(X_i=0\\) otherwise\n\nand let\n\n\\(p=P(X_i=1)\\)\n\\(q=1-p\\)\n\nThen the sample proportion is\n\\[\n\\hat p=\\frac{X_1+\\cdots+X_n}{n}.\n\\]\nThe standard error of a proportion comes from the variance of \\(\\hat p\\).\nFirst, for one Bernoulli variable \\(X\\):\n\\[\nE(X)=p\n\\]\nand\n\\[\n\\operatorname{Var}(X)=p(1-p)=pq.\n\\]\nSo each trial has variance \\(pq\\).\nNow consider the sample proportion:\n\\[\n\\hat p=\\frac{1}{n}\\sum_{i=1}^n X_i.\n\\]\nBecause the \\(X_i\\) are independent,\n\\[\n\\operatorname{Var}(\\hat p) = \\operatorname{Var}\\left(\\frac{1}{n}\\sum_{i=1}^n X_i\\right)\n=\\frac{1}{n^2}\\sum_{i=1}^n \\operatorname{Var}(X_i)\n=\\frac{1}{n^2}(n pq)=\n\\frac{pq}{n}.\n\\]\nTherefore the standard deviation of \\(\\hat p\\) is\n\\[\n\\sqrt{\\operatorname{Var}(\\hat p)}=\\sqrt{\\frac{pq}{n}}.\n\\]\nThat is why the standard error of a proportion is\n\\[\n\\sqrt{\\frac{pq}{n}}.\n\\]\nIntuitively:\n\n\\(pq\\) measures how variable a single yes/no observation is\ndividing by \\(n\\) reflects averaging over \\(n\\) observations\ntaking the square root converts variance back to standard deviation\n\nOne more note: in practice, if the true \\(p\\) is unknown, we often estimate the standard error by replacing \\(p\\) with \\(\\hat p\\):\n\\[\n\\widehat{SE}(\\hat p)=\\sqrt{\\frac{\\hat p(1-\\hat p)}{n}}.\n\\]\nSo:\n\ntheoretical SE: \\(\\sqrt{pq/n}\\)\nestimated SE: \\(\\sqrt{\\hat p(1-\\hat p)/n}\\)"
   }
 ]

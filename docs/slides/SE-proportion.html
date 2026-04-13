@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT 3000 - Standard Errors for Regression</title>
+<title>STAT 3000 - SE for a proportion</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Standard Errors for Regression</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">SE for a proportion</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -229,28 +229,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#derive-se" id="toc-derive-se" class="nav-link active" data-scroll-target="#derive-se">Derive SE</a></li>
-  <li><a href="#sd-vs-se" id="toc-sd-vs-se" class="nav-link" data-scroll-target="#sd-vs-se">SD vs SE</a></li>
-  <li><a href="#the-classic-relationship-mean" id="toc-the-classic-relationship-mean" class="nav-link" data-scroll-target="#the-classic-relationship-mean">The classic relationship: mean</a></li>
-  <li><a href="#in-regression-geom_smoothmethodlm-setrue" id="toc-in-regression-geom_smoothmethodlm-setrue" class="nav-link" data-scroll-target="#in-regression-geom_smoothmethodlm-setrue">In regression (<code>geom_smooth(method="lm", se=TRUE)</code>)</a></li>
-  <li><a href="#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" id="toc-why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" class="nav-link" data-scroll-target="#why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p">Why is <span class="math inline">\(\hat{\sigma}^2 = \dfrac{\sum \hat\varepsilon_i^2}{n-p}\)</span> ?</a>
-  <ul class="collapse">
-  <li><a href="#key-fact-degrees-of-freedom" id="toc-key-fact-degrees-of-freedom" class="nav-link" data-scroll-target="#key-fact-degrees-of-freedom">Key fact (degrees of freedom)</a></li>
-  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition">Intuition</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/slides/standard_errors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Standard Errors for Regression</h1>
+<h1 class="title">SE for a proportion</h1>
 </div>
 
 
@@ -267,87 +253,66 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="derive-se" class="level3">
-<h3 class="anchored" data-anchor-id="derive-se">Derive SE</h3>
-<p>For <code>method="lm"</code> the CI ribbon is based on the <strong>standard error of the estimated mean</strong> <span class="math inline">\(\hat y(x_0)=\widehat{E[Y\mid X=x_0]}\)</span>. The SE formula comes directly from the variance of a <strong>linear combination</strong> of the OLS estimator.</p>
-<ol type="1">
-<li>Write the linear model in matrix form</li>
-</ol>
-<p><span class="math display">\[ y = X\beta + \varepsilon,\qquad \mathbb E\varepsilon=0,\quad \mathrm{Var}(\varepsilon)=\sigma^2 I_n.\]</span> 2) OLS estimator and its variance</p>
-<p>OLS gives <span class="math display">\[ \hat\beta=(X^\top X)^{-1}X^\top y.\]</span> Because <span class="math inline">\(\hat\beta\)</span> is a linear function of <span class="math inline">\(y\)</span>, <span class="math display">\[ \mathrm{Var}(\hat\beta) = (X^\top X)^{-1}X^\top \mathrm{Var}(y) X (X^\top X)^{-1}.\]</span> But <span class="math inline">\(y=X\beta+\varepsilon\)</span> and <span class="math inline">\(\mathrm{Var}(y)=\mathrm{Var}(\varepsilon)=\sigma^2 I\)</span>, so <span class="math display">\[ \mathrm{Var}(\hat\beta)=\sigma^2 (X^\top X)^{-1}.\]</span></p>
-<ol start="3" type="1">
-<li>Fitted mean at a point is a linear combo of <span class="math inline">\(\hat\beta\)</span></li>
-</ol>
-<p>At <span class="math inline">\(x_0\)</span>, let the (row) design vector be <span class="math display">\[ x_0^* = (1 \;\;x_0)\]</span> (for simple linear regression; more generally it’s whatever basis terms your formula uses). Then the fitted mean is</p>
-<p><span class="math display">\[ \hat y(x_0)=x_0^* \hat\beta.\]</span></p>
-<ol start="4" type="1">
-<li>Variance of a linear combination</li>
-</ol>
-<p>Use the rule: if <span class="math inline">\(a\)</span> is a constant vector and <span class="math inline">\(Z\)</span> is random, <span class="math display">\[ \mathrm{Var}(a^\top Z)=a^\top \mathrm{Var}(Z)a.\]</span> Here <span class="math inline">\(a = (x_0^*)^\top\)</span> and <span class="math inline">\(Z=\hat\beta\)</span>. Therefore,</p>
-<p><span class="math display">\[\mathrm{Var}(\hat y(x_0)) = \mathrm{Var}(x_0^* \hat\beta) = x_0^*\mathrm{Var}(\hat\beta)(x_0^*)^\top = x_0^* \big(\sigma ^2 (X^\top X)^{-1}\big) (x_0^*)^\top.\]</span> So the standard error is <span class="math display">\[ SE{\hat y(x_0)}=\sqrt{\sigma^2 x_0^*(X^\top X)^{-1}(x_0^*)^\top }.\]</span></p>
-<ol start="5" type="1">
-<li>Replace <span class="math inline">\(\sigma ^2\)</span> by its sample estimate</li>
-</ol>
-<p>Since <span class="math inline">\(\sigma^2\)</span> is unknown, we plug in</p>
-<p><span class="math display">\[ \hat\sigma^2=\frac{\sum_{i=1}^n \hat\varepsilon_i^2}{n-p},\]</span> giving the practical SE:</p>
-<p><span class="math display">\[SE{\hat y(x_0)}=\sqrt{\hat\sigma^2  x_0^*(X^\top X)^{-1}(x_0^*)^\top }.\]</span></p>
-<hr>
-<ol start="6" type="1">
-<li>same formula in “simple regression” scalar form</li>
-</ol>
-<p>For <span class="math inline">\(y=\beta_0+\beta_1 x+\varepsilon\)</span>,</p>
-<p><span class="math display">\[SE{\hat y(x_0)}=\hat\sigma\sqrt{\frac{1}{n}+\frac{(x_0-\bar x)^2}{\sum_{i=1}^n (x_i-\bar x)^2}}.\]</span> This is algebraically equivalent to the matrix expression above.</p>
-</section>
-<section id="sd-vs-se" class="level3">
-<h3 class="anchored" data-anchor-id="sd-vs-se">SD vs SE</h3>
-<p><strong>SD (standard deviation)</strong> describes <strong>how spread out the data are</strong>.</p>
+<p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be independent Bernoulli random variables, where</p>
 <ul>
-<li>It’s a property of the <em>observations</em>.</li>
-<li>Example: “Students’ heights have SD = 7 cm” = individual heights vary a lot.</li>
+<li><span class="math inline">\(X_i=1\)</span> if the event occurs</li>
+<li><span class="math inline">\(X_i=0\)</span> otherwise</li>
 </ul>
-<p><strong>SE (standard error)</strong> describes <strong>how uncertain an estimate is</strong> (because it’s based on a sample).</p>
+<p>and let</p>
 <ul>
-<li>It’s a property of an <em>estimator</em> (sample mean, regression slope, fitted mean, etc.).</li>
-<li>Example: “The sample mean height has SE = 1 cm” = the mean is estimated pretty precisely.</li>
+<li><span class="math inline">\(p=P(X_i=1)\)</span></li>
+<li><span class="math inline">\(q=1-p\)</span></li>
 </ul>
-<p>A good one-liner:</p>
+<p>Then the sample proportion is</p>
+<p><span class="math display">\[
+\hat p=\frac{X_1+\cdots+X_n}{n}.
+\]</span></p>
+<p>The standard error of a proportion comes from the variance of <span class="math inline">\(\hat p\)</span>.</p>
+<p>First, for one Bernoulli variable <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+E(X)=p
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\operatorname{Var}(X)=p(1-p)=pq.
+\]</span></p>
+<p>So each trial has variance <span class="math inline">\(pq\)</span>.</p>
+<p>Now consider the sample proportion:</p>
+<p><span class="math display">\[
+\hat p=\frac{1}{n}\sum_{i=1}^n X_i.
+\]</span></p>
+<p>Because the <span class="math inline">\(X_i\)</span> are independent,</p>
+<p><span class="math display">\[
+\operatorname{Var}(\hat p) = \operatorname{Var}\left(\frac{1}{n}\sum_{i=1}^n X_i\right)
+=\frac{1}{n^2}\sum_{i=1}^n \operatorname{Var}(X_i)
+=\frac{1}{n^2}(n pq)=
+\frac{pq}{n}.
+\]</span></p>
+<p>Therefore the standard deviation of <span class="math inline">\(\hat p\)</span> is</p>
+<p><span class="math display">\[
+\sqrt{\operatorname{Var}(\hat p)}=\sqrt{\frac{pq}{n}}.
+\]</span></p>
+<p>That is why the standard error of a proportion is</p>
+<p><span class="math display">\[
+\sqrt{\frac{pq}{n}}.
+\]</span></p>
+<p>Intuitively:</p>
 <ul>
-<li><strong>SD = variability of points</strong></li>
-<li><strong>SE = variability of a statistic across repeated samples</strong></li>
+<li><span class="math inline">\(pq\)</span> measures how variable a single yes/no observation is</li>
+<li>dividing by <span class="math inline">\(n\)</span> reflects averaging over <span class="math inline">\(n\)</span> observations</li>
+<li>taking the square root converts variance back to standard deviation</li>
 </ul>
-<hr>
-</section>
-<section id="the-classic-relationship-mean" class="level3">
-<h3 class="anchored" data-anchor-id="the-classic-relationship-mean">The classic relationship: mean</h3>
-<p>If <span class="math inline">\(X_1,\dots,X_n\)</span> are i.i.d. with <span class="math inline">\(\mathrm{Var}(X_i)=\sigma ^2\)</span>, then <span class="math display">\[ \bar X=\frac{1}{n}\sum_{i=1}^n X_i,\qquad \mathrm{Var}(\bar X)=\frac{\sigma^2}{n}.\]</span> So <span class="math display">\[ SE(\bar X)=\sqrt{\mathrm{Var}(\bar X)}=\frac{\sigma}{\sqrt n}.\]</span> In practice we don’t know <span class="math inline">\(\sigma\)</span>, so we plug in the sample SD <span class="math inline">\(s\)</span>: <span class="math display">\[ \widehat{SE}(\bar X)=\frac{s}{\sqrt n}.\]</span> This is why <strong>SE shrinks as</strong> <span class="math inline">\(n\)</span> grows, while SD typically doesn’t.</p>
-<hr>
-</section>
-<section id="in-regression-geom_smoothmethodlm-setrue" class="level3">
-<h3 class="anchored" data-anchor-id="in-regression-geom_smoothmethodlm-setrue">In regression (<code>geom_smooth(method="lm", se=TRUE)</code>)</h3>
+<p>One more note: in practice, if the true <span class="math inline">\(p\)</span> is unknown, we often estimate the standard error by replacing <span class="math inline">\(p\)</span> with <span class="math inline">\(\hat p\)</span>:</p>
+<p><span class="math display">\[
+\widehat{SE}(\hat p)=\sqrt{\frac{\hat p(1-\hat p)}{n}}.
+\]</span></p>
+<p>So:</p>
 <ul>
-<li>The <strong>SD-like quantity</strong> is the residual spread around the line (noise level).</li>
-<li>The <strong>SE band</strong> is uncertainty in the <em>estimated mean line</em> <span class="math inline">\(\hat y(x)\)</span>. It’s smaller near <span class="math inline">\(\bar x\)</span> and larger near the ends because the line is less well anchored there.</li>
+<li>theoretical SE: <span class="math inline">\(\sqrt{pq/n}\)</span></li>
+<li>estimated SE: <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}\)</span></li>
 </ul>
-<hr>
-</section>
-<section id="why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p" class="level2">
-<h2 class="anchored" data-anchor-id="why-is-hatsigma2-dfracsum-hatvarepsilon_i2n-p">Why is <span class="math inline">\(\hat{\sigma}^2 = \dfrac{\sum \hat\varepsilon_i^2}{n-p}\)</span> ?</h2>
-<p>Consider the linear model <span class="math display">\[ y = X\beta + \varepsilon,\quad \mathbb E(\varepsilon)=0,\quad \mathrm{Var}(\varepsilon)=\sigma^2 I_n,\]</span> with <span class="math inline">\(p\)</span> parameters (in simple regression, (p=2): intercept + slope).</p>
-<p>Let <span class="math inline">\(\hat y = X\hat\beta\)</span> be fitted values and residuals <span class="math inline">\(e = y-\hat y\)</span>. The residual sum of squares is <span class="math display">\[ RSS = e^\top e = \sum_{i=1}^n e_i^2.\]</span></p>
-<section id="key-fact-degrees-of-freedom" class="level3">
-<h3 class="anchored" data-anchor-id="key-fact-degrees-of-freedom">Key fact (degrees of freedom)</h3>
-<p>The fitted values live in the column space of <span class="math inline">\(X\)</span>, which is <span class="math inline">\(p\)</span>-dimensional. Residuals live in the orthogonal complement, which has dimension <span class="math inline">\(n-p\)</span>. So residuals have <strong>only</strong> <span class="math inline">\(n-p\)</span> independent pieces of variation.</p>
-<p>More formally, define the “residual-maker” matrix <span class="math display">\[ M = I - H,\quad H = X(X^\top X)^{-1}X^\top.\]</span> Then <span class="math inline">\(e = My\)</span> and <span class="math inline">\(M\)</span> is symmetric idempotent with <span class="math display">\[ \mathrm{rank}(M)=n-p,\quad \mathrm{tr}(M)=n-p.\]</span> Since <span class="math inline">\(y = X\beta + \varepsilon\)</span> and <span class="math inline">\(MX\beta=0\)</span>, <span class="math display">\[ e = M\varepsilon.\]</span> Now compute the expected RSS: <span class="math display">\[\mathbb E(RSS) = \mathbb E(e^\top e) = \mathbb E(\varepsilon^\top M^\top M \varepsilon) = \mathbb E(\varepsilon^\top M \varepsilon).
-\]</span> Using <span class="math inline">\(\mathbb E(\varepsilon^\top A \varepsilon)=\sigma^2\mathrm{tr}(A)\)</span> when <span class="math inline">\(\mathrm{Var}(\varepsilon)=\sigma^2 I\)</span>,</p>
-<p><span class="math display">\[ \mathbb E(RSS)=\sigma ^2 \mathrm{tr}(M)=\sigma^2 (n-p).\]</span> So <span class="math display">\[ \mathbb E\left(\frac{RSS}{n-p}\right)=\sigma^2,\]</span> meaning <span class="math display">\[ \hat\sigma^2=\frac{RSS}{n-p}\]</span> is an <strong>unbiased estimator</strong> of $^2).</p>
-</section>
-<section id="intuition" class="level3">
-<h3 class="anchored" data-anchor-id="intuition">Intuition</h3>
-<p>If you divided by <span class="math inline">\(n\)</span>, you’d systematically underestimate <span class="math inline">\(\sigma^2\)</span> because the regression line was chosen to make residuals small (you “spent” <span class="math inline">\(p\)</span> degrees of freedom estimating parameters). Dividing by <span class="math inline">\(n-p\)</span> corrects that.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -745,4 +710,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ywanglab/STAT3000/blob/main/slides/SE-proportion.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer></body></html>
