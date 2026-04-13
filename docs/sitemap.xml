@@ -9,80 +9,84 @@
     <lastmod>2026-03-31T20:30:53.217Z</lastmod>
   </url>
   <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/24-confidence-intervals.html</loc>
-    <lastmod>2026-04-01T20:10:51.544Z</lastmod>
+    <loc>https://ywanglab.github.io/STAT3000/slides/29-regression.html</loc>
+    <lastmod>2026-04-13T19:59:36.029Z</lastmod>
   </url>
   <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/22-intro-inference.html</loc>
-    <lastmod>2026-03-12T21:06:31.582Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/20-intro-to-prob.html</loc>
-    <lastmod>2026-03-30T19:28:21.535Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/07-tidyverse.html</loc>
-    <lastmod>2026-03-04T22:10:06.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/05-r-basics.html</loc>
-    <lastmod>2026-02-17T17:33:49.685Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/02-rstudio.html</loc>
-    <lastmod>2026-02-17T22:16:08.945Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/00-intro.html</loc>
-    <lastmod>2026-02-17T17:32:24.190Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/psets/hw4.html</loc>
-    <lastmod>2026-03-24T14:45:17.372Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/psets/hw2_medium_hint.html</loc>
-    <lastmod>2026-02-16T20:32:18.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/index.html</loc>
-    <lastmod>2026-04-13T18:50:14.785Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/psets/hw1.html</loc>
-    <lastmod>2026-02-16T19:05:40.337Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/psets/hw3.html</loc>
-    <lastmod>2026-03-02T16:43:35.810Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/psets/hw5.html</loc>
-    <lastmod>2026-03-31T18:24:05.316Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/01-unix.html</loc>
-    <lastmod>2026-02-17T22:15:34.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/04-git.html</loc>
-    <lastmod>2026-02-17T22:16:40.759Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/06-vectorization.html</loc>
-    <lastmod>2026-02-24T16:07:10.388Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/08-ggplot2.html</loc>
-    <lastmod>2026-03-11T17:13:56.966Z</lastmod>
+    <loc>https://ywanglab.github.io/STAT3000/slides/23-parameters-estimates.html</loc>
+    <lastmod>2026-04-13T19:09:34.939Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/21-inference-foundations.html</loc>
     <lastmod>2026-03-30T20:13:52.730Z</lastmod>
   </url>
   <url>
-    <loc>https://ywanglab.github.io/STAT3000/slides/23-parameters-estimates.html</loc>
-    <lastmod>2026-04-01T17:05:11.271Z</lastmod>
+    <loc>https://ywanglab.github.io/STAT3000/slides/08-ggplot2.html</loc>
+    <lastmod>2026-03-11T17:13:56.966Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/06-vectorization.html</loc>
+    <lastmod>2026-02-24T16:07:10.388Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/04-git.html</loc>
+    <lastmod>2026-02-17T22:16:40.759Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/01-unix.html</loc>
+    <lastmod>2026-02-17T22:15:34.426Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/psets/hw5.html</loc>
+    <lastmod>2026-03-31T18:24:05.316Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/psets/hw3.html</loc>
+    <lastmod>2026-03-02T16:43:35.810Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/psets/hw1.html</loc>
+    <lastmod>2026-02-16T19:05:40.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/index.html</loc>
+    <lastmod>2026-04-13T18:50:14.785Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/psets/hw2_medium_hint.html</loc>
+    <lastmod>2026-02-16T20:32:18.750Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/psets/hw4.html</loc>
+    <lastmod>2026-03-24T14:45:17.372Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/00-intro.html</loc>
+    <lastmod>2026-02-17T17:32:24.190Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/02-rstudio.html</loc>
+    <lastmod>2026-02-17T22:16:08.945Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/05-r-basics.html</loc>
+    <lastmod>2026-02-17T17:33:49.685Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/07-tidyverse.html</loc>
+    <lastmod>2026-03-04T22:10:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/20-intro-to-prob.html</loc>
+    <lastmod>2026-03-30T19:28:21.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/22-intro-inference.html</loc>
+    <lastmod>2026-03-12T21:06:31.582Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ywanglab.github.io/STAT3000/slides/24-confidence-intervals.html</loc>
+    <lastmod>2026-04-01T20:10:51.544Z</lastmod>
   </url>
   <url>
     <loc>https://ywanglab.github.io/STAT3000/slides/LOESS.html</loc>
