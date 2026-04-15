@@ -7,7 +7,7 @@ editor: visual
 
 ## Introduction
 
-This document provides a complete solution to Problem Set 6 in a single `.qmd` file. In a project-style submission, I would split the code across `code/funcs.R`, `code/wrangle.R`, and `code/analysis.qmd`, save the final weekly dataset to `data/dat.rds`, and save the figures to `figs/`. For convenience, everything is included inline here.
+This document provides a complete solution to Problem Set 4 in a single `.qmd` file. In a project-style submission, I would split the code across `code/funcs.R`, `code/wrangle.R`, and `code/analysis.qmd`, save the final weekly dataset to `data/dat.rds`, and save the figures to `figs/`. For convenience, everything is included inline here.
 
 ## Setup
 
@@ -37,7 +37,7 @@ source("_census-key.R")
 # Parse dates that may arrive in multiple formats
 parse_date_flex <- function(x) {
   x <- as.character(x)
-  out <- suppressWarnings(as_date(ymd_hms(x, quiet = TRUE)))
+  out <- suppressWarnings(as_date(ymd_hms(x, quiet = TRUE))) # keep only the date
   needs_mdy <- is.na(out)
   out[needs_mdy] <- suppressWarnings(as_date(mdy(x[needs_mdy], quiet = TRUE)))
   needs_ymd <- is.na(out)
@@ -51,26 +51,26 @@ pick_col <- function(dat, candidates) {
   if (length(found) == 0) {
     stop(
       "None of the candidate columns were found: ",
-      paste(candidates, collapse = ", ")
+      paste(candidates, collapse = ", ") #combine them into one string and sperated by ", ". 
     )
   }
-  found[1]
+  found[1] # pick the first column
 }
 
 pick_col_or_na <- function(dat, candidates) {
   found <- intersect(candidates, names(dat))
-  if (length(found) == 0) NA_character_ else found[1]
+  if (length(found) == 0) NA_character_ else found[1] # if no mathc, return NA_character
 }
 
 # Downloader for CDC Socrata endpoints
 get_cdc_data <- function(endpoint) {
   request(endpoint) |>
-    req_url_query("$limit" = 10000000) |>
-    req_perform() |>
-    resp_check_status() |>
-    resp_body_json(simplifyVector = TRUE) |>
+    req_url_query("$limit" = 10000000) |> # limit of returned rows
+    req_perform() |>  # peform  the request
+    resp_check_status() |>  # 200 OK, 404: not found; 500: server error
+    resp_body_json(simplifyVector = TRUE) |> #reads the response body as JSON, and simply the parsd JSON into ordinary R objects when possible
     as_tibble() |>
-    janitor::clean_names()
+    janitor::clean_names() #clean the column names into a standardized format (use underscore for /, -, etc)
 }
 ```
 
@@ -82,9 +82,9 @@ get_cdc_data <- function(endpoint) {
 census_url <- "https://api.census.gov/data/2021/pep/population"
 
 population_request <- request(census_url) |>
-  req_url_query(
+  req_url_query(   # addes query parameters
     get = "POP_2020,POP_2021,NAME",
-    "for" = "state:*",
+    "for" = "state:*",  # for=state:*: Census API syntax. state:*: very state code. "for" must be in quote for not interpreted as the reserved keyword `for`. 
     key = census_key
   )
 
@@ -92,33 +92,33 @@ population_response <- population_request |>
   req_perform() |>
   resp_check_status()
 
-resp_content_type(population_response)
+resp_content_type(population_response)  # check the content type of the response body, here, applicatoin/json
 
 population_raw <- population_response |>
   resp_body_json(simplifyVector = TRUE) |>
-  as.data.frame(stringsAsFactors = FALSE)
+  as.data.frame(stringsAsFactors = FALSE) #keep char columns as char strings rather than factors. 
 ```
 
 ### 2. Tidy the population data
 
 ```{r}
 population <- population_raw |>
-  row_to_names(1) |>
+  row_to_names(1) |> # use the first row as the column names
   as_tibble() |>
   select(NAME, POP_2020, POP_2021) |>
   rename(state_name = NAME) |>
-  pivot_longer(
+  pivot_longer(   # wide->long
     cols = starts_with("POP_"),
     names_to = "year",
     values_to = "population"
   ) |>
   mutate(
-    year = readr::parse_number(year),
+    year = readr::parse_number(year), # convert strings like "POP_2020" into the number 2020
     population = readr::parse_number(population),
     state = case_when(
       state_name == "District of Columbia" ~ "DC",
       state_name == "Puerto Rico" ~ "PR",
-      TRUE ~ state.abb[match(state_name, state.name)]
+      TRUE ~ state.abb[match(state_name, state.name)] # state.abb, state.name: R built-in vectors; 
     )
   ) |>
   select(state_name, state, year, population)
@@ -131,12 +131,13 @@ population
 ```{r}
 regions_url <- "https://github.com/datasciencelabs/2025/raw/refs/heads/main/data/regions.json"
 
-regions_json <- fromJSON(regions_url, simplifyVector = FALSE)
+regions_json <- fromJSON(regions_url, simplifyVector = FALSE) # donot turn the JSON into a df or a vectors, keep it as a nested list structure. 
 
-regions <- map_dfr(regions_json, \(x) {
+regions <- map_dfr(regions_json, \(x) { # used to expand nested JSON. it applies a function to each element in the list regions_json, then row-binds all results into one df
+  # \(x): base R short hand for funciton(x)
   tibble(
-    state_name = unlist(x$states),
-    region = as.integer(x$region[[1]]),
+    state_name = unlist(x$states), # unlist: turns a list into a plain char vector
+    region = as.integer(x$region[[1]]), #extract the first region and convert it into an integer
     region_name = x$region_name
   )
 }) |>
@@ -168,14 +169,14 @@ hosp_raw   <- get_cdc_data("https://data.cdc.gov/resource/39z2-9zu6.json")
 deaths_raw <- get_cdc_data("https://data.cdc.gov/resource/r8kw-7aab.json")
 vax_raw    <- get_cdc_data("https://data.cdc.gov/resource/rh2h-3yt2.json")
 
-map(
+map( #apply the funciton dim to each elm of the list
   list(
     cases = cases_raw,
     hospitalizations = hosp_raw,
     deaths = deaths_raw,
     vaccinations = vax_raw
   ),
-  dim
+  dim #return number of rows, number of cols
 )
 ```
 
@@ -184,7 +185,7 @@ map(
 ### 6. Compare the raw schemas
 
 ```{r}
-raw_summary <- tibble(
+raw_summary <- tibble( # create a summary table describing the four raw datasets
   outcome = c("cases", "hospitalizations", "deaths", "vaccinations"),
   jurisdiction_column = c(
     pick_col_or_na(cases_raw, c("state", "jurisdiction", "location")),
@@ -192,7 +193,7 @@ raw_summary <- tibble(
     pick_col_or_na(deaths_raw, c("state", "jurisdiction")),
     pick_col_or_na(vax_raw, c("location", "state", "jurisdiction"))
   ),
-  frequency = c("weekly", "daily", "weekly", "daily"),
+  frequency = c("weekly", "daily", "weekly", "daily"), #reporting frequency of each dataset
   time_columns = c(
     paste(intersect(c("start_date", "end_date", "submission_date", "date", "date_updated"), names(cases_raw)), collapse = ", "),
     paste(intersect(c("collection_date", "date"), names(hosp_raw)), collapse = ", "),
@@ -207,24 +208,24 @@ kable(raw_summary)
 ### 7. Wrangle the cases data
 
 ```{r}
-case_state_col <- pick_col(cases_raw, c("state", "jurisdiction", "location"))
+case_state_col <- pick_col(cases_raw, c("state", "jurisdiction", "location")) # find s which column identifies the state, and returns the first one that exists
 case_date_col  <- pick_col(cases_raw, c("end_date", "submission_date", "week_ending_date", "date"))
 case_n_col     <- pick_col(cases_raw, c("new_cases", "new_case", "cases"))
 
 cases <- cases_raw |>
-  transmute(
-    state = .data[[case_state_col]],
+  transmute(  # creates a new data frame with only these three cols
+    state = .data[[case_state_col]], # .data[[...]]: because the col name is stored in a variable named case_state_col; .data: current df; .data$case_state_col: Look for a col named "case_state_col". 
     date = parse_date_flex(.data[[case_date_col]]),
-    cases = readr::parse_number(as.character(.data[[case_n_col]]))
+    cases = readr::parse_number(as.character(.data[[case_n_col]])) #extracts the numeric count
   ) |>
-  semi_join(population |> distinct(state), by = "state") |>
+  semi_join(population |> distinct(state), by = "state") |> # population\>distinct(state) is the right table; distinct(state): take the state column and keep each sxtate only once.
   filter(!is.na(date)) |>
   mutate(
-    mmwr_year = epiyear(date),
+    mmwr_year = epiyear(date), # create epideminological year and week variables (not always the same as ordinatry canlendar year and week. THis is common for CDC-style weekly disease data)
     mmwr_week = epiweek(date)
   ) |>
   group_by(state, mmwr_year, mmwr_week) |>
-  summarise(
+  summarise(  #within each group, summarize
     date = max(date, na.rm = TRUE),
     cases = sum(cases, na.rm = TRUE),
     .groups = "drop"
@@ -256,11 +257,11 @@ hosp <- hosp_raw |>
   summarise(
     date = max(date, na.rm = TRUE),
     hosp = sum(hosp, na.rm = TRUE),
-    n_days = n_distinct(date),
+    n_days = n_distinct(date), #count distinct number of dates
     .groups = "drop"
   ) |>
-  filter(n_days == 7) |>
-  select(-n_days)
+  filter(n_days == 7) |>  #keep only weeks with all 7 days present
+  select(-n_days) # drop the col n_days
 
 hosp
 ```
@@ -273,9 +274,9 @@ death_date_col  <- pick_col(deaths_raw, c("week_ending_date", "end_date", "date"
 death_n_col     <- pick_col(deaths_raw, c("covid_19_deaths", "covid_deaths"))
 
 deaths <- deaths_raw |>
-  (\(x) {
+  (\(x) {  # inline-anonymous function
     if ("group" %in% names(x)) filter(x, group == "By Week") else x
-  })() |>
+  })() |>  # (\(x){...}()): immediately call the function on the current dataframe
   transmute(
     state_value = .data[[death_state_col]],
     date = parse_date_flex(.data[[death_date_col]]),
@@ -283,10 +284,10 @@ deaths <- deaths_raw |>
   ) |>
   left_join(
     population |>
-      distinct(state, state_name),
-    by = c("state_value" = "state_name")
+      distinct(state, state_name), # unique pairs of (state, state_name)
+    by = c("state_value" = "state_name") # state_value in the curretn data, state_name in the populaiton table
   ) |>
-  mutate(state = coalesce(state, state_value)) |>
+  mutate(state = coalesce(state, state_value)) |> #coalesce(a,b): use a if it is not missing; otherwise use b
   select(state, date, deaths) |>
   semi_join(population |> distinct(state), by = "state") |>
   filter(!is.na(date)) |>
@@ -309,8 +310,8 @@ deaths
 ```{r}
 vax_state_col  <- pick_col(vax_raw, c("location", "state", "jurisdiction"))
 vax_date_col   <- pick_col(vax_raw, c("date"))
-vax_series_col <- pick_col(vax_raw, c("series_complete_cumulative", "series_complete_yes", "series_complete"))
-vax_boost_col  <- pick_col(vax_raw, c("booster_cumulative", "booster_doses", "additional_doses"))
+vax_series_col <- pick_col(vax_raw, c("series_complete_cumulative", "series_complete_yes", "series_complete")) #completed series count
+vax_boost_col  <- pick_col(vax_raw, c("booster_cumulative", "booster_doses", "additional_doses"))  # completed booster counts
 
 vax <- vax_raw |>
   (\(x) {
@@ -328,9 +329,9 @@ vax <- vax_raw |>
     mmwr_year = epiyear(date),
     mmwr_week = epiweek(date)
   ) |>
-  arrange(state, date) |>
+  arrange(state, date) |> # sort in chornological order within each state
   group_by(state, mmwr_year, mmwr_week) |>
-  slice_max(date, n = 1, with_ties = FALSE) |>
+  slice_max(date, n = 1, with_ties = FALSE) |> # for each state-week grpu, keep the row with the largest date. n: keep the n rows with the largest value. similarly, slice_head(), slice_tail()
   ungroup()
 
 vax
@@ -340,15 +341,15 @@ vax
 
 ```{r}
 all_dates <- tibble(
-  date = seq(make_date(2020, 1, 25), make_date(2021, 12, 31), by = "week")
+  date = seq(make_date(2020, 1, 25), make_date(2021, 12, 31), by = "week") # create a sequence of dates, one week apart
 ) |>
   mutate(
-    date = ceiling_date(date, unit = "week", week_start = 7) - days(1),
+    date = ceiling_date(date, unit = "week", week_start = 7) - days(1), # adjust each date to Saturday of each week. ceiling_date(): moves each date up to the start of the next week, where weeks start on Sunday. subtract 1 day, moves back one day landing on Saturday
     mmwr_year = epiyear(date),
     mmwr_week = epiweek(date)
   )
 
-dates_and_pop <- expand_grid(
+dates_and_pop <- expand_grid(  # create all combinations of every week in all_dates adn every state in population
   all_dates,
   state = unique(population$state)
 ) |>
@@ -360,11 +361,11 @@ dat <- dates_and_pop |>
   left_join(select(deaths, -date), by = c("state", "mmwr_year", "mmwr_week")) |>
   left_join(select(vax,    -date), by = c("state", "mmwr_year", "mmwr_week")) |>
   group_by(state) |>
-  arrange(date, .by_group = TRUE) |>
-  fill(vax, booster, .direction = "down") |>
+  arrange(date, .by_group = TRUE) |> #sort within each state
+  fill(vax, booster, .direction = "down") |> # carry the last observed non-missing value downward to later missing rows for both vax and booster data 
   ungroup() |>
   mutate(
-    cases = replace_na(cases, 0),
+    cases = replace_na(cases, 0), # replacing missing values with 0
     hosp = replace_na(hosp, 0),
     deaths = replace_na(deaths, 0),
     vax = replace_na(vax, 0),
@@ -372,7 +373,7 @@ dat <- dates_and_pop |>
   ) |>
   arrange(state, date)
 
-saveRDS(dat, "data/dat.rds")
+saveRDS(dat, "data/dat.rds") # save dat as an RDS file. readback : readRDS("path-to-file")
 
 dat
 ```
