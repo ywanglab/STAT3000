@@ -9,4 +9,15 @@
   - [QQ plot](slides/qq-plot.qmd)
   - [LOESS](slides/LOESS.qmd)
 
+* Textbook: [OpenIntro Statistics](https://www.openintro.org/go/?id=os4_for_screen_reader&referrer=/book/os/index.php)
+  - Chapter 3: Probability
+    - [Slides](slides/chp3.pdf)
+    - [Lab ](https://openintrostat.github.io/oilabs-tidy/03_probability/probability.html)  
+    - [Source Code](https://github.com/OpenIntroStat/oilabs-tidy/tree/main/03_probability)
+  
 
+
+  - Chapter 8: Intro to Linear Regression 
+    - [slides](https://www.openintro.org/book/os/) [PDF](slides/chp8.pdf)
+    - [Lab/HW](https://openintrostat.github.io/oilabs-tidy/08_simple_regression/simple_regression.html) 
+    - [Lab/HW Source](https://github.com/OpenIntroStat/oilabs-tidy/tree/main/08_simple_regression)

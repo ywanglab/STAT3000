@@ -2144,7 +2144,7 @@
     "href": "slides/06-vectorization.html#add-two-vectors",
     "title": "Vectorization",
     "section": "Add two vectors",
-    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 69.02078 61.92110 66.13725 70.00509 70.00744 72.90883 67.08852 73.03004\n [9] 66.92431 69.75886",
+    "text": "Add two vectors\n\nIf we operate on two vectors, vectorization is componentwise.\n\n\nheights &lt;- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)\nerror &lt;- rnorm(length(heights), 0, 0.1)\nheights + error\n\n [1] 68.96313 61.93244 66.11680 69.88966 70.08097 73.02309 67.02453 72.92993\n [9] 66.91744 69.99183",
     "crumbs": [
       "Vectorization"
     ]
@@ -3094,7 +3094,7 @@
     "href": "index.html",
     "title": "STAT 3000",
     "section": "",
-    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE For regression\nSE for a proportion\nQQ plot\nLOESS",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE For regression\nSE for a proportion\nQQ plot\nLOESS\n\nTextbook: OpenIntro Statistics\n\nChapter 3: Probability\n\nSlides\nLab\n\nSource Code\n\nChapter 8: Intro to Linear Regression\n\nslides PDF\nLab/HW\nLab/HW Source",
     "crumbs": [
       "Home"
     ]
@@ -3104,7 +3104,7 @@
     "href": "index.html#course-information",
     "title": "STAT 3000",
     "section": "",
-    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE For regression\nSE for a proportion\nQQ plot\nLOESS",
+    "text": "Textbooks: DS Book (Part 1), DS Book (Part 2)\nGitHub: Course Repository\nLecture Notes: website\nAdditional Notes:\n\nSE For regression\nSE for a proportion\nQQ plot\nLOESS\n\nTextbook: OpenIntro Statistics\n\nChapter 3: Probability\n\nSlides\nLab\n\nSource Code\n\nChapter 8: Intro to Linear Regression\n\nslides PDF\nLab/HW\nLab/HW Source",
     "crumbs": [
       "Home"
     ]
@@ -4014,7 +4014,7 @@
     "href": "slides/05-r-basics.html#setting-levels",
     "title": "R Basics",
     "section": "Setting Levels",
-    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Female Male   Female Male   Female Female Male   Male   Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Female Male   Female Male   Female Female Male   Male   Male   Female\nLevels: Female Male",
+    "text": "Setting Levels\n\nyou can set up the levels (order) as you would like, when creating a factor\nif you do not set them up, then they will be created in lexicographic order (in the locale you are using)\n\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Female Male   Female Male   Female Female Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Female Male   Female Male   Female Female Male   Female\nLevels: Female Male",
     "crumbs": [
       "R Basics"
     ]
@@ -4024,7 +4024,7 @@
     "href": "slides/05-r-basics.html#the-previous-example-continued",
     "title": "R Basics",
     "section": "The previous example continued",
-    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Female Female Male   Male   Female Female Male   Male   Male  \nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Female Female Male   Male   Female Female Male   Male   Male  \nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
+    "text": "The previous example continued\n\nx = sample(c(\"Male\", \"Female\"), 50, replace =TRUE)\ny1 = factor(x, levels=c(\"Male\", \"Female\"))\ny2 = factor(x, levels = c(\"Female\", \"Male\"))\ny1[1:10]\n\n [1] Male   Male   Male   Male   Male   Female Male   Male   Male   Female\nLevels: Male Female\n\ny2[1:10]\n\n [1] Male   Male   Male   Male   Male   Female Male   Male   Male   Female\nLevels: Female Male\n\ny1==y2 # value comparison\n\n [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE\n[46] TRUE TRUE TRUE TRUE TRUE\n\nidentical(y1,y2) # object comparison\n\n[1] FALSE",
     "crumbs": [
       "R Basics"
     ]
@@ -4084,7 +4084,7 @@
     "href": "slides/05-r-basics.html#factors-integers-use-less-memory",
     "title": "R Basics",
     "section": "Factors (integers) use less memory",
-    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3333206  0.3331528  0.3335266 \n\n# table counts the frequency of each unique value",
+    "text": "Factors (integers) use less memory\n\nx &lt;- sample(murders$state[c(5,33,44)], 10^7, replace = TRUE) #sample(x,size,replace)\ny &lt;- factor(x)\nobject.size(x)\n\n80000232 bytes\n\nobject.size(y)\n\n40000648 bytes\n\n\n\nlength(x) #  10000000\n\n[1] 10000000\n\ntable(x) / length(x) #≈ 0.333, 0.333, 0.333\n\nx\nCalifornia   New York      Texas \n 0.3330942  0.3334986  0.3334072 \n\n# table counts the frequency of each unique value",
     "crumbs": [
       "R Basics"
     ]
@@ -4304,7 +4304,7 @@
     "href": "slides/05-r-basics.html#exampe-function-as-a-returned-value",
     "title": "R Basics",
     "section": "Exampe: function as a returned value",
-    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x000001ff8ac96e10&gt;",
+    "text": "Exampe: function as a returned value\n\nrexp: generate values from an Exponential distribution \\(f(x;\\lambda)=\\begin{cases} \\lambda e^{-\\lambda x} & x\\ge 0 \\\\ 0 & x&lt;0. \\end{cases}\\).\nnotice that a function is returned\n\n\nx = rexp(100, rate = 4)\n\nllExp = function(DATA) { #log-likelyhood\n   n = length(DATA)\n   sumx = sum(DATA)\n   return(function(mu) {n * log(mu) - mu * sumx})\n}\n\nmyLL = llExp(x)\nmyLL\n\nfunction (mu) \n{\n    n * log(mu) - mu * sumx\n}\n&lt;environment: 0x000001d3dda9bb68&gt;",
     "crumbs": [
       "R Basics"
     ]
@@ -5374,7 +5374,7 @@
     "href": "slides/24-confidence-intervals.html#confidence-intervals-simulation",
     "title": "Confidence Intervals",
     "section": "Confidence intervals: Simulation",
-    "text": "Confidence intervals: Simulation\n\nAnd notice that the interval here:\n\n\nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.419165 0.480835\n\n\n\nis different from this one:\n\n\nx &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.4141977 0.4758023\n\n\n\nKeep sampling and creating intervals, and you will see the random variation.",
+    "text": "Confidence intervals: Simulation\n\nAnd notice that the interval here:\n\n\nx &lt;- sample(c(0, 1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.4102262 0.4717738\n\n\n\nis different from this one:\n\n\nx &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \nx_hat &lt;- mean(x) \nse_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \nc(x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n\n[1] 0.4122117 0.4737883\n\n\n\nKeep sampling and creating intervals, and you will see the random variation.",
     "crumbs": [
       "Confidence Intervals"
     ]
@@ -5424,7 +5424,7 @@
     "href": "slides/24-confidence-intervals.html#a-monte-carlo-simulation",
     "title": "Confidence Intervals",
     "section": "A Monte Carlo simulation",
-    "text": "A Monte Carlo simulation\n\nWe can run a Monte Carlo simulation to confirm that, in fact, a 95% confidence interval includes \\(p\\) 95% of the time.\n\n\nN &lt;- 1000 \nB &lt;- 10000 \ninside &lt;- replicate(B, { \n  x &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  x_hat &lt;- mean(x) \n  se_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \n  between(p, x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n}) \nmean(inside) \n\n[1] 0.9508",
+    "text": "A Monte Carlo simulation\n\nWe can run a Monte Carlo simulation to confirm that, in fact, a 95% confidence interval includes \\(p\\) 95% of the time.\n\n\nN &lt;- 1000 \nB &lt;- 10000 \ninside &lt;- replicate(B, { \n  x &lt;- sample(c(0,1), size = N, replace = TRUE, prob = c(1 - p, p)) \n  x_hat &lt;- mean(x) \n  se_hat &lt;- sqrt(x_hat*(1 - x_hat)/N) \n  between(p, x_hat - 1.96*se_hat, x_hat + 1.96*se_hat) \n}) \nmean(inside) \n\n[1] 0.9481",
     "crumbs": [
       "Confidence Intervals"
     ]
