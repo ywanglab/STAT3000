@@ -80,7 +80,7 @@ For this part, put your code in `code/wrangle.R` unless otherwise specified.
 
 ### 1. Load the required packages and source the Census key
 
-Add code that loads the packages you will need and defines `census_key` by sourcing `census-key.R`.
+Add code that loads the packages you will need and defines `census_key` by sourcing `_census-key.R`.
 
 ```{r}
 #| eval: false
@@ -108,6 +108,7 @@ source("_census-key.R")
 ## Helper functions
 
 ```{r}
+#| eval: false
 # Parse dates that may arrive in multiple formats
 parse_date_flex <- function(x) {
   x <- as.character(x)
@@ -125,7 +126,7 @@ pick_col <- function(dat, candidates) {
   if (length(found) == 0) {
     stop(
       "None of the candidate columns were found: ",
-      paste(candidates, collapse = ", ") #combine them into one string and sperated by ", ". 
+      paste(candidates, collapse = ", ") #combine them into one string and seperated by ", ". 
     )
   }
   found[1] # pick the first column
@@ -133,7 +134,7 @@ pick_col <- function(dat, candidates) {
 
 pick_col_or_na <- function(dat, candidates) {
   found <- intersect(candidates, names(dat))
-  if (length(found) == 0) NA_character_ else found[1] # if no mathc, return NA_character
+  if (length(found) == 0) NA_character_ else found[1] # if no match, return NA_character
 }
 
 # Downloader for CDC Socrata endpoints
@@ -142,7 +143,7 @@ get_cdc_data <- function(endpoint) {
     req_url_query("$limit" = 10000000) |> # limit of returned rows
     req_perform() |>  # peform  the request
     resp_check_status() |>  # 200 OK, 404: not found; 500: server error
-    resp_body_json(simplifyVector = TRUE) |> #reads the response body as JSON, and simply the parsd JSON into ordinary R objects when possible
+    resp_body_json(simplifyVector = TRUE) |> #reads the response body as JSON, and simply the parse JSON into ordinary R objects when possible
     as_tibble() |>
     janitor::clean_names() #clean the column names into a standardized format (use underscore for /, -, etc)
 }
@@ -163,7 +164,7 @@ census_url <- "https://api.census.gov/data/2021/pep/population"
 population_request <- request(census_url) |>
   req_url_query(   # addes query parameters
     get = "POP_2020,POP_2021,NAME",
-    "for" = "state:*",  # for=state:*: Census API syntax. state:*: very state code. "for" must be in quote for not interpreted as the reserved keyword `for`. 
+    "for" = "state:*",  # for=state:*: Census API syntax. state:*: every state code. "for" must be in quote for not interpreted as the reserved keyword `for`. 
     key = census_key
   )
 
@@ -175,7 +176,7 @@ population_response <- population_request |>
 # 1. Check the response status
 # 2. Determine the content type
 # 3. Extract the body into population_raw
-resp_content_type(population_response)  # check the content type of the response body, here, applicatoin/json
+resp_content_type(population_response)  # check the content type of the response body, here, application/json
 
 population_raw <- population_response |>
   resp_body_json(simplifyVector = TRUE) |>
@@ -193,6 +194,7 @@ Convert `population_raw` into a tidy tibble called `population` with one row per
 
 Also add state abbreviations, making sure to handle DC and Puerto Rico correctly.
 ```{r}
+#| eval: false
 population <- population_raw |>
   row_to_names(1) |> # use the first row as the column names
   as_tibble() |>
@@ -246,12 +248,13 @@ regions <-
 
 
 ```{r}
+#| eval: false
 regions_url <- "https://github.com/datasciencelabs/2025/raw/refs/heads/main/data/regions.json"
 
 regions_json <- fromJSON(regions_url, simplifyVector = FALSE) # donot turn the JSON into a df or a vectors, keep it as a nested list structure. 
 
 regions <- map_dfr(regions_json, \(x) { # used to expand nested JSON. it applies a function to each element in the list regions_json, then row-binds all results into one df
-  # \(x): base R short hand for funciton(x)
+  # \(x): base R shorthand for function(x)
   tibble(
     state_name = unlist(x$states), # unlist: turns a list into a plain char vector
     region = as.integer(x$region[[1]]), #extract the first region and convert it into an integer
@@ -280,6 +283,7 @@ population <-
   NULL
 ```
 ```{r}
+#| eval: false
 population <- population |>
   left_join(regions, by = "state_name")
 
@@ -329,7 +333,7 @@ deaths_raw <- get_cdc_data("https://data.cdc.gov/resource/r8kw-7aab.json")
 vax_raw    <- get_cdc_data("https://data.cdc.gov/resource/rh2h-3yt2.json")
 
 # Add one or two quick inspection lines here
-map( #apply the funciton dim to each elm of the list
+map( #apply the function dim to each elm of the list
   list(
     cases = cases_raw,
     hospitalizations = hosp_raw,
@@ -366,6 +370,7 @@ raw_summary <- tibble(
 # render the table
 ```
 ```{r}
+#| eval: false
 raw_summary <- tibble( # create a summary table describing the four raw datasets
   outcome = c("cases", "hospitalizations", "deaths", "vaccinations"),
   jurisdiction_column = c(
@@ -418,6 +423,7 @@ cases <- cases_raw |>
   NULL
 ```
 ```{r}
+#| eval: false
 case_state_col <- pick_col(cases_raw, c("state", "jurisdiction", "location")) # find s which column identifies the state, and returns the first one that exists
 case_date_col  <- pick_col(cases_raw, c("end_date", "submission_date", "week_ending_date", "date"))
 case_n_col     <- pick_col(cases_raw, c("new_cases", "new_case", "cases"))
@@ -463,6 +469,7 @@ hosp <- hosp_raw |>
   NULL
 ```
 ```{r}
+#| eval: false
 hosp_state_col <- pick_col(hosp_raw, c("jurisdiction", "state", "location"))
 hosp_date_col  <- pick_col(hosp_raw, c("collection_date", "date"))
 hosp_n_col     <- pick_col(hosp_raw, c("new_covid_19_hospital", "new_hospital_admissions_covid"))
@@ -518,6 +525,7 @@ deaths <- deaths_raw |>
 ```
 
 ```{r}
+#| eval: false
 death_state_col <- pick_col(deaths_raw, c("state", "jurisdiction"))
 death_date_col  <- pick_col(deaths_raw, c("week_ending_date", "end_date", "date"))
 death_n_col     <- pick_col(deaths_raw, c("covid_19_deaths", "covid_deaths"))
@@ -576,6 +584,7 @@ vax <- vax_raw |>
   NULL
 ```
 ```{r}
+#| eval: false
 vax_state_col  <- pick_col(vax_raw, c("location", "state", "jurisdiction"))
 vax_date_col   <- pick_col(vax_raw, c("date"))
 vax_series_col <- pick_col(vax_raw, c("series_complete_cumulative", "series_complete_yes", "series_complete")) #completed series count
@@ -652,6 +661,7 @@ dat <- dates_and_pop |>
 # Your code here
 ```
 ```{r}
+#| eval: false
 all_dates <- tibble(
   date = seq(make_date(2020, 1, 25), make_date(2021, 12, 31), by = "week") # create a sequence of dates, one week apart
 ) |>
