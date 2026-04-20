@@ -260,7 +260,8 @@ hosp <- hosp_raw |>
     n_days = n_distinct(date), #count distinct number of dates
     .groups = "drop"
   ) |>
-  filter(n_days == 7) |>  #keep only weeks with all 7 days present
+  # filter(n_days == 7) |>  #keep only weeks with all 7 days present: leading to an empty set
+  filter(n_days >=1) |>  #keep only weeks with all 7 days present
   select(-n_days) # drop the col n_days
 
 hosp

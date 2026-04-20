@@ -238,17 +238,6 @@ One of the region names is long. Replace it with a shorter version.
 
 ```{r}
 #| eval: false
-regions_json <- fromJSON(regions_url, simplifyVector = FALSE)
-
-regions <- 
-  # convert the parsed list into a tidy data frame
-  # shorten the longest region name
-  NULL
-```
-
-
-```{r}
-#| eval: false
 regions_url <- "https://github.com/datasciencelabs/2025/raw/refs/heads/main/data/regions.json"
 
 regions_json <- fromJSON(regions_url, simplifyVector = FALSE) # donot turn the JSON into a df or a vectors, keep it as a nested list structure. 
@@ -276,12 +265,6 @@ regions
 
 Join `regions` onto `population`.
 
-```{r}
-#| eval: false
-population <- 
-  # join population and regions
-  NULL
-```
 ```{r}
 #| eval: false
 population <- population |>
@@ -360,15 +343,7 @@ Create a small summary table that reports, for each raw CDC dataset:
 
 You may render the table with `knitr::kable()`.
 
-```{r}
-#| eval: false
-raw_summary <- tibble(
-  outcome = c("cases", "hospitalizations", "deaths", "vaccinations")
-  # add the remaining columns
-)
 
-# render the table
-```
 ```{r}
 #| eval: false
 raw_summary <- tibble( # create a summary table describing the four raw datasets
@@ -409,19 +384,7 @@ Hints:
 -   Use `epiweek()` and `epiyear()` from **lubridate**.
 -   The cases dataset is already weekly, but you should still verify the time variable you use.
 
-```{r}
-#| eval: false
-## Wrangle weekly cases
-cases <- cases_raw |>
-  # choose the relevant state column
-  # choose the relevant date column
-  # choose the relevant cases column
-  # parse dates
-  # restrict to jurisdictions in population
-  # compute MMWR year and week
-  # aggregate to one row per state-week if needed
-  NULL
-```
+
 ```{r}
 #| eval: false
 case_state_col <- pick_col(cases_raw, c("state", "jurisdiction", "location")) # find s which column identifies the state, and returns the first one that exists
@@ -456,18 +419,7 @@ Create a table called `hosp` with the same weekly structure as `cases`, but cont
 
 Because hospitalization data are daily, collapse them to state-week totals. Remove weeks with fewer than 7 reporting days.
 
-```{r}
-#| eval: false
-## Wrangle weekly hospitalizations
-hosp <- hosp_raw |>
-  # identify the state, date, and hospitalization columns
-  # parse the dates
-  # compute MMWR year and week
-  # aggregate to weekly totals
-  # count number of reporting days per week
-  # remove incomplete weeks
-  NULL
-```
+
 ```{r}
 #| eval: false
 hosp_state_col <- pick_col(hosp_raw, c("jurisdiction", "state", "location"))
@@ -510,19 +462,7 @@ Create a table called `deaths` with weekly COVID-19 deaths by state. Keep the va
 
 Be careful: this dataset may contain national rows and grouping variables.
 
-```{r}
-#| eval: false
-## Wrangle weekly deaths
-# Possible tasks:
-# - keep only state-level observations
-# - filter to a weekly grouping if needed
-# - choose the COVID death count column
-# - parse the week-ending date
-# - keep the needed variables
 
-deaths <- deaths_raw |>
-  NULL
-```
 
 ```{r}
 #| eval: false
@@ -572,17 +512,7 @@ Create a table called `vax` containing the most recent vaccination record within
 -   `vax` (primary series cumulative count)
 -   `booster` (booster cumulative count)
 
-```{r}
-#| eval: false
-## Wrangle weekly vaccination data
-vax <- vax_raw |>
-  # identify state and date columns
-  # choose cumulative primary-series and booster variables
-  # parse dates
-  # compute MMWR year and week
-  # keep the last record within each state-week
-  NULL
-```
+
 ```{r}
 #| eval: false
 vax_state_col  <- pick_col(vax_raw, c("location", "state", "jurisdiction"))
@@ -643,23 +573,7 @@ Requirements:
 -   replace missing counts for `cases`, `hosp`, and `deaths` with 0,
 -   save the final table as `data/dat.rds`.
 
-```{r}
-#| eval: false
-## Join the weekly tables
 
-dat <- dates_and_pop |>
-  # join weekly cases
-  # join weekly hospitalizations
-  # join weekly deaths
-  # join weekly vaccinations
-  # arrange within state by date
-  # fill cumulative vaccination variables forward
-  # replace missing weekly counts with 0
-  NULL
-
-## Save the dataset
-# Your code here
-```
 ```{r}
 #| eval: false
 all_dates <- tibble(
